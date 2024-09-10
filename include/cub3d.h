@@ -6,15 +6,15 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:34:42 by aska              #+#    #+#             */
-/*   Updated: 2024/09/10 23:07:18 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/10 23:47:47 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../lib/MacroLibX/includes/mlx.h"
-# include "../lib/MacroLibX/includes/mlx_profile.h"
+# include "../lib/MacroLibx/includes/mlx.h"
+# include "../lib/MacroLibx/includes/mlx_profile.h"
 # include "../lib/libft-plus/libft.h"
 # include "init.h"
 # include "msg.h"

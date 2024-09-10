@@ -6,7 +6,7 @@
 #    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/10 17:30:35 by aska             ###   ########.fr        #
+#    Updated: 2024/09/10 23:47:36 by aska             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,7 +21,7 @@ NC					:=	\033[0m
 CC 					:= 	cc
 CFLAGS 				:= 	-Wall -Werror -Wextra -g
 LDFLAGS				:=	-L ./lib/libft-plus -lft
-MLX					:=	lib/MacroLibX/libmlx.so -lSDL2
+MLX					:=	lib/MacroLibx/libmlx.so -lSDL2
 
 SRC_DIR				:=	src/
 OBJ_DIR				:=	obj/
