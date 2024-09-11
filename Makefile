@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/10 23:47:36 by aska             ###   ########.fr        #
+#    Updated: 2024/09/11 00:00:10 by svogrig          ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 SHELL				:=	/bin/bash
 
@@ -55,7 +55,7 @@ all: init $(NAME)
 	@echo -e "$(BOLD)$(NAME)$(NC) is located in $(BOLD)$(shell find . -iname "$(NAME)")$(NC) !\n"
 
 libmlx:
-	@$(MAKE) -j -C $(LIB_DIR)MacroLibX --no-print-directory
+	@$(MAKE) -j -C $(LIB_DIR)MacroLibx --no-print-directory
 
 libft:
 	@$(MAKE) -C $(LIB_DIR)libft-plus --no-print-directory
@@ -93,7 +93,7 @@ libfclean: libclean
 	@$(MAKE) -C $(LIB_DIR)libft-plus fclean --no-print-directory
 #	@$(MAKE) -C $(LIB_DIR)MacroLibX fclean --no-print-directory
 
-init: libft #libmlx
+init: libft libmlx
 	@echo -e ""
 	@echo -e "\t\t$(BHYEL)┍━━━━━━»•» 🌸 «•«━┑$(NC)"
 	@echo -e "\t\t$(BHYEL) CUB3D COMPILATION $(NC)"
