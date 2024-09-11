@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:34:42 by aska              #+#    #+#             */
-/*   Updated: 2024/09/11 14:38:36 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/11 17:29:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		return_value(t_cub *cub, char *line, char *key, char **value);
 int		return_key(t_cub *cub, char *line, char **key);
 void	init_organizer(t_cub *cub, char *file);
 int		asset_discovery(t_cub *cub);
-void	entry_arg_checker(int ac, char **av);
+void	check_entry_arg(int ac, char **av);
 int		mlx_initialize(t_cub *cub);
 int		open_cub(t_cub *cub, char *file);
 void	goto_exit(int check, int err, t_state state, char *msg);

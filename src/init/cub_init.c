@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/09/07 14:58:04 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/11 16:38:31 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
@@ -111,8 +111,6 @@ void	img_path_process(t_cub *cub, char *line)
 	cub->err = attrib_path(cub, key, value);
 	value = ft_char_f(value);
 	key = ft_char_f(key);
-	if (cub->err == FAIL)
-		return ;
 }
 
 int	asset_discovery(t_cub *cub)
@@ -125,9 +123,9 @@ int	asset_discovery(t_cub *cub)
 	line = get_next_line(cub->fd);
 	while (line != NULL)
 	{
-		if (cub->err != FAIL && cub->img->path_ok <= 5)
+		if (cub->img->path_ok <= 5)
 			img_path_process(cub, line);
-		else if (cub->err != FAIL)
+		else
 			insert_end_lstmap(&cub->map, ft_strdup(line));
 		line = ft_char_f(line);
 		line = get_next_line(cub->fd);
