@@ -1,18 +1,18 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2024/07/30 19:12:40 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/11 14:38:02 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int entry_arg_checker(int ac, char **av)
+void entry_arg_checker(int ac, char **av)
 {
     int err;
     int strnstr;
@@ -25,5 +25,4 @@ int entry_arg_checker(int ac, char **av)
         strnstr = 1;
     err = chk_box(strnstr, EQ, 0, "Check file extension");
     goto_exit(err, err, ERROR, EXTENSION_ERROR);
-    return (SUCCESS);
 }

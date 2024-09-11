@@ -1,18 +1,18 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   organizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:33:04 by aska              #+#    #+#             */
-/*   Updated: 2024/09/10 17:47:23 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/11 14:38:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	init_organizer(t_cub *cub, char *file)
+void	init_organizer(t_cub *cub, char *file)
 {
 	cub->err = open_cub(cub, file);
 	if (chk_box(cub->err, EQ, SUCCESS, file) == 1)
@@ -35,5 +35,4 @@ int	init_organizer(t_cub *cub, char *file)
 	// cub->err = mlx_initialize(cub);
 	// if (cub->mlx == NULL)
 	// 	helltrain(cub, ERROR, 1, "mlx_init");
-	return (SUCCESS);
 }

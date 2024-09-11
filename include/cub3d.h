@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:34:42 by aska              #+#    #+#             */
-/*   Updated: 2024/09/10 23:47:47 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/11 14:38:36 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -47,9 +47,9 @@ int		attrib_path(t_cub *cub, char *key, char *value);
 char	*path_seletor(t_cub *cub, char *key, char *img_path);
 int		return_value(t_cub *cub, char *line, char *key, char **value);
 int		return_key(t_cub *cub, char *line, char **key);
-int		init_organizer(t_cub *cub, char *file);
+void	init_organizer(t_cub *cub, char *file);
 int		asset_discovery(t_cub *cub);
-int		entry_arg_checker(int ac, char **av);
+void	entry_arg_checker(int ac, char **av);
 int		mlx_initialize(t_cub *cub);
 int		open_cub(t_cub *cub, char *file);
 void	goto_exit(int check, int err, t_state state, char *msg);
