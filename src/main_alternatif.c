@@ -1,53 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_alternatif.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/09/13 12:51:56 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/11 20:50:31 by svogrig           #+#    #+#             */
+/*   Updated: 2024/09/13 12:46:48 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
 #include "vec2i.h"
 #include "event.h"
 #include "render.h"
-#include "mlx.h"
 
-int	map_load(char *path, char **map)
+int	main(int argc, char **argv)
 {
-	(void)path;
-	(void)map;
-	
-	printf("map_load\n");
-	return (SUCCESS);
-}
-
-int main(int argc, char **argv)
-{
-    t_cub *cub;
 	t_data	data;
-    
-    title();
-    check_entry_arg(argc, argv);
-    // if (check_entry_arg(ac, av) == FAIL)
-    //     return (OK);
-    cub = ft_calloc(1, sizeof(t_cub));
-	if (cub == NULL)
-		ft_exit(ERROR, 1, "Allocation For Struct 'cub'");
-    init_organizer(cub, argv[1]);
-    debug(cub);
+	
+	if (argc != 2)
+	{
+		ft_printf("usage: ./fdf <map_file>\n");
+		return (SUCCESS);
+	}
 	data_init(&data);
 	if (map_load(argv[1], data.map) == SUCCESS && mlx_setup(&data) == SUCCESS)
-    {
-        printf("mlx_loop\n");
+	{
+		printf("mlx_loop\n");
 		event_setup(&data);
 		render(&data);
-		mlx_loop(data.mlx); 
-    }
-    helltrain(cub, INFO, 0, "END OF PROGRAM");
+		mlx_loop(data.mlx);
+	}
 	data_clean(&data);
-    return (EXIT_SUCCESS);
+	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/11 00:00:10 by svogrig          ###   ########.fr        #
+#    Updated: 2024/09/13 12:54:01 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,14 @@ DIR_LIST			:=	{init,utils,free_function,dlst_map}
 #-- MANDATORY
 HEADERS			:=	include/so_long.h
 SRCS			:= 	$(SRC_DIR)main.c \
+					$(SRC_DIR)data.c \
+					$(SRC_DIR)screen.c \
+					$(SRC_DIR)draw_line.c \
+					$(SRC_DIR)draw_line_utils.c \
+					$(SRC_DIR)vec2i.c \
+					$(SRC_DIR)event.c \
+					$(SRC_DIR)render.c \
+					$(SRC_DIR)mlx.c \
 					$(SRC_DIR)debug.c \
 					$(SRC_DIR)free_function/free_main.c \
 					$(SRC_DIR)free_function/free_mlx_utils.c \
@@ -50,21 +58,24 @@ OBJS			:= 	$(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 NAME			:= 	cub3d
 
-all: init $(NAME)
+all: init
+	@$(MAKE) -j makeall
 	@echo -e "\t$(BLINK_GREEN)$(NAME) = COMPILATION FINISHED !$(NC)"
 	@echo -e "$(BOLD)$(NAME)$(NC) is located in $(BOLD)$(shell find . -iname "$(NAME)")$(NC) !\n"
+
+makeall: $(NAME)
 
 libmlx:
 	@$(MAKE) -j -C $(LIB_DIR)MacroLibx --no-print-directory
 
 libft:
-	@$(MAKE) -C $(LIB_DIR)libft-plus --no-print-directory
+	@$(MAKE) -j -C $(LIB_DIR)libft-plus --no-print-directory
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
 	@$(CC) $(CFLAGS) -o $@ -c $< && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS) $(MLX) && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@\n"
+	@$(CC) $(CFLAGS) $(OBJS) -g -o $@ $(LDFLAGS) $(MLX) && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@\n"
 
 clean: libclean
 	@rm -fr $(OBJ_DIR) && printf "Cleaning : $(OBJ_DIR)\n"
