@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/13 03:23:51 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/13 23:51:34 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void	draw_cub3d(t_data *data)
 		draw_line(&data->cub, vector2i(0, y), vector2i(MINIMAP_W, y), 0xFF00FF00);
 		y++;
 	}
-	// 	// map_to_img(&data.map, &data.img, &data.transform);
 }
 
 void	draw_minimap(t_data *data)
 {
 	printf("draw_minimap\n");
+	t_vec2i	player;
 	int x;
 	int y;
 	int color;
@@ -65,15 +65,20 @@ void	draw_minimap(t_data *data)
 	mlx_set_image_pixel(data->mlx, data->minimap.img, x, y + 1, color);
 	mlx_set_image_pixel(data->mlx, data->minimap.img, x + 1, y + 1, color);
 	
-	draw_line(&data->minimap, vector2i(x, y - 100), vector2i(x, y), 0xFFFF0000);
+	x += sin(data->player.dir) * 50;
+	y -= cos(data->player.dir) * 50;
+	player.x = (int)data->player.pos.x;
+	player.y = (int)data->player.pos.y;
+	draw_line(&data->minimap, player, vector2i(x, y), 0xFFFF0000);
 
 }
 
 void	render(t_data *data)
 {
-	printf("render\n");
-	data->player.pos.x += data->key.a - data->key.d;
-	data->player.pos.y += data->key.w - data->key.s;
+	// printf("render\n");
+
+	// printf("player x: %f y: %f dir: %f ", data->player.pos.x, data->player.pos.y, data->player.dir);
+	// printf("cos: %f sin: %f key w: %d\n", cos(data->player.dir), sin(data->player.dir), data->key.w);
 	draw_cub3d(data);
 	draw_minimap(data);
     mlx_put_image_to_window(data->mlx, data->cub.win, data->cub.img, 0, 0);

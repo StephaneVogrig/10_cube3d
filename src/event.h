@@ -6,14 +6,16 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/13 03:31:14 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/13 23:51:55 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EVENT_H
 # define EVENT_H
 
+# include <time.h>
 # include "render.h"
+# include "player.h"
 
 # define KEY_ESC 41
 # define KEY_W 26

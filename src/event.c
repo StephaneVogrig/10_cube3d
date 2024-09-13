@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/13 03:31:51 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/13 23:51:18 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int window_hook(int event, void* mlx)
 		mlx_loop_end(mlx);
 	return (SUCCESS);
 }
-
-// void	move(t_data *data, char *key)
 
 int	on_keydown(int key, void *param)
 {
@@ -75,10 +73,16 @@ int	on_keyup(int key, void *param)
 int	on_loop(void *param)
 {
 	t_data *data;
+	clock_t	begin;
 	
+	begin = clock();
 	data = (t_data *)param;
 	if (data->key.down)
+	{
+		player_move(&data->player, data->key);
 		render(data);
+	}
+	printf("fps: %ld\n", clock() - begin);
 	return (SUCCESS);
 }
 

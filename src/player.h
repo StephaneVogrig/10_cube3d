@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 01:30:18 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/13 23:51:44 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/13 22:05:50 by svogrig           #+#    #+#             */
+/*   Updated: 2024/09/13 23:42:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef PLAYER_H
+# define PLAYER_H
 
-# include <math.h>
+# include "vec2i.h"
 # include "data.h"
-# include "draw_line.h"
+# include <math.h>
 
-void	render(t_data *data);
+void	player_move(t_player *player, t_key key);
 
 #endif

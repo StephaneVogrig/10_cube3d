@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/13 03:11:30 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/13 23:48:51 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define DATA_H
 
 # include "../include/cub3d.h"
-#include "vec2i.h"
+# include "vec2i.h"
 # include "screen.h"
 
 # define CUB_W 800
@@ -22,31 +22,32 @@
 # define MINIMAP_W 800
 # define MINIMAP_H 450
 
-typedef unsigned int t_ui32;
+typedef unsigned int 	t_ui32;
+typedef unsigned char	t_ui8;
 
-typedef struct s_vec2{
-    int x;
-    int y;
-}   t_vec2;
+# define SPEED_ROT (M_PI / 100)
+# define SPEED_MOVE 1
+
 
 #define UP 0
 #define DOWN 1
 
+
 typedef union{
 	struct {
-		char	w:1;
-		char	a:1;
-		char	s:1;
-		char	d:1;
-		char	left:1;
-		char	right:1;
+		t_ui8	w : 1;
+		t_ui8	a : 1;
+		t_ui8	s : 1;
+		t_ui8	d : 1;
+		t_ui8	left : 1;
+		t_ui8	right : 1;
 	};
 	t_ui32	down;
 }	t_key;
 
 typedef struct s_player{
-	t_vec2i	pos;
-	int		dir;
+	t_vec2d	pos;
+	double	dir;
 }	t_player;
 
 typedef struct s_data{
