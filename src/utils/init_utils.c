@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/08/03 19:48:01 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/13 16:20:33 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
@@ -33,11 +33,11 @@ char	*path_seletor(t_cub *cub, char *key, char *img_path)
 	return (img_path);
 }
 
-int	return_key(t_cub *cub, char *line, char **key)
+int	return_key(char *line, char **key)
 {
 	*key = ft_substr(line, 0, ft_strlen_endc(line, ' '));
 	if (key == NULL)
-		helltrain(cub, ERROR, 1, "key");
+		return (ft_return(ERROR, FAIL, "Allocating key failed"));
 	return (SUCCESS);
 }
 
@@ -49,12 +49,12 @@ int	return_value(t_cub *cub, char *line, char *key, char **value)
 	*value = ft_substr(line, key_len, ft_strlen_endc(line + key_len, '\n'));
 	*value = ft_strtrim_f(*value, " ");
 	*value = ft_strtrim_f(*value, "./");
-	if (*value[0] != '/')
-		*value = ft_strjoin_f2(cub->root_path, *value);
 	if (value == NULL)
 	{
 		ft_free(key);
 		helltrain(cub, ERROR, 1, "value");
 	}
+	if (*value[0] != '/')
+		*value = ft_strjoin_f2(cub->root_path, *value);
 	return (SUCCESS);
 }

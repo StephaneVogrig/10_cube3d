@@ -1,8 +1,7 @@
 SO ./ROCKSO.bmp
 
-NO              ./ROCKNO.bmp
-WE        ./ROCKWE.bmp
-
+NO ./ROCKNO.bmp
+WE ./ROCKWE.bmp
 
 
 EA ./ROCKEA.bmp

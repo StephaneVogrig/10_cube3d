@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/13 12:54:01 by svogrig          ###   ########.fr        #
+#    Updated: 2024/09/13 14:58:55 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,14 +48,13 @@ SRCS			:= 	$(SRC_DIR)main.c \
 					$(SRC_DIR)init/mlx_init.c \
 					$(SRC_DIR)dlst_map/lstmap_op.c \
 					$(SRC_DIR)dlst_map/lstmap_del.c \
-					$(SRC_DIR)init/organizer.c \
 					$(SRC_DIR)utils/check_utils.c \
 					$(SRC_DIR)utils/init_utils.c \
 					$(SRC_DIR)utils/pretty_utils.c \
 					$(SRC_DIR)utils/lstmap_utils.c \
 					
 OBJS			:= 	$(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
-
+DEPS			:=	$(OBJS:.o=.d)
 NAME			:= 	cub3d
 
 all: init
@@ -77,6 +76,8 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -g -o $@ $(LDFLAGS) $(MLX) && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@\n"
 
+-include $(DEPS)
+
 clean: libclean
 	@rm -fr $(OBJ_DIR) && printf "Cleaning : $(OBJ_DIR)\n"
 
@@ -92,17 +93,17 @@ recub:
 
 libclean:
 	@$(MAKE) -C $(LIB_DIR)libft-plus clean --no-print-directory
-	# @$(MAKE) -C $(LIB_DIR)MacroLibX clean --no-print-directory
+	@$(MAKE) -C $(LIB_DIR)MacroLibx clean --no-print-directory
 
 relibft:
 	@$(MAKE) -C $(LIB_DIR)libft-plus re --no-print-directory
 
 remacro:
-	@$(MAKE) -C $(LIB_DIR)MacroLibX re --no-print-directory
+	@$(MAKE) -C $(LIB_DIR)MacroLibx re --no-print-directory
 
 libfclean: libclean
 	@$(MAKE) -C $(LIB_DIR)libft-plus fclean --no-print-directory
-#	@$(MAKE) -C $(LIB_DIR)MacroLibX fclean --no-print-directory
+	@$(MAKE) -C $(LIB_DIR)MacroLibx fclean --no-print-directory
 
 init: libft libmlx
 	@echo -e ""
@@ -110,8 +111,6 @@ init: libft libmlx
 	@echo -e "\t\t$(BHYEL) CUB3D COMPILATION $(NC)"
 	@echo -e "\t\t$(BHYEL)┕━»•» 🌸 «•«━━━━━━┙$(NC)"
 	@echo -e ""
-#	@$(MAKE) -C $(LIB_DIR)libft-plus --no-print-directory
-#	@$(MAKE) -C $(LIB_DIR)MacroLibX --no-print-directory
 	@mkdir -p $(OBJ_DIR)$(DIR_LIST) && echo -e "$(BGREEN)[✔]$(NC)\tCreate Directories: $(OBJ_DIR)$(DIR_LIST)$(NC)"
 
 bonus: init $(NAME_BONUS) 

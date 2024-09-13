@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:42:41 by aska              #+#    #+#             */
-/*   Updated: 2024/09/10 16:26:29 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/13 15:43:22 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
@@ -36,37 +36,25 @@ typedef struct s_rgb
 	int				g;
 	int				b;
 }					t_rgb;
-typedef struct s_img
+
+typedef struct s_texture
 {
-	int				path_ok;
+	void			*img;
 	int				img_w;
 	int				img_h;
-	void			*no;
-	char			*no_path;
-	void			*so;
-	char			*so_path;
-	void			*we;
-	char			*we_path;
-	void			*ea;
-	char			*ea_path;
-	t_rgb			f_rgb;
-	void			*f;
-	char			*f_path;
-	t_rgb			c_rgb;
-	void			*c;
-	char			*c_path;
-	char			*bgm_path;
-}					t_img;
+}					t_texture;
 
-typedef struct s_win
+typedef struct
 {
-	void			*w_game;
-	int				game_wid;
-	int				game_hei;
-	void			*w_mini;
-	int				mini_wid;
-	int				mini_hei;
-}					t_win;
+	t_texture		no;
+	t_texture		so;
+	t_texture		we;
+	t_texture		ea;
+	t_texture		floor;
+	t_rgb			floor_rgb;
+	t_texture		ceil;
+	t_rgb			ceil_rgb;
+}					t_textures;
 
 typedef struct s_lstmap
 {
@@ -79,7 +67,6 @@ typedef struct s_cub
 {
 	t_img			*img;
 	void			*mlx;
-	t_win			*win;
 	int				err;
 	int				fd;
 	char			*root_path;

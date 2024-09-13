@@ -44,7 +44,7 @@ int	init_map_process(t_cub *cube)
 int set_var_creation_map(t_cub *cube)
 {
 	int y;
-	
+
 	y=0;
 	get_max_map_size(cube);
 	cube->map_tab = ft_calloc(cube->map_max_y +1, sizeof(char *));
@@ -65,7 +65,7 @@ int map_creation(t_cub *cube)
     int y;
 	int i;
     t_lstmap *tmp;
-    
+
     y = 0;
     tmp = cube->map;
     while (y != cube->map_max_y)

@@ -29,7 +29,7 @@ void	ft_display(t_state state,char *add_msg)
 	{
 		if (DEBUG_MODE >= 2)
 			ft_putstr_fd("\t: ", 2);
-        if (state == ERROR)
+        if (state == PERROR)
 		    perror(add_msg);
         else
         {

@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/09/11 16:38:31 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/13 16:38:56 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	open_cub(t_cub *cub, char *file)
+int	open_cub(int *fd, char *file, char *root_path)
 {
-	cub->fd = ft_open(file, O_RDONLY);
-	if (cub->fd == FAIL)
+	*fd = ft_open(file, O_RDONLY);
+	if (*fd == FAIL)
 		return (FAIL);
-	cub->root_path = ft_substr(file, 0, ft_strrchr(file, '/') - file + 1);
-	if (cub->root_path == NULL)
+	root_path = ft_substr(file, 0, ft_strrchr(file, '/') - file + 1);
+	if (root_path == NULL)
 		return (FAIL);
 	return (SUCCESS);
 }
@@ -75,7 +75,7 @@ int	attrib_rgb(t_cub *cub, char *key, char *data)
 	return (cub->err);
 }
 
-int	attrib_path(t_cub *cub, char *key, char *value)
+int	attrib_path(t_texture *tex, char *key, char *value)
 {
 	int		fd;
 	char	*data;
@@ -97,42 +97,45 @@ int	attrib_path(t_cub *cub, char *key, char *value)
 	return (SUCCESS);
 }
 
-void	img_path_process(t_cub *cub, char *line)
+int	img_path_process(t_textures *tex, char *line, int *sum_of_path)
 {
 	char	*key;
 	char	*value;
+	int		ok;
 
-	if (ft_isthis(line[0], " 10\n"))
+	ok = 0;
+	if (ft_isthis(line[0], " 10\n\t"))
 		return ;
 	key = NULL;
 	value = NULL;
-	return_key(cub, line, &key);
-	return_value(cub, line, key, &value);
-	cub->err = attrib_path(cub, key, value);
+	return_key(line, &key);
+	return_value(line, key, &value);
+	ok = attrib_path(key, value, tex);
+	if (ok == SUCCESS)
+		*sum_of_path++;
 	value = ft_char_f(value);
 	key = ft_char_f(key);
+	return (ok);
 }
 
-int	asset_discovery(t_cub *cub)
+int	asset_discovery(t_textures *tex, int *fd)
 {
 	char	*line;
+	int		ok;
+	int		sum_of_path;
 
-	cub->img = ft_calloc(1, sizeof(t_img));
-	if (cub->img == NULL)
-		return (FAIL);
-	line = get_next_line(cub->fd);
-	while (line != NULL)
+	ok = 0;
+	sum_of_path = 0;
+	line = get_next_line(fd);
+	while (line != NULL && sum_of_path < 6)
 	{
-		if (cub->img->path_ok <= 5)
-			img_path_process(cub, line);
-		else
-			insert_end_lstmap(&cub->map, ft_strdup(line));
+		ok = img_path_process(tex, line, &sum_of_path);
 		line = ft_char_f(line);
-		line = get_next_line(cub->fd);
+		if (ok == FAIL)
+			return (ft_return(ERROR, FAIL, "Error on asset discovery"));
+		line = get_next_line(fd);
 	}
-	if (cub->err == FAIL)
-		helltrain(cub, ERROR, 1, "Problem with asset");
-	if (cub->img->path_ok < 6)
+	if (sum_of_path != 6)
 		return (FAIL);
 	return (SUCCESS);
 }
