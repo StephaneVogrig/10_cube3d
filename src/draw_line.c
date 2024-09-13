@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:29:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/12 22:07:41 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/13 13:36:47 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	draw_line_hor(t_screen *screen, t_vec2i a, t_vec2i b, int color)
 		dx = 1;
 	else
 		dx = -1;
-	a.x += dx;
 	while (a.x != b.x)
 	{
 		mlx_set_image_pixel(screen->mlx, screen->img, a.x, a.y, color);
@@ -61,8 +60,6 @@ void	draw_line_diag(t_screen *screen, t_vec2i a, t_vec2i b, int color)
 	t_vec2i	d;
 
 	d = increase(a, b);
-	a.x += d.x;
-	a.y += d.y;
 	while (a.x != b.x)
 	{
 		mlx_set_image_pixel(screen->mlx, screen->img, a.x, a.y, color);
@@ -81,7 +78,6 @@ void	draw_line_vert(t_screen *screen, t_vec2i a, t_vec2i b, int color)
 		dy = 1;
 	else
 		dy = -1;
-	a.y += dy;
 	while (a.y != b.y)
 	{
 		mlx_set_image_pixel(screen->mlx, screen->img, a.x, a.y, color);
