@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 15:54:22 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/15 18:25:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,21 +74,25 @@ void	draw_minimap(t_map map, t_screen minimap)
 	t_vec2i end;
 	
 	scale = scale_compute(map, minimap);
-	begin.y = 0;
-	end.y = scale;
+	begin.y = 1;
+	end.y = scale - 1;
 	y = 0;
 	while (y < map.height)
 	{
+		// printf("y: %i\n", y);
 		x = 0;
-		begin.x = 0;
-		end.x = scale;
+		begin.x = 1;
+		end.x = scale - 1;
 		while (x < map.width)
 		{
-			if (map.grid[y][x] == 1)
-				color = 0xFF0F0F0F;
+			// printf("x: %i\n", x);
+			if (map.grid[y][x] == '1')
+				color = 0xFF0FFFfF;
 			else
-				color = 0xFF000000;
+				color = 0xFF7F7F7F;
 			draw_rectangle(&minimap, begin, end, color);
+			draw_line(&minimap, vector2i(begin.x - 1, begin.y - 1), vector2i(begin.x - 1, begin.y - 1 + scale), 0xFF606060);
+			draw_line(&minimap, vector2i(begin.x - 1, begin.y - 1), vector2i(begin.x - 1 + scale, begin.y - 1), 0xFF606060);
 			begin.x += scale;
 			end.x += scale;
 			x++;
@@ -110,8 +114,10 @@ void	render_minimap(t_data *data)
 {
 	printf("\nrender_minimap\n");
 	
-	draw_rectangle(&data->minimap, vector2i(0, 0), vector2i(MINIMAP_W - 1, MINIMAP_H - 1), 0xFF000000);
-	// draw_minimap(data->map, data->minimap);
+	// draw_rectangle(&data->minimap, vector2i(0, 0), vector2i(MINIMAP_W - 1, MINIMAP_H - 1), 0xFF000000);
+
+	draw_minimap(data->map, data->minimap);
+	// draw_line(&data->minimap, vector2i(0,0), vector2i(data->minimap.width, data->minimap.height), 0xFFFFFFFF);
 	draw_line_to_border(&data->minimap, data->player, 0xFF0000FF);
 	draw_player(&data->minimap, data->player);
 }
