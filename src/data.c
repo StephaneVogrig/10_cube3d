@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/13 03:14:47 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/14 13:33:54 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	data_init(t_data *data)
 	ft_bzero(data, sizeof(*data));
 	data->player.pos.x = MINIMAP_W / 2;
 	data->player.pos.y = MINIMAP_H / 2;
+	data->key.down = 0;
 }
 
 void	data_clean(t_data *data)
