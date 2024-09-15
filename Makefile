@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/13 23:36:20 by svogrig          ###   ########.fr        #
+#    Updated: 2024/09/15 15:54:53 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ SRCS			:= 	$(SRC_DIR)main.c \
 					$(SRC_DIR)data.c \
 					$(SRC_DIR)screen.c \
 					$(SRC_DIR)draw_line.c \
+					$(SRC_DIR)draw_line_to_border.c \
 					$(SRC_DIR)draw_line_utils.c \
+					$(SRC_DIR)draw_utils.c \
 					$(SRC_DIR)vec2i.c \
 					$(SRC_DIR)event.c \
 					$(SRC_DIR)render.c \

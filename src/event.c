@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 14:13:15 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/15 15:58:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ int	on_loop(void *param)
 void	event_setup(t_data *data)
 {
 	printf("event_setup\n");
-    mlx_on_event(data->mlx, data->cub.win, MLX_WINDOW_EVENT, window_hook, data->mlx);
+    // mlx_on_event(data->mlx, data->cub.win, MLX_WINDOW_EVENT, window_hook, data->mlx);
+    // mlx_on_event(data->mlx, data->cub.win, MLX_KEYDOWN, on_keydown, data);
+    // mlx_on_event(data->mlx, data->cub.win, MLX_KEYUP, on_keyup, data);
     mlx_on_event(data->mlx, data->minimap.win, MLX_WINDOW_EVENT, window_hook, data->mlx);
-    mlx_on_event(data->mlx, data->cub.win, MLX_KEYDOWN, on_keydown, data);
-    mlx_on_event(data->mlx, data->cub.win, MLX_KEYUP, on_keyup, data);
     mlx_on_event(data->mlx, data->minimap.win, MLX_KEYDOWN, on_keydown, data);
     mlx_on_event(data->mlx, data->minimap.win, MLX_KEYUP, on_keyup, data);
 	mlx_loop_hook(data->mlx, on_loop, data);

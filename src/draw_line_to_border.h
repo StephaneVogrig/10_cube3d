@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   draw_line_to_border.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 01:30:18 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 15:52:40 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/15 15:46:17 by svogrig           #+#    #+#             */
+/*   Updated: 2024/09/15 15:55:41 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef DRAW_LINE_TO_BORDER_H
+# define DRAW_LINE_TO_BORDER_H
 
-# include <math.h>
-# include "data.h"
+# include "screen.h"
+# include "player.h"
+# include "vec2i.h"
 # include "draw_line.h"
-# include "draw_utils.h"
-# include "draw_line_to_border.h"
+# include <math.h>
 
-void	render(t_data *data);
+void	draw_line_to_border(t_screen *screen, t_player player, int color);
 
 #endif

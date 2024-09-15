@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/13 23:51:34 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/15 15:54:22 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,50 +38,90 @@ void	draw_cub3d(t_data *data)
 	}
 }
 
-void	draw_minimap(t_data *data)
+
+void	draw_player(t_screen *screen, t_player player)
+{
+	printf("draw_player \n");
+	t_vec2i begin;
+	t_vec2i end;
+	
+	begin.x = (int)player.pos.x - 1;
+	begin.y = (int)player.pos.y - 1;
+	end.x = begin.x + 2;
+	end.y = begin.y + 2;
+	draw_rectangle(screen, begin, end, 0xFFFFFF00);
+}
+
+int	scale_compute(t_map map, t_screen minimap)
+{
+	t_vec2i	scale;
+
+	scale.x = minimap.width / map.width;
+	scale.y = minimap.height / map.height;
+	if (scale.y < scale.x)
+		return (scale.y);
+	return (scale.x);
+}
+
+void	draw_minimap(t_map map, t_screen minimap)
 {
 	printf("draw_minimap\n");
-	t_vec2i	player;
 	int x;
 	int y;
 	int color;
-
+	int scale;
+	t_vec2i	begin;
+	t_vec2i end;
+	
+	scale = scale_compute(map, minimap);
+	begin.y = 0;
+	end.y = scale;
 	y = 0;
-	while (y <= MINIMAP_H)
+	while (y < map.height)
 	{
-		draw_line(&data->minimap, vector2i(0, y), vector2i(MINIMAP_W, y), 0xFF000000);
+		x = 0;
+		begin.x = 0;
+		end.x = scale;
+		while (x < map.width)
+		{
+			if (map.grid[y][x] == 1)
+				color = 0xFF0F0F0F;
+			else
+				color = 0xFF000000;
+			draw_rectangle(&minimap, begin, end, color);
+			begin.x += scale;
+			end.x += scale;
+			x++;
+		}
+		begin.y += scale;
+		end.y += scale;
 		y++;
 	}
-	x = data->player.pos.x;
-	y = data->player.pos.y;
-	color = 0xFFFFFF00;
-	mlx_set_image_pixel(data->mlx, data->minimap.img, x - 1, y - 1, color);
-	mlx_set_image_pixel(data->mlx, data->minimap.img, x, y - 1, color);
-	mlx_set_image_pixel(data->mlx, data->minimap.img, x + 1, y - 1, color);
-	mlx_set_image_pixel(data->mlx, data->minimap.img, x - 1, y, color);
-	mlx_set_image_pixel(data->mlx, data->minimap.img, x, y, color);
-	mlx_set_image_pixel(data->mlx, data->minimap.img, x + 1, y, color);
-	mlx_set_image_pixel(data->mlx, data->minimap.img, x - 1, y + 1, color);
-	mlx_set_image_pixel(data->mlx, data->minimap.img, x, y + 1, color);
-	mlx_set_image_pixel(data->mlx, data->minimap.img, x + 1, y + 1, color);
-	
-	x += sin(data->player.dir) * 50;
-	y -= cos(data->player.dir) * 50;
-	player.x = (int)data->player.pos.x;
-	player.y = (int)data->player.pos.y;
-	draw_line(&data->minimap, player, vector2i(x, y), 0xFFFF0000);
+	// t_vec2i	player;
+	// int x;
+	// player.x = (int)data->player.pos.x;
+	// player.y = (int)data->player.pos.y;
+	// x = player.x + sin(data->player.dir) * 50;
+	// y = player.y - cos(data->player.dir) * 50;
+	// draw_line(&data->minimap, player, vector2i(x, y), 0xFFFF0000);
 
+}
+void	render_minimap(t_data *data)
+{
+	printf("\nrender_minimap\n");
+	
+	draw_rectangle(&data->minimap, vector2i(0, 0), vector2i(MINIMAP_W - 1, MINIMAP_H - 1), 0xFF000000);
+	// draw_minimap(data->map, data->minimap);
+	draw_line_to_border(&data->minimap, data->player, 0xFF0000FF);
+	draw_player(&data->minimap, data->player);
 }
 
 void	render(t_data *data)
 {
-	// printf("render\n");
+	printf("render\n");
 
-	// printf("player x: %f y: %f dir: %f ", data->player.pos.x, data->player.pos.y, data->player.dir);
-	// printf("cos: %f sin: %f key w: %d\n", cos(data->player.dir), sin(data->player.dir), data->key.w);
-	draw_cub3d(data);
-	draw_minimap(data);
-    mlx_put_image_to_window(data->mlx, data->cub.win, data->cub.img, 0, 0);
+	// draw_cub3d(data);
+	render_minimap(data);
+    // mlx_put_image_to_window(data->mlx, data->cub.win, data->cub.img, 0, 0);
     mlx_put_image_to_window(data->mlx, data->minimap.win, data->minimap.img, 0, 0);
-
 }
