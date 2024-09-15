@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/13 23:39:49 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/14 20:07:14 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	player_move(t_player *player, t_key key)
 	cos_dir = cos(player->dir);
 	sin_dir = sin(player->dir);
 	player->dir += (key.right - key.left) * SPEED_ROT;
+	if(player->dir > M_PI)
+		player->dir = player->dir - 2 * M_PI;
+	if(player->dir < -M_PI)
+		player->dir = player->dir + 2 * M_PI;
 	
 	player->pos.x += (key.w - key.s) * sin_dir + (key.d - key.a) * cos_dir;
 	if (player->pos.x < 0)
