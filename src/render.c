@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 18:25:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/15 22:28:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,87 +39,62 @@ void	draw_cub3d(t_data *data)
 }
 
 
-void	draw_player(t_screen *screen, t_player player)
+void	draw_player(t_minimap *minimap, t_player *player)
 {
 	printf("draw_player \n");
 	t_vec2i begin;
 	t_vec2i end;
 	
-	begin.x = (int)player.pos.x - 1;
-	begin.y = (int)player.pos.y - 1;
+	begin = player_get_pos_minimap(player, minimap);
 	end.x = begin.x + 2;
 	end.y = begin.y + 2;
-	draw_rectangle(screen, begin, end, 0xFFFFFF00);
+	draw_rectangle(&minimap->screen, begin, end, 0xFFFFFF00);
 }
 
-int	scale_compute(t_map map, t_screen minimap)
-{
-	t_vec2i	scale;
-
-	scale.x = minimap.width / map.width;
-	scale.y = minimap.height / map.height;
-	if (scale.y < scale.x)
-		return (scale.y);
-	return (scale.x);
-}
-
-void	draw_minimap(t_map map, t_screen minimap)
+void	draw_minimap(t_map *map, t_minimap *minimap)
 {
 	printf("draw_minimap\n");
 	int x;
 	int y;
 	int color;
-	int scale;
 	t_vec2i	begin;
 	t_vec2i end;
 	
-	scale = scale_compute(map, minimap);
 	begin.y = 1;
-	end.y = scale - 1;
+	end.y = minimap->scale - 1;
 	y = 0;
-	while (y < map.height)
+	while (y < map->height)
 	{
-		// printf("y: %i\n", y);
 		x = 0;
 		begin.x = 1;
-		end.x = scale - 1;
-		while (x < map.width)
+		end.x = minimap->scale - 1;
+		while (x < map->width)
 		{
-			// printf("x: %i\n", x);
-			if (map.grid[y][x] == '1')
+			if (map->grid[y][x] == '1')
 				color = 0xFF0FFFfF;
 			else
 				color = 0xFF7F7F7F;
-			draw_rectangle(&minimap, begin, end, color);
-			draw_line(&minimap, vector2i(begin.x - 1, begin.y - 1), vector2i(begin.x - 1, begin.y - 1 + scale), 0xFF606060);
-			draw_line(&minimap, vector2i(begin.x - 1, begin.y - 1), vector2i(begin.x - 1 + scale, begin.y - 1), 0xFF606060);
-			begin.x += scale;
-			end.x += scale;
+			draw_rectangle(&minimap->screen, begin, end, color);
+			draw_line(&minimap->screen, vector2i(begin.x - 1, begin.y - 1), vector2i(begin.x - 1, begin.y - 1 + minimap->scale), 0xFF606060);
+			draw_line(&minimap->screen, vector2i(begin.x - 1, begin.y - 1), vector2i(begin.x - 1 + minimap->scale, begin.y - 1), 0xFF606060);
+			begin.x += minimap->scale;
+			end.x += minimap->scale;
 			x++;
 		}
-		begin.y += scale;
-		end.y += scale;
+		begin.y += minimap->scale;
+		end.y += minimap->scale;
 		y++;
 	}
-	// t_vec2i	player;
-	// int x;
-	// player.x = (int)data->player.pos.x;
-	// player.y = (int)data->player.pos.y;
-	// x = player.x + sin(data->player.dir) * 50;
-	// y = player.y - cos(data->player.dir) * 50;
-	// draw_line(&data->minimap, player, vector2i(x, y), 0xFFFF0000);
-
 }
-void	render_minimap(t_data *data)
+void	render_minimap(t_minimap *minimap, t_map *map, t_player *player)
 {
 	printf("\nrender_minimap\n");
 	
 	// draw_rectangle(&data->minimap, vector2i(0, 0), vector2i(MINIMAP_W - 1, MINIMAP_H - 1), 0xFF000000);
 
-	draw_minimap(data->map, data->minimap);
-	// draw_line(&data->minimap, vector2i(0,0), vector2i(data->minimap.width, data->minimap.height), 0xFFFFFFFF);
-	draw_line_to_border(&data->minimap, data->player, 0xFF0000FF);
-	draw_player(&data->minimap, data->player);
+	draw_minimap(map, minimap);
+	draw_line_to_border(minimap, player, 0xFF0000FF);
+	draw_player(minimap, player);
 }
 
 void	render(t_data *data)
@@ -127,7 +102,7 @@ void	render(t_data *data)
 	printf("render\n");
 
 	// draw_cub3d(data);
-	render_minimap(data);
+	render_minimap(&data->minimap, &data->map, &data->player);
     // mlx_put_image_to_window(data->mlx, data->cub.win, data->cub.img, 0, 0);
-    mlx_put_image_to_window(data->mlx, data->minimap.win, data->minimap.img, 0, 0);
+    mlx_put_image_to_window(data->mlx, data->minimap.screen.win, data->minimap.screen.img, 0, 0);
 }

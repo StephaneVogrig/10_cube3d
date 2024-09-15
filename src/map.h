@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line_to_border.h                              :+:      :+:    :+:   */
+/*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/15 15:46:17 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 22:27:11 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/15 21:31:37 by svogrig           #+#    #+#             */
+/*   Updated: 2024/09/15 21:33:16 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_LINE_TO_BORDER_H
-# define DRAW_LINE_TO_BORDER_H
+#ifndef MAP_H
+# define MAP_H
 
-# include "screen.h"
-# include "player.h"
-# include "vec2i.h"
-# include "draw_line.h"
-# include <math.h>
-
-#define XMIN 10
-#define YMIN 10
-#define XMAX (minimap->screen.width - 10)
-#define YMAX (minimap->screen.height - 10)
-
-void	draw_line_to_border(t_minimap *minimap, t_player *player, int color);
+typedef struct s_map{
+	char	**grid;
+	int		width;
+	int		height;
+}	t_map;
 
 #endif

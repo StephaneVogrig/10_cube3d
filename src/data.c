@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/14 13:33:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/15 22:01:15 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	data_init(t_data *data)
 {
 	ft_bzero(data, sizeof(*data));
-	data->player.pos.x = MINIMAP_W / 2;
-	data->player.pos.y = MINIMAP_H / 2;
 	data->key.down = 0;
 }
 
@@ -28,10 +26,10 @@ void	data_clean(t_data *data)
 	    mlx_destroy_image(data->mlx, data->cub.img);
     if (data->cub.win)
 	    mlx_destroy_window(data->mlx, data->cub.win);
-    if (data->minimap.img)
-	    mlx_destroy_image(data->mlx, data->minimap.img);
-    if (data->minimap.win)
-	    mlx_destroy_window(data->mlx, data->minimap.win);
+    if (data->minimap.screen.img)
+	    mlx_destroy_image(data->mlx, data->minimap.screen.img);
+    if (data->minimap.screen.win)
+	    mlx_destroy_window(data->mlx, data->minimap.screen.win);
     if (data->mlx)
 	    mlx_destroy_display(data->mlx);
 }

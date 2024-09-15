@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line_to_border.h                              :+:      :+:    :+:   */
+/*   minimap_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/15 15:46:17 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 22:27:11 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/15 21:14:09 by svogrig           #+#    #+#             */
+/*   Updated: 2024/09/15 22:31:17 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_LINE_TO_BORDER_H
-# define DRAW_LINE_TO_BORDER_H
+#ifndef MINIMAP_BONUS_H
+# define MINIMAP_BONUS_H
 
-# include "screen.h"
-# include "player.h"
-# include "vec2i.h"
-# include "draw_line.h"
-# include <math.h>
+#include "vec2i.h"
+#include "map.h"
+#include "screen.h"
 
-#define XMIN 10
-#define YMIN 10
-#define XMAX (minimap->screen.width - 10)
-#define YMAX (minimap->screen.height - 10)
+# define MINIMAP_W 800
+# define MINIMAP_H 450
 
-void	draw_line_to_border(t_minimap *minimap, t_player *player, int color);
+typedef struct s_minimap{
+    t_screen	screen;
+	int			scale;
+}   t_minimap;
+
+int		minimap_scale(t_map *map, t_minimap *minimap);
+void	minimap_setup(t_minimap *minimap, t_map *map);
 
 #endif

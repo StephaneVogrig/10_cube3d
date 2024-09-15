@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 15:24:15 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/15 21:37:04 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 # include "../include/cub3d.h"
 # include "vec2i.h"
 # include "screen.h"
+# include "map.h"
+# include "minimap_bonus.h"
 
 # define CUB_W 800
 # define CUB_H 450
-# define MINIMAP_W 800
-# define MINIMAP_H 450
 
 typedef unsigned int 	t_ui32;
 typedef unsigned char	t_ui8;
 
-# define SPEED_ROT (M_PI / 400)
-# define SPEED_MOVE 1
+# define SPEED_ROT (M_PI / 600)
+# define SPEED_MOVE 0.01
 
 
 #define UP 0
@@ -46,20 +46,16 @@ typedef union{
 }	t_key;
 
 typedef struct s_player{
-	t_vec2d	pos;
+	t_vec2i	grid;
+	t_vec2d	box;
 	double	dir;
 }	t_player;
-
-typedef struct s_map{
-	char	**grid;
-	int		width;
-	int		height;
-}	t_map;
 
 typedef struct s_data{
 	void		*mlx;
 	t_screen	cub;
-	t_screen	minimap;
+	t_minimap	minimap;
+	int			minimap_scale;
 	t_map		map;
 	t_key		key;
 	t_player	player;

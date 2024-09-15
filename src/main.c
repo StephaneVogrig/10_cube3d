@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/09/15 17:00:55 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/15 22:24:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "render.h"
 #include "mlx.h"
 
-int	map_load(char *path, t_map *map)
+int	map_load(char *path, t_map *map, t_player *player)
 {
 	printf("map_load\n");
 	(void)path;
@@ -45,6 +45,11 @@ int	map_load(char *path, t_map *map)
 		printf("\n");
 		i++;
     }
+	player->grid.x = map->width / 2;
+	player->grid.y = map->height / 2;
+	player->box.x = 0.5;
+	player->box.y = 0.5;
+	
 	printf("width: %i Height: %i\n", map->width, map->height);	
 	return (SUCCESS);
 }
@@ -67,10 +72,10 @@ int main(int argc, char **argv)
     // debug(cub);
 	data_init(&data);
 	printf("key down: %i\n", data.key.down);
-	printf("player x: %f y:%f\n", data.player.pos.x, data.player.pos.y);
 	
-	if (map_load(argv[1], &data.map) == SUCCESS && mlx_setup(&data) == SUCCESS)
+	if (map_load(argv[1], &data.map, &data.player) == SUCCESS && mlx_setup(&data) == SUCCESS)
     {
+		minimap_setup(&data.minimap, &data.map);
 		printf("mlx_loop\n");
 		event_setup(&data);
 		render(&data);

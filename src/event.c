@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 15:58:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/15 22:28:58 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	on_loop(void *param)
 	if (data->key.down)
 	{
 		begin = clock();
-		player_move(&data->player, data->key);
+		player_move(data->map , &data->player, data->key);
 		render(data);
 		delay = (clock() - begin);
 		if (delay == 0)
@@ -97,9 +97,9 @@ void	event_setup(t_data *data)
     // mlx_on_event(data->mlx, data->cub.win, MLX_WINDOW_EVENT, window_hook, data->mlx);
     // mlx_on_event(data->mlx, data->cub.win, MLX_KEYDOWN, on_keydown, data);
     // mlx_on_event(data->mlx, data->cub.win, MLX_KEYUP, on_keyup, data);
-    mlx_on_event(data->mlx, data->minimap.win, MLX_WINDOW_EVENT, window_hook, data->mlx);
-    mlx_on_event(data->mlx, data->minimap.win, MLX_KEYDOWN, on_keydown, data);
-    mlx_on_event(data->mlx, data->minimap.win, MLX_KEYUP, on_keyup, data);
+    mlx_on_event(data->mlx, data->minimap.screen.win, MLX_WINDOW_EVENT, window_hook, data->mlx);
+    mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYDOWN, on_keydown, data);
+    mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYUP, on_keyup, data);
 	mlx_loop_hook(data->mlx, on_loop, data);
     // mlx_on_event(data->mlx, data->win_cub3d, MLX_MOUSEDOWN, mouse_hook, NULL);
 }

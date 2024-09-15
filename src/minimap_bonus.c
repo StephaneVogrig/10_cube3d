@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line_to_border.h                              :+:      :+:    :+:   */
+/*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/15 15:46:17 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 22:27:11 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
+/*   Updated: 2024/09/15 22:00:14 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_LINE_TO_BORDER_H
-# define DRAW_LINE_TO_BORDER_H
+#include "minimap_bonus.h"
 
-# include "screen.h"
-# include "player.h"
-# include "vec2i.h"
-# include "draw_line.h"
-# include <math.h>
+int	minimap_scale(t_map *map, t_minimap *minimap)
+{
+	t_vec2i	scale;
 
-#define XMIN 10
-#define YMIN 10
-#define XMAX (minimap->screen.width - 10)
-#define YMAX (minimap->screen.height - 10)
+	scale.x = minimap->screen.width / map->width;
+	scale.y = minimap->screen.height / map->height;
+	if (scale.y < scale.x)
+		return (scale.y);
+	return (scale.x);
+}
 
-void	draw_line_to_border(t_minimap *minimap, t_player *player, int color);
-
-#endif
+void	minimap_setup(t_minimap *minimap, t_map *map)
+{
+	minimap->scale = minimap_scale(map, minimap);
+}
