@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/14 12:04:16 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/15 14:13:15 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	on_loop(void *param)
 {
 	t_data *data;
 	clock_t	begin;
+	clock_t	delay;
 	
 	data = (t_data *)param;
 	if (data->key.down)
@@ -81,7 +82,11 @@ int	on_loop(void *param)
 		begin = clock();
 		player_move(&data->player, data->key);
 		render(data);
-		printf("fps: %ld\n", clock() - begin);
+		delay = (clock() - begin);
+		if (delay == 0)
+			printf("fps: infini\n");
+		else
+			printf("time: %ld fps: %ld\n", delay, CLOCKS_PER_SEC / delay);
 	}
 	return (SUCCESS);
 }
