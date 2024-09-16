@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/16 18:41:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/16 19:17:38 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	raycasting(t_minimap *minimap, t_map *map, t_player *player)
 	t_vec2d	intersect;
 	double	raylen;
 
-	raydir.x = sin(player->dir);
-	raydir.y = -cos(player->dir);
+	raydir.x = cos(player->dir);
+	raydir.y = sin(player->dir);
 	raylen = dda(&raydir, map->grid, player);
 	intersect.x = (double)player->grid.x + player->box.x + raydir.x * raylen;
 	intersect.y = (double)player->grid.y + player->box.y + raydir.y * raylen;
