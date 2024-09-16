@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/16 19:17:38 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/16 22:34:03 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double dda_loop(t_dda *dda,  char **map, t_vec2i mapcheck)
 {
-	printf("dda_loop\n");
+	// printf("dda_loop\n");
 	double	raylen;
 	int		hit;
 
@@ -43,8 +43,8 @@ double	dda(t_vec2d *raydir, char **map, t_player *player)
 {
 	t_dda	dda;
 	
-	dda.len_unit.x = sqrt(1 + (raydir->y / raydir->x) * (raydir->y / raydir->x));
-	dda.len_unit.y = sqrt(1 + (raydir->x / raydir->y) * (raydir->x / raydir->y));
+	dda.len_unit.x = fabs(1 / raydir->x);
+	dda.len_unit.y = fabs(1 / raydir->y);
 	if (raydir->x < 0)
 	{
 		dda.step.x = -1;
@@ -74,21 +74,37 @@ void	raycasting(t_minimap *minimap, t_map *map, t_player *player)
 	t_vec2d raydir;
 	t_vec2d	intersect;
 	double	raylen;
-
-	raydir.x = cos(player->dir);
-	raydir.y = sin(player->dir);
-	raylen = dda(&raydir, map->grid, player);
-	intersect.x = (double)player->grid.x + player->box.x + raydir.x * raylen;
-	intersect.y = (double)player->grid.y + player->box.y + raydir.y * raylen;
-	printf("raylen: %f intersect x: %f y: %f\n", raylen, intersect.x, intersect.y);
+	t_vec2d	dir;
+	int	x;
+	double camera;
+	t_vec2d	plane;
 	
-	t_vec2i	begin;
-	t_vec2i	end;
-	begin.x = minimap->scale * (player->grid.x + player->box.x);
-	begin.y = minimap->scale * (player->grid.y + player->box.y);
-	end.x = minimap->scale * intersect.x;
-	end.y = minimap->scale * intersect.y;
-	printf("begin x: %i y:%i end x: %i y:%i\n", begin.x, begin.y, end.x, end.y);
-	draw_line(&minimap->screen, begin, end, 0xFFFF0000);
-	// draw_line(&minimap->screen, vector2i(0, 0), vector2i(100, 100), 0xFFFF0000);
+	dir.x = cos(player->dir);
+	dir.y = sin(player->dir);
+	plane.x = -dir.y;
+	plane.y = dir.x;
+	x = 0;
+	while (x < CUB_W)
+	{
+		camera = 2.0 * x / CUB_W - 1;
+		x += 20;
+		raydir.x = dir.x + plane.x * camera;
+		raydir.y = dir.y + plane.y * camera;
+		raylen = dda(&raydir, map->grid, player);
+		
+		intersect.x = (double)player->grid.x + player->box.x + raydir.x * raylen;
+		intersect.y = (double)player->grid.y + player->box.y + raydir.y * raylen;
+		// printf("raylen: %f intersect x: %f y: %f\n", raylen, intersect.x, intersect.y);
+		// printf("x: %i camera: %f\n", x, camera);
+		
+		t_vec2i	begin;
+		t_vec2i	end;
+		begin.x = minimap->scale * (player->grid.x + player->box.x);
+		begin.y = minimap->scale * (player->grid.y + player->box.y);
+		end.x = minimap->scale * intersect.x;
+		end.y = minimap->scale * intersect.y;
+		// printf("begin x: %i y:%i end x: %i y:%i\n", begin.x, begin.y, end.x, end.y);
+		draw_line(&minimap->screen, begin, end, 0xFFFF0000);
+		// draw_line(&minimap->screen, vector2i(0, 0), vector2i(100, 100), 0xFFFF0000);
+	}
 }
