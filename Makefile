@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/15 22:30:14 by svogrig          ###   ########.fr        #
+#    Updated: 2024/09/16 17:20:09 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS			:= 	$(SRC_DIR)main.c \
 					$(SRC_DIR)mlx.c \
 					$(SRC_DIR)player.c \
 					$(SRC_DIR)minimap_bonus.c \
+					$(SRC_DIR)raycasting.c \
 					$(SRC_DIR)debug.c \
 					$(SRC_DIR)free_function/free_main.c \
 					$(SRC_DIR)free_function/free_mlx_utils.c \

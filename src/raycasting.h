@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 01:30:18 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/16 17:20:44 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
+/*   Updated: 2024/09/16 18:41:16 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef RAYCASTING_H
+# define RAYCASTING_H
 
-# include <math.h>
-# include "data.h"
+# include "minimap_bonus.h"
+# include "player.h"
 # include "draw_line.h"
-# include "draw_utils.h"
-# include "draw_line_to_border.h"
-# include "raycasting.h"
 
-void	render(t_data *data);
+typedef struct s_dda{
+	t_vec2d	len_unit;
+	t_vec2d	len_side;
+	t_vec2i step;
+}	t_dda;
+
+void	raycasting(t_minimap *minimap, t_map *map, t_player *player);
 
 #endif

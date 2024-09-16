@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 22:28:11 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/16 18:20:58 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	draw_minimap(t_map *map, t_minimap *minimap)
 		y++;
 	}
 }
+	
 void	render_minimap(t_minimap *minimap, t_map *map, t_player *player)
 {
 	printf("\nrender_minimap\n");
@@ -93,8 +94,9 @@ void	render_minimap(t_minimap *minimap, t_map *map, t_player *player)
 	// draw_rectangle(&data->minimap, vector2i(0, 0), vector2i(MINIMAP_W - 1, MINIMAP_H - 1), 0xFF000000);
 
 	draw_minimap(map, minimap);
-	draw_line_to_border(minimap, player, 0xFF0000FF);
+	// draw_line_to_border(minimap, player, 0xFF0000FF);
 	draw_player(minimap, player);
+	raycasting(minimap, map, player);
 }
 
 void	render(t_data *data)
