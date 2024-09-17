@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/13 23:51:55 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/17 19:16:53 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define KEY_A 4
 # define KEY_S 22
 # define KEY_D 7
+# define KEY_T 23
 # define KEY_LEFT 80
 # define KEY_RIGHT 79
 // # define KEY_ARROW_UP 65362

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 04:24:48 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/17 19:20:13 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_data{
 	int			minimap_scale;
 	t_map		map;
 	t_key		key;
+	int			mouse_mode;
 	t_player	player;
 }	t_data;
 
