@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 03:54:15 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/17 18:12:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "vec2i.h"
 # include "player.h"
+# include "map.h"
 
 typedef struct s_dda{
 	t_vec2d	unit;
@@ -28,6 +29,6 @@ typedef struct s_dda{
 	positive is for x axis
 	negative is for y axis
 */ 
-double	dda(t_vec2d *raydir, char **map, t_player *player);
+double	dda(t_vec2d *raydir, t_map *map, t_player *player);
 
 #endif

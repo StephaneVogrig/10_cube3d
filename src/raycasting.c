@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 04:15:52 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/17 18:10:10 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	raycasting(t_screen *cub, t_minimap *minimap, t_map *map, t_player *player)
 		camera = 2.0 * i / CUB_W - 1;
 		raydir.x = dir.x - dir.y * camera;
 		raydir.y = dir.y + dir.x * camera;
-		raylen = dda(&raydir, map->grid, player);
+		raylen = dda(&raydir, map, player);
 		draw_cub3d_line(cub, i, raylen, raydir);
 		draw_ray_minimap(minimap, player, raylen, raydir);
 		i++;

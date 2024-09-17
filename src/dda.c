@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 03:54:07 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/17 18:14:06 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	dda_init(t_dda *raylen, t_vec2i *step, t_vec2d *raydir, t_vec2d *box)
 	}
 }
 
-double	dda(t_vec2d *raydir, char **map, t_player *player)
+double	dda(t_vec2d *raydir, t_map *map, t_player *player)
 {
 	t_dda	raylen;
 	t_vec2i	step;
@@ -60,7 +60,7 @@ double	dda(t_vec2d *raydir, char **map, t_player *player)
 			mapcheck.y += step.y;
 			raylen.side.y += raylen.unit.y;
 		}
-		if (map[mapcheck.y][mapcheck.x] == '1')
+		if (mapcheck.x < 0 ||mapcheck.y < 0 || mapcheck.x >= map->width || mapcheck.y >= map->height || map->grid[mapcheck.y][mapcheck.x] == '1')
 			break;
 	}
 	return (raylen.current);
