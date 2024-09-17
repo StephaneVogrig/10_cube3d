@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/17 02:04:59 by svogrig          ###   ########.fr        #
+#    Updated: 2024/09/17 13:05:27 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,14 @@ SRC_DIR				:=	src/
 OBJ_DIR				:=	obj/
 LIB_DIR				:=	lib/
 DIR_LIST			:=	{init,utils,free_function,dlst_map}
+
+# includes --------------------------------------------------------------------#
+
+DIR_INC			:=	libft/include \
+					include
+
+I_FLAG			:=	$(addprefix -I,$(DIR_INC)) -MMD -MP
+
 #-- MANDATORY
 HEADERS			:=	include/so_long.h
 SRCS			:= 	$(SRC_DIR)main.c \
@@ -77,11 +85,6 @@ libmlx:
 libft:
 	@$(MAKE) -j -C $(LIB_DIR)libft-plus --no-print-directory
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
-	@$(CC) $(CFLAGS) -o $@ -c $< && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
-
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -g -o $@ $(LDFLAGS) $(MLX) -lm && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@\n"
 
 clean: libclean
 	@rm -fr $(OBJ_DIR) && printf "Cleaning : $(OBJ_DIR)\n"
@@ -125,11 +128,26 @@ bonus: init $(NAME_BONUS)
 	@echo -e "$(BOLD)$(NAME_BONUS)$(NC) is located in $(BOLD)$(shell find . -iname "$(NAME_BONUS)")$(NC) !\n"
 	@echo -e "\t$(BLINK_GREEN) = COMPILATION FINISHED !$(NC)"
 	@echo -e "$(BOLD)$(NC) is located in $(BOLD)$(shell find . -iname "")$(NC) !\n"
+
+#------------------------------------------------------------------------------#
+# compilation                                                                  #
+#------------------------------------------------------------------------------#
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
+	@$(CC) $(CFLAGS) $(I_FLAG) -o $@ -c $< && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
 	
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS_BONUS)
-	@$(CC) $(CFLAGS) -o $@ -c $< && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
+	@$(CC) $(CFLAGS) $(I_FLAG) -o $@ -c $< && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
 
+#------------------------------------------------------------------------------#
+# linkage                                                                      #
+#------------------------------------------------------------------------------#
+
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS) $(MLX) -lm && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@\n"
+	
 $(NAME_BONUS): $(OBJS_BONUS)
 	@$(CC) $(CFLAGS)  $(OBJS_BONUS) -o $@ $(LDFLAGS) && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@\n"
+
 
 .PHONY: clean fclean all re libclean libfclean bonus relibft remacro
