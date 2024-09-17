@@ -6,14 +6,14 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 19:16:53 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/17 22:39:52 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EVENT_H
 # define EVENT_H
 
-# include <time.h>
+# include "chrono.h"
 # include "render.h"
 # include "player.h"
 

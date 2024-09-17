@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 21:08:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/17 23:01:39 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,10 @@ int	on_keyup(int key, void *param)
 int	on_loop(void *param)
 {
 	t_data *data;
-	clock_t	begin;
-	clock_t	delay;
 	int x;
 	int y;
 	
+	chrono(START);
 	data = (t_data *)param;
 	if (data->cub.focused && data->cub.overfly && data->mouse_mode)
 	{
@@ -135,14 +134,8 @@ int	on_loop(void *param)
 	}
 	if (data->key.down)
 	{
-		begin = clock();
 		player_move(data->map , &data->player, data->key);
 		render(data);
-		delay = (clock() - begin);
-		if (delay == 0)
-			printf("fps: infini\n");
-		else
-			printf("time: %ld fps: %ld\n", delay, CLOCKS_PER_SEC / delay);
 	}
 	return (SUCCESS);
 }

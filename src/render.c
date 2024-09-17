@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/16 23:30:06 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/17 22:57:46 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ void	render(t_data *data)
 	raycasting(&data->cub, &data->minimap, &data->map, &data->player);
     mlx_put_image_to_window(data->mlx, data->cub.win, data->cub.img, 0, 0);
     mlx_put_image_to_window(data->mlx, data->minimap.screen.win, data->minimap.screen.img, 0, 0);
+	fps_print(chrono(STOP));
 }

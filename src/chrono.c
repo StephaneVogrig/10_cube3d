@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   chrono.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 01:30:18 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 22:58:01 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/17 22:34:54 by svogrig           #+#    #+#             */
+/*   Updated: 2024/09/17 23:02:16 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#include "chrono.h"
 
-# include <math.h>
-# include "data.h"
-# include "draw_line.h"
-# include "draw_utils.h"
-# include "draw_line_to_border.h"
-# include "raycasting.h"
-# include "chrono.h"
+clock_t	chrono(int action)
+{
+	static clock_t	time;
 
-void	render(t_data *data);
+	if (action == START)
+		time = clock();
+	else
+		return (clock() - time);
+	return (time);
+}
 
-#endif
+void	fps_print(clock_t delay)
+{
+	if (delay == 0)
+		printf("fps: infini\n");
+	else
+		printf("time: %ld fps: %ld\n", delay, CLOCKS_PER_SEC / delay);
+}
