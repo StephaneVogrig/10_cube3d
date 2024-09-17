@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/16 18:20:58 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/16 23:30:06 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	render_minimap(t_minimap *minimap, t_map *map, t_player *player)
 	draw_minimap(map, minimap);
 	// draw_line_to_border(minimap, player, 0xFF0000FF);
 	draw_player(minimap, player);
-	raycasting(minimap, map, player);
 }
 
 void	render(t_data *data)
@@ -105,6 +104,7 @@ void	render(t_data *data)
 
 	// draw_cub3d(data);
 	render_minimap(&data->minimap, &data->map, &data->player);
-    // mlx_put_image_to_window(data->mlx, data->cub.win, data->cub.img, 0, 0);
+	raycasting(&data->cub, &data->minimap, &data->map, &data->player);
+    mlx_put_image_to_window(data->mlx, data->cub.win, data->cub.img, 0, 0);
     mlx_put_image_to_window(data->mlx, data->minimap.screen.win, data->minimap.screen.img, 0, 0);
 }

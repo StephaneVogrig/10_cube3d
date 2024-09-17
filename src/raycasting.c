@@ -6,105 +6,105 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/16 22:34:03 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/17 04:15:52 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-double dda_loop(t_dda *dda,  char **map, t_vec2i mapcheck)
+void	draw_cub3d_line(t_screen *cub, int x, double raylen, t_vec2d raydir)
 {
-	// printf("dda_loop\n");
-	double	raylen;
-	int		hit;
+	int	y;
+	int wall_h;
+	int cell_h;
+	int	y_max;
+	int color;
+	int side;
 
-	hit = FALSE;
-	while (hit == FALSE)
-	{
-		if (dda->len_side.x < dda->len_side.y)
+		if (raylen < 0)
 		{
-			mapcheck.x += dda->step.x;
-			raylen = dda->len_side.x;
-			dda->len_side.x += dda->len_unit.x;
+			raylen = -raylen;
+			if (raydir.y < 0)
+				side = 's';
+			else
+				side = 'n';
 		}
 		else
 		{
-			mapcheck.y += dda->step.y;
-			raylen = dda->len_side.y;
-			dda->len_side.y += dda->len_unit.y;
+			if (raydir.x < 0)
+				side = 'e';
+			else
+				side = 'w';
 		}
-		if (map[mapcheck.y][mapcheck.x] == '1')
-			hit = TRUE;
-	}
-	return (raylen);
-}
-
-double	dda(t_vec2d *raydir, char **map, t_player *player)
-{
-	t_dda	dda;
+	wall_h = cub->height / raylen;
+	if (wall_h > cub->height)
+		wall_h = cub->height;
+	cell_h = (cub->height - wall_h) / 2;
+	if (cell_h < 0)
+		cell_h = 0;
 	
-	dda.len_unit.x = fabs(1 / raydir->x);
-	dda.len_unit.y = fabs(1 / raydir->y);
-	if (raydir->x < 0)
+	y = 0;
+	y_max = cell_h;
+	if (side == 'n')
+		color = 0xff3f0000;
+	if (side == 'w')
+		color = 0xff7f0000;
+	if (side == 'e')
+		color = 0xffbf0000;
+	if (side == 's')
+		color = 0xffff0000;
+	while (y < y_max)
 	{
-		dda.step.x = -1;
-		dda.len_side.x = player->box.x * dda.len_unit.x;
+		mlx_set_image_pixel(cub->mlx, cub->img, x, y, 0xFF0000FF);
+		y++;
 	}
-	else
+	y_max += wall_h;
+	while (y < y_max)
 	{
-		dda.step.x = 1;
-		dda.len_side.x = (1 - player->box.x) * dda.len_unit.x;
+		mlx_set_image_pixel(cub->mlx, cub->img, x, y, color);
+		y++;
 	}
-	if (raydir->y < 0)
+	y_max += cell_h;
+	while (y < y_max)
 	{
-		dda.step.y = -1;
-		dda.len_side.y = player->box.y * dda.len_unit.y;
-	}
-	else
-	{
-		dda.step.y = 1;
-		dda.len_side.y = (1 - player->box.y) * dda.len_unit.y;
-	}
-	return (dda_loop(&dda, map, player->grid));
+		mlx_set_image_pixel(cub->mlx, cub->img, x, y, 0xFF00FF00);
+		y++;
+	}	
 }
 
-void	raycasting(t_minimap *minimap, t_map *map, t_player *player)
+void	draw_ray_minimap(t_minimap *minimap, t_player *player, double raylen, t_vec2d raydir)
 {
-	printf("raycasting\n");
-	t_vec2d raydir;
-	t_vec2d	intersect;
-	double	raylen;
+	t_vec2i	player_pos;
+	t_vec2i	intersect;
+	
+	player_pos.x = minimap->scale * (player->grid.x + player->box.x);
+	player_pos.y = minimap->scale * (player->grid.y + player->box.y);
+	if (raylen < 0)
+		raylen = fabs(raylen);
+	intersect.x = player_pos.x + raydir.x * raylen * minimap->scale;
+	intersect.y = player_pos.y + raydir.y * raylen * minimap->scale;
+	draw_line(&minimap->screen, player_pos, intersect, 0xFFFF0000);
+}
+
+void	raycasting(t_screen *cub, t_minimap *minimap, t_map *map, t_player *player)
+{
 	t_vec2d	dir;
-	int	x;
+	t_vec2d raydir;
+	double	raylen;
 	double camera;
-	t_vec2d	plane;
+	int	i;
 	
 	dir.x = cos(player->dir);
 	dir.y = sin(player->dir);
-	plane.x = -dir.y;
-	plane.y = dir.x;
-	x = 0;
-	while (x < CUB_W)
+	i = 0;
+	while (i < CUB_W)
 	{
-		camera = 2.0 * x / CUB_W - 1;
-		x += 20;
-		raydir.x = dir.x + plane.x * camera;
-		raydir.y = dir.y + plane.y * camera;
+		camera = 2.0 * i / CUB_W - 1;
+		raydir.x = dir.x - dir.y * camera;
+		raydir.y = dir.y + dir.x * camera;
 		raylen = dda(&raydir, map->grid, player);
-		
-		intersect.x = (double)player->grid.x + player->box.x + raydir.x * raylen;
-		intersect.y = (double)player->grid.y + player->box.y + raydir.y * raylen;
-		// printf("raylen: %f intersect x: %f y: %f\n", raylen, intersect.x, intersect.y);
-		// printf("x: %i camera: %f\n", x, camera);
-		
-		t_vec2i	begin;
-		t_vec2i	end;
-		begin.x = minimap->scale * (player->grid.x + player->box.x);
-		begin.y = minimap->scale * (player->grid.y + player->box.y);
-		end.x = minimap->scale * intersect.x;
-		end.y = minimap->scale * intersect.y;
-		// printf("begin x: %i y:%i end x: %i y:%i\n", begin.x, begin.y, end.x, end.y);
-		draw_line(&minimap->screen, begin, end, 0xFFFF0000);
-		// draw_line(&minimap->screen, vector2i(0, 0), vector2i(100, 100), 0xFFFF0000);
+		draw_cub3d_line(cub, i, raylen, raydir);
+		draw_ray_minimap(minimap, player, raylen, raydir);
+		i++;
 	}
 }

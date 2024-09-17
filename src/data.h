@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 21:37:04 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/17 04:24:48 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 typedef unsigned int 	t_ui32;
 typedef unsigned char	t_ui8;
 
-# define SPEED_ROT (M_PI / 600)
-# define SPEED_MOVE 0.01
+# define SPEED_ROT (M_PI / 200)
+# define SPEED_MOVE 0.05
 
 
 #define UP 0
