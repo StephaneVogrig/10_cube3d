@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 23:01:39 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/18 05:12:04 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int window_hook(int event, void* mlx)
 
 int	on_keydown(int key, void *param)
 {
-	printf("key pressed: %i\n", key);
+	// printf("key pressed: %i\n", key);
 	t_data *data;
 	
 	data = (t_data *)param;
@@ -117,9 +117,11 @@ int	on_loop(void *param)
 	t_data *data;
 	int x;
 	int y;
+	int render_needed;
 	
 	chrono(START);
 	data = (t_data *)param;
+	render_needed = FALSE;
 	if (data->cub.focused && data->cub.overfly && data->mouse_mode)
 	{
 		mlx_mouse_get_pos(data->mlx, &x, &y);
@@ -127,16 +129,18 @@ int	on_loop(void *param)
 		if (dx)
 		{
 			data->player.dir += M_PI * dx / data->cub.width;
-			printf("mouse x:%i, y:%i\n", x, y);
-			render(data);
+			// printf("mouse x:%i, y:%i\n", x, y);
+			render_needed = TRUE;
 			mlx_mouse_move(data->mlx, data->cub.win, data->cub.width / 2, data->cub.height / 2);
 		}
 	}
 	if (data->key.down)
 	{
 		player_move(data->map , &data->player, data->key);
-		render(data);
+		render_needed = TRUE;
 	}
+	if (render_needed)
+		render(data);
 	return (SUCCESS);
 }
 
@@ -173,5 +177,4 @@ void	event_setup(t_data *data)
     mlx_on_event(data->mlx, data->cub.win, MLX_MOUSEDOWN, on_mousedown, data);
     mlx_on_event(data->mlx, data->cub.win, MLX_MOUSEUP, on_mouseup, data);
 	mlx_loop_hook(data->mlx, on_loop, data);
-    // mlx_on_event(data->mlx, data->win_cub3d, MLX_MOUSEDOWN, mouse_hook, NULL);
 }
