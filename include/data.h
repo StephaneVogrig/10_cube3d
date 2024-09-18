@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/18 04:55:15 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/18 09:25:45 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,17 @@ typedef struct s_player{
 	double	dir;
 }	t_player;
 
+typedef struct s_window{
+	void	*mlx;
+	void	*win;
+	int		width;
+	int		height;
+	int		focused;
+}	t_window;
+
 typedef struct s_data{
 	void		*mlx;
-	t_screen	cub;
+	t_window	cub;
 	t_minimap	minimap;
 	int			minimap_scale;
 	t_map		map;

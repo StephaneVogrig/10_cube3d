@@ -6,13 +6,13 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/18 08:37:09 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/18 09:26:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-void	draw_cub3d_line(t_screen *cub, int x, double raylen, t_vec2d raydir)
+void	draw_cub3d_line(t_window *cub, int x, double raylen, t_vec2d raydir)
 {
 	int	y;
 	int wall_h;
@@ -83,7 +83,7 @@ void	draw_ray_minimap(t_minimap *minimap, t_player *player, double raylen, t_vec
 	draw_line(&minimap->screen, player_pos, intersect, 0xFFFF0000);
 }
 
-void	raycasting(t_screen *cub, t_minimap *minimap, t_map *map, t_player *player)
+void	raycasting(t_window *cub, t_minimap *minimap, t_map *map, t_player *player)
 {
 	t_vec2d	dir;
 	t_vec2d raydir;

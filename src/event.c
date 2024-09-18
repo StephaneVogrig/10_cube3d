@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/18 05:12:04 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/18 09:36:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,6 @@ int	on_win_event(int event, void *param)
 	data = (t_data *)param;
 	if (event == 0)
 		mlx_loop_end(data->mlx);
-	else if (event == 4)
-		data->cub.overfly = 1;
-	else if (event == 6)
-		data->cub.overfly = 0;
 	else if (event == 5)
 		data->cub.focused = 1;
 	else if (event == 7)
@@ -76,12 +72,12 @@ int	on_keydown(int key, void *param)
 	return (SUCCESS);
 }
 
-void	mouse_mode_switch(void *mlx, t_screen *screen, int *mouse_mode)
+void	mouse_mode_switch(void *mlx, t_window *win, int *mouse_mode)
 {
 	*mouse_mode = *mouse_mode == 0;
 	if (*mouse_mode == 1)
 	{
-		mlx_mouse_move(mlx, screen->win, screen->width / 2, screen->height / 2);
+		mlx_mouse_move(mlx, win->win, win->width / 2, win->height / 2);
 		mlx_mouse_hide();
 	}
 	else
@@ -122,7 +118,7 @@ int	on_loop(void *param)
 	chrono(START);
 	data = (t_data *)param;
 	render_needed = FALSE;
-	if (data->cub.focused && data->cub.overfly && data->mouse_mode)
+	if (data->cub.focused && data->mouse_mode)
 	{
 		mlx_mouse_get_pos(data->mlx, &x, &y);
 		int dx = x - data->cub.width / 2;

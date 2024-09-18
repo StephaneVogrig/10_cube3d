@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 22:01:15 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/18 09:33:35 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	data_clean(t_data *data)
 {
 	printf("data_clean\n");
     
-    if (data->cub.img)
-	    mlx_destroy_image(data->mlx, data->cub.img);
     if (data->cub.win)
 	    mlx_destroy_window(data->mlx, data->cub.win);
     if (data->minimap.screen.img)
