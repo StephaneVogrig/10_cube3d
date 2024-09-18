@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 18:10:10 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/18 08:24:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	draw_cub3d_line(t_screen *cub, int x, double raylen, t_vec2d raydir)
 	int	y;
 	int wall_h;
 	int cell_h;
-	int	y_max;
 	int color;
 	int side;
 
@@ -44,7 +43,6 @@ void	draw_cub3d_line(t_screen *cub, int x, double raylen, t_vec2d raydir)
 		cell_h = 0;
 	
 	y = 0;
-	y_max = cell_h;
 	if (side == 'n')
 		color = 0xff3f0000;
 	if (side == 'w')
@@ -53,19 +51,18 @@ void	draw_cub3d_line(t_screen *cub, int x, double raylen, t_vec2d raydir)
 		color = 0xffbf0000;
 	if (side == 's')
 		color = 0xffff0000;
-	while (y < y_max)
+	while (y < cell_h)
 	{
 		mlx_set_image_pixel(cub->mlx, cub->img, x, y, 0xFF0000FF);
 		y++;
 	}
-	y_max += wall_h;
-	while (y < y_max)
+	wall_h += cell_h;
+	while (y < wall_h)
 	{
 		mlx_set_image_pixel(cub->mlx, cub->img, x, y, color);
 		y++;
 	}
-	y_max += cell_h;
-	while (y < y_max)
+	while (y < cub->height)
 	{
 		mlx_set_image_pixel(cub->mlx, cub->img, x, y, 0xFF00FF00);
 		y++;
