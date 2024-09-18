@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 22:00:14 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/18 06:24:42 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,14 @@ int	minimap_scale(t_map *map, t_minimap *minimap)
 	return (scale.x);
 }
 
-void	minimap_setup(t_minimap *minimap, t_map *map)
+int	minimap_setup(void *mlx, t_minimap *minimap, t_map *map)
 {
+	(void)mlx;
+	minimap->screen.win = mlx_new_window(mlx, MINIMAP_W, MINIMAP_H, "minimap");
+	if (minimap->screen.win == NULL)
+		return (ERROR);
+	if (screen_init(&minimap->screen, mlx, MINIMAP_W, MINIMAP_H) == ERROR)
+		return (ERROR);
 	minimap->scale = minimap_scale(map, minimap);
+	return (SUCCESS);
 }

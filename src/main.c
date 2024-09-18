@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/09/15 22:24:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/18 06:29:21 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int main(int argc, char **argv)
     // title();
     (void)argc;
     (void)argv;
-    // check_entry_arg(argc, argv);
     // if (check_entry_arg(ac, av) == FAIL)
     //     return (OK);
     cub = ft_calloc(1, sizeof(t_cub));
@@ -71,13 +70,14 @@ int main(int argc, char **argv)
     // init_organizer(cub, argv[1]);
     // debug(cub);
 	data_init(&data);
-	printf("key down: %i\n", data.key.down);
-	
-	if (map_load(argv[1], &data.map, &data.player) == SUCCESS && mlx_setup(&data) == SUCCESS)
+	printf("key down: %i\n", data.key.down); //debug
+	if (map_load(argv[1], &data.map, &data.player) == SUCCESS \
+		&& mlx_setup(&data) == SUCCESS \
+		&& minimap_setup(data.mlx, &data.minimap, &data.map) == SUCCESS)
     {
-		minimap_setup(&data.minimap, &data.map);
-		printf("mlx_loop\n");
+		// printf("mlx_loop\n"); //debug
 		event_setup(&data);
+		chrono(START);
 		render(&data);
 		mlx_loop(data.mlx); 
     }
