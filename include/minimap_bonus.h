@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:14:09 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/18 05:16:46 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/18 06:14:55 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ typedef struct s_minimap{
 }   t_minimap;
 
 int	minimap_scale(t_map *map, t_minimap *minimap);
-int	minimap_setup(t_minimap *minimap, t_map *map);
+void	minimap_setup(t_minimap *minimap, t_map *map);
 
 #endif
