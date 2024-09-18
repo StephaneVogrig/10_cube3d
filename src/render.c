@@ -6,42 +6,15 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 22:57:46 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/18 09:15:58 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void	draw_cub3d(t_data *data)
-{
-	printf("draw_cub3d\n");
-	t_vec2i	start;
-	t_vec2i	end;
-	
-	start = vector2i(0, 0);
-	end = vector2i(0,MINIMAP_W);
-	int	y;
-	int	mid;
-	
-	y = -1;
-	mid = MINIMAP_H / 2;
-	
-	while (y < mid)
-	{
-		draw_line(&data->cub, vector2i(0, y), vector2i(MINIMAP_W, y), 0xFF0000FF);
-		y++;
-	}
-	while (y < MINIMAP_H)
-	{
-		draw_line(&data->cub, vector2i(0, y), vector2i(MINIMAP_W, y), 0xFF00FF00);
-		y++;
-	}
-}
-
-
 void	draw_player(t_minimap *minimap, t_player *player)
 {
-	printf("draw_player \n");
+	// printf("draw_player \n");
 	t_vec2i begin;
 	t_vec2i end;
 	
@@ -53,7 +26,7 @@ void	draw_player(t_minimap *minimap, t_player *player)
 
 void	draw_minimap(t_map *map, t_minimap *minimap)
 {
-	printf("draw_minimap\n");
+	// printf("draw_minimap\n");
 	int x;
 	int y;
 	int color;
@@ -89,10 +62,8 @@ void	draw_minimap(t_map *map, t_minimap *minimap)
 	
 void	render_minimap(t_minimap *minimap, t_map *map, t_player *player)
 {
-	printf("\nrender_minimap\n");
+	// printf("render_minimap\n");
 	
-	// draw_rectangle(&data->minimap, vector2i(0, 0), vector2i(MINIMAP_W - 1, MINIMAP_H - 1), 0xFF000000);
-
 	draw_minimap(map, minimap);
 	// draw_line_to_border(minimap, player, 0xFF0000FF);
 	draw_player(minimap, player);
@@ -100,12 +71,10 @@ void	render_minimap(t_minimap *minimap, t_map *map, t_player *player)
 
 void	render(t_data *data)
 {
-	printf("render\n");
+	// printf("render\n");
 
-	// draw_cub3d(data);
 	render_minimap(&data->minimap, &data->map, &data->player);
 	raycasting(&data->cub, &data->minimap, &data->map, &data->player);
-    mlx_put_image_to_window(data->mlx, data->cub.win, data->cub.img, 0, 0);
     mlx_put_image_to_window(data->mlx, data->minimap.screen.win, data->minimap.screen.img, 0, 0);
 	fps_print(chrono(STOP));
 }

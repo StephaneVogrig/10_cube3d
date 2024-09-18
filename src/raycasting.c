@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/18 08:24:11 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/18 08:37:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,18 @@ void	draw_cub3d_line(t_screen *cub, int x, double raylen, t_vec2d raydir)
 		color = 0xffff0000;
 	while (y < cell_h)
 	{
-		mlx_set_image_pixel(cub->mlx, cub->img, x, y, 0xFF0000FF);
+		mlx_pixel_put(cub->mlx, cub->win, x, y, 0xFF0000FF);
 		y++;
 	}
 	wall_h += cell_h;
 	while (y < wall_h)
 	{
-		mlx_set_image_pixel(cub->mlx, cub->img, x, y, color);
+		mlx_pixel_put(cub->mlx, cub->win, x, y, color);
 		y++;
 	}
 	while (y < cub->height)
 	{
-		mlx_set_image_pixel(cub->mlx, cub->img, x, y, 0xFF00FF00);
+		mlx_pixel_put(cub->mlx, cub->win, x, y, 0xFF00FF00);
 		y++;
 	}	
 }
