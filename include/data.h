@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 19:20:13 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/18 04:55:15 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "map.h"
 # include "minimap_bonus.h"
 
-# define CUB_W 800
-# define CUB_H 450
+# define CUB_W 1200
+# define CUB_H 675
 
 typedef unsigned int 	t_ui32;
 typedef unsigned char	t_ui8;
