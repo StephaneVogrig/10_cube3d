@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/16 19:49:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/21 19:39:11 by stephane         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "player.h"
 
@@ -37,18 +37,59 @@ void	player_move(t_map map, t_player *player, t_key key)
 	double cos_dir;
 	double sin_dir;
 
-	cos_dir = cos(player->dir);
-	sin_dir = sin(player->dir);
 	player->dir += (key.right - key.left) * SPEED_ROT;
 	if(player->dir > M_PI)
 		player->dir = player->dir - 2 * M_PI;
 	if(player->dir < -M_PI)
 		player->dir = player->dir + 2 * M_PI;
 
-	player->box.x += ((key.w - key.s) * cos_dir - (key.d - key.a) * sin_dir) * SPEED_MOVE;
-	player->box.y += ((key.w - key.s) * sin_dir + (key.d - key.a) * cos_dir) * SPEED_MOVE;
-	collide_border_map(&player->box.x, &player->grid.x, map.width);
-	collide_border_map(&player->box.y, &player->grid.y, map.height);
+		
+	cos_dir = cos(player->dir);
+	sin_dir = sin(player->dir);
+
+	t_vec2i	new_grid;
+	t_vec2d	new_box;
+	
+	new_box.x = player->box.x + ((key.w - key.s) * cos_dir - (key.d - key.a) * sin_dir) * SPEED_MOVE;
+	if (new_box.x >= 1)
+	{
+		new_box.x -= 1;
+		new_grid.x = player->grid.x + 1;
+	}
+	else if (new_box.x < 0)
+	{
+		new_box.x += 1;
+		new_grid.x = player->grid.x - 1;
+	}
+	else
+		new_grid.x = player->grid.x;
+
+	new_box.y = player->box.y + ((key.w - key.s) * sin_dir + (key.d - key.a) * cos_dir) * SPEED_MOVE;
+	if (new_box.y >= 1)
+	{
+		new_box.y -= 1;
+		new_grid.y = player->grid.y + 1;
+	}
+	else if (new_box.y < 0)
+	{
+		new_box.y += 1;
+		new_grid.y = player->grid.y - 1;
+	}
+	else
+		new_grid.y = player->grid.y;
+	if (map.grid[player->grid.y][new_grid.x] == '0')
+	{
+		player->box.x = new_box.x;
+		player->grid.x = new_grid.x;
+	}
+	if (map.grid[new_grid.y][player->grid.x] == '0')
+	{
+		player->box.y = new_box.y;
+		player->grid.y = new_grid.y;
+	}
+	// printf("grid x: %i y: %i box x: %f y: %f\n", player->grid.x, player->grid.y, player->box.x, player->box.y);
+	// collide_border_map(&player->box.x, &player->grid.x, map.width);
+	// collide_border_map(&player->box.y, &player->grid.y, map.height);
 }
 
 void	player_set_dir(t_player *player, char dir)
