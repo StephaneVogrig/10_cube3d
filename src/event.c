@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/18 09:36:09 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/21 17:08:49 by stephane         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "event.h"
 
@@ -147,6 +147,7 @@ int on_mousedown(int button, void *param)
 	t_data *data;
 
 	data = (t_data *)param;
+	(void)data;
 	return(SUCCESS);
 }
 
@@ -157,7 +158,7 @@ int on_mouseup(int button, void *param)
 	t_data *data;
 
 	data = (t_data *)param;
-	data->key.left = UP;
+	(void)data;
 	return(SUCCESS);
 }
 
