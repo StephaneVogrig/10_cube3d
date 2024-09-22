@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/18 09:15:58 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/22 19:04:01 by stephane         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "render.h"
 
@@ -18,7 +18,8 @@ void	draw_player(t_minimap *minimap, t_player *player)
 	t_vec2i begin;
 	t_vec2i end;
 	
-	begin = player_get_pos_minimap(player, minimap);
+	begin.x = player->grid.x * minimap->scale + (player->box.x * minimap->scale);
+	begin.y = player->grid.y * minimap->scale + (player->box.y * minimap->scale);
 	end.x = begin.x + 2;
 	end.y = begin.y + 2;
 	draw_rectangle(&minimap->screen, begin, end, 0xFFFFFF00);
@@ -74,7 +75,7 @@ void	render(t_data *data)
 	// printf("render\n");
 
 	render_minimap(&data->minimap, &data->map, &data->player);
-	raycasting(&data->cub, &data->minimap, &data->map, &data->player);
+	raycasting(&data->win, &data->minimap, &data->map, &data->player);
     mlx_put_image_to_window(data->mlx, data->minimap.screen.win, data->minimap.screen.img, 0, 0);
 	fps_print(chrono(STOP));
 }

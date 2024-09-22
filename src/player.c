@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/21 19:39:11 by stephane         ###   ########.fr       */
+/*   Updated: 2024/09/22 19:03:57 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -28,16 +28,14 @@ void	collide_border_map(double *pos, int *grid, int limit)
 		*grid -= 1;
 		*pos += 1;
 	}
-
-	
 }
 
-void	player_move(t_map map, t_player *player, t_key key)
+void	player_move(t_map map, t_player *player, t_vec2i dir, int rot)
 {
 	double cos_dir;
 	double sin_dir;
 
-	player->dir += (key.right - key.left) * SPEED_ROT;
+	player->dir += rot * SPEED_ROT;
 	if(player->dir > M_PI)
 		player->dir = player->dir - 2 * M_PI;
 	if(player->dir < -M_PI)
@@ -50,7 +48,7 @@ void	player_move(t_map map, t_player *player, t_key key)
 	t_vec2i	new_grid;
 	t_vec2d	new_box;
 	
-	new_box.x = player->box.x + ((key.w - key.s) * cos_dir - (key.d - key.a) * sin_dir) * SPEED_MOVE;
+	new_box.x = player->box.x + (dir.x * cos_dir - dir.y * sin_dir) * SPEED_MOVE;
 	if (new_box.x >= 1)
 	{
 		new_box.x -= 1;
@@ -64,7 +62,7 @@ void	player_move(t_map map, t_player *player, t_key key)
 	else
 		new_grid.x = player->grid.x;
 
-	new_box.y = player->box.y + ((key.w - key.s) * sin_dir + (key.d - key.a) * cos_dir) * SPEED_MOVE;
+	new_box.y = player->box.y + (dir.x * sin_dir + dir.y * cos_dir) * SPEED_MOVE;
 	if (new_box.y >= 1)
 	{
 		new_box.y -= 1;
@@ -102,15 +100,4 @@ void	player_set_dir(t_player *player, char dir)
 		player->dir = M_PI;
 	else if (dir == 'E')
 		player->dir = 0;
-}
-
-t_vec2i	player_get_pos_minimap(t_player *player, t_minimap *minimap)
-{
-	t_vec2i pos;
-	
-	pos.x = player->grid.x * minimap->scale + (player->box.x * minimap->scale);
-	pos.y = player->grid.y * minimap->scale + (player->box.y * minimap->scale);
-	// printf("scale: %i pos x: %i y: %i\n", minimap->scale, pos.x, pos.y);
-	// printf("grid x: %i y: %i\n", player->grid.x, player->grid.y);
-	return (pos);
 }

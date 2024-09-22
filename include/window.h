@@ -1,31 +1,35 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line_to_border.h                              :+:      :+:    :+:   */
+/*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/15 15:46:17 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/22 19:13:43 by stephane         ###   ########.fr       */
+/*   Created: 2024/09/13 12:47:16 by svogrig           #+#    #+#             */
+/*   Updated: 2024/09/22 19:30:35 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef DRAW_LINE_TO_BORDER_H
-# define DRAW_LINE_TO_BORDER_H
+#ifndef WINDOW_H
+# define WINDOW_H
 
-# include "screen.h"
-# include "player.h"
-# include "vec2i.h"
-# include "draw_line.h"
-# include "draw_line.h"
-# include "minimap_bonus.h"
-# include <math.h>
+# include <stddef.h>
+# include <stdio.h>
+# include "typedef.h"
+# include "mlx.h"
 
-#define XMIN 10
-#define YMIN 10
-#define XMAX (minimap->screen.width - 10)
-#define YMAX (minimap->screen.height - 10)
+# define WIN_W 1200
+# define WIN_H 675
 
-void	draw_line_to_border(t_minimap *minimap, t_player *player, int color);
+typedef struct s_window{
+	void	*mlx;
+	void	*win;
+	int		width;
+	int		height;
+	int		focused;
+}	t_window;
+
+int		window_setup(t_window *win, void *mlx);
+void	window_clean(t_window *win);
 
 #endif

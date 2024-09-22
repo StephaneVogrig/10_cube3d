@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/18 09:26:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/22 19:08:03 by stephane         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "raycasting.h"
 
@@ -94,9 +94,9 @@ void	raycasting(t_window *cub, t_minimap *minimap, t_map *map, t_player *player)
 	dir.x = cos(player->dir);
 	dir.y = sin(player->dir);
 	i = 0;
-	while (i < CUB_W)
+	while (i < WIN_W)
 	{
-		camera = 2.0 * i / CUB_W - 1;
+		camera = 2.0 * i / WIN_W - 1;
 		raydir.x = dir.x - dir.y * camera;
 		raydir.y = dir.y + dir.x * camera;
 		raylen = dda(&raydir, map, player);

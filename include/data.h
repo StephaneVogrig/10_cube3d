@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/18 09:25:45 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/22 19:11:38 by stephane         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef DATA_H
 # define DATA_H
@@ -17,21 +17,15 @@
 # include "vec2i.h"
 # include "screen.h"
 # include "map.h"
+# include "player.h"
+# include "window.h"
 # include "minimap_bonus.h"
-
-# define CUB_W 1200
-# define CUB_H 675
 
 typedef unsigned int 	t_ui32;
 typedef unsigned char	t_ui8;
 
-# define SPEED_ROT (M_PI / 200)
-# define SPEED_MOVE 0.05
-
-
 #define UP 0
 #define DOWN 1
-
 
 typedef union{
 	struct {
@@ -45,32 +39,19 @@ typedef union{
 	t_ui8	down;
 }	t_key;
 
-typedef struct s_player{
-	t_vec2i	grid;
-	t_vec2d	box;
-	double	dir;
-}	t_player;
-
-typedef struct s_window{
-	void	*mlx;
-	void	*win;
-	int		width;
-	int		height;
-	int		focused;
-}	t_window;
-
 typedef struct s_data{
 	void		*mlx;
-	t_window	cub;
-	t_minimap	minimap;
-	int			minimap_scale;
+	t_window	win;
 	t_map		map;
 	t_key		key;
-	int			mouse_mode;
 	t_player	player;
+	t_minimap	minimap;
+	int			minimap_scale;
+	int			mouse_mode;
 }	t_data;
 
 void	data_init(t_data *data);
+int		data_setup(t_data *data, char *pathname);
 void	data_clean(t_data *data);
 
 #endif

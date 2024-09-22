@@ -1,23 +1,31 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:05:50 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 22:05:10 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/22 19:04:10 by stephane         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef PLAYER_H
 # define PLAYER_H
 
 # include "vec2i.h"
-# include "data.h"
 # include <math.h>
+# include "map.h"
 
-void	player_move(t_map map, t_player *player, t_key key);
-t_vec2i	player_get_pos_minimap(t_player *player, t_minimap *minimap);
+# define SPEED_ROT (M_PI / 200)
+# define SPEED_MOVE 0.05
+
+typedef struct s_player{
+	t_vec2i	grid;
+	t_vec2d	box;
+	double	dir;
+}	t_player;
+
+void	player_move(t_map map, t_player *player, t_vec2i dir, int rot);
 
 #endif

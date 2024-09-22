@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_line_to_border.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 15:45:36 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/15 22:27:35 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/22 19:16:14 by stephane         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "draw_line_to_border.h"
 
@@ -23,7 +23,8 @@ void	draw_line_to_border(t_minimap *minimap, t_player *player, int color)
 	t_vec2i border;
 	t_vec2i begin;
 	
-	begin = player_get_pos_minimap(player, minimap);
+	begin.x = player->grid.x * minimap->scale + (player->box.x * minimap->scale);
+	begin.y = player->grid.y * minimap->scale + (player->box.y * minimap->scale);
 	border.x = begin.x;
 	border.y = begin.y;
 	if (player->dir == 0)

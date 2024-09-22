@@ -1,14 +1,14 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: stephane <stephane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/17 22:42:00 by svogrig          ###   ########.fr        #
+#    Updated: 2024/09/22 19:31:37 by stephane         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 SHELL				:=	/bin/bash
 
@@ -30,8 +30,9 @@ DIR_LIST			:=	{init,utils,free_function,dlst_map}
 
 # includes --------------------------------------------------------------------#
 
-DIR_INC			:=	libft/include \
-					include
+DIR_INC			:=	include \
+					lib/libft-plus \
+					lib/MacroLibx/includes
 
 I_FLAG			:=	$(addprefix -I,$(DIR_INC)) -MMD -MP
 
@@ -47,13 +48,14 @@ SRCS			:= 	$(SRC_DIR)main.c \
 					$(SRC_DIR)vec2i.c \
 					$(SRC_DIR)event.c \
 					$(SRC_DIR)render.c \
-					$(SRC_DIR)mlx.c \
+					$(SRC_DIR)window.c \
 					$(SRC_DIR)player.c \
 					$(SRC_DIR)minimap_bonus.c \
 					$(SRC_DIR)raycasting.c \
-					$(SRC_DIR)debug.c \
+					$(SRC_DIR)map.c \
 					$(SRC_DIR)dda.c \
 					$(SRC_DIR)chrono.c \
+					$(SRC_DIR)debug.c \
 					$(SRC_DIR)free_function/free_main.c \
 					$(SRC_DIR)free_function/free_mlx_utils.c \
 					$(SRC_DIR)free_function/free_utils.c \
