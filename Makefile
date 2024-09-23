@@ -6,7 +6,7 @@
 #    By: stephane <stephane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/22 19:31:37 by stephane         ###   ########.fr        #
+#    Updated: 2024/09/22 20:08:56 by stephane         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -55,6 +55,7 @@ SRCS			:= 	$(SRC_DIR)main.c \
 					$(SRC_DIR)map.c \
 					$(SRC_DIR)dda.c \
 					$(SRC_DIR)chrono.c \
+					$(SRC_DIR)texture.c \
 					$(SRC_DIR)debug.c \
 					$(SRC_DIR)free_function/free_main.c \
 					$(SRC_DIR)free_function/free_mlx_utils.c \

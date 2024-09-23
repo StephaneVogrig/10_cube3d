@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/22 19:11:38 by stephane         ###   ########.fr       */
+/*   Updated: 2024/09/22 22:53:14 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,6 +20,7 @@
 # include "player.h"
 # include "window.h"
 # include "minimap_bonus.h"
+# include "texture.h"
 
 typedef unsigned int 	t_ui32;
 typedef unsigned char	t_ui8;

@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 18:14:06 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/23 19:06:06 by stephane         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "dda.h"
 
@@ -38,30 +38,95 @@ void	dda_init(t_dda *raylen, t_vec2i *step, t_vec2d *raydir, t_vec2d *box)
 	}
 }
 
-double	dda(t_vec2d *raydir, t_map *map, t_player *player)
+t_dda2	dda(t_vec2d *raydir, t_map *map, t_player *player)
 {
 	t_dda	raylen;
+	t_dda2	ray;
 	t_vec2i	step;
-	t_vec2i	mapcheck;
 
 	dda_init(&raylen, &step, raydir, &player->box);
-	mapcheck = player->grid;
+	ray.hit_pos.grid = player->grid;
 	while (TRUE)
 	{
 		if (raylen.side.x < raylen.side.y)
-		{		
-			raylen.current = raylen.side.x;
-			mapcheck.x += step.x;
+		{
+			ray.hit_side = 'x';
+			ray.hit_pos.grid.x += step.x;
 			raylen.side.x += raylen.unit.x;
 		}
 		else
 		{
-			raylen.current = -raylen.side.y;
-			mapcheck.y += step.y;
+			ray.hit_side = 'y';
+			ray.hit_pos.grid.y += step.y;
 			raylen.side.y += raylen.unit.y;
 		}
-		if (mapcheck.x < 0 ||mapcheck.y < 0 || mapcheck.x >= map->width || mapcheck.y >= map->height || map->grid[mapcheck.y][mapcheck.x] == '1')
+		if (ray.hit_pos.grid.x < 0 || ray.hit_pos.grid.y < 0 || ray.hit_pos.grid.x >= map->width || ray.hit_pos.grid.y >= map->height || map->grid[ray.hit_pos.grid.y][ray.hit_pos.grid.x] == '1')
 			break;
 	}
-	return (raylen.current);
+	// ray_compute(&ray, step, raylen, player, raydir);
+	// new part
+	double delta;
+	if (ray.hit_side == 'x')
+	{
+		if (step.x == 1)
+			ray.hit_side = 'w';
+		else
+			ray.hit_side = 'e';
+		ray.len = raylen.side.x - raylen.unit.x;
+		ray.hit_pos.grid.x = ray.hit_pos.grid.x - step.x;
+		ray.hit_pos.box.x = 0;
+		delta = player->box.y + raydir->y * ray.len;
+		ray.hit_pos.grid.y = player->grid.y + (int)delta ;
+		ray.hit_pos.box.y = delta - (int)delta;
+		if (delta < 0)
+			ray.hit_pos.box.y += 1;
+	}
+	else
+	{
+		if (step.y == 1)
+			ray.hit_side = 'n';
+		else
+			ray.hit_side = 's';
+		ray.len = raylen.side.y - raylen.unit.y;
+		ray.hit_pos.grid.y = ray.hit_pos.grid.y - step.y;
+		ray.hit_pos.box.y = 0;
+		delta = player->box.x + raydir->x * ray.len;
+		ray.hit_pos.grid.x = player->grid.x + (int)delta;
+		ray.hit_pos.box.x = delta - (int)delta;
+		if (delta < 0)
+			ray.hit_pos.box.x += 1;
+	}
+	
+	// printf("ray->hit_pos x: %i %f y: %i %f - ", ray.hit_pos.grid.x,	ray.hit_pos.box.x, ray.hit_pos.grid.y, ray.hit_pos.box.y);
+	// printf("side: %c delta:%f\n", ray.hit_side, delta);
+	
+	// if (ray.hit_side == 'x')
+	// {
+	// 	ray.len = raylen.side.x - raylen.unit.x;
+	// 	if (step.x == 1)
+	// 		ray.hit_side = 'w';
+	// 	else
+	// 		ray.hit_side = 'e';
+	// }
+	// else
+	// {
+	// 	ray.len = raylen.side.y - raylen.unit.y;
+	// 	if (step.y == 1)
+	// 		ray.hit_side = 'n';
+	// 	else
+	// 		ray.hit_side = 's';
+	// }
+	// t_vec2d	intersect;
+	
+	// intersect.x = player->grid.x + player->box.x + raydir->x * ray.len ;
+	// intersect.y = player->grid.y + player->box.y + raydir->y * ray.len;
+	// ray.hit_pos.grid.x = (int)intersect.x;
+	// ray.hit_pos.grid.y = (int)intersect.y;
+	// ray.hit_pos.box.x = intersect.x - ray.hit_pos.grid.x;
+	// ray.hit_pos.box.y = intersect.y - ray.hit_pos.grid.y;
+	
+	// printf("ray->hit_pos x: %i %f y: %i %f\n", ray.hit_pos.grid.x,	ray.hit_pos.box.x, ray.hit_pos.grid.y, ray.hit_pos.box.y);
+
+	
+	return (ray);
 }

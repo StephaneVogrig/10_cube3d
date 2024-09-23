@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/09/22 19:21:19 by stephane         ###   ########.fr       */
+/*   Updated: 2024/09/22 20:36:16 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,6 +16,28 @@
 #include "render.h"
 #include "mlx.h"
 
+void	test_texture(t_texture texture, t_window win)
+{
+	printf("texture img:%p width:%i height:%i\n", texture.img, texture.width, texture.height);
+
+	printf("window win:%p width:%i height:%i\n", win.win, win.width, win.height);
+	int y;
+	int x;
+	int	color;
+	
+	y = 0;
+	while (y < texture.height)
+	{
+		x = 0;
+		while (x < texture.width)
+		{
+			color = mlx_get_image_pixel(win.mlx, texture.img, x, y);
+			mlx_pixel_put(win.mlx, win.win, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
 
 int main(int argc, char **argv)
 {
@@ -35,6 +57,7 @@ int main(int argc, char **argv)
 		event_setup(&data);
 		chrono(START);
 		render(&data);
+		// test_texture(data.tex_north, data.win);
 		mlx_loop(data.mlx); 
     }
 	data_clean(&data);
