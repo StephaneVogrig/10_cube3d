@@ -6,7 +6,7 @@
 #    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/13 14:58:55 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/09/25 17:14:26 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,6 @@ SRCS			:= 	$(SRC_DIR)main.c \
 					$(SRC_DIR)init/cub_init.c \
 					$(SRC_DIR)init/map_init.c \
 					$(SRC_DIR)init/map_flood_fill.c \
-					$(SRC_DIR)init/mlx_init.c \
 					$(SRC_DIR)dlst_map/lstmap_op.c \
 					$(SRC_DIR)dlst_map/lstmap_del.c \
 					$(SRC_DIR)utils/check_utils.c \
@@ -89,7 +88,7 @@ re: fclean all
 
 recub:
 	@rm -f $(NAME) && printf "Cleaning: $(NAME) \n"
-	@$(MAKE) -j all --no-print-directory
+	@$(MAKE) -j -C all --no-print-directory
 
 libclean:
 	@$(MAKE) -C $(LIB_DIR)libft-plus clean --no-print-directory

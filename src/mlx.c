@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:30:55 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/13 12:48:10 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/25 17:35:03 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,19 @@
 
 int	mlx_setup(t_data *data)
 {
-	printf("mlx_setup\n");
-
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
-		return (ERROR);
-
+		return (FAIL);
 	data->cub.win = mlx_new_window(data->mlx, CUB_W, CUB_H, "cub3d");
 	if (data->cub.win == NULL)
-		return (ERROR);
-	if (screen_init(&data->cub, data->mlx, CUB_W, CUB_H) == ERROR)
-		return (ERROR);
-		
-	data->minimap.win = mlx_new_window(data->mlx, MINIMAP_W, MINIMAP_H, "minimap");
+		return (FAIL);
+	if (screen_init(&data->cub, data->mlx, CUB_W, CUB_H) == FAIL)
+		return (FAIL);
+	data->minimap.win = mlx_new_window(data->mlx, MINIMAP_W, MINIMAP_H,
+			"minimap");
 	if (data->minimap.win == NULL)
-		return (ERROR);
-	if (screen_init(&data->minimap, data->mlx, MINIMAP_W, MINIMAP_H) == ERROR)
-		return (ERROR);
-
-	return (SUCCESS);	
+		return (FAIL);
+	if (screen_init(&data->minimap, data->mlx, MINIMAP_W, MINIMAP_H) == FAIL)
+		return (FAIL);
+	return (chk_box(SUCCESS, EQ, SUCCESS, MLX_SETUP));
 }

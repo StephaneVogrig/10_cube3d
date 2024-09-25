@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/09/25 14:36:55 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/25 18:15:41 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
@@ -47,11 +47,12 @@ int	check_arg_color(char **rgb)
 	return (SUCCESS);
 }
 
-int	attrib_rgb(t_rgb rgb, char *key, char *value)
+int	attrib_rgb(t_rgb rgb, char *value)
 {
 	char	**arg;
-	int ok;
+	int		ok;
 
+	ok = SUCCESS;
 	arg = ft_split(value, ',');
 	if (arg == NULL || ft_tablen(arg) != 3)
 		ok = FAIL;
@@ -67,18 +68,23 @@ int	attrib_rgb(t_rgb rgb, char *key, char *value)
 	return (ok);
 }
 
-int	attrib_path(t_textures *tex, char *key, char *value)
+int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 {
-	int ok;
-	int		fd;
+	int	ok;
+	int	fd;
 
+	ok = SUCCESS;
 	fd = ft_open(value, O_RDONLY);
+	printf("fd = %d\n", fd);
 	if (fd != FAIL)
-		ok = path_seletor(tex, key, value);
+	{
+		ok = path_seletor(mlx, tex, key, value);
+		printf("ok = %d\n", ok);
+	}
 	else if (key[0] == 'C')
-		ok = attrib_rgb(tex->ceil_rgb, key, value);
+		ok = attrib_rgb(tex->ceil_rgb, value);
 	else if (key[0] == 'F')
-		ok = attrib_rgb(tex->floor_rgb, key, value);
+		ok = attrib_rgb(tex->floor_rgb, value);
 	ft_close(fd);
 	chk_box(ok, NE, FAIL, key);
 	if (ok == FAIL)
@@ -86,39 +92,44 @@ int	attrib_path(t_textures *tex, char *key, char *value)
 	return (SUCCESS);
 }
 
-int	img_path_process(char *key, char *value, char *line)
+int	img_path_process(char **key, char **value, char *line)
 {
-	int		ok;
-
 	if (line == NULL)
 		return (FAIL);
-	if (ft_isthis(line[0], " 10\n\t"))
-		return ;
-	if (return_key(line, &key) == FAIL)
+	if (!ft_isthis(line[0], "NSEWFC"))
 		return (FAIL);
-	if (return_value(line, key, &value) == FAIL)
+	if (setup_key(line, key) == FAIL)
 		return (FAIL);
-	return (ok);
+	if (setup_value(line, *key, value) == FAIL)
+		return (FAIL);
+	*value = ft_strtrim(*value, " ");
+	if (*value == NULL)
+		return (FAIL);
+	printf("value = %s\n", *value);
+	return (SUCCESS);
 }
 
-int	asset_discovery(void *mlx, t_textures *tex, int *fd)
+int	file_process(void *mlx, t_textures *tex, int *fd)
 {
 	char	*line;
 	int		sum_of_path;
-	char	key;
-	char	value;
+	char	*key;
+	char	*value;
 
 	sum_of_path = 0;
-	line = get_next_line(fd);
+	key = NULL;
+	value = NULL;
+	line = get_next_line(*fd);
 	while (line != NULL && sum_of_path < 6)
 	{
-		if (img_path_process(&key, &value, line) == FAIL)
-			return (ft_return(ERROR, FAIL, "Error on path processing"));
-		if (attrib_path(tex, &key, &value) == FAIL)
-			return (ft_return(ERROR, FAIL, "Error on path Attribution"));
+		if (img_path_process(&key, &value, line) == SUCCESS)
+		{
+			if (attrib_path(mlx, tex, key, value) == FAIL)
+				return (ft_return(ERROR, FAIL, "Error on path Attribution"));
+			sum_of_path++;
+		}
 		line = ft_char_f(line);
-		sum_of_path++;
-		line = get_next_line(fd);
+		line = get_next_line(*fd);
 	}
 	if (sum_of_path != 6)
 		return (FAIL);

@@ -1,10 +1,10 @@
-SO ./ROCKSO.bmp
+SO ROCKSO.bmp
 
-NO ./ROCKNO.bmp
-WE ./ROCKWE.bmp
+NO ROCKNO.bmp
+WE ROCKWE.bmp
 
 
-EA ./ROCKEA.bmp
+EA ROCKEA.bmp
 
 F 220,100,0
 C 225,30,0

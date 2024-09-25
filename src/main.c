@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/09/25 14:37:48 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/25 17:39:55 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../include/cub3d.h"
 #include "event.h"
@@ -18,13 +18,12 @@
 
 int	map_load(t_data *data, char *path)
 {
-	int		fd;
-	char	*root_path;
+	int	fd;
 
-	if (chk_box(open_cub(&fd, path, root_path), EQ, SUCCESS, path) == 1)
+	if (chk_box(open_cub(&fd, path), EQ, SUCCESS, path) == 1)
 		return (ft_return(ERROR, FAIL, "Error to open file"));
-	if (chk_box(asset_discovery(&data->mlx, &data->textures, &fd), EQ, SUCCESS,
-			"Discovery asset") == 1)
+	if (chk_box(file_process(&data->mlx, &data->textures, &fd), EQ, SUCCESS,
+			"File Processing") == 1)
 		return (ft_return(ERROR, FAIL, "Error to discovery asset"));
 	// ok = init_map_process(cub);
 	// if (chk_box(ok, EQ, SUCCESS, "Initialize Map") == 1)
@@ -44,9 +43,9 @@ int	map_load(t_data *data, char *path)
 
 int	main(int argc, char **argv)
 {
-	t_cub	*cub;
 	t_data	data;
 
+	// t_cub	*cub;
 	title();
 	if (check_entry_arg(argc, argv) == FAIL)
 		return (EXIT_SUCCESS);
@@ -58,7 +57,7 @@ int	main(int argc, char **argv)
 		render(&data);
 		mlx_loop(data.mlx);
 	}
-	helltrain(cub, INFO, 0, "END OF PROGRAM");
+	// helltrain(cub, INFO, 0, "END OF PROGRAM");
 	data_clean(&data);
 	return (EXIT_SUCCESS);
 }

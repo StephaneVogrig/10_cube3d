@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:34:42 by aska              #+#    #+#             */
-/*   Updated: 2024/09/13 16:07:56 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:56:47 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,12 @@ int		check_open_path(int fd, char *msg);
 void	helltrain(t_cub *cub, t_state state, int return_code, char *msg);
 void	debug(t_cub *cub);
 void	print_tab(char **tab);
-int		attrib_path(t_cub *cub, char *key, char *value);
-char	*path_seletor(t_cub *cub, char *key, char *img_path);
-int		return_value(char *line, char *key, char **value);
-int		return_key(char *line, char **key);
+int		attrib_path(void *mlx, t_textures *tex, char *key, char *value);
 void	init_organizer(t_cub *cub, char *file);
-int		asset_discovery(t_cub *cub);
+int		file_process(void *mlx, t_textures *tex, int *fd);
 int		check_entry_arg(int ac, char **av);
 int		mlx_initialize(t_cub *cub);
-int		open_cub(int *fd, char *file, char *root_path);
+int		open_cub(int *fd, char *file);
 void	goto_exit(int check, int err, t_state state, char *msg);
 void	mlx_free(t_cub *cub);
 int		init_map_process(t_cub *cube);
@@ -64,6 +61,11 @@ int		set_var_creation_map(t_cub *cube);
 int		map_checker(t_cub *cub);
 int		set_var_creation_map_ff(t_cub *cub);
 void	chk_flood_fill(t_cub *cub, int x, int y);
+int		setup_value(char *line, char *key, char **value);
+int		setup_key(char *line, char **key);
+int		path_seletor(void *mlx, t_textures *textures, char *key,
+			char *img_path);
+int		texture_attribution(void *mlx, t_texture *tex, char *path);
 
 void	insert_front_lstmap(t_lstmap **head, char *line);
 void	insert_after_lstmap(t_lstmap *prev_node, char *line);
