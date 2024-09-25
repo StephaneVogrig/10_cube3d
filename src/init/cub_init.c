@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/09/25 18:15:41 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/25 23:26:31 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../include/cub3d.h"
 
@@ -47,7 +47,7 @@ int	check_arg_color(char **rgb)
 	return (SUCCESS);
 }
 
-int	attrib_rgb(t_rgb rgb, char *value)
+int	attrib_rgb(t_rgb *rgb, char *value)
 {
 	char	**arg;
 	int		ok;
@@ -60,9 +60,9 @@ int	attrib_rgb(t_rgb rgb, char *value)
 		ok = FAIL;
 	if (ok != FAIL)
 	{
-		rgb.r = ft_atoi(arg[0]);
-		rgb.g = ft_atoi(arg[1]);
-		rgb.b = ft_atoi(arg[2]);
+		rgb->r = ft_atoi(arg[0]);
+		rgb->g = ft_atoi(arg[1]);
+		rgb->b = ft_atoi(arg[2]);
 	}
 	ft_tab_f(arg);
 	return (ok);
@@ -75,16 +75,12 @@ int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 
 	ok = SUCCESS;
 	fd = ft_open(value, O_RDONLY);
-	printf("fd = %d\n", fd);
 	if (fd != FAIL)
-	{
 		ok = path_seletor(mlx, tex, key, value);
-		printf("ok = %d\n", ok);
-	}
 	else if (key[0] == 'C')
-		ok = attrib_rgb(tex->ceil_rgb, value);
+		ok = attrib_rgb(&tex->ceil_rgb, value);
 	else if (key[0] == 'F')
-		ok = attrib_rgb(tex->floor_rgb, value);
+		ok = attrib_rgb(&tex->floor_rgb, value);
 	ft_close(fd);
 	chk_box(ok, NE, FAIL, key);
 	if (ok == FAIL)
@@ -105,7 +101,6 @@ int	img_path_process(char **key, char **value, char *line)
 	*value = ft_strtrim(*value, " ");
 	if (*value == NULL)
 		return (FAIL);
-	printf("value = %s\n", *value);
 	return (SUCCESS);
 }
 

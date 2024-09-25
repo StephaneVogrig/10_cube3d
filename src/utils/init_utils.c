@@ -1,20 +1,20 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/09/25 18:19:44 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/25 23:18:36 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../include/cub3d.h"
 
 int	texture_attribution(void *mlx, t_texture *tex, char *path)
 {
-	tex->img = mlx_png_file_to_image(mlx, path, &tex->img_w, &tex->img_h);
+	tex->img = mlx_bmp_file_to_image(mlx, path, &tex->img_w, &tex->img_h);
 	if (tex->img == NULL)
 		return (ft_return(ERROR, FAIL, "Texture attribution failed"));
 	return (SUCCESS);
