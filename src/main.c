@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/09/13 16:13:06 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:37:48 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../include/cub3d.h"
 #include "event.h"
@@ -23,9 +23,9 @@ int	map_load(t_data *data, char *path)
 
 	if (chk_box(open_cub(&fd, path, root_path), EQ, SUCCESS, path) == 1)
 		return (ft_return(ERROR, FAIL, "Error to open file"));
-	if (chk_box(asset_discovery(&data->textures, &fd, root_path), EQ, SUCCESS,
+	if (chk_box(asset_discovery(&data->mlx, &data->textures, &fd), EQ, SUCCESS,
 			"Discovery asset") == 1)
-		helltrain(cub, ERROR, 1, "asset_discovery");
+		return (ft_return(ERROR, FAIL, "Error to discovery asset"));
 	// ok = init_map_process(cub);
 	// if (chk_box(ok, EQ, SUCCESS, "Initialize Map") == 1)
 	// 	helltrain(cub, ERROR, 1, "Error on Initialization Map");

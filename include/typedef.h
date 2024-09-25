@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:42:41 by aska              #+#    #+#             */
-/*   Updated: 2024/09/13 15:43:22 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:16:13 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
@@ -40,11 +40,12 @@ typedef struct s_rgb
 typedef struct s_texture
 {
 	void			*img;
+	char			*addr;
 	int				img_w;
 	int				img_h;
 }					t_texture;
 
-typedef struct
+typedef struct s_textures
 {
 	t_texture		no;
 	t_texture		so;
@@ -65,7 +66,7 @@ typedef struct s_lstmap
 
 typedef struct s_cub
 {
-	t_img			*img;
+	t_textures		textures;
 	void			*mlx;
 	int				err;
 	int				fd;
