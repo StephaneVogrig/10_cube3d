@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 03:06:27 by aska              #+#    #+#             */
-/*   Updated: 2024/09/27 02:52:44 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/27 16:17:18 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "cub3d.h"
 #include "lst_map.h"
@@ -44,26 +44,6 @@ int	is_map_valid(char *line)
 		i++;
 	}
 	return (TRUE);
-}
-
-void	get_max_map_size(t_map *map)
-{
-	t_lstmap	*tmp;
-	int			x;
-	int			y;
-
-	tmp = map->lst_map;
-	y = 0;
-	x = 0;
-	while (tmp != NULL)
-	{
-		if (x < (int)ft_strlen(tmp->line))
-			x = ft_strlen(tmp->line);
-		tmp = tmp->next;
-		y++;
-	}
-	map->max_x = x;
-	map->max_y = y;
 }
 
 char	get_blok_type(t_map *map, char c, int x, int y)
