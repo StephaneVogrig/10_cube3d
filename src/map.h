@@ -1,29 +1,29 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   screen.h                                           :+:      :+:    :+:   */
+/*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/12 18:36:49 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/27 04:13:18 by aska             ###   ########.fr       */
+/*   Created: 2024/09/26 13:55:14 by aska              #+#    #+#             */
+/*   Updated: 2024/09/27 03:10:10 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef SCREEN_H
-# define SCREEN_H
-#pragma message("screen.h included")
+#ifndef MAP_H
+# define MAP_H
 
-#include "cub3d.h"
+# include "lst_map.h"
 
-typedef struct s_screen{
-    void	*mlx;
-	void	*win;
-	void	*img;
-	int		width;
-	int		height;
-}   t_screen;
+typedef struct
+{
+	t_lstmap	*lst_map;
+	char		**map_ff;
+	char		**map;
+	int			max_x;
+	int			max_y;
+}				t_map;
 
-int	screen_init(t_screen *screen, void *mlx, int width, int height);
+int	init_map_process(t_map *map, int fd);
 
 #endif

@@ -6,11 +6,12 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:37:02 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/09/07 17:08:49 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/26 16:16:21 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
+#include "lst_map.h"
 
 void	insert_front_lstmap(t_lstmap **head, char *line)
 {

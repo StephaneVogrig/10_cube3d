@@ -1,14 +1,14 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/25 17:14:26 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/09/26 19:41:52 by aska             ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 SHELL				:=	/bin/bash
 
@@ -28,29 +28,30 @@ OBJ_DIR				:=	obj/
 LIB_DIR				:=	lib/
 DIR_LIST			:=	{init,utils,free_function,dlst_map}
 #-- MANDATORY
-HEADERS			:=	include/so_long.h
+HEADERS			:=	
 SRCS			:= 	$(SRC_DIR)main.c \
+					$(SRC_DIR)check_utils.c \
+					$(SRC_DIR)cub_init.c \
 					$(SRC_DIR)data.c \
-					$(SRC_DIR)screen.c \
+					$(SRC_DIR)debug.c \
 					$(SRC_DIR)draw_line.c \
 					$(SRC_DIR)draw_line_utils.c \
-					$(SRC_DIR)vec2i.c \
 					$(SRC_DIR)event.c \
-					$(SRC_DIR)render.c \
+					$(SRC_DIR)free_main.c \
+					$(SRC_DIR)free_mlx_utils.c \
+					$(SRC_DIR)free_utils.c \
+					$(SRC_DIR)init_utils.c \
+					$(SRC_DIR)lstmap_del.c \
+					$(SRC_DIR)lstmap_op.c \
+					$(SRC_DIR)lstmap_utils.c \
+					$(SRC_DIR)map.c \
+					$(SRC_DIR)map_flood_fill.c \
 					$(SRC_DIR)mlx.c \
-					$(SRC_DIR)debug.c \
-					$(SRC_DIR)free_function/free_main.c \
-					$(SRC_DIR)free_function/free_mlx_utils.c \
-					$(SRC_DIR)free_function/free_utils.c \
-					$(SRC_DIR)init/cub_init.c \
-					$(SRC_DIR)init/map_init.c \
-					$(SRC_DIR)init/map_flood_fill.c \
-					$(SRC_DIR)dlst_map/lstmap_op.c \
-					$(SRC_DIR)dlst_map/lstmap_del.c \
-					$(SRC_DIR)utils/check_utils.c \
-					$(SRC_DIR)utils/init_utils.c \
-					$(SRC_DIR)utils/pretty_utils.c \
-					$(SRC_DIR)utils/lstmap_utils.c \
+					$(SRC_DIR)pixel.c \
+					$(SRC_DIR)pretty_utils.c \
+					$(SRC_DIR)render.c \
+					$(SRC_DIR)screen.c \
+					$(SRC_DIR)vec2i.c \
 					
 OBJS			:= 	$(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 DEPS			:=	$(OBJS:.o=.d)
@@ -110,7 +111,7 @@ init: libft libmlx
 	@echo -e "\t\t$(BHYEL) CUB3D COMPILATION $(NC)"
 	@echo -e "\t\t$(BHYEL)┕━»•» 🌸 «•«━━━━━━┙$(NC)"
 	@echo -e ""
-	@mkdir -p $(OBJ_DIR)$(DIR_LIST) && echo -e "$(BGREEN)[✔]$(NC)\tCreate Directories: $(OBJ_DIR)$(DIR_LIST)$(NC)"
+#	@mkdir -p $(OBJ_DIR)$(DIR_LIST) && echo -e "$(BGREEN)[✔]$(NC)\tCreate Directories: $(OBJ_DIR)$(DIR_LIST)$(NC)"
 
 bonus: init $(NAME_BONUS) 
 	@echo -e "\t$(BLINK_GREEN)$(NAME_BONUS) = COMPILATION FINISHED !$(NC)"

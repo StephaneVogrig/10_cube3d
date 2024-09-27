@@ -6,15 +6,26 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/09/25 23:18:36 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/27 03:54:57 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
-int	texture_attribution(void *mlx, t_texture *tex, char *path)
+int	texture_attribution(void *mlx, t_texture *tex, char *path, char *extension)
 {
-	tex->img = mlx_bmp_file_to_image(mlx, path, &tex->img_w, &tex->img_h);
+	if (ft_strcmp(extension, ".jpg") == 0)
+		tex->img = mlx_jpg_file_to_image(mlx, path, &tex->img_w, &tex->img_h);
+	else if (ft_strcmp(extension, ".bmp") == 0)
+		tex->img = mlx_bmp_file_to_image(mlx, path, &tex->img_w, &tex->img_h);
+	else if (ft_strcmp(extension, ".png") == 0)
+		tex->img = mlx_png_file_to_image(mlx, path, &tex->img_w, &tex->img_h);
+	else
+	{
+		extension = ft_char_f(extension);
+		return (ft_return(ERROR, FAIL, "Texture extension not supported"));
+	}
+	extension = ft_char_f(extension);
 	if (tex->img == NULL)
 		return (ft_return(ERROR, FAIL, "Texture attribution failed"));
 	return (SUCCESS);
@@ -22,28 +33,25 @@ int	texture_attribution(void *mlx, t_texture *tex, char *path)
 
 int	path_seletor(void *mlx, t_textures *textures, char *key, char *img_path)
 {
+	char	*extension;
+
+	extension = ft_strrchr(img_path, '.');
+	if (extension == NULL)
+		return (ft_return(ERROR, FAIL, "Texture extension not found"));
 	if (ft_strncmp(key, "NO", 2) == 0)
-		return (texture_attribution(mlx, &textures->no, img_path));
+		return (texture_attribution(mlx, &textures->no, img_path, extension));
 	else if (ft_strncmp(key, "SO", 2) == 0)
-		return (texture_attribution(mlx, &textures->so, img_path));
+		return (texture_attribution(mlx, &textures->so, img_path, extension));
 	else if (ft_strncmp(key, "WE", 2) == 0)
-		return (texture_attribution(mlx, &textures->we, img_path));
+		return (texture_attribution(mlx, &textures->we, img_path, extension));
 	else if (ft_strncmp(key, "EA", 2) == 0)
-		return (texture_attribution(mlx, &textures->ea, img_path));
+		return (texture_attribution(mlx, &textures->ea, img_path, extension));
 	else if (ft_strncmp(key, "F", 1) == 0)
-		return (texture_attribution(mlx, &textures->floor, img_path));
+		return (texture_attribution(mlx, &textures->floor, img_path, extension));
 	else if (ft_strncmp(key, "C", 1) == 0)
-		return (texture_attribution(mlx, &textures->ceil, img_path));
+		return (texture_attribution(mlx, &textures->ceil, img_path, extension));
 	else
 		return (SUCCESS);
-	// else if (ft_strncmp(key, "F", 1) == 0)
-	// 	cub->img->f_path = ft_strdup(img_path);
-	// else if (ft_strncmp(key, "C", 1) == 0)
-	// 	cub->img->c_path = ft_strdup(img_path);
-	// else if (ft_strncmp(key, "BGM", 3) == 0)
-	// 	cub->img->bgm_path = ft_strdup(img_path);
-	// else
-	// 	return (NULL);
 }
 
 int	setup_key(char *line, char **key)

@@ -6,11 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/09/25 23:26:31 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/27 04:17:23 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 int	open_cub(int *fd, char *file)
 {
@@ -124,8 +124,10 @@ int	file_process(void *mlx, t_textures *tex, int *fd)
 			sum_of_path++;
 		}
 		line = ft_char_f(line);
-		line = get_next_line(*fd);
+		if (sum_of_path != 6)
+			line = get_next_line(*fd);
 	}
+	line = ft_char_f(line);
 	if (sum_of_path != 6)
 		return (FAIL);
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:42:41 by aska              #+#    #+#             */
-/*   Updated: 2024/09/25 14:16:13 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/26 14:11:33 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -57,13 +57,6 @@ typedef struct s_textures
 	t_rgb			ceil_rgb;
 }					t_textures;
 
-typedef struct s_lstmap
-{
-	char			*line;
-	struct s_lstmap	*next;
-	struct s_lstmap	*prev;
-}					t_lstmap;
-
 typedef struct s_cub
 {
 	t_textures		textures;
@@ -72,11 +65,6 @@ typedef struct s_cub
 	int				fd;
 	char			*root_path;
 	char			*line;
-	t_lstmap		*map;
-	char			**map_tab;
-	char			**map_ff;
-	int				map_max_x;
-	int				map_max_y;
 	int				player_x;
 	int				player_y;
 	char			player_dir;

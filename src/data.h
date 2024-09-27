@@ -1,21 +1,22 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/13 14:05:52 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/27 04:00:02 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef DATA_H
 # define DATA_H
 
-# include "../include/cub3d.h"
+# include "cub3d.h"
 # include "screen.h"
 # include "vec2i.h"
+# include "map.h"
 
 # define CUB_W 800
 # define CUB_H 450
@@ -59,7 +60,7 @@ typedef struct s_data
 	t_textures			textures;
 	t_screen			cub;
 	t_screen			minimap;
-	char				**map;
+	t_map				map;
 	t_key				key;
 	t_player			player;
 
