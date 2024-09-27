@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
+#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/26 19:41:52 by aska             ###   ########.fr        #
+#    Updated: 2024/09/27 18:02:28 by ygaiffie         ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 SHELL				:=	/bin/bash
 
@@ -45,7 +45,6 @@ SRCS			:= 	$(SRC_DIR)main.c \
 					$(SRC_DIR)lstmap_op.c \
 					$(SRC_DIR)lstmap_utils.c \
 					$(SRC_DIR)map.c \
-					$(SRC_DIR)map_flood_fill.c \
 					$(SRC_DIR)mlx.c \
 					$(SRC_DIR)pixel.c \
 					$(SRC_DIR)pretty_utils.c \
@@ -53,6 +52,8 @@ SRCS			:= 	$(SRC_DIR)main.c \
 					$(SRC_DIR)screen.c \
 					$(SRC_DIR)vec2i.c \
 					
+#					$(SRC_DIR)map_flood_fill.c \
+
 OBJS			:= 	$(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 DEPS			:=	$(OBJS:.o=.d)
 NAME			:= 	cub3d
@@ -111,7 +112,7 @@ init: libft libmlx
 	@echo -e "\t\t$(BHYEL) CUB3D COMPILATION $(NC)"
 	@echo -e "\t\t$(BHYEL)┕━»•» 🌸 «•«━━━━━━┙$(NC)"
 	@echo -e ""
-#	@mkdir -p $(OBJ_DIR)$(DIR_LIST) && echo -e "$(BGREEN)[✔]$(NC)\tCreate Directories: $(OBJ_DIR)$(DIR_LIST)$(NC)"
+	@mkdir -p $(OBJ_DIR)$(DIR_LIST) && echo -e "$(BGREEN)[✔]$(NC)\tCreate Directories: $(OBJ_DIR)$(DIR_LIST)$(NC)"
 
 bonus: init $(NAME_BONUS) 
 	@echo -e "\t$(BLINK_GREEN)$(NAME_BONUS) = COMPILATION FINISHED !$(NC)"

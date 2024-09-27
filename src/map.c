@@ -1,86 +1,102 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/09/27 04:32:46 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/27 18:01:08 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "cub3d.h"
 #include "lst_map.h"
 #include "map.h"
 
+int	check_line(t_map *map, char *line)
+{
+	int	x;
+
+	if (line == NULL)
+		return (ERROR);
+	if (is_empty_line(line) == TRUE || is_map_valid(line) == FALSE)
+		return (ERROR);
+	x = (int)ft_strlen(line) - 1; // -1 to remove the '\n' character
+	if (x > map->max_x)
+		map->max_x = x;
+	map->max_y++;
+	return (SUCCESS);
+}
+
 int	init_map_process(t_map *map, int fd)
 {
 	t_lstmap	*tmp;
 	char		*line;
+	t_bool		is_valid;
 
+	is_valid = TRUE;
 	tmp = map->lst_map;
 	line = get_next_line(fd);
-	while (line != NULL)
+	while (line != NULL && is_empty_line(line) == TRUE)
 	{
-		insert_end_lstmap(&map->lst_map, line);
 		line = ft_char_f(line);
 		line = get_next_line(fd);
 	}
-	while (is_empty_line(tmp->line) == TRUE && tmp != NULL)
+	while (line != NULL)
 	{
-		tmp = tmp->next;
-		delete_lstmap(&map->lst_map, tmp->prev);
-	}
-	while (tmp->next != NULL)
-	{
-		tmp = tmp->next;
-		if (is_map_valid(tmp->line) == FALSE
-			|| is_empty_line(tmp->line) == TRUE)
-			return (ERROR);
+		if (is_valid == TRUE)
+		{
+			if (check_line(map, line) == SUCCESS)
+				insert_end_lstmap(&map->lst_map, line);
+			else
+				is_valid = FALSE;
+		}
+		line = ft_char_f(line);
+		line = get_next_line(fd);
 	}
 	return (SUCCESS);
 }
 
-int	set_var_creation_map(t_map *map)
+int	set_var_creation_map(t_map *map_t)
 {
 	int	y;
 
 	y = 0;
-	map->map_tab = ft_calloc(map->map_max_y + 1, sizeof(char *));
-	if (map->map_tab == NULL)
+	map_t->map = ft_calloc(map_t->max_y + 1, sizeof(char *));
+	if (map_t->map == NULL)
 		return (ERROR);
-	while (y != map->map_max_y)
+	while (y != map_t->max_y)
 	{
-		map->map_tab[y] = ft_calloc(map->map_max_x, sizeof(char));
-		if (map->map_tab[y++] == NULL)
+		map_t->map[y] = ft_calloc(map_t->max_x, sizeof(char));
+		if (map_t->map[y++] == NULL)
 			return (ERROR);
 	}
 	return (SUCCESS);
 }
 
-int	map_creation(t_cub *cube)
+int	map_creation(t_map *map_t)
 {
-	int x;
-	int y;
-	int i;
-	t_lstmap *tmp;
+	int			x;
+	int			y;
+	int			i;
+	t_lstmap	*tmp;
 
 	y = 0;
-	tmp = cube->map;
-	while (y != cube->map_max_y)
+	tmp = map_t->lst_map;
+	while (y != map_t->max_y)
 	{
 		x = 0;
 		i = 0;
-		while (x != cube->map_max_x - 2)
+		while (x != map_t->max_x)
 		{
 			if (tmp->line[i] != '\0')
 			{
-				cube->map_tab[y][x] = tmp->line[i];
+				map_t->map[y][x] = tmp->line[i];
 				i = ++x;
 			}
 			else
-				cube->map_tab[y][x++] = MEDIUM_BLOK;
+				x++;
 		}
 		tmp = tmp->next;
 		y++;
