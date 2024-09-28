@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/09/27 18:09:34 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:33:21 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	attrib_rgb(t_rgb *rgb, char *value)
 	int		ok;
 
 	ok = SUCCESS;
-	printf("value: %s\n", value);
 	arg = ft_split(value, ',');
 	if (arg == NULL || ft_tablen(arg) != 3)
 		ok = FAIL;

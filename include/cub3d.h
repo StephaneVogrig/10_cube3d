@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:34:42 by aska              #+#    #+#             */
-/*   Updated: 2024/09/28 18:04:51 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:35:57 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	title(void);
  * @param msg print information message
  * @return int
  */
-int		check_open_path(int fd, char *msg);
 
 void	helltrain(t_cub *cub, t_state state, int return_code, char *msg);
 void	debug(t_cub *cub);

@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/09/28 18:26:58 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:31:49 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	map_load(t_data *data, char *path)
 	int			fd;
 	t_lstmap	*lst_map;
 
-	printf("map_load\n"); // debug
 	lst_map = NULL;
 	if (chk_box(open_cub(&fd, path), EQ, SUCCESS, path) == 1)
 		return (ft_return(ERROR, FAIL, "Error to open file"));
