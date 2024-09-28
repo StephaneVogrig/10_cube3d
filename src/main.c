@@ -1,34 +1,39 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/09/27 04:29:46 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/28 16:24:50 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "cub3d.h"
 #include "event.h"
+#include "lst_map.h"
+#include "map.h"
 #include "mlx.h"
 #include "render.h"
 #include "vec2i.h"
-#include "map.h"
 
 int	map_load(t_data *data, char *path)
 {
-	int	fd;
+	int			fd;
+	t_lstmap	*lst_map;
 
+	lst_map = NULL;
 	if (chk_box(open_cub(&fd, path), EQ, SUCCESS, path) == 1)
 		return (ft_return(ERROR, FAIL, "Error to open file"));
 	if (chk_box(file_process(data->mlx, &data->textures, &fd), EQ, SUCCESS,
 			"File Processing") == 1)
 		return (ft_return(ERROR, FAIL, "Error to discovery asset"));
-	if (chk_box(init_map_process(&data->map, fd), EQ, SUCCESS, "Initialize temporary map") == 1)
+	if (chk_box(init_map_process(&data->map, &lst_map, fd), EQ, SUCCESS,
+			"Initialize temporary map") == 1)
 		return (ft_return(ERROR, FAIL, "Error on Initialization Map"));
-	if (chk_box(set_var_creation_map(&data->map), EQ, SUCCESS, "Setting Map Variables") == 1)
+	if (chk_box(set_var_creation_map(&data->map), EQ, SUCCESS,
+			"Setting Map Variables") == 1)
 		return (ft_return(ERROR, FAIL, "Error on Allocation Map"));
 	// ok = map_creation(cub);
 	// if (chk_box(ok, EQ, SUCCESS, "Creating Map") == 1)

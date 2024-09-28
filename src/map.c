@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/09/27 18:01:08 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/28 16:36:40 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,18 @@ int	check_line(t_map *map, char *line)
 	if (is_empty_line(line) == TRUE || is_map_valid(line) == FALSE)
 		return (ERROR);
 	x = (int)ft_strlen(line) - 1; // -1 to remove the '\n' character
-	if (x > map->max_x)
-		map->max_x = x;
-	map->max_y++;
+	if (x > map->width)
+		map->width = x;
+	map->height++;
 	return (SUCCESS);
 }
 
-int	init_map_process(t_map *map, int fd)
+int	init_map_process(t_map *map, t_lstmap **lst_map, int fd)
 {
-	t_lstmap	*tmp;
-	char		*line;
-	t_bool		is_valid;
+	char	*line;
+	t_bool	is_valid;
 
 	is_valid = TRUE;
-	tmp = map->lst_map;
 	line = get_next_line(fd);
 	while (line != NULL && is_empty_line(line) == TRUE)
 	{
@@ -48,7 +46,7 @@ int	init_map_process(t_map *map, int fd)
 		if (is_valid == TRUE)
 		{
 			if (check_line(map, line) == SUCCESS)
-				insert_end_lstmap(&map->lst_map, line);
+				insert_end_lstmap(lst_map, line);
 			else
 				is_valid = FALSE;
 		}
@@ -58,24 +56,24 @@ int	init_map_process(t_map *map, int fd)
 	return (SUCCESS);
 }
 
-int	set_var_creation_map(t_map *map_t)
+int	set_var_creation_map(t_map *map)
 {
 	int	y;
 
 	y = 0;
-	map_t->map = ft_calloc(map_t->max_y + 1, sizeof(char *));
-	if (map_t->map == NULL)
+	map->grid = ft_calloc(map->width + 1, sizeof(char *));
+	if (map->grid == NULL)
 		return (ERROR);
-	while (y != map_t->max_y)
+	while (y != map->height)
 	{
-		map_t->map[y] = ft_calloc(map_t->max_x, sizeof(char));
-		if (map_t->map[y++] == NULL)
+		map->grid[y] = ft_calloc(map->width, sizeof(char));
+		if (map->grid[y++] == NULL)
 			return (ERROR);
 	}
 	return (SUCCESS);
 }
 
-int	map_creation(t_map *map_t)
+int	map_creation(t_map *map, t_lstmap **lst_map)
 {
 	int			x;
 	int			y;
@@ -83,16 +81,16 @@ int	map_creation(t_map *map_t)
 	t_lstmap	*tmp;
 
 	y = 0;
-	tmp = map_t->lst_map;
-	while (y != map_t->max_y)
+	tmp = *lst_map;
+	while (y != map->height)
 	{
 		x = 0;
 		i = 0;
-		while (x != map_t->max_x)
+		while (x != map->width)
 		{
 			if (tmp->line[i] != '\0')
 			{
-				map_t->map[y][x] = tmp->line[i];
+				map->grid[y][x] = tmp->line[i];
 				i = ++x;
 			}
 			else
