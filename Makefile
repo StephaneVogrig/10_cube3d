@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: stephane <stephane@student.42.fr>          +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/22 20:08:56 by stephane         ###   ########.fr        #
+#    Updated: 2024/09/28 16:49:37 by svogrig          ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 SHELL				:=	/bin/bash
 
@@ -45,9 +45,9 @@ SRCS			:= 	$(SRC_DIR)main.c \
 					$(SRC_DIR)draw_line_to_border.c \
 					$(SRC_DIR)draw_line_utils.c \
 					$(SRC_DIR)draw_utils.c \
-					$(SRC_DIR)vec2i.c \
 					$(SRC_DIR)event.c \
 					$(SRC_DIR)render.c \
+					$(SRC_DIR)vec2i.c \
 					$(SRC_DIR)window.c \
 					$(SRC_DIR)player.c \
 					$(SRC_DIR)minimap_bonus.c \
