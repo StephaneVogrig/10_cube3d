@@ -1,4 +1,5 @@
 .vscode
-*.o
+obj/*
 *libft.a
+lib/libft-plus/obj/*
 cub3d

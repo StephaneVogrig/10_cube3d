@@ -6,7 +6,7 @@
 #    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/27 18:02:28 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/09/28 17:16:09 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,15 @@ OBJ_DIR				:=	obj/
 LIB_DIR				:=	lib/
 DIR_LIST			:=	{init,utils,free_function,dlst_map}
 #-- MANDATORY
+
+DIR_INC := include/ \
+			lib/libft-plus/ \
+			lib/MacroLibx/includes/
+
+I_FLAGS := $(addprefix -I, $(DIR_INC)) -MMD -MP
 HEADERS			:=	
+
+
 SRCS			:= 	$(SRC_DIR)main.c \
 					$(SRC_DIR)check_utils.c \
 					$(SRC_DIR)cub_init.c \
@@ -72,7 +80,7 @@ libft:
 	@$(MAKE) -j -C $(LIB_DIR)libft-plus --no-print-directory
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
-	@$(CC) $(CFLAGS) -o $@ -c $< && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
+	@$(CC) $(CFLAGS) $(I_FLAGS) -o $@ -c $< && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -g -o $@ $(LDFLAGS) $(MLX) && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@\n"
@@ -121,7 +129,7 @@ bonus: init $(NAME_BONUS)
 	@echo -e "$(BOLD)$(NC) is located in $(BOLD)$(shell find . -iname "")$(NC) !\n"
 	
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS_BONUS)
-	@$(CC) $(CFLAGS) -o $@ -c $< && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
+	@$(CC) $(CFLAGS) $(I_FLAGS) -o $@ -c $< && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
 
 $(NAME_BONUS): $(OBJS_BONUS)
 	@$(CC) $(CFLAGS)  $(OBJS_BONUS) -o $@ $(LDFLAGS) && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@\n"
