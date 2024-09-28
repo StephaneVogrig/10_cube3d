@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/09/28 18:33:21 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/28 23:55:52 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 
@@ -75,12 +75,12 @@ int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 
 	ok = SUCCESS;
 	fd = ft_open(value, O_RDONLY);
-	if (fd != FAIL)
-		ok = path_seletor(mlx, tex, key, value);
-	else if (key[0] == 'C')
+	if (key[0] == 'C')
 		ok = attrib_rgb(&tex->ceil_rgb, value);
 	else if (key[0] == 'F')
 		ok = attrib_rgb(&tex->floor_rgb, value);
+	else if (fd != FAIL)
+		ok = path_seletor(mlx, tex, key, value);
 	ft_close(fd);
 	chk_box(ok, NE, FAIL, key);
 	if (ok == FAIL)

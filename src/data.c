@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/28 18:27:21 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/29 00:00:02 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "data.h"
 
@@ -39,14 +39,14 @@ int	file_load(char *path, t_data *data)
 	// if (texture_setup(&data->map.textures.east, data->mlx,
 	// 		"maps/test/ROCKEA.bmp") == FAIL)
 	// 	return (FAIL);
-	// // if (texture_setup(&data->map.textures.west, data->mlx,
-	// 		// "maps/test/ROCKWE.bmp") == FAIL)
-	// // 	return (FAIL);
+	 // if (texture_setup(&data->map.textures.west, data->mlx,
+	 		// "maps/test/ROCKWE.bmp") == FAIL)
+	 // 	return (FAIL);
 	// if (texture_jpg_setup(&data->map.textures.west, data->mlx,
-	// 		// "maps/test/svogrig_42.jpeg") == FAIL)
+			// "maps/test/svogrig_42.jpeg") == FAIL)
 	// 	return (FAIL);
-	// // printf("width: %i Height: %i\n", data->map.width, data->map.height);
-	// // printf("texture north width: %i Height: %i\n",
+	// printf("width: %i Height: %i\n", data->map.width, data->map.height);
+	// printf("texture north width: %i Height: %i\n",
 	// data->map.tex_north.width,
 	// 	data->map.tex_north.height);
 	return (SUCCESS);
@@ -60,7 +60,6 @@ void	data_init(t_data *data)
 
 int	data_setup(t_data *data, char *pathname)
 {
-	printf("data_setup\n"); // debug
 	(void)pathname;
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
@@ -69,10 +68,10 @@ int	data_setup(t_data *data, char *pathname)
 	// 	return (FAIL);
 	// if (file_load(pathname, data) == FAIL)
 	// 	return (FAIL);
-	// if (window_setup(&data->win, data->mlx) == FAIL)
-	// 	return (FAIL);
-	// if (minimap_setup(data->mlx, &data->minimap, &data->map) == FAIL)
-	// 	return (FAIL);
+	if (window_setup(&data->win, data->mlx) == FAIL)
+		return (FAIL);
+	if (minimap_setup(data->mlx, &data->minimap, &data->map) == FAIL)
+		return (FAIL);
 	return (SUCCESS);
 }
 
