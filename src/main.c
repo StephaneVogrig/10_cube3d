@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/09/28 16:24:50 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/28 16:39:05 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	map_load(t_data *data, char *path)
 	if (chk_box(set_var_creation_map(&data->map), EQ, SUCCESS,
 			"Setting Map Variables") == 1)
 		return (ft_return(ERROR, FAIL, "Error on Allocation Map"));
-	// ok = map_creation(cub);
-	// if (chk_box(ok, EQ, SUCCESS, "Creating Map") == 1)
-	// 	helltrain(cub, ERROR, 1, "Error on Initialization Map");
+	if (chk_box(map_creation(&data->map, &lst_map), EQ, SUCCESS,
+			"Creating Map") == 1)
+		return (ft_return(ERROR, FAIL, "Error on Map Creation"));
 	// ok = map_checker(cub);
 	// if (chk_box(ok, EQ, SUCCESS, "Check Map") == 1)
 	// 	helltrain(cub, ERROR, 1, "Error on Initialization Map");
