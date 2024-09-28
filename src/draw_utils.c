@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 01:30:18 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 22:58:01 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/15 14:58:42 by svogrig           #+#    #+#             */
+/*   Updated: 2024/09/25 16:38:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#include "draw_utils.h"
 
-# include <math.h>
-# include "data.h"
-# include "draw_line.h"
-# include "draw_utils.h"
-# include "draw_line_to_border.h"
-# include "raycasting.h"
-# include "chrono.h"
+void	draw_rectangle(t_screen *screen, t_vec2i begin, t_vec2i end, int color)
+{
+	int x;
+	int	y;
 
-void	render(t_data *data);
-
-#endif
+	y = begin.y;
+	while (y <= end.y)
+	{
+		x = begin.x;
+		while (x <= end.x)
+		{
+			mlx_pixel_put(screen->mlx, screen->win, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}

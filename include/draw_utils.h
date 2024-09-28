@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   draw_utils.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 01:30:18 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 22:58:01 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/15 14:57:28 by svogrig           #+#    #+#             */
+/*   Updated: 2024/09/15 21:50:33 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef DRAW_UTILS_H
+# define DRAW_UTILS_H
 
-# include <math.h>
-# include "data.h"
-# include "draw_line.h"
-# include "draw_utils.h"
-# include "draw_line_to_border.h"
-# include "raycasting.h"
-# include "chrono.h"
+#include "minimap_bonus.h"
+#include "vec2i.h"
 
-void	render(t_data *data);
+void	draw_rectangle(t_screen *minimap, t_vec2i begin, t_vec2i end, int color);
 
 #endif

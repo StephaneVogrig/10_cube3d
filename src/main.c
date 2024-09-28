@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/09/28 16:39:05 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:26:58 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ int	map_load(t_data *data, char *path)
 	int			fd;
 	t_lstmap	*lst_map;
 
+	printf("map_load\n"); // debug
 	lst_map = NULL;
 	if (chk_box(open_cub(&fd, path), EQ, SUCCESS, path) == 1)
 		return (ft_return(ERROR, FAIL, "Error to open file"));
-	if (chk_box(file_process(data->mlx, &data->textures, &fd), EQ, SUCCESS,
+	if (chk_box(file_process(data->mlx, &data->map.textures, &fd), EQ, SUCCESS,
 			"File Processing") == 1)
 		return (ft_return(ERROR, FAIL, "Error to discovery asset"));
 	if (chk_box(init_map_process(&data->map, &lst_map, fd), EQ, SUCCESS,
@@ -48,16 +49,22 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	// t_cub	*cub;
 	title();
 	if (check_entry_arg(argc, argv) == FAIL)
 		return (EXIT_SUCCESS);
 	data_init(&data);
-	if (mlx_setup(&data) == SUCCESS && map_load(&data, argv[1]) == SUCCESS)
+	// printf("key down: %i\n", data.key.down); //debug
+	// if (data_setup(&data, argv[1]) == SUCCESS)
+	if (data_setup(&data, argv[1]) == SUCCESS && map_load(&data,
+			argv[1]) == SUCCESS)
 	{
-		printf("mlx_loop\n");
+		printf("mlx_loop\n"); // debug
+		event_setup(&data);
+		chrono(START);
+		render(&data);
+		// test_texture(data.tex_north, data.win);
+		mlx_loop(data.mlx);
 	}
-	// helltrain(cub, INFO, 0, "END OF PROGRAM");
 	data_clean(&data);
 	return (EXIT_SUCCESS);
 }

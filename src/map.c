@@ -6,13 +6,48 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/09/28 16:36:40 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/28 17:58:46 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "lst_map.h"
 #include "map.h"
+
+int	map_setup(t_map *map)
+{
+	int	i;
+	int	j;
+
+	map->grid = malloc(9 * sizeof(map));
+	if (map == NULL)
+	{
+		printf("map_setup failed\n");
+		return (FAIL);
+	}
+	map->grid[0] = "1111111111111111";
+	map->grid[1] = "1000000000000001";
+	map->grid[2] = "1001000000000111";
+	map->grid[3] = "1000000000000001";
+	map->grid[4] = "1000000100000001";
+	map->grid[5] = "1000000010000001";
+	map->grid[6] = "1000000000010001";
+	map->grid[7] = "1000100000000001";
+	map->grid[8] = "1111111111111111";
+	map->width = 16;
+	map->height = 9;
+	// print map
+	i = 0;
+	while (i < 9)
+	{
+		j = 0;
+		while (map->grid[i][j])
+			printf("%c", map->grid[i][j++]);
+		printf("\n");
+		i++;
+	}
+	return (SUCCESS);
+}
 
 int	check_line(t_map *map, char *line)
 {

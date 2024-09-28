@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:34:42 by aska              #+#    #+#             */
-/*   Updated: 2024/09/27 18:04:44 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:04:51 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "../lib/libft-plus/libft.h"
 # include "init.h"
 # include "msg.h"
+# include "texture.h"
 # include "typedef.h"
 # include <fcntl.h>
 # include <math.h>

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:42:41 by aska              #+#    #+#             */
-/*   Updated: 2024/09/26 14:11:33 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/28 18:03:58 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
@@ -17,7 +17,7 @@ typedef enum e_status
 {
 	FAIL = -1,
 	SUCCESS = 0,
-}					t_status;
+}			t_status;
 
 typedef enum e_ref_path
 {
@@ -28,53 +28,32 @@ typedef enum e_ref_path
 	F_REF,
 	C_REF,
 	BGM_REF
-}					t_ref_path;
+}			t_ref_path;
 
 typedef struct s_rgb
 {
-	int				r;
-	int				g;
-	int				b;
-}					t_rgb;
-
-typedef struct s_texture
-{
-	void			*img;
-	char			*addr;
-	int				img_w;
-	int				img_h;
-}					t_texture;
-
-typedef struct s_textures
-{
-	t_texture		no;
-	t_texture		so;
-	t_texture		we;
-	t_texture		ea;
-	t_texture		floor;
-	t_rgb			floor_rgb;
-	t_texture		ceil;
-	t_rgb			ceil_rgb;
-}					t_textures;
+	int		r;
+	int		g;
+	int		b;
+}			t_rgb;
 
 typedef struct s_cub
 {
-	t_textures		textures;
-	void			*mlx;
-	int				err;
-	int				fd;
-	char			*root_path;
-	char			*line;
-	int				player_x;
-	int				player_y;
-	char			player_dir;
-	int				player_dir_x;
-	int				player_dir_y;
-	int				player_plane_x;
-	int				player_plane_y;
-	int				player_speed;
-	int				player_rot_speed;
-	int				player_move_speed;
-}					t_cub;
+	void	*mlx;
+	int		err;
+	int		fd;
+	char	*root_path;
+	char	*line;
+	int		player_x;
+	int		player_y;
+	char	player_dir;
+	int		player_dir_x;
+	int		player_dir_y;
+	int		player_plane_x;
+	int		player_plane_y;
+	int		player_speed;
+	int		player_rot_speed;
+	int		player_move_speed;
+}			t_cub;
 
 #endif

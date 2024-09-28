@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   chrono.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 01:30:18 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 22:58:01 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/17 22:32:25 by svogrig           #+#    #+#             */
+/*   Updated: 2024/09/17 23:02:48 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef CHRONO_H
+# define CHRONO_H
 
-# include <math.h>
-# include "data.h"
-# include "draw_line.h"
-# include "draw_utils.h"
-# include "draw_line_to_border.h"
-# include "raycasting.h"
-# include "chrono.h"
+# include <time.h>
+# include <stdio.h>
 
-void	render(t_data *data);
+# define START 0
+# define STOP 1
+
+long	chrono(int action);
+void	fps_print(clock_t delay);
 
 #endif

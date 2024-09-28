@@ -6,30 +6,24 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/27 16:44:13 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/28 17:49:39 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_H
 # define DATA_H
 
-# include "cub3d.h"
+# include "../include/cub3d.h"
 # include "map.h"
+# include "minimap_bonus.h"
+# include "player.h"
 # include "screen.h"
+# include "texture.h"
 # include "vec2i.h"
-
-# define CUB_W 800
-# define CUB_H 450
-# define MINIMAP_W 800
-# define MINIMAP_H 450
+# include "window.h"
 
 typedef unsigned int	t_ui32;
-
-typedef struct s_vec2
-{
-	int					x;
-	int					y;
-}						t_vec2;
+typedef unsigned char	t_ui8;
 
 # define UP 0
 # define DOWN 1
@@ -38,35 +32,30 @@ typedef union
 {
 	struct
 	{
-		char w : 1;
-		char a : 1;
-		char s : 1;
-		char d : 1;
-		char left : 1;
-		char right : 1;
+		t_ui8 w : 1;
+		t_ui8 a : 1;
+		t_ui8 s : 1;
+		t_ui8 d : 1;
+		t_ui8 left : 1;
+		t_ui8 right : 1;
 	};
-	t_ui32				down;
+	t_ui8				down;
 }						t_key;
-
-typedef struct s_player
-{
-	t_vec2i				pos;
-	int					dir;
-}						t_player;
 
 typedef struct s_data
 {
 	void				*mlx;
-	t_textures			textures;
-	t_screen			cub;
-	t_screen			minimap;
+	t_window			win;
 	t_map				map;
 	t_key				key;
 	t_player			player;
-
+	t_minimap			minimap;
+	int					minimap_scale;
+	int					mouse_mode;
 }						t_data;
 
 void					data_init(t_data *data);
+int						data_setup(t_data *data, char *pathname);
 void					data_clean(t_data *data);
 
 #endif

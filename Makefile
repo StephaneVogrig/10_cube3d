@@ -6,7 +6,7 @@
 #    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/28 17:16:09 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/09/28 18:18:27 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,15 @@ SRC_DIR				:=	src/
 OBJ_DIR				:=	obj/
 LIB_DIR				:=	lib/
 DIR_LIST			:=	{init,utils,free_function,dlst_map}
+
+# includes --------------------------------------------------------------------#
+
+DIR_INC			:=	include \
+					lib/libft-plus \
+					lib/MacroLibx/includes
+
+I_FLAG			:=	$(addprefix -I,$(DIR_INC)) -MMD -MP
+
 #-- MANDATORY
 
 DIR_INC := include/ \
@@ -43,7 +52,9 @@ SRCS			:= 	$(SRC_DIR)main.c \
 					$(SRC_DIR)data.c \
 					$(SRC_DIR)debug.c \
 					$(SRC_DIR)draw_line.c \
+					$(SRC_DIR)draw_line_to_border.c \
 					$(SRC_DIR)draw_line_utils.c \
+					$(SRC_DIR)draw_utils.c \
 					$(SRC_DIR)event.c \
 					$(SRC_DIR)free_main.c \
 					$(SRC_DIR)free_mlx_utils.c \
@@ -53,13 +64,18 @@ SRCS			:= 	$(SRC_DIR)main.c \
 					$(SRC_DIR)lstmap_op.c \
 					$(SRC_DIR)lstmap_utils.c \
 					$(SRC_DIR)map.c \
-					$(SRC_DIR)mlx.c \
 					$(SRC_DIR)pixel.c \
 					$(SRC_DIR)pretty_utils.c \
 					$(SRC_DIR)render.c \
-					$(SRC_DIR)screen.c \
 					$(SRC_DIR)vec2i.c \
-					
+					$(SRC_DIR)window.c \
+					$(SRC_DIR)player.c \
+					$(SRC_DIR)minimap_bonus.c \
+					$(SRC_DIR)raycasting.c \
+					$(SRC_DIR)dda.c \
+					$(SRC_DIR)chrono.c \
+					$(SRC_DIR)texture.c \
+					$(SRC_DIR)screen.c \
 #					$(SRC_DIR)map_flood_fill.c \
 
 OBJS			:= 	$(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
@@ -79,11 +95,6 @@ libmlx:
 libft:
 	@$(MAKE) -j -C $(LIB_DIR)libft-plus --no-print-directory
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
-	@$(CC) $(CFLAGS) $(I_FLAGS) -o $@ -c $< && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
-
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -g -o $@ $(LDFLAGS) $(MLX) && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@\n"
 
 -include $(DEPS)
 
@@ -127,11 +138,23 @@ bonus: init $(NAME_BONUS)
 	@echo -e "$(BOLD)$(NAME_BONUS)$(NC) is located in $(BOLD)$(shell find . -iname "$(NAME_BONUS)")$(NC) !\n"
 	@echo -e "\t$(BLINK_GREEN) = COMPILATION FINISHED !$(NC)"
 	@echo -e "$(BOLD)$(NC) is located in $(BOLD)$(shell find . -iname "")$(NC) !\n"
-	
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS_BONUS)
-	@$(CC) $(CFLAGS) $(I_FLAGS) -o $@ -c $< && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
 
+#------------------------------------------------------------------------------#
+# compilation                                                                  #
+#------------------------------------------------------------------------------#
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@$(CC) $(CFLAGS) $(I_FLAG) -o $@ -c $< && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
+
+#------------------------------------------------------------------------------#
+# linkage                                                                      #
+#------------------------------------------------------------------------------#
+
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS) $(MLX) -lm && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@\n"
+	
 $(NAME_BONUS): $(OBJS_BONUS)
 	@$(CC) $(CFLAGS)  $(OBJS_BONUS) -o $@ $(LDFLAGS) && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@\n"
+
 
 .PHONY: clean fclean all re libclean libfclean bonus relibft remacro

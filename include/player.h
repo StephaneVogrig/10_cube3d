@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 01:30:18 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 22:58:01 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/13 22:05:50 by svogrig           #+#    #+#             */
+/*   Updated: 2024/09/25 15:59:00 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef PLAYER_H
+# define PLAYER_H
 
+# include "vec2i.h"
 # include <math.h>
-# include "data.h"
-# include "draw_line.h"
-# include "draw_utils.h"
-# include "draw_line_to_border.h"
-# include "raycasting.h"
-# include "chrono.h"
+# include "map.h"
 
-void	render(t_data *data);
+# define SPEED_ROT (M_PI / 200)
+# define SPEED_MOVE 0.05
+
+typedef struct s_player{
+	t_vec2i	grid;
+	t_vec2d	box;
+	double	dir;
+}	t_player;
+
+void	player_move(t_map map, t_player *player, t_vec2i dir, int rot);
+void	player_set_dir(t_player *player, char dir);
 
 #endif
