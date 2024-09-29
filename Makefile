@@ -6,7 +6,7 @@
 #    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/29 10:06:04 by aska             ###   ########.fr        #
+#    Updated: 2024/09/29 10:13:38 by aska             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -43,6 +43,7 @@ SRC_DIR				:=	src/
 SRCS			:= 	main.c \
 					check_arg.c \
 					file_process.c \
+					file_utils.c \
 					data.c \
 					debug.c \
 					draw_line.c \
@@ -50,10 +51,6 @@ SRCS			:= 	main.c \
 					draw_line_utils.c \
 					draw_utils.c \
 					event.c \
-					free_main.c \
-					free_mlx_utils.c \
-					free_utils.c \
-					init_utils.c \
 					lstmap_del.c \
 					lstmap_op.c \
 					lstmap_utils.c \
