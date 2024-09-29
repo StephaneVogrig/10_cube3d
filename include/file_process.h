@@ -16,20 +16,7 @@
 # include "../lib/libft-plus/libft.h"
 # include "texture.h"
 
-/**
- * @brief Print title
- *
- */
 void	title(void);
-
-/**
- * @brief Check a fd is open
- *
- * @param fd fd for test
- * @param msg print information message
- * @return int
- */
-
 void	print_tab(char **tab);
 int		attrib_path(void *mlx, t_textures *tex, char *key, char *value);
 void	init_organizer(t_cub *cub, char *file);

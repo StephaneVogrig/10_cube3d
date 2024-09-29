@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/29 01:45:16 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 10:53:58 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,8 +27,6 @@ int	file_load(char *path, t_data *data)
 	int			fd;
 	t_lstmap	*lst_map;
 
-	// if (map_setup(&data->map) == FAIL)
-	// 	return (FAIL);
 	lst_map = NULL;
 	if (chk_box(open_file(&fd, path), EQ, SUCCESS, path) == 1)
 		return (ft_return(ERROR, FAIL, "Error to open file"));
@@ -49,10 +47,6 @@ int	file_load(char *path, t_data *data)
 	// 	helltrain(cub, ERROR, 1, "Error on Initialization Map");
 	player_setup(&data->player, &data->map);
 	return (SUCCESS);
-	// printf("width: %i Height: %i\n", data->map.width, data->map.height);
-	// printf("texture north width: %i Height: %i\n",
-	// data->map.tex_north.width,
-	// 	data->map.tex_north.height);
 }
 
 void	data_init(t_data *data)
@@ -65,13 +59,14 @@ int	data_setup(t_data *data, char *pathname)
 {
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
-		return (FAIL);
+		return (ft_return(ERROR, FAIL, "Error on mlx_init"));
+	chk_box(SUCCESS, EQ, SUCCESS, "mlx initialization");
 	if (file_load(pathname, data) == FAIL)
-		return (FAIL);
+		return (ft_return(ERROR, FAIL, "Error on file_load"));
 	if (window_setup(&data->win, data->mlx) == FAIL)
-		return (FAIL);
+		return (ft_return(ERROR, FAIL, "Error on window_setup"));
 	if (minimap_setup(data->mlx, &data->minimap, &data->map) == FAIL)
-		return (FAIL);
+		return (ft_return(ERROR, FAIL, "Error on minimap_setup"));
 	return (SUCCESS);
 }
 
