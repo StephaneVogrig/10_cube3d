@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/23 21:58:22 by stephane         ###   ########.fr       */
+/*   Updated: 2024/09/29 03:44:43 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "raycasting.h"
 #include "texture.h"
@@ -65,7 +65,7 @@ void	draw_cub3d_col(t_window *win, int x, t_dda2 *ray, t_textures *textures)
 	y = 0;
 	while (y < cell_h)
 	{
-		mlx_pixel_put(win->mlx, win->win, x, y, 0xFF0000FF);
+		mlx_pixel_put(win->mlx, win->win, x, y, textures->ceil_rgb.integer);
 		y++;
 	}
 	
@@ -91,7 +91,7 @@ void	draw_cub3d_col(t_window *win, int x, t_dda2 *ray, t_textures *textures)
 	
 	while (y < win->height)
 	{
-		mlx_pixel_put(win->mlx, win->win, x, y, 0xFF00FF00);
+		mlx_pixel_put(win->mlx, win->win, x, y, textures->floor_rgb.integer);
 		y++;
 	}
 

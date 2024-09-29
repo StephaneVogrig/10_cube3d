@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/09/29 00:28:16 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 03:40:56 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -60,9 +60,11 @@ int	attrib_rgb(t_rgb *rgb, char *value)
 		ok = FAIL;
 	if (ok != FAIL)
 	{
-		rgb->r = ft_atoi(arg[0]);
-		rgb->g = ft_atoi(arg[1]);
-		rgb->b = ft_atoi(arg[2]);
+		rgb->a = (unsigned char)255;
+		rgb->r = (unsigned char)ft_atoi(arg[0]);
+		rgb->g = (unsigned char)ft_atoi(arg[1]);
+		rgb->b = (unsigned char)ft_atoi(arg[2]);
+		printf("color:%x\n", rgb->integer);
 	}
 	ft_tab_f(arg);
 	return (ok);

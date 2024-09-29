@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:42:41 by aska              #+#    #+#             */
-/*   Updated: 2024/09/28 18:03:58 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/29 03:55:37 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,17 @@ typedef enum e_ref_path
 	BGM_REF
 }			t_ref_path;
 
-typedef struct s_rgb
+typedef union u_color
 {
-	int		r;
-	int		g;
-	int		b;
-}			t_rgb;
+	struct
+	{
+		int	b : 8;
+		int	g : 8;
+		int	r : 8;
+		int	a : 8;
+	};
+	int	integer;
+}	t_rgb;
 
 typedef struct s_cub
 {
