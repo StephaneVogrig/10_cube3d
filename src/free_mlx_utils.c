@@ -6,11 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 20:07:53 by aska              #+#    #+#             */
-/*   Updated: 2024/09/26 15:33:22 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 10:05:47 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "cub3d.h"
+#include "file_process.h"
 
 // void	free_mlx_img(t_cub *cub)
 // {

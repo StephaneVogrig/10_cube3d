@@ -6,11 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:13:43 by aska              #+#    #+#             */
-/*   Updated: 2024/09/29 00:58:34 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 10:05:47 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "cub3d.h"
+#include "file_process.h"
 
 void    print_tab(char **tab)
 {

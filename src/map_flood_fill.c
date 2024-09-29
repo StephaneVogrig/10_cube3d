@@ -6,11 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/09/26 15:33:22 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 10:05:47 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "cub3d.h"
+#include "file_process.h"
 
 int	map_checker(t_cub *cub)
 {

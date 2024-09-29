@@ -6,7 +6,7 @@
 #    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/29 09:37:32 by aska             ###   ########.fr        #
+#    Updated: 2024/09/29 10:06:04 by aska             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -42,7 +42,7 @@ SRC_DIR				:=	src/
 
 SRCS			:= 	main.c \
 					check_arg.c \
-					cub_init.c \
+					file_process.c \
 					data.c \
 					debug.c \
 					draw_line.c \
