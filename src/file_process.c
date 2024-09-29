@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/09/29 11:02:06 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 20:06:16 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -83,6 +83,8 @@ int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 	else if (fd != FAIL)
 		ok = path_seletor(mlx, tex, key, value);
 	ft_close(fd);
+	key = ft_char_f(key);
+	value = ft_char_f(value);
 	chk_box(ok, NE, FAIL, key);
 	if (ok == FAIL)
 		return (FAIL);
@@ -121,7 +123,7 @@ int	file_process(void *mlx, t_textures *tex, int *fd)
 		if (img_path_process(&key, &value, line) == SUCCESS)
 		{
 			if (attrib_path(mlx, tex, key, value) == FAIL)
-				return (ft_return(ERROR, FAIL, "Error on path Attribution"));
+				break ;
 			sum_of_path++;
 		}
 		line = ft_char_f(line);
@@ -130,6 +132,6 @@ int	file_process(void *mlx, t_textures *tex, int *fd)
 	}
 	line = ft_char_f(line);
 	if (sum_of_path != 6)
-		return (FAIL);
+		return (ft_return(ERROR, FAIL, "Error on file"));
 	return (SUCCESS);
 }

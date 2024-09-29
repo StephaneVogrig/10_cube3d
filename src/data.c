@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/29 10:53:58 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 21:06:20 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -42,9 +42,8 @@ int	file_load(char *path, t_data *data)
 	if (chk_box(map_creation(&data->map, &lst_map), EQ, SUCCESS,
 			"Creating Map") == 1)
 		return (ft_return(ERROR, FAIL, "Error on Map Creation"));
-	// ok = map_checker(cub);
-	// if (chk_box(ok, EQ, SUCCESS, "Check Map") == 1)
-	// 	helltrain(cub, ERROR, 1, "Error on Initialization Map");
+	// if (chk_box(map_checker(cub), EQ, SUCCESS, "Check Map") == 1)
+	// 	return (ft_return(ERROR, FAIL, "Map Invalid"));
 	player_setup(&data->player, &data->map);
 	return (SUCCESS);
 }
