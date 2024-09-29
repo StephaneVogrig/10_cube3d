@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/09/29 09:23:12 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 09:35:01 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,7 +27,6 @@ int	texture_attribution(void *mlx, t_texture *tex, char *path)
 		tex->img = mlx_png_file_to_image(mlx, path, &tex->width, &tex->height);
 	else
 		(ft_display(ERROR, "Texture extension not supported"));
-	extension = ft_char_f(extension);
 	if (tex->img == NULL)
 		return (ft_return(ERROR, FAIL, "Texture attribution failed"));
 	return (SUCCESS);
