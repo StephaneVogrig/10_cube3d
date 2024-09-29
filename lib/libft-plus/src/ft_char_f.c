@@ -6,14 +6,17 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 17:22:33 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/09 16:35:10 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 11:46:04 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../libft.h"
 
-char   *ft_char_f(char *str)
+char	*ft_char_f(char *str)
 {
-    ft_free(str);
-    return (NULL);
+	if (str)
+	{
+		ft_free(str);
+	}
+	return (NULL);
 }

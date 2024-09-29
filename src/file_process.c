@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/09/29 10:05:47 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 11:02:06 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -64,7 +64,6 @@ int	attrib_rgb(t_rgb *rgb, char *value)
 		rgb->r = (unsigned char)ft_atoi(arg[0]);
 		rgb->g = (unsigned char)ft_atoi(arg[1]);
 		rgb->b = (unsigned char)ft_atoi(arg[2]);
-		printf("color:%x\n", rgb->integer);
 	}
 	ft_tab_f(arg);
 	return (ok);
