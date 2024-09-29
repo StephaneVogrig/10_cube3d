@@ -1,14 +1,14 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/28 20:01:53 by svogrig          ###   ########.fr        #
+#    Updated: 2024/09/29 01:48:25 by aska             ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 SHELL				:=	/bin/bash
 
@@ -109,10 +109,10 @@ libft:
 	@$(MAKE) -j -C $(LIB_DIR)libft-plus --no-print-directory
 
 
-clean: libclean
+clean: #libclean
 	@rm -fr $(OBJ_DIR) && printf "Cleaning : $(OBJ_DIR)\n"
 
-fclean: clean libfclean
+fclean: clean #libfclean
 	@rm -f $(NAME) && printf "Cleaning: $(NAME) \n"
 	@rm -f $(NAME_BONUS)  && printf "Cleaning: $(NAME_BONUS) \n"
 

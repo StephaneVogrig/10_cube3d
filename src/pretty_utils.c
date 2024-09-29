@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 09:12:45 by aska              #+#    #+#             */
-/*   Updated: 2024/09/26 15:33:22 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 01:59:28 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,11 +26,3 @@ void    title(void)
 	ft_printf(CRESET);
 }
 
-void    goto_exit(int check, int err, t_state state, char *msg)
-{
-	if (check != 0)
-	{
-		ft_printf("\n");
-		ft_exit(state, err, msg);
-	}
-}

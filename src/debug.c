@@ -6,23 +6,23 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:13:43 by aska              #+#    #+#             */
-/*   Updated: 2024/09/26 16:06:20 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 00:58:34 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "cub3d.h"
 
-// void    print_tab(char **tab)
-// {
-//     int i;
+void    print_tab(char **tab)
+{
+    int i;
 
-//     i = 0;
-//     while (tab[i] != NULL)
-//     {
-//         ft_printf("%s\n", tab[i]);
-//         i++;
-//     }
-// }
+    i = 0;
+    while (tab[i] != NULL)
+    {
+        ft_printf("%s\n", tab[i]);
+        i++;
+    }
+}
 
 // void    print_t_rgb(t_rgb *rgb)
 // {

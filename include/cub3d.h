@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:34:42 by aska              #+#    #+#             */
-/*   Updated: 2024/09/28 18:35:57 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/29 00:28:16 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -50,7 +50,7 @@ void	init_organizer(t_cub *cub, char *file);
 int		file_process(void *mlx, t_textures *tex, int *fd);
 int		check_entry_arg(int ac, char **av);
 int		mlx_initialize(t_cub *cub);
-int		open_cub(int *fd, char *file);
+int		open_file(int *fd, char *file);
 void	goto_exit(int check, int err, t_state state, char *msg);
 void	mlx_free(t_cub *cub);
 int		map_checker(t_cub *cub);

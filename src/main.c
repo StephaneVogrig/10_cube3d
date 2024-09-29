@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/09/28 18:31:49 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/29 00:50:55 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "cub3d.h"
 #include "event.h"
@@ -24,7 +24,7 @@ int	map_load(t_data *data, char *path)
 	t_lstmap	*lst_map;
 
 	lst_map = NULL;
-	if (chk_box(open_cub(&fd, path), EQ, SUCCESS, path) == 1)
+	if (chk_box(open_file(&fd, path), EQ, SUCCESS, path) == 1)
 		return (ft_return(ERROR, FAIL, "Error to open file"));
 	if (chk_box(file_process(data->mlx, &data->map.textures, &fd), EQ, SUCCESS,
 			"File Processing") == 1)
@@ -52,10 +52,7 @@ int	main(int argc, char **argv)
 	if (check_entry_arg(argc, argv) == FAIL)
 		return (EXIT_SUCCESS);
 	data_init(&data);
-	// printf("key down: %i\n", data.key.down); //debug
-	// if (data_setup(&data, argv[1]) == SUCCESS)
-	if (data_setup(&data, argv[1]) == SUCCESS && map_load(&data,
-			argv[1]) == SUCCESS)
+	if (data_setup(&data, argv[1]) == SUCCESS)
 	{
 		printf("mlx_loop\n"); // debug
 		event_setup(&data);

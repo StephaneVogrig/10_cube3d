@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/29 00:00:02 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 01:45:16 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,32 +24,35 @@ void	player_setup(t_player *player, t_map *map)
 // int	file_load(char *path, t_map *map, t_player *player)
 int	file_load(char *path, t_data *data)
 {
-	printf("map_load\n");
-	(void)path;
-	(void)data;
-	if (map_setup(&data->map) == FAIL)
-		return (FAIL);
-	// player_setup(&data->player, &data->map);
-	// if (texture_setup(&data->map.textures.north, data->mlx,
-	// 		"maps/test/ROCKNO.bmp") == FAIL)
+	int			fd;
+	t_lstmap	*lst_map;
+
+	// if (map_setup(&data->map) == FAIL)
 	// 	return (FAIL);
-	// if (texture_setup(&data->map.textures.south, data->mlx,
-	// 		"maps/test/ROCKSO.bmp") == FAIL)
-	// 	return (FAIL);
-	// if (texture_setup(&data->map.textures.east, data->mlx,
-	// 		"maps/test/ROCKEA.bmp") == FAIL)
-	// 	return (FAIL);
-	 // if (texture_setup(&data->map.textures.west, data->mlx,
-	 		// "maps/test/ROCKWE.bmp") == FAIL)
-	 // 	return (FAIL);
-	// if (texture_jpg_setup(&data->map.textures.west, data->mlx,
-			// "maps/test/svogrig_42.jpeg") == FAIL)
-	// 	return (FAIL);
+	lst_map = NULL;
+	if (chk_box(open_file(&fd, path), EQ, SUCCESS, path) == 1)
+		return (ft_return(ERROR, FAIL, "Error to open file"));
+	if (chk_box(file_process(data->mlx, &data->map.textures, &fd), EQ, SUCCESS,
+			"File Processing") == 1)
+		return (ft_return(ERROR, FAIL, "Error to discovery asset"));
+	if (chk_box(init_map_process(&data->map, &lst_map, fd), EQ, SUCCESS,
+			"Initialize temporary map") == 1)
+		return (ft_return(ERROR, FAIL, "Error on Initialization Map"));
+	if (chk_box(set_var_creation_map(&data->map), EQ, SUCCESS,
+			"Setting Map Variables") == 1)
+		return (ft_return(ERROR, FAIL, "Error on Allocation Map"));
+	if (chk_box(map_creation(&data->map, &lst_map), EQ, SUCCESS,
+			"Creating Map") == 1)
+		return (ft_return(ERROR, FAIL, "Error on Map Creation"));
+	// ok = map_checker(cub);
+	// if (chk_box(ok, EQ, SUCCESS, "Check Map") == 1)
+	// 	helltrain(cub, ERROR, 1, "Error on Initialization Map");
+	player_setup(&data->player, &data->map);
+	return (SUCCESS);
 	// printf("width: %i Height: %i\n", data->map.width, data->map.height);
 	// printf("texture north width: %i Height: %i\n",
 	// data->map.tex_north.width,
 	// 	data->map.tex_north.height);
-	return (SUCCESS);
 }
 
 void	data_init(t_data *data)
@@ -60,14 +63,11 @@ void	data_init(t_data *data)
 
 int	data_setup(t_data *data, char *pathname)
 {
-	(void)pathname;
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
 		return (FAIL);
-	// if (file_load(pathname, &data->map, &data->player) == FAIL)
-	// 	return (FAIL);
-	// if (file_load(pathname, data) == FAIL)
-	// 	return (FAIL);
+	if (file_load(pathname, data) == FAIL)
+		return (FAIL);
 	if (window_setup(&data->win, data->mlx) == FAIL)
 		return (FAIL);
 	if (minimap_setup(data->mlx, &data->minimap, &data->map) == FAIL)

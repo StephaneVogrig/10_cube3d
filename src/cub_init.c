@@ -6,13 +6,13 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/09/28 23:55:52 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 00:28:16 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "cub3d.h"
 
-int	open_cub(int *fd, char *file)
+int	open_file(int *fd, char *file)
 {
 	*fd = ft_open(file, O_RDONLY);
 	if (*fd == FAIL)
