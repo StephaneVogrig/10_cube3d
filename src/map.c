@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/09/29 01:54:15 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 02:36:09 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,11 +18,23 @@
 int	check_line(t_map *map, char *line)
 {
 	int	x;
+	int i;
+	static t_bool player_valid = FALSE;
 
 	if (line == NULL)
 		return (ERROR);
 	if (is_empty_line(line) == TRUE || is_map_valid(line) == FALSE)
-		return (ERROR);
+		return (ft_return(ERROR, ERROR, "Invalid map"));
+	i =0;
+	while (line[i] != '\0')
+	{
+		if (ft_isthis(line[i++], "NSWE"))
+		{
+			if (player_valid == TRUE)
+				return (ft_return(ERROR, ERROR, "Player on map Invalid"));
+			player_valid = TRUE;
+		}
+	}
 	x = (int)ft_strlen(line) - 1; // -1 to remove the '\n' character
 	if (x > map->width)
 		map->width = x;
@@ -39,7 +51,6 @@ int	init_map_process(t_map *map, t_lstmap **lst_map, int fd)
 	line = get_next_line(fd);
 	while (line != NULL && is_empty_line(line) == TRUE)
 	{
-		printf( BLU "line: %s\n" CRESET, line);
 		line = ft_char_f(line);
 		line = get_next_line(fd);
 	}
@@ -47,7 +58,6 @@ int	init_map_process(t_map *map, t_lstmap **lst_map, int fd)
 	{
 		if (is_valid == TRUE)
 		{
-			printf( RED "line: %s\n" CRESET, line);
 			if (check_line(map, line) == SUCCESS)
 				insert_end_lstmap(lst_map, ft_substr(line, 0, ft_strlen(line) - 1));
 			else
@@ -56,9 +66,8 @@ int	init_map_process(t_map *map, t_lstmap **lst_map, int fd)
 		line = ft_char_f(line);
 		line = get_next_line(fd);
 	}
-	printf("lst_map: %p\n", lst_map);
-	printf("lst_map: %p\n", *lst_map);
-	display_lstmap(*lst_map);
+	if (is_valid == FALSE)
+		return (ERROR);
 	return (SUCCESS);
 }
 
@@ -87,15 +96,11 @@ int	map_creation(t_map *map, t_lstmap **lst_map)
 	t_lstmap	*tmp;
 
 	y = 0;
-	printf("lst_map: %p\n", lst_map);
-	printf("lst_map: %p\n", *lst_map);
-	
 	tmp = *lst_map;
 	while (y != map->height)
 	{
 		x = 0;
 		i = 0;
-		printf("tmp->line: %s\n", tmp->line);
 		while (x != map->width)
 		{
 			if (tmp->line[i] != '\0')

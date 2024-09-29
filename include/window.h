@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 12:47:16 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/22 19:30:35 by stephane         ###   ########.fr       */
+/*   Updated: 2024/09/29 02:21:40 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,8 +18,8 @@
 # include "typedef.h"
 # include "mlx.h"
 
-# define WIN_W 1200
-# define WIN_H 675
+# define WIN_W 1650
+# define WIN_H 900
 
 typedef struct s_window{
 	void	*mlx;
