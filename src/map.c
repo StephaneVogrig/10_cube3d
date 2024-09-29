@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/09/29 11:33:58 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 12:06:46 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -49,22 +49,18 @@ int	init_map_process(t_map *map, t_lstmap **lst_map, int fd)
 	is_valid = TRUE;
 	line = get_next_line(fd);
 	while (line != NULL && is_empty_line(line) == TRUE)
-	{
-		line = ft_char_f(line);
-		line = get_next_line(fd);
-	}
+		line = gnl_f(fd, line);
 	while (line != NULL)
 	{
 		if (is_valid == TRUE)
 		{
 			if (check_line(map, line) == SUCCESS)
 				insert_end_lstmap(lst_map, ft_substr(line, 0,
-						(int)ft_strlen(line) - 1));
+						ft_strlen_endc(line, '\n')));
 			else
 				is_valid = FALSE;
 		}
-		line = ft_char_f(line);
-		line = get_next_line(fd);
+		line = gnl_f(fd, line);
 	}
 	if (is_valid == FALSE)
 		return (ERROR);
@@ -76,12 +72,14 @@ int	set_var_creation_map(t_map *map)
 	int	y;
 
 	y = 0;
-	map->grid = ft_calloc(map->width + 1, sizeof(char *));
+	printf("map->height = %d\n", map->height);
+	printf("map->width = %d\n", map->width);
+	map->grid = ft_calloc(map->height + 1, sizeof(char *));
 	if (map->grid == NULL)
 		return (ERROR);
 	while (y != map->height)
 	{
-		map->grid[y] = ft_calloc(map->width, sizeof(char));
+		map->grid[y] = ft_calloc(map->width + 1, sizeof(char));
 		if (map->grid[y++] == NULL)
 			return (ERROR);
 	}

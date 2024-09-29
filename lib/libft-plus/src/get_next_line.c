@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:59:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/09/29 11:46:09 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 11:57:07 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -99,7 +99,8 @@ char	*fill_bucket(char *buffer)
 
 char	*gnl_f(int fd, char *line)
 {
-	line = ft_char_f(line);
+	if (line != NULL)
+		line = ft_char_f(line);
 	line = get_next_line(fd);
 	return (line);
 }
