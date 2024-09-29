@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/29 03:44:43 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/29 23:48:28 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,13 @@ void	draw_cub3d_col(t_window *win, int x, t_dda2 *ray, t_textures *textures)
 	}
 	
 	t_vec2i texture_pos;
-	if (ray->hit_side == 'n' || ray->hit_side == 's')
+	if (ray->hit_side == 'n')
+		texture_pos.x = (1 - ray->hit_pos.box.x) * texture->width;
+	else if (ray->hit_side == 's')
 		texture_pos.x = ray->hit_pos.box.x * texture->width;
-	else
+	else if (ray->hit_side == 'e')
+		texture_pos.x = (1 - ray->hit_pos.box.y) * texture->width;
+	else if (ray->hit_side == 'w')
 		texture_pos.x = ray->hit_pos.box.y * texture->width;
 	
 	y_max = wall_h + cell_h;
