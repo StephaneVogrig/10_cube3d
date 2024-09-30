@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:14:09 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/29 02:22:09 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/01 00:01:54 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,8 +17,8 @@
 #include "map.h"
 #include "screen.h"
 
-# define MINIMAP_W 640
-# define MINIMAP_H 320
+# define MINIMAP_W 1024
+# define MINIMAP_H 512
 
 typedef struct s_minimap{
     t_screen	screen;

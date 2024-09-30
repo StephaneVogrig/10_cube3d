@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/09/30 23:10:00 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/30 23:39:23 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -68,8 +68,6 @@ void	chk_flood_fill(char **map_ff, int x, int y, t_bool *ff_ok)
 		return ;
 	if (map_ff[y][x] == ' ' || map_ff[y][x] == 0)
 	{
-		printf("x: %i y: %i\n", x, y);
-		printf("map_ff[y][x]: %c\n", map_ff[y][x]);
 		ff_ok = FALSE;
 		return ;
 	}
