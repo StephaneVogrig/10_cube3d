@@ -1,48 +1,50 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_flood_fill.c                                   :+:      :+:    :+:   */
+/*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/09/29 10:05:47 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/30 19:28:16 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "file_process.h"
+#include "flood_fill.h"
 
-int	map_checker(t_cub *cub)
+int	map_checker(t_map *map, t_player *player)
 {
-	cub->err = set_var_creation_map_ff(cub);
-	if (chk_box(cub->err, EQ, SUCCESS, "Creating flood fill Map") == 1)
-		helltrain(cub, ERROR, 1, "Error on Initialization Map");
-	chk_flood_fill(cub, cub->player_x, cub->player_y);
+	char **map_ff;
+
+	player_finder(map, player);
+	if (chk_box(set_var_creation_map_ff(map, map_ff), EQ, SUCCESS, "Set Check Map") == 1)
+		return(ft_return(ERROR, ERROR, "Error on Initialization Map"));
+	chk_flood_fill(map, player->grid.x, player->grid.y);
 	chk_box(0, EQ, SUCCESS, "Flood Fill");
-    ft_tab_f(cub->map_ff);
+    ft_tab_f(map_ff);
 	return (SUCCESS);
 }
 
-int	set_var_creation_map_ff(t_cub *cub)
+int	set_var_creation_map_ff(t_map *map, char **map_ff)
 {
 	int	y;
 	int	x;
 
 	y = 0;
-	cub->map_ff = ft_calloc(cub->map_max_y + 3, sizeof(char *));
-	if (cub->map_ff == NULL)
+	map_ff = ft_calloc(map->height + 3, sizeof(char *));
+	if (map_ff == NULL)
 		return (ERROR);
-	while (y != cub->map_max_y + 2)
+	while (y != map->height + 2)
 	{
-		cub->map_ff[y] = ft_calloc(cub->map_max_x + 3, sizeof(char));
-		if (cub->map_ff[y] == NULL)
+		map_ff[y] = ft_calloc(map->width + 3, sizeof(char));
+		if (map_ff[y] == NULL)
 			return (ERROR);
-		if (y != 0 && y != cub->map_max_y + 1)
+		if (y != 0 && y != map->height + 1)
 		{
 			x = 1;
-			while (x != cub->map_max_x + 1)
+			while (x != map->width + 1)
 			{
-				cub->map_ff[y][x] = cub->map_tab[y - 1][x - 1];
+				map_ff[y][x] = map->grid[y - 1][x - 1];
 				x++;
 			}
 		}

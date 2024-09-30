@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/09/29 20:06:16 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/29 21:42:50 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -83,9 +83,9 @@ int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 	else if (fd != FAIL)
 		ok = path_seletor(mlx, tex, key, value);
 	ft_close(fd);
+	chk_box(ok, NE, FAIL, key);
 	key = ft_char_f(key);
 	value = ft_char_f(value);
-	chk_box(ok, NE, FAIL, key);
 	if (ok == FAIL)
 		return (FAIL);
 	return (SUCCESS);
@@ -94,6 +94,8 @@ int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 int	img_path_process(char **key, char **value, char *line)
 {
 	if (line == NULL)
+		return (FAIL);
+	if (is_empty_line(line) == SUCCESS)
 		return (FAIL);
 	if (!ft_isthis(line[0], "NSEWFC"))
 		return (FAIL);

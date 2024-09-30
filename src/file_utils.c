@@ -1,12 +1,12 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_utils.c                                       :+:      :+:    :+:   */
+/*   file_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/09/29 10:05:47 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/30 19:30:55 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -63,4 +63,36 @@ int	setup_value(char *line, char *key, char **value)
 	if (*value == NULL)
 		return (ft_return(ERROR, FAIL, "Allocating texture path failed"));
 	return (SUCCESS);
+}
+
+int	is_empty_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (line == NULL)
+		return (FALSE);
+	while (line[i] != '\n')
+	{
+		if (line[i] != ' ')
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
+int	is_map_valid(char *line)
+{
+	int	i;
+
+	if (line == NULL)
+		return (FALSE);
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (ft_isthis(line[i], " 01NSEW\n") == FALSE)
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
 }

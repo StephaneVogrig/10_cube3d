@@ -6,11 +6,12 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/29 21:06:20 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/30 19:30:00 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "data.h"
+#include "flood_fill.h"
 
 void	player_setup(t_player *player, t_map *map)
 {
@@ -42,9 +43,8 @@ int	file_load(char *path, t_data *data)
 	if (chk_box(map_creation(&data->map, &lst_map), EQ, SUCCESS,
 			"Creating Map") == 1)
 		return (ft_return(ERROR, FAIL, "Error on Map Creation"));
-	// if (chk_box(map_checker(cub), EQ, SUCCESS, "Check Map") == 1)
-	// 	return (ft_return(ERROR, FAIL, "Map Invalid"));
-	player_setup(&data->player, &data->map);
+	if (chk_box(map_checker(&data->map, &data->player), EQ, SUCCESS, "Check Map") == 1)
+		return (ft_return(ERROR, FAIL, "Map Invalid"));
 	return (SUCCESS);
 }
 

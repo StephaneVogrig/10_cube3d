@@ -6,13 +6,14 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/09/29 12:06:46 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/30 19:17:32 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "file_process.h"
 #include "lst_map.h"
 #include "map.h"
+#include "player.h"
 
 int	check_line(t_map *map, char *line)
 {
@@ -113,6 +114,29 @@ int	map_creation(t_map *map, t_lstmap **lst_map)
 		tmp = tmp->next;
 		y++;
 	}
-	print_tab(map->grid);
 	return (SUCCESS);
 }
+
+void	player_finder(t_map *map, t_player *player)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	x = 0;
+	while (map->grid[++y] != NULL)
+	{
+		while (map->grid[y][x] != 0)
+		{
+			if (ft_isthis(map->grid[y][x], "NSWE"))
+			{
+				player_set_dir(player, map->grid[y][x]);
+				player->grid.x = x;
+				player->grid.y = y;
+			}
+			x++;
+		}
+		x = 0;
+	}
+}
+
