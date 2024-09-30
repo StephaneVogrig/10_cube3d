@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/09/30 19:28:16 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/30 23:10:00 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,31 +14,39 @@
 
 int	map_checker(t_map *map, t_player *player)
 {
-	char **map_ff;
+	char	**map_ff;
+	t_bool	ff_ok;
 
-	player_finder(map, player);
-	if (chk_box(set_var_creation_map_ff(map, map_ff), EQ, SUCCESS, "Set Check Map") == 1)
-		return(ft_return(ERROR, ERROR, "Error on Initialization Map"));
-	chk_flood_fill(map, player->grid.x, player->grid.y);
-	chk_box(0, EQ, SUCCESS, "Flood Fill");
-    ft_tab_f(map_ff);
+	ff_ok = TRUE;
+	map_ff = set_var_creation_map_ff(map);
+	if (map_ff == NULL)
+		return (ft_return(ERROR, ERROR, "Error on Initialization Map"));
+	if (chk_box(player_finder(map, player), EQ, SUCCESS, "Find player") == -1)
+		return (ft_return(ERROR, ERROR, "No player on map"));
+	map_ff[player->grid.y][player->grid.x] = '0';
+	map->grid[player->grid.y][player->grid.x] = '0';
+	chk_flood_fill(map_ff, player->grid.x, player->grid.y, &ff_ok);
+	if (ff_ok == FALSE)
+		return (ft_return(ERROR, ERROR, "Map Invalid"));
+	ft_tab_f(map_ff);
 	return (SUCCESS);
 }
 
-int	set_var_creation_map_ff(t_map *map, char **map_ff)
+char	**set_var_creation_map_ff(t_map *map)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
+	char	**map_ff;
 
 	y = 0;
 	map_ff = ft_calloc(map->height + 3, sizeof(char *));
 	if (map_ff == NULL)
-		return (ERROR);
+		return (NULL);
 	while (y != map->height + 2)
 	{
 		map_ff[y] = ft_calloc(map->width + 3, sizeof(char));
 		if (map_ff[y] == NULL)
-			return (ERROR);
+			return (NULL);
 		if (y != 0 && y != map->height + 1)
 		{
 			x = 1;
@@ -50,18 +58,24 @@ int	set_var_creation_map_ff(t_map *map, char **map_ff)
 		}
 		y++;
 	}
-	return (SUCCESS);
+	return (map_ff);
 }
 
-void	chk_flood_fill(t_cub *cub, int x, int y)
+void	chk_flood_fill(char **map_ff, int x, int y, t_bool *ff_ok)
 {
-	if (cub->map_ff[y][x] == BLOK || cub->map_ff[y][x] == 'X')
+	printf("x: %i y: %i\n", x, y);
+	if (map_ff[y][x] == 'X' || map_ff[y][x] == '1')
 		return ;
-	if (cub->map_ff[y][x] == 0)
-		helltrain(cub, ERROR, 1, "Map Invalid");
-	cub->map_ff[y][x] = 'X';
-	chk_flood_fill(cub, x + 1, y);
-	chk_flood_fill(cub, x - 1, y);
-	chk_flood_fill(cub, x, y + 1);
-	chk_flood_fill(cub, x, y - 1);
+	if (map_ff[y][x] == ' ' || map_ff[y][x] == 0)
+	{
+		printf("x: %i y: %i\n", x, y);
+		printf("map_ff[y][x]: %c\n", map_ff[y][x]);
+		ff_ok = FALSE;
+		return ;
+	}
+	map_ff[y][x] = 'X';
+	chk_flood_fill(map_ff, x + 1, y, ff_ok);
+	chk_flood_fill(map_ff, x - 1, y, ff_ok);
+	chk_flood_fill(map_ff, x, y + 1, ff_ok);
+	chk_flood_fill(map_ff, x, y - 1, ff_ok);
 }

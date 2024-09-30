@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/09/30 19:17:32 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/30 21:59:45 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -73,8 +73,6 @@ int	set_var_creation_map(t_map *map)
 	int	y;
 
 	y = 0;
-	printf("map->height = %d\n", map->height);
-	printf("map->width = %d\n", map->width);
 	map->grid = ft_calloc(map->height + 1, sizeof(char *));
 	if (map->grid == NULL)
 		return (ERROR);
@@ -100,7 +98,6 @@ int	map_creation(t_map *map, t_lstmap **lst_map)
 	{
 		x = 0;
 		i = 0;
-		printf("tmp->line = %s\n", tmp->line);
 		while (x != map->width)
 		{
 			if (tmp->line[i] != '\0')
@@ -116,27 +113,3 @@ int	map_creation(t_map *map, t_lstmap **lst_map)
 	}
 	return (SUCCESS);
 }
-
-void	player_finder(t_map *map, t_player *player)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	x = 0;
-	while (map->grid[++y] != NULL)
-	{
-		while (map->grid[y][x] != 0)
-		{
-			if (ft_isthis(map->grid[y][x], "NSWE"))
-			{
-				player_set_dir(player, map->grid[y][x]);
-				player->grid.x = x;
-				player->grid.y = y;
-			}
-			x++;
-		}
-		x = 0;
-	}
-}
-

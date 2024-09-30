@@ -6,11 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/09/30 19:30:55 by aska             ###   ########.fr       */
+/*   Updated: 2024/09/30 19:52:28 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "file_process.h"
+#include "file_utils.h"
 
 int	texture_attribution(void *mlx, t_texture *tex, char *path)
 {

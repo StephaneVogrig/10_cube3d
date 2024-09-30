@@ -19,10 +19,8 @@
 void	title(void);
 void	print_tab(char **tab);
 int		attrib_path(void *mlx, t_textures *tex, char *key, char *value);
-void	init_organizer(t_cub *cub, char *file);
 int		file_process(void *mlx, t_textures *tex, int *fd);
 int		check_entry_arg(int ac, char **av);
-int		mlx_initialize(t_cub *cub);
 int		open_file(int *fd, char *file);
 void	goto_exit(int check, int err, t_state state, char *msg);
 int		setup_value(char *line, char *key, char **value);

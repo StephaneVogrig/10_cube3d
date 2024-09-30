@@ -1,45 +1,26 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   typedef.h                                          :+:      :+:    :+:   */
+/*   file_utils.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 02:42:41 by aska              #+#    #+#             */
-/*   Updated: 2024/09/30 21:36:16 by aska             ###   ########.fr       */
+/*   Created: 2024/09/30 19:42:45 by aska              #+#    #+#             */
+/*   Updated: 2024/09/30 19:54:52 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef TYPEDEF_H
-# define TYPEDEF_H
+#ifndef FILE_UTILS_H
+# define FILE_UTILS_H
 
-typedef enum e_status
-{
-	FAIL = -1,
-	SUCCESS = 0,
-}			t_status;
+# include "file_process.h"
+# include "texture.h"
 
-typedef enum e_ref_path
-{
-	NO_REF,
-	SO_REF,
-	WE_REF,
-	EA_REF,
-	F_REF,
-	C_REF,
-	BGM_REF
-}			t_ref_path;
-
-typedef union u_color
-{
-	struct
-	{
-		int	b : 8;
-		int	g : 8;
-		int	r : 8;
-		int	a : 8;
-	};
-	int	integer;
-}	t_rgb;
+int	texture_attribution(void *mlx, t_texture *tex, char *path);
+int	path_seletor(void *mlx, t_textures *textures, char *key, char *img_path);
+int	setup_key(char *line, char **key);
+int	setup_value(char *line, char *key, char **value);
+int	is_empty_line(char *line);
+int	is_map_valid(char *line);
 
 #endif
