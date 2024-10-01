@@ -1,14 +1,14 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/29 03:34:30 by svogrig          ###   ########.fr        #
+#    Updated: 2024/09/30 19:38:36 by aska             ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 SHELL				:=	/bin/bash
 
@@ -41,8 +41,9 @@ I_FLAG			:=	$(addprefix -I,$(DIR_INC)) -MMD -MP
 SRC_DIR				:=	src/
 
 SRCS			:= 	main.c \
-					check_utils.c \
-					cub_init.c \
+					check_arg.c \
+					file_process.c \
+					file_utils.c \
 					data.c \
 					debug.c \
 					draw_line.c \
@@ -50,16 +51,12 @@ SRCS			:= 	main.c \
 					draw_line_utils.c \
 					draw_utils.c \
 					event.c \
-					free_main.c \
-					free_mlx_utils.c \
-					free_utils.c \
-					init_utils.c \
 					lstmap_del.c \
 					lstmap_op.c \
 					lstmap_utils.c \
 					map.c \
 					pixel.c \
-					pretty_utils.c \
+					title.c \
 					render.c \
 					vec2i.c \
 					window.c \
@@ -69,8 +66,8 @@ SRCS			:= 	main.c \
 					dda.c \
 					chrono.c \
 					texture.c \
-					screen.c
-#					map_flood_fill.c
+					screen.c \
+					flood_fill.c
 
 SRCS			:=	$(SRCS:%=$(SRC_DIR)%)
 
@@ -108,10 +105,10 @@ libft:
 	@$(MAKE) -j -C $(LIB_DIR)libft-plus --no-print-directory
 
 
-clean: #libclean
+clean: libclean
 	@rm -fr $(OBJ_DIR) && printf "Cleaning : $(OBJ_DIR)\n"
 
-fclean: clean #libfclean
+fclean: clean libfclean
 	@rm -f $(NAME) && printf "Cleaning: $(NAME) \n"
 	@rm -f $(NAME_BONUS)  && printf "Cleaning: $(NAME_BONUS) \n"
 

@@ -1,16 +1,17 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_init.c                                         :+:      :+:    :+:   */
+/*   file_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/09/29 03:40:56 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/30 21:58:38 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-#include "cub3d.h"
+#include "file_process.h"
+#include "file_utils.h"
 
 int	open_file(int *fd, char *file)
 {
@@ -64,7 +65,6 @@ int	attrib_rgb(t_rgb *rgb, char *value)
 		rgb->r = (unsigned char)ft_atoi(arg[0]);
 		rgb->g = (unsigned char)ft_atoi(arg[1]);
 		rgb->b = (unsigned char)ft_atoi(arg[2]);
-		printf("color:%x\n", rgb->integer);
 	}
 	ft_tab_f(arg);
 	return (ok);
@@ -84,7 +84,9 @@ int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 	else if (fd != FAIL)
 		ok = path_seletor(mlx, tex, key, value);
 	ft_close(fd);
-	chk_box(ok, NE, FAIL, key);
+	chk_box(ok, NE, FAIL, value);
+	key = ft_char_f(key);
+	value = ft_char_f(value);
 	if (ok == FAIL)
 		return (FAIL);
 	return (SUCCESS);
@@ -93,6 +95,8 @@ int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 int	img_path_process(char **key, char **value, char *line)
 {
 	if (line == NULL)
+		return (FAIL);
+	if (is_empty_line(line) == TRUE)
 		return (FAIL);
 	if (!ft_isthis(line[0], "NSEWFC"))
 		return (FAIL);
@@ -122,7 +126,7 @@ int	file_process(void *mlx, t_textures *tex, int *fd)
 		if (img_path_process(&key, &value, line) == SUCCESS)
 		{
 			if (attrib_path(mlx, tex, key, value) == FAIL)
-				return (ft_return(ERROR, FAIL, "Error on path Attribution"));
+				break ;
 			sum_of_path++;
 		}
 		line = ft_char_f(line);
@@ -131,6 +135,6 @@ int	file_process(void *mlx, t_textures *tex, int *fd)
 	}
 	line = ft_char_f(line);
 	if (sum_of_path != 6)
-		return (FAIL);
+		return (ft_return(ERROR, FAIL, "Error on file"));
 	return (SUCCESS);
 }

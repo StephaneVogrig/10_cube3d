@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:42:41 by aska              #+#    #+#             */
-/*   Updated: 2024/09/29 03:55:37 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/09/30 21:36:16 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
@@ -41,24 +41,5 @@ typedef union u_color
 	};
 	int	integer;
 }	t_rgb;
-
-typedef struct s_cub
-{
-	void	*mlx;
-	int		err;
-	int		fd;
-	char	*root_path;
-	char	*line;
-	int		player_x;
-	int		player_y;
-	char	player_dir;
-	int		player_dir_x;
-	int		player_dir_y;
-	int		player_plane_x;
-	int		player_plane_y;
-	int		player_speed;
-	int		player_rot_speed;
-	int		player_move_speed;
-}			t_cub;
 
 #endif

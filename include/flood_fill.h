@@ -1,22 +1,24 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_char_f.c                                        :+:      :+:    :+:   */
+/*   flood_fill.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 17:22:33 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/09/29 11:46:04 by aska             ###   ########.fr       */
+/*   Created: 2024/09/30 19:21:52 by aska              #+#    #+#             */
+/*   Updated: 2024/09/30 22:58:30 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "../libft.h"
+#ifndef FLOOD_FILL_H
+# define FLOOD_FILL_H
 
-char	*ft_char_f(char *str)
-{
-	if (str)
-	{
-		ft_free(str);
-	}
-	return (NULL);
-}
+# include "file_process.h"
+# include "map.h"
+# include "player.h"
+
+int		map_checker(t_map *map, t_player *player);
+char	**set_var_creation_map_ff(t_map *map);
+void	chk_flood_fill(char **map_ff, int x, int y, t_bool *ff_ok);
+
+#endif

@@ -1,19 +1,24 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_utils.c                                       :+:      :+:    :+:   */
+/*   file_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/09/28 18:07:10 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/09/30 19:52:28 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-#include "cub3d.h"
+#include "file_utils.h"
 
-int	texture_attribution(void *mlx, t_texture *tex, char *path, char *extension)
+int	texture_attribution(void *mlx, t_texture *tex, char *path)
 {
+	char	*extension;
+
+	extension = ft_strrchr(path, '.');
+	if (extension == NULL)
+		return (ft_return(ERROR, FAIL, "Texture extension not found"));
 	if (ft_strcmp(extension, ".jpg") == 0)
 		tex->img = mlx_jpg_file_to_image(mlx, path, &tex->width, &tex->height);
 	else if (ft_strcmp(extension, ".bmp") == 0)
@@ -22,7 +27,6 @@ int	texture_attribution(void *mlx, t_texture *tex, char *path, char *extension)
 		tex->img = mlx_png_file_to_image(mlx, path, &tex->width, &tex->height);
 	else
 		(ft_display(ERROR, "Texture extension not supported"));
-	// extension = ft_char_f(extension);
 	if (tex->img == NULL)
 		return (ft_return(ERROR, FAIL, "Texture attribution failed"));
 	return (SUCCESS);
@@ -30,27 +34,14 @@ int	texture_attribution(void *mlx, t_texture *tex, char *path, char *extension)
 
 int	path_seletor(void *mlx, t_textures *textures, char *key, char *img_path)
 {
-	char	*extension;
-
-	extension = ft_strrchr(img_path, '.');
-	if (extension == NULL)
-		return (ft_return(ERROR, FAIL, "Texture extension not found"));
 	if (ft_strncmp(key, "NO", 2) == 0)
-		return (texture_attribution(mlx, &textures->north, img_path,
-				extension));
+		return (texture_attribution(mlx, &textures->north, img_path));
 	else if (ft_strncmp(key, "SO", 2) == 0)
-		return (texture_attribution(mlx, &textures->south, img_path,
-				extension));
+		return (texture_attribution(mlx, &textures->south, img_path));
 	else if (ft_strncmp(key, "WE", 2) == 0)
-		return (texture_attribution(mlx, &textures->west, img_path, extension));
+		return (texture_attribution(mlx, &textures->west, img_path));
 	else if (ft_strncmp(key, "EA", 2) == 0)
-		return (texture_attribution(mlx, &textures->east, img_path, extension));
-	// else if (ft_strncmp(key, "F", 1) == 0)
-	// 	return (texture_attribution(mlx, &textures->floor_rgb, img_path,
-	// 			extension));
-	// else if (ft_strncmp(key, "C", 1) == 0)
-	// 	return (texture_attribution(mlx, &textures->ceil_rgb, img_path,
-	// 			extension));
+		return (texture_attribution(mlx, &textures->east, img_path));
 	else
 		return (SUCCESS);
 }
@@ -72,4 +63,36 @@ int	setup_value(char *line, char *key, char **value)
 	if (*value == NULL)
 		return (ft_return(ERROR, FAIL, "Allocating texture path failed"));
 	return (SUCCESS);
+}
+
+int	is_empty_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (line == NULL)
+		return (FALSE);
+	while (line[i] != '\n')
+	{
+		if (line[i] != ' ')
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
+int	is_map_valid(char *line)
+{
+	int	i;
+
+	if (line == NULL)
+		return (FALSE);
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (ft_isthis(line[i], " 01NSEW\n") == FALSE)
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
 }

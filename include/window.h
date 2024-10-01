@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 12:47:16 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/29 02:21:40 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/01 00:01:33 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,8 +18,8 @@
 # include "typedef.h"
 # include "mlx.h"
 
-# define WIN_W 1650
-# define WIN_H 900
+# define WIN_W 1280
+# define WIN_H 768
 
 typedef struct s_window{
 	void	*mlx;
