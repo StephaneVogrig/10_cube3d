@@ -6,30 +6,12 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/29 23:48:28 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/01 03:14:32 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 #include "texture.h"
-
-int	pixel_color(char side, t_vec2i pos, void *mlx, t_texture *texture)
-{
-	int	color;
-	
-	if (side == 'n')
-		color = 0xff3f0000;
-	if (side == 'w')
-		color = 0xff7f0000;
-	if (side == 'e')
-		color = 0xffbf0000;
-	if (side == 's')
-		color = 0xffff0000;
-
-	if (side == 'n')
-		color = mlx_get_image_pixel(mlx, texture->img, pos.x, pos.y);
-	return (color);
-}
 
 void	draw_cub3d_col(t_window *win, int x, t_dda2 *ray, t_textures *textures)
 {
@@ -41,7 +23,6 @@ void	draw_cub3d_col(t_window *win, int x, t_dda2 *ray, t_textures *textures)
 	int y_wall;
 	t_texture	*texture;
 	
-
 	if (ray->hit_side == 'n')
 		texture = &textures->north;
 	if (ray->hit_side == 's')
@@ -50,7 +31,7 @@ void	draw_cub3d_col(t_window *win, int x, t_dda2 *ray, t_textures *textures)
 		texture = &textures->east;
 	if (ray->hit_side == 'w')
 		texture = &textures->west;
-	
+		
 	wall_h = win->height / ray->len;
 	if (ray->len <= 1)
 	{
@@ -68,7 +49,7 @@ void	draw_cub3d_col(t_window *win, int x, t_dda2 *ray, t_textures *textures)
 		mlx_pixel_put(win->mlx, win->win, x, y, textures->ceil_rgb.integer);
 		y++;
 	}
-	
+
 	t_vec2i texture_pos;
 	if (ray->hit_side == 'n')
 		texture_pos.x = (1 - ray->hit_pos.box.x) * texture->width;
@@ -83,10 +64,10 @@ void	draw_cub3d_col(t_window *win, int x, t_dda2 *ray, t_textures *textures)
 	if (y_max > win->height)
 		y_max =  win->height;
 	texture_pos.y = 0;
+	double	ratio = (double)texture->height / wall_h;
 	while (y < y_max)
 	{
-		texture_pos.y = y_wall * texture->height / wall_h;
-		// color = pixel_color(ray->hit_side, texture_pos, win->mlx, texture);
+		texture_pos.y = y_wall * ratio;
 		color = mlx_get_image_pixel(win->mlx, texture->img, texture_pos.x, texture_pos.y);
  		mlx_pixel_put(win->mlx, win->win, x, y, color);
 		y_wall++;
@@ -98,7 +79,6 @@ void	draw_cub3d_col(t_window *win, int x, t_dda2 *ray, t_textures *textures)
 		mlx_pixel_put(win->mlx, win->win, x, y, textures->floor_rgb.integer);
 		y++;
 	}
-
 }
 
 void	draw_ray_minimap(t_minimap *minimap, t_player *player, double raylen, t_vec2d raydir)
