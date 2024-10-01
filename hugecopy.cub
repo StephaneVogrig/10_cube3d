@@ -1,7 +1,7 @@
-SO asset/tex/Quake/TECH33.bmp
-NO asset/tex/Quake/TECH21.bmp
-WE asset/tex/Quake/TECH19.bmp
-EA asset/tex/Quake/TECH34.bmp
+SO ROCKSO.bmp
+NO ROCKNO.bmp
+WE ROCKWE.bmp
+EA ROCKEA.bmp
 
 F 40,72,24
 C 40,26,24
