@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/02 21:39:05 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/02 21:57:27 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,23 @@ void	draw_wall(t_window *win, int x, t_dda2 *ray, t_texture *texture, int wall_h
 {
 	int color;
 	t_vec2i texture_pos;
+	double	texture_dy;
+	double	texture_y;
 	
+	color = mlx_get_image_pixel(win->mlx, texture->img, texture_pos.x, texture_pos.y);
+	texture_dy = (double)texture->height / wall_h;
+	texture_y = y_wall * texture_dy;
 	texture_pos.x = texture_hit_column(texture, ray);
-	texture_pos.y = 0;
-	double	ratio = (double)texture->height / wall_h;
+	texture_pos.y = (int)texture_y;
 	while (y < y_max)
 	{
-		texture_pos.y = y_wall * ratio;
-		color = mlx_get_image_pixel(win->mlx, texture->img, texture_pos.x, texture_pos.y);
+		if (texture_pos.y < (int)texture_y)
+		{
+			texture_pos.y = (int)texture_y;
+			color = mlx_get_image_pixel(win->mlx, texture->img, texture_pos.x, texture_pos.y);
+		}
  		mlx_pixel_put(win->mlx, win->win, x, y, color);
-		y_wall++;
+		texture_y += texture_dy;
 		y++;
 	}
 }
