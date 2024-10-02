@@ -2,6 +2,6 @@
 *libft.a
 lib/libft-plus/obj/*
 cub3d
-obj/*
+.build/*
 *.tgz
 wolf3d*

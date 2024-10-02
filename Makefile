@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
+#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/09/30 19:38:36 by aska             ###   ########.fr        #
+#    Updated: 2024/10/02 14:00:59 by ygaiffie         ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 SHELL				:=	/bin/bash
 
@@ -41,39 +41,39 @@ I_FLAG			:=	$(addprefix -I,$(DIR_INC)) -MMD -MP
 SRC_DIR				:=	src/
 
 SRCS			:= 	main.c \
-					check_arg.c \
-					file_process.c \
-					file_utils.c \
-					data.c \
 					debug.c \
-					draw_line.c \
-					draw_line_to_border.c \
-					draw_line_utils.c \
-					draw_utils.c \
 					event.c \
-					lstmap_del.c \
-					lstmap_op.c \
-					lstmap_utils.c \
-					map.c \
 					pixel.c \
-					title.c \
-					render.c \
-					vec2i.c \
-					window.c \
 					player.c \
-					minimap_bonus.c \
-					raycasting.c \
-					dda.c \
-					chrono.c \
 					texture.c \
-					screen.c \
-					flood_fill.c
+					title.c \
+					vector.c \
+					window.c \
+					parsing/check_arg.c \
+					parsing/file_process.c \
+					parsing/file_utils.c \
+					parsing/data.c \
+					parsing/lstmap_del.c \
+					parsing/lstmap_op.c \
+					parsing/lstmap_utils.c \
+					parsing/map.c \
+					parsing/flood_fill.c \
+					render/draw_line.c \
+					render/draw_line_to_border.c \
+					render/draw_line_utils.c \
+					render/draw_utils.c \
+					render/render.c \
+					render/minimap_bonus.c \
+					render/raycasting.c \
+					render/dda.c \
+					render/chrono.c \
+					render/screen.c
 
 SRCS			:=	$(SRCS:%=$(SRC_DIR)%)
 
 # objects ---------------------------------------------------------------------#
 
-OBJ_DIR				:=	obj/
+OBJ_DIR				:=	.build/
 
 OBJS			:= 	$(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
@@ -138,7 +138,6 @@ init: libft libmlx
 	@echo -e "\t\t$(BHYEL) CUB3D COMPILATION $(NC)"
 	@echo -e "\t\t$(BHYEL)┕━»•» 🌸 «•«━━━━━━┙$(NC)"
 	@echo -e ""
-	@mkdir -p $(OBJ_DIR)$(DIR_LIST) && echo -e "$(BGREEN)[✔]$(NC)\tCreate Directories: $(OBJ_DIR)$(DIR_LIST)$(NC)"
 
 bonus: init $(NAME_BONUS) 
 	@echo -e "\t$(BLINK_GREEN)$(NAME_BONUS) = COMPILATION FINISHED !$(NC)"
@@ -151,6 +150,7 @@ bonus: init $(NAME_BONUS)
 #------------------------------------------------------------------------------#
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) $(I_FLAG) -o $@ -c $< && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
 
 -include $(DEPS)
