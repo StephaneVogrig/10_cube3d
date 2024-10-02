@@ -6,63 +6,41 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/01 03:14:32 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/02 21:39:05 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 #include "texture.h"
 
-void	draw_cub3d_col(t_window *win, int x, t_dda2 *ray, t_textures *textures)
+t_texture	*texture_hit(t_textures * textures, t_dda2 *ray)
 {
-	int	y;
-	int wall_h;
-	int cell_h;
-	int color;
-	int y_max;
-	int y_wall;
-	t_texture	*texture;
-	
 	if (ray->hit_side == 'n')
-		texture = &textures->north;
-	if (ray->hit_side == 's')
-		texture = &textures->south;
-	if (ray->hit_side == 'e')
-		texture = &textures->east;
-	if (ray->hit_side == 'w')
-		texture = &textures->west;
-		
-	wall_h = win->height / ray->len;
-	if (ray->len <= 1)
-	{
-		cell_h = 0;
-		y_wall = (wall_h - win->height) / 2;
-	}
-	else
-	{
-		cell_h = (win->height - wall_h) / 2;
-		y_wall = 0;
-	}
-	y = 0;
-	while (y < cell_h)
-	{
-		mlx_pixel_put(win->mlx, win->win, x, y, textures->ceil_rgb.integer);
-		y++;
-	}
-
-	t_vec2i texture_pos;
-	if (ray->hit_side == 'n')
-		texture_pos.x = (1 - ray->hit_pos.box.x) * texture->width;
+		return (&textures->north);
 	else if (ray->hit_side == 's')
-		texture_pos.x = ray->hit_pos.box.x * texture->width;
+		return (&textures->south);
 	else if (ray->hit_side == 'e')
-		texture_pos.x = (1 - ray->hit_pos.box.y) * texture->width;
-	else if (ray->hit_side == 'w')
-		texture_pos.x = ray->hit_pos.box.y * texture->width;
+		return (&textures->east);
+	return (&textures->west);
+}
+
+int	texture_hit_column(t_texture *texture, t_dda2 *ray)
+{
+	if (ray->hit_side == 'n')
+		return ((1 - ray->hit_pos.box.x) * texture->width);
+	else if (ray->hit_side == 's')
+		return (ray->hit_pos.box.x * texture->width);
+	else if (ray->hit_side == 'e')
+		return ((1 - ray->hit_pos.box.y) * texture->width);
+	return (ray->hit_pos.box.y * texture->width);
+}
+
+void	draw_wall(t_window *win, int x, t_dda2 *ray, t_texture *texture, int wall_h, int y, int y_max, int y_wall)
+{
+	int color;
+	t_vec2i texture_pos;
 	
-	y_max = wall_h + cell_h;
-	if (y_max > win->height)
-		y_max =  win->height;
+	texture_pos.x = texture_hit_column(texture, ray);
 	texture_pos.y = 0;
 	double	ratio = (double)texture->height / wall_h;
 	while (y < y_max)
@@ -73,12 +51,61 @@ void	draw_cub3d_col(t_window *win, int x, t_dda2 *ray, t_textures *textures)
 		y_wall++;
 		y++;
 	}
-	
+}
+
+void	draw_wall_only(t_window *win, int x, t_dda2 *ray, t_textures *textures)
+{
+	int	y;
+	int wall_h;
+	int y_max;
+	int y_wall;
+	t_texture	*texture;
+	texture = texture_hit(textures, ray);
+		
+	wall_h = win->height / ray->len;
+	y_wall = (wall_h - win->height) / 2;
+	y = 0;
+
+	y_max = win->height;
+
+	draw_wall(win, x, ray, texture, wall_h, y, y_max, y_wall);
+}
+
+void	draw_ceil_wall_floor(t_window *win, int x, t_dda2 *ray, t_textures *textures)
+{
+	int	y;
+	int wall_h;
+	int cell_h;
+	int y_max;
+	int y_wall;
+	t_texture	*texture;
+
+	texture = texture_hit(textures, ray);
+	wall_h = win->height / ray->len;
+	cell_h = (win->height - wall_h) / 2;
+	y_wall = 0;
+	y = 0;
+	while (y < cell_h)
+	{
+		mlx_pixel_put(win->mlx, win->win, x, y, textures->ceil_rgb.integer);
+		y++;
+	}
+	y_max = wall_h + cell_h;
+	draw_wall(win, x, ray, texture, wall_h, y, y_max, y_wall);
+	y = y_max;
 	while (y < win->height)
 	{
 		mlx_pixel_put(win->mlx, win->win, x, y, textures->floor_rgb.integer);
 		y++;
 	}
+}
+
+void	draw_cub3d_col(t_window *win, int x, t_dda2 *ray, t_textures *textures)
+{
+	if (ray->len > 1)
+		draw_ceil_wall_floor(win, x, ray, textures);
+	else
+		draw_wall_only(win,x, ray, textures);
 }
 
 void	draw_ray_minimap(t_minimap *minimap, t_player *player, double raylen, t_vec2d raydir)
