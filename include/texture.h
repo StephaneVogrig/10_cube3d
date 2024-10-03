@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 19:11:26 by stephane          #+#    #+#             */
-/*   Updated: 2024/10/03 09:24:48 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/03 10:09:00 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx.h"
 # include "stdio.h"
 # include "typedef.h"
+# include "vec2i.h"
 
 typedef struct s_texture
 {
@@ -35,8 +36,7 @@ typedef struct s_textures
 	t_rgb		ceil_rgb;
 }				t_textures;
 
-void				textures_set_mlx(t_textures *t, void *mlx);
-void			textures_clean(t_textures *t, void *mlx);
-int				texture_jpg_setup(t_texture *t, void *mlx, char *path);
+void	textures_set_mlx(t_textures *t, void *mlx);
+void	textures_clean(t_textures *t, void *mlx);
 
 #endif
