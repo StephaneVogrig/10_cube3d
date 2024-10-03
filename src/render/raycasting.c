@@ -6,12 +6,11 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/03 01:24:30 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/03 03:59:20 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
-#include "texture.h"
 
 t_texture	*texture_hit(t_textures * textures, t_dda2 *ray)
 {
@@ -35,54 +34,26 @@ int	texture_hit_column(t_texture *texture, t_dda2 *ray)
 	return (ray->hit_pos.box.y * texture->width);
 }
 
-void	draw_wall(t_window *win, t_vec2i pix, t_dda2 *ray, t_texture *texture, int wall_h, int y_max, int y_wall)
+void	draw_wall_lower_texture(t_window *win, t_vec2i pix, t_texture *texture, \
+								int y_max, double texture_dy, double texture_y, t_vec2i texture_pix)
 {
 	int color;
-	t_vec2i texture_pix;
-	double	texture_dy;
-	double	texture_y;
-	int		texture_pix_y_current;
 	
-	texture_dy = (double)texture->height / wall_h;
-	texture_y = (double)y_wall * texture_dy;
-	texture_pix.x = texture_hit_column(texture, ray);
-	texture_pix_y_current = (int)texture_y;
 	while (pix.y < y_max)
 	{
 		texture_pix.y = (int)texture_y;
-		if (texture_pix_y_current != texture_pix.y)
-		{
-			texture_pix_y_current = texture_pix.y;
-			color = mlx_get_image_pixel(win->mlx, texture->img, texture_pix.x, texture_pix.y);
-		}
+		color = mlx_get_image_pixel(win->mlx, texture->img, texture_pix.x, texture_pix.y);
  		mlx_pixel_put(win->mlx, win->win, pix.x, pix.y, color);
 		texture_y += texture_dy;
 		pix.y++;
 	}
 }
 
-void	draw_wall_only(t_window *win, t_vec2i pix, t_dda2 *ray, t_textures *textures)
+void	draw_wall_upper_texture(t_window *win, t_vec2i pix, t_texture *texture, \
+								int y_max, double texture_dy, double texture_y, t_vec2i texture_pix)
 {
-	int wall_h;
-	int y_max;
-	int y_wall;
-	t_texture	*texture;
-	
-	texture = texture_hit(textures, ray);	
-	wall_h = win->height / ray->len;
-	
-	y_wall = (wall_h - win->height) / 2;
-	y_max = win->height;
-	
 	int color;
-	t_vec2i texture_pix;
-	double	texture_dy;
-	double	texture_y;
 	
-	texture_dy = (double)texture->height / wall_h;
-	
-	texture_y = (double)y_wall * texture_dy;
-	texture_pix.x = texture_hit_column(texture, ray);
 	texture_pix.y = (int)texture_y;
 	texture_y -= texture_pix.y;
 	color = mlx_get_image_pixel(win->mlx, texture->img, texture_pix.x, texture_pix.y);
@@ -98,6 +69,35 @@ void	draw_wall_only(t_window *win, t_vec2i pix, t_dda2 *ray, t_textures *texture
 		texture_y += texture_dy;
 		pix.y++;
 	}
+}
+
+void	draw_wall(t_window *win, t_vec2i pix, t_dda2 *ray, t_texture *texture, int wall_h, int y_max, int y_wall)
+{
+	t_vec2i texture_pix;
+	double	texture_dy;
+	double	texture_y;
+
+	texture_dy = (double)texture->height / wall_h;
+	texture_y = (double)y_wall * texture_dy;
+	texture_pix.x = texture_hit_column(texture, ray);
+	if (texture_dy >= 1.0)
+		draw_wall_lower_texture(win, pix, texture, y_max, texture_dy, texture_y, texture_pix);
+	else
+		draw_wall_upper_texture(win, pix, texture, y_max, texture_dy, texture_y, texture_pix);
+}
+
+void	draw_wall_only(t_window *win, t_vec2i pix, t_dda2 *ray, t_textures *textures)
+{
+	int wall_h;
+	int y_max;
+	int y_wall;
+	t_texture	*texture;
+
+	texture = texture_hit(textures, ray);
+	wall_h = win->height / ray->len;
+	y_wall = (wall_h - win->height) / 2;
+	y_max = win->height;
+	draw_wall(win, pix, ray, texture, wall_h, y_max, y_wall);
 }
 
 void	draw_ceil_wall_floor(t_window *win, t_vec2i pix, t_dda2 *ray, t_textures *textures)
