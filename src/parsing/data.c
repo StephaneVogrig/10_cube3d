@@ -1,28 +1,17 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/30 19:30:00 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/03 09:26:16 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "data.h"
-#include "flood_fill.h"
 
-void	player_setup(t_player *player, t_map *map)
-{
-	player->grid.x = map->width / 2;
-	player->grid.y = map->height / 2;
-	player->box.x = 0.5;
-	player->box.y = 0.5;
-	player->dir = 0;
-}
-
-// int	file_load(char *path, t_map *map, t_player *player)
 int	file_load(char *path, t_data *data)
 {
 	int			fd;
@@ -60,6 +49,7 @@ int	data_setup(t_data *data, char *pathname)
 	if (data->mlx == NULL)
 		return (ft_return(ERROR, FAIL, "Error on mlx_init"));
 	chk_box(SUCCESS, EQ, SUCCESS, "mlx initialization");
+	textures_set_mlx(&data->map.textures, data->mlx);
 	if (file_load(pathname, data) == FAIL)
 		return (ft_return(ERROR, FAIL, "Error on file_load"));
 	if (window_setup(&data->win, data->mlx) == FAIL)

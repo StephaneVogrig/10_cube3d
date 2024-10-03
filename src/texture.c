@@ -1,23 +1,23 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 19:12:00 by stephane          #+#    #+#             */
-/*   Updated: 2024/09/23 22:13:05 by stephane         ###   ########.fr       */
+/*   Updated: 2024/10/03 09:16:19 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "texture.h"
 
-int	texture_setup(t_texture *t, void *mlx, char *path)
+void	textures_set_mlx(t_textures *t, void *mlx)
 {
-	t->img = mlx_bmp_file_to_image(mlx, path, &t->width, &t->height);
-	if (t->img == NULL)
-		return (FAIL);
-	return (SUCCESS);
+	t->north.mlx = mlx;
+	t->south.mlx = mlx;
+	t->east.mlx = mlx;
+	t->west.mlx = mlx;
 }
 
 int	texture_jpg_setup(t_texture *t, void *mlx, char *path)
