@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   file_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/09/30 19:52:28 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/04 13:24:58 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "file_utils.h"
 
@@ -16,19 +16,32 @@ int	texture_attribution(void *mlx, t_texture *tex, char *path)
 {
 	char	*extension;
 
+	(void)mlx;
 	extension = ft_strrchr(path, '.');
 	if (extension == NULL)
 		return (ft_return(ERROR, FAIL, "Texture extension not found"));
 	if (ft_strcmp(extension, ".jpg") == 0)
-		tex->img = mlx_jpg_file_to_image(mlx, path, &tex->width, &tex->height);
+	{
+		printf("IMG.JPG");
+		// tex->img = mlx_jpg_file_to_image(mlx, path, &tex->width,
+		// &tex->height);
+	}
 	else if (ft_strcmp(extension, ".bmp") == 0)
-		tex->img = mlx_bmp_file_to_image(mlx, path, &tex->width, &tex->height);
+	{
+		printf("IMG.BMP");
+		// tex->img = mlx_bmp_file_to_image(mlx, path, &tex->width,
+		// &tex->height);
+	}
 	else if (ft_strcmp(extension, ".png") == 0)
-		tex->img = mlx_png_file_to_image(mlx, path, &tex->width, &tex->height);
+	{
+		printf("IMG.PNG");
+		// tex->img = mlx_png_file_to_image(mlx, path, &tex->width,
+		// &tex->height);
+	}
 	else
 		(ft_display(ERROR, "Texture extension not supported"));
-	if (tex->img == NULL)
-		return (ft_return(ERROR, FAIL, "Texture attribution failed"));
+	// if (tex->img == NULL)
+	// 	return (ft_return(ERROR, FAIL, "Texture attribution failed"));
 	return (SUCCESS);
 }
 
@@ -83,7 +96,7 @@ int	is_empty_line(char *line)
 
 int	is_map_valid(char *line)
 {
-	int	i;
+	int i;
 
 	if (line == NULL)
 		return (FALSE);
