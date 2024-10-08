@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/08 03:01:17 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/08 14:03:09 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,17 +18,18 @@ int	file_load(char *path, t_lstmap *lst_map)
 
 	if (open_file(&fd, path) == FAIL)
 		return (FAIL);
-	if 
-
-		
-	if (chk_box(file_process(data->mlx, &data->map.textures, &fd), EQ, SUCCESS,
-			"File Processing") == 1)
-		return (ft_return(ERROR, FAIL, "Error to discovery asset"));
+	if (file_to_lst_map(fd, lst_map) == FAIL)
+		return (FAIL);
+	if (close_file(&fd) == FAIL)
+		return (FAIL);	
 	return (SUCCESS);
 }
 
 int	map_setup(t_lstmap *lst_map, t_map *map)
 {
+	if (chk_box(file_process(data->mlx, &data->map.textures, &fd), EQ, SUCCESS,
+			"File Processing") == 1)
+		return (ft_return(ERROR, FAIL, "Error to discovery asset"));
 	if (chk_box(init_map_process(&data->map, &lst_map, fd), EQ, SUCCESS,
 			"Initialize temporary map") == 1)
 		return (ft_return(ERROR, FAIL, "Error on Initialization Map"));
@@ -70,8 +71,11 @@ int	data_setup(t_data *data, char *pathname)
 	if (mlx_setup(data) == FAIL)
 		return (FAIL);
 	if (file_load(pathname, lst_map) == FAIL)
-		return (ft_return(ERROR, FAIL, "Error on file_load"));
+		return (FAIL);
+	if (map_setup(lst_map, &data->map) == FAIL)
+		return (FAIL);
 	return (SUCCESS);
+	
 }
 
 void	data_clean(t_data *data)

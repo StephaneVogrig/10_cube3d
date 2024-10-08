@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/08 03:34:16 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/08 13:50:58 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,22 +22,37 @@ int	open_file(int *fd, char *file)
 		return (ft_return(ERROR, FAIL, MSG_OPEN_ERROR));
 	return (SUCCESS);
 }
+int close_file(int *fd)
+{
+	*fd = ft_close(*fd);
+	chk_box(fd, EQ, SUCCESS, "Close File");
+	if (*fd == FAIL)
+		return (ft_return(ERROR, FAIL, MSG_CLOSE_ERROR));
+	return (SUCCESS);
+}
+
 int	file_to_lst_map(int fd, t_lstmap *lst_map)
 {
 	char		*line;
 	t_lstmap	*tmp;
 
 	line = get_next_line(fd);
-	if (line == NULL)
-		return (ft_return(ERROR, FAIL, MSG_GNL_ERROR));
 	while (line != NULL)
 	{
-		tmp = insert_end_lstmap(lst_map, line);
+		tmp = insert_end_lstmap(&lst_map, line);
+		if (tmp == NULL)
+		{
+			delete_all_lstmap(&lst_map);
+			line = ft_char_f(line);
+			chk_box(1, EQ, 0, "Reading File");
+			return (ft_return(ERROR, FAIL, MSG_LSTMAP_ERROR));
+		}
 		line = ft_char_f(line);
 		line = get_next_line(fd);
-		if (line == NULL)
-			return (ft_return(ERROR, FAIL, MSG_GNL_ERROR));
 	}
+	line = ft_char_f(line);
+	chk_box(0, EQ, 0, "Reading File");
+	return (SUCCESS);
 }
 
 int	attrib_rgb(t_rgb *rgb, char *value)

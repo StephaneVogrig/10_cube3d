@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 16:10:08 by aska              #+#    #+#             */
-/*   Updated: 2024/10/08 03:34:12 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/08 13:33:27 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,7 +22,7 @@ typedef struct s_lstmap
 
 void				insert_front_lstmap(t_lstmap **head, char *line);
 void				insert_after_lstmap(t_lstmap *prev_node, char *line);
-void				*insert_end_lstmap(t_lstmap **head, char *line);
+t_lstmap			*insert_end_lstmap(t_lstmap **head, char *line);
 void				display_lstmap(t_lstmap *node);
 void				delete_lstmap(t_lstmap **head, t_lstmap *del_node);
 void				delete_all_lstmap(t_lstmap **head);

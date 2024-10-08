@@ -17,6 +17,8 @@
 # include "texture.h"
 
 #define MSG_OPEN_ERROR "Error to open file"
+#define MSG_CLOSE_ERROR "Error to close file"
+#define MSG_LSTMAP_ERROR "Error to insert in lst_map"
 #define MSG_GNL_ERROR "Error to read file"
 
 void	title(void);
