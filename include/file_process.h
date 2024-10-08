@@ -16,6 +16,9 @@
 # include "../lib/libft-plus/libft.h"
 # include "texture.h"
 
+#define MSG_OPEN_ERROR "Error to open file"
+#define MSG_GNL_ERROR "Error to read file"
+
 void	title(void);
 void	print_tab(char **tab);
 int		attrib_path(void *mlx, t_textures *tex, char *key, char *value);

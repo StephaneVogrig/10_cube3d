@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:30:55 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/22 19:08:16 by stephane         ###   ########.fr       */
+/*   Updated: 2024/10/08 02:38:06 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,14 +16,11 @@ int	window_setup(t_window *win, void *mlx)
 {
 	win->win = mlx_new_window(mlx, WIN_W, WIN_H, "cub3d");
 	if (win->win == NULL)
-	{
-		printf("window_setup failed\n");
-		return (FAIL);	
-	}	
+		return (ft_return(ERROR, FAIL, "Error window setup"));	
     win->mlx = mlx;
     win->width = WIN_W;
 	win->height = WIN_H;
-	return (SUCCESS);	
+	return (chk_box(SUCCESS, EQ, SUCCESS, "window setup"));	
 }
 
 void	window_clean(t_window *win)

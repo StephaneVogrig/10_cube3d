@@ -1,28 +1,34 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/04 13:54:43 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/08 03:01:17 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "data.h"
 
-int	file_load(char *path, t_data *data)
+int	file_load(char *path, t_lstmap *lst_map)
 {
 	int			fd;
-	t_lstmap	*lst_map;
 
-	lst_map = NULL;
-	if (chk_box(open_file(&fd, path), EQ, SUCCESS, path) == 1)
-		return (ft_return(ERROR, FAIL, "Error to open file"));
+	if (open_file(&fd, path) == FAIL)
+		return (FAIL);
+	if 
+
+		
 	if (chk_box(file_process(data->mlx, &data->map.textures, &fd), EQ, SUCCESS,
 			"File Processing") == 1)
 		return (ft_return(ERROR, FAIL, "Error to discovery asset"));
+	return (SUCCESS);
+}
+
+int	map_setup(t_lstmap *lst_map, t_map *map)
+{
 	if (chk_box(init_map_process(&data->map, &lst_map, fd), EQ, SUCCESS,
 			"Initialize temporary map") == 1)
 		return (ft_return(ERROR, FAIL, "Error on Initialization Map"));
@@ -35,7 +41,6 @@ int	file_load(char *path, t_data *data)
 	if (chk_box(map_checker(&data->map, &data->player), EQ, SUCCESS,
 			"Check Map") == 1)
 		return (ft_return(ERROR, FAIL, "Map Invalid"));
-	return (SUCCESS);
 }
 
 void	data_init(t_data *data)
@@ -50,18 +55,21 @@ int	mlx_setup(t_data *data)
 	if (data->mlx == NULL)
 		return (ft_return(ERROR, FAIL, "Error on mlx_init"));
 	if (window_setup(&data->win, data->mlx) == FAIL)
-		return (ft_return(ERROR, FAIL, "Error on window_setup"));
+		return (FAIL);
 	if (minimap_setup(data->mlx, &data->minimap, &data->map) == FAIL)
-		return (ft_return(ERROR, FAIL, "Error on minimap_setup"));
+		return (FAIL);
 	textures_set_mlx(&data->map.textures, data->mlx);
-	chk_box(SUCCESS, EQ, SUCCESS, "mlx initialization"); //
-	return (SUCCESS);
+	return (chk_box(SUCCESS, EQ, SUCCESS, "mlx initialization"));
 }
 
 int	data_setup(t_data *data, char *pathname)
 {
-	mlx_setup(data);
-	if (file_load(pathname, data) == FAIL)
+	t_lstmap	*lst_map;
+	
+	data_init(data);
+	if (mlx_setup(data) == FAIL)
+		return (FAIL);
+	if (file_load(pathname, lst_map) == FAIL)
 		return (ft_return(ERROR, FAIL, "Error on file_load"));
 	return (SUCCESS);
 }

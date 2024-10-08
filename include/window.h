@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 12:47:16 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/01 00:01:33 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/08 00:20:04 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,6 +15,7 @@
 
 # include <stddef.h>
 # include <stdio.h>
+# include "libft.h"
 # include "typedef.h"
 # include "mlx.h"
 
