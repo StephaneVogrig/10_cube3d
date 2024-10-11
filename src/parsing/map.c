@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/10/11 02:13:32 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/11 03:47:47 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,34 @@ int	map_setup(void *mlx, t_lstmap **lst_map, t_map *map)
 {
 	if (file_process(mlx, &map->textures, lst_map) == 1)
 		return (ft_return(ERROR, FAIL, "Error to discovery asset"));
-	// if (init_map_process(&data->map, &lst_map, fd) == 1)
-	// 	return (ft_return(ERROR, FAIL, "Error on Initialization Map"));
-	// if (set_var_creation_map(&data->map) == 1)
-	// 	return (ft_return(ERROR, FAIL, "Error on Allocation Map"));
-	// if (map_creation(&data->map, &lst_map) == 1)
-	// 	return (ft_return(ERROR, FAIL, "Error on Map Creation"));
+	if (init_map_process(map, lst_map) == 1)
+		return (ft_return(ERROR, FAIL, "Error on Initialization Map"));
+	if (map_creation(map, lst_map) == 1)
+		return (ft_return(ERROR, FAIL, "Error on Map Creation"));
 	delete_all_lstmap(lst_map);
-	ft_exit(INFO,0,"END OF PROGRAM");
+	print_tab(map->grid);
+	map->grid = ft_tab_f(map->grid);
+	ft_exit(INFO, 0, "END OF PROGRAM");
 	// if (map_checker(&data->map, &data->player) == 1)
 	// return (ft_return(ERROR, FAIL, "Map Invalid"));
 	return (SUCCESS);
 }
 
-int	check_line(t_map *map, char *line)
+int	check_line(char *line)
+{
+	if (line == NULL)
+		return (ERROR);
+	if (is_empty_line(line) == TRUE || is_map_valid(line) == FALSE)
+		return (ft_return(ERROR, ERROR, "Invalid map"));
+	return (SUCCESS);
+}
+
+int	set_map_info(t_map *map, char *line)
 {
 	int				x;
 	int				i;
 	static t_bool	player_valid = FALSE;
 
-	if (line == NULL)
-		return (ERROR);
-	if (is_empty_line(line) == TRUE || is_map_valid(line) == FALSE)
-		return (ft_return(ERROR, ERROR, "Invalid map"));
 	i = 0;
 	while (line[i] != '\0')
 	{
@@ -52,78 +57,51 @@ int	check_line(t_map *map, char *line)
 			player_valid = TRUE;
 		}
 	}
-	x = ft_strlen_endc(line, '\n'); // -1 to remove the '\n' character
+	x = (int)ft_strlen(line);
 	if (x > map->width)
 		map->width = x;
 	map->height++;
 	return (SUCCESS);
 }
 
-int	init_map_process(t_map *map, t_lstmap **lst_map, int fd)
+int	init_map_process(t_map *map, t_lstmap **lst_map)
 {
-	char	*line;
-	t_bool	is_valid;
+	t_lstmap	*tmp;
 
-	is_valid = TRUE;
-	line = get_next_line(fd);
-	while (line != NULL && is_empty_line(line) == TRUE)
-		line = gnl_f(fd, line);
-	while (line != NULL)
+	tmp = *lst_map;
+	while (tmp != NULL && is_empty_line(tmp->line) == TRUE)
+		tmp = tmp->next;
+	while (tmp != NULL)
 	{
-		if (is_valid == TRUE)
+		if (check_line(tmp->line) == SUCCESS)
+			set_map_info(map, tmp->line);
+		else
 		{
-			if (check_line(map, line) == SUCCESS)
-				insert_end_lstmap(lst_map, ft_substr(line, 0,
-						ft_strlen_endc(line, '\n')));
-			else
-				is_valid = FALSE;
+			delete_all_lstmap(lst_map);
+			return (ft_return(ERROR, ERROR, "Map Invalid"));
 		}
-		line = gnl_f(fd, line);
-	}
-	if (is_valid == FALSE)
-		return (ERROR);
-	return (SUCCESS);
-}
-
-int	set_var_creation_map(t_map *map)
-{
-	int	y;
-
-	y = 0;
-	map->grid = ft_calloc(map->height + 1, sizeof(char *));
-	if (map->grid == NULL)
-		return (ERROR);
-	while (y != map->height)
-	{
-		map->grid[y] = ft_calloc(map->width + 1, sizeof(char));
-		if (map->grid[y++] == NULL)
-			return (ERROR);
+		tmp = tmp->next;
 	}
 	return (SUCCESS);
 }
 
 int	map_creation(t_map *map, t_lstmap **lst_map)
 {
-	int			x;
-	int			y;
-	int			i;
+	int	y;
 	t_lstmap	*tmp;
 
 	y = 0;
 	tmp = *lst_map;
+	map->grid = ft_calloc(map->height + 1, sizeof(char *));
+	if (map->grid == NULL)
+		return (ft_return(ERROR, ERROR, "Error on Map Creation"));
 	while (y != map->height)
 	{
-		x = 0;
-		i = 0;
-		while (x != map->width)
+		map->grid[y] = ft_strdup(tmp->line);
+		if (map->grid[y] == NULL)
 		{
-			if (tmp->line[i] != '\0')
-			{
-				map->grid[y][x] = tmp->line[i];
-				i = ++x;
-			}
-			else
-				x++;
+			map->grid = ft_tab_f(map->grid);
+			return (ft_return(ERROR, ERROR, "Error on Map Creation"));
 		}
 		tmp = tmp->next;
 		y++;
