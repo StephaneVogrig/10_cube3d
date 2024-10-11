@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   file_utils.c                                       :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/10/08 00:07:24 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/11 02:34:10 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "file_utils.h"
 
@@ -23,19 +23,19 @@ int	texture_attribution(void *mlx, t_texture *tex, char *path)
 		return (ft_return(ERROR, FAIL, "Texture extension not found"));
 	if (ft_strcmp(extension, ".jpg") == 0)
 	{
-		printf("IMG.JPG");
+		printf("IMG.JPG\n");
 		// tex->img = mlx_jpg_file_to_image(mlx, path, &tex->width,
 		// &tex->height);
 	}
 	else if (ft_strcmp(extension, ".bmp") == 0)
 	{
-		printf("IMG.BMP");
+		printf("IMG.BMP\n");
 		// tex->img = mlx_bmp_file_to_image(mlx, path, &tex->width,
 		// &tex->height);
 	}
 	else if (ft_strcmp(extension, ".png") == 0)
 	{
-		printf("IMG.PNG");
+		printf("IMG.PNG\n");
 		// tex->img = mlx_png_file_to_image(mlx, path, &tex->width,
 		// &tex->height);
 	}

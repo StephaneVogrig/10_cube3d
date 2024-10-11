@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/10/02 14:00:59 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/10/09 02:07:18 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,14 +50,14 @@ SRCS			:= 	main.c \
 					vector.c \
 					window.c \
 					parsing/check_arg.c \
+					parsing/data.c \
 					parsing/file_process.c \
 					parsing/file_utils.c \
-					parsing/data.c \
-					parsing/lstmap_del.c \
+					parsing/flood_fill.c \
 					parsing/lstmap_op.c \
+					parsing/lstmap_del.c \
 					parsing/lstmap_utils.c \
 					parsing/map.c \
-					parsing/flood_fill.c \
 					render/draw_line.c \
 					render/draw_line_to_border.c \
 					render/draw_line_utils.c \

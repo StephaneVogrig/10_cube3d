@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
@@ -6,14 +6,31 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/09/30 21:59:45 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/11 02:13:32 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "file_process.h"
 #include "lst_map.h"
 #include "map.h"
 #include "player.h"
+
+int	map_setup(void *mlx, t_lstmap **lst_map, t_map *map)
+{
+	if (file_process(mlx, &map->textures, lst_map) == 1)
+		return (ft_return(ERROR, FAIL, "Error to discovery asset"));
+	// if (init_map_process(&data->map, &lst_map, fd) == 1)
+	// 	return (ft_return(ERROR, FAIL, "Error on Initialization Map"));
+	// if (set_var_creation_map(&data->map) == 1)
+	// 	return (ft_return(ERROR, FAIL, "Error on Allocation Map"));
+	// if (map_creation(&data->map, &lst_map) == 1)
+	// 	return (ft_return(ERROR, FAIL, "Error on Map Creation"));
+	delete_all_lstmap(lst_map);
+	ft_exit(INFO,0,"END OF PROGRAM");
+	// if (map_checker(&data->map, &data->player) == 1)
+	// return (ft_return(ERROR, FAIL, "Map Invalid"));
+	return (SUCCESS);
+}
 
 int	check_line(t_map *map, char *line)
 {

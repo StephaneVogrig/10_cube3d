@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
@@ -6,22 +6,20 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/08 02:50:55 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/09 23:51:14 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef DATA_H
 # define DATA_H
 
-# include "../include/file_process.h"
+# include "file_process.h"
+# include "libft.h"
+# include "lst_map.h"
 # include "map.h"
 # include "minimap_bonus.h"
 # include "player.h"
-# include "screen.h"
-# include "texture.h"
-# include "vec2i.h"
 # include "window.h"
-# include "flood_fill.h"
 
 typedef unsigned int	t_ui32;
 typedef unsigned char	t_ui8;
@@ -58,5 +56,6 @@ typedef struct s_data
 void					data_init(t_data *data);
 int						data_setup(t_data *data, char *pathname);
 void					data_clean(t_data *data);
+int						file_load(char *path, t_lstmap **lst_map);
 
 #endif
