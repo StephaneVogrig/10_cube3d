@@ -24,17 +24,35 @@
 # define MSG_LSTMAP_ERROR "Error to insert in lst_map"
 # define MSG_GNL_ERROR "Error to read file"
 
-void	title(void);
-void	print_tab(char **tab);
-int		attrib_path(void *mlx, t_textures *tex, char *key, char *value);
-int		file_process(void *mlx, t_textures *tex, t_lstmap **lst_map);
-int		open_file(int *fd, char *file);
-int		close_file(int *fd);
-void	goto_exit(int check, int err, t_state state, char *msg);
-int		setup_value(char *line, char *key, char **value);
-int		setup_key(char *line, char **key);
-int		file_to_lst_map(int fd, t_lstmap **lst_map);
-int		path_seletor(void *mlx, t_textures *textures, char *key,
-			char *img_path);
+typedef unsigned char	t_ui8;
+
+typedef union
+{
+	struct
+	{
+		t_ui8 so : 1;
+		t_ui8 we : 1;
+		t_ui8 ea : 1;
+		t_ui8 no : 1;
+		t_ui8 f : 1;
+		t_ui8 c : 1;
+	};
+	t_ui8				file_ok;
+}						t_file_switch;
+
+void					title(void);
+void					print_tab(char **tab);
+int						attrib_path(void *mlx, t_textures *tex, char *key,
+							char *value);
+int						file_process(void *mlx, t_textures *tex,
+							t_lstmap **lst_map);
+int						open_file(int *fd, char *file);
+int						close_file(int *fd);
+void					goto_exit(int check, int err, t_state state, char *msg);
+int						setup_value(char *line, char *key, char **value);
+int						setup_key(char *line, char **key);
+int						file_to_lst_map(int fd, t_lstmap **lst_map);
+int						path_seletor(void *mlx, t_textures *textures, char *key,
+							char *img_path);
 
 #endif

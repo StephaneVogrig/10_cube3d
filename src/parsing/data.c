@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/11 01:43:05 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/12 03:00:45 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,12 @@ int	data_setup(t_data *data, char *pathname)
 	if (file_load(pathname, &lst_map) == FAIL)
 		return (FAIL);
 	if (map_setup(&data->mlx, &lst_map, &data->map) == FAIL)
+	{
+		delete_all_lstmap(&lst_map);
 		return (FAIL);
+	}
+	if (map_checker(&data->map, &data->player) == 1)
+		return (ft_return(ERROR, FAIL, "Map Invalid"));
 	return (SUCCESS);
 	
 }
@@ -63,6 +68,7 @@ int	data_setup(t_data *data, char *pathname)
 void	data_clean(t_data *data)
 {
 	printf("data_clean\n");
+	data->map.grid = ft_tab_f(data->map.grid);
 	window_clean(&data->win);
 	textures_clean(&data->map.textures, data->mlx);
 	if (data->minimap.screen.img)

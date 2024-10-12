@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/11 02:35:37 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/12 03:02:31 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 		ok = path_seletor(mlx, tex, key, value);
 	ft_close(fd);
 	chk_box(ok, NE, FAIL, value);
-	key = ft_char_f(key);
 	value = ft_char_f(value);
 	if (ok == FAIL)
 		return (FAIL);
@@ -116,26 +115,46 @@ int	get_key_value(char **key, char **value, char *line)
 	return (SUCCESS);
 }
 
+void	file_switch_key(t_file_switch *fs, char *key)
+{
+	if (ft_strcmp(key, "NO") == 0)
+		fs->no = 0;
+	else if (ft_strcmp(key, "SO") == 0)
+		fs->so = 0;
+	else if (ft_strcmp(key, "WE") == 0)
+		fs->we = 0;
+	else if (ft_strcmp(key, "EA") == 0)
+		fs->ea = 0;
+	else if (ft_strcmp(key, "F") == 0)
+		fs->f = 0;
+	else if (ft_strcmp(key, "C") == 0)
+		fs->c = 0;
+}
+
 int	file_process(void *mlx, t_textures *tex, t_lstmap **lst_map)
 {
-	int			sum_of_path;
-	char		*key;
-	char		*value;
-	t_lstmap	*tmp;
+	t_file_switch	fs;
+	char			*key;
+	char			*value;
+	t_lstmap		*tmp;
 
-	sum_of_path = 0;
+	fs.file_ok = 0x3F;
 	key = NULL;
 	value = NULL;
 	tmp = *lst_map;
-	while (tmp != NULL && sum_of_path < 6)
+	while (tmp != NULL)
 	{
+		printf("File Switch: 0x%X\n", fs.file_ok);
 		if (get_key_value(&key, &value, tmp->line) == SUCCESS)
-			if (attrib_path(mlx, tex, key, value) == SUCCESS)
-				sum_of_path++;
+		{
+			attrib_path(mlx, tex, key, value);
+			file_switch_key(&fs, key);
+			key = ft_char_f(key);
+		}
 		tmp = tmp->next;
 		delete_lstmap(lst_map, tmp->prev);
-		if (sum_of_path == 6)
+		if (fs.file_ok == 0)
 			return (SUCCESS);
 	}
-	return (ft_return(ERROR, FAIL, "Error on file"));
+	return (ft_return(ERROR, FAIL, "File Invalid"));
 }

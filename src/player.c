@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/01 11:43:46 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/11 12:40:04 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ int	player_finder(t_map *map, t_player *player)
 	int	y;
 
 	y = 0;
-	x = 0;
 	while (map->grid[++y] != NULL)
 	{
+		x = 0;
 		while (map->grid[y][x] != 0)
 		{
 			if (ft_isthis(map->grid[y][x], "NSWE"))
@@ -121,9 +121,8 @@ int	player_finder(t_map *map, t_player *player)
 			}
 			x++;
 		}
-		x = 0;
 	}
 	if (player->grid.x == 0 && player->grid.y == 0)
-		return (FAIL);
+		return (ft_return(ERROR, FAIL, "No player on map"));
 	return (SUCCESS);
 }
