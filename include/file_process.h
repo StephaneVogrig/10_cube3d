@@ -38,7 +38,7 @@ typedef union
 		t_ui8 c : 1;
 	};
 	t_ui8				file_ok;
-}						t_file_switch;
+}						t_fs;
 
 void					title(void);
 void					print_tab(char **tab);

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/12 03:02:31 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/21 12:31:20 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,24 @@ int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 	return (SUCCESS);
 }
 
-int	get_key_value(char **key, char **value, char *line)
+int	file_switch_checker(t_fs *fs, char **key)
+{
+	if (ft_strcmp(*key, "NO") == 0)
+		return (fs->no);
+	else if (ft_strcmp(*key, "SO") == 0)
+		return (fs->so);
+	else if (ft_strcmp(*key, "WE") == 0)
+		return (fs->we);
+	else if (ft_strcmp(*key, "EA") == 0)
+		return (fs->ea);
+	else if (ft_strcmp(*key, "F") == 0)
+		return (fs->f);
+	else if (ft_strcmp(*key, "C") == 0)
+		return (fs->c);
+	return (FAIL);
+}
+
+int	get_key_value(char **key, char **value, char *line, t_fs *fs)
 {
 	if (line == NULL)
 		return (FAIL);
@@ -107,6 +124,8 @@ int	get_key_value(char **key, char **value, char *line)
 		return (FAIL);
 	if (setup_key(line, key) == FAIL)
 		return (FAIL);
+	if (file_switch_checker(fs, key) == 0)
+		return (FAIL);
 	if (setup_value(line, *key, value) == FAIL)
 		return (FAIL);
 	*value = ft_strtrim_f(*value, " ");
@@ -115,28 +134,28 @@ int	get_key_value(char **key, char **value, char *line)
 	return (SUCCESS);
 }
 
-void	file_switch_key(t_file_switch *fs, char *key)
+void	file_switch_key(t_fs *fs, char **key)
 {
-	if (ft_strcmp(key, "NO") == 0)
+	if (ft_strcmp(*key, "NO") == 0)
 		fs->no = 0;
-	else if (ft_strcmp(key, "SO") == 0)
+	else if (ft_strcmp(*key, "SO") == 0)
 		fs->so = 0;
-	else if (ft_strcmp(key, "WE") == 0)
+	else if (ft_strcmp(*key, "WE") == 0)
 		fs->we = 0;
-	else if (ft_strcmp(key, "EA") == 0)
+	else if (ft_strcmp(*key, "EA") == 0)
 		fs->ea = 0;
-	else if (ft_strcmp(key, "F") == 0)
+	else if (ft_strcmp(*key, "F") == 0)
 		fs->f = 0;
-	else if (ft_strcmp(key, "C") == 0)
+	else if (ft_strcmp(*key, "C") == 0)
 		fs->c = 0;
 }
 
 int	file_process(void *mlx, t_textures *tex, t_lstmap **lst_map)
 {
-	t_file_switch	fs;
-	char			*key;
-	char			*value;
-	t_lstmap		*tmp;
+	t_fs		fs;
+	char		*key;
+	char		*value;
+	t_lstmap	*tmp;
 
 	fs.file_ok = 0x3F;
 	key = NULL;
@@ -144,15 +163,14 @@ int	file_process(void *mlx, t_textures *tex, t_lstmap **lst_map)
 	tmp = *lst_map;
 	while (tmp != NULL)
 	{
-		printf("File Switch: 0x%X\n", fs.file_ok);
-		if (get_key_value(&key, &value, tmp->line) == SUCCESS)
+		if (get_key_value(&key, &value, tmp->line, &fs) == SUCCESS)
 		{
 			attrib_path(mlx, tex, key, value);
-			file_switch_key(&fs, key);
-			key = ft_char_f(key);
+			file_switch_key(&fs, &key);
 		}
-		tmp = tmp->next;
-		delete_lstmap(lst_map, tmp->prev);
+		key = ft_char_f(key);
+		delete_lstmap(lst_map, tmp);
+		tmp = *lst_map;
 		if (fs.file_ok == 0)
 			return (SUCCESS);
 	}
