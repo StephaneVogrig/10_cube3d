@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/10/12 01:49:30 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/22 09:24:42 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int	map_checker(t_map *map, t_player *player)
 {
-	t_bool	ff_ok;
+	static t_bool	ff_ok = TRUE;
 
-	ff_ok = TRUE;
-	
 	if (player_finder(map, player) == -1)
 		return (FAIL);
 	map->grid[player->grid.y][player->grid.x] = '0';
@@ -28,22 +26,23 @@ int	map_checker(t_map *map, t_player *player)
 	return (SUCCESS);
 }
 
-
-
 void	chk_flood_fill(t_map *map, int x, int y, t_bool *ff_ok)
 {
+	// printf("x: %i y: %i\n", x, y);
+	if (ff_ok == FALSE)
+		return ;
+	if (x == 0 || y == 0 || x > map->width + 1 || y > map->height + 1)
+	{
+		ff_ok = FALSE;
+		printf(HRED "x: %i |\ty: %i\t| %c\n" CRESET, x, y, map->grid[y][x]);
+		return ;
+	}
 	if (map->grid[y][x] == 'X' || map->grid[y][x] == '1')
 		return ;
 	if (map->grid[y][x] == ' ')
 	{
 		ff_ok = FALSE;
-		printf("x: %i y: %i\n", x, y);
-		return ;
-	}
-	if (x == 0 || y == 0 || x == map->width || y == map->height)
-	{
-		ff_ok = FALSE;
-		printf("x: %i y: %i\n", x, y);
+		printf(HBLU "x: %i |\ty: %i\t| %c\n" CRESET, x, y, map->grid[y][x]);
 		return ;
 	}
 	map->grid[y][x] = 'X';
@@ -51,4 +50,26 @@ void	chk_flood_fill(t_map *map, int x, int y, t_bool *ff_ok)
 	chk_flood_fill(map, x - 1, y, ff_ok);
 	chk_flood_fill(map, x, y + 1, ff_ok);
 	chk_flood_fill(map, x, y - 1, ff_ok);
+}
+
+void	print_map_highlight_error(t_map *map, int x, int y)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < map->height + 2)
+	{
+		j = 0;
+		while (j < map->width + 2)
+		{
+			if (i == y && j == x)
+				printf(HRED "%c" CRESET, map->grid[i][j]);
+			else
+				printf("%c", map->grid[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }
