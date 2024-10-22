@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/10/11 12:45:02 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/22 16:00:01 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	map_setup(void *mlx, t_lstmap **lst_map, t_map *map)
 		return (FAIL);
 	if (map_creation(map, lst_map) == FAIL)
 		return (FAIL);
-	delete_all_lstmap(lst_map);
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/22 13:03:13 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/22 13:10:58 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	mlx_setup(t_data *data)
 int	data_setup(t_data *data, char *pathname)
 {
 	t_lstmap	*lst_map;
+	int			exit_code;
 
 	lst_map = NULL;
 	data_init(data);
@@ -53,16 +54,11 @@ int	data_setup(t_data *data, char *pathname)
 	// 	return (FAIL);
 	if (file_load(pathname, &lst_map) == FAIL)
 		return (FAIL);
-	int exit_code = map_setup(&data->mlx, &lst_map, &data->map);
-	// if (map_setup(&data->mlx, &lst_map, &data->map) == FAIL)
-	// {
-	// 	delete_all_lstmap(&lst_map);
-	// 	return (FAIL);
-	// }
+	exit_code = map_setup(&data->mlx, &lst_map, &data->map);
 	delete_all_lstmap(&lst_map);
 	if (exit_code == FAIL)
 		return (FAIL);
-	if (map_checker(&data->map, &data->player) == 1)
+	if (map_checker(&data->map, &data->player) == FAIL)
 		return (ft_return(ERROR, FAIL, "Map Invalid"));
 	return (SUCCESS);
 }
