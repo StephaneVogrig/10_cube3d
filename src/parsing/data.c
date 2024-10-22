@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/22 09:27:04 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:03:13 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 int	file_load(char *path, t_lstmap **lst_map)
 {
 	int	fd;
+	int	exit_code;
 
 	if (open_file(&fd, path) == FAIL)
 		return (FAIL);
-	if (file_to_lst_map(fd, lst_map) == FAIL)
-		return (FAIL);
-	if (close_file(&fd) == FAIL)
-		return (FAIL);
-	return (SUCCESS);
+	exit_code = file_to_lst_map(fd, lst_map);
+	exit_code |= close_file(&fd);
+	return (exit_code);
 }
 
 void	data_init(t_data *data)
@@ -50,15 +49,19 @@ int	data_setup(t_data *data, char *pathname)
 
 	lst_map = NULL;
 	data_init(data);
-	if (mlx_setup(data) == FAIL)
-		return (FAIL);
+	// if (mlx_setup(data) == FAIL)
+	// 	return (FAIL);
 	if (file_load(pathname, &lst_map) == FAIL)
 		return (FAIL);
-	if (map_setup(&data->mlx, &lst_map, &data->map) == FAIL)
-	{
-		delete_all_lstmap(&lst_map);
+	int exit_code = map_setup(&data->mlx, &lst_map, &data->map);
+	// if (map_setup(&data->mlx, &lst_map, &data->map) == FAIL)
+	// {
+	// 	delete_all_lstmap(&lst_map);
+	// 	return (FAIL);
+	// }
+	delete_all_lstmap(&lst_map);
+	if (exit_code == FAIL)
 		return (FAIL);
-	}
 	if (map_checker(&data->map, &data->player) == 1)
 		return (ft_return(ERROR, FAIL, "Map Invalid"));
 	return (SUCCESS);
