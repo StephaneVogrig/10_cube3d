@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/10/09 02:07:18 by aska             ###   ########.fr        #
+#    Updated: 2024/10/22 15:46:42 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ MLX					:=	lib/MacroLibx/libmlx.so -lSDL2
 
 DIR_INC			:=	include \
 					lib/libft-plus \
-					lib/MacroLibx/includes
+					lib/MacroLibx/includes \
+					src
 
 I_FLAG			:=	$(addprefix -I,$(DIR_INC)) -MMD -MP
 
