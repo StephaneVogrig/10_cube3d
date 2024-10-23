@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/22 13:10:58 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/23 20:58:13 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void	data_init(t_data *data)
 
 int	mlx_setup(t_data *data)
 {
-	data->mlx = mlx_init();
-	if (data->mlx == NULL)
-		return (ft_return(ERROR, FAIL, "Error on mlx_init"));
 	if (window_setup(&data->win, data->mlx) == FAIL)
 		return (FAIL);
 	if (minimap_setup(data->mlx, &data->minimap, &data->map) == FAIL)
@@ -50,16 +47,19 @@ int	data_setup(t_data *data, char *pathname)
 
 	lst_map = NULL;
 	data_init(data);
-	// if (mlx_setup(data) == FAIL)
-	// 	return (FAIL);
+	data->mlx = mlx_init();
+	if (data->mlx == NULL)
+		return (ft_return(ERROR, FAIL, "Error on mlx_init"));
 	if (file_load(pathname, &lst_map) == FAIL)
 		return (FAIL);
-	exit_code = map_setup(&data->mlx, &lst_map, &data->map);
+	exit_code = map_setup(data->mlx, &lst_map, &data->map);
 	delete_all_lstmap(&lst_map);
 	if (exit_code == FAIL)
 		return (FAIL);
 	if (map_checker(&data->map, &data->player) == FAIL)
 		return (ft_return(ERROR, FAIL, "Map Invalid"));
+	if (mlx_setup(data) == FAIL)
+		return (FAIL);
 	return (SUCCESS);
 }
 

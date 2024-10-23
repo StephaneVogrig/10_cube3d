@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/10/22 15:45:58 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/23 18:03:44 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,22 @@ int	map_checker(t_map *map, t_player *player)
 
 void	chk_flood_fill(t_map *map, int x, int y, t_bool *ff_ok)
 {
-	printf("x: %i y: %i : %c | ", x, y, map->grid[y][x]);
-	if (ff_ok == FALSE)
+	if (*ff_ok == FALSE)
 		return ;
 	if (x < 0 || y < 0 || x >= map->width || y >= map->height)
 	{
-		ff_ok = FALSE;
-		printf("hors limites, ");
-		printf(HRED "x: %i |\ty: %i\t\n" CRESET, x, y);
+		*ff_ok = FALSE;
 		return ;
 	}
 	if (map->grid[y][x] == ' ')
 	{
-		ff_ok = FALSE;
-		printf("espace, ");
-		printf(HBLU "x: %i |\ty: %i\t| %c\n" CRESET, x, y, map->grid[y][x]);
+		*ff_ok = FALSE;
 		return ;
 	}
 	if (map->grid[y][x] == 'X' || map->grid[y][x] == '1')
 	{
-		printf("%c : end\n", map->grid[y][x]);
 		return ;
 	}
-	printf("\n");
 	map->grid[y][x] = 'X';
 	chk_flood_fill(map, x + 1, y, ff_ok);
 	chk_flood_fill(map, x - 1, y, ff_ok);

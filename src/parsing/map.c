@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/10/22 16:00:01 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/23 17:52:51 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "lst_map.h"
 #include "map.h"
 #include "player.h"
+
+#include "debug.h"
 
 int	map_setup(void *mlx, t_lstmap **lst_map, t_map *map)
 {
@@ -58,13 +60,27 @@ int	set_map_info(t_map *map, char *line)
 	return (SUCCESS);
 }
 
+int	is_empty(char *str)
+{
+	while (*str)
+	{
+		if (*str != ' ')
+			return (FALSE);
+		str++;
+	}
+	return (TRUE);
+}
+
 int	init_map_process(t_map *map, t_lstmap **lst_map)
 {
 	t_lstmap	*tmp;
 
 	tmp = *lst_map;
-	while (tmp != NULL && is_empty_line(tmp->line) == TRUE)
-		tmp = tmp->next;
+	while (tmp != NULL && is_empty(tmp->line) == TRUE)
+	{
+		delete_lstmap(lst_map, tmp);
+		tmp = *lst_map;
+	}
 	while (tmp != NULL)
 	{
 		if (check_line(tmp->line) == FAIL)
