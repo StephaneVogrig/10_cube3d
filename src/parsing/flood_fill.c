@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/10/23 18:03:44 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/24 00:38:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	chk_flood_fill(t_map *map, int x, int y, t_bool *ff_ok)
 		*ff_ok = FALSE;
 		return ;
 	}
-	if (map->grid[y][x] == 'X' || map->grid[y][x] == '1')
+	if (map->grid[y][x] == AREA || map->grid[y][x] == WALL)
 	{
 		return ;
 	}
-	map->grid[y][x] = 'X';
+	map->grid[y][x] = AREA;
 	chk_flood_fill(map, x + 1, y, ff_ok);
 	chk_flood_fill(map, x - 1, y, ff_ok);
 	chk_flood_fill(map, x, y + 1, ff_ok);

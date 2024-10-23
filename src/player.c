@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/11 12:40:04 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/24 00:35:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	player_move(t_map map, t_player *player, t_vec2i dir, int rot)
 		player->dir = player->dir + 2 * M_PI;
 	cos_dir = cos(player->dir);
 	sin_dir = sin(player->dir);
-	new_box.x = player->box.x + (dir.x * cos_dir - dir.y * sin_dir)
-		* SPEED_MOVE;
+	new_box.x = player->box.x + (dir.x * cos_dir - dir.y * sin_dir) * SPEED_MOVE;
 	if (new_box.x >= 1)
 	{
 		new_box.x -= 1;
@@ -58,8 +57,7 @@ void	player_move(t_map map, t_player *player, t_vec2i dir, int rot)
 	}
 	else
 		new_grid.x = player->grid.x;
-	new_box.y = player->box.y + (dir.x * sin_dir + dir.y * cos_dir)
-		* SPEED_MOVE;
+	new_box.y = player->box.y + (dir.x * sin_dir + dir.y * cos_dir) * SPEED_MOVE;
 	if (new_box.y >= 1)
 	{
 		new_box.y -= 1;
@@ -72,20 +70,16 @@ void	player_move(t_map map, t_player *player, t_vec2i dir, int rot)
 	}
 	else
 		new_grid.y = player->grid.y;
-	if (map.grid[player->grid.y][new_grid.x] == '0')
+	if (map.grid[player->grid.y][new_grid.x] == AREA)
 	{
 		player->box.x = new_box.x;
 		player->grid.x = new_grid.x;
 	}
-	if (map.grid[new_grid.y][player->grid.x] == '0')
+	if (map.grid[new_grid.y][player->grid.x] == AREA)
 	{
 		player->box.y = new_box.y;
 		player->grid.y = new_grid.y;
 	}
-	// printf("grid x: %i y: %i box x: %f y: %f\n", player->grid.x,
-	// player->grid.y, player->box.x, player->box.y);
-	// collide_border_map(&player->box.x, &player->grid.x, map.width);
-	// collide_border_map(&player->box.y, &player->grid.y, map.height);
 }
 
 void	player_set_dir(t_player *player, char dir)

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/23 19:06:06 by stephane         ###   ########.fr       */
+/*   Updated: 2024/10/24 00:39:56 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "dda.h"
 
@@ -60,7 +60,7 @@ t_dda2	dda(t_vec2d *raydir, t_map *map, t_player *player)
 			ray.hit_pos.grid.y += step.y;
 			raylen.side.y += raylen.unit.y;
 		}
-		if (ray.hit_pos.grid.x < 0 || ray.hit_pos.grid.y < 0 || ray.hit_pos.grid.x >= map->width || ray.hit_pos.grid.y >= map->height || map->grid[ray.hit_pos.grid.y][ray.hit_pos.grid.x] == '1')
+		if (ray.hit_pos.grid.x < 0 || ray.hit_pos.grid.y < 0 || ray.hit_pos.grid.x >= map->width || ray.hit_pos.grid.y >= map->height || map->grid[ray.hit_pos.grid.y][ray.hit_pos.grid.x] == WALL)
 			break;
 	}
 	// ray_compute(&ray, step, raylen, player, raydir);

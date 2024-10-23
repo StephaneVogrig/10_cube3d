@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/28 17:25:51 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/24 00:40:19 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	draw_minimap(t_map *map, t_minimap *minimap)
 		end.x = minimap->scale - 1;
 		while (x < map->width)
 		{
-			if (map->grid[y][x] == '1')
+			if (map->grid[y][x] == WALL)
 				color = 0xFF0FFFfF;
 			else
 				color = 0xFF7F7F7F;
