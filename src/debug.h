@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:42:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/22 15:44:11 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/23 14:49:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 # include "map.h"
 
 void	map_print(t_map *map);
+void	lstmap_print(t_lstmap *lstmap);
 
 #endif

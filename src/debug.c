@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:13:43 by aska              #+#    #+#             */
-/*   Updated: 2024/10/22 15:47:47 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/23 14:48:38 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,18 @@ void    print_tab(char **tab)
 void	map_print(t_map *map)
 {
 	printf("width: %i, height: %i\n", map->width, map->height);
+	printf("-------------------------------------------------------------\n");
 	print_tab(map->grid);
+	printf("-------------------------------------------------------------\n");
+}
+
+void	lstmap_print(t_lstmap *lstmap)
+{
+	while (lstmap)
+	{
+		printf("%s\n", lstmap->line);
+		lstmap = lstmap->next;
+	}
 }
 
 // void    print_t_rgb(t_rgb *rgb)
