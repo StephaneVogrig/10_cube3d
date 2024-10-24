@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/24 00:40:19 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/24 17:05:37 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	render_minimap(t_minimap *minimap, t_map *map, t_player *player)
 void	render(t_data *data)
 {
 	// printf("render\n");
-	render_minimap(&data->minimap, &data->map, &data->player);
+	// render_minimap(&data->minimap, &data->map, &data->player);
 	raycasting(&data->win, &data->minimap, &data->map, &data->player);
-	mlx_put_image_to_window(data->mlx, data->minimap.screen.win,
-		data->minimap.screen.img, 0, 0);
+	// mlx_put_image_to_window(data->mlx, data->minimap.screen.win,
+		// data->minimap.screen.img, 0, 0);
 	fps_print(chrono(STOP));
 }

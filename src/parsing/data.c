@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/24 15:01:59 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:10:39 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void	data_clean(t_data *data)
 {
 	printf("data_clean\n");
 	data->map.grid = ft_tab_f(data->map.grid);
-	window_clean(&data->win);
 	textures_clean(&data->map.textures, data->mlx);
-	if (data->minimap.screen.img)
-		mlx_destroy_image(data->mlx, data->minimap.screen.img);
-	if (data->minimap.screen.win)
-		mlx_destroy_window(data->mlx, data->minimap.screen.win);
+	window_clean(&data->win);
+	// if (data->minimap.screen.img)
+	// 	mlx_destroy_image(data->mlx, data->minimap.screen.img);
+	// if (data->minimap.screen.win)
+	// 	mlx_destroy_window(data->mlx, data->minimap.screen.win);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
 }

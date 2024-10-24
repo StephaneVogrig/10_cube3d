@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/22 18:48:28 by stephane         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:36:02 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "event.h"
 
@@ -169,13 +169,12 @@ int on_mouseup(int button, void *param)
 
 void	event_setup(t_data *data)
 {
-	printf("event_setup\n");
     mlx_on_event(data->mlx, data->win.win, MLX_WINDOW_EVENT, on_win_event, data);
     mlx_on_event(data->mlx, data->win.win, MLX_KEYDOWN, on_keydown, data);
     mlx_on_event(data->mlx, data->win.win, MLX_KEYUP, on_keyup, data);
-    mlx_on_event(data->mlx, data->minimap.screen.win, MLX_WINDOW_EVENT, window_hook, data->mlx);
-    mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYDOWN, on_keydown, data);
-    mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYUP, on_keyup, data);
+    // mlx_on_event(data->mlx, data->minimap.screen.win, MLX_WINDOW_EVENT, window_hook, data->mlx);
+    // mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYDOWN, on_keydown, data);
+    // mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYUP, on_keyup, data);
     mlx_on_event(data->mlx, data->win.win, MLX_MOUSEDOWN, on_mousedown, data);
     mlx_on_event(data->mlx, data->win.win, MLX_MOUSEUP, on_mouseup, data);
 	mlx_loop_hook(data->mlx, on_loop, data);
