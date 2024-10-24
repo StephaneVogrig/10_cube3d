@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/23 20:58:13 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/24 15:01:59 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	mlx_setup(t_data *data)
 {
 	if (window_setup(&data->win, data->mlx) == FAIL)
 		return (FAIL);
-	if (minimap_setup(data->mlx, &data->minimap, &data->map) == FAIL)
-		return (FAIL);
+	// if (minimap_setup(data->mlx, &data->minimap, &data->map) == FAIL) // Makefile
+	// 	return (FAIL);
 	textures_set_mlx(&data->map.textures, data->mlx);
 	return (chk_box(SUCCESS, EQ, SUCCESS, "mlx initialization"));
 }

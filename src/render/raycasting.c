@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/03 13:48:08 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/24 15:03:35 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ void	raycasting(t_window *win, t_minimap *minimap, t_map *map, \
 	double camera;
 	int	i;
 	
+	(void)minimap; // Makefile
 	dir.x = cos(player->dir);
 	dir.y = sin(player->dir);
 	i = 0;
@@ -151,7 +152,7 @@ void	raycasting(t_window *win, t_minimap *minimap, t_map *map, \
 		raydir.y = dir.y + dir.x * camera;
 		ray = dda(&raydir, map, player);
 		draw_column(win, i, &ray, &map->textures);
-		minimap_draw_ray(minimap, player, ray.len, raydir);
+		// minimap_draw_ray(minimap, player, ray.len, raydir); // Makefile
 		i++;
 	}
 }
