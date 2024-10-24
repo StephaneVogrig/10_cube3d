@@ -6,11 +6,12 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/24 13:07:04 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:11:45 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_process.h"
+#include "../debug.h"
 
 int	open_file(int *fd, char *file)
 {
@@ -30,6 +31,20 @@ int	close_file(int *fd)
 	return (SUCCESS);
 }
 
+char *replace_eol_to_nul(char *str)
+{
+	char *tmp;
+
+	tmp = str;
+	while(*str != 0)
+	{
+		if (*str == '\n')
+	    	*str = 0;
+		str++;
+	}
+	return (tmp);
+}
+
 int	file_to_lst_map(int fd, t_lstmap **lst_map)
 {
 	char		*line;
@@ -38,8 +53,7 @@ int	file_to_lst_map(int fd, t_lstmap **lst_map)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		tmp = insert_end_lstmap(lst_map, ft_substr(line, 0, ft_strlen_endc(line,
-						'\n')));
+		tmp = insert_end_lstmap(lst_map, replace_eol_to_nul(line));
 		if (tmp == NULL)
 		{
 			delete_all_lstmap(lst_map);
@@ -47,9 +61,8 @@ int	file_to_lst_map(int fd, t_lstmap **lst_map)
 			chk_box(1, EQ, 0, "Reading File");
 			return (ft_return(ERROR, FAIL, MSG_LSTMAP_ERROR));
 		}
-		line = gnl_f(fd, line);
+		line = get_next_line(fd);
 	}
-	line = ft_char_f(line);
 	chk_box(0, EQ, 0, "Reading File");
 	return (SUCCESS);
 }
@@ -92,7 +105,7 @@ int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 	ok = path_seletor(mlx, tex, key, value);
 	ft_close(fd);
 	chk_box(ok, NE, FAIL, value);
-	value = ft_char_f(value);
+	// value = ft_char_f(value);
 	if (ok == FAIL)
 		return (FAIL);
 	return (SUCCESS);
@@ -115,21 +128,38 @@ int	file_switch_checker(t_fs *fs, char **key)
 	return (FAIL);
 }
 
+int setup_key_value(char **key, char **value, char *line)
+{
+	*key = line;
+	while (*line != 0)
+	{
+		if (*line == ' ')
+		{
+			*line = 0;
+			line++;
+			*value = line;
+			return (SUCCESS);
+		}
+		line++;
+	}
+	return (FAIL);
+}
+
 int	get_key_value(char **key, char **value, char *line, t_fs *fs)
 {
-	if (is_empty_line(line) == TRUE)
+	printf("line: %s\n", line);
+	if (is_empty(line) == TRUE)
 		return (FAIL);
 	if (!ft_isthis(line[0], "NSEWFC"))
 		return (FAIL);
-	if (setup_key(line, key) == FAIL)
+	// if (setup_key(line, key) == FAIL)
+	// 	return (FAIL);
+	if (setup_key_value(key, value, line) == FAIL)
 		return (FAIL);
 	if (file_switch_checker(fs, key) == 0)
 		return (FAIL);
-	if (setup_value(line, *key, value) == FAIL)
-		return (FAIL);
-	*value = ft_strtrim_f(*value, " ");
-	if (*value == NULL)
-		return (FAIL);
+	// if (setup_value(line, *key, value) == FAIL)
+	// 	return (FAIL);
 	return (SUCCESS);
 }
 
@@ -167,7 +197,7 @@ int	file_process(void *mlx, t_textures *tex, t_lstmap **lst_map)
 			attrib_path(mlx, tex, key, value);
 			file_switch_key(&fs, &key);
 		}
-		key = ft_char_f(key);
+		// key = ft_char_f(key);
 		delete_lstmap(lst_map, tmp);
 		tmp = *lst_map;
 		if (fs.file_ok == 0)

@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/10/24 13:04:44 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/24 15:33:52 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,22 @@ int	texture_attribution(void *mlx, t_texture *tex, char *path)
 	if (ft_strcmp(extension, ".jpg") == 0)
 	{
 		printf("IMG.JPG\n");
-		tex->img = mlx_jpg_file_to_image(mlx, path, &tex->width, &tex->height);
+		// tex->img = mlx_jpg_file_to_image(mlx, path, &tex->width, &tex->height);
 	}
 	else if (ft_strcmp(extension, ".bmp") == 0)
 	{
 		printf("IMG.BMP\n");
-		tex->img = mlx_bmp_file_to_image(mlx, path, &tex->width, &tex->height);
+		// tex->img = mlx_bmp_file_to_image(mlx, path, &tex->width, &tex->height);
 	}
 	else if (ft_strcmp(extension, ".png") == 0)
 	{
 		printf("IMG.PNG\n");
-		tex->img = mlx_png_file_to_image(mlx, path, &tex->width, &tex->height);
+		// tex->img = mlx_png_file_to_image(mlx, path, &tex->width, &tex->height);
 	}
 	else
 		(ft_display(ERROR, "Texture extension not supported"));
-	if (tex->img == NULL)
-		return (ft_return(ERROR, FAIL, "Texture attribution failed"));
+	// if (tex->img == NULL)
+	// 	return (ft_return(ERROR, FAIL, "Texture attribution failed"));
 	return (SUCCESS);
 }
 
