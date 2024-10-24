@@ -44,7 +44,7 @@ void					title(void);
 void					print_tab(char **tab);
 int						attrib_path(void *mlx, t_textures *tex, char *key,
 							char *value);
-int						file_process(void *mlx, t_textures *tex,
+int						lstmap_to_textures(void *mlx, t_textures *tex,
 							t_lstmap **lst_map);
 int						open_file(int *fd, char *file);
 int						close_file(int *fd);
