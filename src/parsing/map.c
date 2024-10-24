@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/10/24 13:07:35 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:16:03 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int	map_setup(void *mlx, t_lstmap **lst_map, t_map *map)
 {
-	if (file_process(mlx, &map->textures, lst_map) == FAIL)
+	if (lstmap_to_textures(mlx, &map->textures, lst_map) == FAIL)
 		return (FAIL);
 	if (init_map_process(map, lst_map) == FAIL)
 		return (FAIL);

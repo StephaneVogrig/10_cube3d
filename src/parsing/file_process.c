@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/24 16:11:45 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:16:46 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,25 @@ int	close_file(int *fd)
 	return (SUCCESS);
 }
 
-char *replace_eol_to_nul(char *str)
+void replace_eol_to_nul(char *str)
 {
-	char *tmp;
-
-	tmp = str;
 	while(*str != 0)
 	{
 		if (*str == '\n')
 	    	*str = 0;
 		str++;
 	}
-	return (tmp);
 }
 
 int	file_to_lst_map(int fd, t_lstmap **lst_map)
 {
 	char		*line;
-	t_lstmap	*tmp;
 
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		tmp = insert_end_lstmap(lst_map, replace_eol_to_nul(line));
-		if (tmp == NULL)
+		replace_eol_to_nul(line);
+		if (insert_end_lstmap(lst_map, line) == NULL)
 		{
 			delete_all_lstmap(lst_map);
 			line = ft_char_f(line);
@@ -179,7 +174,7 @@ void	file_switch_key(t_fs *fs, char **key)
 		fs->c = 0;
 }
 
-int	file_process(void *mlx, t_textures *tex, t_lstmap **lst_map)
+int	lstmap_to_textures(void *mlx, t_textures *tex, t_lstmap **lst_map)
 {
 	t_fs		fs;
 	char		*key;
@@ -197,7 +192,6 @@ int	file_process(void *mlx, t_textures *tex, t_lstmap **lst_map)
 			attrib_path(mlx, tex, key, value);
 			file_switch_key(&fs, &key);
 		}
-		// key = ft_char_f(key);
 		delete_lstmap(lst_map, tmp);
 		tmp = *lst_map;
 		if (fs.file_ok == 0)
