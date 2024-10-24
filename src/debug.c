@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:13:43 by aska              #+#    #+#             */
-/*   Updated: 2024/10/23 14:48:38 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/24 17:18:51 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ void    print_tab(char **tab)
         ft_printf("%s\n", tab[i]);
         i++;
     }
+}
+
+void textures_print_ptr(t_textures *textures)
+{
+	printf("north: %p\n", textures->north.img);
+	printf("south: %p\n", textures->south.img);
+	printf("west: %p\n", textures->west.img);
+	printf("east: %p\n", textures->east.img);
 }
 
 void	map_print(t_map *map)
