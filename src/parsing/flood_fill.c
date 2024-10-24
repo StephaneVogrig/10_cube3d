@@ -3,29 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/10/24 00:38:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/24 11:27:31 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "flood_fill.h"
 
-#include "debug.h"
-
 int	map_checker(t_map *map, t_player *player)
 {
-	t_bool	ff_ok = TRUE;
+	t_bool	ff_ok;
 
+	ff_ok = TRUE;
 	if (player_finder(map, player) == -1)
 		return (FAIL);
-	map_print(map);
 	map->grid[player->grid.y][player->grid.x] = '0';
 	chk_flood_fill(map, player->grid.x, player->grid.y, &ff_ok);
 	chk_box(ff_ok, EQ, TRUE, "Valid Map");
 	if (ff_ok == FALSE)
-		return (ft_return(ERROR, FAIL, "Map Invalid"));
+		return (FAIL);
 	return (SUCCESS);
 }
 
