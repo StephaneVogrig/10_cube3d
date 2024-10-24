@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/24 17:36:02 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:16:52 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,6 @@ int	on_win_event(int event, void *param)
 	else if (event == 7)
 		data->win.focused = 0;
 	// printf("on_cub3d_win event: %i overfly: %i focused: %i\n", event, data->win.overfly, data->win.focused);
-	return (SUCCESS);
-}
-
-int window_hook(int event, void* mlx)
-{
-	if(event == 0)
-		mlx_loop_end(mlx);
 	return (SUCCESS);
 }
 
@@ -172,7 +165,6 @@ void	event_setup(t_data *data)
     mlx_on_event(data->mlx, data->win.win, MLX_WINDOW_EVENT, on_win_event, data);
     mlx_on_event(data->mlx, data->win.win, MLX_KEYDOWN, on_keydown, data);
     mlx_on_event(data->mlx, data->win.win, MLX_KEYUP, on_keyup, data);
-    // mlx_on_event(data->mlx, data->minimap.screen.win, MLX_WINDOW_EVENT, window_hook, data->mlx);
     // mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYDOWN, on_keydown, data);
     // mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYUP, on_keyup, data);
     mlx_on_event(data->mlx, data->win.win, MLX_MOUSEDOWN, on_mousedown, data);

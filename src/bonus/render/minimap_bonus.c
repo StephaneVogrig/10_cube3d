@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/08 02:37:56 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/25 01:15:57 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "minimap_bonus.h"
 
@@ -23,6 +23,13 @@ int	minimap_scale(t_map *map, t_minimap *minimap)
 	return (scale.x);
 }
 
+int window_hook(int event, void* mlx)
+{
+	if(event == 0)
+		mlx_loop_end(mlx);
+	return (SUCCESS);
+}
+
 int	minimap_setup(void *mlx, t_minimap *minimap, t_map *map)
 {
 	(void)mlx;
@@ -32,6 +39,7 @@ int	minimap_setup(void *mlx, t_minimap *minimap, t_map *map)
 	if (screen_init(&minimap->screen, mlx, MINIMAP_W, MINIMAP_H) == ERROR)
 		return (FAIL);
 	minimap->scale = minimap_scale(map, minimap);
+    mlx_on_event(mlx, minimap->screen.win, MLX_WINDOW_EVENT, window_hook, mlx);
 	return (chk_box(SUCCESS, EQ, SUCCESS, "Minimap initialization"));
 }
 
