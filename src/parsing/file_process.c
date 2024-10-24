@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/24 18:16:46 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:47:41 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 	ok = path_seletor(mlx, tex, key, value);
 	ft_close(fd);
 	chk_box(ok, NE, FAIL, value);
-	// value = ft_char_f(value);
 	if (ok == FAIL)
 		return (FAIL);
 	return (SUCCESS);
@@ -130,7 +129,7 @@ int setup_key_value(char **key, char **value, char *line)
 	{
 		if (*line == ' ')
 		{
-			*line = 0;
+			*line = '\0';
 			line++;
 			*value = line;
 			return (SUCCESS);
@@ -147,14 +146,10 @@ int	get_key_value(char **key, char **value, char *line, t_fs *fs)
 		return (FAIL);
 	if (!ft_isthis(line[0], "NSEWFC"))
 		return (FAIL);
-	// if (setup_key(line, key) == FAIL)
-	// 	return (FAIL);
 	if (setup_key_value(key, value, line) == FAIL)
 		return (FAIL);
 	if (file_switch_checker(fs, key) == 0)
 		return (FAIL);
-	// if (setup_value(line, *key, value) == FAIL)
-	// 	return (FAIL);
 	return (SUCCESS);
 }
 

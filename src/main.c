@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/10/24 15:32:29 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:48:37 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	main(int argc, char **argv)
 	data_init(&data);
 	if (data_setup(&data, argv[1]) == SUCCESS)
 	{
-		// event_setup(&data);
-		// chrono(START);
-		// render(&data);
-		// mlx_loop(data.mlx);
+		event_setup(&data);
+		chrono(START);
+		render(&data);
+		mlx_loop(data.mlx);
 	}
 	data_clean(&data);
 	return (EXIT_SUCCESS);
