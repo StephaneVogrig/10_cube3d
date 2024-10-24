@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/10/22 09:26:09 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/24 13:04:44 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,17 @@ int	setup_value(char *line, char *key, char **value)
 	if (*value == NULL)
 		return (ft_return(ERROR, FAIL, "Allocating texture path failed"));
 	return (SUCCESS);
+}
+
+int	is_empty(char *str)
+{
+	while (*str)
+	{
+		if (*str != ' ')
+			return (FALSE);
+		str++;
+	}
+	return (TRUE);
 }
 
 int	is_empty_line(char *line)

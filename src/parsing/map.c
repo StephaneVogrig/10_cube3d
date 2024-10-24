@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/10/23 17:52:51 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/24 13:07:35 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "debug.h"
 #include "file_process.h"
 #include "lst_map.h"
 #include "map.h"
 #include "player.h"
-
-#include "debug.h"
 
 int	map_setup(void *mlx, t_lstmap **lst_map, t_map *map)
 {
@@ -58,17 +57,6 @@ int	set_map_info(t_map *map, char *line)
 		map->width = x;
 	map->height++;
 	return (SUCCESS);
-}
-
-int	is_empty(char *str)
-{
-	while (*str)
-	{
-		if (*str != ' ')
-			return (FALSE);
-		str++;
-	}
-	return (TRUE);
 }
 
 int	init_map_process(t_map *map, t_lstmap **lst_map)
