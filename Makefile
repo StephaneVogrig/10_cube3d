@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/10/24 17:40:10 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/10/24 23:43:52 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,7 @@ I_FLAG				:=	$(addprefix -I,$(DIR_INC)) -MMD -MP
 
 SRC_DIR				:=	src
 
-SRCS				:= 	main.c \
-						debug.c \
+SRCS				:= 	debug.c \
 						event.c \
 						pixel.c \
 						player.c \
@@ -60,23 +59,25 @@ SRCS				:= 	main.c \
 						parsing/lstmap_utils.c \
 						parsing/map.c \
 						render/draw_line.c \
-						render/draw_line_to_border.c \
 						render/draw_line_utils.c \
 						render/draw_utils.c \
-						render/render.c \
 						render/raycasting.c \
 						render/dda.c \
 						render/chrono.c \
 						render/screen.c
 
 SRCS_MANDA			:=	$(SRCS) \
+						main.c \
+						render/render.c
 
 SRCS_MANDA			:= $(SRCS_MANDA:%=$(SRC_DIR)/%)
 
 # sources bonus ---------------------------------------------------------------#
 
 SRCS_BONUS 			:=	$(SRCS) \
-						bonus/render/minimap_bonus.c
+						bonus/main_bonus.c \
+						bonus/render/minimap_bonus.c \
+						bonus/render/render_bonus.c
 
 SRCS_BONUS			:= $(SRCS_BONUS:%=$(SRC_DIR)/%)
 
