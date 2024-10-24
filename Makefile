@@ -6,7 +6,7 @@
 #    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/10/24 14:57:00 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/10/24 17:40:10 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,9 +108,6 @@ bonus: libft libmlx init
 	@echo -e "\t$(BLINK_GREEN)$(NAME_BONUS) = COMPILATION FINISHED !$(NC)"
 	@echo -e "$(BOLD)$(NAME_BONUS)$(NC) is located in $(BOLD)$(shell find . -iname "$(NAME_BONUS)")$(NC) !\n"
 
-makeall: $(NAME)
-makebonus : $(NAME_BONUS)
-
 clean: libclean
 	@rm -fr $(OBJ_DIR) && printf "Cleaning : $(OBJ_DIR)\n"
 
@@ -125,7 +122,7 @@ libft:
 	@$(MAKE) -j -C $(LIB_DIR)libft-plus --no-print-directory
 
 re: fclean
-	@$(MAKE) -j makeall
+	@$(MAKE) all
 
 recub:
 	@rm -f $(NAME) && printf "Cleaning: $(NAME) \n"
@@ -152,6 +149,8 @@ init:
 	@echo -e "\t\t$(BHYEL)┕━»•» 🌸 «•«━━━━━━┙$(NC)"
 	@echo -e ""
 
+makeall: $(NAME)
+makebonus : $(NAME_BONUS)
 
 #------------------------------------------------------------------------------#
 # compilation                                                                  #
