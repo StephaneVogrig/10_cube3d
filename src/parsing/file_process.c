@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/21 12:31:20 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/24 13:07:04 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,14 @@ int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 	int	fd;
 
 	ok = SUCCESS;
-	fd = ft_open(value, O_RDONLY);
 	if (key[0] == 'C')
 		ok = attrib_rgb(&tex->ceil_rgb, value);
 	else if (key[0] == 'F')
 		ok = attrib_rgb(&tex->floor_rgb, value);
-	else if (fd != FAIL)
-		ok = path_seletor(mlx, tex, key, value);
+	fd = ft_open(value, O_RDONLY);
+	if (fd == FAIL)
+		return (FAIL);
+	ok = path_seletor(mlx, tex, key, value);
 	ft_close(fd);
 	chk_box(ok, NE, FAIL, value);
 	value = ft_char_f(value);
@@ -116,8 +117,6 @@ int	file_switch_checker(t_fs *fs, char **key)
 
 int	get_key_value(char **key, char **value, char *line, t_fs *fs)
 {
-	if (line == NULL)
-		return (FAIL);
 	if (is_empty_line(line) == TRUE)
 		return (FAIL);
 	if (!ft_isthis(line[0], "NSEWFC"))
