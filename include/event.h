@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/17 22:39:52 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/25 17:20:08 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,13 @@
 # define KEY_T 23
 # define KEY_LEFT 80
 # define KEY_RIGHT 79
-// # define KEY_ARROW_UP 65362
-// # define KEY_ARROW_DOWN 65364
-// # define KEY_PGUP 65365
-// # define KEY_PGDOWN 65366
-// # define KEY_SPACE 32
 
-// # define KEY_F1 65470
-// # define KEY_F2 65471
-// # define KEY_F3 65472
-// # define KEY_F4 65473
-// # define KEY_F5 65474
-// # define KEY_F6 65475
-// # define KEY_F7 65476
-
-// # define NUMPAD_KEY_4 65430
-// # define NUMPAD_KEY_8 65431
-// # define NUMPAD_KEY_6 65432
-// # define NUMPAD_KEY_2 65433
-// # define NUMPAD_KEY_5 65437
-// # define NUMPAD_KEY_MORE 65451
-// # define NUMPAD_KEY_MINUS 65453
-// # define NUMPAD_KEY_ENTER 65421
-// # define NUMPAD_KEY_SLASH 65455
-
+# define ON_DEMAND_CLOSE	0
+# define ON_MOVE_WINDOW		1
+# define ON_FLYOVER_START	4
+# define ON_FLYOVER_END		6
+# define ON_FOCUS_GAIN		5
+# define ON_FOCUS_LOSS		7
 
 void	event_setup(t_data *data);
 

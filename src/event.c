@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/25 01:16:52 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/25 17:15:42 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,17 @@ int	mouse_hook(int button, void *param)
 	return (SUCCESS);
 }
 
-/*
-	event code :
-	0 = on demand close
-	1 = on move window
-	4 = on flyover start
-	6 = on flyover end
-	5 = on focus gain
-	7 = on focus loss
-*/
 int	on_win_event(int event, void *param)
 {
-	t_data *data;
+	t_window *window;
 
-	data = (t_data *)param;
-	if (event == 0)
-		mlx_loop_end(data->mlx);
-	else if (event == 5)
-		data->win.focused = 1;
-	else if (event == 7)
-		data->win.focused = 0;
-	// printf("on_cub3d_win event: %i overfly: %i focused: %i\n", event, data->win.overfly, data->win.focused);
+	window = (t_window *)param;
+	if (event == ON_DEMAND_CLOSE)
+		mlx_loop_end(window->mlx);
+	else if (event == ON_FOCUS_GAIN)
+		window->focused = 1;
+	else if (event == ON_FOCUS_LOSS)
+		window->focused = 0;
 	return (SUCCESS);
 }
 
@@ -162,7 +152,7 @@ int on_mouseup(int button, void *param)
 
 void	event_setup(t_data *data)
 {
-    mlx_on_event(data->mlx, data->win.win, MLX_WINDOW_EVENT, on_win_event, data);
+    mlx_on_event(data->mlx, data->win.win, MLX_WINDOW_EVENT, on_win_event, &data->win);
     mlx_on_event(data->mlx, data->win.win, MLX_KEYDOWN, on_keydown, data);
     mlx_on_event(data->mlx, data->win.win, MLX_KEYUP, on_keyup, data);
     // mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYDOWN, on_keydown, data);
