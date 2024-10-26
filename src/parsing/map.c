@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/10/26 14:08:08 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/26 14:30:17 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	map_setup(void *mlx, t_lstmap **lst_map, t_map *map)
 {
 	if (lstmap_to_textures(mlx, &map->textures, lst_map) == FAIL)
 		return (FAIL);
-	if (init_map_process(map, lst_map) == FAIL)
+	if (lstmap_to_grid(map, lst_map) == FAIL)
 		return (FAIL);
 	if (map_creation(map, lst_map) == FAIL)
 		return (FAIL);
@@ -59,7 +59,7 @@ int	set_map_info(t_map *map, char *line)
 	return (SUCCESS);
 }
 
-int	init_map_process(t_map *map, t_lstmap **lst_map)
+int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 {
 	t_lstmap	*tmp;
 
