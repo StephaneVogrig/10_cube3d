@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/10/24 18:16:03 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/26 14:08:08 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	init_map_process(t_map *map, t_lstmap **lst_map)
 	tmp = *lst_map;
 	while (tmp != NULL && is_empty(tmp->line) == TRUE)
 	{
-		delete_lstmap(lst_map, tmp);
+		delete_node_lstmap(lst_map, tmp);
 		tmp = *lst_map;
 	}
 	while (tmp != NULL)

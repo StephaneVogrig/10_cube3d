@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/10/24 23:43:52 by svogrig          ###   ########.fr        #
+#    Updated: 2024/10/26 14:10:35 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,8 +54,7 @@ SRCS				:= 	debug.c \
 						parsing/file_process.c \
 						parsing/file_utils.c \
 						parsing/flood_fill.c \
-						parsing/lstmap_op.c \
-						parsing/lstmap_del.c \
+						parsing/lstmap.c \
 						parsing/lstmap_utils.c \
 						parsing/map.c \
 						render/draw_line.c \
