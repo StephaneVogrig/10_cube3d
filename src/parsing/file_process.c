@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/26 16:18:03 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/26 17:35:24 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ int	lstmap_to_textures(void *mlx, t_textures *tex, t_lstmap **lst_map)
 			attrib_path(mlx, tex, key, value);
 			file_switch_key(&fs, &key);
 		}
+		tmp->line = ft_char_f(tmp->line);
 		delete_node_lstmap(lst_map, tmp);
 		tmp = *lst_map;
 		if (fs.file_ok == 0)

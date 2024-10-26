@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/26 16:35:45 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/26 17:07:40 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int	data_setup(t_data *data, char *pathname)
 
 	lst_map = NULL;
 	data_init(data);
-	data->mlx = mlx_init();
-	if (data->mlx == NULL)
-		return (ft_return(ERROR, FAIL, "Error on mlx_init"));
+	// data->mlx = mlx_init();
+	// if (data->mlx == NULL)
+	// 	return (ft_return(ERROR, FAIL, "Error on mlx_init"));
 	if (file_load(pathname, &lst_map) == FAIL)
 		return (FAIL);
 	exit_code = lstmap_extraction_info(data->mlx, &lst_map, &data->map);
@@ -56,8 +56,8 @@ int	data_setup(t_data *data, char *pathname)
 		return (FAIL);
 	if (map_checker(&data->map, &data->player) == FAIL)
 		return (ft_return(ERROR, FAIL, "Map Invalid"));
-	if (mlx_setup(data) == FAIL)
-		return (FAIL);
+	// if (mlx_setup(data) == FAIL)
+	// 	return (FAIL);
 	return (SUCCESS);
 }
 
