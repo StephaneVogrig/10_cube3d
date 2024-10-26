@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/26 14:08:08 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/26 16:18:03 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,31 +122,13 @@ int	file_switch_checker(t_fs *fs, char **key)
 	return (FAIL);
 }
 
-int	setup_key_value(char **key, char **value, char *line)
-{
-	*key = line;
-	while (*line != 0)
-	{
-		if (*line == ' ')
-		{
-			*line = '\0';
-			line++;
-			*value = line;
-			return (SUCCESS);
-		}
-		line++;
-	}
-	return (FAIL);
-}
-
 int	get_key_value(char **key, char **value, char *line, t_fs *fs)
 {
-	printf("line: %s\n", line);
 	if (is_empty(line) == TRUE)
 		return (FAIL);
 	if (!ft_isthis(line[0], "NSEWFC"))
 		return (FAIL);
-	if (setup_key_value(key, value, line) == FAIL)
+	if (setup_key_value(key, value, line, ' ') == FAIL)
 		return (FAIL);
 	if (file_switch_checker(fs, key) == 0)
 		return (FAIL);
