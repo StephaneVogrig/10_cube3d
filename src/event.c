@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/25 17:15:42 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/26 02:20:44 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ int	on_keydown(int key, void *param)
 	t_data *data;
 	
 	data = (t_data *)param;
-	if (key == KEY_W)
+
+	if (key == KEY_ESC)
+		data->key.esc = DOWN;
+	else if (key == KEY_W)
 		data->key.w = DOWN;
 	else if (key == KEY_A)
 		data->key.a = DOWN;
@@ -72,9 +75,7 @@ int	on_keyup(int key, void *param)
 	t_data *data;
 	
 	data = (t_data *)param;
-	if (key == KEY_ESC)
-		mlx_loop_end(data->mlx);
-	else if (key == KEY_W)
+	if (key == KEY_W)
 		data->key.w = UP;
 	else if (key == KEY_A)
 		data->key.a = UP;
@@ -102,6 +103,8 @@ int	on_loop(void *param)
 	
 	chrono(START);
 	data = (t_data *)param;
+	if (data->key.esc == DOWN)
+		mlx_loop_end(data->mlx);
 	render_needed = FALSE;
 	if (data->win.focused && data->mouse_mode)
 	{
@@ -152,12 +155,12 @@ int on_mouseup(int button, void *param)
 
 void	event_setup(t_data *data)
 {
-    mlx_on_event(data->mlx, data->win.win, MLX_WINDOW_EVENT, on_win_event, &data->win);
-    mlx_on_event(data->mlx, data->win.win, MLX_KEYDOWN, on_keydown, data);
-    mlx_on_event(data->mlx, data->win.win, MLX_KEYUP, on_keyup, data);
-    // mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYDOWN, on_keydown, data);
-    // mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYUP, on_keyup, data);
-    mlx_on_event(data->mlx, data->win.win, MLX_MOUSEDOWN, on_mousedown, data);
-    mlx_on_event(data->mlx, data->win.win, MLX_MOUSEUP, on_mouseup, data);
+	mlx_on_event(data->mlx, data->win.win, MLX_WINDOW_EVENT, on_win_event, &data->win);
+	mlx_on_event(data->mlx, data->win.win, MLX_KEYDOWN, on_keydown, data);
+	mlx_on_event(data->mlx, data->win.win, MLX_KEYUP, on_keyup, data);
+	// mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYDOWN, on_keydown, data);
+	// mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYUP, on_keyup, data);
+	mlx_on_event(data->mlx, data->win.win, MLX_MOUSEDOWN, on_mousedown, data);
+	mlx_on_event(data->mlx, data->win.win, MLX_MOUSEUP, on_mouseup, data);
 	mlx_loop_hook(data->mlx, on_loop, data);
 }
