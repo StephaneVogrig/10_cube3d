@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/10/26 17:12:44 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/26 18:07:43 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	texture_attribution(void *mlx, t_texture *tex, char *path)
 
 	(void)tex;
 	(void)mlx;
-	return (SUCCESS); // DEBUG
 	extension = ft_strrchr(path, '.');
 	if (extension == NULL)
 		return (ft_return(ERROR, FAIL, "Texture extension not found"));
