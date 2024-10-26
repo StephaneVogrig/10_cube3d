@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   setup_key_value.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 15:42:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/26 16:39:28 by aska             ###   ########.fr       */
+/*   Created: 2024/10/26 16:05:15 by aska              #+#    #+#             */
+/*   Updated: 2024/10/26 16:16:36 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#include "../libft.h"
 
-# include "file_process.h"
-# include "map.h"
-
-void	map_print(t_map *map);
-void	lstmap_print(t_lstmap *lstmap);
-void	textures_print_ptr(t_textures *textures);
-
-#endif
+int	setup_key_value(char **key, char **value, char *line, char separator)
+{
+	*key = line;
+	while (*line != 0)
+	{
+		if (*line == separator)
+		{
+			*line = '\0';
+			line++;
+			*value = line;
+			return (0);
+		}
+		line++;
+	}
+	return (-1);
+}

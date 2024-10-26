@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   file_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/24 18:47:41 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/26 17:35:24 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file_process.h"
 #include "../debug.h"
+#include "file_process.h"
 
 int	open_file(int *fd, char *file)
 {
@@ -31,19 +31,19 @@ int	close_file(int *fd)
 	return (SUCCESS);
 }
 
-void replace_eol_to_nul(char *str)
+void	replace_eol_to_nul(char *str)
 {
-	while(*str != 0)
+	while (*str != 0)
 	{
 		if (*str == '\n')
-	    	*str = 0;
+			*str = 0;
 		str++;
 	}
 }
 
 int	file_to_lst_map(int fd, t_lstmap **lst_map)
 {
-	char		*line;
+	char	*line;
 
 	line = get_next_line(fd);
 	while (line != NULL)
@@ -122,31 +122,13 @@ int	file_switch_checker(t_fs *fs, char **key)
 	return (FAIL);
 }
 
-int setup_key_value(char **key, char **value, char *line)
-{
-	*key = line;
-	while (*line != 0)
-	{
-		if (*line == ' ')
-		{
-			*line = '\0';
-			line++;
-			*value = line;
-			return (SUCCESS);
-		}
-		line++;
-	}
-	return (FAIL);
-}
-
 int	get_key_value(char **key, char **value, char *line, t_fs *fs)
 {
-	printf("line: %s\n", line);
 	if (is_empty(line) == TRUE)
 		return (FAIL);
 	if (!ft_isthis(line[0], "NSEWFC"))
 		return (FAIL);
-	if (setup_key_value(key, value, line) == FAIL)
+	if (setup_key_value(key, value, line, ' ') == FAIL)
 		return (FAIL);
 	if (file_switch_checker(fs, key) == 0)
 		return (FAIL);
@@ -187,7 +169,8 @@ int	lstmap_to_textures(void *mlx, t_textures *tex, t_lstmap **lst_map)
 			attrib_path(mlx, tex, key, value);
 			file_switch_key(&fs, &key);
 		}
-		delete_lstmap(lst_map, tmp);
+		tmp->line = ft_char_f(tmp->line);
+		delete_node_lstmap(lst_map, tmp);
 		tmp = *lst_map;
 		if (fs.file_ok == 0)
 			return (SUCCESS);

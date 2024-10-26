@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/10/24 23:43:52 by svogrig          ###   ########.fr        #
+#    Updated: 2024/10/26 17:32:33 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,8 +54,7 @@ SRCS				:= 	debug.c \
 						parsing/file_process.c \
 						parsing/file_utils.c \
 						parsing/flood_fill.c \
-						parsing/lstmap_op.c \
-						parsing/lstmap_del.c \
+						parsing/lstmap.c \
 						parsing/lstmap_utils.c \
 						parsing/map.c \
 						render/draw_line.c \
@@ -66,18 +65,30 @@ SRCS				:= 	debug.c \
 						render/chrono.c \
 						render/screen.c
 
-SRCS_MANDA			:=	$(SRCS) \
-						main.c \
-						render/render.c
+# sources madatory only -------------------------------------------------------#
 
-SRCS_MANDA			:= $(SRCS_MANDA:%=$(SRC_DIR)/%)
+SRC_MAND_DIR		:=	mandatory
+
+SRCS_MANDA			:=	main_manda.c \
+						render/render_manda.c
+						
+SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_MAND_DIR)/%)
+
+SRCS_MANDA			:=	$(SRCS) $(SRCS_MANDA)
+
+SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_DIR)/%)
 
 # sources bonus ---------------------------------------------------------------#
 
-SRCS_BONUS 			:=	$(SRCS) \
-						bonus/main_bonus.c \
-						bonus/render/minimap_bonus.c \
-						bonus/render/render_bonus.c
+SRC_BONUS_DIR		:=	bonus
+
+SRCS_BONUS 			:=	main_bonus.c \
+						render/render_bonus.c \
+						render/minimap_bonus.c
+
+SRCS_BONUS			:=	$(SRCS_BONUS:%=$(SRC_BONUS_DIR)/%)
+
+SRCS_BONUS			:=	$(SRCS) $(SRCS_BONUS)
 
 SRCS_BONUS			:= $(SRCS_BONUS:%=$(SRC_DIR)/%)
 

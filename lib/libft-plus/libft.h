@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:09:49 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/09/29 11:46:25 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/26 16:17:07 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -168,6 +168,9 @@ typedef struct s_alphanode
 	struct s_alphanode	*prev;
 	struct s_alphanode	*next;
 }						t_alphanode;
+
+int						setup_key_value(char **key, char **value, char *line,
+							char separator);
 
 int						ft_atoi(const char *str);
 
@@ -481,7 +484,7 @@ int						chk_box_eq(int test, int if_valid, char *check_msg,
 
 int						ft_open(char *pathname, int flag);
 int						ft_close(int fd);
-char	*gnl_f(int fd, char *line);
+char					*gnl_f(int fd, char *line);
 
 /**
  * @brief Counts the number of words in a string.
