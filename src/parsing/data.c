@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/24 23:36:10 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/26 16:35:45 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	data_setup(t_data *data, char *pathname)
 		return (ft_return(ERROR, FAIL, "Error on mlx_init"));
 	if (file_load(pathname, &lst_map) == FAIL)
 		return (FAIL);
-	exit_code = map_setup(data->mlx, &lst_map, &data->map);
+	exit_code = lstmap_extraction_info(data->mlx, &lst_map, &data->map);
 	delete_all_lstmap(&lst_map);
 	if (exit_code == FAIL)
 		return (FAIL);
