@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/27 15:12:32 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/27 15:17:50 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	attrib_path(t_textures *tex, char *key, char *value, char *root_path)
 	else
 	{
 		if (root_path != NULL)
-			value = ft_strjoin(root_path, value);
+			value = ft_strjoin(root_path, value); // take a time to create a ft_strcat for no malloc
 		fd = ft_open(value, O_RDONLY);
 		if (fd == FAIL)
 			return (FAIL);
