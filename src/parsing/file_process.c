@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/26 17:35:24 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/27 11:50:50 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	attrib_rgb(t_rgb *rgb, char *value)
 	return (ok);
 }
 
-int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
+int	attrib_path(t_textures *tex, char *key, char *value)
 {
 	int	ok;
 	int	fd;
@@ -97,7 +97,7 @@ int	attrib_path(void *mlx, t_textures *tex, char *key, char *value)
 	fd = ft_open(value, O_RDONLY);
 	if (fd == FAIL)
 		return (FAIL);
-	ok = path_seletor(mlx, tex, key, value);
+	ok = texture_selector(tex, key, value);
 	ft_close(fd);
 	chk_box(ok, NE, FAIL, value);
 	if (ok == FAIL)
@@ -151,7 +151,7 @@ void	file_switch_key(t_fs *fs, char **key)
 		fs->c = 0;
 }
 
-int	lstmap_to_textures(void *mlx, t_textures *tex, t_lstmap **lst_map)
+int	lstmap_to_textures(t_textures *tex, t_lstmap **lst_map)
 {
 	t_fs		fs;
 	char		*key;
@@ -166,7 +166,7 @@ int	lstmap_to_textures(void *mlx, t_textures *tex, t_lstmap **lst_map)
 	{
 		if (get_key_value(&key, &value, tmp->line, &fs) == SUCCESS)
 		{
-			attrib_path(mlx, tex, key, value);
+			attrib_path(tex, key, value);
 			file_switch_key(&fs, &key);
 		}
 		tmp->line = ft_char_f(tmp->line);

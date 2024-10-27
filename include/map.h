@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:31:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/26 16:41:52 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/27 11:54:38 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ typedef struct s_map
 	t_textures	textures;
 }				t_map;
 
-int				lstmap_extraction_info(void *mlx, t_lstmap **lst_map,
-					t_map *map);
+int				lstmap_extraction_info(t_lstmap **lst_map, t_map *map);
 int				lstmap_to_grid(t_map *map, t_lstmap **lst_map);
 int				map_creation(t_map *map_t, t_lstmap **lst_map);
 int				set_var_creation_map(t_map *map_t);

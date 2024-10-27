@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 19:12:00 by stephane          #+#    #+#             */
-/*   Updated: 2024/10/03 10:08:53 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/27 11:52:41 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,39 @@ void	textures_clean(t_textures *t, void *mlx)
 		mlx_destroy_image(mlx, t->east.img);
 	if (t->west.img)
 		mlx_destroy_image(mlx, t->west.img);
+}
+
+int	texture_attribution(t_texture *t, char *path)
+{
+	char	*extension;
+
+	(void)t;
+	extension = ft_strrchr(path, '.');
+	if (extension == NULL)
+		return (ft_return(ERROR, FAIL, "Texture extension not found"));
+	if (ft_strcmp(extension, ".jpg") == 0)
+		t->img = mlx_jpg_file_to_image(t->mlx, path, &t->width, &t->height);
+	else if (ft_strcmp(extension, ".bmp") == 0)
+		t->img = mlx_bmp_file_to_image(t->mlx, path, &t->width, &t->height);
+	else if (ft_strcmp(extension, ".png") == 0)
+		t->img = mlx_png_file_to_image(t->mlx, path, &t->width, &t->height);
+	else
+		(ft_display(ERROR, "Texture extension not supported"));
+	if (t->img == NULL)
+		return (ft_return(ERROR, FAIL, "Texture attribution failed"));
+	return (SUCCESS);
+}
+
+int	texture_selector(t_textures *textures, char *key, char *img_path)
+{
+	if (ft_strncmp(key, "NO", 2) == 0)
+		return (texture_attribution(&textures->north, img_path));
+	else if (ft_strncmp(key, "SO", 2) == 0)
+		return (texture_attribution(&textures->south, img_path));
+	else if (ft_strncmp(key, "WE", 2) == 0)
+		return (texture_attribution(&textures->west, img_path));
+	else if (ft_strncmp(key, "EA", 2) == 0)
+		return (texture_attribution(&textures->east, img_path));
+	else
+		return (SUCCESS);
 }

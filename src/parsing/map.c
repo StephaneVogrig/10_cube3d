@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/10/26 17:36:45 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/27 11:49:19 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "map.h"
 #include "player.h"
 
-int	lstmap_extraction_info(void *mlx, t_lstmap **lst_map, t_map *map)
+int	lstmap_extraction_info(t_lstmap **lst_map, t_map *map)
 {
-	if (lstmap_to_textures(mlx, &map->textures, lst_map) == FAIL)
+	if (lstmap_to_textures(&map->textures, lst_map) == FAIL)
 		return (FAIL);
 	if (lstmap_to_grid(map, lst_map) == FAIL)
 		return (FAIL);

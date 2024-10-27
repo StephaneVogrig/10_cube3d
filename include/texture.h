@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   texture.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 19:11:26 by stephane          #+#    #+#             */
-/*   Updated: 2024/10/03 10:09:00 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/27 11:53:14 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEXTURE_H
 # define TEXTURE_H
 
+# include "libft.h"
 # include "mlx.h"
 # include "stdio.h"
 # include "typedef.h"
@@ -36,7 +37,10 @@ typedef struct s_textures
 	t_rgb		ceil_rgb;
 }				t_textures;
 
-void	textures_set_mlx(t_textures *t, void *mlx);
-void	textures_clean(t_textures *t, void *mlx);
+void			textures_set_mlx(t_textures *t, void *mlx);
+void			textures_clean(t_textures *t, void *mlx);
+int				texture_attribution(t_texture *t, char *path);
+int				texture_selector(t_textures *textures, char *key,
+					char *img_path);
 
 #endif
