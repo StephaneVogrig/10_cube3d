@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/27 11:49:06 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/27 12:06:40 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	data_setup(t_data *data, char *pathname)
 		return (FAIL);
 	if (file_load(pathname, &lst_map) == FAIL)
 		return (FAIL);
-	exit_code = lstmap_extraction_info(&lst_map, &data->map);
+	exit_code = lstmap_extraction_info(&lst_map, &data->map, pathname);
 	delete_all_lstmap(&lst_map);
 	if (exit_code == FAIL)
 		return (FAIL);

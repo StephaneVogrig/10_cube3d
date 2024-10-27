@@ -42,8 +42,10 @@ typedef union
 
 void					title(void);
 void					print_tab(char **tab);
-int						attrib_path(t_textures *tex, char *key, char *value);
-int						lstmap_to_textures(t_textures *tex, t_lstmap **lst_map);
+int						attrib_path(t_textures *tex, char *key, char *value,
+							char *root_path);
+int						lstmap_to_textures(t_textures *tex, t_lstmap **lst_map,
+							char *root_path);
 int						open_file(int *fd, char *file);
 int						close_file(int *fd);
 void					goto_exit(int check, int err, t_state state, char *msg);

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/10/27 11:49:19 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/27 13:44:18 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,22 @@
 #include "map.h"
 #include "player.h"
 
-int	lstmap_extraction_info(t_lstmap **lst_map, t_map *map)
+char	*get_root_path(char *path)
 {
-	if (lstmap_to_textures(&map->textures, lst_map) == FAIL)
+	char	*root_path;
+
+	root_path = ft_strrchr(path, '/');
+	if (root_path == NULL)
+		return (NULL);
+	return (ft_substr(path, 0, root_path - path + 1));
+}
+
+int	lstmap_extraction_info(t_lstmap **lst_map, t_map *map, char *path)
+{
+	char	*root_path;
+
+	root_path = get_root_path(path);
+	if (lstmap_to_textures(&map->textures, lst_map, root_path) == FAIL)
 		return (FAIL);
 	if (lstmap_to_grid(map, lst_map) == FAIL)
 		return (FAIL);
