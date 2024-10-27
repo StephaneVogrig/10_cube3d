@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/27 14:05:12 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/27 15:12:32 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,16 @@ int	attrib_path(t_textures *tex, char *key, char *value, char *root_path)
 		ok = attrib_rgb(&tex->ceil_rgb, value);
 	else if (key[0] == 'F')
 		ok = attrib_rgb(&tex->floor_rgb, value);
-	if (root_path != NULL)
-		value = ft_strjoin(root_path, value);
-	fd = ft_open(value, O_RDONLY);
-	if (fd == FAIL)
-		return (FAIL);
-	ok = texture_selector(tex, key, value);
-	ft_close(fd);
+	else
+	{
+		if (root_path != NULL)
+			value = ft_strjoin(root_path, value);
+		fd = ft_open(value, O_RDONLY);
+		if (fd == FAIL)
+			return (FAIL);
+		ok = texture_selector(tex, key, value);
+		ft_close(fd);
+	}
 	chk_box(ok, NE, FAIL, value);
 	if (ok == FAIL)
 		return (FAIL);
@@ -177,5 +180,5 @@ int	lstmap_to_textures(t_textures *tex, t_lstmap **lst_map, char *root_path)
 		if (fs.file_ok == 0)
 			return (SUCCESS);
 	}
-	return (ft_return(ERROR, FAIL, "File Invalid"));
+	return (ft_return(ERROR, FAIL, "File Invalid 1"));
 }
