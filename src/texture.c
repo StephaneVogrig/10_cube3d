@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 19:12:00 by stephane          #+#    #+#             */
-/*   Updated: 2024/10/27 11:52:41 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/30 00:13:39 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	texture_attribution(t_texture *t, char *path)
 	extension = ft_strrchr(path, '.');
 	if (extension == NULL)
 		return (ft_return(ERROR, FAIL, "Texture extension not found"));
-	if (ft_strcmp(extension, ".jpg") == 0)
+	if (ft_strcmp(extension, ".jpg") == 0 || ft_strcmp(extension, ".jpeg") == 0)
 		t->img = mlx_jpg_file_to_image(t->mlx, path, &t->width, &t->height);
 	else if (ft_strcmp(extension, ".bmp") == 0)
 		t->img = mlx_bmp_file_to_image(t->mlx, path, &t->width, &t->height);
