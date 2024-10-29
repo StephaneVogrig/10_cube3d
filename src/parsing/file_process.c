@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/27 15:17:50 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/30 00:20:25 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	attrib_path(t_textures *tex, char *key, char *value, char *root_path)
 	int	ok;
 	int	fd;
 
+
 	ok = SUCCESS;
 	if (key[0] == 'C')
 		ok = attrib_rgb(&tex->ceil_rgb, value);
@@ -127,6 +128,17 @@ int	file_switch_checker(t_fs *fs, char **key)
 	return (FAIL);
 }
 
+int remove_root_value(char **value)
+{
+	char *tmp_value;
+	
+	tmp_value = ft_strchr(*value, '/');
+	if (tmp_value != NULL)
+		*value = tmp_value +1;
+	return (SUCCESS);
+}
+
+
 int	get_key_value(char **key, char **value, char *line, t_fs *fs)
 {
 	if (is_empty(line) == TRUE)
@@ -134,6 +146,8 @@ int	get_key_value(char **key, char **value, char *line, t_fs *fs)
 	if (!ft_isthis(line[0], "NSEWFC"))
 		return (FAIL);
 	if (setup_key_value(key, value, line, ' ') == FAIL)
+		return (FAIL);
+	if (remove_root_value(value) == FAIL)
 		return (FAIL);
 	if (file_switch_checker(fs, key) == 0)
 		return (FAIL);
@@ -180,5 +194,5 @@ int	lstmap_to_textures(t_textures *tex, t_lstmap **lst_map, char *root_path)
 		if (fs.file_ok == 0)
 			return (SUCCESS);
 	}
-	return (ft_return(ERROR, FAIL, "File Invalid 1"));
+	return (ft_return(ERROR, FAIL, "File Invalid"));
 }
