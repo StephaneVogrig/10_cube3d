@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 20:57:27 by aska              #+#    #+#             */
-/*   Updated: 2024/10/30 03:36:48 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/30 12:10:28 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 typedef struct s_cell
 {
-	unsigned int	x;
-	unsigned int	y;
+	int				x;
+	int				y;
 }					t_cell;
 
 typedef struct s_stack
 {
 	t_cell			*data;
-	unsigned int	top;
+	int				top;
 	unsigned int	capacity;
 }					t_stack;
 

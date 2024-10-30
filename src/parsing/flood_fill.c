@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/10/30 04:22:41 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/30 12:03:05 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	map_checker(t_map *map, t_player *player)
 int	chk_border(t_cell cell, t_map *map)
 {
 	// Check change variable int to unsigned int
-	if (cell.x <= 0 || cell.y <= 0 || (int)cell.x > map->width || (int)cell.y > map->height)
+	if (cell.x <= 0 || cell.y <= 0 || cell.x > map->width || cell.y > map->height)
 	{
 		return (FAIL);
 	}

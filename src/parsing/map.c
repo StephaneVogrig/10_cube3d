@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/10/27 21:17:38 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/30 12:17:59 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,14 @@ int	set_map_info(t_map *map, char *line)
 			player_valid = TRUE;
 		}
 	}
-	x = (int)ft_strlen(line);
+	x = 0;
+	while (line[x])
+		if (x++ == INT_MAX)
+			return (FAIL);
 	if (x > map->width)
 		map->width = x;
+	if (map->height == INT_MAX)
+		return (FAIL);
 	map->height++;
 	return (SUCCESS);
 }

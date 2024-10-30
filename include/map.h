@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:31:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/27 21:17:38 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/30 12:06:14 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "typedef.h"
 # include <stdio.h>
 # include <stdlib.h>
+#include <limits.h>
+
 
 # define AREA 'x'
 # define WALL '1'
