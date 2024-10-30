@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/10/26 17:32:33 by svogrig          ###   ########.fr        #
+#    Updated: 2024/10/30 03:31:31 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRCS				:= 	debug.c \
 						render/raycasting.c \
 						render/dda.c \
 						render/chrono.c \
+						stack.c \
 						render/screen.c
 
 # sources madatory only -------------------------------------------------------#

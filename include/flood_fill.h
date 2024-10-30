@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:21:52 by aska              #+#    #+#             */
-/*   Updated: 2024/10/11 12:22:18 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/30 01:36:47 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "file_process.h"
 # include "map.h"
 # include "player.h"
+# include "stack.h"
 
 int		map_checker(t_map *map, t_player *player);
 char	**set_var_creation_map_ff(t_map *map);

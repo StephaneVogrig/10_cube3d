@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/10/24 11:27:31 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/30 04:22:41 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,59 @@ int	map_checker(t_map *map, t_player *player)
 	return (SUCCESS);
 }
 
+int	chk_border(t_cell cell, t_map *map)
+{
+	// Check change variable int to unsigned int
+	if (cell.x <= 0 || cell.y <= 0 || (int)cell.x > map->width || (int)cell.y > map->height)
+	{
+		return (FAIL);
+	}
+	return (SUCCESS);
+}
+int	chk_cell(t_cell cell, t_map *map)
+{
+	if (map->grid[cell.y][cell.x] == WALL)
+		return (FAIL);
+	else if (map->grid[cell.y][cell.x] == AREA)
+		return (FAIL);
+	return (SUCCESS);
+}
+
+
+
 void	chk_flood_fill(t_map *map, int x, int y, t_bool *ff_ok)
 {
-	if (*ff_ok == FALSE)
-		return ;
-	if (x < 0 || y < 0 || x >= map->width || y >= map->height)
+	t_stack	*stack;
+	t_cell	cell;
+
+	stack = create_stack(map->width * map->height, malloc(sizeof(t_stack)));
+	push(stack, (t_cell){x, y});
+	while (is_stack_empty(stack) == FALSE)
 	{
-		*ff_ok = FALSE;
-		return ;
+		cell = pop(stack);
+		if (chk_border((t_cell){cell.x, cell.y}, map) == FAIL)
+			if (map->grid[cell.y][cell.x] != WALL)
+			{
+				*ff_ok = FALSE;
+				printf(RED "Invalid Map\n" CRESET);
+				break ;
+			}
+		if (map->grid[cell.y][cell.x] == ' ')
+		{
+			*ff_ok = FALSE;
+			printf(RED "Invalid Map\n" CRESET);
+			break ;
+		}
+		map->grid[cell.y][cell.x] = AREA;
+		if (chk_cell((t_cell){cell.x + 1, cell.y}, map) == SUCCESS)
+			push(stack, (t_cell){cell.x + 1, cell.y});
+		if (chk_cell((t_cell){cell.x - 1, cell.y}, map) == SUCCESS)
+			push(stack, (t_cell){cell.x - 1, cell.y});
+		if (chk_cell((t_cell){cell.x, cell.y + 1}, map) == SUCCESS)
+			push(stack, (t_cell){cell.x, cell.y + 1});
+		if (chk_cell((t_cell){cell.x, cell.y - 1}, map) == SUCCESS)
+			push(stack, (t_cell){cell.x, cell.y - 1});
 	}
-	if (map->grid[y][x] == ' ')
-	{
-		*ff_ok = FALSE;
-		return ;
-	}
-	if (map->grid[y][x] == AREA || map->grid[y][x] == WALL)
-	{
-		return ;
-	}
-	map->grid[y][x] = AREA;
-	chk_flood_fill(map, x + 1, y, ff_ok);
-	chk_flood_fill(map, x - 1, y, ff_ok);
-	chk_flood_fill(map, x, y + 1, ff_ok);
-	chk_flood_fill(map, x, y - 1, ff_ok);
 }
 
 void	print_map_highlight_error(t_map *map, int x, int y)
