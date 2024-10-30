@@ -6,13 +6,13 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/30 17:14:17 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/30 20:33:19 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-void	texture_init_hit(t_textures * textures, t_dda2 *ray, t_draw *d)
+void	texture_init_hit(t_textures * textures, t_ray *ray, t_draw *d)
 {
 	if (ray->hit_side == 'n')
 	{
@@ -112,7 +112,7 @@ void	draw_ceil_wall_floor(t_window *win, t_textures *textures, \
 	}
 }
 
-void	draw_column(t_window *win, int col, t_dda2 *ray, t_textures *textures)
+void	draw_column(t_window *win, int col, t_ray *ray, t_textures *textures)
 {
 	t_draw	d;
 	int		wall_y;
@@ -137,7 +137,7 @@ void	raycasting(t_window *win, t_minimap *minimap, t_map *map, \
 {
 	t_vec2d	dir;
 	t_vec2d raydir;
-	t_dda2 ray;
+	t_ray ray;
 	double camera;
 	int	i;
 	

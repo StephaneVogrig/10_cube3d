@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/30 17:15:10 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/30 20:34:53 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@
 # include "map.h"
 # include "libft.h"
 
-typedef struct s_position_grid_box{
+typedef struct s_position{
 	t_vec2i	grid;
 	t_vec2d	box;
-}	t_pos_gb;
+}	t_position;
 
-typedef struct s_dda2{
+typedef struct s_ray{
 	double		len;
-	t_pos_gb	hit_pos;
+	t_position	hit_pos;
 	char		hit_side;
-} 	t_dda2;
+} 	t_ray;
 
 typedef struct s_dda{
 	t_vec2d	unit;
@@ -41,6 +41,6 @@ typedef struct s_dda{
 	* the side where hit the ray
 	* the position on grid and box where hit the ray
 */ 
-t_dda2	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max);
+t_ray	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max);
 
 #endif
