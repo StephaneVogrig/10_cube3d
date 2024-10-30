@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/24 00:39:56 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/30 17:39:37 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	dda_init(t_dda *raylen, t_vec2i *step, t_vec2d *raydir, t_vec2d *box)
 	}
 }
 
-t_dda2	dda(t_vec2d *raydir, t_map *map, t_player *player)
+t_dda2	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max)
 {
 	t_dda	raylen;
 	t_dda2	ray;
@@ -60,7 +60,13 @@ t_dda2	dda(t_vec2d *raydir, t_map *map, t_player *player)
 			ray.hit_pos.grid.y += step.y;
 			raylen.side.y += raylen.unit.y;
 		}
-		if (ray.hit_pos.grid.x < 0 || ray.hit_pos.grid.y < 0 || ray.hit_pos.grid.x >= map->width || ray.hit_pos.grid.y >= map->height || map->grid[ray.hit_pos.grid.y][ray.hit_pos.grid.x] == WALL)
+		if (raylen.side.x > len_max && raylen.side.y > len_max)
+			break;
+		if (ray.hit_pos.grid.x < 0 \
+				|| ray.hit_pos.grid.y < 0 \
+				|| ray.hit_pos.grid.x >= map->width \
+				|| ray.hit_pos.grid.y >= map->height \
+				|| map->grid[ray.hit_pos.grid.y][ray.hit_pos.grid.x] == WALL)
 			break;
 	}
 	// ray_compute(&ray, step, raylen, player, raydir);

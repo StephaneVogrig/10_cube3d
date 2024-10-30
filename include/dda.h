@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/23 17:15:27 by stephane         ###   ########.fr       */
+/*   Updated: 2024/10/30 17:15:10 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef DDA_H
 # define DDA_H
@@ -41,6 +41,6 @@ typedef struct s_dda{
 	* the side where hit the ray
 	* the position on grid and box where hit the ray
 */ 
-t_dda2	dda(t_vec2d *raydir, t_map *map, t_player *player);
+t_dda2	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max);
 
 #endif
