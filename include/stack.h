@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 20:57:27 by aska              #+#    #+#             */
-/*   Updated: 2024/10/30 12:10:28 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:21:28 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_stack
 {
 	t_cell			*data;
 	int				top;
-	unsigned int	capacity;
+	int	capacity;
 }					t_stack;
 
 t_stack				*create_stack(int capacity, t_stack *stack);
