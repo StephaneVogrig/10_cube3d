@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/30 17:39:37 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/30 20:30:45 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ t_dda2	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max)
 				|| map->grid[ray.hit_pos.grid.y][ray.hit_pos.grid.x] == WALL)
 			break;
 	}
-	// ray_compute(&ray, step, raylen, player, raydir);
-	// new part
+
 	double delta;
 	if (ray.hit_side == 'x')
 	{
@@ -102,37 +101,5 @@ t_dda2	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max)
 		if (delta < 0)
 			ray.hit_pos.box.x += 1;
 	}
-	
-	// printf("ray->hit_pos x: %i %f y: %i %f - ", ray.hit_pos.grid.x,	ray.hit_pos.box.x, ray.hit_pos.grid.y, ray.hit_pos.box.y);
-	// printf("side: %c delta:%f\n", ray.hit_side, delta);
-	
-	// if (ray.hit_side == 'x')
-	// {
-	// 	ray.len = raylen.side.x - raylen.unit.x;
-	// 	if (step.x == 1)
-	// 		ray.hit_side = 'w';
-	// 	else
-	// 		ray.hit_side = 'e';
-	// }
-	// else
-	// {
-	// 	ray.len = raylen.side.y - raylen.unit.y;
-	// 	if (step.y == 1)
-	// 		ray.hit_side = 'n';
-	// 	else
-	// 		ray.hit_side = 's';
-	// }
-	// t_vec2d	intersect;
-	
-	// intersect.x = player->grid.x + player->box.x + raydir->x * ray.len ;
-	// intersect.y = player->grid.y + player->box.y + raydir->y * ray.len;
-	// ray.hit_pos.grid.x = (int)intersect.x;
-	// ray.hit_pos.grid.y = (int)intersect.y;
-	// ray.hit_pos.box.x = intersect.x - ray.hit_pos.grid.x;
-	// ray.hit_pos.box.y = intersect.y - ray.hit_pos.grid.y;
-	
-	// printf("ray->hit_pos x: %i %f y: %i %f\n", ray.hit_pos.grid.x,	ray.hit_pos.box.x, ray.hit_pos.grid.y, ray.hit_pos.box.y);
-
-	
 	return (ray);
 }
