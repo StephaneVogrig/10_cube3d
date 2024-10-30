@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 21:01:49 by aska              #+#    #+#             */
-/*   Updated: 2024/10/30 03:36:43 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/30 19:13:32 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-t_stack	*create_stack(int capacity, t_stack *stack)
+t_status	create_stack(int capacity, t_stack *stack)
 {
 	stack->capacity = capacity;
 	stack->top = 0;
-	stack->data = (t_cell *)malloc(stack->capacity * sizeof(t_cell));
-	return (stack);
+	stack->data = malloc(stack->capacity * sizeof(stack->data));
+	if (stack->data == NULL)
+		return (FAIL);
+	return (SUCCESS);
 }
 
 t_status	push(t_stack *stack, t_cell cell)

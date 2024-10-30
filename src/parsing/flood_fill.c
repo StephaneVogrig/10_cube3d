@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/10/30 16:57:34 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:20:11 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,88 +16,62 @@ int	map_checker(t_map *map, t_player *player)
 {
 	t_bool	ff_ok;
 
-	ff_ok = TRUE;
+	// print_tab(map->grid);
 	if (player_finder(map, player) == -1)
 		return (FAIL);
-	map->grid[player->grid.y][player->grid.x] = '0';
-	chk_flood_fill(map, player->grid.x, player->grid.y, &ff_ok);
+	// map->grid[player->grid.y][player->grid.x] = '0';
+	ff_ok = chk_flood_fill(map, player->grid.x, player->grid.y);
 	chk_box(ff_ok, EQ, TRUE, "Valid Map");
 	if (ff_ok == FALSE)
 		return (FAIL);
 	return (SUCCESS);
 }
 
-int	chk_border(t_cell cell, t_map *map)
+int	chk_border(int x, int y, t_map *map)
 {
-	// Check change variable int to unsigned int
-	if (cell.x <= 0 || cell.y <= 0 || cell.x > map->width || cell.y > map->height)
+	// printf("x: %i, y: %i", x, y);
+	// printf(" | map->width: %i, map->height: %i\n", map->width, map->height);
+	if (x == 0 || y == 0 || x == map->width - 1 || y == map->height - 1)
 	{
+		// printf(RED "FAIL\n" CRESET);
 		return (FAIL);
 	}
+	// printf(GRN "SUCCESS\n" CRESET);
 	return (SUCCESS);
 }
-int	chk_cell(t_cell cell, t_map *map)
+int	chk_cell(int x, int y, t_map *map)
 {
-	if (map->grid[cell.y][cell.x] == WALL)
+	if (map->grid[y][x] == WALL)
 		return (FAIL);
-	else if (map->grid[cell.y][cell.x] == AREA)
+	else if (map->grid[y][x] == AREA)
 		return (FAIL);
 	return (SUCCESS);
 }
 
-void	chk_flood_fill(t_map *map, int x, int y, t_bool *ff_ok)
+t_bool	chk_flood_fill(t_map *map, int x, int y)
 {
-	t_stack	*stack;
+	t_stack	stack;
 	t_cell	cell;
 
-	stack = create_stack(map->width * map->height, malloc(sizeof(t_stack)));
-	push(stack, (t_cell){x, y});
-	while (is_stack_empty(stack) == FALSE)
+	if (create_stack(map->width * map->height, &stack) == FAIL)
+		return (FALSE);
+	push(&stack, (t_cell){x, y});
+	while (is_stack_empty(&stack) == FALSE)
 	{
-		cell = pop(stack);
-		if (chk_border((t_cell){cell.x, cell.y}, map) == FAIL)
-			if (map->grid[cell.y][cell.x] != WALL)
-			{
-				*ff_ok = FALSE;
-				printf(RED "Invalid Map\n" CRESET);
-				break ;
-			}
-		if (map->grid[cell.y][cell.x] == ' ')
-		{
-			*ff_ok = FALSE;
-			printf(RED "Invalid Map\n" CRESET);
-			break ;
-		}
+		cell = pop(&stack);
+		if (chk_border(cell.x, cell.y, map) == FAIL
+			|| map->grid[cell.y][cell.x] == ' ')
+			return (FALSE);
 		map->grid[cell.y][cell.x] = AREA;
-		if (chk_cell((t_cell){cell.x + 1, cell.y}, map) == SUCCESS)
-			push(stack, (t_cell){cell.x + 1, cell.y});
-		if (chk_cell((t_cell){cell.x - 1, cell.y}, map) == SUCCESS)
-			push(stack, (t_cell){cell.x - 1, cell.y});
-		if (chk_cell((t_cell){cell.x, cell.y + 1}, map) == SUCCESS)
-			push(stack, (t_cell){cell.x, cell.y + 1});
-		if (chk_cell((t_cell){cell.x, cell.y - 1}, map) == SUCCESS)
-			push(stack, (t_cell){cell.x, cell.y - 1});
+		if (chk_cell(cell.x + 1, cell.y, map) == SUCCESS)
+			push(&stack, (t_cell){cell.x + 1, cell.y});
+		if (chk_cell(cell.x - 1, cell.y, map) == SUCCESS)
+			push(&stack, (t_cell){cell.x - 1, cell.y});
+		if (chk_cell(cell.x, cell.y + 1, map) == SUCCESS)
+			push(&stack, (t_cell){cell.x, cell.y + 1});
+		if (chk_cell(cell.x, cell.y - 1, map) == SUCCESS)
+			push(&stack, (t_cell){cell.x, cell.y - 1});
 	}
-}
-
-void	print_map_highlight_error(t_map *map, int x, int y)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < map->height + 2)
-	{
-		j = 0;
-		while (j < map->width + 2)
-		{
-			if (i == y && j == x)
-				printf(HRED "%c" CRESET, map->grid[i][j]);
-			else
-				printf("%c", map->grid[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
+	free(stack.data);
+	return (TRUE);
 }
