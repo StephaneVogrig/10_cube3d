@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:09:49 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/10/30 16:20:41 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:59:55 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -501,7 +501,7 @@ int						count_words(const char *s, char c);
 
 #include <limits.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE ((long)INT_MAX + 2)
+#  define BUFFER_SIZE 1024
 # endif
 
 # ifndef MAX_FD

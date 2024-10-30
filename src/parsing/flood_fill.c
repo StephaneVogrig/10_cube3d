@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/10/30 12:03:05 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:57:34 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int	chk_cell(t_cell cell, t_map *map)
 		return (FAIL);
 	return (SUCCESS);
 }
-
-
 
 void	chk_flood_fill(t_map *map, int x, int y, t_bool *ff_ok)
 {
