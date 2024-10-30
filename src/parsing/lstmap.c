@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:37:02 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/10/26 17:29:24 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/30 18:26:06 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,7 @@ void	delete_all_lstmap(t_lstmap **head)
 	t_lstmap	*tmp;
 
 	if (*head == NULL)
-	{
-		ft_display(WARNING, "head is null, deletion is not possible");
 		return ;
-	}
 	tmp = *head;
 	while (tmp != NULL)
 	{
