@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/30 20:34:53 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/31 02:35:17 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,7 @@
 # include "player.h"
 # include "map.h"
 # include "libft.h"
-
-typedef struct s_position{
-	t_vec2i	grid;
-	t_vec2d	box;
-}	t_position;
+# include "position.h"
 
 typedef struct s_ray{
 	double		len;

@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_move.h                                      :+:      :+:    :+:   */
+/*   position.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 00:31:31 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 01:42:11 by svogrig          ###   ########.fr       */
+/*   Created: 2024/10/31 01:38:10 by svogrig           #+#    #+#             */
+/*   Updated: 2024/10/31 02:22:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_MOVE_H
-# define PLAYER_MOVE_H
+#ifndef POSITION_H
+# define POSITION_H
 
-# include "player.h"
-# include "position.h"
+# include "vec2i.h"
 
-void	player_move(t_map map, t_player *player, t_vec2i dir);
+typedef struct s_position{
+	t_vec2i	grid;
+	t_vec2d	box;
+}	t_position;
 
 #endif
