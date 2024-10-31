@@ -1,22 +1,26 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   check_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2024/10/08 03:01:45 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/31 18:33:54 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "check_arg.h"
+#include "libft.h"
 
 int	check_entry_arg(int ac, char **av)
 {
+	char *ext;
+	
+	ext = ft_strrchr(av[1], '.');
 	if (chk_box(ac, EQ, 2, NUM_OF_ARG) != SUCCESS)
 		return (ft_return(ERROR, FAIL, INVALID_NUM_OF_ARG));
-	if ((ft_strnstr(av[1], EXTENSION_FILE, ft_strlen(av[1]))) == NULL)
+	if (ext == NULL || ft_strcmp(ext, ".cub") != 0)
 	{
 		chk_box(1, EQ, 0, TITLE_FILE_EXT);
 		return (ft_return(ERROR, FAIL, NO_CUB_EXT));
