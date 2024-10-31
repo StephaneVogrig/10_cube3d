@@ -6,17 +6,16 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 00:27:56 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 02:30:08 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/31 19:47:51 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "player_move.h"
 
-void	player_move(t_map map, t_player *player, t_vec2i vec_dir)
+static inline void	collision_manage(	t_map map,
+										t_player *player,
+										t_position	new)
 {
-	t_position	new;
-
-	new = player_new_position(player, vec_dir);
 	if (map.grid[player->grid.y][new.grid.x] == AREA)
 	{
 		player->box.x = new.box.x;
@@ -27,4 +26,12 @@ void	player_move(t_map map, t_player *player, t_vec2i vec_dir)
 		player->box.y = new.box.y;
 		player->grid.y = new.grid.y;
 	}
+}
+
+void	player_move(t_map map, t_player *player, t_vec2i vec_dir)
+{
+	t_position	new;
+
+	new = player_new_position(player, vec_dir);
+	collision_manage(map, player, new);
 }
