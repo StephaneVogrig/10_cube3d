@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2024/10/31 18:33:54 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/10/31 22:33:16 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	check_entry_arg(int ac, char **av)
 {
 	char *ext;
 	
-	ext = ft_strrchr(av[1], '.');
 	if (chk_box(ac, EQ, 2, NUM_OF_ARG) != SUCCESS)
 		return (ft_return(ERROR, FAIL, INVALID_NUM_OF_ARG));
+	ext = ft_strrchr(av[1], '.');
 	if (ext == NULL || ft_strcmp(ext, ".cub") != 0)
 	{
 		chk_box(1, EQ, 0, TITLE_FILE_EXT);
