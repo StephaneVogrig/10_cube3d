@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_manda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/10/26 18:06:33 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/31 23:25:10 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@
 
 int	main(int argc, char **argv)
 {
+	int		exit_code;
 	t_data	data;
 
 	title();
-	if (check_entry_arg(argc, argv) == FAIL)
-		return (EXIT_SUCCESS);
+	exit_code = check_entry_arg(argc, argv);
+	if (exit_code == FAIL)
+		return (EXIT_FAILURE);
 	data_init(&data);
-	if (data_setup(&data, argv[1]) == SUCCESS)
+	exit_code = data_setup(&data, argv[1]);
+	if (exit_code == SUCCESS)
+		exit_code = window_setup(&data.win, data.mlx);
+	if (exit_code == SUCCESS)
 	{
 		event_setup(&data);
 		chrono(START);
