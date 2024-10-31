@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 19:12:00 by stephane          #+#    #+#             */
-/*   Updated: 2024/10/30 00:13:39 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/31 18:28:29 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	textures_clean(t_textures *t, void *mlx)
 		mlx_destroy_image(mlx, t->west.img);
 }
 
-int	texture_attribution(t_texture *t, char *path)
+int	texture_load(t_texture *t, char *path)
 {
 	char	*extension;
 
@@ -56,13 +56,13 @@ int	texture_attribution(t_texture *t, char *path)
 int	texture_selector(t_textures *textures, char *key, char *img_path)
 {
 	if (ft_strncmp(key, "NO", 2) == 0)
-		return (texture_attribution(&textures->north, img_path));
+		return (texture_load(&textures->north, img_path));
 	else if (ft_strncmp(key, "SO", 2) == 0)
-		return (texture_attribution(&textures->south, img_path));
+		return (texture_load(&textures->south, img_path));
 	else if (ft_strncmp(key, "WE", 2) == 0)
-		return (texture_attribution(&textures->west, img_path));
+		return (texture_load(&textures->west, img_path));
 	else if (ft_strncmp(key, "EA", 2) == 0)
-		return (texture_attribution(&textures->east, img_path));
+		return (texture_load(&textures->east, img_path));
 	else
 		return (SUCCESS);
 }
