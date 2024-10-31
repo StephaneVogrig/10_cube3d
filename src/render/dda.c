@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 16:52:28 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/31 17:06:27 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	dda_init(t_dda *raylen, t_vec2i *step, t_vec2d *ray_vec, t_vec2d *box)
 {
 	step->x = dda_set(&raylen->unit.x, &raylen->side.x, ray_vec->x, box->x);
 	step->y = dda_set(&raylen->unit.y, &raylen->side.y, ray_vec->y, box->y);
-		printf("ray_vec:%f unit: %f\n", ray_vec->x, raylen->unit.x);
-
 }
 
 t_ray	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max)
