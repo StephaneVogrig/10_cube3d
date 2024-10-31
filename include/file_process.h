@@ -36,6 +36,7 @@ typedef union
 		t_ui8 no : 1;
 		t_ui8 f : 1;
 		t_ui8 c : 1;
+		t_ui8 flag_double : 1;
 	};
 	t_ui8				file_ok;
 }						t_fs;
@@ -49,8 +50,8 @@ int						lstmap_to_textures(t_textures *tex, t_lstmap **lst_map,
 int						open_file(int *fd, char *file);
 int						close_file(int *fd);
 void					goto_exit(int check, int err, t_state state, char *msg);
-int						setup_value(char *line, char *key, char **value);
-int						setup_key(char *line, char **key);
 int						file_to_lst_map(int fd, t_lstmap **lst_map);
+int						setup_key_value_separate_by_space(char **key,
+							char **value, char *line);
 
 #endif

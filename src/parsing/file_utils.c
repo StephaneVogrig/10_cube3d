@@ -3,33 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   file_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/10/27 14:54:17 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/31 21:02:58 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_utils.h"
 
-
-int	setup_key(char *line, char **key)
+int	setup_key_value_separate_by_space(char **key, char **value, char *line)
 {
-	*key = ft_substr(line, 0, ft_strlen_endc(line, ' '));
-	if (*key == NULL)
-		return (ft_return(ERROR, FAIL, "Allocating key failed"));
-	return (SUCCESS);
-}
-
-int	setup_value(char *line, char *key, char **value)
-{
-	int	key_len;
-
-	key_len = ft_strlen(key);
-	*value = ft_substr(line, key_len, ft_strlen_endc(line + key_len, '\n'));
-	if (*value == NULL)
-		return (ft_return(ERROR, FAIL, "Allocating texture path failed"));
-	return (SUCCESS);
+	*key = line;
+	while (*line != '\0' && ft_isspace(*line) == FALSE)
+		line++;
+	if (*line == '\0')
+		return (FAIL);
+	*line = '\0';
+	line++;
+	while (ft_isspace(*line) == TRUE)
+		line++;
+	if (*line == '\0')
+		return (FAIL);
+	*value = line;
+	while (*line != '\0' && ft_isspace(*line) == FALSE)
+		line++;
+	if (*line == '\0')
+		return (SUCCESS);
+	*line = '\0';
+	line++;
+	while (ft_isspace(*line) == TRUE)
+		line++;
+	if (*line == '\0')
+		return (SUCCESS);
+	return (FAIL);
 }
 
 int	is_empty(char *str)
@@ -61,7 +68,7 @@ int	is_empty_line(char *line)
 
 int	is_map_valid(char *line)
 {
-	int i;
+	int	i;
 
 	if (line == NULL)
 		return (FALSE);
