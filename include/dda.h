@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 02:35:17 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/31 22:45:28 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,15 @@ typedef struct s_ray{
 	char		hit_side;
 } 	t_ray;
 
+typedef struct s_dda_{
+	double	unit;
+	double	len;
+	int		step;
+}	t_dda_;
+
 typedef struct s_dda{
-	t_vec2d	unit;
-	t_vec2d	side;
-	double	current;
+	t_dda_	x;
+	t_dda_	y;
 }	t_dda;
 
 /*
