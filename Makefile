@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/10/30 03:31:31 by aska             ###   ########.fr        #
+#    Updated: 2024/10/31 00:38:26 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,8 @@ SRCS				:= 	debug.c \
 SRC_MAND_DIR		:=	mandatory
 
 SRCS_MANDA			:=	main_manda.c \
-						render/render_manda.c
+						render/render_manda.c \
+						player_move_manda.c
 						
 SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_MAND_DIR)/%)
 
@@ -85,7 +86,8 @@ SRC_BONUS_DIR		:=	bonus
 
 SRCS_BONUS 			:=	main_bonus.c \
 						render/render_bonus.c \
-						render/minimap_bonus.c
+						render/minimap_bonus.c \
+						player_move_bonus.c
 
 SRCS_BONUS			:=	$(SRCS_BONUS:%=$(SRC_BONUS_DIR)/%)
 

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/25 17:20:08 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/31 00:35:45 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "chrono.h"
 # include "render.h"
-# include "player.h"
+# include "player_move.h"
 
 # define KEY_ESC 41
 # define KEY_W 26

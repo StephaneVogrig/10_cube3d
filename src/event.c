@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/26 02:20:44 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/31 00:51:33 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	on_loop(void *param)
 {
 	t_data *data;
 	t_vec2i move;
-	int	rot;
+	// int	rot;
 	int x;
 	int y;
 	int render_needed;
@@ -122,8 +122,9 @@ int	on_loop(void *param)
 	{
 		move.x = data->key.w - data->key.s;
 		move.y = data->key.d - data->key.a;
-		rot = data->key.right - data->key.left;
-		player_move(data->map , &data->player, move, rot);
+		// rot = data->key.right - data->key.left;
+		player_rotation(&data->player, data->key.right - data->key.left);
+		player_move(data->map , &data->player, move);
 		render_needed = TRUE;
 	}
 	if (render_needed)
