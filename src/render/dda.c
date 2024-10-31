@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 16:40:55 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/10/31 16:52:28 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 /*
 	compute basic data need for dda algorythme on one axis
-		- unit distance for a step, set by ptr unit
-		- length between player and box border, set by ptr side
-		- step value, set by return.
+		- unit distance for a step along the axis, set by ptr unit
+		- length of ray if this axis is choosen, set by ptr side
+		- step on the axis, set by return.
 */
 int	dda_set(double *unit, double *side, double ray_vec, double box)
 {
