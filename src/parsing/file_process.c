@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/10/30 00:20:25 by aska             ###   ########.fr       */
+/*   Updated: 2024/10/31 20:56:18 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int	attrib_path(t_textures *tex, char *key, char *value, char *root_path)
 	int	ok;
 	int	fd;
 
-
 	ok = SUCCESS;
 	if (key[0] == 'C')
 		ok = attrib_rgb(&tex->ceil_rgb, value);
@@ -98,7 +97,8 @@ int	attrib_path(t_textures *tex, char *key, char *value, char *root_path)
 	else
 	{
 		if (root_path != NULL)
-			value = ft_strjoin(root_path, value); // take a time to create a ft_strcat for no malloc
+			value = ft_strjoin(root_path, value);
+				// take a time to create a ft_strcat for no malloc
 		fd = ft_open(value, O_RDONLY);
 		if (fd == FAIL)
 			return (FAIL);
@@ -111,33 +111,40 @@ int	attrib_path(t_textures *tex, char *key, char *value, char *root_path)
 	return (SUCCESS);
 }
 
-int	file_switch_checker(t_fs *fs, char **key)
+int	remove_root_value(char **value)
 {
-	if (ft_strcmp(*key, "NO") == 0)
-		return (fs->no);
-	else if (ft_strcmp(*key, "SO") == 0)
-		return (fs->so);
-	else if (ft_strcmp(*key, "WE") == 0)
-		return (fs->we);
-	else if (ft_strcmp(*key, "EA") == 0)
-		return (fs->ea);
-	else if (ft_strcmp(*key, "F") == 0)
-		return (fs->f);
-	else if (ft_strcmp(*key, "C") == 0)
-		return (fs->c);
-	return (FAIL);
-}
+	char	*tmp_value;
 
-int remove_root_value(char **value)
-{
-	char *tmp_value;
-	
 	tmp_value = ft_strchr(*value, '/');
 	if (tmp_value != NULL)
-		*value = tmp_value +1;
+		*value = tmp_value + 1;
 	return (SUCCESS);
 }
 
+void file_switch_check(t_fs *fs, t_ui8 binarie)
+{
+	if (binarie == 0)
+		fs->flag_double = 1;
+}
+
+int	file_switch_select(t_fs *fs, char **key)
+{
+	if (ft_strcmp(*key, "NO") == 0)
+		file_switch_check(fs, fs->no);
+	else if (ft_strcmp(*key, "SO") == 0)
+		file_switch_check(fs, fs->so);
+	else if (ft_strcmp(*key, "WE") == 0)
+		file_switch_check(fs, fs->we);
+	else if (ft_strcmp(*key, "EA") == 0)
+		file_switch_check(fs, fs->ea);
+	else if (ft_strcmp(*key, "F") == 0)
+		file_switch_check(fs, fs->f);
+	else if (ft_strcmp(*key, "C") == 0)
+		file_switch_check(fs, fs->c);
+	if (fs->flag_double == 1)
+		return (FAIL);
+	return (SUCCESS);
+}
 
 int	get_key_value(char **key, char **value, char *line, t_fs *fs)
 {
@@ -145,11 +152,11 @@ int	get_key_value(char **key, char **value, char *line, t_fs *fs)
 		return (FAIL);
 	if (!ft_isthis(line[0], "NSEWFC"))
 		return (FAIL);
-	if (setup_key_value(key, value, line, ' ') == FAIL)
+	if (setup_key_value_separate_by_space(key, value, line) == FAIL)
 		return (FAIL);
 	if (remove_root_value(value) == FAIL)
 		return (FAIL);
-	if (file_switch_checker(fs, key) == 0)
+	if (file_switch_select(fs, key) == FAIL)
 		return (FAIL);
 	return (SUCCESS);
 }
