@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 23:39:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/01 00:59:47 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,44 @@ void	dda_algo(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 	}
 }
 
+void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player, t_vec2d *raydir)
+{
+	double delta;
+	
+	if (ray->hit_side == 'x')
+	{
+		if (dda->x.step == 1)
+			ray->hit_side = 'w';
+		else
+			ray->hit_side = 'e';
+			
+		ray->hit_pos.grid.x = ray->hit_pos.grid.x - dda->x.step;
+		ray->hit_pos.box.x = 0;
+		
+		delta = player->box.y + raydir->y * ray->len;
+		ray->hit_pos.grid.y = player->grid.y + (int)delta ;
+		ray->hit_pos.box.y = delta - (int)delta;
+		if (delta < 0)
+			ray->hit_pos.box.y += 1;
+	}
+	else
+	{
+		if (dda->y.step == 1)
+			ray->hit_side = 'n';
+		else
+			ray->hit_side = 's';
+
+		delta = player->box.x + raydir->x * ray->len;
+		ray->hit_pos.grid.x = player->grid.x + (int)delta;
+		ray->hit_pos.box.x = delta - (int)delta;
+		if (delta < 0)
+			ray->hit_pos.box.x += 1;
+		
+		ray->hit_pos.grid.y = ray->hit_pos.grid.y - dda->y.step;
+		ray->hit_pos.box.y = 0;
+	}
+}
+
 t_ray	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max)
 {
 	t_dda	dda;
@@ -98,39 +136,6 @@ t_ray	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max)
 	}
 	ray.hit_pos.grid = player->grid;
 	dda_algo(&dda, &ray, map, len_max);
-
-	double delta;
-	if (ray.hit_side == 'x')
-	{
-		if (dda.x.step == 1)
-			ray.hit_side = 'w';
-		else
-			ray.hit_side = 'e';
-			
-		ray.hit_pos.grid.x = ray.hit_pos.grid.x - dda.x.step;
-		ray.hit_pos.box.x = 0;
-		
-		delta = player->box.y + raydir->y * ray.len;
-		ray.hit_pos.grid.y = player->grid.y + (int)delta ;
-		ray.hit_pos.box.y = delta - (int)delta;
-		if (delta < 0)
-			ray.hit_pos.box.y += 1;
-	}
-	else
-	{
-		if (dda.y.step == 1)
-			ray.hit_side = 'n';
-		else
-			ray.hit_side = 's';
-
-		delta = player->box.x + raydir->x * ray.len;
-		ray.hit_pos.grid.x = player->grid.x + (int)delta;
-		ray.hit_pos.box.x = delta - (int)delta;
-		if (delta < 0)
-			ray.hit_pos.box.x += 1;
-		
-		ray.hit_pos.grid.y = ray.hit_pos.grid.y - dda.y.step;
-		ray.hit_pos.box.y = 0;
-	}
+	dda_ray_set(&ray, &dda, player, raydir);
 	return (ray);
 }
