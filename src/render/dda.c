@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/01 02:07:45 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/01 03:20:02 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	dda_no_need(t_map *map, t_player *player, t_dda dda, int len_max)
 	return (FALSE);
 }
 
-void	dda_algo(t_dda *dda, t_ray *ray, t_map *map, int len_max)
+void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 {
 	while (TRUE)
 	{
@@ -84,25 +84,46 @@ void	dda_algo(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 	}
 }
 
+static inline void	grid_box_add_double(t_grid_box	*gb, double d)
+{
+	int	i;
+
+	d += gb->box;
+	i = (int)d;
+	gb->grid += i;
+	gb->box = d - i;
+	if (signbit(d))
+		gb->box += 1.0;
+}
+
+void	grid_box_add_grid_box(t_grid_box *a, t_grid_box *b)
+{
+	a->box += b->box;
+	if (a->box >= 1.0)
+	{
+		a->box -= 1.0;
+		a->grid += 1;
+	}
+	else if (a->box < 0.0)
+	{
+		a->box += 1.0;
+		a->grid -= 1;
+	}
+	a->grid += b->grid;
+}
+
 void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player, t_vec2d *raydir)
 {
-	double delta;
-	
 	if (ray->hit_side == 'x')
 	{
 		if (dda->x.step == 1)
 			ray->hit_side = 'w';
 		else
 			ray->hit_side = 'e';
-			
-		ray->hit_pos.x.grid = ray->hit_pos.x.grid - dda->x.step;
+		ray->hit_pos.x.grid -= dda->x.step;
 		ray->hit_pos.x.box = 0;
-		
-		delta = player->y.box + raydir->y * ray->len;
-		ray->hit_pos.y.grid = player->y.grid + (int)delta ;
-		ray->hit_pos.y.box = delta - (int)delta;
-		if (delta < 0)
-			ray->hit_pos.y.box += 1;
+		ray->hit_pos.y = player->y;
+		grid_box_add_double(&ray->hit_pos.y, raydir->y * ray->len);
 	}
 	else
 	{
@@ -110,14 +131,9 @@ void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player, t_vec2d *raydir)
 			ray->hit_side = 'n';
 		else
 			ray->hit_side = 's';
-
-		delta = player->x.box + raydir->x * ray->len;
-		ray->hit_pos.x.grid = player->x.grid + (int)delta;
-		ray->hit_pos.x.box = delta - (int)delta;
-		if (delta < 0)
-			ray->hit_pos.x.box += 1;
-		
-		ray->hit_pos.y.grid = ray->hit_pos.y.grid - dda->y.step;
+		ray->hit_pos.x = player->x;
+		grid_box_add_double(&ray->hit_pos.x, raydir->x * ray->len);
+		ray->hit_pos.y.grid -= dda->y.step;
 		ray->hit_pos.y.box = 0;
 	}
 }
@@ -136,7 +152,7 @@ t_ray	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max)
 	}
 	ray.hit_pos.x.grid = player->x.grid;
 	ray.hit_pos.y.grid = player->y.grid;
-	dda_algo(&dda, &ray, map, len_max);
+	dda_loop(&dda, &ray, map, len_max);
 	dda_ray_set(&ray, &dda, player, raydir);
 	return (ray);
 }
