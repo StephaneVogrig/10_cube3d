@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/01 13:27:16 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/01 15:33:46 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,37 @@
 		- length of ray if this axis is choosen, set by ptr side
 		- step on the axis, set by return.
 */
-void	dda_set(t_dda_ *d, double ray_vec, double box)
+void	dda_set(t_dda_ *dda, double ray_vec, double box)
 {
-	d->unit = fabs(1 / ray_vec);
+	dda->unit = fabs(1 / ray_vec);
 	if (ray_vec < 0)
 	{
-		d->len = box * d->unit;
-		d->step = -1;
+		dda->len = box * dda->unit;
+		dda->step = -1;
 	}
 	else
 	{
-		d->len = (1 - box) * d->unit;
-		d->step = 1;
+		dda->len = (1 - box) * dda->unit;
+		dda->step = 1;
 	}
 }
 
-void	dda_init(t_dda *raylen, t_vec2d *ray_vec, t_position *p)
+static inline int	is_outside_map(t_position *p, t_map *map)
 {
-	dda_set(&raylen->x, ray_vec->x, p->x.box);
-	dda_set(&raylen->y, ray_vec->y, p->y.box);
+	return (p->x.grid < 0
+			|| p->y.grid < 0
+			|| p->x.grid >= map->width
+			|| p->y.grid >= map->height);
+}
+
+void	dda_init(t_dda *dda, t_vec2d *ray_vec, t_position *p, t_map *map)
+{
+	dda_set(&dda->x, ray_vec->x, p->x.box);
+	dda_set(&dda->y, ray_vec->y, p->y.box);
+	if (!is_outside_map(p, map) && map->grid[p->y.grid][p->x.grid] == WALL)
+		dda->collide = AREA;
+	else
+		dda->collide = WALL;
 }
 
 int	dda_no_need(t_map *map, t_player *player, t_dda dda, int len_max)
@@ -52,14 +64,6 @@ int	dda_no_need(t_map *map, t_player *player, t_dda dda, int len_max)
 		|| player->y.grid > map->height + len_max)
 		return (TRUE);
 	return (FALSE);
-}
-
-static inline int	is_outside_map(t_position *p, t_map *map)
-{
-	return (p->x.grid < 0
-			|| p->y.grid < 0
-			|| p->x.grid >= map->width
-			|| p->y.grid >= map->height);
 }
 
 void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
@@ -84,7 +88,7 @@ void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 			break ;
 		if (is_outside_map(&ray->hit_pos, map))
 			continue ;
-		if (map->grid[ray->hit_pos.y.grid][ray->hit_pos.x.grid] == WALL)
+		if (map->grid[ray->hit_pos.y.grid][ray->hit_pos.x.grid] == dda->collide)
 			break ;
 	}
 }
@@ -148,7 +152,8 @@ t_ray	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max)
 	t_dda	dda;
 	t_ray	ray;
 
-	dda_init(&dda, raydir, &player->position);
+	dda.len_max = len_max;
+	dda_init(&dda, raydir, &player->position, map);
 	if (dda_no_need(map, player, dda, len_max) == TRUE)
 	{
 		ft_bzero(&ray, sizeof(ray));

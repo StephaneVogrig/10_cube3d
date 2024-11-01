@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 22:45:28 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/01 14:35:56 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_dda_{
 typedef struct s_dda{
 	t_dda_	x;
 	t_dda_	y;
+	int		len_max;
+	int		collide;
 }	t_dda;
 
 /*
