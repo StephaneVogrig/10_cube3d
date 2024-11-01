@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 19:12:00 by stephane          #+#    #+#             */
-/*   Updated: 2024/10/31 18:28:29 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/01 14:47:02 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ int	texture_load(t_texture *t, char *path)
 	(void)t;
 	extension = ft_strrchr(path, '.');
 	if (extension == NULL)
-		return (ft_return(ERROR, FAIL, "Texture extension not found"));
+		return (ft_return(ERROR, 269, "Texture extension not found"));
 	if (ft_strcmp(extension, ".jpg") == 0 || ft_strcmp(extension, ".jpeg") == 0)
 		t->img = mlx_jpg_file_to_image(t->mlx, path, &t->width, &t->height);
 	else if (ft_strcmp(extension, ".bmp") == 0)
 		t->img = mlx_bmp_file_to_image(t->mlx, path, &t->width, &t->height);
 	else if (ft_strcmp(extension, ".png") == 0)
 		t->img = mlx_png_file_to_image(t->mlx, path, &t->width, &t->height);
+	else if (t->img == NULL)
+		return (ft_return(ERROR, 270, "Texture attribution failed"));
 	else
-		(ft_display(ERROR, "Texture extension not supported"));
-	if (t->img == NULL)
-		return (ft_return(ERROR, FAIL, "Texture attribution failed"));
+		return (ft_return(ERROR, 271, "Texture extension not supported"));
 	return (SUCCESS);
 }
 

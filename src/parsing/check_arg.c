@@ -6,28 +6,22 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2024/10/31 22:33:16 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/01 18:06:51 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check_arg.h"
-#include "libft.h"
 
 int	check_entry_arg(int ac, char **av)
 {
 	char *ext;
 	
-	if (chk_box(ac, EQ, 2, NUM_OF_ARG) != SUCCESS)
-		return (ft_return(ERROR, FAIL, INVALID_NUM_OF_ARG));
+	if (ac != 2)
+		return (ft_return(ERROR, 256, INVALID_NUM_OF_ARG));
 	ext = ft_strrchr(av[1], '.');
 	if (ext == NULL || ft_strcmp(ext, ".cub") != 0)
-	{
-		chk_box(1, EQ, 0, TITLE_FILE_EXT);
-		return (ft_return(ERROR, FAIL, NO_CUB_EXT));
-	}
-	else
-		chk_box(0, EQ, 0, TITLE_FILE_EXT);
-	return (OK);
+		return (ft_return(ERROR, 257, NO_CUB_EXT));
+	return (SUCCESS);
 }
 
 int	check_arg_color(char **rgb)

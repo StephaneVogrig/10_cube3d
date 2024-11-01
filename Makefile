@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/10/31 00:38:26 by svogrig          ###   ########.fr        #
+#    Updated: 2024/11/01 18:28:06 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,8 +51,11 @@ SRCS				:= 	debug.c \
 						window.c \
 						parsing/check_arg.c \
 						parsing/data.c \
-						parsing/file_process.c \
-						parsing/file_utils.c \
+						parsing/lstmap_extraction_utils.c \
+						parsing/lstmap_extraction.c \
+						parsing/parsing_utils.c \
+						parsing/bitfield_path_valid.c \
+						parsing/file_load.c \
 						parsing/flood_fill.c \
 						parsing/lstmap.c \
 						parsing/lstmap_utils.c \

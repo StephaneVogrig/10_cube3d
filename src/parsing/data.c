@@ -6,23 +6,11 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 22:54:33 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/01 17:51:31 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
-
-int	file_load(char *path, t_lstmap **lst_map)
-{
-	int	fd;
-	int	exit_code;
-
-	if (open_file(&fd, path) == FAIL)
-		return (FAIL);
-	exit_code = file_to_lst_map(fd, lst_map);
-	exit_code |= close_file(&fd);
-	return (exit_code);
-}
 
 void	data_init(t_data *data)
 {
@@ -34,23 +22,24 @@ int	mlx_setup(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
-		return (ft_return(ERROR, FAIL, "Error on mlx_init"));
+		return (ft_return(ERROR, 258, "Error on mlx_init"));
 	textures_set_mlx(&data->map.textures, data->mlx);
-	return (chk_box(SUCCESS, EQ, SUCCESS, "mlx initialization"));
+	return (SUCCESS);
 }
 
-int	data_setup(t_data *data, char *pathname)
+int	data_setup(t_data *data, char *map_path)
 {
 	t_lstmap	*lst_map;
 	int			exit_code;
 
 	lst_map = NULL;
-	data_init(data);
-	if (mlx_setup(data) == FAIL)
-		return (FAIL);
-	if (file_load(pathname, &lst_map) == FAIL)
-		return (FAIL);
-	exit_code = lstmap_extraction_info(&lst_map, &data->map, pathname);
+	exit_code = mlx_setup(data);
+	if (exit_code != SUCCESS)
+		return (exit_code);
+	exit_code = file_load(map_path, &lst_map);
+	if (exit_code != SUCCESS)
+		return (exit_code);
+	exit_code = lstmap_extraction_info(&lst_map, &data->map, map_path);
 	delete_all_lstmap(&lst_map);
 	if (exit_code == FAIL)
 		return (FAIL);

@@ -3,24 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/26 01:52:48 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/01 19:18:42 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_H
 # define DATA_H
 
-# include "file_process.h"
+# include "lstmap_extraction_utils.h"
+# include "lstmap_extraction.h"
+# include "flood_fill.h"
 # include "libft.h"
 # include "lst_map.h"
 # include "map.h"
 # include "minimap_bonus.h"
 # include "player.h"
 # include "window.h"
-# include "flood_fill.h"
+# include "file_load.h"
 
 typedef unsigned int	t_ui32;
 typedef unsigned char	t_ui8;
@@ -56,8 +58,8 @@ typedef struct s_data
 }						t_data;
 
 void					data_init(t_data *data);
-int						data_setup(t_data *data, char *pathname);
+int						mlx_setup(t_data *data);
+int						data_setup(t_data *data, char *map_path);
 void					data_clean(t_data *data);
-int						file_load(char *path, t_lstmap **lst_map);
 
 #endif

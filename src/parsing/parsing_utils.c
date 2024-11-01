@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_utils.c                                       :+:      :+:    :+:   */
+/*   parsing_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 14:35:07 by aska              #+#    #+#             */
-/*   Updated: 2024/10/31 21:02:58 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/01 14:37:36 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file_utils.h"
+#include "parsing_utils.h"
 
-int	setup_key_value_separate_by_space(char **key, char **value, char *line)
+int	setup_key_value_separate_by_space(char *key, char *value, char *line)
 {
-	*key = line;
+	key = line;
 	while (*line != '\0' && ft_isspace(*line) == FALSE)
 		line++;
 	if (*line == '\0')
-		return (FAIL);
+		return (ft_return(ERROR, 264, "Invalid Key"));
 	*line = '\0';
 	line++;
 	while (ft_isspace(*line) == TRUE)
 		line++;
 	if (*line == '\0')
-		return (FAIL);
-	*value = line;
+		return (ft_return(ERROR, 265, "Invalid Value"));
+	value = line;
 	while (*line != '\0' && ft_isspace(*line) == FALSE)
 		line++;
 	if (*line == '\0')
@@ -36,7 +36,7 @@ int	setup_key_value_separate_by_space(char **key, char **value, char *line)
 		line++;
 	if (*line == '\0')
 		return (SUCCESS);
-	return (FAIL);
+	return (ft_return(ERROR, 266, "Invalid Value"));
 }
 
 int	is_empty(char *str)
@@ -50,20 +50,13 @@ int	is_empty(char *str)
 	return (TRUE);
 }
 
-int	is_empty_line(char *line)
+void	remove_root_value(char *value)
 {
-	int	i;
+	char	*tmp_value;
 
-	i = 0;
-	if (line == NULL)
-		return (FALSE);
-	while (line[i] != '\n')
-	{
-		if (line[i] != ' ')
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
+	tmp_value = ft_strchr(value, '/');
+	if (tmp_value != NULL)
+		value = tmp_value + 1;
 }
 
 int	is_map_valid(char *line)

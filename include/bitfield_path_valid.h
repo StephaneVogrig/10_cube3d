@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   bitfield_path_valid.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 15:42:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/01 19:15:05 by ygaiffie         ###   ########.fr       */
+/*   Created: 2024/11/01 17:02:30 by ygaiffie          #+#    #+#             */
+/*   Updated: 2024/11/01 19:14:02 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#ifndef BITFIELD_PATH_VALID_H
+# define BITFIELD_PATH_VALID_H
 
-# include "lst_map.h"
-# include "map.h"
-# include "texture.h"
+# include "libft.h"
+# include "typedef.h"
 
-void	map_print(t_map *map);
-void	lstmap_print(t_lstmap *lstmap);
-void	textures_print_ptr(t_textures *textures);
+typedef unsigned char	t_ui8;
+
+typedef union
+{
+	struct
+	{
+		t_ui8 so : 1;
+		t_ui8 we : 1;
+		t_ui8 ea : 1;
+		t_ui8 no : 1;
+		t_ui8 f : 1;
+		t_ui8 c : 1;
+		t_ui8 flag_double : 1;
+	};
+	t_ui8				file_ok;
+}						t_fs;
+
+int						file_switch_select(t_fs *fs, char *key);
+void					file_switch_key(t_fs *fs, char **key);
 
 #endif
