@@ -1,10 +1,10 @@
-SO greystone.png
+SO ./textures/wolftex/greystone.png
 
-NO colorstone.png
-WE bluestone.png
+NO ./textures/wolftex/colorstone.png
+WE ./textures/wolftex/bluestone.png
 
 
-EA redbrick.png
+EA ./textures/wolftex/redbrick.png
 
 F 0,255,0
 C 0,0,255
