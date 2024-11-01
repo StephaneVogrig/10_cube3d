@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/01 03:20:02 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/01 13:27:16 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ int	dda_no_need(t_map *map, t_player *player, t_dda dda, int len_max)
 	return (FALSE);
 }
 
+static inline int	is_outside_map(t_position *p, t_map *map)
+{
+	return (p->x.grid < 0
+			|| p->y.grid < 0
+			|| p->x.grid >= map->width
+			|| p->y.grid >= map->height);
+}
+
 void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 {
 	while (TRUE)
@@ -74,10 +82,7 @@ void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 		}
 		if (ray->len > len_max)
 			break ;
-		if (ray->hit_pos.x.grid < 0
-				|| ray->hit_pos.y.grid < 0
-				|| ray->hit_pos.x.grid >= map->width
-				|| ray->hit_pos.y.grid >= map->height)
+		if (is_outside_map(&ray->hit_pos, map))
 			continue ;
 		if (map->grid[ray->hit_pos.y.grid][ray->hit_pos.x.grid] == WALL)
 			break ;
