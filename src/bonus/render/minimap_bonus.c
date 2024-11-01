@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/25 01:15:57 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/01 02:06:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	minimap_draw_ray(t_minimap *minimap, t_player *player, double raylen, \
 	t_vec2i	player_pos;
 	t_vec2i	intersect;
 	
-	player_pos.x = minimap->scale * (player->grid.x + player->box.x);
-	player_pos.y = minimap->scale * (player->grid.y + player->box.y);
+	player_pos.x = minimap->scale * (player->x.grid + player->x.box);
+	player_pos.y = minimap->scale * (player->y.grid + player->y.box);
 	if (raylen < 0)
 		raylen = fabs(raylen);
 	intersect.x = player_pos.x + raydir.x * raylen * minimap->scale;

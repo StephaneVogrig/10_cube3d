@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 00:27:56 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 19:47:51 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/01 02:06:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ static inline void	collision_manage(	t_map map,
 										t_player *player,
 										t_position	new)
 {
-	if (map.grid[player->grid.y][new.grid.x] == AREA)
+	if (map.grid[player->y.grid][new.x.grid] == AREA)
 	{
-		player->box.x = new.box.x;
-		player->grid.x = new.grid.x;
+		player->x.box = new.x.box;
+		player->x.grid = new.x.grid;
 	}
-	if (map.grid[new.grid.y][player->grid.x] == AREA)
+	if (map.grid[new.y.grid][player->x.grid] == AREA)
 	{
-		player->box.y = new.box.y;
-		player->grid.y = new.grid.y;
+		player->y.box = new.y.box;
+		player->y.grid = new.y.grid;
 	}
 }
 

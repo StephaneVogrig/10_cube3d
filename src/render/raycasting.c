@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/30 23:12:56 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/01 02:06:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ void	texture_init_hit(t_textures * textures, t_ray *ray, t_draw *d)
 	if (ray->hit_side == 'n')
 	{
 		d->texture = &textures->north;
-		d->texture_pixel.x = (1 - ray->hit_pos.box.x) * d->texture->width;
+		d->texture_pixel.x = (1 - ray->hit_pos.x.box) * d->texture->width;
 	}
 	else if (ray->hit_side == 's')
 	{
 		d->texture = &textures->south;
-		d->texture_pixel.x = ray->hit_pos.box.x * d->texture->width;
+		d->texture_pixel.x = ray->hit_pos.x.box * d->texture->width;
 	}
 	else if (ray->hit_side == 'e')
 	{
 		d->texture = &textures->east;
-		d->texture_pixel.x = (1 - ray->hit_pos.box.y) * d->texture->width;
+		d->texture_pixel.x = (1 - ray->hit_pos.y.box) * d->texture->width;
 	}
 	else
 	{
 		d->texture = &textures->west;
-		d->texture_pixel.x = ray->hit_pos.box.y * d->texture->width;
+		d->texture_pixel.x = ray->hit_pos.y.box * d->texture->width;
 	}
 }
 

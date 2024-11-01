@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/24 23:43:34 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/01 02:06:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	draw_player(t_minimap *minimap, t_player *player)
 	t_vec2i	end;
 
 	// printf("draw_player \n");
-	begin.x = player->grid.x * minimap->scale + (player->box.x
+	begin.x = player->x.grid * minimap->scale + (player->x.box
 			* minimap->scale);
-	begin.y = player->grid.y * minimap->scale + (player->box.y
+	begin.y = player->y.grid * minimap->scale + (player->y.box
 			* minimap->scale);
 	end.x = begin.x + 2;
 	end.y = begin.y + 2;

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:05:50 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 02:36:19 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/01 02:04:42 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct s_player
 	union {
 		t_position	position;
 		struct {
-			t_vec2i	grid;
-			t_vec2d	box;
+			t_grid_box	x;
+			t_grid_box	y;
 		};
 	};
 	double	dir;

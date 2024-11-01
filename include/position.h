@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 01:38:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 02:22:07 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/01 02:04:13 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,16 @@
 
 # include "vec2i.h"
 
+typedef struct s_grid_box
+{
+	int		grid;
+	double	box;
+}	t_grid_box;
+
+
 typedef struct s_position{
-	t_vec2i	grid;
-	t_vec2d	box;
+	t_grid_box	x;
+	t_grid_box	y;
 }	t_position;
 
 #endif

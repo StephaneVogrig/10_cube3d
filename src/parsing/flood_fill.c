@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/10/30 19:20:11 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/01 02:03:08 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	map_checker(t_map *map, t_player *player)
 	// print_tab(map->grid);
 	if (player_finder(map, player) == -1)
 		return (FAIL);
-	// map->grid[player->grid.y][player->grid.x] = '0';
-	ff_ok = chk_flood_fill(map, player->grid.x, player->grid.y);
+	// map->grid[player->y.grid][player->x.grid] = '0';
+	ff_ok = chk_flood_fill(map, player->x.grid, player->y.grid);
 	chk_box(ff_ok, EQ, TRUE, "Valid Map");
 	if (ff_ok == FALSE)
 		return (FAIL);

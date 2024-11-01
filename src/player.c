@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 02:24:01 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/01 02:06:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ t_position	player_new_position(t_player *player, t_vec2i vec_dir)
 	sin_d = sin(player->dir);
 	v.x = (vec_dir.x * cos_d - vec_dir.y * sin_d) * SPEED_MOVE;
 	v.y = (vec_dir.x * sin_d + vec_dir.y * cos_d) * SPEED_MOVE;
-	p.box.x = player->box.x + v.x;
-	p.box.y = player->box.y + v.y;
-	p.grid.x = player->grid.x;
-	p.grid.y = player->grid.y;
-	player_adjust_position(&p.box.x, &p.grid.x);
-	player_adjust_position(&p.box.y, &p.grid.y);
+	p.x.box = player->x.box + v.x;
+	p.y.box = player->y.box + v.y;
+	p.x.grid = player->x.grid;
+	p.y.grid = player->y.grid;
+	player_adjust_position(&p.x.box, &p.x.grid);
+	player_adjust_position(&p.y.box, &p.y.grid);
 	return (p);
 }
 
@@ -81,15 +81,15 @@ int	player_finder(t_map *map, t_player *player)
 			if (ft_isthis(map->grid[y][x], "NSWE"))
 			{
 				player_set_dir(player, map->grid[y][x]);
-				player->grid.x = x;
-				player->grid.y = y;
-				player->box.x = 0.5;
-				player->box.y = 0.5;
+				player->x.grid = x;
+				player->y.grid = y;
+				player->x.box = 0.5;
+				player->y.box = 0.5;
 			}
 			x++;
 		}
 	}
-	if (player->grid.x == 0 && player->grid.y == 0)
+	if (player->x.grid == 0 && player->y.grid == 0)
 		return (ft_return(ERROR, FAIL, "No player on map"));
 	return (SUCCESS);
 }
