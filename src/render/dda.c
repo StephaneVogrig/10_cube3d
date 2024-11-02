@@ -1,16 +1,38 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/01 15:33:46 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/02 10:57:33 by stephane         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "dda.h"
+
+
+static inline int	is_outside_map(t_map *map, t_position *p)
+{
+	return (p->x.grid < 0
+			|| p->y.grid < 0
+			|| p->x.grid >= map->width
+			|| p->y.grid >= map->height);
+}
+
+
+char map_get_grid(t_map *map, t_position *p)
+{
+	char	c;
+	
+	if (is_outside_map(map, p))
+			return (AREA);
+	c = map->grid[p->y.grid][p->x.grid];
+	if (c == ' ')
+		c = AREA;
+	return (c);
+}
 
 /*
 	compute basic data need for dda algorythme on one axis
@@ -33,19 +55,11 @@ void	dda_set(t_dda_ *dda, double ray_vec, double box)
 	}
 }
 
-static inline int	is_outside_map(t_position *p, t_map *map)
-{
-	return (p->x.grid < 0
-			|| p->y.grid < 0
-			|| p->x.grid >= map->width
-			|| p->y.grid >= map->height);
-}
-
 void	dda_init(t_dda *dda, t_vec2d *ray_vec, t_position *p, t_map *map)
 {
 	dda_set(&dda->x, ray_vec->x, p->x.box);
 	dda_set(&dda->y, ray_vec->y, p->y.box);
-	if (!is_outside_map(p, map) && map->grid[p->y.grid][p->x.grid] == WALL)
+	if (map_get_grid(map, p) == WALL)
 		dda->collide = AREA;
 	else
 		dda->collide = WALL;
@@ -86,9 +100,7 @@ void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 		}
 		if (ray->len > len_max)
 			break ;
-		if (is_outside_map(&ray->hit_pos, map))
-			continue ;
-		if (map->grid[ray->hit_pos.y.grid][ray->hit_pos.x.grid] == dda->collide)
+		if (map_get_grid(map, &ray->hit_pos) == dda->collide)
 			break ;
 	}
 }
