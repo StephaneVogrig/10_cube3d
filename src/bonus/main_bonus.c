@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/24 23:37:03 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/02 11:52:49 by stephane         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "check_arg.h"
 #include "chrono.h"
@@ -27,6 +27,8 @@ int	main(int argc, char **argv)
 		return (EXIT_SUCCESS);
 	data_init(&data);
 	exit_code = data_setup(&data, argv[1]);
+	if (exit_code == SUCCESS)
+		exit_code = window_setup(&data.win, data.mlx);
 	if (exit_code == SUCCESS)
 		exit_code = minimap_setup(data.mlx, &data.minimap, &data.map);
 	if (exit_code == SUCCESS)
