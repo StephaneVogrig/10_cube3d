@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/02 10:57:33 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/02 18:22:02 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,7 +29,7 @@ char map_get_grid(t_map *map, t_position *p)
 	if (is_outside_map(map, p))
 			return (AREA);
 	c = map->grid[p->y.grid][p->x.grid];
-	if (c == ' ')
+	if (c != WALL)
 		c = AREA;
 	return (c);
 }
@@ -157,6 +157,7 @@ void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player, t_vec2d *raydir)
 		ray->hit_pos.y.grid -= dda->y.step;
 		ray->hit_pos.y.box = 0;
 	}
+	ray->dark = dda->collide == AREA;
 }
 
 t_ray	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max)
@@ -164,11 +165,11 @@ t_ray	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max)
 	t_dda	dda;
 	t_ray	ray;
 
+	ft_bzero(&ray, sizeof(ray));
 	dda.len_max = len_max;
 	dda_init(&dda, raydir, &player->position, map);
 	if (dda_no_need(map, player, dda, len_max) == TRUE)
 	{
-		ft_bzero(&ray, sizeof(ray));
 		ray.len = len_max + 1;
 		return (ray);
 	}

@@ -1,16 +1,28 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/01 02:06:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/02 18:44:54 by stephane         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "raycasting.h"
+
+static inline int color_darkened(int color, int dark)
+{
+	if (dark)
+		return (color >> 5) & 0xFF070707;
+	return (color);
+}
+
+static inline int	texture_get_color(t_texture *t, int x, int y, int dark)
+{
+	return (color_darkened(mlx_get_image_pixel(t->mlx, t->img, x, y), dark));
+}
 
 void	texture_init_hit(t_textures * textures, t_ray *ray, t_draw *d)
 {
@@ -36,7 +48,7 @@ void	texture_init_hit(t_textures * textures, t_ray *ray, t_draw *d)
 	}
 }
 
-void	draw_texture_reduced(t_window *win, t_draw *d, double texture_dy, \
+void	draw_texture_reduced(t_window *win, t_draw *d, double texture_dy,
 														double texture_y)
 {
 	int color;
@@ -44,31 +56,31 @@ void	draw_texture_reduced(t_window *win, t_draw *d, double texture_dy, \
 	while (d->pix.y < d->y_max)
 	{
 		d->texture_pixel.y = (int)texture_y;
-		color = mlx_get_image_pixel(win->mlx, d->texture->img, \
-									d->texture_pixel.x, d->texture_pixel.y);
+		color = texture_get_color(	d->texture, d->texture_pixel.x,
+									d->texture_pixel.y, d->dark);
  		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
 		texture_y += texture_dy;
 		d->pix.y++;
 	}
 }
 
-void	draw_texture_enlarged(t_window *win, t_draw *d, double texture_dy, \
+void	draw_texture_enlarged(t_window *win, t_draw *d, double texture_dy,
 														double texture_y)
 {
 	int color;
 	
 	d->texture_pixel.y = (int)texture_y;
 	texture_y -= d->texture_pixel.y;
-	color = mlx_get_image_pixel(win->mlx, d->texture->img, d->texture_pixel.x, 
-														d->texture_pixel.y);
+		color = texture_get_color(	d->texture, d->texture_pixel.x,
+									d->texture_pixel.y, d->dark);
 	while (d->pix.y < d->y_max)
 	{
 		if (texture_y >= 1.0)
 		{
 			d->texture_pixel.y++;
 			texture_y -= 1.0;
-			color = mlx_get_image_pixel(win->mlx, d->texture->img, \
-									d->texture_pixel.x, d->texture_pixel.y);
+			color = texture_get_color(	d->texture, d->texture_pixel.x,
+										d->texture_pixel.y, d->dark);
 		}
  		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
 		texture_y += texture_dy;
@@ -89,25 +101,26 @@ void	draw_wall(t_window *win, t_draw *d, int wall_y, int wall_h)
 		draw_texture_enlarged(win, d, texture_dy, texture_y);
 }
 
-void	draw_ceil_wall_floor(t_window *win, t_textures *textures, \
+void	draw_ceil_wall_floor(t_window *win, t_textures *textures,
 													t_draw *d, int wall_h)
 {
 	int ceil_h;
+	int color;
 
+	color = color_darkened(textures->ceil_rgb.integer, d->dark);
 	ceil_h = (win->height - wall_h) / 2;
 	while (d->pix.y < ceil_h)
 	{
-		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, \
-												textures->ceil_rgb.integer);
+		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
 		d->pix.y++;
 	}
 	d->y_max = wall_h + ceil_h;
 	draw_wall(win, d, 0, wall_h);
 	d->pix.y = d->y_max;
+	color = color_darkened(textures->floor_rgb.integer, d->dark);
 	while (d->pix.y < win->height)
 	{
-		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, \
-												textures->floor_rgb.integer);
+		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
 		d->pix.y++;
 	}
 }
@@ -121,6 +134,7 @@ void	draw_column(t_window *win, int col, t_ray *ray, t_textures *textures)
 	texture_init_hit(textures, ray, &d);
 	d.pix.x = col;
 	d.pix.y = 0;
+	d.dark = ray->dark;
 	wall_h = win->height / ray->len;
 	if (ray->len > 1)
 		draw_ceil_wall_floor(win, textures, &d, wall_h);
@@ -132,7 +146,7 @@ void	draw_column(t_window *win, int col, t_ray *ray, t_textures *textures)
 	}
 }
 
-void	raycasting(t_window *win, t_minimap *minimap, t_map *map, \
+void	raycasting(t_window *win, t_minimap *minimap, t_map *map,
 															t_player *player)
 {
 	t_vec2d	dir;
