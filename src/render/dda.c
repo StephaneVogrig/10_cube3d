@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/05 13:11:01 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:50:33 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -106,13 +106,13 @@ void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 
 static inline void	grid_box_add_double(t_grid_box	*gb, double d)
 {
-	int	i;
+	double value;
 
-	d += gb->box;
-	i = (int)d;
-	gb->grid += i;
-	gb->box = d - i;
-	if (signbit(d))
+	value = gb->grid + gb->box;
+	value += d;
+	gb->grid = (int)value;
+	gb->box = value - gb->grid;
+	if (gb->box < 0)
 		gb->box += 1.0;
 }
 
@@ -134,16 +134,17 @@ void	grid_box_add_grid_box(t_grid_box *a, t_grid_box *b)
 
 void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player)
 {
+	(void)player;
+	ray->hit_pos.x = player->x;
+	grid_box_add_double(&ray->hit_pos.x, ray->dir.x * ray->len);
+	ray->hit_pos.y = player->y;
+	grid_box_add_double(&ray->hit_pos.y, ray->dir.y * ray->len);
 	if (ray->hit_side == 'x')
 	{
 		if (dda->x.step == 1)
 			ray->hit_side = 'w';
 		else
 			ray->hit_side = 'e';
-		ray->hit_pos.x.grid -= dda->x.step;
-		ray->hit_pos.x.box = 0;
-		ray->hit_pos.y = player->y;
-		grid_box_add_double(&ray->hit_pos.y, ray->dir.y * ray->len);
 	}
 	else
 	{
@@ -151,10 +152,6 @@ void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player)
 			ray->hit_side = 'n';
 		else
 			ray->hit_side = 's';
-		ray->hit_pos.x = player->x;
-		grid_box_add_double(&ray->hit_pos.x, ray->dir.x * ray->len);
-		ray->hit_pos.y.grid -= dda->y.step;
-		ray->hit_pos.y.box = 0;
 	}
 	ray->dark = dda->collide == AREA;
 }
