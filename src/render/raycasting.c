@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/05 13:43:02 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:05:03 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -196,7 +196,6 @@ void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 		dda(rays, map, player, win->height);
 		draw_column(win, i, rays, &map->textures);
 		camera += step_camera;
-		// minimap_draw_ray(minimap, player, ray.len, raydir); // Makefile
 		i++;
 		rays++;
 	}
