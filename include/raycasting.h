@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/02 17:59:47 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/05 10:53:50 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,6 +26,6 @@ typedef	struct s_draw{
 	int			dark;
 }	t_draw;
 
-void	raycasting(t_window *cub, t_minimap *minimap, t_map *map, t_player *player);
+void	raycasting(t_window *cub, t_map *map, t_player *player, t_ray *rays);
 
 #endif

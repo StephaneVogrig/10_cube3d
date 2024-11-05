@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/04 23:31:06 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:43:02 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -122,7 +122,7 @@ static inline void	draw_floor(t_window *win, t_textures *textures, t_draw *d)
 	}
 }
 
-void	draw_column(t_window *win, int col, t_ray *ray, t_textures *textures)
+static inline void	draw_column(t_window *win, int col, t_ray *ray, t_textures *textures)
 {
 	t_draw	d;
 	int		wall_y;
@@ -156,7 +156,7 @@ void	draw_ceil_floor(t_window *win, t_map *map)
 	int	y_ceil;
 	int y_floor;
 
-	int lim = WIN_H >> 1;
+	int lim = win->height / 2;
 	color_ceil = map->textures.ceil_rgb.integer;
 	color_floor = map->textures.floor_rgb.integer;
 	y_ceil = 0;
@@ -164,7 +164,7 @@ void	draw_ceil_floor(t_window *win, t_map *map)
 	while (y_ceil < lim)
 	{
 		x = 0;
-		while (x < WIN_W)
+		while (x < win->width)
 		{
 			mlx_pixel_put(win->mlx, win->win, x, y_ceil, color_ceil);
 			mlx_pixel_put(win->mlx, win->win, x, y_floor, color_floor);
@@ -175,32 +175,29 @@ void	draw_ceil_floor(t_window *win, t_map *map)
 	}
 }
 
-void	raycasting(t_window *win, t_minimap *minimap, t_map *map,
-															t_player *player)
+void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 {
 	t_vec2d	dir;
-	t_vec2d raydir;
-	t_ray ray[WIN_W];
 	double camera;
 	int	i;
 
-	(void)minimap; // Makefile
 	dir.x = cos(player->dir);
 	dir.y = sin(player->dir);
-	i = 0;
 	camera = -1;
-	double step_camera = 2.0 / WIN_W;
+	double step_camera = 2.0 / win->width;
 
 	// draw_ceil_floor(win, map);
 
-	while (i < WIN_W)
+	i = 0;
+	while (i < win->width)
 	{
-		raydir.x = dir.x - dir.y * camera;
-		raydir.y = dir.y + dir.x * camera;
-		ray[i] = dda(&raydir, map, player, win->height);
-		draw_column(win, i, &ray[i], &map->textures);
+		rays->dir.x = dir.x - dir.y * camera;
+		rays->dir.y = dir.y + dir.x * camera;
+		dda(rays, map, player, win->height);
+		draw_column(win, i, rays, &map->textures);
 		camera += step_camera;
 		// minimap_draw_ray(minimap, player, ray.len, raydir); // Makefile
 		i++;
+		rays++;
 	}
 }

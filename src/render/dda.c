@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/02 18:22:02 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:11:01 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -98,9 +98,8 @@ void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 			ray->hit_pos.y.grid += dda->y.step;
 			dda->y.len += dda->y.unit;
 		}
-		if (ray->len > len_max)
-			break ;
-		if (map_get_grid(map, &ray->hit_pos) == dda->collide)
+		if (ray->len > len_max
+			|| map_get_grid(map, &ray->hit_pos) == dda->collide)
 			break ;
 	}
 }
@@ -133,7 +132,7 @@ void	grid_box_add_grid_box(t_grid_box *a, t_grid_box *b)
 	a->grid += b->grid;
 }
 
-void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player, t_vec2d *raydir)
+void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player)
 {
 	if (ray->hit_side == 'x')
 	{
@@ -144,7 +143,7 @@ void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player, t_vec2d *raydir)
 		ray->hit_pos.x.grid -= dda->x.step;
 		ray->hit_pos.x.box = 0;
 		ray->hit_pos.y = player->y;
-		grid_box_add_double(&ray->hit_pos.y, raydir->y * ray->len);
+		grid_box_add_double(&ray->hit_pos.y, ray->dir.y * ray->len);
 	}
 	else
 	{
@@ -153,29 +152,26 @@ void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player, t_vec2d *raydir)
 		else
 			ray->hit_side = 's';
 		ray->hit_pos.x = player->x;
-		grid_box_add_double(&ray->hit_pos.x, raydir->x * ray->len);
+		grid_box_add_double(&ray->hit_pos.x, ray->dir.x * ray->len);
 		ray->hit_pos.y.grid -= dda->y.step;
 		ray->hit_pos.y.box = 0;
 	}
 	ray->dark = dda->collide == AREA;
 }
 
-t_ray	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max)
+void	dda(t_ray *ray, t_map *map, t_player *player, int len_max)
 {
 	t_dda	dda;
-	t_ray	ray;
 
-	ft_bzero(&ray, sizeof(ray));
 	dda.len_max = len_max;
-	dda_init(&dda, raydir, &player->position, map);
+	dda_init(&dda, &ray->dir, &player->position, map);
 	if (dda_no_need(map, player, dda, len_max) == TRUE)
 	{
-		ray.len = len_max + 1;
-		return (ray);
+		ray->len = len_max + 1;
+		return ;
 	}
-	ray.hit_pos.x.grid = player->x.grid;
-	ray.hit_pos.y.grid = player->y.grid;
-	dda_loop(&dda, &ray, map, len_max);
-	dda_ray_set(&ray, &dda, player, raydir);
-	return (ray);
+	ray->hit_pos.x.grid = player->x.grid;
+	ray->hit_pos.y.grid = player->y.grid;
+	dda_loop(&dda, ray, map, len_max);
+	dda_ray_set(ray, &dda, player);
 }
