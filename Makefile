@@ -6,7 +6,7 @@
 #    By: stephane <stephane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/05 12:53:47 by stephane         ###   ########.fr        #
+#    Updated: 2024/11/05 18:30:10 by stephane         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -102,7 +102,7 @@ OBJ_DIR				:=	.build/
 OBJS_MANDA			:= 	$(SRCS_MANDA:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 OBJS_BONUS			:= 	$(SRCS_BONUS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
-DEPS				:=	$(OBJS:.o=.d)
+DEPS				:=	$(OBJS_MANDA:.o=.d) $(OBJS_BONUS:.o=.d)
 
 # compilation -----------------------------------------------------------------#
 
