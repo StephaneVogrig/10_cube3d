@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 04:05:25 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 05:04:25 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -106,13 +106,37 @@ void	draw_wall(t_window *win, t_draw *d, int wall_y_start, int wall_h)
 		draw_texture_enlarged(win, d, texture_dy, texture_y_start);
 }
 
-static inline void	draw_column(t_window *win, int col, t_ray *ray, t_textures *textures)
+int	texture_pixel_x(t_texture *texture, t_ray *ray)
+{
+	if (ray->hit_side == 'n')
+		return ((1 - ray->hit_pos.x.box) * texture->width);
+	if (ray->hit_side == 's')
+		return (ray->hit_pos.x.box * texture->width);
+	if (ray->hit_side == 'e')
+		return ((1 - ray->hit_pos.y.box) * texture->width);
+	return (ray->hit_pos.y.box * texture->width);
+}
+
+t_texture	*texture_hit(t_textures *textures, t_ray *ray)
+{
+	if (ray->hit_side == 'n')
+		return (&textures->north);
+	if (ray->hit_side == 's')
+		return (&textures->south);
+	if (ray->hit_side == 'e')
+		return (&textures->east);
+	return (&textures->west);
+}
+
+static inline void	draw_column(t_window *win, int col, t_ray *ray, t_texture *texture)
 {
 	t_draw	d;
 	int		wall_h;
 	int		wall_y_start;
 
-	texture_init_hit(textures, ray, &d);
+	// texture_init_hit(textures, ray, &d);
+	d.texture = texture;
+	d.texture_pixel.x = texture_pixel_x(texture, ray);
 	d.x = col;
 	d.dark = ray->dark;
 	wall_h = win->height / ray->len;
@@ -120,7 +144,6 @@ static inline void	draw_column(t_window *win, int col, t_ray *ray, t_textures *t
 	{
 		d.y_start = (win->height - wall_h) / 2;
 		d.y_end = d.y_start + wall_h;
-		// draw_floor(win, textures, &d);
 		wall_y_start = 0;
 	}
 	else
@@ -150,7 +173,6 @@ void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 		rays->dir.x = dir.x - dir.y * camera;
 		rays->dir.y = dir.y + dir.x * camera;
 		dda(rays, map, player, win->height);
-		// draw_column(win, i, rays, &map->textures);
 		camera += step_camera;
 		i++;
 		rays++;
@@ -159,13 +181,15 @@ void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 
 void	render_draw_wall(t_window *win, t_map *map, t_ray *rays)
 {
-	int	i;
+	int	x;
+	t_texture *texture;
 
-	i = 0;
-	while (i < win->width)
+	x = 0;
+	while (x < win->width)
 	{
-		draw_column(win, i, rays, &map->textures);
-		i++;
+		texture = texture_hit(&map->textures, rays);
+		draw_column(win, x, rays, texture);
+		x++;
 		rays++;
 	}
 }
