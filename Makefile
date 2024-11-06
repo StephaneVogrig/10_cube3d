@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: stephane <stephane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/06 20:19:47 by svogrig          ###   ########.fr        #
+#    Updated: 2024/11/06 15:04:38 by stephane         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -71,7 +71,6 @@ SRCS				:= 	debug.c \
 SRC_MAND_DIR		:=	mandatory
 
 SRCS_MANDA			:=	main_manda.c \
-						floor_ceil_mlx_img.c \
 						render/render_manda.c \
 						player_move_manda.c \
 						floor_ceil_mlx_img.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 20:20:19 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/06 19:39:04 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -98,8 +98,9 @@ void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 			ray->hit_pos.y.grid += dda->y.step;
 			dda->y.len += dda->y.unit;
 		}
-		if (ray->len > len_max
-			|| map_get_grid(map, &ray->hit_pos) == dda->collide)
+		if (ray->len > len_max)
+			break ;
+		if (map_get_grid(map, &ray->hit_pos) == dda->collide)
 			break ;
 	}
 }
