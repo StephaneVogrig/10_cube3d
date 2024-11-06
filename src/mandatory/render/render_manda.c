@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:16:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 14:58:07 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 19:34:26 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,9 +32,9 @@ void	render_draw_floor_ceil(t_window *win, t_map *map, t_player *player)
 
 void	render(t_data *data)
 {
-	t_ray ray[WIN_W];
+	t_ray rays[WIN_W];
 
 	render_draw_floor_ceil(&data->win, &data->map, &data->player);
-	raycasting(&data->win, &data->minimap, &data->map, &data->player, &ray[0]);
+	raycasting(&data->win, &data->map, &data->player, &rays[0]);
 	fps_print(chrono(STOP));
 }

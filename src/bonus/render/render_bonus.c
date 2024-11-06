@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 18:57:35 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 19:29:38 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -67,10 +67,37 @@ void	draw_minimap(t_map *map, t_minimap *minimap)
 	}
 }
 
-void	render_minimap(t_minimap *minimap, t_map *map, t_player *player)
+void	draw_rays(t_minimap *minimap, t_player *player, t_ray *rays)
+{
+	int	i;
+	t_vec2i	start;
+	t_vec2i	end;
+	t_vec2d	play;
+	t_vec2d	hit;
+
+	play.x = player->x.grid + player->x.box;
+	play.y = player->y.grid + player->y.box;
+
+	start.x = minimap->scale * play.x;
+	start.y = minimap->scale * play.y;
+	i = 0;
+	while (i < WIN_W)
+	{
+		hit.x = rays->hit_pos.x.grid + rays->hit_pos.x.box;
+		hit.y = rays->hit_pos.y.grid + rays->hit_pos.y.box;
+		end.x = minimap->scale * hit.x;
+		end.y = minimap->scale * hit.y;
+		draw_line(&minimap->screen, start, end, 0xFFFF0000);
+		i++;
+		rays++;
+	}
+}
+
+void	render_minimap(t_minimap *minimap, t_map *map, t_player *player, t_ray *rays)
 {
 	// printf("render_minimap\n");
 	draw_minimap(map, minimap);
+	draw_rays(minimap, player, rays);
 	draw_player(minimap, player);
 }
 
@@ -113,8 +140,8 @@ void	render(t_data *data)
 	int		dark;
 
 	dark = map_get_grid(&data->map, &data->player.position) == WALL;
-	render_minimap(&data->minimap, &data->map, &data->player);
-	raycasting(&data->win, &data->minimap, &data->map, &data->player, &rays[0]);
+	raycasting(&data->win, &data->map, &data->player, &rays[0]);
+	render_minimap(&data->minimap, &data->map, &data->player, &rays[0]);
 	render_draw_floor_ceil(&data->win, &data->map.textures, &rays[0], dark);
 	fps_print(chrono(STOP));
 }

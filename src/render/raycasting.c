@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 18:44:42 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 19:31:48 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -128,28 +128,25 @@ void	draw_column(t_window *win, int col, t_ray *ray, t_textures *textures)
 	}
 }
 
-void	raycasting(t_window *win, t_minimap *minimap, t_map *map,
-															t_player *player, t_ray *rays)
+void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 {
 	t_vec2d	dir;
-	t_vec2d raydir;
 	double camera;
+	double step_camera;
 	int	i;
 	
-	(void)minimap; // Makefile
 	dir.x = cos(player->dir);
 	dir.y = sin(player->dir);
 	camera = -1;
-	double step_camera = 2.0 / WIN_W;
+	step_camera = 2.0 / WIN_W;
 	i = 0;
 	while (i < WIN_W)
 	{
-		raydir.x = dir.x - dir.y * camera;
-		raydir.y = dir.y + dir.x * camera;
-		*rays = dda(&raydir, map, player, win->height);
+		rays->dir.x = dir.x - dir.y * camera;
+		rays->dir.y = dir.y + dir.x * camera;
+		dda(rays, map, player, win->height);
 		draw_column(win, i, rays, &map->textures);
 		camera += step_camera;
-		// minimap_draw_ray(minimap, player, ray.len, raydir); // Makefile
 		rays++;
 		i++;
 	}
