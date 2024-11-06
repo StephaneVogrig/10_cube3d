@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 05:04:25 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 08:10:28 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -48,8 +48,7 @@ void	texture_init_hit(t_textures * textures, t_ray *ray, t_draw *d)
 	}
 }
 
-static inline void	draw_texture_reduced(t_window *win, t_draw *d, double texture_dy,
-														double texture_y)
+static inline void	draw_texture_reduced(t_window *win, int x, t_draw *d)
 {
 	int color;
 	int	y;
@@ -57,54 +56,53 @@ static inline void	draw_texture_reduced(t_window *win, t_draw *d, double texture
 	y = d->y_start;
 	while (y < d->y_end)
 	{
-		d->texture_pixel.y = (int)texture_y;
+		d->texture_pixel.y = (int)d->texture_y;
 		color = texture_get_color(	d->texture, d->texture_pixel.x,
 									d->texture_pixel.y, d->dark);
-		mlx_pixel_put(win->mlx, win->win, d->x, y, color);
-		texture_y += texture_dy;
+		mlx_pixel_put(win->mlx, win->win, x, y, color);
+		d->texture_y += d->texture_dy;
 		y++;
 	}
 }
 
-static inline void	draw_texture_enlarged(t_window *win, t_draw *d, double texture_dy,
-														double texture_y)
+static inline void	draw_texture_enlarged(t_window *win, int x, t_draw *d)
 {
 	int color;
 	int	y;
 	int	texture_pixel_y;
 	
-	texture_pixel_y = (int)texture_y;
-	texture_y -= texture_pixel_y;
+	texture_pixel_y = (int)d->texture_y;
+	d->texture_y -= texture_pixel_y;
 	color = texture_get_color(d->texture, d->texture_pixel.x,
 									texture_pixel_y, d->dark);
 	y = d->y_start;
 	while (y < d->y_end)
 	{
-		if (texture_y >= 1.0)
+		if (d->texture_y >= 1.0)
 		{
 			texture_pixel_y++;
-			texture_y -= 1.0;
-			color = texture_get_color(	d->texture, d->texture_pixel.x,
+			d->texture_y -= 1.0;
+			color = texture_get_color(d->texture, d->texture_pixel.x,
 										texture_pixel_y, d->dark);
 		}
-		mlx_pixel_put(win->mlx, win->win, d->x, y, color);
-		texture_y += texture_dy;
+		mlx_pixel_put(win->mlx, win->win, x, y, color);
+		d->texture_y += d->texture_dy;
 		y++;
 	}
 }
 
-void	draw_wall(t_window *win, t_draw *d, int wall_y_start, int wall_h)
-{
-	double	texture_dy;
-	double	texture_y_start;
+// void	draw_wall(t_window *win, t_draw *d, int wall_y_start, int wall_h)
+// {
+// 	double	texture_dy;
+// 	double	texture_y_start;
 
-	texture_dy = (double)d->texture->height / wall_h;
-	texture_y_start = (double)wall_y_start * texture_dy;
-	if (d->texture->height >= wall_h)
-		draw_texture_reduced(win, d, texture_dy, texture_y_start);
-	else
-		draw_texture_enlarged(win, d, texture_dy, texture_y_start);
-}
+// 	texture_dy = (double)d->texture->height / wall_h;
+// 	texture_y_start = (double)wall_y_start * texture_dy;
+// 	if (d->texture->height >= wall_h)
+// 		draw_texture_reduced(win, d, texture_dy, texture_y_start);
+// 	else
+// 		draw_texture_enlarged(win, d, texture_dy, texture_y_start);
+// }
 
 int	texture_pixel_x(t_texture *texture, t_ray *ray)
 {
@@ -128,32 +126,32 @@ t_texture	*texture_hit(t_textures *textures, t_ray *ray)
 	return (&textures->west);
 }
 
-static inline void	draw_column(t_window *win, int col, t_ray *ray, t_texture *texture)
-{
-	t_draw	d;
-	int		wall_h;
-	int		wall_y_start;
+// static inline void	draw_column(t_window *win, int x, t_ray *ray, t_texture *texture)
+// {
+// 	t_draw	d;
+// 	int		wall_h;
+// 	int		wall_y_start;
 
-	// texture_init_hit(textures, ray, &d);
-	d.texture = texture;
-	d.texture_pixel.x = texture_pixel_x(texture, ray);
-	d.x = col;
-	d.dark = ray->dark;
-	wall_h = win->height / ray->len;
-	if (wall_h < win->height)
-	{
-		d.y_start = (win->height - wall_h) / 2;
-		d.y_end = d.y_start + wall_h;
-		wall_y_start = 0;
-	}
-	else
-	{
-		d.y_start = 0;
-		d.y_end = win->height;
-		wall_y_start = (wall_h - win->height) / 2;
-	}
-	draw_wall(win, &d, wall_y_start, wall_h);
-}
+// 	// texture_init_hit(textures, ray, &d);
+// 	d.texture = texture;
+// 	d.texture_pixel.x = texture_pixel_x(texture, ray);
+// 	d.x = x;
+// 	d.dark = ray->dark;
+// 	wall_h = win->height / ray->len;
+// 	if (wall_h < win->height)
+// 	{
+// 		d.y_start = (win->height - wall_h) / 2;
+// 		d.y_end = d.y_start + wall_h;
+// 		wall_y_start = 0;
+// 	}
+// 	else
+// 	{
+// 		d.y_start = 0;
+// 		d.y_end = win->height;
+// 		wall_y_start = (wall_h - win->height) / 2;
+// 	}
+// 	draw_wall(win, &d, wall_y_start, wall_h);
+// }
 
 void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 {
@@ -179,6 +177,43 @@ void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 	}
 }
 
+void	draw_wall_env(t_window *win, int x, t_ray *ray, t_texture *texture)
+{
+	t_draw	d;
+	int		wall_h;
+
+	d.texture = texture;
+	d.texture_pixel.x = texture_pixel_x(texture, ray);
+	// d.x = x;
+	d.dark = ray->dark;
+	wall_h = win->height / ray->len;
+	d.texture_dy = (double)texture->height / wall_h;
+	if (wall_h < win->height)
+	{
+		d.y_start = (win->height - wall_h) / 2;
+		d.y_end = d.y_start + wall_h;
+		d.texture_y = 0.0;
+	}
+	else
+	{
+		d.y_start = 0;
+		d.y_end = win->height;
+		d.texture_y = d.texture_dy * (wall_h - win->height) / 2;
+	}
+	if (texture->height >= wall_h)
+		draw_texture_reduced(win, x, &d);
+	else
+		draw_texture_enlarged(win, x, &d);
+}
+	//d->texture
+	//d->texture_pixel.x
+	//d->dark
+	//d->y_start
+	//d->y_end
+	//d->x
+	//d.texture_dy
+	//d.texture_y
+
 void	render_draw_wall(t_window *win, t_map *map, t_ray *rays)
 {
 	int	x;
@@ -188,7 +223,8 @@ void	render_draw_wall(t_window *win, t_map *map, t_ray *rays)
 	while (x < win->width)
 	{
 		texture = texture_hit(&map->textures, rays);
-		draw_column(win, x, rays, texture);
+		draw_wall_env(win, x, rays, texture);
+		// draw_column(win, x, rays, texture);
 		x++;
 		rays++;
 	}
