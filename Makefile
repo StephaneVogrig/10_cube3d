@@ -6,7 +6,7 @@
 #    By: stephane <stephane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/06 10:03:48 by stephane         ###   ########.fr        #
+#    Updated: 2024/11/06 15:04:38 by stephane         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -72,7 +72,8 @@ SRC_MAND_DIR		:=	mandatory
 
 SRCS_MANDA			:=	main_manda.c \
 						render/render_manda.c \
-						player_move_manda.c
+						player_move_manda.c \
+						floor_ceil_mlx_img.c
 						
 SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_MAND_DIR)/%)
 

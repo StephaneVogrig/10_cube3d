@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main_manda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/10/31 23:25:10 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:52:33 by stephane         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "check_arg.h"
 #include "chrono.h"
@@ -16,6 +16,7 @@
 #include "event.h"
 #include "file_process.h"
 #include "render.h"
+#include "floor_ceil_mlx_img.h"
 
 int	main(int argc, char **argv)
 {
@@ -31,12 +32,15 @@ int	main(int argc, char **argv)
 	if (exit_code == SUCCESS)
 		exit_code = window_setup(&data.win, data.mlx);
 	if (exit_code == SUCCESS)
+		floor_ceil_init(&data.win, data.map.textures.ceil_rgb.integer, data.map.textures.floor_rgb.integer);
+	if (exit_code == SUCCESS)
 	{
 		event_setup(&data);
 		chrono(START);
 		render(&data);
 		mlx_loop(data.mlx);
 	}
+	floor_ceil_destroy();
 	data_clean(&data);
 	return (EXIT_SUCCESS);
 }

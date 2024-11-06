@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/02 17:59:47 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:02:20 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -46,5 +46,6 @@ typedef struct s_dda{
 	* the position on grid and box where hit the ray
 */ 
 t_ray	dda(t_vec2d *raydir, t_map *map, t_player *player, int len_max);
+char 	map_get_grid(t_map *map, t_position *p);
 
 #endif
