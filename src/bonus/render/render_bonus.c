@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/05 17:53:47 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 04:02:13 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -101,6 +101,44 @@ void	render_minimap(t_minimap *minimap, t_map *map, t_player *player, t_ray *ray
 	draw_player(minimap, player);
 }
 
+static inline void	draw_floor(t_window *win, t_textures *textures, int x, t_ray *ray)
+{
+	int color_ceil;
+	int color_floor;
+	int	y_ceil;
+	int y_floor;
+	int	wall_h;
+
+	wall_h = win->height / ray->len;
+	color_ceil = color_darkened(textures->ceil_rgb.integer, ray->dark);
+	color_floor = color_darkened(textures->floor_rgb.integer, ray->dark);
+	y_ceil = 0;
+	y_floor = wall_h + (win->height - wall_h) / 2;
+	while (y_floor < win->height)
+	{
+		mlx_pixel_put(win->mlx, win->win, x, y_ceil, color_ceil);
+		mlx_pixel_put(win->mlx, win->win, x, y_floor, color_floor);
+		y_floor++;
+		y_ceil++;
+	}
+}
+
+void	render_draw_floor_ceil(t_window *win, t_ray *rays, t_textures *textures)
+{
+	int		x;
+
+	x = 0;
+	while (x < win->width)
+	{
+		if (rays->len < win->height)
+		{
+			draw_floor(win, textures, x, rays);
+		}
+		x++;
+		rays++;
+	}
+}
+
 void	render(t_data *data)
 {
 	// printf("render\n");
@@ -109,5 +147,7 @@ void	render(t_data *data)
 	ft_bzero(rays, sizeof(rays));
 	raycasting(&data->win, &data->map, &data->player, &rays[0]);
 	render_minimap(&data->minimap, &data->map, &data->player, &rays[0]);
+	render_draw_wall(&data->win, &data->map, &rays[0]);
+	render_draw_floor_ceil(&data->win, &rays[0], &data->map.textures);
 	fps_print(chrono(STOP));
 }
