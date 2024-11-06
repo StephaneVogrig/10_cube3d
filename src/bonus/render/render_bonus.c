@@ -6,7 +6,7 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 12:00:00 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 18:57:35 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -74,12 +74,47 @@ void	render_minimap(t_minimap *minimap, t_map *map, t_player *player)
 	draw_player(minimap, player);
 }
 
+void	render_draw_floor_ceil(t_window *win, t_textures *textures, t_ray *rays, int dark)
+{
+	int color_ceil;
+	int color_floor;
+	int x;
+	int	y_ceil;
+	int	y_floor;
+	int	wall_h;
+
+	color_ceil = color_darkened(textures->ceil_rgb.integer, dark);
+	color_floor = color_darkened(textures->floor_rgb.integer, dark);
+	x = 0;
+	while (x < WIN_W)
+	{
+		if (rays->len < win->height)
+		{
+			wall_h = win->height / rays->len;
+			y_ceil = 0;
+			y_floor = wall_h + (win->height - wall_h) / 2;
+			while (y_floor < win->height)
+			{
+				mlx_pixel_put(win->mlx, win->win, x, y_ceil, color_ceil);
+				mlx_pixel_put(win->mlx, win->win, x, y_floor, color_floor);
+				y_ceil++;
+				y_floor++;
+			}
+		}
+		rays++;
+		x++;
+	}
+}
+
 void	render(t_data *data)
 {
 	// printf("render\n");
-	t_ray ray[WIN_W];
+	t_ray	rays[WIN_W];
+	int		dark;
 
+	dark = map_get_grid(&data->map, &data->player.position) == WALL;
 	render_minimap(&data->minimap, &data->map, &data->player);
-	raycasting(&data->win, &data->minimap, &data->map, &data->player, &ray[0]);
+	raycasting(&data->win, &data->minimap, &data->map, &data->player, &rays[0]);
+	render_draw_floor_ceil(&data->win, &data->map.textures, &rays[0], dark);
 	fps_print(chrono(STOP));
 }

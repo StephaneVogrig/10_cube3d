@@ -6,13 +6,13 @@
 /*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 11:57:00 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 18:44:42 by stephane         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "raycasting.h"
 
-static inline int color_darkened(int color, int dark)
+int color_darkened(int color, int dark)
 {
 	if (dark)
 		return (color >> 5) & 0xFF070707;
@@ -101,45 +101,27 @@ void	draw_wall(t_window *win, t_draw *d, int wall_y, int wall_h)
 		draw_texture_enlarged(win, d, texture_dy, texture_y);
 }
 
-void	draw_ceil_wall_floor(t_window *win, t_textures *textures,
-													t_draw *d, int wall_h)
-{
-	int ceil_h;
-	int color;
-
-	color = color_darkened(textures->ceil_rgb.integer, d->dark);
-	ceil_h = (win->height - wall_h) / 2;
-	while (d->pix.y < ceil_h)
-	{
-		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
-		d->pix.y++;
-	}
-	d->y_max = wall_h + ceil_h;
-	draw_wall(win, d, 0, wall_h);
-	d->pix.y = d->y_max;
-	color = color_darkened(textures->floor_rgb.integer, d->dark);
-	while (d->pix.y < win->height)
-	{
-		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
-		d->pix.y++;
-	}
-}
-
 void	draw_column(t_window *win, int col, t_ray *ray, t_textures *textures)
 {
 	t_draw	d;
 	int		wall_y;
 	int		wall_h;
+	int		ceil_h;
 
 	texture_init_hit(textures, ray, &d);
 	d.pix.x = col;
-	d.pix.y = 0;
 	d.dark = ray->dark;
 	wall_h = win->height / ray->len;
-	if (ray->len > 1)
-		draw_ceil_wall_floor(win, textures, &d, wall_h);
+	ceil_h = (win->height - wall_h) / 2;
+	if (ray->len > 1.0)
+	{
+		d.pix.y = ceil_h;
+		d.y_max = wall_h + ceil_h;
+		draw_wall(win, &d, 0, wall_h);
+	}
 	else
 	{
+		d.pix.y = 0;
 		d.y_max = win->height;
 		wall_y = (wall_h - win->height) / 2;
 		draw_wall(win, &d, wall_y, wall_h);
