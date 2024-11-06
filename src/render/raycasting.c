@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 08:10:28 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 20:20:08 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "raycasting.h"
 
-inline int color_darkened(int color, int dark)
+int color_darkened(int color, int dark)
 {
 	if (dark)
 		return (color >> 5) & 0xFF070707;
@@ -59,9 +59,9 @@ static inline void	draw_texture_reduced(t_window *win, int x, t_draw *d)
 		d->texture_pixel.y = (int)d->texture_y;
 		color = texture_get_color(	d->texture, d->texture_pixel.x,
 									d->texture_pixel.y, d->dark);
-		mlx_pixel_put(win->mlx, win->win, x, y, color);
-		d->texture_y += d->texture_dy;
-		y++;
+		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
+		texture_y += texture_dy;
+		d->pix.y++;
 	}
 }
 
@@ -85,9 +85,9 @@ static inline void	draw_texture_enlarged(t_window *win, int x, t_draw *d)
 			color = texture_get_color(d->texture, d->texture_pixel.x,
 										texture_pixel_y, d->dark);
 		}
-		mlx_pixel_put(win->mlx, win->win, x, y, color);
-		d->texture_y += d->texture_dy;
-		y++;
+		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
+		texture_y += texture_dy;
+		d->pix.y++;
 	}
 }
 
@@ -96,62 +96,39 @@ static inline void	draw_texture_enlarged(t_window *win, int x, t_draw *d)
 // 	double	texture_dy;
 // 	double	texture_y_start;
 
-// 	texture_dy = (double)d->texture->height / wall_h;
-// 	texture_y_start = (double)wall_y_start * texture_dy;
-// 	if (d->texture->height >= wall_h)
-// 		draw_texture_reduced(win, d, texture_dy, texture_y_start);
-// 	else
-// 		draw_texture_enlarged(win, d, texture_dy, texture_y_start);
-// }
-
-int	texture_pixel_x(t_texture *texture, t_ray *ray)
-{
-	if (ray->hit_side == 'n')
-		return ((1 - ray->hit_pos.x.box) * texture->width);
-	if (ray->hit_side == 's')
-		return (ray->hit_pos.x.box * texture->width);
-	if (ray->hit_side == 'e')
-		return ((1 - ray->hit_pos.y.box) * texture->width);
-	return (ray->hit_pos.y.box * texture->width);
+	texture_dy = (double)d->texture->height / wall_h;
+	texture_y = (double)wall_y * texture_dy;
+	if (d->texture->height >= wall_h)
+		draw_texture_reduced(win, d, texture_dy, texture_y);
+	else
+		draw_texture_enlarged(win, d, texture_dy, texture_y);
 }
 
-t_texture	*texture_hit(t_textures *textures, t_ray *ray)
+void	draw_column(t_window *win, int col, t_ray *ray, t_textures *textures)
 {
-	if (ray->hit_side == 'n')
-		return (&textures->north);
-	if (ray->hit_side == 's')
-		return (&textures->south);
-	if (ray->hit_side == 'e')
-		return (&textures->east);
-	return (&textures->west);
+	t_draw	d;
+	int		wall_h;
+	int		ceil_h;
+
+	texture_init_hit(textures, ray, &d);
+	d.pix.x = col;
+	d.dark = ray->dark;
+	wall_h = win->height / ray->len;
+	ceil_h = (win->height - wall_h) / 2;
+	if (ray->len > 1.0)
+	{
+		d.pix.y = ceil_h;
+		d.y_max = wall_h + ceil_h;
+		draw_wall(win, &d, 0, wall_h);
+	}
+	else
+	{
+		d.pix.y = 0;
+		d.y_max = win->height;
+		wall_y = (wall_h - win->height) / 2;
+		draw_wall(win, &d, wall_y, wall_h);
+	}
 }
-
-// static inline void	draw_column(t_window *win, int x, t_ray *ray, t_texture *texture)
-// {
-// 	t_draw	d;
-// 	int		wall_h;
-// 	int		wall_y_start;
-
-// 	// texture_init_hit(textures, ray, &d);
-// 	d.texture = texture;
-// 	d.texture_pixel.x = texture_pixel_x(texture, ray);
-// 	d.x = x;
-// 	d.dark = ray->dark;
-// 	wall_h = win->height / ray->len;
-// 	if (wall_h < win->height)
-// 	{
-// 		d.y_start = (win->height - wall_h) / 2;
-// 		d.y_end = d.y_start + wall_h;
-// 		wall_y_start = 0;
-// 	}
-// 	else
-// 	{
-// 		d.y_start = 0;
-// 		d.y_end = win->height;
-// 		wall_y_start = (wall_h - win->height) / 2;
-// 	}
-// 	draw_wall(win, &d, wall_y_start, wall_h);
-// }
 
 void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 {
@@ -163,69 +140,16 @@ void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 	dir.x = cos(player->dir);
 	dir.y = sin(player->dir);
 	camera = -1;
-	step_camera = 2.0 / win->width;
-
+	step_camera = 2.0 / WIN_W;
 	i = 0;
-	while (i < win->width)
+	while (i < WIN_W)
 	{
 		rays->dir.x = dir.x - dir.y * camera;
 		rays->dir.y = dir.y + dir.x * camera;
 		dda(rays, map, player, win->height);
+		draw_column(win, i, rays, &map->textures);
 		camera += step_camera;
+		rays++;
 		i++;
-		rays++;
-	}
-}
-
-void	draw_wall_env(t_window *win, int x, t_ray *ray, t_texture *texture)
-{
-	t_draw	d;
-	int		wall_h;
-
-	d.texture = texture;
-	d.texture_pixel.x = texture_pixel_x(texture, ray);
-	// d.x = x;
-	d.dark = ray->dark;
-	wall_h = win->height / ray->len;
-	d.texture_dy = (double)texture->height / wall_h;
-	if (wall_h < win->height)
-	{
-		d.y_start = (win->height - wall_h) / 2;
-		d.y_end = d.y_start + wall_h;
-		d.texture_y = 0.0;
-	}
-	else
-	{
-		d.y_start = 0;
-		d.y_end = win->height;
-		d.texture_y = d.texture_dy * (wall_h - win->height) / 2;
-	}
-	if (texture->height >= wall_h)
-		draw_texture_reduced(win, x, &d);
-	else
-		draw_texture_enlarged(win, x, &d);
-}
-	//d->texture
-	//d->texture_pixel.x
-	//d->dark
-	//d->y_start
-	//d->y_end
-	//d->x
-	//d.texture_dy
-	//d.texture_y
-
-void	render_draw_wall(t_window *win, t_map *map, t_ray *rays)
-{
-	int	x;
-	t_texture *texture;
-
-	x = 0;
-	while (x < win->width)
-	{
-		texture = texture_hit(&map->textures, rays);
-		draw_wall_env(win, x, rays, texture);
-		// draw_column(win, x, rays, texture);
-		x++;
-		rays++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/05 17:50:33 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 20:20:19 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -134,7 +134,6 @@ void	grid_box_add_grid_box(t_grid_box *a, t_grid_box *b)
 
 void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player)
 {
-	(void)player;
 	ray->hit_pos.x = player->x;
 	grid_box_add_double(&ray->hit_pos.x, ray->dir.x * ray->len);
 	ray->hit_pos.y = player->y;

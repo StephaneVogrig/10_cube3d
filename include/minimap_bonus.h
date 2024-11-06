@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:14:09 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/05 18:04:58 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 20:21:02 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,5 +29,7 @@ typedef struct s_minimap{
 
 int		minimap_scale(t_map *map, t_minimap *minimap);
 int		minimap_setup(void *mlx, t_minimap *minimap, t_map *map);
+void	minimap_draw_ray(t_minimap *minimap, t_player *player, double raylen,
+																t_vec2d raydir);
 
 #endif

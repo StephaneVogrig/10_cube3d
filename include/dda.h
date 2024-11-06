@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/05 20:24:32 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 20:20:45 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,7 +19,8 @@
 # include "libft.h"
 # include "position.h"
 
-typedef struct s_ray{
+typedef struct s_ray
+{
 	t_vec2d		dir;
 	double		len;
 	t_position	hit_pos;
@@ -27,13 +28,15 @@ typedef struct s_ray{
 	int			dark;
 } 	t_ray;
 
-typedef struct s_dda_{
+typedef struct s_dda_
+{
 	double	unit;
 	double	len;
 	int		step;
 }	t_dda_;
 
-typedef struct s_dda{
+typedef struct s_dda
+{
 	t_dda_	x;
 	t_dda_	y;
 	int		len_max;
@@ -47,6 +50,6 @@ typedef struct s_dda{
 	* the position on grid and box where hit the ray
 */ 
 void	dda(t_ray *ray, t_map *map, t_player *player, int len_max);
-char	map_get_grid(t_map *map, t_position *p);
+char 	map_get_grid(t_map *map, t_position *p);
 
 #endif

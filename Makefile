@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: stephane <stephane@student.42.fr>          +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/06 01:49:03 by stephane         ###   ########.fr        #
+#    Updated: 2024/11/06 20:19:47 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -73,7 +73,8 @@ SRC_MAND_DIR		:=	mandatory
 SRCS_MANDA			:=	main_manda.c \
 						floor_ceil_mlx_img.c \
 						render/render_manda.c \
-						player_move_manda.c
+						player_move_manda.c \
+						floor_ceil_mlx_img.c
 						
 SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_MAND_DIR)/%)
 
