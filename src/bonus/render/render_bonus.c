@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/01 02:06:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/06 12:00:00 by stephane         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "render.h"
 
@@ -77,7 +77,9 @@ void	render_minimap(t_minimap *minimap, t_map *map, t_player *player)
 void	render(t_data *data)
 {
 	// printf("render\n");
+	t_ray ray[WIN_W];
+
 	render_minimap(&data->minimap, &data->map, &data->player);
-	raycasting(&data->win, &data->minimap, &data->map, &data->player);
+	raycasting(&data->win, &data->minimap, &data->map, &data->player, &ray[0]);
 	fps_print(chrono(STOP));
 }
