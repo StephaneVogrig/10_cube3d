@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 19:31:48 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/06 20:04:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -58,7 +58,7 @@ void	draw_texture_reduced(t_window *win, t_draw *d, double texture_dy,
 		d->texture_pixel.y = (int)texture_y;
 		color = texture_get_color(	d->texture, d->texture_pixel.x,
 									d->texture_pixel.y, d->dark);
- 		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
+		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
 		texture_y += texture_dy;
 		d->pix.y++;
 	}
@@ -82,7 +82,7 @@ void	draw_texture_enlarged(t_window *win, t_draw *d, double texture_dy,
 			color = texture_get_color(	d->texture, d->texture_pixel.x,
 										d->texture_pixel.y, d->dark);
 		}
- 		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
+		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
 		texture_y += texture_dy;
 		d->pix.y++;
 	}
@@ -134,7 +134,7 @@ void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 	double camera;
 	double step_camera;
 	int	i;
-	
+
 	dir.x = cos(player->dir);
 	dir.y = sin(player->dir);
 	camera = -1;

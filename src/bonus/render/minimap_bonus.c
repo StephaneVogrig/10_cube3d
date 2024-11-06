@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/01 02:06:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/06 20:02:32 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "minimap_bonus.h"
 
@@ -43,12 +43,12 @@ int	minimap_setup(void *mlx, t_minimap *minimap, t_map *map)
 	return (chk_box(SUCCESS, EQ, SUCCESS, "Minimap initialization"));
 }
 
-void	minimap_draw_ray(t_minimap *minimap, t_player *player, double raylen, \
+void	minimap_draw_ray(t_minimap *minimap, t_player *player, double raylen,
 																t_vec2d raydir)
 {
 	t_vec2i	player_pos;
 	t_vec2i	intersect;
-	
+
 	player_pos.x = minimap->scale * (player->x.grid + player->x.box);
 	player_pos.y = minimap->scale * (player->y.grid + player->y.box);
 	if (raylen < 0)
