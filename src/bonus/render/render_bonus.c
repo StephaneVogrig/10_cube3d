@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 19:29:38 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:02:32 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -101,26 +101,28 @@ void	render_minimap(t_minimap *minimap, t_map *map, t_player *player, t_ray *ray
 	draw_player(minimap, player);
 }
 
-void	render_draw_floor_ceil(t_window *win, t_textures *textures, t_ray *rays, int dark)
+void	draw_floor_ceil_color(t_window *win, t_textures *textures, t_ray *rays, int dark)
 {
 	int color_ceil;
 	int color_floor;
 	int x;
 	int	y_ceil;
 	int	y_floor;
-	int	wall_h;
+	int	wallh_2;
+	int winh_2;
 
+	winh_2 = WIN_H / 2;
 	color_ceil = color_darkened(textures->ceil_rgb.integer, dark);
 	color_floor = color_darkened(textures->floor_rgb.integer, dark);
 	x = 0;
 	while (x < WIN_W)
 	{
-		if (rays->len < win->height)
+		if (rays->len < WIN_H)
 		{
-			wall_h = win->height / rays->len;
+			wallh_2 = winh_2 / rays->len;
 			y_ceil = 0;
-			y_floor = wall_h + (win->height - wall_h) / 2;
-			while (y_floor < win->height)
+			y_floor = winh_2 + wallh_2;
+			while (y_floor < WIN_H)
 			{
 				mlx_pixel_put(win->mlx, win->win, x, y_ceil, color_ceil);
 				mlx_pixel_put(win->mlx, win->win, x, y_floor, color_floor);
@@ -133,6 +135,53 @@ void	render_draw_floor_ceil(t_window *win, t_textures *textures, t_ray *rays, in
 	}
 }
 
+void	draw_floor_ceil_texture(t_window *win, t_texture *texture, t_ray *rays, int dark, t_player *player)
+{
+	int	x;
+	int	i;
+	int	winh_2;
+	t_vec2d	player_position;
+
+	player_position.x = player->x.grid + player->x.box;
+	player_position.y = player->y.grid + player->y.box;
+	winh_2 = WIN_H / 2;
+	i = 0;
+	while (i < winh_2)
+	{
+		int y_floor = winh_2 + i;
+		int y_ceil = winh_2 - 1 - i;
+		double winh_2i = (double)winh_2 / (i + 1);
+		x = 0;
+		while (x < WIN_W)
+		{
+			if (i > winh_2 / rays[x].len)
+			{
+				t_vec2d	world;
+				t_vec2d len;
+				len.x = rays[x].dir.x * winh_2i;
+				len.y = rays[x].dir.y * winh_2i;
+				world.x = player_position.x + len.x;
+				world.y = player_position.y + len.y;
+				int tx = (world.x - (int)world.x) * texture->width;
+				int ty = (world.y - (int)world.y) * texture->height;
+
+				int color;
+				// ceil
+				color = texture_get_color(texture, tx, ty, dark);
+				// color = color_darkened(0xFF0000FF, dark);
+				mlx_pixel_put(win->mlx, win->win, x, y_ceil, color);
+
+				// floor
+				color = texture_get_color(texture, tx, ty, dark);
+				// color = color_darkened(0xFF00FF00, dark);
+				mlx_pixel_put(win->mlx, win->win, x, y_floor, color);
+			}
+			x++;
+		}
+		i++;
+	}
+}
+
 void	render(t_data *data)
 {
 	// printf("render\n");
@@ -140,8 +189,9 @@ void	render(t_data *data)
 	int		dark;
 
 	dark = map_get_grid(&data->map, &data->player.position) == WALL;
-	raycasting(&data->win, &data->map, &data->player, &rays[0]);
-	render_minimap(&data->minimap, &data->map, &data->player, &rays[0]);
-	render_draw_floor_ceil(&data->win, &data->map.textures, &rays[0], dark);
+	raycasting(&data->win, &data->map, &data->player, rays);
+	draw_floor_ceil_texture(&data->win, &data->map.textures.north, rays, dark, &data->player);
+	// draw_floor_ceil_color(&data->win, &data->map.textures, rays, dark);
+	render_minimap(&data->minimap, &data->map, &data->player, rays);
 	fps_print(chrono(STOP));
 }

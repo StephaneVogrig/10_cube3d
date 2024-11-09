@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 19:30:14 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/07 23:51:04 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,5 +29,6 @@ typedef	struct s_draw
 
 void	raycasting(t_window *cub, t_map *map, t_player *player, t_ray *rays);
 int		color_darkened(int color, int dark);
+int		texture_get_color(t_texture *t, int x, int y, int dark);
 
 #endif
