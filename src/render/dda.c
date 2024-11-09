@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 19:39:04 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:48:10 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -136,9 +136,9 @@ void	grid_box_add_grid_box(t_grid_box *a, t_grid_box *b)
 void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player)
 {
 	ray->hit_pos.x = player->x;
-	grid_box_add_double(&ray->hit_pos.x, ray->dir.x * ray->len);
+	grid_box_add_double(&ray->hit_pos.x, ray->vdir.x * ray->len);
 	ray->hit_pos.y = player->y;
-	grid_box_add_double(&ray->hit_pos.y, ray->dir.y * ray->len);
+	grid_box_add_double(&ray->hit_pos.y, ray->vdir.y * ray->len);
 	if (ray->hit_side == 'x')
 	{
 		if (dda->x.step == 1)
@@ -161,7 +161,7 @@ void	dda(t_ray *ray, t_map *map, t_player *player, int len_max)
 	t_dda	dda;
 
 	dda.len_max = len_max;
-	dda_init(&dda, &ray->dir, &player->position, map);
+	dda_init(&dda, &ray->vdir, &player->position, map);
 	if (dda_no_need(map, player, dda, len_max) == TRUE)
 	{
 		ray->len = len_max + 1;

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/09 17:02:32 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/09 17:47:26 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -158,8 +158,8 @@ void	draw_floor_ceil_texture(t_window *win, t_texture *texture, t_ray *rays, int
 			{
 				t_vec2d	world;
 				t_vec2d len;
-				len.x = rays[x].dir.x * winh_2i;
-				len.y = rays[x].dir.y * winh_2i;
+				len.x = rays[x].vdir.x * winh_2i;
+				len.y = rays[x].vdir.y * winh_2i;
 				world.x = player_position.x + len.x;
 				world.y = player_position.y + len.y;
 				int tx = (world.x - (int)world.x) * texture->width;

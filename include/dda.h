@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 19:25:46 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:47:04 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,7 +21,7 @@
 
 typedef struct s_ray
 {
-	t_vec2d		dir;
+	t_vec2d		vdir;
 	double		len;
 	t_position	hit_pos;
 	char		hit_side;

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/09 11:37:17 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/09 17:58:39 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -130,23 +130,28 @@ void	draw_column(t_window *win, int col, t_ray *ray, t_textures *textures)
 
 void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 {
-	t_vec2d	dir;
-	double camera;
-	double step_camera;
-	int	i;
+	t_vec2d	player_vdir;
+	t_vec2d	step_cam;
+	t_vec2d cam;
+	double	step_camera;
+	int		i;
 
-	dir.x = cos(player->dir);
-	dir.y = sin(player->dir);
-	camera = -1;
+	player_vdir.x = cos(player->dir);
+	player_vdir.y = sin(player->dir);
 	step_camera = 2.0 / WIN_W;
+	step_cam.x = player_vdir.y * step_camera;
+	step_cam.y = player_vdir.x * step_camera;
+	cam.x = -player_vdir.y;
+	cam.y = -player_vdir.x;
 	i = 0;
 	while (i < WIN_W)
 	{
-		rays->dir.x = dir.x - dir.y * camera;
-		rays->dir.y = dir.y + dir.x * camera;
+		rays->vdir.x = player_vdir.x - cam.x;
+		rays->vdir.y = player_vdir.y + cam.y;
 		dda(rays, map, player, win->height);
 		draw_column(win, i, rays, &map->textures);
-		camera += step_camera;
+		cam.x += step_cam.x;
+		cam.y += step_cam.y;
 		rays++;
 		i++;
 	}
