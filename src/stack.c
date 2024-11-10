@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 21:01:49 by aska              #+#    #+#             */
-/*   Updated: 2024/10/30 19:13:32 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/10 18:02:17 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "stack.h"
 
@@ -16,7 +16,7 @@ t_status	create_stack(int capacity, t_stack *stack)
 {
 	stack->capacity = capacity;
 	stack->top = 0;
-	stack->data = malloc(stack->capacity * sizeof(stack->data));
+	stack->data = malloc(stack->capacity * sizeof(*(stack->data)));
 	if (stack->data == NULL)
 		return (FAIL);
 	return (SUCCESS);
