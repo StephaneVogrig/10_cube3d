@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 19:12:00 by stephane          #+#    #+#             */
-/*   Updated: 2024/10/31 18:28:29 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:02:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "texture.h"
 
@@ -32,6 +32,35 @@ void	textures_clean(t_textures *t, void *mlx)
 		mlx_destroy_image(mlx, t->west.img);
 }
 
+
+void	mlx_img_to_buffer(t_texture *t, int *buffer, int height, int width)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < width)
+	{
+		y = 0;
+		while (y < height)
+		{
+			*buffer = mlx_get_image_pixel(t->mlx, t->img, x, y);
+			buffer++;
+			y++;
+		}
+		x++;
+	}
+}
+
+int	texture_buffer_init(t_texture *t)
+{
+	t->buffer = malloc(sizeof(*(t->buffer)) * (t->height * t->width));
+	if (t->buffer == NULL)
+		return (EXIT_FAILURE);
+	mlx_img_to_buffer(t, t->buffer, t->height, t->width);
+	return (SUCCESS);
+}
+
 int	texture_load(t_texture *t, char *path)
 {
 	char	*extension;
@@ -50,7 +79,7 @@ int	texture_load(t_texture *t, char *path)
 		(ft_display(ERROR, "Texture extension not supported"));
 	if (t->img == NULL)
 		return (ft_return(ERROR, FAIL, "Texture attribution failed"));
-	return (SUCCESS);
+	return (texture_buffer_init(t));
 }
 
 int	texture_selector(t_textures *textures, char *key, char *img_path)
