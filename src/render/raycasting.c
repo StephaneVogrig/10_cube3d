@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/10 18:05:19 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/10 19:01:56 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,7 +21,7 @@ inline int color_darkened(int color, int dark)
 
 inline int	texture_get_color(t_texture *t, int x, int y, int dark)
 {
-	return (color_darkened(t->buffer[(y * t->width) + x], dark));
+	return (color_darkened(t->buffer[(x * t->height) + y], dark));
 }
 
 void	texture_init_hit(t_textures * textures, t_ray *ray, t_draw *d)

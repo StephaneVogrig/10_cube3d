@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 19:12:00 by stephane          #+#    #+#             */
-/*   Updated: 2024/11/10 18:01:15 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/10 19:02:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -38,17 +38,17 @@ void	mlx_img_to_buffer(t_texture *t, int *buffer, int height, int width)
 	int	x;
 	int	y;
 
-	y = 0;
-	while (y < height)
+	x = 0;
+	while (x < width)
 	{
-		x = 0;
-		while (x < width)
+		y = 0;
+		while (y < height)
 		{
 			*buffer = mlx_get_image_pixel(t->mlx, t->img, x, y);
 			buffer++;
-			x++;
+			y++;
 		}
-		y++;
+		x++;
 	}
 }
 
