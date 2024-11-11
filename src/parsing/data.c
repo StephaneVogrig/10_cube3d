@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/01 17:51:31 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/11 23:28:25 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,42 @@ void	data_init(t_data *data)
 	data->key.down = 0;
 }
 
-int	mlx_setup(t_data *data)
+int	mlx_setup(t_data *data, t_tex_path *tex_path, t_textures *textures)
 {
-	data->mlx = mlx_init();
-	if (data->mlx == NULL)
-		return (ft_return(ERROR, 258, "Error on mlx_init"));
-	textures_set_mlx(&data->map.textures, data->mlx);
-	return (SUCCESS);
+	int	exit_code;
+
+	(void)data;
+	// data->mlx = mlx_init();
+	// if (data->mlx == NULL)
+	// 	return (ft_return(ERROR, 258, "Error on mlx_init"));
+	// textures_set_mlx(&data->map.textures, data->mlx);
+	exit_code = texture_load(&textures->north, tex_path->no);
+	exit_code |= texture_load(&textures->south, tex_path->so);
+	exit_code |= texture_load(&textures->east, tex_path->ea);
+	exit_code |= texture_load(&textures->west, tex_path->we);
+	// if (exit_code == SUCCESS)
+	// exit_code = window_setup(&data->win, data->mlx);
+	return (exit_code);
 }
 
 int	data_setup(t_data *data, char *map_path)
 {
 	t_lstmap	*lst_map;
+	t_tex_path	tex_path;
 	int			exit_code;
 
 	lst_map = NULL;
-	exit_code = mlx_setup(data);
-	if (exit_code != SUCCESS)
-		return (exit_code);
+	// ft_bzero(&tex_path, sizeof(tex_path));
 	exit_code = file_load(map_path, &lst_map);
-	if (exit_code != SUCCESS)
-		return (exit_code);
-	exit_code = lstmap_extraction_info(&lst_map, &data->map, map_path);
+	if (exit_code == SUCCESS)
+		exit_code = lstmap_extract_info(&lst_map, &data->map, &tex_path,
+				map_path);
 	delete_all_lstmap(&lst_map);
-	if (exit_code == FAIL)
-		return (FAIL);
-	if (map_checker(&data->map, &data->player) == FAIL)
-		return (ft_return(ERROR, FAIL, "Map Invalid"));
-	return (SUCCESS);
+	if (exit_code == SUCCESS)
+		exit_code = map_checker(&data->map, &data->player);
+	if (exit_code == SUCCESS)
+		exit_code = mlx_setup(data, &tex_path, &data->map.textures);
+	return (exit_code);
 }
 
 void	data_clean(t_data *data)

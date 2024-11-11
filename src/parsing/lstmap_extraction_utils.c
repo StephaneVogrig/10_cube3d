@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/11/01 18:10:37 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/11 23:04:55 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,26 @@ int	attrib_rgb(t_rgb *rgb, char *value)
 	return (ok);
 }
 
-int	attrib_path(t_textures *tex, t_key_value *kv, char *root_path)
+int	set_key_value_path(t_tex_path *tex_path, t_key_value *kv)
+{
+	if (ft_strcmp(kv->key, "NO") == 0)
+		tex_path->no = ft_strdup(kv->value);
+	else if (ft_strcmp(kv->key, "SO") == 0)
+		tex_path->so = ft_strdup(kv->value);
+	else if (ft_strcmp(kv->key, "WE") == 0)
+		tex_path->we = ft_strdup(kv->value);
+	else if (ft_strcmp(kv->key, "EA") == 0)
+		tex_path->ea = ft_strdup(kv->value);
+	else
+		return (ft_return(ERROR, 267, "Invalid Key"));
+	if (tex_path->no == NULL || tex_path->so == NULL || tex_path->we == NULL
+		|| tex_path->ea == NULL)
+		return (ft_return(ERROR, 266, "Allocation Texture Path Invalid"));
+	return (SUCCESS);
+}
+
+int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
+		char *root_path)
 {
 	int	exit_code;
 	int	fd;
@@ -60,8 +79,9 @@ int	attrib_path(t_textures *tex, t_key_value *kv, char *root_path)
 		fd = ft_open(kv->value, O_RDONLY);
 		if (fd == FAIL)
 			return (ft_return(ERROR, 268, "Texture File Invalid"));
-		exit_code = texture_selector(tex, kv->key, kv->value);
 		ft_close(fd);
+		exit_code = set_key_value_path(tex_path, kv);
+		kv->value = ft_char_f(kv->value);
 	}
 	return (exit_code);
 }
@@ -70,9 +90,11 @@ int	set_key_value(t_key_value *kv, char *line, t_fs *fs)
 {
 	int	exit_code;
 
-	if (!ft_isthis(line[0], "NSEWFC"))
+	exit_code = !ft_isthis(line[0], "NSEWFC");
+	if (exit_code != SUCCESS)
 		return (ft_return(ERROR, 263, "Invalid Key"));
-	exit_code = setup_key_value_separate_by_space(kv->key, kv->value, line);
+	exit_code = setup_key_value_separate_by_space(&(kv->key), &(kv->value),
+			line);
 	if (exit_code != SUCCESS)
 		return (exit_code);
 	remove_root_value(kv->value);

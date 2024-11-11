@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/01 19:09:50 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/11 23:29:53 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ char	*get_root_path(char *path)
 		return (NULL);
 	return (ft_substr(path, 0, root_path - path + 1));
 }
-
 
 int	check_all_validity_line(t_map *map, t_lstmap **lst_map)
 {
@@ -66,27 +65,26 @@ int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 	return (SUCCESS);
 }
 
-int	lstmap_to_path_and_color(t_textures *tex, t_lstmap **lst_map, char *root_path)
+int	lstmap_to_path_and_color(t_tex_path *tex_path, t_textures *tex,
+		t_lstmap **lst_map, char *root_path)
 {
 	t_fs		fs;
-	t_key_value kv;
+	t_key_value	kv;
 	int			exit_code;
 
 	fs.file_ok = 0x3F;
-
 	while (*lst_map != NULL)
 	{
-		if (is_empty((*lst_map)->line) == TRUE)
-		{
+		while (is_empty((*lst_map)->line) == TRUE)
 			delete_node_lstmap(lst_map, *lst_map);
-			continue ;
-		}
 		exit_code = set_key_value(&kv, (*lst_map)->line, &fs);
+		printf("exit_code = %d\n", exit_code);
 		if (exit_code == SUCCESS)
-			exit_code = attrib_path(tex, &kv, root_path);
-		if (exit_code != SUCCESS)
+			exit_code = set_path_and_color(tex_path, tex, &kv, root_path);
+		else
 			break ;
-		file_switch_key(&fs, &kv.key);
+		if (exit_code == SUCCESS)
+			file_switch_key(&fs, &kv.key);
 		delete_node_lstmap(lst_map, *lst_map);
 		if (fs.file_ok == 0)
 			return (exit_code);
@@ -94,18 +92,20 @@ int	lstmap_to_path_and_color(t_textures *tex, t_lstmap **lst_map, char *root_pat
 	return (exit_code);
 }
 
-int	lstmap_extraction_info(t_lstmap **lst_map, t_map *map, char *map_path)
+int	lstmap_extract_info(t_lstmap **lst_map, t_map *map, t_tex_path *tex_path,
+		char *map_path)
 {
-	char	*root_path;
-	int	exit_code;
+	char *root_path;
+	int exit_code;
 
 	root_path = get_root_path(map_path);
-	exit_code = lstmap_to_path_and_color(&map->textures, lst_map, root_path);
+	exit_code = lstmap_to_path_and_color(tex_path, &map->textures, lst_map,
+			root_path);
+	root_path = ft_char_f(root_path);
 	if (exit_code != SUCCESS)
 		return (exit_code);
-	if (check_all_validity_line(map, lst_map) == FAIL)
-		return (FAIL);
-	if (lstmap_to_grid(map, lst_map) == FAIL)
-		return (FAIL);
-	return (SUCCESS);
+	exit_code = check_all_validity_line(map, lst_map);
+	if (exit_code == SUCCESS)
+		exit_code = lstmap_to_grid(map, lst_map);
+	return (exit_code);
 }
