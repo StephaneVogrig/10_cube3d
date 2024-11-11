@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/10 19:01:56 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/11 11:38:01 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -101,7 +101,7 @@ void	draw_wall(t_window *win, t_draw *d, int wall_y, int wall_h)
 		draw_texture_enlarged(win, d, texture_dy, texture_y);
 }
 
-void	draw_column(t_window *win, int col, t_ray *ray, t_textures *textures)
+void	draw_column(t_window *win, int x, t_ray *ray, t_textures *textures)
 {
 	t_draw	d;
 	int		wall_y;
@@ -109,7 +109,7 @@ void	draw_column(t_window *win, int col, t_ray *ray, t_textures *textures)
 	int		ceil_h;
 
 	texture_init_hit(textures, ray, &d);
-	d.pix.x = col;
+	d.pix.x = x;
 	d.dark = ray->dark;
 	wall_h = win->height / ray->len;
 	ceil_h = (win->height - wall_h) / 2;
@@ -117,15 +117,15 @@ void	draw_column(t_window *win, int col, t_ray *ray, t_textures *textures)
 	{
 		d.pix.y = ceil_h;
 		d.y_max = wall_h + ceil_h;
-		draw_wall(win, &d, 0, wall_h);
+		wall_y = 0;
 	}
 	else
 	{
 		d.pix.y = 0;
 		d.y_max = win->height;
 		wall_y = (wall_h - win->height) / 2;
-		draw_wall(win, &d, wall_y, wall_h);
 	}
+	draw_wall(win, &d, wall_y, wall_h);
 }
 
 void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
@@ -134,7 +134,7 @@ void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 	t_vec2d	step_cam;
 	t_vec2d cam;
 	double	step_camera;
-	int		i;
+	int		x;
 
 	player_vdir.x = cos(player->dir);
 	player_vdir.y = sin(player->dir);
@@ -143,16 +143,16 @@ void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 	step_cam.y = player_vdir.x * step_camera;
 	cam.x = -player_vdir.y;
 	cam.y = -player_vdir.x;
-	i = 0;
-	while (i < WIN_W)
+	x = 0;
+	while (x < WIN_W)
 	{
 		rays->vdir.x = player_vdir.x - cam.x;
 		rays->vdir.y = player_vdir.y + cam.y;
 		dda(rays, map, player, win->height);
-		draw_column(win, i, rays, &map->textures);
+		draw_column(win, x, rays, &map->textures);
 		cam.x += step_cam.x;
 		cam.y += step_cam.y;
 		rays++;
-		i++;
+		x++;
 	}
 }
