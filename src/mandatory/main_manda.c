@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_manda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/11/01 19:31:41 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:24:05 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ int	main(int argc, char **argv)
 	data_init(&data);
 	exit_code = data_setup(&data, argv[1]);
 	if (exit_code == SUCCESS)
-		exit_code = window_setup(&data.win, data.mlx);
-	if (exit_code == SUCCESS)
 	{
-		event_setup(&data);
-		chrono(START);
-		render(&data);
-		mlx_loop(data.mlx);
+		// event_setup(&data);
+		// chrono(START);
+		// render(&data);
+		// mlx_loop(data.mlx);
 	}
 	data_clean(&data);
 	return (EXIT_SUCCESS);

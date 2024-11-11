@@ -12,9 +12,9 @@
 
 #include "parsing_utils.h"
 
-int	setup_key_value_separate_by_space(char *key, char *value, char *line)
+int	setup_key_value_separate_by_space(char **key, char **value, char *line)
 {
-	key = line;
+	*key = line;
 	while (*line != '\0' && ft_isspace(*line) == FALSE)
 		line++;
 	if (*line == '\0')
@@ -25,7 +25,7 @@ int	setup_key_value_separate_by_space(char *key, char *value, char *line)
 		line++;
 	if (*line == '\0')
 		return (ft_return(ERROR, 265, "Invalid Value"));
-	value = line;
+	*value = line;
 	while (*line != '\0' && ft_isspace(*line) == FALSE)
 		line++;
 	if (*line == '\0')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/10/30 19:20:11 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/02 03:19:57 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,21 @@
 int	map_checker(t_map *map, t_player *player)
 {
 	t_bool	ff_ok;
+	int exit_code;
 
-	// print_tab(map->grid);
-	if (player_finder(map, player) == -1)
-		return (FAIL);
-	// map->grid[player->grid.y][player->grid.x] = '0';
+	exit_code = player_finder(map, player);
+	if (exit_code != SUCCESS)
+		return (exit_code);
 	ff_ok = chk_flood_fill(map, player->grid.x, player->grid.y);
-	chk_box(ff_ok, EQ, TRUE, "Valid Map");
 	if (ff_ok == FALSE)
-		return (FAIL);
+		return (ft_return(ERROR, 1, "Error on Map"));
 	return (SUCCESS);
 }
 
 int	chk_border(int x, int y, t_map *map)
 {
-	// printf("x: %i, y: %i", x, y);
-	// printf(" | map->width: %i, map->height: %i\n", map->width, map->height);
 	if (x == 0 || y == 0 || x == map->width - 1 || y == map->height - 1)
-	{
-		// printf(RED "FAIL\n" CRESET);
 		return (FAIL);
-	}
-	// printf(GRN "SUCCESS\n" CRESET);
 	return (SUCCESS);
 }
 int	chk_cell(int x, int y, t_map *map)
