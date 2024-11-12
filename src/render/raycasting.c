@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/11 11:38:01 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/12 21:18:56 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -48,57 +48,52 @@ void	texture_init_hit(t_textures * textures, t_ray *ray, t_draw *d)
 	}
 }
 
-void	draw_texture_reduced(t_window *win, t_draw *d, double texture_dy,
-														double texture_y)
+void	draw_texture_reduced(t_window *win, t_draw *d, int wall_y, int wall_h)
 {
 	int color;
-	
-	while (d->pix.y < d->y_max)
-	{
-		d->texture_pixel.y = (int)texture_y;
-		color = texture_get_color(	d->texture, d->texture_pixel.x,
-									d->texture_pixel.y, d->dark);
-		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
-		texture_y += texture_dy;
-		d->pix.y++;
-	}
-}
-
-void	draw_texture_enlarged(t_window *win, t_draw *d, double texture_dy,
-														double texture_y)
-{
-	int color;
-	
-	d->texture_pixel.y = (int)texture_y;
-	texture_y -= d->texture_pixel.y;
-		color = texture_get_color(	d->texture, d->texture_pixel.x,
-									d->texture_pixel.y, d->dark);
-	while (d->pix.y < d->y_max)
-	{
-		if (texture_y >= 1.0)
-		{
-			d->texture_pixel.y++;
-			texture_y -= 1.0;
-			color = texture_get_color(	d->texture, d->texture_pixel.x,
-										d->texture_pixel.y, d->dark);
-		}
-		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
-		texture_y += texture_dy;
-		d->pix.y++;
-	}
-}
-
-void	draw_wall(t_window *win, t_draw *d, int wall_y, int wall_h)
-{
+	int	texture_pixel_y;
 	double	texture_dy;
 	double	texture_y;
 
 	texture_dy = (double)d->texture->height / wall_h;
 	texture_y = (double)wall_y * texture_dy;
-	if (d->texture->height >= wall_h)
-		draw_texture_reduced(win, d, texture_dy, texture_y);
-	else
-		draw_texture_enlarged(win, d, texture_dy, texture_y);
+	while (d->pix.y < d->y_max)
+	{
+		texture_pixel_y = (int)texture_y;
+		color = texture_get_color(	d->texture, d->texture_pixel.x,
+									texture_pixel_y, d->dark);
+		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
+		texture_y += texture_dy;
+		d->pix.y++;
+	}
+}
+
+void	draw_texture_enlarged(t_window *win, t_draw *d, int wall_y, int wall_h)
+{
+	int color;
+	int	texture_pixel_y;
+	double	texture_dy;
+	double	texture_y;
+
+	texture_dy = (double)d->texture->height / wall_h;
+	texture_y = (double)wall_y * texture_dy;
+	texture_pixel_y = (int)texture_y;
+	texture_y -= texture_pixel_y;
+	color = texture_get_color(d->texture, d->texture_pixel.x,
+									texture_pixel_y, d->dark);
+	while (d->pix.y < d->y_max)
+	{
+		if (texture_y >= 1.0)
+		{
+			texture_pixel_y++;
+			texture_y -= 1.0;
+			color = texture_get_color(d->texture, d->texture_pixel.x,
+										texture_pixel_y, d->dark);
+		}
+		mlx_pixel_put(win->mlx, win->win, d->pix.x, d->pix.y, color);
+		texture_y += texture_dy;
+		d->pix.y++;
+	}
 }
 
 void	draw_column(t_window *win, int x, t_ray *ray, t_textures *textures)
@@ -118,14 +113,15 @@ void	draw_column(t_window *win, int x, t_ray *ray, t_textures *textures)
 		d.pix.y = ceil_h;
 		d.y_max = wall_h + ceil_h;
 		wall_y = 0;
+		draw_texture_reduced(win, &d, wall_y, wall_h);
 	}
 	else
 	{
 		d.pix.y = 0;
 		d.y_max = win->height;
 		wall_y = (wall_h - win->height) / 2;
+		draw_texture_enlarged(win, &d, wall_y, wall_h);
 	}
-	draw_wall(win, &d, wall_y, wall_h);
 }
 
 void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
