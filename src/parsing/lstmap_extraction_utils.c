@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/11/11 23:04:55 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/12 02:42:52 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_line(char *line)
 	if (line == NULL)
 		return (ERROR);
 	if (is_empty(line) == TRUE || is_map_valid(line) == FALSE)
-		return (ft_return(ERROR, FAIL, "Invalid map"));
+		return (ft_return(ERROR, 272, "Invalid character on map"));
 	return (SUCCESS);
 }
 
@@ -56,9 +56,7 @@ int	set_key_value_path(t_tex_path *tex_path, t_key_value *kv)
 		tex_path->ea = ft_strdup(kv->value);
 	else
 		return (ft_return(ERROR, 267, "Invalid Key"));
-	if (tex_path->no == NULL || tex_path->so == NULL || tex_path->we == NULL
-		|| tex_path->ea == NULL)
-		return (ft_return(ERROR, 266, "Allocation Texture Path Invalid"));
+	// pensez a mettre des securites pour les mallocs
 	return (SUCCESS);
 }
 
@@ -114,18 +112,18 @@ int	set_map_info(t_map *map, char *line)
 		if (ft_isthis(line[i++], "NSWE"))
 		{
 			if (player_valid == TRUE)
-				return (ft_return(ERROR, FAIL, "Player on map Invalid"));
+				return (ft_return(ERROR, 273, "Player on map Invalid"));
 			player_valid = TRUE;
 		}
 	}
 	x = 0;
 	while (line[x])
 		if (x++ == INT_MAX)
-			return (FAIL);
+			return (ft_return(ERROR, 274, "Map width too large"));
 	if (x > map->width)
 		map->width = x;
 	if (map->height == INT_MAX)
-		return (FAIL);
+		return (ft_return(ERROR, 274, "Map height too large"));
 	map->height++;
 	return (SUCCESS);
 }

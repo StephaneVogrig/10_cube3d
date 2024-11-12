@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/11 23:29:53 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/12 02:49:03 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*get_root_path(char *path)
 int	check_all_validity_line(t_map *map, t_lstmap **lst_map)
 {
 	t_lstmap	*tmp;
+	int 		exit_code;
 
 	tmp = *lst_map;
 	while (tmp != NULL && is_empty(tmp->line) == TRUE)
@@ -34,13 +35,14 @@ int	check_all_validity_line(t_map *map, t_lstmap **lst_map)
 	}
 	while (tmp != NULL)
 	{
-		if (check_line(tmp->line) == FAIL)
-			return (FAIL);
-		if (set_map_info(map, tmp->line) == FAIL)
-			return (FAIL);
+		exit_code = check_line(tmp->line);
+		if (exit_code == SUCCESS)
+			exit_code = set_map_info(map, tmp->line);
+		if (exit_code != SUCCESS)
+			return (exit_code);
 		tmp = tmp->next;
 	}
-	return (SUCCESS);
+	return (exit_code);
 }
 
 int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
@@ -52,12 +54,12 @@ int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 	tmp = *lst_map;
 	map->grid = ft_calloc(map->height + 1, sizeof(char *));
 	if (map->grid == NULL)
-		return (ft_return(ERROR, FAIL, "Error on Map Creation"));
+		return (ft_return(ERROR, 273, "Error on Map Creation"));
 	while (y != map->height)
 	{
 		map->grid[y] = tmp->line;
 		if (map->grid[y] == NULL)
-			return (ft_return(ERROR, FAIL, "Error on Map Creation"));
+			return (ft_return(ERROR, 274, "Error on Map Creation"));
 		tmp->line = NULL;
 		tmp = tmp->next;
 		y++;
@@ -78,7 +80,6 @@ int	lstmap_to_path_and_color(t_tex_path *tex_path, t_textures *tex,
 		while (is_empty((*lst_map)->line) == TRUE)
 			delete_node_lstmap(lst_map, *lst_map);
 		exit_code = set_key_value(&kv, (*lst_map)->line, &fs);
-		printf("exit_code = %d\n", exit_code);
 		if (exit_code == SUCCESS)
 			exit_code = set_path_and_color(tex_path, tex, &kv, root_path);
 		else

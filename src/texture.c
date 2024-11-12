@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 19:12:00 by stephane          #+#    #+#             */
-/*   Updated: 2024/11/11 23:22:32 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/12 02:19:23 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,20 @@ int	texture_load(t_texture *t, char *path)
 	char	*extension;
 	int exit_code;
 
-	(void)t;
 	exit_code = SUCCESS;
 	extension = ft_strrchr(path, '.');
 	if (extension == NULL)
 		exit_code = ft_return(ERROR, 269, "Texture extension not found");
-	// if (ft_strcmp(extension, ".jpg") == 0 || ft_strcmp(extension, ".jpeg") == 0)
-	// 	t->img = mlx_jpg_file_to_image(t->mlx, path, &t->width, &t->height);
-	// else if (ft_strcmp(extension, ".bmp") == 0)
-	// 	t->img = mlx_bmp_file_to_image(t->mlx, path, &t->width, &t->height);
-	// else if (ft_strcmp(extension, ".png") == 0)
-	// 	t->img = mlx_png_file_to_image(t->mlx, path, &t->width, &t->height);
-	// else if (t->img == NULL)
-	// 	exit_code = ft_return(ERROR, 270, "Texture attribution failed");
-	// else
-	// 	exit_code = ft_return(ERROR, 271, "Texture extension not supported");
-	printf("path: %s\n", path);
-	printf("ptr_path: %p\n", path);
-	path = ft_char_f(path);
-	printf("ptr_path: %p\n", path);
+	if (ft_strcmp(extension, ".jpg") == 0 || ft_strcmp(extension, ".jpeg") == 0)
+		t->img = mlx_jpg_file_to_image(t->mlx, path, &t->width, &t->height);
+	else if (ft_strcmp(extension, ".bmp") == 0)
+		t->img = mlx_bmp_file_to_image(t->mlx, path, &t->width, &t->height);
+	else if (ft_strcmp(extension, ".png") == 0)
+		t->img = mlx_png_file_to_image(t->mlx, path, &t->width, &t->height);
+	else if (t->img == NULL)
+		exit_code = ft_return(ERROR, 270, "Texture attribution failed");
+	else
+		exit_code = ft_return(ERROR, 271, "Texture extension not supported");
 	return (exit_code);
 }
 

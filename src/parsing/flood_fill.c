@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:01:25 by aska              #+#    #+#             */
-/*   Updated: 2024/11/02 03:19:57 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/12 02:49:21 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	map_checker(t_map *map, t_player *player)
 		return (exit_code);
 	ff_ok = chk_flood_fill(map, player->grid.x, player->grid.y);
 	if (ff_ok == FALSE)
-		return (ft_return(ERROR, 1, "Error on Map"));
+		return (ft_return(ERROR, 275, "Error on Map"));
 	return (SUCCESS);
 }
 
