@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: stephane <stephane@student.42.fr>          +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/06 15:04:38 by stephane         ###   ########.fr        #
+#    Updated: 2024/11/12 03:02:14 by aska             ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 SHELL				:=	/bin/bash
 
@@ -51,8 +51,11 @@ SRCS				:= 	debug.c \
 						window.c \
 						parsing/check_arg.c \
 						parsing/data.c \
-						parsing/file_process.c \
-						parsing/file_utils.c \
+						parsing/lstmap_extraction_utils.c \
+						parsing/lstmap_extraction.c \
+						parsing/parsing_utils.c \
+						parsing/bitfield_path_valid.c \
+						parsing/file_load.c \
 						parsing/flood_fill.c \
 						parsing/lstmap.c \
 						parsing/lstmap_utils.c \

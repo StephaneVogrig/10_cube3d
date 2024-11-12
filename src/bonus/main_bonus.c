@@ -1,34 +1,28 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/02 11:52:49 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/12 03:08:55 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
-#include "check_arg.h"
-#include "chrono.h"
-#include "data.h"
-#include "event.h"
-#include "file_process.h"
-#include "render.h"
+#include "main.h"
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
 	int		exit_code;
+	t_data	data;
 
 	title();
-	if (check_entry_arg(argc, argv) == FAIL)
-		return (EXIT_SUCCESS);
+	exit_code = check_entry_arg(argc, argv);
+	if (exit_code != SUCCESS)
+		return (exit_code);
 	data_init(&data);
 	exit_code = data_setup(&data, argv[1]);
-	if (exit_code == SUCCESS)
-		exit_code = window_setup(&data.win, data.mlx);
 	if (exit_code == SUCCESS)
 		exit_code = minimap_setup(data.mlx, &data.minimap, &data.map);
 	if (exit_code == SUCCESS)

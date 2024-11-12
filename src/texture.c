@@ -1,14 +1,16 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/22 19:12:00 by stephane          #+#    #+#             */
-/*   Updated: 2024/11/10 19:02:09 by svogrig          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/11/12 03:13:33 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
+
+
 
 #include "texture.h"
 
@@ -65,10 +67,9 @@ int	texture_load(t_texture *t, char *path)
 {
 	char	*extension;
 
-	(void)t;
 	extension = ft_strrchr(path, '.');
 	if (extension == NULL)
-		return (ft_return(ERROR, FAIL, "Texture extension not found"));
+		return (ft_return(ERROR, 269, "Texture extension not found"));
 	if (ft_strcmp(extension, ".jpg") == 0 || ft_strcmp(extension, ".jpeg") == 0)
 		t->img = mlx_jpg_file_to_image(t->mlx, path, &t->width, &t->height);
 	else if (ft_strcmp(extension, ".bmp") == 0)
@@ -78,7 +79,7 @@ int	texture_load(t_texture *t, char *path)
 	else
 		(ft_display(ERROR, "Texture extension not supported"));
 	if (t->img == NULL)
-		return (ft_return(ERROR, FAIL, "Texture attribution failed"));
+		return (ft_return(ERROR, 270, "Texture attribution failed"));
 	return (texture_buffer_init(t));
 }
 

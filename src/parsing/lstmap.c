@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:37:02 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/10/30 18:26:06 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/01 16:21:32 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ void	delete_node_lstmap(t_lstmap **head, t_lstmap *del_node)
 		del_node->next->prev = del_node->prev;
 	if (del_node->prev != NULL)
 		del_node->prev->next = del_node->next;
+	del_node->line = ft_char_f(del_node->line);
 	ft_free(del_node);
 	del_node = NULL;
+
 }
 
 void	delete_all_lstmap(t_lstmap **head)

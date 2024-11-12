@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   title.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 15:42:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/01 19:15:05 by ygaiffie         ###   ########.fr       */
+/*   Created: 2024/11/01 18:54:57 by ygaiffie          #+#    #+#             */
+/*   Updated: 2024/11/01 18:55:14 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#ifndef TITLE_H
+# define TITLE_H
 
-# include "lst_map.h"
-# include "map.h"
-# include "texture.h"
+#include "libft.h"
 
-void	map_print(t_map *map);
-void	lstmap_print(t_lstmap *lstmap);
-void	textures_print_ptr(t_textures *textures);
+void    title(void);
 
 #endif

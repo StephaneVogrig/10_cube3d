@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 22:54:33 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/12 02:20:32 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
-
-int	file_load(char *path, t_lstmap **lst_map)
-{
-	int	fd;
-	int	exit_code;
-
-	if (open_file(&fd, path) == FAIL)
-		return (FAIL);
-	exit_code = file_to_lst_map(fd, lst_map);
-	exit_code |= close_file(&fd);
-	return (exit_code);
-}
 
 void	data_init(t_data *data)
 {
@@ -30,33 +18,51 @@ void	data_init(t_data *data)
 	data->key.down = 0;
 }
 
-int	mlx_setup(t_data *data)
+int	mlx_setup(t_data *data, t_tex_path *tex_path, t_textures *textures)
 {
+	int	exit_code;
+
+	(void)data;
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
-		return (ft_return(ERROR, FAIL, "Error on mlx_init"));
+		return (ft_return(ERROR, 258, "Error on mlx_init"));
 	textures_set_mlx(&data->map.textures, data->mlx);
-	return (chk_box(SUCCESS, EQ, SUCCESS, "mlx initialization"));
+	exit_code = texture_load(&textures->north, tex_path->no);
+	exit_code |= texture_load(&textures->south, tex_path->so);
+	exit_code |= texture_load(&textures->east, tex_path->ea);
+	exit_code |= texture_load(&textures->west, tex_path->we);
+	if (exit_code == SUCCESS)
+	exit_code = window_setup(&data->win, data->mlx);
+	return (exit_code);
 }
 
-int	data_setup(t_data *data, char *pathname)
+void tex_path_clean(t_tex_path *tex_path)
+{
+	tex_path->no = ft_char_f(tex_path->no);
+	tex_path->so = ft_char_f(tex_path->so);
+	tex_path->we = ft_char_f(tex_path->we);
+	tex_path->ea = ft_char_f(tex_path->ea);
+}
+
+int	data_setup(t_data *data, char *map_path)
 {
 	t_lstmap	*lst_map;
+	t_tex_path	tex_path;
 	int			exit_code;
 
 	lst_map = NULL;
-	data_init(data);
-	if (mlx_setup(data) == FAIL)
-		return (FAIL);
-	if (file_load(pathname, &lst_map) == FAIL)
-		return (FAIL);
-	exit_code = lstmap_extraction_info(&lst_map, &data->map, pathname);
+	ft_bzero(&tex_path, sizeof(tex_path));
+	exit_code = file_load(map_path, &lst_map);
+	if (exit_code == SUCCESS)
+		exit_code = lstmap_extract_info(&lst_map, &data->map, &tex_path,
+				map_path);
 	delete_all_lstmap(&lst_map);
-	if (exit_code == FAIL)
-		return (FAIL);
-	if (map_checker(&data->map, &data->player) == FAIL)
-		return (ft_return(ERROR, FAIL, "Map Invalid"));
-	return (SUCCESS);
+	if (exit_code == SUCCESS)
+		exit_code = map_checker(&data->map, &data->player);
+	if (exit_code == SUCCESS)
+		exit_code = mlx_setup(data, &tex_path, &data->map.textures);
+	tex_path_clean(&tex_path);
+	return (exit_code);
 }
 
 void	data_clean(t_data *data)
