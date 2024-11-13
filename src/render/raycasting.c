@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/13 06:24:04 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/13 07:02:16 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,7 +24,7 @@ inline int	texture_get_color(t_texture *t, int x, int y, int dark)
 	return (color_darkened(t->buffer[(x * t->height) + y], dark));
 }
 
-void	draw_wall_init_var(int *y, int *y_max, double *texture_y, t_wall *wall)
+void	draw_wall_init_loop(int *y, int *y_max, double *texture_y, t_wall *wall)
 {
 	if (wall->height < WIN_H && wall->height > 0.0)
 	{
@@ -48,7 +48,7 @@ void	draw_wall_big_pixel(t_window *win, int x, t_wall *wall, int dark)
 	double	texture_y;
 	t_vec2i	texture_pixel;
 
-	draw_wall_init_var(&y, &y_max, &texture_y, wall);
+	draw_wall_init_loop(&y, &y_max, &texture_y, wall);
 	texture_pixel.x = wall->x_in_texture;
 	texture_pixel.y = (int)texture_y;
 	texture_y -= texture_pixel.y;
@@ -75,7 +75,7 @@ void	draw_wall_small_pixel(t_window *win, int x, t_wall *wall, int dark)
 	double	texture_y;
 	t_vec2i	texture_pixel;
 
-	draw_wall_init_var(&y, &y_max, &texture_y, wall);
+	draw_wall_init_loop(&y, &y_max, &texture_y, wall);
 	texture_pixel.x = wall->x_in_texture;
 	while (y < y_max)
 	{
