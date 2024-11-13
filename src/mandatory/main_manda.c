@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_manda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/11/12 03:01:21 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/13 17:50:26 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	main(int argc, char **argv)
 		render(&data);
 		mlx_loop(data.mlx);
 	}
-	floor_ceil_destroy();
+	if (exit_code == SUCCESS)
+		floor_ceil_destroy();
 	data_clean(&data);
-	return (EXIT_SUCCESS);
+	return (exit_code);
 }

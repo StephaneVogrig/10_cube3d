@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/12 02:49:03 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/13 17:45:29 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ int	check_all_validity_line(t_map *map, t_lstmap **lst_map)
 	while (tmp != NULL)
 	{
 		exit_code = check_line(tmp->line);
-		if (exit_code == SUCCESS)
-			exit_code = set_map_info(map, tmp->line);
 		if (exit_code != SUCCESS)
-			return (exit_code);
+			break;
+		exit_code = set_map_info(map, tmp->line);
+		if (exit_code != SUCCESS)
+			break;
 		tmp = tmp->next;
 	}
 	return (exit_code);

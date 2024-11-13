@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+exec 2>/dev/null
+
 CUB3D_EXEC=./cub3d
 FOLDER_MAPS=$1
 TIME_LIMIT=$2
@@ -22,8 +24,7 @@ for i in "${MAP_ARRAY[@]}"
 do
     echo -n -e "$i\t:\t"
     
-    timeout -s KILL "$TIME_LIMIT" "$CUB3D_EXEC" "$i" > /dev/null 2>&1
-    disown -h
+    ( timeout -s KILL "$TIME_LIMIT" "$CUB3D_EXEC" "$i" > /dev/null 2>&1 ) 2>/dev/null
     EXIT_STATUS=$?
 
     if [ $EXIT_STATUS -eq 137 ]; then 
@@ -34,7 +35,7 @@ do
         echo -e "${RED}MLX_ERROR${NC}"
     elif [ $EXIT_STATUS -eq 0 ]; then
         echo -e "${BBLU}VALID${NC}"
-    elif [ $EXIT_STATUS -gt 255 ]; then
+    else
         echo -e "${BYEL}NO_VALID${NC}"
     fi
 done
