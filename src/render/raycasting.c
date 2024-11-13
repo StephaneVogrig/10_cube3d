@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/13 07:02:16 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/13 07:31:26 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -133,27 +133,27 @@ void	draw_wall(t_window *win, int x, t_ray *ray, t_textures *textures)
 void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 {
 	t_vec2d	player_vdir;
-	t_vec2d	step_cam;
-	t_vec2d cam;
-	double	step_camera;
+	double	step_projection;
+	t_vec2d	step_proj;
+	t_vec2d projection;
 	int		x;
 
 	player_vdir.x = cos(player->dir);
 	player_vdir.y = sin(player->dir);
-	step_camera = 2.0 / WIN_W;
-	step_cam.x = player_vdir.y * step_camera;
-	step_cam.y = player_vdir.x * step_camera;
-	cam.x = -player_vdir.y;
-	cam.y = -player_vdir.x;
+	step_projection = 2.0 / WIN_W;
+	step_proj.x = -player_vdir.y * step_projection;
+	step_proj.y = player_vdir.x * step_projection;
+	projection.x = player_vdir.x + player_vdir.y;
+	projection.y = player_vdir.y - player_vdir.x;
 	x = 0;
 	while (x < WIN_W)
 	{
-		rays->vdir.x = player_vdir.x - cam.x;
-		rays->vdir.y = player_vdir.y + cam.y;
+		rays->vdir.x = projection.x;
+		rays->vdir.y = projection.y;
 		dda(rays, map, player, win->height);
 		draw_wall(win, x, rays, &map->textures);
-		cam.x += step_cam.x;
-		cam.y += step_cam.y;
+		projection.x += step_proj.x;
+		projection.y += step_proj.y;
 		rays++;
 		x++;
 	}
