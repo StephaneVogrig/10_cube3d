@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/12 22:33:15 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/13 06:06:26 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,6 +17,14 @@
 # include "dda.h"
 # include "window.h"
 # include "texture.h"
+
+typedef	struct s_wall
+{
+	int			height;
+	t_texture	*texture;
+	float		x_in_texture;
+	double		texture_dy;
+}	t_wall;
 
 typedef	struct s_draw_texture
 {

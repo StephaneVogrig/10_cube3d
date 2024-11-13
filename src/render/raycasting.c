@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/12 23:18:02 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/13 06:24:04 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,7 +15,7 @@
 inline int color_darkened(int color, int dark)
 {
 	if (dark)
-		return (color >> 5) & 0xFF070707;
+		return ((color >> 5) & 0xFF070707);
 	return (color);
 }
 
@@ -24,89 +24,110 @@ inline int	texture_get_color(t_texture *t, int x, int y, int dark)
 	return (color_darkened(t->buffer[(x * t->height) + y], dark));
 }
 
-void	texture_init_hit(t_textures * textures, t_ray *ray, t_draw_texture *draw)
+void	draw_wall_init_var(int *y, int *y_max, double *texture_y, t_wall *wall)
 {
-	if (ray->hit_side == 'n')
+	if (wall->height < WIN_H && wall->height > 0.0)
 	{
-		draw->img = &textures->north;
-		draw->pixel.x = (1 - ray->hit_pos.x.box) * draw->img->width;
-	}
-	else if (ray->hit_side == 's')
-	{
-		draw->img = &textures->south;
-		draw->pixel.x = ray->hit_pos.x.box * draw->img->width;
-	}
-	else if (ray->hit_side == 'e')
-	{
-		draw->img = &textures->east;
-		draw->pixel.x = (1 - ray->hit_pos.y.box) * draw->img->width;
+		*y = (WIN_H - wall->height) / 2;
+		*y_max = *y + wall->height;
+		*texture_y = 0.0;
 	}
 	else
 	{
-		draw->img = &textures->west;
-		draw->pixel.x = ray->hit_pos.y.box * draw->img->width;
+		*y = 0;
+		*y_max = WIN_H;
+		*texture_y = (wall->texture->height - wall->texture_dy * WIN_H) / 2;
 	}
 }
 
-void	draw_wall_smaller_win(t_window *win, int x, t_ray *ray, t_textures *textures)
+void	draw_wall_big_pixel(t_window *win, int x, t_wall *wall, int dark)
 {
-	t_draw_texture	texture;
-	int 			color;
-	int				y;
-	int				wall_h;
-	int				y_max;
+	int		color;
+	int		y;
+	int		y_max;
+	double	texture_y;
+	t_vec2i	texture_pixel;
 
-	texture_init_hit(textures, ray, &texture);
-	wall_h = win->height / ray->len;
-	texture.dy = (double)texture.img->height / wall_h;
-	texture.y = 0;
-	y = (win->height - wall_h) / 2;
-	y_max = y + wall_h;
+	draw_wall_init_var(&y, &y_max, &texture_y, wall);
+	texture_pixel.x = wall->x_in_texture;
+	texture_pixel.y = (int)texture_y;
+	texture_y -= texture_pixel.y;
+	color = texture_get_color(wall->texture, texture_pixel.x, texture_pixel.y, dark);
 	while (y < y_max)
 	{
-		texture.pixel.y = (int)texture.y;
-		color = texture_get_color(texture.img, texture.pixel.x, texture.pixel.y, ray->dark);
+		if (texture_y >= 1.0)
+		{
+			texture_pixel.y++;
+			texture_y -= 1.0;
+			color = texture_get_color(wall->texture, texture_pixel.x, texture_pixel.y, dark);
+		}
 		mlx_pixel_put(win->mlx, win->win, x, y, color);
-		texture.y += texture.dy;
+		texture_y += wall->texture_dy;
 		y++;
 	}
 }
 
-void	draw_wall_bigger_win(t_window *win, int x, t_ray *ray, t_textures *textures)
+void	draw_wall_small_pixel(t_window *win, int x, t_wall *wall, int dark)
 {
-	t_draw_texture	texture;
-	int 			color;
-	int				y;
-	int				wall_h;
+	int		color;
+	int		y;
+	int		y_max;
+	double	texture_y;
+	t_vec2i	texture_pixel;
 
-	texture_init_hit(textures, ray, &texture);
-	wall_h = win->height / ray->len;
-	texture.dy = (double)texture.img->height / wall_h;
-	texture.y = (double)((wall_h - win->height) / 2) * texture.dy;
-	texture.pixel.y = (int)texture.y;
-	texture.y -= texture.pixel.y;
-	y = 0;
-	color = texture_get_color(texture.img, texture.pixel.x, texture.pixel.y, ray->dark);
-	while (y < WIN_H)
+	draw_wall_init_var(&y, &y_max, &texture_y, wall);
+	texture_pixel.x = wall->x_in_texture;
+	while (y < y_max)
 	{
-		if (texture.y >= 1.0)
-		{
-			texture.pixel.y++;
-			texture.y -= 1.0;
-			color = texture_get_color(texture.img, texture.pixel.x, texture.pixel.y, ray->dark);
-		}
+		texture_pixel.y = (int)texture_y;
+		color = texture_get_color(wall->texture, texture_pixel.x, texture_pixel.y, dark);
 		mlx_pixel_put(win->mlx, win->win, x, y, color);
-		texture.y += texture.dy;
+		texture_y += wall->texture_dy;
 		y++;
 	}
+}
+
+int	x_hit_in_texture(t_texture *texture, t_ray *ray)
+{
+	if (ray->hit_side == 'n')
+		return ((1 - ray->hit_pos.x.box) * texture->width);
+	if (ray->hit_side == 's')
+		return (ray->hit_pos.x.box * texture->width);
+	if (ray->hit_side == 'e')
+		return ((1 - ray->hit_pos.y.box) * texture->width);
+	return (ray->hit_pos.y.box * texture->width);
+}
+
+t_texture	*texture_hit(t_textures *textures, t_ray *ray)
+{
+	if (ray->hit_side == 'n')
+		return (&textures->north);
+	if (ray->hit_side == 's')
+		return (&textures->south);
+	if (ray->hit_side == 'e')
+		return (&textures->east);
+	return (&textures->west);
 }
 
 void	draw_wall(t_window *win, int x, t_ray *ray, t_textures *textures)
 {
-	if (ray->len > 1.0)
-		draw_wall_smaller_win(win, x, ray, textures);
+	t_wall wall;
+	double	wall_h;
+
+	wall_h = WIN_H / ray->len;
+	if (wall_h < 1.0)
+		return ;
+	if (wall_h > INT_MAX)
+		wall.height = INT_MAX;
 	else
-		draw_wall_bigger_win(win, x, ray, textures);
+		wall.height = (int)wall_h;
+	wall.texture = texture_hit(textures, ray);
+	wall.x_in_texture = x_hit_in_texture(wall.texture, ray);
+	wall.texture_dy = (double)wall.texture->height / wall.height;
+	if (wall.texture_dy < 1)
+		draw_wall_big_pixel(win, x, &wall, ray->dark);
+	else
+		draw_wall_small_pixel(win, x, &wall, ray->dark);
 }
 
 void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
