@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_ceil_mlx_img.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 01:36:01 by stephane          #+#    #+#             */
-/*   Updated: 2024/11/06 01:49:28 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/14 23:22:12 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -81,13 +81,12 @@ int	floor_ceil_init(t_window *win, int color_ceil, int color_floor)
 void	floor_ceil_destroy(void)
 {
 	t_texture *mlx_img;
-	t_texture *mlx_img_dark;
 	
 	mlx_img = floor_ceil_get_ptr_img();
-	if (mlx_img)
+	if (mlx_img->img)
 		mlx_destroy_image(mlx_img->mlx, mlx_img->img);
-	mlx_img_dark = floor_ceil_get_ptr_img_dark();
-	if (mlx_img_dark)
-		mlx_destroy_image(mlx_img_dark->mlx, mlx_img_dark->img);
+	mlx_img = floor_ceil_get_ptr_img_dark();
+	if (mlx_img->img)
+		mlx_destroy_image(mlx_img->mlx, mlx_img->img);
 	
 }
