@@ -6,87 +6,76 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 01:36:01 by stephane          #+#    #+#             */
-/*   Updated: 2024/11/14 23:22:12 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/15 03:14:55 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
+#include "floor_ceil_mlx_img.h"
 
-#include "texture.h"
-#include "window.h"
-
-static void	draw_ceil_floor(t_window *win, void *img, int color_ceil, int color_floor)
+static void	draw_ceil_floor(void *mlx, void *img, int color_ceil, int color_floor)
 {
 	int x;
-	int	y_ceil;
-	int y_floor;
-	int lim;
-	
-	lim = win->height / 2;
-	y_ceil = 0;
-	y_floor = lim;
-	while (y_ceil < lim)
+	int	y;
+	int win_h_2;
+
+	win_h_2 = WIN_H / 2;
+	y = 0;
+	while (y < win_h_2)
 	{
 		x = 0;
-		while (x < win->width)
+		while (x < WIN_W)
 		{
-			mlx_set_image_pixel(win->mlx, img, x, y_ceil, color_ceil);
-			mlx_set_image_pixel(win->mlx, img, x, y_floor, color_floor);
+			mlx_set_image_pixel(mlx, img, x, y, color_ceil);
+			mlx_set_image_pixel(mlx, img, x, y + win_h_2, color_floor);
 			x++;
 		}
-		y_ceil++;
-		y_floor++;
+		y++;
 	}
 }
 
-void	*floor_ceil_get_ptr_img(void)
+static void	*floor_ceil_get_ptr(void)
 {
-	static t_texture mlx_img;
-	
-	return (&mlx_img);
-}
+	static t_floor_ceil	mlx_imgs;
 
-void	*floor_ceil_get_ptr_img_dark(void)
-{
-	static t_texture mlx_img_dark;
-	
-	return (&mlx_img_dark);
+	return (&mlx_imgs);
 }
 
 int	floor_ceil_init(t_window *win, int color_ceil, int color_floor)
 {
-	t_texture *mlx_img;
-	t_texture *mlx_img_dark;
-	
-	mlx_img = floor_ceil_get_ptr_img();
-	mlx_img->img = mlx_new_image(win->mlx, win->width, win->height);
-	if (mlx_img->img == NULL)
+	t_floor_ceil *mlx_img;
+
+	mlx_img = floor_ceil_get_ptr();
+	mlx_img->normal = mlx_new_image(win->mlx, win->width, win->height);
+	if (mlx_img->normal == NULL)
 		return (FAIL);
-	mlx_img_dark = floor_ceil_get_ptr_img_dark();
-	mlx_img_dark->img = mlx_new_image(win->mlx, win->width, win->height);
-	if (mlx_img_dark->img == NULL)
+	mlx_img->dark = mlx_new_image(win->mlx, win->width, win->height);
+	if (mlx_img->dark == NULL)
 		return (FAIL);
-	mlx_img->mlx = win->mlx;
-	mlx_img->width = win->width;
-	mlx_img->height = win->height;
-	mlx_img_dark->mlx = win->mlx;
-	mlx_img_dark->width = win->width;
-	mlx_img_dark->height = win->height;
-	draw_ceil_floor(win, mlx_img->img, color_ceil, color_floor);
-	color_ceil = (color_ceil >> 5) & 0xFF070707;
-	color_floor = (color_floor >> 5) & 0xFF070707;
-	draw_ceil_floor(win, mlx_img_dark->img, color_ceil, color_floor);
+	draw_ceil_floor(win->mlx, mlx_img->normal, color_ceil, color_floor);
+	color_ceil = color_darkened(color_ceil, TRUE);
+	color_floor = color_darkened(color_floor, TRUE);
+	draw_ceil_floor(win->mlx, mlx_img->dark, color_ceil, color_floor);
 	return (SUCCESS);
 }
 
-void	floor_ceil_destroy(void)
+void	floor_ceil_put_to_window(t_window *win, int dark)
 {
-	t_texture *mlx_img;
-	
-	mlx_img = floor_ceil_get_ptr_img();
-	if (mlx_img->img)
-		mlx_destroy_image(mlx_img->mlx, mlx_img->img);
-	mlx_img = floor_ceil_get_ptr_img_dark();
-	if (mlx_img->img)
-		mlx_destroy_image(mlx_img->mlx, mlx_img->img);
-	
+	t_floor_ceil	*mlx_img;
+
+	mlx_img = floor_ceil_get_ptr();
+	if (dark)
+		mlx_put_image_to_window(win->mlx, win->win, mlx_img->dark, 0, 0);
+	else
+		mlx_put_image_to_window(win->mlx, win->win, mlx_img->normal, 0, 0);
+}
+
+void	floor_ceil_destroy(void *mlx)
+{
+	t_floor_ceil *mlx_img;
+
+	mlx_img = floor_ceil_get_ptr();
+	if (mlx_img->normal)
+		mlx_destroy_image(mlx, mlx_img->normal);
+	if (mlx_img->dark)
+		mlx_destroy_image(mlx, mlx_img->dark);
 }

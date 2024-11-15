@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/13 06:06:26 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/15 02:58:41 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,6 +17,7 @@
 # include "dda.h"
 # include "window.h"
 # include "texture.h"
+# include "color.h"
 
 typedef	struct s_wall
 {

@@ -6,18 +6,11 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/13 07:31:26 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/15 02:58:25 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "raycasting.h"
-
-inline int color_darkened(int color, int dark)
-{
-	if (dark)
-		return ((color >> 5) & 0xFF070707);
-	return (color);
-}
 
 inline int	texture_get_color(t_texture *t, int x, int y, int dark)
 {

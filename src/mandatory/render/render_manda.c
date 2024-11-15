@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_manda.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stephane <stephane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:16:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/06 19:34:26 by stephane         ###   ########.fr       */
+/*   Updated: 2024/11/15 02:44:35 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,19 +15,11 @@
 
 void	render_draw_floor_ceil(t_window *win, t_map *map, t_player *player)
 {
-	t_texture	*mlx_img;
+	int		dark;
 
+	dark = map_get_grid(map, &player->position) == WALL;
 	mlx_clear_window(win->mlx, win->win);
-	if (map_get_grid(map, &player->position) == AREA)
-	{
-		mlx_img = floor_ceil_get_ptr_img();
-		mlx_put_image_to_window(win->mlx, win->win, mlx_img->img, 0, 0);
-	}
-	else
-	{
-		mlx_img = floor_ceil_get_ptr_img_dark();
-		mlx_put_image_to_window(win->mlx, win->win, mlx_img->img, 0, 0);
-	}
+	floor_ceil_put_to_window(win, dark);
 }
 
 void	render(t_data *data)
