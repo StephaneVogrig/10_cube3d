@@ -6,14 +6,13 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/15 02:58:41 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/16 18:31:58 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
 
-# include "minimap_bonus.h"
 # include "dda.h"
 # include "window.h"
 # include "texture.h"

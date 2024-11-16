@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/16 17:41:11 by svogrig          ###   ########.fr        #
+#    Updated: 2024/11/16 18:26:08 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -88,6 +88,7 @@ SRC_BONUS_DIR		:=	bonus
 SRCS_BONUS 			:=	main_bonus.c \
 						render/render_bonus.c \
 						render/minimap_bonus.c \
+						render/minimap_utils_bonus.c \
 						render/draw_line_bonus.c \
 						render/draw_line_utils_bonus.c \
 						render/draw_utils_bonus.c \

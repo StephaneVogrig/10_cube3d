@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:37:08 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/16 17:26:16 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/16 18:10:48 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -28,6 +28,6 @@ typedef struct s_minimap{
 	t_player	*player;
 }   t_minimap;
 
-// t_minimap	*minimap_get_ptr(void);
+t_minimap	*minimap_get_ptr(void);
 
 #endif

@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/07 23:12:08 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/16 18:28:26 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef DATA_H
 # define DATA_H
@@ -20,7 +20,6 @@
 # include "lstmap_extraction.h"
 # include "lstmap_extraction_utils.h"
 # include "map.h"
-# include "minimap_bonus.h"
 # include "player.h"
 # include "window.h"
 
@@ -52,8 +51,6 @@ typedef struct s_data
 	t_map				map;
 	t_key				key;
 	t_player			player;
-	t_minimap			minimap;
-	int					minimap_scale;
 	int					mouse_mode;
 }						t_data;
 

@@ -6,18 +6,21 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/16 17:51:47 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/16 18:58:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "render.h"
 #include "draw_utils_bonus.h"
+#include "draw_line_bonus.h"
 
-void	draw_player(t_minimap *minimap, t_player *player)
+void	draw_player(t_player *player)
 {
 	t_vec2i	begin;
 	t_vec2i	end;
+	t_minimap	*minimap;
 
+	minimap = minimap_get_ptr();
 	begin.x = player->x.grid * minimap->scale + (player->x.box
 			* minimap->scale);
 	begin.y = player->y.grid * minimap->scale + (player->y.box
@@ -27,14 +30,16 @@ void	draw_player(t_minimap *minimap, t_player *player)
 	draw_rectangle(minimap, begin, end, 0xFFFFFF00);
 }
 
-void	draw_minimap(t_map *map, t_minimap *minimap)
+void	draw_minimap(t_map *map)
 {
 	int		x;
 	int		y;
 	int		color;
 	t_vec2i	begin;
 	t_vec2i	end;
+	t_minimap	*minimap;
 
+	minimap = minimap_get_ptr();
 	begin.y = 1;
 	end.y = minimap->scale - 1;
 	y = 0;
@@ -66,17 +71,18 @@ void	draw_minimap(t_map *map, t_minimap *minimap)
 	}
 }
 
-void	draw_rays(t_minimap *minimap, t_player *player, t_ray *rays)
+void	draw_rays(t_player *player, t_ray *rays)
 {
 	int	i;
 	t_vec2i	start;
 	t_vec2i	end;
 	t_vec2d	play;
 	t_vec2d	hit;
+	t_minimap	*minimap;
 
+	minimap = minimap_get_ptr();
 	play.x = player->x.grid + player->x.box;
 	play.y = player->y.grid + player->y.box;
-
 	start.x = minimap->scale * play.x;
 	start.y = minimap->scale * play.y;
 	i = 0;
@@ -92,11 +98,11 @@ void	draw_rays(t_minimap *minimap, t_player *player, t_ray *rays)
 	}
 }
 
-void	render_minimap(t_minimap *minimap, t_map *map, t_player *player, t_ray *rays)
+void	render_minimap(t_map *map, t_player *player, t_ray *rays)
 {
-	draw_minimap(map, minimap);
-	draw_rays(minimap, player, rays);
-	draw_player(minimap, player);
+	draw_minimap(map);
+	draw_rays(player, rays);
+	draw_player(player);
 }
 
 void	draw_floor_ceil_color(t_window *win, t_textures *textures, t_ray *rays, int dark)
@@ -189,6 +195,6 @@ void	render(t_data *data)
 	raycasting(&data->win, &data->map, &data->player, rays);
 	draw_floor_ceil_texture(&data->win, &data->map.textures.north, rays, dark, &data->player);
 	// draw_floor_ceil_color(&data->win, &data->map.textures, rays, dark);
-	render_minimap(&data->minimap, &data->map, &data->player, rays);
+	render_minimap(&data->map, &data->player, rays);
 	fps_print(chrono(STOP));
 }
