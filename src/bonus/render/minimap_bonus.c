@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/16 17:28:18 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/16 18:05:58 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -60,4 +60,15 @@ void	minimap_draw_ray(t_minimap *minimap, t_player *player, double raylen,
 	intersect.x = player_pos.x + raydir.x * raylen * minimap->scale;
 	intersect.y = player_pos.y + raydir.y * raylen * minimap->scale;
 	draw_line(minimap, player_pos, intersect, 0xFFFF0000);
+}
+
+void	minimap_destroy(t_minimap	*minimap)
+{
+	// t_minimap	*minimap;
+	
+	// minimap = minimap_get_ptr();
+	if (minimap->img)
+		mlx_destroy_image(minimap->mlx, minimap->img);
+	if (minimap->win)
+		mlx_destroy_window(minimap->mlx, minimap->win);
 }
