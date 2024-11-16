@@ -6,25 +6,25 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/09 17:47:26 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/16 17:51:47 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "render.h"
+#include "draw_utils_bonus.h"
 
 void	draw_player(t_minimap *minimap, t_player *player)
 {
 	t_vec2i	begin;
 	t_vec2i	end;
 
-	// printf("draw_player \n");
 	begin.x = player->x.grid * minimap->scale + (player->x.box
 			* minimap->scale);
 	begin.y = player->y.grid * minimap->scale + (player->y.box
 			* minimap->scale);
 	end.x = begin.x + 2;
 	end.y = begin.y + 2;
-	draw_rectangle(&minimap->screen, begin, end, 0xFFFFFF00);
+	draw_rectangle(minimap, begin, end, 0xFFFFFF00);
 }
 
 void	draw_minimap(t_map *map, t_minimap *minimap)
@@ -35,7 +35,6 @@ void	draw_minimap(t_map *map, t_minimap *minimap)
 	t_vec2i	begin;
 	t_vec2i	end;
 
-	// printf("draw_minimap\n");
 	begin.y = 1;
 	end.y = minimap->scale - 1;
 	y = 0;
@@ -50,11 +49,11 @@ void	draw_minimap(t_map *map, t_minimap *minimap)
 				color = 0xFF0FFFfF;
 			else
 				color = 0xFF7F7F7F;
-			draw_rectangle(&minimap->screen, begin, end, color);
-			draw_line(&minimap->screen, vector2i(begin.x - 1, begin.y - 1),
+			draw_rectangle(minimap, begin, end, color);
+			draw_line(minimap, vector2i(begin.x - 1, begin.y - 1),
 				vector2i(begin.x - 1, begin.y - 1 + minimap->scale),
 				0xFF606060);
-			draw_line(&minimap->screen, vector2i(begin.x - 1, begin.y - 1),
+			draw_line(minimap, vector2i(begin.x - 1, begin.y - 1),
 				vector2i(begin.x - 1 + minimap->scale, begin.y - 1),
 				0xFF606060);
 			begin.x += minimap->scale;
@@ -87,7 +86,7 @@ void	draw_rays(t_minimap *minimap, t_player *player, t_ray *rays)
 		hit.y = rays->hit_pos.y.grid + rays->hit_pos.y.box;
 		end.x = minimap->scale * hit.x;
 		end.y = minimap->scale * hit.y;
-		draw_line(&minimap->screen, start, end, 0xFFFF0000);
+		draw_line(minimap, start, end, 0xFFFF0000);
 		i++;
 		rays++;
 	}
@@ -95,7 +94,6 @@ void	draw_rays(t_minimap *minimap, t_player *player, t_ray *rays)
 
 void	render_minimap(t_minimap *minimap, t_map *map, t_player *player, t_ray *rays)
 {
-	// printf("render_minimap\n");
 	draw_minimap(map, minimap);
 	draw_rays(minimap, player, rays);
 	draw_player(minimap, player);
@@ -184,7 +182,6 @@ void	draw_floor_ceil_texture(t_window *win, t_texture *texture, t_ray *rays, int
 
 void	render(t_data *data)
 {
-	// printf("render\n");
 	t_ray	rays[WIN_W];
 	int		dark;
 

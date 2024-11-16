@@ -1,18 +1,18 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line.c                                        :+:      :+:    :+:   */
+/*   draw_line_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:29:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/09/25 16:38:23 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/16 17:51:05 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-#include "draw_line.h"
+#include "draw_line_bonus.h"
 
-void	bresenham(t_screen *screen, t_vec2i a, t_vec2i b, int color)
+void	bresenham(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
 {
 	int		err;
 	int		e2;
@@ -36,11 +36,11 @@ void	bresenham(t_screen *screen, t_vec2i a, t_vec2i b, int color)
 			err += d.x;
 			a.y += s.y;
 		}
-		mlx_pixel_put(screen->mlx, screen->win,a.x, a.y, color);
+		mlx_pixel_put(minimap->mlx, minimap->win,a.x, a.y, color);
 	}
 }
 
-void	draw_line_hor(t_screen *screen, t_vec2i a, t_vec2i b, int color)
+void	draw_line_hor(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
 {
 	int		dx;
 
@@ -50,25 +50,25 @@ void	draw_line_hor(t_screen *screen, t_vec2i a, t_vec2i b, int color)
 		dx = -1;
 	while (a.x != b.x)
 	{
-		mlx_pixel_put(screen->mlx, screen->win,a.x, a.y, color);
+		mlx_pixel_put(minimap->mlx, minimap->win,a.x, a.y, color);
 		a.x += dx;
 	}
 }
 
-void	draw_line_diag(t_screen *screen, t_vec2i a, t_vec2i b, int color)
+void	draw_line_diag(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
 {
 	t_vec2i	d;
 
 	d = increase(a, b);
 	while (a.x != b.x)
 	{
-		mlx_pixel_put(screen->mlx, screen->win,a.x, a.y, color);
+		mlx_pixel_put(minimap->mlx, minimap->win,a.x, a.y, color);
 		a.x += d.x;
 		a.y += d.y;
 	}
 }
 
-void	draw_line_vert(t_screen *screen, t_vec2i a, t_vec2i b, int color)
+void	draw_line_vert(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
 {
 	int		dy;
 
@@ -80,23 +80,23 @@ void	draw_line_vert(t_screen *screen, t_vec2i a, t_vec2i b, int color)
 		dy = -1;
 	while (a.y != b.y)
 	{
-		mlx_pixel_put(screen->mlx, screen->win,a.x, a.y, color);
+		mlx_pixel_put(minimap->mlx, minimap->win,a.x, a.y, color);
 		a.y += dy;
 	}
 }
 
-void	draw_line(t_screen *screen, t_vec2i a, t_vec2i b, int color)
+void	draw_line(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
 {
-	if ((a.x >= screen->width && b.x >= screen->width) || (a.x < 0 && b.x < 0))
+	if ((a.x >= MINIMAP_W && b.x >= MINIMAP_W) || (a.x < 0 && b.x < 0))
 		return ;
-	if ((a.y >= screen->height && b.y >= screen->height) || (a.y < 0 && b.y < 0))
+	if ((a.y >= MINIMAP_H && b.y >= MINIMAP_H) || (a.y < 0 && b.y < 0))
 		return ;
 	if (a.x == b.x)
-		draw_line_vert(screen, a, b, color);
+		draw_line_vert(minimap, a, b, color);
 	else if (a.y == b.y)
-		draw_line_hor(screen, a, b, color);
+		draw_line_hor(minimap, a, b, color);
 	else if (ft_abs(b.x - a.x) == ft_abs(b.y - a.y))
-		draw_line_diag(screen, a, b, color);
+		draw_line_diag(minimap, a, b, color);
 	else
-		bresenham(screen, a, b, color);
+		bresenham(minimap, a, b, color);
 }

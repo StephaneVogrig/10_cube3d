@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/12 03:08:55 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/16 17:08:34 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "main.h"
 
@@ -32,10 +32,10 @@ int	main(int argc, char **argv)
 		render(&data);
 		mlx_loop(data.mlx);
 	}
-	if (data.minimap.screen.img)
-		mlx_destroy_image(data.mlx, data.minimap.screen.img);
-	if (data.minimap.screen.win)
-		mlx_destroy_window(data.mlx, data.minimap.screen.win);
+	if (data.minimap.img)
+		mlx_destroy_image(data.mlx, data.minimap.img);
+	if (data.minimap.win)
+		mlx_destroy_window(data.mlx, data.minimap.win);
 	data_clean(&data);
 	return (EXIT_SUCCESS);
 }

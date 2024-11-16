@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/15 02:57:30 by svogrig          ###   ########.fr        #
+#    Updated: 2024/11/16 17:41:11 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -60,14 +60,10 @@ SRCS				:= 	debug.c \
 						parsing/lstmap.c \
 						parsing/lstmap_utils.c \
 						parsing/map.c \
-						render/draw_line.c \
-						render/draw_line_utils.c \
-						render/draw_utils.c \
 						render/raycasting.c \
 						render/dda.c \
 						render/chrono.c \
 						stack.c \
-						render/screen.c \
 						color.c
 
 # sources madatory only -------------------------------------------------------#
@@ -92,6 +88,9 @@ SRC_BONUS_DIR		:=	bonus
 SRCS_BONUS 			:=	main_bonus.c \
 						render/render_bonus.c \
 						render/minimap_bonus.c \
+						render/draw_line_bonus.c \
+						render/draw_line_utils_bonus.c \
+						render/draw_utils_bonus.c \
 						player_move_bonus.c
 
 SRCS_BONUS			:=	$(SRCS_BONUS:%=$(SRC_BONUS_DIR)/%)
