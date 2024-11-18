@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   event.h                                            :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 00:35:45 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/16 20:30:54 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef EVENT_H
 # define EVENT_H
@@ -34,5 +34,9 @@
 # define ON_FOCUS_LOSS		7
 
 void	event_setup(t_data *data);
+int		on_keydown(int key, void *param);
+int		on_keyup(int key, void *param);
+int on_mousedown(int button, void *param);
+int on_mouseup(int button, void *param);
 
 #endif

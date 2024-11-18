@@ -6,12 +6,12 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/16 18:32:05 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/16 20:20:12 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "main.h"
-# include "minimap_bonus.h"
+#include "minimap_bonus.h"
 
 int	main(int argc, char **argv)
 {
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	data_init(&data);
 	exit_code = data_setup(&data, argv[1]);
 	if (exit_code == SUCCESS)
-		exit_code = minimap_setup(data.mlx, &data.map);
+		exit_code = minimap_setup(data.mlx, &data.map, &data);
 	if (exit_code == SUCCESS)
 	{
 		event_setup(&data);
