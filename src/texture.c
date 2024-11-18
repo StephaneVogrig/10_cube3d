@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/12 03:13:33 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/18 17:56:54 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "texture.h"
+
+inline int	texture_get_color(t_texture *t, int x, int y)
+{
+	return (t->buffer[(x * t->height) + y]);
+}
 
 void	textures_set_mlx(t_textures *t, void *mlx)
 {

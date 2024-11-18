@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
@@ -6,13 +6,14 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/16 18:58:11 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/18 20:07:51 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "render.h"
 #include "draw_utils_bonus.h"
 #include "draw_line_bonus.h"
+#include "draw_wall.h"
 
 void	draw_player(t_player *player)
 {
@@ -171,12 +172,14 @@ void	draw_floor_ceil_texture(t_window *win, t_texture *texture, t_ray *rays, int
 
 				int color;
 				// ceil
-				color = texture_get_color(texture, tx, ty, dark);
+				color = texture_get_color(texture, tx, ty);
+				color = color_darkened(color, dark);
 				// color = color_darkened(0xFF0000FF, dark);
 				mlx_pixel_put(win->mlx, win->win, x, y_ceil, color);
 
 				// floor
-				color = texture_get_color(texture, tx, ty, dark);
+				color = texture_get_color(texture, tx, ty);
+				color = color_darkened(color, dark);
 				// color = color_darkened(0xFF00FF00, dark);
 				mlx_pixel_put(win->mlx, win->win, x, y_floor, color);
 			}
@@ -191,10 +194,12 @@ void	render(t_data *data)
 	t_ray	rays[WIN_W];
 	int		dark;
 
+	mlx_clear_window(data->win.mlx, data->win.win);
 	dark = map_get_grid(&data->map, &data->player.position) == WALL;
 	raycasting(&data->win, &data->map, &data->player, rays);
 	draw_floor_ceil_texture(&data->win, &data->map.textures.north, rays, dark, &data->player);
 	// draw_floor_ceil_color(&data->win, &data->map.textures, rays, dark);
+	draw_walls(&data->win, rays, &data->map.textures);
 	render_minimap(&data->map, &data->player, rays);
 	fps_print(chrono(STOP));
 }

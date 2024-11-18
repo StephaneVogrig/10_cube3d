@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.h                                       :+:      :+:    :+:   */
+/*   draw_wall.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/18 20:10:25 by svogrig          ###   ########.fr       */
+/*   Created: 2024/11/18 15:06:29 by svogrig           #+#    #+#             */
+/*   Updated: 2024/11/18 17:55:13 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCASTING_H
-# define RAYCASTING_H
+#ifndef DRAW_WALL_H
+# define DRAW_WALL_H
 
-# include "dda.h"
 # include "window.h"
 # include "texture.h"
+# include "dda.h"
 # include "color.h"
 
-void	raycasting(t_window *cub, t_map *map, t_player *player, t_ray *rays);
+typedef	struct s_wall
+{
+	int			height;
+	t_texture	*texture;
+	float		x_in_texture;
+	double		texture_dy;
+}	t_wall;
+
+typedef	struct s_draw_texture
+{
+	t_texture	*img;
+	t_vec2i 	pixel;
+	double		y;
+	double		dy;
+}	t_draw_texture;
+
+void	draw_walls(t_window *win, t_ray *rays, t_textures *textures);
 
 #endif

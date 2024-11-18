@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   texture.h                                          :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 19:11:26 by stephane          #+#    #+#             */
-/*   Updated: 2024/11/10 15:45:05 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/18 17:56:37 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef TEXTURE_H
 # define TEXTURE_H
@@ -38,10 +38,11 @@ typedef struct s_textures
 	t_rgb		ceil_rgb;
 }				t_textures;
 
-void			textures_set_mlx(t_textures *t, void *mlx);
-void			textures_clean(t_textures *t, void *mlx);
-int				texture_load(t_texture *t, char *path);
-int				texture_selector(t_textures *textures, char *key,
+int		texture_get_color(t_texture *t, int x, int y);
+void	textures_set_mlx(t_textures *t, void *mlx);
+void	textures_clean(t_textures *t, void *mlx);
+int		texture_load(t_texture *t, char *path);
+int		texture_selector(t_textures *textures, char *key,
 					char *img_path);
 
 #endif
