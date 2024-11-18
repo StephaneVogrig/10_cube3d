@@ -6,11 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/11/12 02:42:52 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/18 23:06:44 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../debug.h"
+
 #include "lstmap_extraction_utils.h"
 
 int	check_line(char *line)
