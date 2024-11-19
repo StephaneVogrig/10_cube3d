@@ -6,7 +6,7 @@
 #    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/18 23:10:14 by aska             ###   ########.fr        #
+#    Updated: 2024/11/18 23:53:25 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRCS				:= 	debug.c \
 						render/dda.c \
 						render/chrono.c \
 						render/draw_wall.c \
+						check_arg.c \
 						stack.c \
 						color.c
 
@@ -64,7 +65,6 @@ SRCS_MANDA			:=	main_manda.c \
 						render/render_manda.c \
 						player_move_manda.c \
 						floor_ceil_mlx_img.c \
-						parsing/check_arg.c \
 						parsing/data.c \
 						parsing/lstmap_extraction_utils.c \
 						parsing/lstmap_extraction.c \
@@ -94,7 +94,6 @@ SRCS_BONUS 			:=	main_bonus.c \
 						render/draw_line_utils_bonus.c \
 						render/draw_utils_bonus.c \
 						player_move_bonus.c \
-						parsing/check_arg.c \
 						parsing/data.c \
 						parsing/lstmap_extraction_utils.c \
 						parsing/lstmap_extraction.c \

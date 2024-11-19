@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/18 17:56:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/19 01:59:09 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,9 @@ int	texture_selector(t_textures *textures, char *key, char *img_path)
 		return (texture_load(&textures->east, img_path));
 	else
 		return (SUCCESS);
+}
+
+void *textures_get_ptr(void)
+{
+	return (NULL);
 }
