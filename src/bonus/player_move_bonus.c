@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 00:27:56 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/01 02:06:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/19 17:06:57 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static inline void	collision_manage(	t_map map,
 	}
 }
 
-void	player_move(t_map map, t_player *player, t_vec2i vec_dir)
+void	player_move(t_map map, t_player *player, t_vec2d move)
 {
 	t_position	new;
 
-	new = player_new_position(player, vec_dir);
+	new = new_position(player->position, player->dir, move);
 	collision_manage(map, player, new);
 }

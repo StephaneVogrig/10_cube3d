@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:05:50 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/01 02:04:42 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/19 17:09:35 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 # include "vec2i.h"
 # include <math.h>
 # include "position.h"
+# include "gametime.h"
 
-# define SPEED_ROT (M_PI / 50)
+# define SPEED_ROT (M_PI / 70)
 # define SPEED_MOVE 0.06
 
 typedef struct s_player
@@ -34,8 +35,8 @@ typedef struct s_player
 	double	dir;
 }			t_player;
 
-t_position	player_new_position(t_player *player, t_vec2i vec_dir);
-void		player_rotation(t_player *player, int rot);
+t_position	new_position(t_position start, double dir, t_vec2d move);
+void		player_rotation(t_player *player, double rotation);
 void		player_set_dir(t_player *player, char dir);
 int			player_finder(t_map *map, t_player *player);
 

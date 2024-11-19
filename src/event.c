@@ -6,11 +6,12 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/10/31 00:51:33 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/19 16:45:30 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "event.h"
+#include "gametime.h"
 
 int	mouse_hook(int button, void *param)
 {
@@ -94,13 +95,16 @@ int	on_keyup(int key, void *param)
 
 int	on_loop(void *param)
 {
+	static	t_gtime	oldtime;
+	t_gtime	delta_time;
 	t_data *data;
 	t_vec2i move;
-	// int	rot;
 	int x;
 	int y;
 	int render_needed;
-	
+
+	delta_time = gametime() - oldtime;
+	oldtime += delta_time;
 	chrono(START);
 	data = (t_data *)param;
 	if (data->key.esc == DOWN)
@@ -120,12 +124,26 @@ int	on_loop(void *param)
 	}
 	if (data->key.down)
 	{
+		int	sign_rot = data->key.right - data->key.left;
+		if (sign_rot != 0)
+		{
+			double rotation = (SPEED_ROT * delta_time) / 10000;
+			if (sign_rot < 0)
+				rotation = -rotation;
+			player_rotation(&data->player, rotation);
+			render_needed = TRUE;
+		}
 		move.x = data->key.w - data->key.s;
 		move.y = data->key.d - data->key.a;
-		// rot = data->key.right - data->key.left;
-		player_rotation(&data->player, data->key.right - data->key.left);
-		player_move(data->map , &data->player, move);
-		render_needed = TRUE;
+		if (move.x != 0 || move.y != 0)
+		{
+			double speed_move = (SPEED_MOVE * delta_time) / 10000;
+			t_vec2d	move_vec;
+			move_vec.x = move.x * speed_move;
+			move_vec.y = move.y * speed_move;
+			player_move(data->map , &data->player, move_vec);
+			render_needed = TRUE;
+		}
 	}
 	if (render_needed)
 		render(data);
@@ -159,8 +177,6 @@ void	event_setup(t_data *data)
 	mlx_on_event(data->mlx, data->win.win, MLX_WINDOW_EVENT, on_win_event, &data->win);
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYDOWN, on_keydown, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYUP, on_keyup, data);
-	// mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYDOWN, on_keydown, data);
-	// mlx_on_event(data->mlx, data->minimap.screen.win, MLX_KEYUP, on_keyup, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_MOUSEDOWN, on_mousedown, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_MOUSEUP, on_mouseup, data);
 	mlx_loop_hook(data->mlx, on_loop, data);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/18 23:10:14 by aska             ###   ########.fr        #
+#    Updated: 2024/11/19 14:52:25 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,8 @@ SRCS				:= 	debug.c \
 						render/chrono.c \
 						render/draw_wall.c \
 						stack.c \
-						color.c
+						color.c \
+						gametime.c
 
 # sources madatory only -------------------------------------------------------#
 
