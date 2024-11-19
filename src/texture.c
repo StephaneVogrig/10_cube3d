@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/19 01:59:09 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/19 16:10:35 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@ inline int	texture_get_color(t_texture *t, int x, int y)
 
 void	textures_set_mlx(t_textures *t, void *mlx)
 {
-	t->north.mlx = mlx;
-	t->south.mlx = mlx;
-	t->east.mlx = mlx;
-	t->west.mlx = mlx;
+	int i;
+
+	while(i < 8)
+		t->tex[i++].mlx = mlx;
 }
 
 void	textures_clean(t_textures *t, void *mlx)
 {
-	if (t->north.img)
-		mlx_destroy_image(mlx, t->north.img);
-	if (t->south.img)
-		mlx_destroy_image(mlx, t->south.img);
-	if (t->east.img)
-		mlx_destroy_image(mlx, t->east.img);
-	if (t->west.img)
-		mlx_destroy_image(mlx, t->west.img);
+		int i;
+
+	while(i < 8)
+	{
+		if (t->tex[i].img)
+			mlx_destroy_image(mlx, t->tex[i].img);
+		i++;
+	}
 }
 
 
@@ -86,21 +86,23 @@ int	texture_load(t_texture *t, char *path)
 	return (texture_buffer_init(t));
 }
 
-int	texture_selector(t_textures *textures, char *key, char *img_path)
-{
-	if (ft_strncmp(key, "NO", 2) == 0)
-		return (texture_load(&textures->north, img_path));
-	else if (ft_strncmp(key, "SO", 2) == 0)
-		return (texture_load(&textures->south, img_path));
-	else if (ft_strncmp(key, "WE", 2) == 0)
-		return (texture_load(&textures->west, img_path));
-	else if (ft_strncmp(key, "EA", 2) == 0)
-		return (texture_load(&textures->east, img_path));
-	else
-		return (SUCCESS);
-}
+// int	texture_selector(t_textures *textures, char *key, char *img_path)
+// {
+// 	if (ft_strncmp(key, "NO", 2) == 0)
+// 		return (texture_load(&textures->north, img_path));
+// 	else if (ft_strncmp(key, "SO", 2) == 0)
+// 		return (texture_load(&textures->south, img_path));
+// 	else if (ft_strncmp(key, "WE", 2) == 0)
+// 		return (texture_load(&textures->west, img_path));
+// 	else if (ft_strncmp(key, "EA", 2) == 0)
+// 		return (texture_load(&textures->east, img_path));
+// 	else
+// 		return (SUCCESS);
+// }
 
-void *textures_get_ptr(void)
+t_textures *textures_get_ptr(void)
 {
-	return (NULL);
+	static t_textures textures;
+	
+	return (&textures);
 }

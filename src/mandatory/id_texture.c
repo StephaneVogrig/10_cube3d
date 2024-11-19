@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 01:20:06 by aska              #+#    #+#             */
-/*   Updated: 2024/11/19 02:20:05 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/19 15:56:25 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	idtex_set_texture_by_id(char* path, t_id_tex id_tex)
 	
 	t = textures_get_ptr();
 	if (id_tex == NO)
-		texture_load(t, path);
+		texture_load(&t->tex[0], path);
 	else if (id_tex == SO)
-		texture_load(t, path);
+		texture_load(&t->tex[1], path);
 	else if (id_tex == WE)
-		texture_load(t, path);
+		texture_load(&t->tex[2], path);
 	else if (id_tex == EA)
-		texture_load(t, path);
+		texture_load(&t->tex[3], path);
 }
 
 void	*idtex_get_texture_by_id(t_id_tex id_tex)
@@ -33,12 +33,12 @@ void	*idtex_get_texture_by_id(t_id_tex id_tex)
 	
 	t = textures_get_ptr();
 	if (id_tex == NO)
-		return (t->north.img);
+		return (t->tex[0].img);
 	else if (id_tex == SO)
-		return (t->south.img);
+		return (t->tex[1].img);
 	else if (id_tex == WE)
-		return (t->west.img);
+		return (t->tex[2].img);
 	else if (id_tex == EA)
-		return (t->east.img);
+		return (t->tex[3].img);
 	return (NULL);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 19:11:26 by stephane          #+#    #+#             */
-/*   Updated: 2024/11/18 17:56:37 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/19 14:04:50 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ typedef struct s_texture
 
 typedef struct s_textures
 {
-	t_texture	north;
-	t_texture	south;
-	t_texture	east;
-	t_texture	west;
+	t_texture	tex[8];
+	t_texture	floor_tex;
+	t_texture	ceil_tex;
 	t_rgb		floor_rgb;
 	t_rgb		ceil_rgb;
 }				t_textures;
