@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/18 20:07:51 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/19 18:56:31 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,44 +106,11 @@ void	render_minimap(t_map *map, t_player *player, t_ray *rays)
 	draw_player(player);
 }
 
-void	draw_floor_ceil_color(t_window *win, t_textures *textures, t_ray *rays, int dark)
-{
-	int color_ceil;
-	int color_floor;
-	int x;
-	int	y_ceil;
-	int	y_floor;
-	int	wallh_2;
-	int winh_2;
-
-	winh_2 = WIN_H / 2;
-	color_ceil = color_darkened(textures->ceil_rgb.integer, dark);
-	color_floor = color_darkened(textures->floor_rgb.integer, dark);
-	x = 0;
-	while (x < WIN_W)
-	{
-		if (rays->len < WIN_H)
-		{
-			wallh_2 = winh_2 / rays->len;
-			y_ceil = 0;
-			y_floor = winh_2 + wallh_2;
-			while (y_floor < WIN_H)
-			{
-				mlx_pixel_put(win->mlx, win->win, x, y_ceil, color_ceil);
-				mlx_pixel_put(win->mlx, win->win, x, y_floor, color_floor);
-				y_ceil++;
-				y_floor++;
-			}
-		}
-		rays++;
-		x++;
-	}
-}
-
 void	draw_floor_ceil_texture(t_window *win, t_texture *texture, t_ray *rays, int dark, t_player *player)
 {
 	int	x;
 	int	i;
+	int	wall_h;
 	int	winh_2;
 	t_vec2d	player_position;
 
@@ -159,7 +126,9 @@ void	draw_floor_ceil_texture(t_window *win, t_texture *texture, t_ray *rays, int
 		x = 0;
 		while (x < WIN_W)
 		{
-			if (i > winh_2 / rays[x].len)
+			wall_h = WIN_H / rays[x].len;
+			wall_h /= 2;
+			if (i >= wall_h)
 			{
 				t_vec2d	world;
 				t_vec2d len;
