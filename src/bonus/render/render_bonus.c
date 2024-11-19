@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/18 20:07:51 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/19 00:53:08 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,5 +201,5 @@ void	render(t_data *data)
 	// draw_floor_ceil_color(&data->win, &data->map.textures, rays, dark);
 	draw_walls(&data->win, rays, &data->map.textures);
 	render_minimap(&data->map, &data->player, rays);
-	fps_print(chrono(STOP));
+	fps_print(chrono(STOP), data->mlx, data->win.win);
 }
