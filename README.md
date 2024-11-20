@@ -16,7 +16,7 @@ The goal of the project is to build small game engine to render a 2D map in an a
 [Les meilleurs cours et tutoriel 2d/3d/jeux - developpez.com](https://jeux.developpez.com/tutoriels/?page=mot)
 
 #### Raycasting article
- 
+ [xitog](https://xitog.github.io/dgx/passetemps/tech_raycasting_fr.html)
 [Lode's Computer Graphic Tutorial - 2004-2020 - part : 1](https://lodev.org/cgtutor/raycasting.html)
 [2](https://lodev.org/cgtutor/raycasting2.html)
 [3](https://lodev.org/cgtutor/raycasting3.html)
@@ -35,6 +35,10 @@ The goal of the project is to build small game engine to render a 2D map in an a
 [Decouvrons le raycasting](https://www.youtube.com/watch?v=xZe0ZYPzxkg&t=61s)  
 [Ray casting fully explained, Pseudo 3d game](https://www.youtube.com/watch?v=g8p7nAbDz6Y)  
 [Wolfstein 3D's map renderer](https://www.youtube.com/watch?v=eOCQfxRQ2pY)  
+
+#### exemple github
+[Samu Aaltonen - doom-nukem](https://github.com/MeowBoy326/doom-nukem-raycasting)  
+[Samu Aaltonen - wolf3d](https://github.com/samuaaltonen/wolf3d)
 
 #### Correction
 [Enzo Degraeve](https://enzodeg40.github.io/42-Evals/Cursus/Cub3d/)  
