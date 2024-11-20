@@ -6,7 +6,7 @@
 #    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/20 15:26:15 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/11/20 15:58:15 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,6 @@ SRCS_COMMON			:= 	debug.c \
 						event.c \
 						pixel.c \
 						player.c \
-						texture.c \
 						title.c \
 						vector.c \
 						window.c \
@@ -70,6 +69,7 @@ SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
 SRC_MAND_DIR		:=	mandatory
 
 SRCS_MANDA			:=	main_manda.c \
+						texture.c \
 						render/render_manda.c \
 						player_move_manda.c \
 						floor_ceil_mlx_img.c \
@@ -102,6 +102,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						render/draw_line_bonus.c \
 						render/draw_line_utils_bonus.c \
 						render/draw_utils_bonus.c \
+						texture_bonus.c \
 						player_move_bonus.c \
 						parsing/check_arg.c \
 						parsing/data.c \
