@@ -3,28 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   id_texture.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 01:20:06 by aska              #+#    #+#             */
-/*   Updated: 2024/11/19 15:56:25 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/20 12:02:27 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "id_tex.h"
 
-void	idtex_set_texture_by_id(char* path, t_id_tex id_tex)
+int	idtex_set_texture_by_id(char* path, t_id_tex id_tex)
 {
 	t_textures	*t;
 	
 	t = textures_get_ptr();
 	if (id_tex == NO)
-		texture_load(&t->tex[0], path);
+		return (texture_load(&t->tex[0], path));
 	else if (id_tex == SO)
-		texture_load(&t->tex[1], path);
+		return (texture_load(&t->tex[1], path));
 	else if (id_tex == WE)
-		texture_load(&t->tex[2], path);
+		return (texture_load(&t->tex[2], path));
 	else if (id_tex == EA)
-		texture_load(&t->tex[3], path);
+		return (texture_load(&t->tex[3], path));
+	else
+		return (SUCCESS)
 }
 
 void	*idtex_get_texture_by_id(t_id_tex id_tex)
