@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/19 14:52:25 by svogrig          ###   ########.fr        #
+#    Updated: 2024/11/20 15:26:15 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,11 @@ I_FLAG				:=	$(addprefix -I,$(DIR_INC)) -MMD -MP
 
 SRC_DIR				:=	src
 
-SRCS				:= 	debug.c \
+# sources common --------------------------------------------------------------#
+
+SRC_COMMON_DIR		:=	common
+
+SRCS_COMMON			:= 	debug.c \
 						event.c \
 						pixel.c \
 						player.c \
@@ -56,6 +60,10 @@ SRCS				:= 	debug.c \
 						stack.c \
 						color.c \
 						gametime.c
+
+SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
+
+# SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_DIR)/%)
 
 # sources madatory only -------------------------------------------------------#
 
@@ -79,7 +87,7 @@ SRCS_MANDA			:=	main_manda.c \
 						
 SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_MAND_DIR)/%)
 
-SRCS_MANDA			:=	$(SRCS) $(SRCS_MANDA)
+SRCS_MANDA			:=	$(SRCS_COMMON) $(SRCS_MANDA)
 
 SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_DIR)/%)
 
@@ -108,10 +116,11 @@ SRCS_BONUS 			:=	main_bonus.c \
 						parsing/map.c
 
 SRCS_BONUS			:=	$(SRCS_BONUS:%=$(SRC_BONUS_DIR)/%)
+# sources ---------------------------------------------------------------------#
 
-SRCS_BONUS			:=	$(SRCS) $(SRCS_BONUS)
+SRCS_BONUS			:=	$(SRCS_COMMON) $(SRCS_BONUS)
 
-SRCS_BONUS			:= $(SRCS_BONUS:%=$(SRC_DIR)/%)
+SRCS_BONUS			:=	$(SRCS_BONUS:%=$(SRC_DIR)/%)
 
 # objects ---------------------------------------------------------------------#
 
