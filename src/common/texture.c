@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/20 16:46:07 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:40:16 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,19 @@ void	textures_set_mlx(t_textures *t, void *mlx)
 	t->west.mlx = mlx;
 }
 
-void	textures_clean(t_textures *t, void *mlx)
-{
-	if (t->north.img)
-		mlx_destroy_image(mlx, t->north.img);
-	if (t->south.img)
-		mlx_destroy_image(mlx, t->south.img);
-	if (t->east.img)
-		mlx_destroy_image(mlx, t->east.img);
-	if (t->west.img)
-		mlx_destroy_image(mlx, t->west.img);
-}
+// void	textures_clean(t_textures *t, void *mlx)
+// {
+// 	if (t->north.img)
+// 		mlx_destroy_image(mlx, t->north.img);
+// 	if (t->south.img)
+// 		mlx_destroy_image(mlx, t->south.img);
+// 	if (t->east.img)
+// 		mlx_destroy_image(mlx, t->east.img);
+// 	if (t->west.img)
+// 		mlx_destroy_image(mlx, t->west.img);
+// }
 
-
-void	img_mlx_to_buffer(t_texture *t, int *buffer, int height, int width)
+void	img_mlx_to_buffer(t_img_mlx *t, int *buffer, int height, int width)
 {
 	int	x;
 	int	y;
@@ -57,7 +56,7 @@ void	img_mlx_to_buffer(t_texture *t, int *buffer, int height, int width)
 	}
 }
 
-int	texture_buffer_init(t_texture *t)
+int	texture_buffer_init(t_texture *t, t_img_mlx *)
 {
 	t->buffer = malloc(sizeof(*(t->buffer)) * (t->height * t->width));
 	if (t->buffer == NULL)
@@ -66,9 +65,23 @@ int	texture_buffer_init(t_texture *t)
 	return (SUCCESS);
 }
 
-int	texture_load_to_buffer(t_texture *t, char *path)
+int	texture_load_to_buffer(void *mlx, t_texture *t, char *path)
 {
-	char	*extension;
+	// t_img_mlx	img_mlx;
+	// int			exit_code;
+
+	// exit_code = img_mlx_load_file(mlx, &img_mlx, path);
+	// if (exit_code == SUCCESS)
+	// {
+	// 	t->buffer = img_mlx_to_buffer(&img_mlx);
+	// 	if (t->buffer == NULL)
+	// 		exit_code = ft_return(ERROR, 273, "Texture Buffer allocation failure");
+	// 	t->height = img_mlx.height;
+	// 	t->width = img_mlx.width;
+	// 	mlx_destroy_image(mlx, img_mlx.img);
+	// }
+	// return (exit_code);
+		char	*extension;
 
 	extension = ft_strrchr(path, '.');
 	if (extension == NULL)
@@ -86,16 +99,3 @@ int	texture_load_to_buffer(t_texture *t, char *path)
 	return (texture_buffer_init(t));
 }
 
-int	texture_selector(t_textures *textures, char *key, char *img_path)
-{
-	if (ft_strncmp(key, "NO", 2) == 0)
-		return (texture_load_to_buffer(&textures->north, img_path));
-	else if (ft_strncmp(key, "SO", 2) == 0)
-		return (texture_load_to_buffer(&textures->south, img_path));
-	else if (ft_strncmp(key, "WE", 2) == 0)
-		return (texture_load_to_buffer(&textures->west, img_path));
-	else if (ft_strncmp(key, "EA", 2) == 0)
-		return (texture_load_to_buffer(&textures->east, img_path));
-	else
-		return (SUCCESS);
-}

@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/20 16:04:09 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:39:58 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	mlx_setup(t_data *data, t_tex_path *tex_path, t_textures *textures)
 	if (data->mlx == NULL)
 		return (ft_return(ERROR, 258, "Error on mlx_init"));
 	textures_set_mlx(&data->map.textures, data->mlx);
-	exit_code = texture_load_to_buffer(&textures->north, tex_path->no);
-	exit_code |= texture_load_to_buffer(&textures->south, tex_path->so);
-	exit_code |= texture_load_to_buffer(&textures->east, tex_path->ea);
-	exit_code |= texture_load_to_buffer(&textures->west, tex_path->we);
+	exit_code = texture_load_to_buffer(data->mlx, &textures->north, tex_path->no);
+	exit_code |= texture_load_to_buffer(data->mlx, &textures->south, tex_path->so);
+	exit_code |= texture_load_to_buffer(data->mlx, &textures->east, tex_path->ea);
+	exit_code |= texture_load_to_buffer(data->mlx, &textures->west, tex_path->we);
 	if (exit_code == SUCCESS)
 	exit_code = window_setup(&data->win, data->mlx);
 	return (exit_code);
@@ -69,7 +69,7 @@ void	data_clean(t_data *data)
 {
 	printf("data_clean\n");
 	data->map.grid = ft_tab_f(data->map.grid);
-	textures_clean(&data->map.textures, data->mlx);
+	// textures_clean(&data->map.textures, data->mlx);
 	window_clean(&data->win);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);

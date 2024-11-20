@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/20 16:13:02 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:53:59 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +84,4 @@ int	texture_load_to_buffer(t_texture *t, char *path)
 	if (t->img == NULL)
 		return (ft_return(ERROR, 270, "Texture attribution failed"));
 	return (texture_buffer_init(t));
-}
-
-int	texture_selector(t_textures *textures, char *key, char *img_path)
-{
-	if (ft_strncmp(key, "NO", 2) == 0)
-		return (texture_load_to_buffer(&textures->north, img_path));
-	else if (ft_strncmp(key, "SO", 2) == 0)
-		return (texture_load_to_buffer(&textures->south, img_path));
-	else if (ft_strncmp(key, "WE", 2) == 0)
-		return (texture_load_to_buffer(&textures->west, img_path));
-	else if (ft_strncmp(key, "EA", 2) == 0)
-		return (texture_load_to_buffer(&textures->east, img_path));
-	else
-		return (SUCCESS);
 }
