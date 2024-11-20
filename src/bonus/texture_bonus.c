@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture.c                                          :+:      :+:    :+:   */
+/*   texture_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/18 17:56:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/20 16:13:02 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	textures_clean(t_textures *t, void *mlx)
 }
 
 
-void	mlx_img_to_buffer(t_texture *t, int *buffer, int height, int width)
+void	img_mlx_to_buffer(t_texture *t, int *buffer, int height, int width)
 {
 	int	x;
 	int	y;
@@ -62,11 +62,11 @@ int	texture_buffer_init(t_texture *t)
 	t->buffer = malloc(sizeof(*(t->buffer)) * (t->height * t->width));
 	if (t->buffer == NULL)
 		return (EXIT_FAILURE);
-	mlx_img_to_buffer(t, t->buffer, t->height, t->width);
+	img_mlx_to_buffer(t, t->buffer, t->height, t->width);
 	return (SUCCESS);
 }
 
-int	texture_load(t_texture *t, char *path)
+int	texture_load_to_buffer(t_texture *t, char *path)
 {
 	char	*extension;
 
@@ -89,13 +89,13 @@ int	texture_load(t_texture *t, char *path)
 int	texture_selector(t_textures *textures, char *key, char *img_path)
 {
 	if (ft_strncmp(key, "NO", 2) == 0)
-		return (texture_load(&textures->north, img_path));
+		return (texture_load_to_buffer(&textures->north, img_path));
 	else if (ft_strncmp(key, "SO", 2) == 0)
-		return (texture_load(&textures->south, img_path));
+		return (texture_load_to_buffer(&textures->south, img_path));
 	else if (ft_strncmp(key, "WE", 2) == 0)
-		return (texture_load(&textures->west, img_path));
+		return (texture_load_to_buffer(&textures->west, img_path));
 	else if (ft_strncmp(key, "EA", 2) == 0)
-		return (texture_load(&textures->east, img_path));
+		return (texture_load_to_buffer(&textures->east, img_path));
 	else
 		return (SUCCESS);
 }

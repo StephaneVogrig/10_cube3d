@@ -6,7 +6,7 @@
 #    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/20 15:58:15 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/11/20 16:52:36 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS_COMMON			:= 	debug.c \
 						render/draw_wall.c \
 						stack.c \
 						color.c \
+						texture.c \
 						gametime.c
 
 SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
@@ -69,7 +70,6 @@ SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
 SRC_MAND_DIR		:=	mandatory
 
 SRCS_MANDA			:=	main_manda.c \
-						texture.c \
 						render/render_manda.c \
 						player_move_manda.c \
 						floor_ceil_mlx_img.c \
