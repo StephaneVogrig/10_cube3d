@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/13 17:45:29 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:25:26 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,13 @@ int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 		return (ft_return(ERROR, 273, "Error on Map Creation"));
 	while (y != map->height)
 	{
-		map->grid[y] = tmp->line;
+		map->grid[y] = ft_calloc(map->width + 1, sizeof(char));
+		if (map->grid[y] == NULL)
+			return (ft_return(ERROR, 273, "Error on Map Creation"));
+		ft_strcpy(map->grid[y], tmp->line);
 		if (map->grid[y] == NULL)
 			return (ft_return(ERROR, 274, "Error on Map Creation"));
+		// map->grid[y] = tmp->line;
 		tmp->line = NULL;
 		tmp = tmp->next;
 		y++;
