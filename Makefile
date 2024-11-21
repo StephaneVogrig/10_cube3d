@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/20 16:52:36 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/11/21 16:23:30 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRCS_COMMON			:= 	debug.c \
 						stack.c \
 						color.c \
 						texture.c \
+						img_mlx.c \
 						gametime.c
 
 SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
@@ -102,7 +103,6 @@ SRCS_BONUS 			:=	main_bonus.c \
 						render/draw_line_bonus.c \
 						render/draw_line_utils_bonus.c \
 						render/draw_utils_bonus.c \
-						texture_bonus.c \
 						player_move_bonus.c \
 						parsing/check_arg.c \
 						parsing/data.c \
@@ -135,7 +135,7 @@ DEPS				:=	$(OBJS_MANDA:.o=.d) $(OBJS_BONUS:.o=.d)
 # compilation -----------------------------------------------------------------#
 
 CC 					:= 	cc
-CFLAGS 				:= 	-Wall -Werror -Wextra
+CFLAGS 				:= 	-Wall -Werror -Wextra -g
 
 #------------------------------------------------------------------------------#
 # rules                                                                        #
