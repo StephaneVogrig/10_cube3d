@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/20 18:40:16 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/21 16:13:34 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,85 +17,21 @@ inline int	texture_get_color(t_texture *t, int x, int y)
 	return (t->buffer[(x * t->height) + y]);
 }
 
-void	textures_set_mlx(t_textures *t, void *mlx)
-{
-	t->north.mlx = mlx;
-	t->south.mlx = mlx;
-	t->east.mlx = mlx;
-	t->west.mlx = mlx;
-}
-
-// void	textures_clean(t_textures *t, void *mlx)
-// {
-// 	if (t->north.img)
-// 		mlx_destroy_image(mlx, t->north.img);
-// 	if (t->south.img)
-// 		mlx_destroy_image(mlx, t->south.img);
-// 	if (t->east.img)
-// 		mlx_destroy_image(mlx, t->east.img);
-// 	if (t->west.img)
-// 		mlx_destroy_image(mlx, t->west.img);
-// }
-
-void	img_mlx_to_buffer(t_img_mlx *t, int *buffer, int height, int width)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < width)
-	{
-		y = 0;
-		while (y < height)
-		{
-			*buffer = mlx_get_image_pixel(t->mlx, t->img, x, y);
-			buffer++;
-			y++;
-		}
-		x++;
-	}
-}
-
-int	texture_buffer_init(t_texture *t, t_img_mlx *)
-{
-	t->buffer = malloc(sizeof(*(t->buffer)) * (t->height * t->width));
-	if (t->buffer == NULL)
-		return (EXIT_FAILURE);
-	img_mlx_to_buffer(t, t->buffer, t->height, t->width);
-	return (SUCCESS);
-}
-
 int	texture_load_to_buffer(void *mlx, t_texture *t, char *path)
 {
-	// t_img_mlx	img_mlx;
-	// int			exit_code;
+	t_img_mlx	img_mlx;
+	int			exit_code;
 
-	// exit_code = img_mlx_load_file(mlx, &img_mlx, path);
-	// if (exit_code == SUCCESS)
-	// {
-	// 	t->buffer = img_mlx_to_buffer(&img_mlx);
-	// 	if (t->buffer == NULL)
-	// 		exit_code = ft_return(ERROR, 273, "Texture Buffer allocation failure");
-	// 	t->height = img_mlx.height;
-	// 	t->width = img_mlx.width;
-	// 	mlx_destroy_image(mlx, img_mlx.img);
-	// }
-	// return (exit_code);
-		char	*extension;
-
-	extension = ft_strrchr(path, '.');
-	if (extension == NULL)
-		return (ft_return(ERROR, 269, "Texture extension not found"));
-	if (ft_strcmp(extension, ".jpg") == 0 || ft_strcmp(extension, ".jpeg") == 0)
-		t->img = mlx_jpg_file_to_image(t->mlx, path, &t->width, &t->height);
-	else if (ft_strcmp(extension, ".bmp") == 0)
-		t->img = mlx_bmp_file_to_image(t->mlx, path, &t->width, &t->height);
-	else if (ft_strcmp(extension, ".png") == 0)
-		t->img = mlx_png_file_to_image(t->mlx, path, &t->width, &t->height);
-	else
-		(ft_display(ERROR, "Texture extension not supported"));
-	if (t->img == NULL)
-		return (ft_return(ERROR, 270, "Texture attribution failed"));
-	return (texture_buffer_init(t));
+	exit_code = img_mlx_load_file(mlx, &img_mlx, path);
+	if (exit_code == SUCCESS)
+	{
+		t->buffer = img_mlx_to_buffer(&img_mlx);
+		if (t->buffer == NULL)
+			exit_code = ft_return(ERROR, 273, "Texture Buffer allocation failure");
+		t->height = img_mlx.height;
+		t->width = img_mlx.width;
+		mlx_destroy_image(mlx, img_mlx.img);
+	}
+	return (exit_code);
 }
 

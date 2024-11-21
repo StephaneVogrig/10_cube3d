@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img_mlx.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:41:39 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/20 18:22:58 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/21 16:11:35 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,19 @@ int	img_mlx_load_file(void *mlx, t_img_mlx *img, char *path)
 	if (img->img == NULL)
 		return (ft_return(ERROR, 270, "Texture attribution failed"));
 	img->mlx = mlx;
+	printf("img_ptr: %p\n", img->img);
 	return (SUCCESS);
 }
 
 int	*img_mlx_to_buffer(t_img_mlx *img)
 {
 	int	*buffer;
+	int *head;
 	int	x;
 	int	y;
-
-	buffer = malloc(sizeof(*buffer) * (img->height * img->width));
+	
+	buffer = malloc((img->height * img->width) * sizeof(*buffer));
+	head = buffer;
 	if (buffer == NULL)
 		return (NULL);
 	x = 0;
@@ -47,12 +50,8 @@ int	*img_mlx_to_buffer(t_img_mlx *img)
 	{
 		y = 0;
 		while (y < img->height)
-		{
-			*buffer = mlx_get_image_pixel(img->mlx, img->img, x, y);
-			buffer++;
-			y++;
-		}
+			*buffer++ = mlx_get_image_pixel(img->mlx, img->img, x, y++);
 		x++;
 	}
-	return (buffer);
+	return (head);
 }

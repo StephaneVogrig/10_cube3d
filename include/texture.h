@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 19:11:26 by stephane          #+#    #+#             */
-/*   Updated: 2024/11/20 18:39:12 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:37:22 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 
 typedef struct s_texture
 {
-	void *img;
-	void *mlx;
 	int			*buffer;
 	int			width;
 	int			height;
