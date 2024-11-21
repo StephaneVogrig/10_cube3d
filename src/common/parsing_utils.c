@@ -50,6 +50,16 @@ int	is_empty(char *str)
 	return (TRUE);
 }
 
+char	*get_root_path(char *path)
+{
+	char	*root_path;
+
+	root_path = ft_strrchr(path, '/');
+	if (root_path == NULL)
+		return (NULL);
+	return (ft_substr(path, 0, root_path - path + 1));
+}
+
 void	remove_root_value(char *value)
 {
 	char	*tmp_value;

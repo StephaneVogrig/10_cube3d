@@ -20,5 +20,7 @@ int		setup_key_value_separate_by_space(char **key, char **value, char *line);
 int		is_empty(char *str);
 void	remove_root_value(char *value);
 int		is_map_valid(char *line);
+char	*get_root_path(char *path);
+
 
 #endif

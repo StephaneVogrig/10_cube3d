@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/11/18 23:06:44 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/21 18:23:04 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	set_key_value(t_key_value *kv, char *line, t_fs *fs)
 {
 	int	exit_code;
 
-	exit_code = !ft_isthis(line[0], "NSEWFC");
+	exit_code = !ft_isthis(line[0], "NSEWFCTLRH");
 	if (exit_code != SUCCESS)
 		return (ft_return(ERROR, 263, "Invalid Key"));
 	exit_code = setup_key_value_separate_by_space(&(kv->key), &(kv->value),

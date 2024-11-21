@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/20 17:25:26 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/21 22:05:29 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lstmap_extraction.h"
-
-char	*get_root_path(char *path)
-{
-	char	*root_path;
-
-	root_path = ft_strrchr(path, '/');
-	if (root_path == NULL)
-		return (NULL);
-	return (ft_substr(path, 0, root_path - path + 1));
-}
 
 int	check_all_validity_line(t_map *map, t_lstmap **lst_map)
 {

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:30:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/07 22:57:28 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/21 22:05:17 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ int		lstmap_to_path_and_color(t_tex_path *tex_path, t_textures *tex,
 			t_lstmap **lst_map, char *root_path);
 int		lstmap_to_grid(t_map *map, t_lstmap **lst_map);
 int		check_all_validity_line(t_map *map, t_lstmap **lst_map);
-char	*get_root_path(char *path);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/21 16:23:30 by aska             ###   ########.fr        #
+#    Updated: 2024/11/21 22:48:48 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,13 +53,18 @@ SRCS_COMMON			:= 	debug.c \
 						vector.c \
 						window.c \
 						render/raycasting.c \
+						check_arg.c \
 						render/dda.c \
 						render/chrono.c \
 						render/draw_wall.c \
+						lstmap.c \
+						map.c \
+						lstmap_utils.c \
 						stack.c \
 						color.c \
-						texture.c \
+						file_load.c \
 						img_mlx.c \
+						parsing_utils.c \
 						gametime.c
 
 SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
@@ -73,18 +78,13 @@ SRC_MAND_DIR		:=	mandatory
 SRCS_MANDA			:=	main_manda.c \
 						render/render_manda.c \
 						player_move_manda.c \
+						texture.c \
 						floor_ceil_mlx_img.c \
-						parsing/check_arg.c \
 						parsing/data.c \
 						parsing/lstmap_extraction_utils.c \
 						parsing/lstmap_extraction.c \
-						parsing/parsing_utils.c \
 						parsing/bitfield_path_valid.c \
-						parsing/file_load.c \
 						parsing/flood_fill.c \
-						parsing/lstmap.c \
-						parsing/lstmap_utils.c \
-						parsing/map.c
 						
 SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_MAND_DIR)/%)
 
@@ -104,17 +104,12 @@ SRCS_BONUS 			:=	main_bonus.c \
 						render/draw_line_utils_bonus.c \
 						render/draw_utils_bonus.c \
 						player_move_bonus.c \
-						parsing/check_arg.c \
 						parsing/data.c \
 						parsing/lstmap_extraction_utils.c \
 						parsing/lstmap_extraction.c \
-						parsing/parsing_utils.c \
 						parsing/bitfield_path_valid.c \
-						parsing/file_load.c \
 						parsing/flood_fill.c \
-						parsing/lstmap.c \
-						parsing/lstmap_utils.c \
-						parsing/map.c
+						texture_bonus.c \
 
 SRCS_BONUS			:=	$(SRCS_BONUS:%=$(SRC_BONUS_DIR)/%)
 # sources ---------------------------------------------------------------------#

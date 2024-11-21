@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/21 16:38:30 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/21 18:20:34 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	mlx_setup(t_data *data, t_tex_path *tex_path, t_textures *textures)
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
 		return (ft_return(ERROR, 258, "Error on mlx_init"));
-	// textures_set_mlx(&data->map.textures, data->mlx);
 	exit_code = texture_load_to_buffer(data->mlx, &textures->north, tex_path->no);
 	exit_code |= texture_load_to_buffer(data->mlx, &textures->south, tex_path->so);
 	exit_code |= texture_load_to_buffer(data->mlx, &textures->east, tex_path->ea);
