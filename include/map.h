@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:31:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/01 19:10:45 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/21 23:03:04 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ typedef struct s_map
 	t_textures	textures;
 }				t_map;
 
-
+int	set_map_info(t_map *map, char *line);
 
 #endif

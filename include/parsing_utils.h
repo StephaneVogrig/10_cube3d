@@ -10,17 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILE_UTILS_H
-# define FILE_UTILS_H
+#ifndef PARSING_UTILS_H
+# define PARSING_UTILS_H
 
-# include "lstmap_extraction_utils.h"
-# include "texture.h"
+# include "libft.h"
+# include "typedef.h"
 
 int		setup_key_value_separate_by_space(char **key, char **value, char *line);
 int		is_empty(char *str);
 void	remove_root_value(char *value);
 int		is_map_valid(char *line);
 char	*get_root_path(char *path);
-
 
 #endif

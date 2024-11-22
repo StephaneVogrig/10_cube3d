@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lstmap_extraction_utils.c                          :+:      :+:    :+:   */
+/*   lstmap_extraction_utils_bonus.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/11/22 00:46:23 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/22 01:37:32 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "lstmap_extraction_utils.h"
+#include "lstmap_extraction_utils_bonus.h"
 
 int	attrib_rgb(t_rgb *rgb, char *value)
 {
@@ -35,51 +34,62 @@ int	attrib_rgb(t_rgb *rgb, char *value)
 	return (ok);
 }
 
+int	get_index_by_key(char *key)
+{
+	if (ft_isdigit(key[0]))
+		return (key[0] - 48);
+	else if (key[0] == 'F')
+		return (0);
+	else if (key[0] == 'C')
+		return (10);
+	else if (key[0] == 'R')
+		return (11);
+	else if (key[0] == 'T')
+		return (12);
+	else if (key[0] == 'L')
+		return (13);
+	else
+		return (FAIL);
+}
+
 int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
 {
-	if (ft_strcmp(kv->key, "NO") == 0)
-		tex_path->no = ft_strdup(kv->value);
-	else if (ft_strcmp(kv->key, "SO") == 0)
-		tex_path->so = ft_strdup(kv->value);
-	else if (ft_strcmp(kv->key, "WE") == 0)
-		tex_path->we = ft_strdup(kv->value);
-	else if (ft_strcmp(kv->key, "EA") == 0)
-		tex_path->ea = ft_strdup(kv->value);
+	int	key;
+
+	key = get_index_by_key(kv->key);
+	if (key != FAIL)
+	{
+		tex_path->path[key] = ft_strdup(kv->value);
+		if (tex_path->path[key] == NULL)
+			return (ft_return(ERROR, 266, "Malloc Error"));
+	}
 	else
 		return (ft_return(ERROR, 267, "Invalid Key"));
-	// pensez a mettre des securites pour les mallocs
 	return (SUCCESS);
 }
 
-int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
-		char *root_path)
+int	set_path_and_color(t_tex_path *tex_path, t_key_value *kv, char *root_path)
 {
 	int	exit_code;
 	int	fd;
 
-	if (kv->key[0] == 'C')
-		exit_code = attrib_rgb(&tex->ceil_rgb, kv->value);
-	else if (kv->key[0] == 'F')
-		exit_code = attrib_rgb(&tex->floor_rgb, kv->value);
-	else
-	{
-		if (root_path != NULL)
-			kv->value = ft_strjoin(root_path, kv->value);
-		fd = ft_open(kv->value, O_RDONLY);
-		if (fd == FAIL)
-			return (ft_return(ERROR, 268, "Texture File Invalid"));
-		ft_close(fd);
-		exit_code = set_path_by_key(tex_path, kv);
-		kv->value = ft_char_f(kv->value);
-	}
+	if (root_path != NULL)
+		kv->value = ft_strjoin(root_path, kv->value);
+	fd = ft_open(kv->value, O_RDONLY);
+	if (fd == FAIL)
+		return (ft_return(ERROR, 268, "Texture File Invalid"));
+	ft_close(fd);
+	exit_code = set_path_by_key(tex_path, kv);
+	kv->value = ft_char_f(kv->value);
 	return (exit_code);
 }
 
-int	set_key_value(t_key_value *kv, char *line, t_fs *fs)
+int	set_key_value(t_key_value *kv, char *line)
 {
 	int	exit_code;
 
-	exit_code = !ft_isthis(line[0], "NSEWFC");
+	// printf("line = %s\n", line);
+	exit_code = !ft_isthis(line[0], "123456789FCTLRH");
 	if (exit_code != SUCCESS)
 		return (ft_return(ERROR, 263, "Invalid Key"));
 	exit_code = setup_key_value_separate_by_space(&(kv->key), &(kv->value),
@@ -87,6 +97,5 @@ int	set_key_value(t_key_value *kv, char *line, t_fs *fs)
 	if (exit_code != SUCCESS)
 		return (exit_code);
 	remove_root_value(kv->value);
-	exit_code = file_switch_select(fs, kv->key);
 	return (exit_code);
 }
