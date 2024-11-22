@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 17:53:33 by aska              #+#    #+#             */
-/*   Updated: 2024/11/22 17:59:25 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/22 18:06:34 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 #include "typedef.h"
 #include "libft.h"
 
-int	get_index_by_key(char *key);
+int	get_index_by_key(char key);
 
 #endif

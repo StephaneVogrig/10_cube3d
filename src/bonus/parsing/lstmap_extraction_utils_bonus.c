@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/11/22 17:54:54 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/22 18:06:31 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
 {
 	int	key;
 
-	key = get_index_by_key(kv->key);
+	key = get_index_by_key(kv->key[0]);
 	if (key != FAIL)
 	{
 		tex_path->path[key] = ft_strdup(kv->value);
