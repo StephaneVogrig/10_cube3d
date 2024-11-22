@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/19 18:56:31 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/22 17:50:23 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "render_bonus.h"
 #include "draw_utils_bonus.h"
 #include "draw_line_bonus.h"
-#include "draw_wall.h"
+#include "draw_wall_bonus.h"
 
 void	draw_player(t_player *player)
 {
@@ -166,7 +166,7 @@ void	render(t_data *data)
 	mlx_clear_window(data->win.mlx, data->win.win);
 	dark = map_get_grid(&data->map, &data->player.position) == WALL;
 	raycasting(&data->win, &data->map, &data->player, rays);
-	draw_floor_ceil_texture(&data->win, &data->map.textures.north, rays, dark, &data->player);
+	draw_floor_ceil_texture(&data->win, &data->map.textures.tex[0], rays, dark, &data->player);
 	// draw_floor_ceil_color(&data->win, &data->map.textures, rays, dark);
 	draw_walls(&data->win, rays, &data->map.textures);
 	render_minimap(&data->map, &data->player, rays);

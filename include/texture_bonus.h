@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures_bonus.h                                   :+:      :+:    :+:   */
+/*   texture_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:27:09 by aska              #+#    #+#             */
-/*   Updated: 2024/11/21 21:49:04 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/22 06:00:42 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,7 @@ typedef struct s_texture
 
 typedef struct s_textures
 {
-	t_texture	north;
-	t_texture	south;
-	t_texture	east;
-	t_texture	west;
-	t_rgb		floor_rgb;
-	t_rgb		ceil_rgb;
+	t_texture	tex[14];
 }				t_textures;
 
 int				texture_get_color(t_texture *t, int x, int y);

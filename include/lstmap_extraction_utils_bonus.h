@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:58:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/22 01:14:36 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/22 17:57:29 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define LSTMAP_EXTRACTION_UTILS_BONUS_H
 
 # include "check_arg.h"
-# include "map.h"
 # include "parsing_utils.h"
+# include "id_tex.h"
 
 typedef struct s_key_value
 {

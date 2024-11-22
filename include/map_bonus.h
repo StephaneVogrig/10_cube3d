@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.h                                       :+:      :+:    :+:   */
+/*   map_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/22 14:39:03 by aska             ###   ########.fr       */
+/*   Created: 2024/09/15 21:31:37 by svogrig           #+#    #+#             */
+/*   Updated: 2024/11/22 07:17:06 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCASTING_H
-# define RAYCASTING_H
+#ifndef MAP_H
+# define MAP_H
 
-# include "dda.h"
-# include "window.h"
-// # include "texture.h"
-# include "color.h"
+# include "texture_bonus.h"
+# include "player.h"
 
-void	raycasting(t_window *cub, t_map *map, t_player *player, t_ray *rays);
+# define AREA 'x'
+# define WALL '1'
+
+typedef struct s_map
+{
+	char		**grid;
+	int			width;
+	int			height;
+	t_textures			textures;
+
+}				t_map;
+
+int				set_map_info(t_map *map, char *line);
+int				map_player_finder(t_map *map, t_player *player);
 
 #endif

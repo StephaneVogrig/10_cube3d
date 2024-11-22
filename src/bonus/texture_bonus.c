@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures_bonus.c                                   :+:      :+:    :+:   */
+/*   texture_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:31:39 by aska              #+#    #+#             */
-/*   Updated: 2024/11/21 21:48:01 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/22 06:01:33 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,12 @@ int	texture_load_to_buffer(void *mlx, t_texture *t, char *path)
 
 void textures_buffer_clean(t_textures *t)
 {
-	free(t->north.buffer);
-	free(t->south.buffer);
-	free(t->east.buffer);
-	free(t->west.buffer);
+	int	i;
+
+	i = 0;
+	while(t->tex[i].buffer)
+	{
+		free(t->tex[i].buffer);
+		t->tex[i].buffer = NULL;
+	}
 }

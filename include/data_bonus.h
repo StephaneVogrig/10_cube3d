@@ -6,22 +6,21 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/22 00:27:55 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/22 07:28:03 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_H
-# define DATA_H
+#ifndef DATA_BONUS_H
+# define DATA_BONUS_H
 
 # include "file_load.h"
 # include "flood_fill_bonus.h"
 # include "libft.h"
 # include "lst_map.h"
 # include "lstmap_extraction_bonus.h"
-# include "lstmap_extraction_utils_bonus.h"
-# include "map.h"
 # include "player.h"
 # include "window.h"
+# include "mlx_setup.h"
 
 typedef unsigned int	t_ui32;
 typedef unsigned char	t_ui8;
@@ -55,9 +54,6 @@ typedef struct s_data
 }						t_data;
 
 void					data_init(t_data *data);
-int						mlx_setup(t_data *data, t_tex_path *tex_path,
-							t_textures *textures);
 int						data_setup(t_data *data, char *map_path);
 void					data_clean(t_data *data);
-void					tex_path_clean(t_tex_path *tex_path);
 #endif

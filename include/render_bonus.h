@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.h                                       :+:      :+:    :+:   */
+/*   render_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/22 14:39:03 by aska             ###   ########.fr       */
+/*   Created: 2024/09/13 01:30:18 by svogrig           #+#    #+#             */
+/*   Updated: 2024/11/22 14:34:43 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCASTING_H
-# define RAYCASTING_H
+#ifndef RENDER_H
+# define RENDER_H
 
-# include "dda.h"
-# include "window.h"
-// # include "texture.h"
-# include "color.h"
+# include <math.h>
+# include "data_bonus.h"
+# include "raycasting.h"
+# include "chrono.h"
 
-void	raycasting(t_window *cub, t_map *map, t_player *player, t_ray *rays);
+void	render(t_data *data);
 
 #endif

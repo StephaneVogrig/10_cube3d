@@ -1,46 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.c                                             :+:      :+:    :+:   */
+/*   data_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/21 18:20:34 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/22 07:42:10 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "data.h"
+#include "data_bonus.h"
 
 void	data_init(t_data *data)
 {
 	ft_bzero(data, sizeof(*data));
 	data->key.down = 0;
-}
-
-int	mlx_setup(t_data *data, t_tex_path *tex_path, t_textures *textures)
-{
-	int	exit_code;
-
-	(void)data;
-	data->mlx = mlx_init();
-	if (data->mlx == NULL)
-		return (ft_return(ERROR, 258, "Error on mlx_init"));
-	exit_code = texture_load_to_buffer(data->mlx, &textures->north, tex_path->no);
-	exit_code |= texture_load_to_buffer(data->mlx, &textures->south, tex_path->so);
-	exit_code |= texture_load_to_buffer(data->mlx, &textures->east, tex_path->ea);
-	exit_code |= texture_load_to_buffer(data->mlx, &textures->west, tex_path->we);
-	if (exit_code == SUCCESS)
-	exit_code = window_setup(&data->win, data->mlx);
-	return (exit_code);
-}
-
-void tex_path_clean(t_tex_path *tex_path)
-{
-	tex_path->no = ft_char_f(tex_path->no);
-	tex_path->so = ft_char_f(tex_path->so);
-	tex_path->we = ft_char_f(tex_path->we);
-	tex_path->ea = ft_char_f(tex_path->ea);
 }
 
 int	data_setup(t_data *data, char *map_path)
@@ -59,7 +34,8 @@ int	data_setup(t_data *data, char *map_path)
 	if (exit_code == SUCCESS)
 		exit_code = map_checker(&data->map, &data->player);
 	if (exit_code == SUCCESS)
-		exit_code = mlx_setup(data, &tex_path, &data->map.textures);
+		exit_code = mlx_setup(&data->win, &tex_path, &data->map.textures);
+	data->mlx = data->win.mlx;
 	tex_path_clean(&tex_path);
 	return (exit_code);
 }

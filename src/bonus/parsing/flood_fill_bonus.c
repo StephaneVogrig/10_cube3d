@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/12 03:24:21 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/22 06:42:08 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-
-#include "flood_fill.h"
+#include "flood_fill_bonus.h"
 
 int	map_checker(t_map *map, t_player *player)
 {
 	t_bool	ff_ok;
+	t_map	*map_copy;
 	int exit_code;
 
-	exit_code = player_finder(map, player);
+	map_copy = map;
+	exit_code = map_player_finder(map, player);
 	if (exit_code != SUCCESS)
 		return (exit_code);
-	ff_ok = chk_flood_fill(map, player->x.grid, player->y.grid);
+	ff_ok = chk_flood_fill(map_copy, player->x.grid, player->y.grid);
 	if (ff_ok == FALSE)
 		return (ft_return(ERROR, 275, "Error on Map"));
 	return (SUCCESS);
@@ -37,7 +36,7 @@ int	chk_border(int x, int y, t_map *map)
 }
 int	chk_cell(int x, int y, t_map *map)
 {
-	if (map->grid[y][x] == WALL)
+	if (ft_isthis(map->grid[y][x], "123456789") == TRUE)
 		return (FAIL);
 	else if (map->grid[y][x] == AREA)
 		return (FAIL);

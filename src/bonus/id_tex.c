@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.h                                       :+:      :+:    :+:   */
+/*   id_tex.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/22 14:39:03 by aska             ###   ########.fr       */
+/*   Created: 2024/11/22 17:53:21 by aska              #+#    #+#             */
+/*   Updated: 2024/11/22 17:58:44 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCASTING_H
-# define RAYCASTING_H
+#include "id_tex.h"
 
-# include "dda.h"
-# include "window.h"
-// # include "texture.h"
-# include "color.h"
-
-void	raycasting(t_window *cub, t_map *map, t_player *player, t_ray *rays);
-
-#endif
+int	get_index_by_key(char *key)
+{
+	if (ft_isdigit(key[0]))
+		return (key[0] - 48);
+	else if (key[0] == 'F')
+		return (0);
+	else if (key[0] == 'C')
+		return (10);
+	else if (key[0] == 'R')
+		return (11);
+	else if (key[0] == 'T')
+		return (12);
+	else if (key[0] == 'L')
+		return (13);
+	else
+		return (FAIL);
+}

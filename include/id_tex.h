@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.h                                       :+:      :+:    :+:   */
+/*   id_tex.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/22 14:39:03 by aska             ###   ########.fr       */
+/*   Created: 2024/11/22 17:53:33 by aska              #+#    #+#             */
+/*   Updated: 2024/11/22 17:59:25 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCASTING_H
-# define RAYCASTING_H
+#ifndef ID_TEX_H
+# define ID_TEX_H
 
-# include "dda.h"
-# include "window.h"
-// # include "texture.h"
-# include "color.h"
+#include "typedef.h"
+#include "libft.h"
 
-void	raycasting(t_window *cub, t_map *map, t_player *player, t_ray *rays);
+int	get_index_by_key(char *key);
 
 #endif

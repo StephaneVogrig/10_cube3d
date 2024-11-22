@@ -6,11 +6,27 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/22 01:41:00 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/22 05:43:49 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lstmap_extraction_bonus.h"
+
+int	is_map_valid_bonus(char *line)
+{
+	int	i;
+
+	if (line == NULL)
+		return (FALSE);
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (ft_isthis(line[i], " 0123456789NSEWTRL\n") == FALSE)
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
 
 int	check_all_validity_line(t_map *map, t_lstmap **lst_map)
 {
@@ -25,7 +41,12 @@ int	check_all_validity_line(t_map *map, t_lstmap **lst_map)
 	}
 	while (tmp != NULL)
 	{
-		exit_code = check_line(tmp->line);
+		exit_code = is_empty(tmp->line);
+		if (exit_code != SUCCESS)
+			break ;
+		exit_code = !is_map_valid_bonus(tmp->line);
+		printf("line: %s | ", tmp->line);
+		printf("exit_code: %d\n", exit_code);
 		if (exit_code != SUCCESS)
 			break ;
 		exit_code = set_map_info(map, tmp->line);
@@ -66,9 +87,8 @@ int	lstmap_to_path_and_color(t_tex_path *tex_path, t_lstmap **lst_map,
 
 	while (*lst_map != NULL)
 	{
-		printf("line: %s\n", (*lst_map)->line);
-		if (is_empty((*lst_map)->line) == TRUE)
-			break ;
+		while (is_empty((*lst_map)->line) == TRUE)
+			delete_node_lstmap(lst_map, *lst_map);
 		exit_code = set_key_value(&kv, (*lst_map)->line);
 		if (exit_code == SUCCESS)
 			exit_code = set_path_and_color(tex_path, &kv, root_path);
@@ -77,9 +97,7 @@ int	lstmap_to_path_and_color(t_tex_path *tex_path, t_lstmap **lst_map,
 		if (exit_code == SUCCESS)
 			delete_node_lstmap(lst_map, *lst_map);
 	}
-	while (is_empty((*lst_map)->line) == TRUE)
-		delete_node_lstmap(lst_map, *lst_map);
-	return (exit_code);
+	return (SUCCESS);
 }
 
 int	lstmap_extract_info(t_lstmap **lst_map, t_map *map, t_tex_path *tex_path,

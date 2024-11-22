@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:41:39 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/21 16:11:35 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/22 07:45:42 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	img_mlx_load_file(void *mlx, t_img_mlx *img, char *path)
 	if (img->img == NULL)
 		return (ft_return(ERROR, 270, "Texture attribution failed"));
 	img->mlx = mlx;
-	printf("img_ptr: %p\n", img->img);
 	return (SUCCESS);
 }
 

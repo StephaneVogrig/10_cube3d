@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/19 17:09:22 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/22 06:49:43 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,31 +65,4 @@ void	player_set_dir(t_player *player, char dir)
 		player->dir = M_PI;
 	else if (dir == 'E')
 		player->dir = 0;
-}
-
-int	player_finder(t_map *map, t_player *player)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (map->grid[++y] != NULL)
-	{
-		x = 0;
-		while (map->grid[y][x] != 0)
-		{
-			if (ft_isthis(map->grid[y][x], "NSWE"))
-			{
-				player_set_dir(player, map->grid[y][x]);
-				player->x.grid = x;
-				player->y.grid = y;
-				player->x.box = 0.5;
-				player->y.box = 0.5;
-			}
-			x++;
-		}
-	}
-	if (player->x.grid == 0 && player->y.grid == 0)
-		return (ft_return(ERROR, FAIL, "No player on map"));
-	return (SUCCESS);
 }

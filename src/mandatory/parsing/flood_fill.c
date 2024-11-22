@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/12 03:24:21 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/22 06:42:08 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	map_checker(t_map *map, t_player *player)
 	t_bool	ff_ok;
 	int exit_code;
 
-	exit_code = player_finder(map, player);
+	exit_code = map_player_finder(map, player);
 	if (exit_code != SUCCESS)
 		return (exit_code);
 	ff_ok = chk_flood_fill(map, player->x.grid, player->y.grid);

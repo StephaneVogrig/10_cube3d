@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:05:50 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/19 17:09:35 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/22 06:54:01 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PLAYER_H
 
 # include "libft.h"
-# include "map.h"
 # include "vec2i.h"
 # include <math.h>
 # include "position.h"
@@ -38,6 +37,5 @@ typedef struct s_player
 t_position	new_position(t_position start, double dir, t_vec2d move);
 void		player_rotation(t_player *player, double rotation);
 void		player_set_dir(t_player *player, char dir);
-int			player_finder(t_map *map, t_player *player);
 
 #endif
