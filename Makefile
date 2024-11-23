@@ -1,14 +1,14 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/22 17:58:08 by aska             ###   ########.fr        #
+#    Updated: 2024/11/23 15:08:12 by svogrig          ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 SHELL				:=	/bin/bash
 
@@ -78,7 +78,7 @@ SRC_MAND_DIR		:=	mandatory
 SRCS_MANDA			:=	main_manda.c \
 						render/render_manda.c \
 						player_move_manda.c \
-						texture.c \
+						texture_manda.c \
 						floor_ceil_mlx_img.c \
 						parsing/data.c \
 						parsing/lstmap_extraction_utils.c \

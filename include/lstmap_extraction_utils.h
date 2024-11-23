@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:58:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/21 23:26:56 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/23 15:06:23 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef LSTMAP_EXTRACTION_UTILS_H
 # define LSTMAP_EXTRACTION_UTILS_H
@@ -16,7 +16,7 @@
 # include "bitfield_path_valid.h"
 # include "check_arg.h"
 # include "map.h"
-# include "texture.h"
+# include "texture_manda.h"
 
 typedef struct s_key_value
 {
