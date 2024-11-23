@@ -1,23 +1,22 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/22 14:39:03 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/23 14:50:01 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
 
 # include "dda.h"
 # include "window.h"
-// # include "texture.h"
 # include "color.h"
 
-void	raycasting(t_window *cub, t_map *map, t_player *player, t_ray *rays);
+void	raycasting(t_map *map, t_player *player, t_ray *rays);
 
 #endif

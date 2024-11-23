@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
@@ -6,13 +6,13 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/18 20:10:15 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/23 14:50:16 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "raycasting.h"
 
-void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
+void	raycasting(t_map *map, t_player *player, t_ray *rays)
 {
 	t_vec2d	player_vdir;
 	double	step_projection;
@@ -32,7 +32,7 @@ void	raycasting(t_window *win, t_map *map, t_player *player, t_ray *rays)
 	{
 		rays->vdir.x = projection.x;
 		rays->vdir.y = projection.y;
-		dda(rays, map, player, win->height);
+		dda(rays, map, player, WIN_H);
 		projection.x += step_proj.x;
 		projection.y += step_proj.y;
 		rays++;
