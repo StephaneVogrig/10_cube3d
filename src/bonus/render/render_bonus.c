@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/23 19:50:23 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 00:31:52 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -106,7 +106,7 @@ void	render_minimap(t_map *map, t_player *player, t_ray *rays)
 	draw_player(player);
 }
 
-void	draw_floor_ceil_texture(t_window *win, t_texture *texture, t_ray *rays, int dark, t_player *player)
+void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 {
 	int	x;
 	int	i;
@@ -114,8 +114,8 @@ void	draw_floor_ceil_texture(t_window *win, t_texture *texture, t_ray *rays, int
 	int	winh_2;
 	t_vec2d	player_position;
 
-	player_position.x = player->x.grid + player->x.box;
-	player_position.y = player->y.grid + player->y.box;
+	player_position.x = data->player.x.grid + data->player.x.box;
+	player_position.y = data->player.y.grid + data->player.y.box;
 	winh_2 = WIN_H / 2;
 	i = 0;
 	while (i < winh_2)
@@ -136,21 +136,28 @@ void	draw_floor_ceil_texture(t_window *win, t_texture *texture, t_ray *rays, int
 				len.y = rays[x].vdir.y * winh_2i;
 				world.x = player_position.x + len.x;
 				world.y = player_position.y + len.y;
-				int tx = (world.x - (int)world.x) * texture->width;
-				int ty = (world.y - (int)world.y) * texture->height;
+
+				t_vec2d	box;
+				box.x = world.x - (int)world.x;
+				box.y = world.y - (int)world.y;
+
+				t_vec2i	t;
 
 				int color;
+				(void)dark;
 				// ceil
-				color = texture_get_color(texture, tx, ty);
+				t.x = data->map.textures.tex[10].width * box.x;
+				t.y = data->map.textures.tex[10].height * box.y;
+				color = texture_get_color(&data->map.textures.tex[10], t.x, t.y);
 				color = color_darkened(color, dark);
-				// color = color_darkened(0xFF0000FF, dark);
-				mlx_pixel_put(win->mlx, win->win, x, y_ceil, color);
+				mlx_pixel_put(data->win.mlx, data->win.win, x, y_ceil, color);
 
 				// floor
-				color = texture_get_color(texture, tx, ty);
+				t.x = data->map.textures.tex[0].width * box.x;
+				t.y = data->map.textures.tex[0].height * box.y;
+				color = texture_get_color(&data->map.textures.tex[0], t.x, t.y);
 				color = color_darkened(color, dark);
-				// color = color_darkened(0xFF00FF00, dark);
-				mlx_pixel_put(win->mlx, win->win, x, y_floor, color);
+				mlx_pixel_put(data->win.mlx, data->win.win, x, y_floor, color);
 			}
 			x++;
 		}
@@ -166,8 +173,7 @@ void	render(t_data *data)
 	mlx_clear_window(data->win.mlx, data->win.win);
 	dark = map_get_grid(&data->map, &data->player.position) == WALL;
 	raycasting(&data->map, &data->player, rays);
-	draw_floor_ceil_texture(&data->win, &data->map.textures.tex[0], rays, dark, &data->player);
-	// draw_floor_ceil_color(&data->win, &data->map.textures, rays, dark);
+	draw_floor_ceil(data, rays, dark);
 	draw_walls(&data->win, rays, &data->map.textures);
 	render_minimap(&data->map, &data->player, rays);
 	fps_print(chrono(STOP));
