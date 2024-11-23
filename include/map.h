@@ -6,14 +6,14 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:31:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/23 15:06:23 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/23 16:35:54 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef MAP_H
 # define MAP_H
 
-# include "texture_manda.h"
+# include "textures_manda.h"
 # include "player.h"
 
 # define AREA 'x'

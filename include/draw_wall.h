@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:29 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/23 15:06:23 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/23 16:35:54 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,7 +14,7 @@
 # define DRAW_WALL_H
 
 # include "window.h"
-# include "texture_manda.h"
+# include "textures_manda.h"
 # include "dda.h"
 # include "color.h"
 

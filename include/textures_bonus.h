@@ -1,23 +1,25 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   textures_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 15:42:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/23 16:35:54 by svogrig          ###   ########.fr       */
+/*   Created: 2024/11/21 18:27:09 by aska              #+#    #+#             */
+/*   Updated: 2024/11/23 16:31:34 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#ifndef TEXTURES_BONUS_H
+# define TEXTURES_BONUS_H
 
-# include "lst_map.h"
-# include "map.h"
-# include "textures_manda.h"
+# include "texture.h"
 
-void	map_print(t_map *map);
-void	lstmap_print(t_lstmap *lstmap);
+typedef struct s_textures
+{
+	t_texture	tex[14];
+}				t_textures;
+
+void	textures_buffer_clean(t_textures *t);
 
 #endif

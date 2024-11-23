@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/23 15:08:12 by svogrig          ###   ########.fr        #
+#    Updated: 2024/11/23 16:34:43 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -65,11 +65,10 @@ SRCS_COMMON			:= 	debug.c \
 						file_load.c \
 						img_mlx.c \
 						parsing_utils.c \
-						gametime.c
+						gametime.c \
+						texture.c
 
 SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
-
-# SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_DIR)/%)
 
 # sources madatory only -------------------------------------------------------#
 
@@ -78,7 +77,7 @@ SRC_MAND_DIR		:=	mandatory
 SRCS_MANDA			:=	main_manda.c \
 						render/render_manda.c \
 						player_move_manda.c \
-						texture_manda.c \
+						textures_manda.c \
 						floor_ceil_mlx_img.c \
 						parsing/data.c \
 						parsing/lstmap_extraction_utils.c \
@@ -109,7 +108,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						parsing/flood_fill_bonus.c \
 						parsing/mlx_setup.c \
 						player_move_bonus.c \
-						texture_bonus.c \
+						textures_bonus.c \
 						id_tex.c
 
 SRCS_BONUS			:=	$(SRCS_BONUS:%=$(SRC_BONUS_DIR)/%)

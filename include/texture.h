@@ -1,23 +1,31 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   texture.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 15:42:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/23 16:35:54 by svogrig          ###   ########.fr       */
+/*   Created: 2024/11/23 15:38:29 by svogrig           #+#    #+#             */
+/*   Updated: 2024/11/23 16:26:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#ifndef TEXTURE_H
+# define TEXTURE_H
 
-# include "lst_map.h"
-# include "map.h"
-# include "textures_manda.h"
+# include "img_mlx.h"
+# include "mlx.h"
+# include "libft.h"
+# include "typedef.h"
 
-void	map_print(t_map *map);
-void	lstmap_print(t_lstmap *lstmap);
+typedef struct s_img
+{
+	int			*buffer;
+	int			width;
+	int			height;
+}				t_texture;
+
+int	texture_get_color(t_texture *t, int x, int y);
+int	texture_load_to_buffer(void *mlx, t_texture *t, char *path);
 
 #endif
