@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/23 16:34:43 by svogrig          ###   ########.fr        #
+#    Updated: 2024/11/23 19:59:57 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -46,19 +46,14 @@ SRC_DIR				:=	src
 SRC_COMMON_DIR		:=	common
 
 SRCS_COMMON			:= 	debug.c \
-						event.c \
 						pixel.c \
 						player.c \
 						title.c \
 						vector.c \
 						window.c \
-						render/raycasting.c \
 						check_arg.c \
-						render/dda.c \
 						render/chrono.c \
-						render/draw_wall.c \
 						lstmap.c \
-						map.c \
 						lstmap_utils.c \
 						stack.c \
 						color.c \
@@ -75,15 +70,20 @@ SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
 SRC_MAND_DIR		:=	mandatory
 
 SRCS_MANDA			:=	main_manda.c \
-						render/render_manda.c \
+						event_manda.c \
+						map_manda.c \
 						player_move_manda.c \
 						textures_manda.c \
 						floor_ceil_mlx_img.c \
-						parsing/data.c \
-						parsing/lstmap_extraction_utils.c \
-						parsing/lstmap_extraction.c \
-						parsing/bitfield_path_valid.c \
-						parsing/flood_fill.c \
+						render/dda_manda.c \
+						render/draw_walls_manda.c \
+						render/raycasting_manda.c \
+						render/render_manda.c \
+						parsing/data_manda.c \
+						parsing/lstmap_extraction_utils_manda.c \
+						parsing/lstmap_extraction_manda.c \
+						parsing/flood_fill_manda.c \
+						parsing/bitfield_path_valid.c
 						
 SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_MAND_DIR)/%)
 
@@ -96,6 +96,13 @@ SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_DIR)/%)
 SRC_BONUS_DIR		:=	bonus
 
 SRCS_BONUS 			:=	main_bonus.c \
+						event_bonus.c \
+						map_bonus.c \
+						player_move_bonus.c \
+						textures_bonus.c \
+						render/dda_bonus.c \
+						render/draw_walls_bonus.c \
+						render/raycasting_bonus.c \
 						render/render_bonus.c \
 						render/minimap_bonus.c \
 						render/minimap_utils_bonus.c \
@@ -107,9 +114,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						parsing/lstmap_extraction_bonus.c \
 						parsing/flood_fill_bonus.c \
 						parsing/mlx_setup.c \
-						player_move_bonus.c \
-						textures_bonus.c \
-						id_tex.c
+						id_tex_bonus.c
 
 SRCS_BONUS			:=	$(SRCS_BONUS:%=$(SRC_BONUS_DIR)/%)
 # sources ---------------------------------------------------------------------#

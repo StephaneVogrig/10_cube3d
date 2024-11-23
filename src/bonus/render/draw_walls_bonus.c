@@ -1,16 +1,16 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_wall.c                                        :+:      :+:    :+:   */
+/*   draw_walls_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/18 18:08:40 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/23 19:59:03 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-#include "draw_wall.h"
+#include "draw_walls_bonus.h"
 
 void	draw_wall_init_loop(int *y, int *y_max, double *texture_y, t_wall *wall)
 {
@@ -92,13 +92,15 @@ int	x_hit_in_texture(t_texture *texture, t_ray *ray)
 
 t_texture	*texture_hit(t_textures *textures, t_ray *ray)
 {
-	if (ray->hit_side == 'n')
-		return (&textures->north);
-	if (ray->hit_side == 's')
-		return (&textures->south);
-	if (ray->hit_side == 'e')
-		return (&textures->east);
-	return (&textures->west);
+	(void)ray;
+	return (&textures->tex[1]);
+	// if (ray->hit_side == 'n')
+	// 	return (&textures->north);
+	// if (ray->hit_side == 's')
+	// 	return (&textures->south);
+	// if (ray->hit_side == 'e')
+	// 	return (&textures->east);
+	// return (&textures->west);
 }
 
 

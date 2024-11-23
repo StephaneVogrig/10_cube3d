@@ -1,21 +1,21 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lstmap_extraction.h                                :+:      :+:    :+:   */
+/*   lstmap_extraction_manda.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:30:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/22 07:14:18 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/23 18:36:13 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-#ifndef LSTMAP_EXTRACTION_H
-# define LSTMAP_EXTRACTION_H
+#ifndef LSTMAP_EXTRACTION_MANDA_H
+# define LSTMAP_EXTRACTION_MANDA_H
 
 # include "lst_map.h"
-# include "lstmap_extraction_utils.h"
-# include "map.h"
+# include "lstmap_extraction_utils_manda.h"
+# include "map_manda.h"
 # include "parsing_utils.h"
 
 int		lstmap_extract_info(t_lstmap **lst_map, t_map *map,

@@ -1,21 +1,21 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils_bonus.h                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:58:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/22 17:57:29 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/23 18:25:04 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef LSTMAP_EXTRACTION_UTILS_BONUS_H
 # define LSTMAP_EXTRACTION_UTILS_BONUS_H
 
 # include "check_arg.h"
 # include "parsing_utils.h"
-# include "id_tex.h"
+# include "id_tex_bonus.h"
 
 typedef struct s_key_value
 {

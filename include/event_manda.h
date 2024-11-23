@@ -1,21 +1,22 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event.h                                            :+:      :+:    :+:   */
+/*   event_manda.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/16 20:30:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/23 19:51:45 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef EVENT_H
-# define EVENT_H
+#ifndef EVENT_MANDA_H
+# define EVENT_MANDA_H
 
 # include "chrono.h"
-# include "render.h"
-# include "player_move.h"
+# include "data_manda.h"
+# include "player_move_manda.h"
+# include "render_manda.h"
 
 # define KEY_ESC 41
 # define KEY_W 26

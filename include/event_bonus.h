@@ -1,21 +1,22 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   event_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/22 17:45:56 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/23 19:51:59 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-#ifndef EVENT_H
-# define EVENT_H
+#ifndef EVENT_BONUS_H
+# define EVENT_BONUS_H
 
 # include "chrono.h"
+# include "data_bonus.h"
+# include "player_move_bonus.h"
 # include "render_bonus.h"
-# include "player_move.h"
 
 # define KEY_ESC 41
 # define KEY_W 26

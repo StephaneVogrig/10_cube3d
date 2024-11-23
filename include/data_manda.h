@@ -1,25 +1,25 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.h                                             :+:      :+:    :+:   */
+/*   data_manda.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/22 07:13:49 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/23 18:38:15 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-#ifndef DATA_H
-# define DATA_H
+#ifndef DATA_MANDA_H
+# define DATA_MANDA_H
 
 # include "file_load.h"
-# include "flood_fill.h"
+# include "flood_fill_manda.h"
 # include "libft.h"
 # include "lst_map.h"
-# include "lstmap_extraction.h"
-# include "lstmap_extraction_utils.h"
-# include "map.h"
+# include "lstmap_extraction_manda.h"
+# include "lstmap_extraction_utils_manda.h"
+# include "map_manda.h"
 # include "player.h"
 # include "window.h"
 

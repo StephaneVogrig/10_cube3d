@@ -1,24 +1,34 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel.h                                            :+:      :+:    :+:   */
+/*   map_manda.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 20:07:46 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/23 19:07:48 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/15 21:31:37 by svogrig           #+#    #+#             */
+/*   Updated: 2024/11/23 18:38:43 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef PIXEL_H
-# define PIXEL_H
+#ifndef MAP_MANDA_H
+# define MAP_MANDA_H
 
-typedef struct s_pixel{
-	int	x;
-	int	y;
-	int	color;
-}	t_pixel;
+# include "textures_manda.h"
+# include "player.h"
 
-t_pixel	pixel(int x, int y, int color);
+# define AREA 'x'
+# define WALL '1'
+
+typedef struct s_map
+{
+	char		**grid;
+	int			width;
+	int			height;
+	t_textures			textures;
+
+}				t_map;
+
+int				set_map_info(t_map *map, char *line);
+int				map_player_finder(t_map *map, t_player *player);
 
 #endif

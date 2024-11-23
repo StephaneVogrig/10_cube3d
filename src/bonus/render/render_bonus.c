@@ -6,14 +6,14 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/23 14:51:03 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/23 19:50:23 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "render_bonus.h"
 #include "draw_utils_bonus.h"
 #include "draw_line_bonus.h"
-#include "draw_wall_bonus.h"
+#include "draw_walls_bonus.h"
 
 void	draw_player(t_player *player)
 {

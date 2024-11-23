@@ -1,22 +1,22 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lstmap_extraction_utils.h                          :+:      :+:    :+:   */
+/*   lstmap_extraction_utils_manda.h                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:58:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/23 16:35:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/23 18:37:58 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef LSTMAP_EXTRACTION_UTILS_H
-# define LSTMAP_EXTRACTION_UTILS_H
+#ifndef LSTMAP_EXTRACTION_UTILS_MANDA_H
+# define LSTMAP_EXTRACTION_UTILS_MANDA_H
 
 # include "bitfield_path_valid.h"
 # include "check_arg.h"
-# include "map.h"
-# include "textures_manda.h"
+# include "map_manda.h"
+// # include "textures_manda.h"
 
 typedef struct s_key_value
 {

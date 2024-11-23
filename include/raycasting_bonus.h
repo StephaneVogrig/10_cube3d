@@ -1,24 +1,22 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel.h                                            :+:      :+:    :+:   */
+/*   raycasting_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 20:07:46 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/23 19:07:48 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
+/*   Updated: 2024/11/23 19:27:44 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef PIXEL_H
-# define PIXEL_H
+#ifndef RAYCASTING_BONUS_H
+# define RAYCASTING_BONUS_H
 
-typedef struct s_pixel{
-	int	x;
-	int	y;
-	int	color;
-}	t_pixel;
+# include "dda_bonus.h"
+# include "window.h"
+# include "color.h"
 
-t_pixel	pixel(int x, int y, int color);
+void	raycasting(t_map *map, t_player *player, t_ray *rays);
 
 #endif

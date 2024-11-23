@@ -6,11 +6,11 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/11/15 02:48:07 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/23 18:30:13 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "main.h"
+#include "main_manda.h"
 #include "floor_ceil_mlx_img.h"
 
 int	main(int argc, char **argv)
