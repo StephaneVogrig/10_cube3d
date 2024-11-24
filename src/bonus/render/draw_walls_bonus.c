@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/23 19:59:03 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 01:13:49 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -52,7 +52,7 @@ void	draw_wall_big_pixel(t_window *win, int x, t_wall *wall, int dark)
 			color = texture_get_color(wall->texture, texture_pixel.x, texture_pixel.y);
 		color = color_darkened(color, dark);
 		}
-		mlx_pixel_put(win->mlx, win->win, x, y, color);
+		window_pixel_put(win, x, y, color);
 		texture_y += wall->texture_dy;
 		y++;
 	}
@@ -73,7 +73,7 @@ void	draw_wall_small_pixel(t_window *win, int x, t_wall *wall, int dark)
 		texture_pixel.y = (int)texture_y;
 		color = texture_get_color(wall->texture, texture_pixel.x, texture_pixel.y);
 		color = color_darkened(color, dark);
-		mlx_pixel_put(win->mlx, win->win, x, y, color);
+		window_pixel_put(win, x, y, color);
 		texture_y += wall->texture_dy;
 		y++;
 	}
