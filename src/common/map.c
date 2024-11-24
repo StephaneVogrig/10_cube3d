@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/11/24 05:58:39 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 17:05:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -65,4 +65,24 @@ int	map_player_finder(t_map *map, t_player *player)
 	if (player->x.grid == 0 && player->y.grid == 0)
 		return (ft_return(ERROR, FAIL, "No player on map"));
 	return (SUCCESS);
+}
+
+inline int	is_outside_map(t_map *map, t_position *p)
+{
+	return (p->x.grid < 0
+			|| p->y.grid < 0
+			|| p->x.grid >= map->width
+			|| p->y.grid >= map->height);
+}
+
+inline char map_get_grid(t_map *map, t_position *p)
+{
+	char	c;
+
+	if (is_outside_map(map, p))
+			return (AREA);
+	c = map->grid[p->y.grid][p->x.grid];
+	if (c != WALL)
+		c = AREA;
+	return (c);
 }

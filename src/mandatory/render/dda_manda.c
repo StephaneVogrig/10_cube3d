@@ -6,31 +6,11 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 16:48:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 16:58:35 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "dda_manda.h"
-
-static inline int	is_outside_map(t_map *map, t_position *p)
-{
-	return (p->x.grid < 0
-			|| p->y.grid < 0
-			|| p->x.grid >= map->width
-			|| p->y.grid >= map->height);
-}
-
-char map_get_grid(t_map *map, t_position *p)
-{
-	char	c;
-	
-	if (is_outside_map(map, p))
-			return (AREA);
-	c = map->grid[p->y.grid][p->x.grid];
-	if (c != WALL)
-		c = AREA;
-	return (c);
-}
 
 void	dda_set(t_dda_ *dda, double ray_vec, double box)
 {
