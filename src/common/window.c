@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:30:55 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 02:00:17 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 02:05:34 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,4 +32,9 @@ void	window_clean(t_window *win)
 inline void	window_pixel_put(t_window *win, int x, int y, int color)
 {
 	mlx_pixel_put(win->mlx, win->win, x, y, color);
+}
+
+inline void	window_clear(t_window *win)
+{
+	mlx_clear_window(win->mlx, win->win);
 }

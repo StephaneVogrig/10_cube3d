@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 01:55:37 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 02:14:22 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -170,9 +170,9 @@ void	render(t_data *data)
 	t_ray	rays[WIN_W];
 	int		dark;
 
-	mlx_clear_window(data->win.mlx, data->win.win);
-	dark = map_get_grid(&data->map, &data->player.position) == WALL;
+	window_clear(&data->win);
 	raycasting(&data->map, &data->player, rays);
+	dark = map_get_grid(&data->map, &data->player.position) == WALL;
 	draw_floor_ceil(data, rays, dark);
 	draw_walls(&data->win, rays, &data->map.textures);
 	render_minimap(&data->map, &data->player, rays);
