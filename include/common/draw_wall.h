@@ -1,38 +1,40 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda_bonus.h                                        :+:      :+:    :+:   */
+/*   draw_wall.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 03:37:32 by svogrig          ###   ########.fr       */
+/*   Created: 2024/11/24 03:08:37 by svogrig           #+#    #+#             */
+/*   Updated: 2024/11/24 03:21:57 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef DDA_BONUS_H
-# define DDA_BONUS_H
+#ifndef DRAW_WALL_H
+# define DRAW_WALL_W
 
-# include "player.h"
+# include "texture.h"
+# include "vec2i.h"
+# include "window.h"
 # include "ray.h"
-# include "map_bonus.h"
+# include "color.h"
 
-typedef struct s_dda_
+typedef	struct s_wall
 {
-	double	unit;
-	double	len;
-	int		step;
-}	t_dda_;
+	int			height;
+	t_texture	*texture;
+	float		x_in_texture;
+	double		texture_dy;
+}	t_wall;
 
-typedef struct s_dda
+typedef	struct s_draw_texture
 {
-	t_dda_	x;
-	t_dda_	y;
-	int		len_max;
-	int		collide;
-}	t_dda;
+	t_texture	*img;
+	t_vec2i 	pixel;
+	double		y;
+	double		dy;
+}	t_draw_texture;
 
-void	dda(t_ray *ray, t_map *map, t_player *player, int len_max);
-char 	map_get_grid(t_map *map, t_position *p);
+void	draw_wall(t_window *win, int x, t_ray *ray, t_texture *texture);
 
 #endif
