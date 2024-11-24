@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/23 19:59:57 by svogrig          ###   ########.fr        #
+#    Updated: 2024/11/24 00:56:22 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -31,6 +31,9 @@ MLX					:=	lib/MacroLibx/libmlx.so -lSDL2
 # includes --------------------------------------------------------------------#
 
 DIR_INC				:=	include \
+						include/bonus \
+						include/common \
+						include/mandatory \
 						lib/libft-plus \
 						lib/MacroLibx/includes \
 						src
