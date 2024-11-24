@@ -6,14 +6,14 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:13:08 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 03:16:17 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 06:32:38 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef RAY_H
 # define RAY_H
 
-# include "vec2i.h"
+# include "vector.h"
 # include "position.h"
 
 typedef struct s_ray

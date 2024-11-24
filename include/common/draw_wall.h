@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:08:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 03:21:57 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 06:32:38 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,7 +14,7 @@
 # define DRAW_WALL_W
 
 # include "texture.h"
-# include "vec2i.h"
+# include "vector.h"
 # include "window.h"
 # include "ray.h"
 # include "color.h"

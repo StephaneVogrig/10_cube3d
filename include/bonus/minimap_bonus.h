@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:14:09 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 06:10:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 06:32:38 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,7 +15,7 @@
 
 # include "map.h"
 # include "mlx.h"
-# include "vec2i.h"
+# include "vector.h"
 # include "minimap_utils_bonus.h"
 # include "data_bonus.h"
 # include "event_bonus.h"
