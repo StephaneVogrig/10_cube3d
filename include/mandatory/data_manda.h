@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 05:23:09 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 05:59:54 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,12 +15,13 @@
 
 # include "libft.h"
 # include "lst_map.h"
-# include "map_manda.h"
+# include "map.h"
 # include "player.h"
 # include "window.h"
 # include "flood_fill_manda.h"
 # include "lstmap_extraction_manda.h"
 # include "lstmap_extraction_utils_manda.h"
+# include "textures_manda.h"
 
 typedef unsigned int	t_ui32;
 typedef unsigned char	t_ui8;
@@ -48,6 +49,7 @@ typedef struct s_data
 	void		*mlx;
 	t_window	win;
 	t_map		map;
+	t_textures	textures;
 	t_key		key;
 	t_player	player;
 	int			mouse_mode;

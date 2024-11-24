@@ -6,13 +6,14 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 20:11:05 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/16 17:50:55 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 05:53:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef DRAWLINE_H
-# define DRAWLINE_H
+#ifndef DRAW_LINE_BONUS_H
+# define DRAW_LINE_BONUS_H
 
+# include "mlx.h"
 # include "draw_line_utils_bonus.h"
 # include "minimap_utils_bonus.h"
 

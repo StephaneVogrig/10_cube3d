@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:30:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/24 05:19:44 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 06:06:42 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,10 +14,10 @@
 # define LSTMAP_EXTRACTION_MANDA_H
 
 # include "lst_map.h"
+# include "map.h"
 # include "parsing_utils.h"
 # include "file_load.h"
 # include "lstmap_extraction_utils_manda.h"
-# include "map_manda.h"
 
 int		lstmap_extract_info(t_textures *textures, t_map *map,
 							t_tex_path *tex_path, char *map_path);

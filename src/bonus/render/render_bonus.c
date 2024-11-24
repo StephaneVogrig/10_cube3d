@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 02:47:10 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 05:49:44 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -146,16 +146,16 @@ void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 				int color;
 				(void)dark;
 				// ceil
-				t.x = data->map.textures.tex[10].width * box.x;
-				t.y = data->map.textures.tex[10].height * box.y;
-				color = texture_get_color(&data->map.textures.tex[10], t.x, t.y);
+				t.x = data->textures.tex[10].width * box.x;
+				t.y = data->textures.tex[10].height * box.y;
+				color = texture_get_color(&data->textures.tex[10], t.x, t.y);
 				color = color_darkened(color, dark);
 				window_put_pixel(&data->win, x, y_ceil, color);
 
 				// floor
-				t.x = data->map.textures.tex[0].width * box.x;
-				t.y = data->map.textures.tex[0].height * box.y;
-				color = texture_get_color(&data->map.textures.tex[0], t.x, t.y);
+				t.x = data->textures.tex[0].width * box.x;
+				t.y = data->textures.tex[0].height * box.y;
+				color = texture_get_color(&data->textures.tex[0], t.x, t.y);
 				color = color_darkened(color, dark);
 				window_put_pixel(&data->win, x, y_floor, color);
 			}
@@ -174,7 +174,7 @@ void	render(t_data *data)
 	raycasting(&data->map, &data->player, rays);
 	dark = map_get_grid(&data->map, &data->player.position) == WALL;
 	draw_floor_ceil(data, rays, dark);
-	draw_walls(&data->win, rays, &data->map.textures);
+	draw_walls(&data->win, rays, &data->textures);
 	render_minimap(&data->map, &data->player, rays);
 	fps_print(chrono(STOP));
 }

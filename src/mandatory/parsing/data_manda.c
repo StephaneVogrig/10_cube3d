@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 04:58:43 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 05:41:48 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -49,11 +49,11 @@ int	data_setup(t_data *data, char *map_path)
 	int			exit_code;
 
 	ft_bzero(&tex_path, sizeof(tex_path));
-	exit_code = lstmap_extract_info(&data->map.textures, &data->map, &tex_path, map_path);
+	exit_code = lstmap_extract_info(&data->textures, &data->map, &tex_path, map_path);
 	if (exit_code == SUCCESS)
 		exit_code = map_checker(&data->map, &data->player);
 	if (exit_code == SUCCESS)
-		exit_code = mlx_setup(data, &tex_path, &data->map.textures);
+		exit_code = mlx_setup(data, &tex_path, &data->textures);
 	tex_path_clean(&tex_path);
 	return (exit_code);
 }
@@ -62,7 +62,7 @@ void	data_clean(t_data *data)
 {
 	printf("data_clean\n");
 	data->map.grid = ft_tab_f(data->map.grid);
-	textures_buffer_clean(&data->map.textures);
+	textures_buffer_clean(&data->textures);
 	window_destroy(&data->win);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);

@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/24 03:21:04 by svogrig          ###   ########.fr        #
+#    Updated: 2024/11/24 05:59:28 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -50,6 +50,7 @@ SRC_COMMON_DIR		:=	common
 
 SRCS_COMMON			:= 	debug.c \
 						draw_wall.c \
+						map.c \
 						pixel.c \
 						player.c \
 						title.c \
@@ -75,7 +76,6 @@ SRC_MAND_DIR		:=	mandatory
 
 SRCS_MANDA			:=	main_manda.c \
 						event_manda.c \
-						map_manda.c \
 						player_move_manda.c \
 						textures_manda.c \
 						floor_ceil_mlx_img.c \
@@ -101,7 +101,6 @@ SRC_BONUS_DIR		:=	bonus
 
 SRCS_BONUS 			:=	main_bonus.c \
 						event_bonus.c \
-						map_bonus.c \
 						player_move_bonus.c \
 						textures_bonus.c \
 						render/dda_bonus.c \
