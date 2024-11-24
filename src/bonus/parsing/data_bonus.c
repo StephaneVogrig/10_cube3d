@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 02:48:40 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 05:08:40 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,17 +20,11 @@ void	data_init(t_data *data)
 
 int	data_setup(t_data *data, char *map_path)
 {
-	t_lstmap	*lst_map;
 	t_tex_path	tex_path;
 	int			exit_code;
 
-	lst_map = NULL;
 	ft_bzero(&tex_path, sizeof(tex_path));
-	exit_code = file_load(map_path, &lst_map);
-	if (exit_code == SUCCESS)
-		exit_code = lstmap_extract_info(&lst_map, &data->map, &tex_path,
-				map_path);
-	delete_all_lstmap(&lst_map);
+	exit_code = lstmap_extract_info(&data->map, &tex_path, map_path);
 	if (exit_code == SUCCESS)
 		exit_code = map_checker(&data->map, &data->player);
 	if (exit_code == SUCCESS)

@@ -1,16 +1,17 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/22 05:43:49 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/24 05:16:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "lstmap_extraction_bonus.h"
+#include "file_load.h"
 
 int	is_map_valid_bonus(char *line)
 {
@@ -100,19 +101,24 @@ int	lstmap_to_path_and_color(t_tex_path *tex_path, t_lstmap **lst_map,
 	return (SUCCESS);
 }
 
-int	lstmap_extract_info(t_lstmap **lst_map, t_map *map, t_tex_path *tex_path,
-		char *map_path)
+int	lstmap_extract_info(t_map *map, t_tex_path *tex_path, char *map_path)
 {
-	char *root_path;
-	int exit_code;
+	t_lstmap	*lst_map;
+	char 		*root_path;
+	int 		exit_code;
 
+	lst_map = NULL;
+	exit_code = file_load(map_path, &lst_map);
+	if (exit_code != SUCCESS)
+		return (exit_code);
 	root_path = get_root_path(map_path);
-	exit_code = lstmap_to_path_and_color(tex_path, lst_map, root_path);
+	exit_code = lstmap_to_path_and_color(tex_path, &lst_map, root_path);
 	root_path = ft_char_f(root_path);
 	if (exit_code != SUCCESS)
 		return (exit_code);
-	exit_code = check_all_validity_line(map, lst_map);
+	exit_code = check_all_validity_line(map, &lst_map);
 	if (exit_code == SUCCESS)
-		exit_code = lstmap_to_grid(map, lst_map);
+		exit_code = lstmap_to_grid(map, &lst_map);
+	delete_all_lstmap(&lst_map);
 	return (exit_code);
 }
