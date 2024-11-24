@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 02:14:22 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 02:47:10 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -150,14 +150,14 @@ void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 				t.y = data->map.textures.tex[10].height * box.y;
 				color = texture_get_color(&data->map.textures.tex[10], t.x, t.y);
 				color = color_darkened(color, dark);
-				window_pixel_put(&data->win, x, y_ceil, color);
+				window_put_pixel(&data->win, x, y_ceil, color);
 
 				// floor
 				t.x = data->map.textures.tex[0].width * box.x;
 				t.y = data->map.textures.tex[0].height * box.y;
 				color = texture_get_color(&data->map.textures.tex[0], t.x, t.y);
 				color = color_darkened(color, dark);
-				window_pixel_put(&data->win, x, y_floor, color);
+				window_put_pixel(&data->win, x, y_floor, color);
 			}
 			x++;
 		}

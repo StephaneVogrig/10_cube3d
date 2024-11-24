@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 01:36:01 by stephane          #+#    #+#             */
-/*   Updated: 2024/11/15 03:14:55 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 02:51:10 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -64,9 +64,9 @@ void	floor_ceil_put_to_window(t_window *win, int dark)
 
 	mlx_img = floor_ceil_get_ptr();
 	if (dark)
-		mlx_put_image_to_window(win->mlx, win->win, mlx_img->dark, 0, 0);
+		window_put_image(win, mlx_img->dark, 0, 0);
 	else
-		mlx_put_image_to_window(win->mlx, win->win, mlx_img->normal, 0, 0);
+		window_put_image(win, mlx_img->normal, 0, 0);
 }
 
 void	floor_ceil_destroy(void *mlx)

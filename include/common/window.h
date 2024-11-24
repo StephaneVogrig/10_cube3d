@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 12:47:16 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 02:07:26 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 02:48:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,8 +29,9 @@ typedef struct s_window{
 }	t_window;
 
 int		window_setup(t_window *win, void *mlx);
-void	window_clean(t_window *win);
-void	window_pixel_put(t_window *win, int x, int y, int color);
+void	window_destroy(t_window *win);
 void	window_clear(t_window *win);
+void	window_put_pixel(t_window *win, int x, int y, int color);
+void	window_put_image(t_window *win, void *img, int x, int y);
 
 #endif

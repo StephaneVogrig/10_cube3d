@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/22 07:42:10 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/24 02:48:40 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "data_bonus.h"
 
@@ -45,7 +45,7 @@ void	data_clean(t_data *data)
 	printf("data_clean\n");
 	data->map.grid = ft_tab_f(data->map.grid);
 	textures_buffer_clean(&data->map.textures);
-	window_clean(&data->win);
+	window_destroy(&data->win);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
 }
