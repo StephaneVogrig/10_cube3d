@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 16:58:32 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 21:23:37 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -52,6 +52,19 @@ int	dda_no_need(t_map *map, t_player *player, t_dda dda, int len_max)
 	return (FALSE);
 }
 
+int	is_collide(t_map *map, t_ray *ray)
+{
+	char	cell;
+
+	cell = map->grid[ray->hit_pos.y.grid][ray->hit_pos.x.grid];
+	if ((cell > '0' && cell <= '9'))
+	{
+		ray->hit_texture = cell;
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
 void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 {
 	while (TRUE)
@@ -70,10 +83,8 @@ void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 			ray->hit_pos.y.grid += dda->y.step;
 			dda->y.len += dda->y.unit;
 		}
-		if (ray->len > len_max)
-			break ;
-		if (map_get_grid(map, &ray->hit_pos) == dda->collide)
-			break ;
+		if (ray->len > len_max || is_collide(map, ray))
+			break;
 	}
 }
 
