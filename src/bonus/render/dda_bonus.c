@@ -6,12 +6,11 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/23 19:22:06 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 16:26:28 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "dda_bonus.h"
-
 
 static inline int	is_outside_map(t_map *map, t_position *p)
 {
@@ -20,7 +19,6 @@ static inline int	is_outside_map(t_map *map, t_position *p)
 			|| p->x.grid >= map->width
 			|| p->y.grid >= map->height);
 }
-
 
 char map_get_grid(t_map *map, t_position *p)
 {
@@ -34,12 +32,6 @@ char map_get_grid(t_map *map, t_position *p)
 	return (c);
 }
 
-/*
-	compute basic data need for dda algorythme on one axis
-		- unit distance for a step along the axis, set by ptr unit
-		- length of ray if this axis is choosen, set by ptr side
-		- step on the axis, set by return.
-*/
 void	dda_set(t_dda_ *dda, double ray_vec, double box)
 {
 	dda->unit = fabs(1 / ray_vec);
@@ -103,34 +95,6 @@ void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 		if (map_get_grid(map, &ray->hit_pos) == dda->collide)
 			break ;
 	}
-}
-
-static inline void	grid_box_add_double(t_grid_box	*gb, double d)
-{
-	double value;
-
-	value = gb->grid + gb->box;
-	value += d;
-	gb->grid = (int)value;
-	gb->box = value - gb->grid;
-	if (gb->box < 0)
-		gb->box += 1.0;
-}
-
-void	grid_box_add_grid_box(t_grid_box *a, t_grid_box *b)
-{
-	a->box += b->box;
-	if (a->box >= 1.0)
-	{
-		a->box -= 1.0;
-		a->grid += 1;
-	}
-	else if (a->box < 0.0)
-	{
-		a->box += 1.0;
-		a->grid -= 1;
-	}
-	a->grid += b->grid;
 }
 
 void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player)

@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/24 05:59:28 by svogrig          ###   ########.fr        #
+#    Updated: 2024/11/24 16:19:06 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -50,6 +50,7 @@ SRC_COMMON_DIR		:=	common
 
 SRCS_COMMON			:= 	debug.c \
 						draw_wall.c \
+						fixedpoint.c \
 						map.c \
 						pixel.c \
 						player.c \

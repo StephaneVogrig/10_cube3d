@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 06:00:27 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 16:40:21 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,6 +16,8 @@
 # include "player.h"
 # include "ray.h"
 # include "map.h"
+# include "fixedpoint.h"
+# include "position.h"
 
 typedef struct s_dda_
 {
