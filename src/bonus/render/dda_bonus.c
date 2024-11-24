@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 16:26:28 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/24 16:48:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -100,9 +100,9 @@ void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player)
 {
 	ray->hit_pos.x = player->x;
-	grid_box_add_double(&ray->hit_pos.x, ray->vdir.x * ray->len);
+	fixedpoint_add_double(&ray->hit_pos.x, ray->vdir.x * ray->len);
 	ray->hit_pos.y = player->y;
-	grid_box_add_double(&ray->hit_pos.y, ray->vdir.y * ray->len);
+	fixedpoint_add_double(&ray->hit_pos.y, ray->vdir.y * ray->len);
 	if (ray->hit_side == 'x')
 	{
 		if (dda->x.step == 1)
