@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 20:57:27 by aska              #+#    #+#             */
-/*   Updated: 2024/10/30 19:13:43 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/25 19:24:46 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "typedef.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft.h"
 
 typedef struct s_cell
 {

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:02:30 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/05 13:02:33 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/25 19:21:59 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define BITFIELD_PATH_VALID_H
 
 # include "libft.h"
-# include "typedef.h"
 
 typedef unsigned char	t_ui8;
 

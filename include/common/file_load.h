@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_load.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:38:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/01 19:12:46 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/25 19:22:04 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FILE_LOAD_H
 
 # include "lst_map.h"
-# include "typedef.h"
 
 # define MSG_OPEN_ERROR "Error to open file"
 # define MSG_CLOSE_ERROR "Error to close file"

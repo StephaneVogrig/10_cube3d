@@ -14,7 +14,6 @@
 # define PARSING_UTILS_H
 
 # include "libft.h"
-# include "typedef.h"
 
 int		setup_key_value_separate_by_space(char **key, char **value, char *line);
 int		is_empty(char *str);

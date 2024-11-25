@@ -13,7 +13,6 @@
 #ifndef ID_TEX_BONUS_H
 # define ID_TEX_BONUS_H
 
-#include "typedef.h"
 #include "libft.h"
 
 int	get_index_by_key(char key);

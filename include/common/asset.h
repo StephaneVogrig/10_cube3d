@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   asset.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/15 21:31:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/25 19:22:48 by aska             ###   ########.fr       */
+/*   Created: 2024/11/25 16:06:58 by aska              #+#    #+#             */
+/*   Updated: 2024/11/25 19:23:53 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#ifndef TEXTURE_V2_H
+# define TEXTURE_V2_H
 
-# include "player.h"
+# include "libft.h"
+# include "img_mlx.h"
 
-# define AREA 'x'
-# define WALL '1'
-
-typedef struct s_map
+typedef struct s_img
 {
-	char	**grid;
-	int		width;
-	int		height;
-}			t_map;
+	int			*buffer;
+	int			width;
+	int			height;
+}				t_texture;
 
-int	set_map_info(t_map *map, char *line);
-int	map_player_finder(t_map *map, t_player *player);
-char map_get_grid(t_map *map, t_position *p);
-int	is_outside_map(t_map *map, t_position *p);
+typedef struct s_textures
+{
+	t_texture	tex[14];
+	
+}				t_textures;
+
+int	texture_get_color(t_texture *t, int x, int y);
 
 #endif
