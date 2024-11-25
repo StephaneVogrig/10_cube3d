@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:09:49 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/10/31 20:36:41 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:29:26 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 # define DEBUG_MODE 2
 
 // -- choix fonts pour titre
-// # include "ascii_Bloody.h"
+# include "ascii_Bloody.h"
 // # include "ascii_two_block.h"
 // # include "ascii_Alligator.h"
-# include "ascii_ANSI_Shadow.h"
+// # include "ascii_ANSI_Shadow.h"
 
 // Lib include
 # include <errno.h>
@@ -111,6 +111,12 @@
 // Reset
 # define CRESET "\e[0m"
 # define COLOR_RESET "\e[0m"
+
+typedef enum e_status
+{
+	FAIL = -1,
+	SUCCESS = 0,
+}			t_status;
 
 typedef enum t_condition
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ascii_Bloody.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 23:58:42 by aska              #+#    #+#             */
-/*   Updated: 2024/04/02 22:24:07 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:41:45 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define ASCII_BLOODY_H
 
 # define FONT_ROW 10
-# define A \
+# define ASCII_A \
 	" ▄▄▄      \n\
 ▒████▄    \n\
 ▒██  ▀█▄  \n\
@@ -25,7 +25,7 @@
   ░   ▒   \n\
       ░  ░\n\
           "
-# define B \
+# define ASCII_B \
 	" ▄▄▄▄   \n\
 ▓█████▄ \n\
 ▒██▒ ▄██\n\
@@ -36,7 +36,7 @@
  ░    ░ \n\
  ░      \n\
       ░ "
-# define C \
+# define ASCII_C \
 	" ▄████▄  \n\
 ▒██▀ ▀█  \n\
 ▒▓█    ▄ \n\
@@ -47,7 +47,7 @@
 ░        \n\
 ░ ░      \n\
 ░        "
-# define D \
+# define ASCII_D \
 	"▓█████▄ \n\
 ▒██▀ ██▌\n\
 ░██   █▌\n\
@@ -58,7 +58,7 @@
  ░ ░  ░ \n\
    ░    \n\
  ░      "
-# define E \
+# define ASCII_E \
 	"▓█████ \n\
 ▓█   ▀ \n\
 ▒███   \n\
@@ -69,7 +69,7 @@
    ░   \n\
    ░  ░\n\
        "
-# define F \
+# define ASCII_F \
 	"  █████▒\n\
 ▓██   ▒ \n\
 ▒████ ░ \n\
@@ -80,7 +80,7 @@
  ░ ░    \n\
         \n\
         "
-# define G \
+# define ASCII_G \
 	"  ▄████ \n\
  ██▒ ▀█▒\n\
 ▒██░▄▄▄░\n\
@@ -91,7 +91,7 @@
 ░ ░   ░ \n\
       ░ \n\
         "
-# define H \
+# define ASCII_H \
 	" ██░ ██ \n\
 ▓██░ ██▒\n\
 ▒██▀▀██░\n\
@@ -102,7 +102,7 @@
  ░  ░░ ░\n\
  ░  ░  ░\n\
         "
-# define I \
+# define ASCII_I \
 	" ██▓\n\
 ▓██▒\n\
 ▒██▒\n\
@@ -113,7 +113,7 @@
  ▒ ░\n\
  ░  \n\
     "
-# define J \
+# define ASCII_J \
 	" ▄▄▄██▀▀▀\n\
    ▒██   \n\
    ░██   \n\
@@ -124,7 +124,7 @@
  ░ ░ ░   \n\
  ░   ░   \n\
          "
-# define K \
+# define ASCII_K \
 	" ██ ▄█▀\n\
  ██▄█▒ \n\
 ▓███▄░ \n\
@@ -135,7 +135,7 @@
 ░ ░░ ░ \n\
 ░  ░   \n\
        "
-# define L \
+# define ASCII_L \
 	" ██▓    \n\
 ▓██▒    \n\
 ▒██░    \n\
@@ -146,7 +146,7 @@
   ░ ░   \n\
     ░  ░\n\
         "
-# define M \
+# define ASCII_M \
 	" ███▄ ▄███▓\n\
 ▓██▒▀█▀ ██▒\n\
 ▓██    ▓██░\n\
@@ -157,7 +157,7 @@
 ░      ░   \n\
        ░   \n\
            "
-# define N \
+# define ASCII_N \
 	" ███▄    █ \n\
  ██ ▀█   █ \n\
 ▓██  ▀█ ██▒\n\
@@ -168,7 +168,7 @@
    ░   ░ ░ \n\
          ░ \n\
            "
-# define O \
+# define ASCII_O \
 	" ▒█████  \n\
 ▒██▒  ██▒\n\
 ▒██░  ██▒\n\
@@ -179,7 +179,7 @@
 ░ ░ ░ ▒  \n\
     ░ ░  \n\
          "
-# define P \
+# define ASCII_P \
 	" ██▓███  \n\
 ▓██░  ██▒\n\
 ▓██░ ██▓▒\n\
@@ -190,7 +190,7 @@
 ░░       \n\
          \n\
          "
-# define Q \
+# define ASCII_Q \
 	"  █████  \n\
 ▒██▓  ██▒\n\
 ▒██▒  ██░\n\
@@ -201,7 +201,7 @@
    ░   ░ \n\
     ░    \n\
          "
-# define R \
+# define ASCII_R \
 	" ██▀███  \n\
 ▓██ ▒ ██▒\n\
 ▓██ ░▄█ ▒\n\
@@ -212,7 +212,7 @@
   ░░   ░ \n\
    ░     \n\
          "
-# define S \
+# define ASCII_S \
 	"  ██████ \n\
 ▒██    ▒ \n\
 ░ ▓██▄   \n\
@@ -223,7 +223,7 @@
 ░  ░  ░  \n\
       ░  \n\
          "
-# define T \
+# define ASCII_T \
 	"▄▄▄█████▓\n\
 ▓  ██▒ ▓▒\n\
 ▒ ▓██░ ▒░\n\
@@ -234,7 +234,7 @@
   ░      \n\
          \n\
          "
-# define U \
+# define ASCII_U \
 	" █    ██ \n\
  ██  ▓██▒\n\
 ▓██  ▒██░\n\
@@ -245,7 +245,7 @@
  ░░░ ░ ░ \n\
    ░     \n\
          "
-# define V \
+# define ASCII_V \
 	" ██▒   █▓\n\
 ▓██░   █▒\n\
  ▓██  █▒░\n\
@@ -256,7 +256,7 @@
      ░░  \n\
       ░  \n\
      ░   "
-# define W \
+# define ASCII_W \
 	" █     █░\n\
 ▓█░ █ ░█░\n\
 ▒█░ █ ░█ \n\
@@ -267,7 +267,7 @@
   ░   ░  \n\
     ░    \n\
          "
-# define X \
+# define ASCII_X \
 	"▒██   ██▒\n\
 ▒▒ █ █ ▒░\n\
 ░░  █   ░\n\
@@ -278,7 +278,7 @@
  ░    ░  \n\
  ░    ░  \n\
          "
-# define Y \
+# define ASCII_Y \
 	"▓██   ██▓\n\
  ▒██  ██▒\n\
   ▒██ ██░\n\
@@ -289,7 +289,7 @@
  ▒ ▒ ░░  \n\
  ░ ░     \n\
  ░ ░     "
-# define Z \
+# define ASCII_Z \
 	"▒███████▒\n\
 ▒ ▒ ▒ ▄▀░\n\
 ░ ▒ ▄▀▒░ \n\
@@ -300,7 +300,7 @@
 ░ ░ ░ ░ ░\n\
   ░ ░    \n\
 ░        "
-# define ONE \
+# define ASCII_ONE \
 	"     \n\
      \n\
      \n\
@@ -311,7 +311,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define TWO \
+# define ASCII_TWO \
 	"     \n\
      \n\
      \n\
@@ -322,7 +322,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define THREE \
+# define ASCII_THREE \
 	"     \n\
      \n\
      \n\
@@ -333,7 +333,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define FOUR \
+# define ASCII_FOUR \
 	"     \n\
      \n\
      \n\
@@ -344,7 +344,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define FIVE \
+# define ASCII_FIVE \
 	"     \n\
      \n\
      \n\
@@ -355,7 +355,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define SIX \
+# define ASCII_SIX \
 	"     \n\
      \n\
      \n\
@@ -366,7 +366,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define SEVEN \
+# define ASCII_SEVEN \
 	"     \n\
      \n\
      \n\
@@ -377,7 +377,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define EIGHT \
+# define ASCII_EIGHT \
 	"     \n\
      \n\
      \n\
@@ -388,7 +388,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define NINE \
+# define ASCII_NINE \
 	"     \n\
      \n\
      \n\
@@ -399,7 +399,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define ZERO \
+# define ASCII_ZERO \
 	"     \n\
      \n\
      \n\
@@ -410,7 +410,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define SPACE \
+# define ASCII_SPACE \
 	"     \n\
      \n\
      \n\
@@ -421,7 +421,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define HYPHEN \
+# define ASCII_HYPHEN \
 	"     \n\
      \n\
      \n\
@@ -432,7 +432,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define UNDERSCORE \
+# define ASCII_UNDERSCORE \
 	"     \n\
      \n\
      \n\
@@ -443,7 +443,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define DOT \
+# define ASCII_DOT \
 	"     \n\
      \n\
      \n\
@@ -454,7 +454,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define COMMA \
+# define ASCII_COMMA \
 	"     \n\
      \n\
      \n\
@@ -465,7 +465,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define BRACKET_ON \
+# define ASCII_BRACKET_ON \
 	"     \n\
      \n\
      \n\
@@ -476,7 +476,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define BRACKET_OFF \
+# define ASCII_BRACKET_OFF \
 	"     \n\
      \n\
      \n\
@@ -487,7 +487,7 @@
  ░   \n\
   ░  \n\
   ░  "
-# define ASTERISK \
+# define ASCII_ASTERISK \
 	"     \n\
      \n\
      \n\
