@@ -6,11 +6,39 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/22 06:42:08 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/25 20:11:25 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "flood_fill_bonus.h"
+#include "debug.h"
+
+t_map *copy_map(t_map *map)
+{
+	t_map *map_copy;
+	int i;
+
+	map_copy = malloc(sizeof(t_map));
+	if (map_copy == NULL)
+		return (NULL);
+	map_copy = ft_memcpy(map_copy, map, sizeof(t_map));
+	map_copy->grid = malloc(sizeof(char *) * map->height);
+	if (map_copy->grid == NULL)
+		return (NULL);
+	i = 0;
+	while (i < map->height)
+	{
+		map_copy->grid[i] = ft_strdup(map->grid[i]);
+		if (map_copy->grid[i] == NULL)
+		{
+			map_copy->grid = ft_tab_f(map_copy->grid);
+			return (NULL);
+		}
+		i++;
+	}
+	map_copy->grid[i] = NULL;
+	return (map_copy);
+}
 
 int	map_checker(t_map *map, t_player *player)
 {
@@ -18,13 +46,18 @@ int	map_checker(t_map *map, t_player *player)
 	t_map	*map_copy;
 	int exit_code;
 
-	map_copy = map;
+	map_copy = copy_map(map);
+	map_print(map_copy);
+	map_print(map);
 	exit_code = map_player_finder(map, player);
 	if (exit_code != SUCCESS)
 		return (exit_code);
 	ff_ok = chk_flood_fill(map_copy, player->x.grid, player->y.grid);
 	if (ff_ok == FALSE)
 		return (ft_return(ERROR, 275, "Error on Map"));
+	map_print(map_copy);
+	map_print(map);
+	map_copy->grid = ft_tab_f(map_copy->grid);
 	return (SUCCESS);
 }
 
@@ -43,28 +76,28 @@ int	chk_cell(int x, int y, t_map *map)
 	return (SUCCESS);
 }
 
-t_bool	chk_flood_fill(t_map *map, int x, int y)
+t_bool	chk_flood_fill(t_map *map_copy, int x, int y)
 {
 	t_stack	stack;
 	t_cell	cell;
 
-	if (create_stack(map->width * map->height, &stack) == FAIL)
+	if (create_stack(map_copy->width * map_copy->height, &stack) == FAIL)
 		return (FALSE);
 	push(&stack, (t_cell){x, y});
 	while (is_stack_empty(&stack) == FALSE)
 	{
 		cell = pop(&stack);
-		if (chk_border(cell.x, cell.y, map) == FAIL
-			|| map->grid[cell.y][cell.x] == ' ')
+		if (chk_border(cell.x, cell.y, map_copy) == FAIL
+			|| map_copy->grid[cell.y][cell.x] == ' ')
 			return (FALSE);
-		map->grid[cell.y][cell.x] = AREA;
-		if (chk_cell(cell.x + 1, cell.y, map) == SUCCESS)
+		map_copy->grid[cell.y][cell.x] = AREA;
+		if (chk_cell(cell.x + 1, cell.y, map_copy) == SUCCESS)
 			push(&stack, (t_cell){cell.x + 1, cell.y});
-		if (chk_cell(cell.x - 1, cell.y, map) == SUCCESS)
+		if (chk_cell(cell.x - 1, cell.y, map_copy) == SUCCESS)
 			push(&stack, (t_cell){cell.x - 1, cell.y});
-		if (chk_cell(cell.x, cell.y + 1, map) == SUCCESS)
+		if (chk_cell(cell.x, cell.y + 1, map_copy) == SUCCESS)
 			push(&stack, (t_cell){cell.x, cell.y + 1});
-		if (chk_cell(cell.x, cell.y - 1, map) == SUCCESS)
+		if (chk_cell(cell.x, cell.y - 1, map_copy) == SUCCESS)
 			push(&stack, (t_cell){cell.x, cell.y - 1});
 	}
 	free(stack.data);

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:41:39 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/22 07:45:42 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/25 16:28:13 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,10 @@ int	*img_mlx_to_buffer(t_img_mlx *img)
 		x++;
 	}
 	return (head);
+}
+
+int	img_mlx_destroy_image(void *mlx, t_img_mlx *img)
+{
+	mlx_destroy_image(mlx, img->img);
+	return (SUCCESS);
 }
