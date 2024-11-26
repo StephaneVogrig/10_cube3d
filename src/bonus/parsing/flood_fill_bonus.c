@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/26 01:17:09 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/26 14:01:15 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,38 +74,34 @@ int	chk_border(int x, int y, t_map *map)
 		return (FAIL);
 	return (SUCCESS);
 }
-int	chk_cell(int x, int y, t_map *map)
+
+static void	check_cell(int x, int y, t_map *map, t_stack *stack)
 {
-	if (ft_isthis(map->grid[y][x], "123456789") == TRUE)
-		return (FAIL);
-	else if (map->grid[y][x] == AREA)
-		return (FAIL);
-	return (SUCCESS);
+	if (ft_isthis(map->grid[y][x], "123456789") == TRUE
+		|| map->grid[y][x] == AREA)
+		return ;
+	push(stack, (t_cell){x, y});
 }
 
-t_bool	chk_flood_fill(t_map *map_copy, int x, int y)
+t_bool	chk_flood_fill(t_map *map, int x, int y)
 {
 	t_stack	stack;
 	t_cell	cell;
 
-	if (create_stack(map_copy->width * map_copy->height, &stack) == FAIL)
+	if (create_stack(map->width * map->height, &stack) == FAIL)
 		return (FALSE);
 	push(&stack, (t_cell){x, y});
 	while (is_stack_empty(&stack) == FALSE)
 	{
 		cell = pop(&stack);
-		if (chk_border(cell.x, cell.y, map_copy) == FAIL
-			|| map_copy->grid[cell.y][cell.x] == ' ')
+		if (chk_border(cell.x, cell.y, map) == FAIL
+			|| map->grid[cell.y][cell.x] == ' ')
 			return (FALSE);
-		map_copy->grid[cell.y][cell.x] = AREA;
-		if (chk_cell(cell.x + 1, cell.y, map_copy) == SUCCESS)
-			push(&stack, (t_cell){cell.x + 1, cell.y});
-		if (chk_cell(cell.x - 1, cell.y, map_copy) == SUCCESS)
-			push(&stack, (t_cell){cell.x - 1, cell.y});
-		if (chk_cell(cell.x, cell.y + 1, map_copy) == SUCCESS)
-			push(&stack, (t_cell){cell.x, cell.y + 1});
-		if (chk_cell(cell.x, cell.y - 1, map_copy) == SUCCESS)
-			push(&stack, (t_cell){cell.x, cell.y - 1});
+		map->grid[cell.y][cell.x] = AREA;
+		check_cell(x, y + 1, map, &stack);
+		check_cell(x, y - 1, map, &stack);
+		check_cell(x + 1, y, map, &stack);
+		check_cell(x - 1, y, map, &stack);
 	}
 	free(stack.data);
 	return (TRUE);
