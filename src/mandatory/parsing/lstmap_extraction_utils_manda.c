@@ -1,66 +1,46 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils_manda.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/11/23 19:13:05 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/26 01:59:36 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
-
+/* ************************************************************************** */
 
 #include "lstmap_extraction_utils_manda.h"
 
-int	attrib_rgb(t_rgb *rgb, char *value)
+t_color	*set_color(char *value)
 {
 	char	**arg;
-	int		ok;
+	t_color	*argb;
 
-	ok = SUCCESS;
 	arg = ft_split(value, ',');
 	if (arg == NULL || ft_tablen(arg) != 3)
-		ok = FAIL;
-	if (ok != FAIL && check_arg_color(arg) == FAIL)
-		ok = FAIL;
-	if (ok != FAIL)
-	{
-		rgb->a = (unsigned char)255;
-		rgb->r = (unsigned char)ft_atoi(arg[0]);
-		rgb->g = (unsigned char)ft_atoi(arg[1]);
-		rgb->b = (unsigned char)ft_atoi(arg[2]);
-	}
+		return (NULL);
+	if (check_arg_color(arg) == FAIL)
+		return (NULL);
+	argb->a = (unsigned char)255;
+	argb->r = (unsigned char)ft_atoi(arg[0]);
+	argb->g = (unsigned char)ft_atoi(arg[1]);
+	argb->b = (unsigned char)ft_atoi(arg[2]);
 	ft_tab_f(arg);
-	return (ok);
+	return (argb);
 }
 
-int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
-{
-	if (ft_strcmp(kv->key, "NO") == 0)
-		tex_path->no = ft_strdup(kv->value);
-	else if (ft_strcmp(kv->key, "SO") == 0)
-		tex_path->so = ft_strdup(kv->value);
-	else if (ft_strcmp(kv->key, "WE") == 0)
-		tex_path->we = ft_strdup(kv->value);
-	else if (ft_strcmp(kv->key, "EA") == 0)
-		tex_path->ea = ft_strdup(kv->value);
-	else
-		return (ft_return(ERROR, 267, "Invalid Key"));
-	// pensez a mettre des securites pour les mallocs
-	return (SUCCESS);
-}
-
-int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
-		char *root_path)
+int	set_path_and_color(t_assets *tex, t_dictionaries *kv, char *root_path)
 {
 	int	exit_code;
 	int	fd;
 
-	if (kv->key[0] == 'C')
-		exit_code = attrib_rgb(&tex->ceil_rgb, kv->value);
-	else if (kv->key[0] == 'F')
-		exit_code = attrib_rgb(&tex->floor_rgb, kv->value);
+	if (kv->key[0] == 'C' || kv->key[0] == 'F')
+	{
+		exit_code = dict_insert(&tex->textures, kv->key,(t_color*)set_color(kv->value));
+		if (exit_code == FAIL)
+			return (ft_return(ERROR, 268, "Color Invalid"));
+	}
 	else
 	{
 		if (root_path != NULL)
@@ -69,13 +49,13 @@ int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
 		if (fd == FAIL)
 			return (ft_return(ERROR, 268, "Texture File Invalid"));
 		ft_close(fd);
-		exit_code = set_path_by_key(tex_path, kv);
+		exit_code = dict_insert(&tex->textures, kv->key, (char*)kv->value);
 		kv->value = ft_char_f(kv->value);
 	}
 	return (exit_code);
 }
 
-int	set_key_value(t_key_value *kv, char *line, t_fs *fs)
+int	set_dict_key_value(t_dictionaries *kv, char *line, t_fs *fs)
 {
 	int	exit_code;
 

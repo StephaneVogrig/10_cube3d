@@ -6,7 +6,7 @@
 #    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/26 15:03:16 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/11/26 15:33:33 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,6 @@ SRCS_COMMON			:= 	debug.c \
 						check_arg.c \
 						render/chrono.c \
 						lstmap.c \
-						lstmap_utils.c \
 						stack.c \
 						color.c \
 						file_load.c \
@@ -79,7 +78,6 @@ SRC_MAND_DIR		:=	mandatory
 SRCS_MANDA			:=	main_manda.c \
 						event_manda.c \
 						player_move_manda.c \
-						textures_manda.c \
 						floor_ceil_mlx_img.c \
 						render/dda_manda.c \
 						render/draw_walls_manda.c \

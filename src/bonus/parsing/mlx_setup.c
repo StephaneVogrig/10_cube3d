@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 06:18:51 by aska              #+#    #+#             */
-/*   Updated: 2024/11/22 14:25:19 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/26 02:35:06 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	mlx_setup(t_window *win, t_tex_path *tex_path, t_textures *textures)
 		if (tex_path->path[i] == NULL)
 			continue ;
 		printf("%s\n", tex_path->path[i]);
-		exit_code = texture_load_to_buffer(mlx, &textures->tex[i],
+		exit_code = asset_load_to_buffer(mlx, &textures->tex[i],
 				tex_path->path[i]);
 		if (exit_code != SUCCESS)
 			return (exit_code);

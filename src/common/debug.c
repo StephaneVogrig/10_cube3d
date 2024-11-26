@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:13:43 by aska              #+#    #+#             */
-/*   Updated: 2024/11/20 18:25:12 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/26 01:50:06 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	lstmap_print(t_lstmap *lstmap)
 	}
 }
 
-// void    print_t_rgb(t_rgb *rgb)
+// void    print_t_color(t_color *rgb)
 // {
 //     ft_printf(HRED"R "CRESET"= %d\t| ", rgb->r);
 //     ft_printf(HGRN"G "CRESET"= %d\t| ", rgb->g);
@@ -59,14 +59,14 @@ void	lstmap_print(t_lstmap *lstmap)
 //     else
 //     {
 //         ft_printf("path->c_rgb = ");
-//         print_t_rgb(&cub->img->c_rgb);
+//         print_t_color(&cub->img->c_rgb);
 //     }
 //     if (cub->img->f_path != NULL)
 //         ft_printf("path->f_path = %s\n", cub->img->f_path);
 //     else
 //     {
 //         ft_printf("path->f_rgb = ");
-//         print_t_rgb(&cub->img->f_rgb);
+//         print_t_color(&cub->img->f_rgb);
 //     }
 //     ft_printf("path->bgm_path = %s\n", cub->img->bgm_path);
 // }

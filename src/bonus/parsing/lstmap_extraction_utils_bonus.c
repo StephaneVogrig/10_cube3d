@@ -6,13 +6,13 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/11/22 18:06:31 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/26 01:50:06 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lstmap_extraction_utils_bonus.h"
 
-int	attrib_rgb(t_rgb *rgb, char *value)
+int	set_color(t_color *rgb, char *value)
 {
 	char	**arg;
 	int		ok;
@@ -34,7 +34,7 @@ int	attrib_rgb(t_rgb *rgb, char *value)
 	return (ok);
 }
 
-int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
+int	set_path_by_key(t_tex_path *tex_path, t_dictionaries *kv)
 {
 	int	key;
 
@@ -50,7 +50,7 @@ int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
 	return (SUCCESS);
 }
 
-int	set_path_and_color(t_tex_path *tex_path, t_key_value *kv, char *root_path)
+int	set_path_and_color(t_tex_path *tex_path, t_dictionaries *kv, char *root_path)
 {
 	int	exit_code;
 	int	fd;
@@ -66,7 +66,7 @@ int	set_path_and_color(t_tex_path *tex_path, t_key_value *kv, char *root_path)
 	return (exit_code);
 }
 
-int	set_key_value(t_key_value *kv, char *line)
+int	set_dict_key_value(t_dictionaries *kv, char *line)
 {
 	int	exit_code;
 

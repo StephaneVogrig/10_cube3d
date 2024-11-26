@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/24 05:16:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/26 01:36:29 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "lstmap_extraction_bonus.h"
 #include "file_load.h"
@@ -83,14 +83,14 @@ int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 int	lstmap_to_path_and_color(t_tex_path *tex_path, t_lstmap **lst_map,
 		char *root_path)
 {
-	t_key_value	kv;
+	t_dictionaries	kv;
 	int			exit_code;
 
 	while (*lst_map != NULL)
 	{
 		while (is_empty((*lst_map)->line) == TRUE)
 			delete_node_lstmap(lst_map, *lst_map);
-		exit_code = set_key_value(&kv, (*lst_map)->line);
+		exit_code = set_dict_key_value(&kv, (*lst_map)->line);
 		if (exit_code == SUCCESS)
 			exit_code = set_path_and_color(tex_path, &kv, root_path);
 		else

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:00 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/25 19:24:05 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/26 01:50:06 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef union u_color
 		int	a : 8;
 	};
 	int	integer;
-}	t_rgb;
+}	t_color;
 
 int color_darkened(int color, int dark);
 

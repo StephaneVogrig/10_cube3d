@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture.h                                          :+:      :+:    :+:   */
+/*   dictionarie.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 15:38:29 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/25 19:22:56 by aska             ###   ########.fr       */
+/*   Created: 2024/11/25 23:08:55 by aska              #+#    #+#             */
+/*   Updated: 2024/11/26 02:43:28 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEXTURE_H
-# define TEXTURE_H
+#ifndef DICTIONARIE_H
+# define DICTIONARIE_H
 
-# include "img_mlx.h"
-# include "mlx.h"
 # include "libft.h"
 
-typedef struct s_img
+typedef struct s_key_value
 {
-	int			*buffer;
-	int			width;
-	int			height;
-}				t_texture;
+	char			*key;
+	void			*value;
+	t_dictionaries	*next;
+}					t_dictionaries;
 
-int	texture_get_color(t_texture *t, int x, int y);
-int	texture_load_to_buffer(void *mlx, t_texture *t, char *path);
+int					dict_insert(t_dictionaries **dict, char *key, void *value);
+char				*dict_get(t_dictionaries *dict, char *key);
+void				dict_destroy(t_dictionaries **dict);
 
 #endif

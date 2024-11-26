@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:07:24 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 03:08:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/26 02:34:48 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "draw_wall.h"
 
@@ -40,7 +40,7 @@ void	draw_wall_big_pixel(t_window *win, int x, t_wall *wall, int dark)
 	texture_pixel.x = wall->x_in_texture;
 	texture_pixel.y = (int)texture_y;
 	texture_y -= texture_pixel.y;
-	color = texture_get_color(wall->texture, texture_pixel.x, texture_pixel.y);
+	color = asset_get_color(wall->texture, texture_pixel.x, texture_pixel.y);
 	color = color_darkened(color, dark);
 	while (y < y_max)
 	{
@@ -48,7 +48,7 @@ void	draw_wall_big_pixel(t_window *win, int x, t_wall *wall, int dark)
 		{
 			texture_pixel.y++;
 			texture_y -= 1.0;
-			color = texture_get_color(wall->texture, texture_pixel.x, texture_pixel.y);
+			color = asset_get_color(wall->texture, texture_pixel.x, texture_pixel.y);
 		color = color_darkened(color, dark);
 		}
 		window_put_pixel(win, x, y, color);
@@ -70,7 +70,7 @@ void	draw_wall_small_pixel(t_window *win, int x, t_wall *wall, int dark)
 	while (y < y_max)
 	{
 		texture_pixel.y = (int)texture_y;
-		color = texture_get_color(wall->texture, texture_pixel.x, texture_pixel.y);
+		color = asset_get_color(wall->texture, texture_pixel.x, texture_pixel.y);
 		color = color_darkened(color, dark);
 		window_put_pixel(win, x, y, color);
 		texture_y += wall->texture_dy;

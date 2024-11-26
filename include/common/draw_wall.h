@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:08:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/25 22:36:39 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/26 12:55:48 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef DRAW_WALL_H
 # define DRAW_WALL_H
 
-# include "texture.h"
+# include "asset.h"
 # include "vector.h"
 # include "window.h"
 # include "ray.h"
