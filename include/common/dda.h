@@ -1,40 +1,23 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda_manda.h                                        :+:      :+:    :+:   */
+/*   dda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 16:40:21 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:52:21 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
-#ifndef DDA_MANDA_H
-# define DDA_MANDA_H
+#ifndef DDA_H
+# define DDA_H
 
+# include "dda_utils.h"
 # include "player.h"
 # include "ray.h"
 # include "map.h"
-# include "fixedpoint.h"
-# include "position.h"
-
-typedef struct s_dda_
-{
-	double	unit;
-	double	len;
-	int		step;
-}	t_dda_;
-
-typedef struct s_dda
-{
-	t_dda_	x;
-	t_dda_	y;
-	int		len_max;
-	int		collide;
-}	t_dda;
 
 void	dda(t_ray *ray, t_map *map, t_player *player, int len_max);
-char 	map_get_grid(t_map *map, t_position *p);
 
 #endif

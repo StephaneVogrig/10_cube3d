@@ -1,16 +1,16 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda_manda.c                                        :+:      :+:    :+:   */
+/*   dda_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 16:58:35 by svogrig          ###   ########.fr       */
+/*   Created: 2024/11/26 19:20:10 by svogrig           #+#    #+#             */
+/*   Updated: 2024/11/26 19:34:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
-#include "dda_manda.h"
+#include "dda_utils.h"
 
 void	dda_set(t_dda_ *dda, double ray_vec, double box)
 {
@@ -52,31 +52,6 @@ int	dda_no_need(t_map *map, t_player *player, t_dda dda, int len_max)
 	return (FALSE);
 }
 
-void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
-{
-	while (TRUE)
-	{
-		if (dda->x.len < dda->y.len)
-		{
-			ray->hit_side = 'x';
-			ray->len = dda->x.len;
-			ray->hit_pos.x.grid += dda->x.step;
-			dda->x.len += dda->x.unit;
-		}
-		else
-		{
-			ray->hit_side = 'y';
-			ray->len = dda->y.len;
-			ray->hit_pos.y.grid += dda->y.step;
-			dda->y.len += dda->y.unit;
-		}
-		if (ray->len > len_max)
-			break ;
-		if (map_get_grid(map, &ray->hit_pos) == dda->collide)
-			break ;
-	}
-}
-
 void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player)
 {
 	ray->hit_pos.x = player->x;
@@ -100,19 +75,25 @@ void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player)
 	ray->dark = dda->collide == AREA;
 }
 
-void	dda(t_ray *ray, t_map *map, t_player *player, int len_max)
+void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max)
 {
-	t_dda	dda;
-
-	dda.len_max = len_max;
-	dda_init(&dda, &ray->vdir, &player->position, map);
-	if (dda_no_need(map, player, dda, len_max) == TRUE)
+	while (TRUE)
 	{
-		ray->len = len_max + 1;
-		return ;
+		if (dda->x.len < dda->y.len)
+		{
+			ray->hit_side = 'x';
+			ray->len = dda->x.len;
+			ray->hit_pos.x.grid += dda->x.step;
+			dda->x.len += dda->x.unit;
+		}
+		else
+		{
+			ray->hit_side = 'y';
+			ray->len = dda->y.len;
+			ray->hit_pos.y.grid += dda->y.step;
+			dda->y.len += dda->y.unit;
+		}
+		if (ray->len > len_max || is_collide(map, ray, dda->collide == AREA))
+			break ;
 	}
-	ray->hit_pos.x.grid = player->x.grid;
-	ray->hit_pos.y.grid = player->y.grid;
-	dda_loop(&dda, ray, map, len_max);
-	dda_ray_set(ray, &dda, player);
 }
