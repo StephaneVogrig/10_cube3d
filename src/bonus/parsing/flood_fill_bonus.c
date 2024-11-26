@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/25 20:11:25 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/26 01:17:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "flood_fill_bonus.h"
-#include "debug.h"
+// #include "debug.h" // debug
 
 t_map *copy_map(t_map *map)
 {
@@ -24,7 +24,10 @@ t_map *copy_map(t_map *map)
 	map_copy = ft_memcpy(map_copy, map, sizeof(t_map));
 	map_copy->grid = malloc(sizeof(char *) * map->height);
 	if (map_copy->grid == NULL)
+	{
+		free(map_copy);
 		return (NULL);
+	}
 	i = 0;
 	while (i < map->height)
 	{
@@ -32,6 +35,7 @@ t_map *copy_map(t_map *map)
 		if (map_copy->grid[i] == NULL)
 		{
 			map_copy->grid = ft_tab_f(map_copy->grid);
+			free(map_copy);
 			return (NULL);
 		}
 		i++;
@@ -46,18 +50,21 @@ int	map_checker(t_map *map, t_player *player)
 	t_map	*map_copy;
 	int exit_code;
 
-	map_copy = copy_map(map);
-	map_print(map_copy);
-	map_print(map);
 	exit_code = map_player_finder(map, player);
 	if (exit_code != SUCCESS)
 		return (exit_code);
+	map_copy = copy_map(map);
+	if(map_copy == NULL)
+		return (FAIL);
+	// map_print(map_copy); //debug
+	// map_print(map); //debug
 	ff_ok = chk_flood_fill(map_copy, player->x.grid, player->y.grid);
+	map->grid[player->y.grid][player->x.grid] = '0';
+	// map_print(map_copy); //debug
+	// map_print(map); //debug
+	map_copy->grid = ft_tab_f(map_copy->grid);
 	if (ff_ok == FALSE)
 		return (ft_return(ERROR, 275, "Error on Map"));
-	map_print(map_copy);
-	map_print(map);
-	map_copy->grid = ft_tab_f(map_copy->grid);
 	return (SUCCESS);
 }
 
