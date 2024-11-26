@@ -6,7 +6,7 @@
 #    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/26 15:38:03 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/11/26 16:49:01 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ SRCS_COMMON			:= 	debug.c \
 						parsing_utils.c \
 						gametime.c \
 						texture.c \
+						dictionarie.c \
 						parsing/flood_fill_common.c
 
 SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)

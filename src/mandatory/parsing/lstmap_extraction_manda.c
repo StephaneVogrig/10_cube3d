@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/26 15:36:15 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/26 18:06:36 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,24 +85,22 @@ int	lstmap_to_path_and_color(t_assets *tex, t_lstmap **lst_map,
 	return (exit_code);
 }
 
-int	lstmap_extract_info(t_assets *textures, t_map *map, char *map_path)
+int	lstmap_extract_info(t_assets *textures, t_map *map, t_lstmap **head, char *map_path)
 {
-	t_lstmap	*lst_map;
+	
+	t_lstmap	*current;
 	char		*root_path;
 	int			exit_code;
 
-	lst_map = NULL;
-	exit_code = file_load(map_path, &lst_map);
-	if (exit_code != SUCCESS)
-		return (exit_code);
-	root_path = get_root_path(map_path);
-	exit_code = lstmap_to_path_and_color(textures, &lst_map, root_path);
+
+	root_path = get_root_path(map_path); // protection a faire
+	current = *head;
+	exit_code = lstmap_to_path_and_color(textures, &current, root_path);
 	root_path = ft_char_f(root_path);
 	if (exit_code != SUCCESS)
 		return (exit_code);
-	exit_code = check_all_validity_line(map, &lst_map);
+	exit_code = check_all_validity_line(map, &current);
 	if (exit_code == SUCCESS)
-		exit_code = lstmap_to_grid(map, &lst_map);
-	delete_all_lstmap(&lst_map);
+		exit_code = lstmap_to_grid(map, &current);
 	return (exit_code);
 }

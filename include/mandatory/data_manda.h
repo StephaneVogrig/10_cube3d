@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/26 15:34:56 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:43:54 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "flood_fill.h"
 # include "lstmap_extraction_manda.h"
 # include "lstmap_extraction_utils_manda.h"
-# include "textures_manda.h"
+# include "assets.h"
 
 typedef unsigned int	t_ui32;
 typedef unsigned char	t_ui8;
@@ -49,16 +49,15 @@ typedef struct s_data
 	void		*mlx;
 	t_window	win;
 	t_map		map;
-	t_textures	textures;
+	t_assets 	assets;
 	t_key		key;
 	t_player	player;
 	int			mouse_mode;
 }				t_data;
 
 void	data_init(t_data *data);
-int		mlx_setup(t_data *data, t_tex_path *tex_path, t_textures *textures);
+int		mlx_setup(t_data *data, t_assets *assets);
 int		data_setup(t_data *data, char *map_path);
 void	data_clean(t_data *data);
-void	tex_path_clean(t_tex_path *tex_path);
 
 #endif

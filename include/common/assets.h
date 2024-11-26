@@ -14,6 +14,7 @@
 # define ASSETS_H
 
 # include "dictionarie.h"
+# include "texture.h"
 
 typedef struct s_assets
 {
