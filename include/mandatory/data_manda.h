@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_manda.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 05:59:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/26 14:58:56 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef DATA_MANDA_H
 # define DATA_MANDA_H
@@ -18,7 +18,7 @@
 # include "map.h"
 # include "player.h"
 # include "window.h"
-# include "flood_fill_manda.h"
+# include "flood_fill.h"
 # include "lstmap_extraction_manda.h"
 # include "lstmap_extraction_utils_manda.h"
 # include "textures_manda.h"

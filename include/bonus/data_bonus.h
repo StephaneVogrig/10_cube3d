@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 06:01:05 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/26 14:59:12 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef DATA_BONUS_H
 # define DATA_BONUS_H
@@ -19,7 +19,7 @@
 # include "player.h"
 # include "window.h"
 # include "mlx_setup.h"
-# include "flood_fill_bonus.h"
+# include "flood_fill.h"
 # include "lstmap_extraction_bonus.h"
 # include "textures_bonus.h"
 
