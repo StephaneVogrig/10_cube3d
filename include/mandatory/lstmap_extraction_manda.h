@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_manda.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:30:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/26 02:16:11 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/26 12:25:15 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "lst_map.h"
 # include "map.h"
 # include "parsing_utils.h"
-# include "asset.h"
+# include "assets.h"
 
 int	lstmap_extract_info(t_assets *textures, t_map *map, char *map_path);
 int	lstmap_to_path_and_color(t_assets *tex, t_lstmap **lst_map,

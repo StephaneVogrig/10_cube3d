@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_walls_manda.h                                 :+:      :+:    :+:   */
+/*   texture.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 15:06:29 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/26 12:24:52 by ygaiffie         ###   ########.fr       */
+/*   Created: 2024/11/26 12:06:03 by ygaiffie          #+#    #+#             */
+/*   Updated: 2024/11/26 12:26:23 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_WALLS_MANDA_H
-# define DRAW_WALLS_MANDA_H
+#ifndef TEXTURE_H
+# define TEXTURE_H
 
-# include "window.h"
-# include "ray.h"
-# include "draw_wall.h"
-# include "assets.h"
 
-void	draw_walls(t_window *win, t_ray *rays, t_assets *textures);
+typedef struct t_texture
+{
+	int		*buffer;
+	int		width;
+	int		height;
+}			t_texture;
+
+int	texture_get_color(t_texture *t, int x, int y);
+int			texture_load_to_buffer(void *mlx, t_texture *t, char *path);
 
 #endif

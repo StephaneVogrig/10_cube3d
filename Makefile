@@ -6,7 +6,7 @@
 #    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/11/26 15:33:33 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/11/26 15:38:03 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -189,6 +189,7 @@ libfclean: libclean
 	@$(MAKE) -C $(LIB_DIR)MacroLibx fclean --no-print-directory
 
 init:
+	@clear
 	@echo -e ""
 	@echo -e "\t\t$(BHYEL)┍━━━━━━»•» 🌸 «•«━┑$(NC)"
 	@echo -e "\t\t$(BHYEL) CUB3D COMPILATION $(NC)"

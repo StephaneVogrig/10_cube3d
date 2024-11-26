@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/26 02:34:48 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/26 12:08:46 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,14 +148,14 @@ void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 				// ceil
 				t.x = data->textures.tex[10].width * box.x;
 				t.y = data->textures.tex[10].height * box.y;
-				color = asset_get_color(&data->textures.tex[10], t.x, t.y);
+				color = texture_get_color(&data->textures.tex[10], t.x, t.y);
 				color = color_darkened(color, dark);
 				window_put_pixel(&data->win, x, y_ceil, color);
 
 				// floor
 				t.x = data->textures.tex[0].width * box.x;
 				t.y = data->textures.tex[0].height * box.y;
-				color = asset_get_color(&data->textures.tex[0], t.x, t.y);
+				color = texture_get_color(&data->textures.tex[0], t.x, t.y);
 				color = color_darkened(color, dark);
 				window_put_pixel(&data->win, x, y_floor, color);
 			}

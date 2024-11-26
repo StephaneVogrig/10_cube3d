@@ -1,29 +1,29 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_walls_manda.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 03:35:35 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/26 12:35:17 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "draw_walls_manda.h"
 
-t_texture	*texture_hit(t_textures *textures, t_ray *ray)
+t_texture	*texture_hit(t_assets *asset, t_ray *ray)
 {
 	if (ray->hit_side == 'n')
-		return (&textures->north);
+		return (dict_get(asset->textures, "NO"));
 	if (ray->hit_side == 's')
-		return (&textures->south);
+		return (dict_get(asset->textures, "SO"));
 	if (ray->hit_side == 'e')
-		return (&textures->east);
-	return (&textures->west);
+		return (dict_get(asset->textures, "EA"));
+	return (dict_get(asset->textures, "WE"));
 }
 
-void	draw_walls(t_window *win, t_ray *rays, t_textures *textures)
+void	draw_walls(t_window *win, t_ray *rays, t_assets *textures)
 {
 	t_texture	*texture;
 	int			x;

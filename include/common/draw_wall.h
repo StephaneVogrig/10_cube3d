@@ -5,20 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 03:08:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/26 12:55:48 by ygaiffie         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/11/26 12:59:15 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #ifndef DRAW_WALL_H
 # define DRAW_WALL_H
 
-# include "asset.h"
 # include "vector.h"
 # include "window.h"
 # include "ray.h"
 # include "color.h"
+# include "texture.h"
 
 typedef	struct s_wall
 {
