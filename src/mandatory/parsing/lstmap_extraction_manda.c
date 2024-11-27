@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_manda.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/26 18:06:36 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/27 02:58:00 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,33 +59,33 @@ int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 	return (SUCCESS);
 }
 
-int	lstmap_to_path_and_color(t_assets *tex, t_lstmap **lst_map,
+int	lstmap_to_path_and_color(t_assets *assets, t_lstmap **current,
 		char *root_path)
 {
 	t_fs			fs;
-	t_dictionaries	kv;
+	t_dictionarie	kv;
 	int				exit_code;
 
 	fs.file_ok = 0x3F;
-	while (*lst_map != NULL)
+	while (*current != NULL)
 	{
-		while (is_empty((*lst_map)->line) == TRUE)
-			delete_node_lstmap(lst_map, *lst_map);
-		exit_code = set_dict_key_value(&kv, (*lst_map)->line, &fs);
+		while (is_empty((*current)->line) == TRUE)
+			current = &(*current)->next;
+		exit_code = set_dict_key_value(&kv, (*current)->line, &fs);
 		if (exit_code == SUCCESS)
-			exit_code = set_path_and_color(tex, &kv, root_path);
+			exit_code = set_path_and_color(assets, &kv, root_path);
 		else
 			break ;
 		if (exit_code == SUCCESS)
 			file_switch_key(&fs, &kv.key);
-		delete_node_lstmap(lst_map, *lst_map);
+		current = &(*current)->next;
 		if (fs.file_ok == 0)
 			return (exit_code);
 	}
 	return (exit_code);
 }
 
-int	lstmap_extract_info(t_assets *textures, t_map *map, t_lstmap **head, char *map_path)
+int	lstmap_extract_info(t_assets *assets, t_map *map, t_lstmap **head, char *map_path)
 {
 	
 	t_lstmap	*current;
@@ -93,9 +93,9 @@ int	lstmap_extract_info(t_assets *textures, t_map *map, t_lstmap **head, char *m
 	int			exit_code;
 
 
-	root_path = get_root_path(map_path); // protection a faire
+	root_path = get_root_path(map_path);
 	current = *head;
-	exit_code = lstmap_to_path_and_color(textures, &current, root_path);
+	exit_code = lstmap_to_path_and_color(assets, &current, root_path);
 	root_path = ft_char_f(root_path);
 	if (exit_code != SUCCESS)
 		return (exit_code);

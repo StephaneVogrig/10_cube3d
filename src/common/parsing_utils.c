@@ -57,7 +57,10 @@ char	*get_root_path(char *path)
 	root_path = ft_strrchr(path, '/');
 	if (root_path == NULL)
 		return (NULL);
-	return (ft_substr(path, 0, root_path - path + 1));
+	printf("root_path: %s\n", root_path);
+	*root_path = '\0';
+	printf("path: %s\n", path);
+	return (path);
 }
 
 void	remove_root_value(char *value)

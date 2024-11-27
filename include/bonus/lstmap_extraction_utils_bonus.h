@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:58:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/26 01:50:06 by aska             ###   ########.fr       */
+/*   Updated: 2024/11/27 02:58:00 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ typedef struct s_tex_path
 	char	*path[14];
 }			t_tex_path;
 
-int			set_dict_key_value(t_dictionaries *kv, char *line);
+int			set_dict_key_value(t_dictionarie *kv, char *line);
 int			set_color(t_color *rgb, char *value);
 int			check_line(char *line);
-int			set_path_and_color(t_tex_path *tex_path, t_dictionaries *kv,
+int			set_path_and_color(t_tex_path *tex_path, t_dictionarie *kv,
 				char *root_path);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_walls_manda.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/26 16:20:26 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/26 20:57:47 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_texture	*texture_hit(t_assets *asset, t_ray *ray)
 	return ((t_texture*)dict_get(asset->textures, "WE"));
 }
 
-void	draw_walls(t_window *win, t_ray *rays, t_assets *textures)
+void	draw_walls(t_window *win, t_ray *rays, t_assets *assets)
 {
 	t_texture	*texture;
 	int			x;

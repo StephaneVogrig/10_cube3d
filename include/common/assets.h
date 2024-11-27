@@ -18,7 +18,12 @@
 
 typedef struct s_assets
 {
-	t_dictionaries	*textures;
+	t_dictionarie	*entry;
+	char **array_key;
+	t_texture *array_value;
 }				t_assets;
+
+int		asset_load_to_buffer(void *mlx, t_texture *t, char *path);
+void 	array_init(t_assets *assets, t_dictionarie *dict);
 
 #endif

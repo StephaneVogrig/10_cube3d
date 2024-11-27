@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils_manda.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/11/26 16:40:17 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/27 02:58:00 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_color	*set_color(char *value)
 	return (argb);
 }
 
-int	set_path_and_color(t_assets *tex, t_dictionaries *kv, char *root_path)
+int	set_path_and_color(t_assets *assets, t_dictionarie *kv, char *root_path)
 {
 	int	exit_code;
 	int	fd;
@@ -57,7 +57,7 @@ int	set_path_and_color(t_assets *tex, t_dictionaries *kv, char *root_path)
 	return (exit_code);
 }
 
-int	set_dict_key_value(t_dictionaries *kv, char *line, t_fs *fs)
+int	set_dict_key_value(t_dictionarie *kv, char *line, t_fs *fs)
 {
 	int	exit_code;
 

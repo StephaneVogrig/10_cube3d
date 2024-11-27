@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_walls_manda.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:29 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/26 12:24:52 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/26 20:57:47 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include "draw_wall.h"
 # include "assets.h"
 
-void	draw_walls(t_window *win, t_ray *rays, t_assets *textures);
+void	draw_walls(t_window *win, t_ray *rays, t_assets *assets);
 
 #endif

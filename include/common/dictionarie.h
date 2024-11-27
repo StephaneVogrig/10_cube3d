@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dictionarie.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 23:08:55 by aska              #+#    #+#             */
-/*   Updated: 2024/11/26 16:16:26 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/11/27 03:20:20 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 # define DICTIONARIE_H
 
 # include "libft.h"
+# include "texture.h"
 
-typedef struct s_key_value
+typedef struct s_dictionarie
 {
-	char				*key;
-	void				*value;
-	struct s_key_value	*next;
-}						t_dictionaries;
+	char					*key;
+	char					*path;
+	t_texture				*texture;
+	struct s_dictionarie	*next;
+}							t_dictionarie;
 
-int						dict_insert(t_dictionaries **dict, char *key,
-							void *value);
-char					*dict_get(t_dictionaries *dict, char *key);
-void					dict_destroy(t_dictionaries **dict);
+int							dict_insert(t_dictionarie **dict, char *key,
+								void *value);
+char						*dict_get(t_dictionarie *dict, char *key);
+void						dict_destroy(t_dictionarie **dict);
 
 #endif
