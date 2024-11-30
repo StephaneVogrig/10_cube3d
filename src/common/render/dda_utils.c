@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 19:20:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/27 20:21:28 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/30 16:36:12 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,26 +37,26 @@ void	dda_init(t_dda *dda, t_vec2d *ray_vec, t_position *p, t_map *map)
 		dda->collide = WALL;
 }
 
-int	dda_no_need(t_map *map, t_player *player, t_dda dda, int len_max)
+int	dda_no_need(t_map *map, t_position *start, t_dda dda, int len_max)
 {
-	if ((player->x.grid < 0 && dda.x.step == -1)
-		|| (player->x.grid > map->width && dda.x.step == 1)
-		|| (player->y.grid < 0 && dda.y.step == -1)
-		|| (player->y.grid > map->height && dda.y.step == 1))
+	if ((start->x.grid < 0 && dda.x.step == -1)
+		|| (start->x.grid > map->width && dda.x.step == 1)
+		|| (start->y.grid < 0 && dda.y.step == -1)
+		|| (start->y.grid > map->height && dda.y.step == 1))
 		return (TRUE);
-	if (player->x.grid < -len_max
-		|| player->x.grid > map->width + len_max
-		|| player->y.grid < -len_max
-		|| player->y.grid > map->height + len_max)
+	if (start->x.grid < -len_max
+		|| start->x.grid > map->width + len_max
+		|| start->y.grid < -len_max
+		|| start->y.grid > map->height + len_max)
 		return (TRUE);
 	return (FALSE);
 }
 
-void	dda_ray_set(t_ray *ray, t_dda *dda, t_player *player)
+void	dda_ray_set(t_ray *ray, t_dda *dda, t_position *start)
 {
-	ray->hit_pos.x = player->x;
+	ray->hit_pos.x = start->x;
 	fixedpoint_add_double(&ray->hit_pos.x, ray->vdir.x * ray->len);
-	ray->hit_pos.y = player->y;
+	ray->hit_pos.y = start->y;
 	fixedpoint_add_double(&ray->hit_pos.y, ray->vdir.y * ray->len);
 	if (ray->hit_side == 'x')
 	{
