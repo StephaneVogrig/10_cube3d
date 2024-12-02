@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:29:19 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/30 16:32:52 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/02 19:12:41 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,25 +16,30 @@
 # include "ray.h"
 # include "map.h"
 
-typedef struct s_dda_
+typedef struct s_dda_axis
 {
 	double	unit;
 	double	len;
 	int		step;
-}	t_dda_;
+}	t_dda_axis;
 
 typedef struct s_dda
 {
-	t_dda_	x;
-	t_dda_	y;
-	int		len_max;
-	int		collide;
+	t_dda_axis	x;
+	t_dda_axis	y;
+	int			len_max;
+	int			collide;
 }	t_dda;
 
-void	dda_init(t_dda *dda, t_vec2d *ray_vec, t_position *start, t_map *map);
 int		dda_no_need(t_map *map, t_position *start, t_dda dda, int len_max);
 void	dda_loop(t_dda *dda, t_ray *ray, t_map *map, int len_max);
 void	dda_ray_set(t_ray *ray, t_dda *dda, t_position *start);
+
+void	dda_init(t_dda *dda, t_vec2d *ray_vec, t_position *start, t_map *map);
+
+int		cell_is_wall(char cell);
+
+void	dda_set(t_dda_axis *dda, double ray_vec, double box);
 
 int		is_collide(t_map *map, t_ray *ray, t_dda *dda);
 

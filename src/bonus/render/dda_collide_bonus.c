@@ -6,15 +6,16 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/28 00:14:14 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/01 19:58:15 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
+#include "dda_utils.h"
+#include "door_bonus.h"
 #include "map.h"
 #include "ray.h"
-#include "dda_utils.h"
 
-int	check_collide_door(t_ray *ray, t_dda *dda, char cell)
+static int	check_collide_door(t_ray *ray, t_dda *dda, char cell)
 {
 	double ray_len;
 
@@ -43,20 +44,13 @@ int	cell_is_wall(char cell)
 	return (FALSE);
 }
 
-int	cell_is_door(char cell)
-{
-	if (cell == 'R' || cell == 'L' || cell == 'T')
-		return (TRUE);
-	return (FALSE);
-}
-
 int	is_collide(t_map *map, t_ray *ray, t_dda *dda)
 {
 	char	cell;
 	int		in_wall;
 
 	in_wall = dda->collide == AREA;
-	cell = map->grid[ray->hit_pos.y.grid][ray->hit_pos.x.grid];
+	cell = map_get_cell(map, &ray->hit_pos);
 	if (in_wall)
 	{
 		if (cell_is_wall(cell))

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:53:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/28 00:14:46 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/01 19:13:38 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,9 +18,9 @@ int	is_collide(t_map *map, t_ray *ray, t_dda *dda)
 {
 	int in_wall;
 
-	in_wall = dda->collide == AREA;
+	in_wall = dda->collide != WALL;
 	if (in_wall)
-		return (map_get_grid(map, &ray->hit_pos) == AREA);
-	return (map_get_grid(map, &ray->hit_pos) == WALL);
+		return (map_get_cell(map, &ray->hit_pos) != WALL);
+	return (map_get_cell(map, &ray->hit_pos) == WALL);
 }
 

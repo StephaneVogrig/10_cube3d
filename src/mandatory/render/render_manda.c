@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:16:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 05:42:01 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/01 19:13:38 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,7 +18,7 @@ void	draw_floor_ceil(t_window *win, t_map *map, t_player *player)
 {
 	int		dark;
 
-	dark = map_get_grid(map, &player->position) == WALL;
+	dark = map_get_cell(map, &player->position) == WALL;
 	floor_ceil_put_to_window(win, dark);
 }
 

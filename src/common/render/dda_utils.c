@@ -6,35 +6,25 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 19:20:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/30 16:36:12 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/02 19:13:43 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "dda_utils.h"
 
-void	dda_set(t_dda_ *dda, double ray_vec, double box)
+void	dda_set(t_dda_axis *dda_axis, double ray_axis, double box)
 {
-	dda->unit = fabs(1 / ray_vec);
-	if (ray_vec < 0)
+	dda_axis->unit = fabs(1 / ray_axis);
+	if (ray_axis < 0)
 	{
-		dda->len = box * dda->unit;
-		dda->step = -1;
+		dda_axis->len = box * dda_axis->unit;
+		dda_axis->step = -1;
 	}
 	else
 	{
-		dda->len = (1 - box) * dda->unit;
-		dda->step = 1;
+		dda_axis->len = (1 - box) * dda_axis->unit;
+		dda_axis->step = 1;
 	}
-}
-
-void	dda_init(t_dda *dda, t_vec2d *ray_vec, t_position *p, t_map *map)
-{
-	dda_set(&dda->x, ray_vec->x, p->x.box);
-	dda_set(&dda->y, ray_vec->y, p->y.box);
-	if (map_get_grid(map, p) == WALL)
-		dda->collide = AREA;
-	else
-		dda->collide = WALL;
 }
 
 int	dda_no_need(t_map *map, t_position *start, t_dda dda, int len_max)

@@ -1,34 +1,20 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   door_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/15 21:31:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/01 19:13:38 by svogrig          ###   ########.fr       */
+/*   Created: 2024/12/01 19:50:06 by svogrig           #+#    #+#             */
+/*   Updated: 2024/12/01 19:58:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef MAP_H
-# define MAP_H
+#include "door_bonus.h"
 
-# include "player.h"
-
-# define OUTSIDE -1
-# define AREA 'x'
-# define WALL '1'
-
-typedef struct s_map
+int	cell_is_door(char cell)
 {
-	char	**grid;
-	int		width;
-	int		height;
-}			t_map;
-
-int	set_map_info(t_map *map, char *line);
-int	map_player_finder(t_map *map, t_player *player);
-char map_get_cell(t_map *map, t_position *p);
-int	is_outside_map(t_map *map, t_position *p);
-
-#endif
+	if (cell == 'R' || cell == 'L' || cell == 'T')
+		return (TRUE);
+	return (FALSE);
+}

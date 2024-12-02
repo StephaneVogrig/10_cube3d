@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/11/24 17:05:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/01 19:13:38 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -75,14 +75,9 @@ inline int	is_outside_map(t_map *map, t_position *p)
 			|| p->y.grid >= map->height);
 }
 
-inline char map_get_grid(t_map *map, t_position *p)
+inline char map_get_cell(t_map *map, t_position *p)
 {
-	char	c;
-
 	if (is_outside_map(map, p))
-			return (AREA);
-	c = map->grid[p->y.grid][p->x.grid];
-	if (c != WALL)
-		c = AREA;
-	return (c);
+			return (OUTSIDE);
+	return (map->grid[p->y.grid][p->x.grid]);
 }

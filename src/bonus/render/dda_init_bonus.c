@@ -1,34 +1,23 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   dda_init_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/15 21:31:37 by svogrig           #+#    #+#             */
+/*   Created: 2024/12/01 18:21:36 by svogrig           #+#    #+#             */
 /*   Updated: 2024/12/01 19:13:38 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef MAP_H
-# define MAP_H
+# include "dda_utils.h"
 
-# include "player.h"
-
-# define OUTSIDE -1
-# define AREA 'x'
-# define WALL '1'
-
-typedef struct s_map
+void	dda_init(t_dda *dda, t_vec2d *ray_vec, t_position *p, t_map *map)
 {
-	char	**grid;
-	int		width;
-	int		height;
-}			t_map;
-
-int	set_map_info(t_map *map, char *line);
-int	map_player_finder(t_map *map, t_player *player);
-char map_get_cell(t_map *map, t_position *p);
-int	is_outside_map(t_map *map, t_position *p);
-
-#endif
+	dda_set(&dda->x, ray_vec->x, p->x.box);
+	dda_set(&dda->y, ray_vec->y, p->y.box);
+	if (map_get_cell(map, p) == WALL)
+		dda->collide = AREA;
+	else
+		dda->collide = WALL;
+}

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/23 18:47:13 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/11/28 21:27:48 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -137,11 +137,7 @@ int	on_loop(void *param)
 		move.y = data->key.d - data->key.a;
 		if (move.x != 0 || move.y != 0)
 		{
-			double speed_move = (SPEED_MOVE * delta_time) / 10000;
-			t_vec2d	move_vec;
-			move_vec.x = move.x * speed_move;
-			move_vec.y = move.y * speed_move;
-			player_move(data->map , &data->player, move_vec);
+			player_move(&data->map , &data->player, move, delta_time);
 			render_needed = TRUE;
 		}
 	}
