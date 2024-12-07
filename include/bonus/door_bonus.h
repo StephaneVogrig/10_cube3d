@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 19:51:31 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 13:57:11 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/07 21:49:54 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -30,6 +30,8 @@
 # define TIME_CLOSING	0.5
 # define TIME_OPEN		1
 
+# define DOOR_OPEN_DIST	1.5
+
 typedef enum e_stage
 {
 	DOOR_OPENING,
@@ -47,7 +49,10 @@ typedef struct s_door
 int		cell_is_door(char cell);
 float	door_get_closing_rate(char *cell, t_door *door_open_list);
 void	door_open(char *cell, t_door *door_open_list);
-int		door_open_list_update(t_door *door_open_list, t_time_us dt);
 t_door	*door_find(char *cell, t_door *door_open_list);
+
+int		door_open_list_update(t_door *door_open_list, t_time_us dt);
+t_door	*door_open_list_add(char *cell, t_door *door_open_list);
+
 
 #endif

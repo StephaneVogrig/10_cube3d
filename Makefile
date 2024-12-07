@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/05 22:16:03 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/07 22:14:31 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -48,7 +48,8 @@ SRC_DIR				:=	src
 
 SRC_COMMON_DIR		:=	common
 
-SRCS_COMMON			:= 	debug.c \
+SRCS_COMMON			:= 	dda_utils.c \
+						debug.c \
 						gridbox.c \
 						map.c \
 						pixel.c \
@@ -68,7 +69,6 @@ SRCS_COMMON			:= 	debug.c \
 						gametime.c \
 						texture.c \
 						parsing/flood_fill_common.c \
-						render/dda_utils.c \
 						render/draw_wall_utils.c
 
 SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
@@ -78,6 +78,7 @@ SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
 SRC_MAND_DIR		:=	mandatory
 
 SRCS_MANDA			:=	main_manda.c \
+						dda_manda.c \
 						event_manda.c \
 						player_move_manda.c \
 						textures_manda.c \
@@ -87,7 +88,6 @@ SRCS_MANDA			:=	main_manda.c \
 						parsing/lstmap_extraction_manda.c \
 						parsing/flood_fill_manda.c \
 						parsing/bitfield_path_valid.c \
-						render/dda_manda.c \
 						render/draw_walls_manda.c \
 						render/raycasting_manda.c \
 						render/render_manda.c
@@ -102,9 +102,12 @@ SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_DIR)/%)
 
 SRC_BONUS_DIR		:=	bonus
 
-SRCS_BONUS 			:=	event_bonus.c \
+SRCS_BONUS 			:=	main_bonus.c \
+						dda_bonus.c \
+						door_bonus.c \
+						door_open_list_bonus.c \
+						event_bonus.c \
 						id_tex_bonus.c \
-						main_bonus.c \
 						player_move_bonus.c \
 						textures_bonus.c \
 						parsing/data_bonus.c \
@@ -112,8 +115,6 @@ SRCS_BONUS 			:=	event_bonus.c \
 						parsing/lstmap_extraction_utils_bonus.c \
 						parsing/lstmap_extraction_bonus.c \
 						parsing/mlx_setup.c \
-						render/dda_bonus.c \
-						render/door_bonus.c \
 						render/draw_line_bonus.c \
 						render/draw_line_utils_bonus.c \
 						render/draw_utils_bonus.c \

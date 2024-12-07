@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 00:27:56 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 20:45:39 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/07 21:24:03 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -73,14 +73,10 @@ void	open_door_auto(t_map *map, int x, int y, t_door *door_open_list)
 void open_door_auto_near_player(t_position position, t_map *map, t_door *door_open_list)
 {
 	open_door_auto(map, position.x.grid, position.y.grid, door_open_list);
-	if (position.x.box < 0.6)
-		open_door_auto(map, position.x.grid - 1, position.y.grid, door_open_list);
-	else
-		open_door_auto(map, position.x.grid + 1, position.y.grid, door_open_list);
-	if (position.y.box < 0.6)
-		open_door_auto(map, position.x.grid, position.y.grid - 1, door_open_list);
-	else
-		open_door_auto(map, position.x.grid, position.y.grid + 1, door_open_list);
+	open_door_auto(map, position.x.grid - 1, position.y.grid, door_open_list);
+	open_door_auto(map, position.x.grid + 1, position.y.grid, door_open_list);
+	open_door_auto(map, position.x.grid, position.y.grid - 1, door_open_list);
+	open_door_auto(map, position.x.grid, position.y.grid + 1, door_open_list);
 }
 
 void	player_move(t_map *map, t_player *player, t_vec2i move, t_time_us dt, t_door *door_open_list)
@@ -88,9 +84,9 @@ void	player_move(t_map *map, t_player *player, t_vec2i move, t_time_us dt, t_doo
 	t_ray	ray;
 	double	len_move;
 
-	// open_door_auto_near_player(player->position, map, door_open_list);
 	len_move = (SPEED_MOVE * dt) / USECOND_PER_SECOND;
 	ray.vdir = player_dir_move_vec(player, move);
+	open_door_auto_near_player(player->position, map, door_open_list);
 	player_move_dda(&ray, map, &player->position, door_open_list);
 	if (ray.len <= len_move)
 		slide(map, player, &ray, len_move, door_open_list);
@@ -99,5 +95,4 @@ void	player_move(t_map *map, t_player *player, t_vec2i move, t_time_us dt, t_doo
 		gridbox_add_double(&player->x, ray.vdir.x * len_move);
 		gridbox_add_double(&player->y, ray.vdir.y * len_move);
 	}
-	open_door_auto_near_player(player->position, map, door_open_list);
 }

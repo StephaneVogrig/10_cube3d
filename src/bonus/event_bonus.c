@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 21:06:49 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/07 21:18:59 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -152,7 +152,8 @@ int on_mousedown(int button, void *param)
 
 	ray.vdir = player_get_dir_vec(&data->player);
 	dda(&ray, &data->map, &data->player.position, data->door_open_list);
-	if ((*ray.hit_cell == 'R' || *ray.hit_cell == 'L') && ray.len < 1.5)
+	if ((*ray.hit_cell == 'R' || *ray.hit_cell == 'L')
+		&& ray.len < DOOR_OPEN_DIST)
 		door_open(ray.hit_cell, data->door_open_list);
 	printf("cell_in_front_of_player %c\n", *ray.hit_cell);
 	return (SUCCESS);
