@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   gametime.h                                         :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:02:44 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/19 14:26:21 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/03 13:50:19 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef GET_TIME_H
 # define GET_TIME_H
@@ -20,9 +20,9 @@
 #  define USECOND_PER_SECOND 1000000
 # endif
 
-typedef unsigned long t_gtime;
+typedef unsigned long t_time_us;
 typedef struct timeval t_timeval;
 
-t_gtime	gametime(void);
+t_time_us	gametime(void);
 
 #endif

@@ -1,16 +1,16 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_wall.c                                        :+:      :+:    :+:   */
+/*   draw_wall_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:07:24 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 03:08:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/05 22:58:52 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "draw_wall.h"
+#include "draw_wall_utils.h"
 
 void	draw_wall_init_loop(int *y, int *y_max, double *texture_y, t_wall *wall)
 {
@@ -78,34 +78,20 @@ void	draw_wall_small_pixel(t_window *win, int x, t_wall *wall, int dark)
 	}
 }
 
-int	x_hit_in_texture(t_texture *texture, t_ray *ray)
+int	wall_height(double ray_len)
 {
-	if (ray->hit_side == 'n')
-		return ((1 - ray->hit_pos.x.box) * texture->width);
-	if (ray->hit_side == 's')
-		return (ray->hit_pos.x.box * texture->width);
-	if (ray->hit_side == 'e')
-		return ((1 - ray->hit_pos.y.box) * texture->width);
-	return (ray->hit_pos.y.box * texture->width);
-}
-
-void	draw_wall(t_window *win, int x, t_ray *ray, t_texture *texture)
-{
-	t_wall wall;
 	double	wall_h;
 
-	wall_h = WIN_H / ray->len;
-	if (wall_h < 1.0)
-		return ;
+	wall_h = WIN_H / ray_len;
 	if (wall_h > INT_MAX)
-		wall.height = INT_MAX;
+		return (INT_MAX);
+	return ((int)wall_h);
+}
+
+void	draw_wall(t_window *win, int x, t_wall *wall, int dark)
+{
+	if (wall->texture_dy < 1)
+		draw_wall_big_pixel(win, x, wall, dark);
 	else
-		wall.height = (int)wall_h;
-	wall.texture = texture;
-	wall.x_in_texture = x_hit_in_texture(wall.texture, ray);
-	wall.texture_dy = (double)wall.texture->height / wall.height;
-	if (wall.texture_dy < 1)
-		draw_wall_big_pixel(win, x, &wall, ray->dark);
-	else
-		draw_wall_small_pixel(win, x, &wall, ray->dark);
+		draw_wall_small_pixel(win, x, wall, dark);
 }

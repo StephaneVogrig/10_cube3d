@@ -1,25 +1,24 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fixedpoint.h                                       :+:      :+:    :+:   */
+/*   dda_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 14:55:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 16:48:29 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
+/*   Updated: 2024/12/07 12:53:15 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef FIXEDPOINT_H
-# define FIXEDPOINT_H
+#ifndef DDA_H
+# define DDA_H
 
-typedef struct s_fixedpoint
-{
-	int		grid;
-	float	box;
-}	t_fixedpoint;
+# include "dda_utils.h"
+# include "player.h"
+# include "ray.h"
+# include "map.h"
+# include "door_bonus.h"
 
-void	fixedpoint_add_double(t_fixedpoint	*gb, double d);
-void	fixedpoint_add_fixedpoint(t_fixedpoint *a, t_fixedpoint *b);
+void	dda(t_ray *ray, t_map *map, t_position *start, t_door *door_open_list);
 
 #endif

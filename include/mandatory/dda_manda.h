@@ -1,23 +1,23 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda_init_manda.c                                   :+:      :+:    :+:   */
+/*   dda_mandatory.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/01 18:26:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/01 19:13:38 by svogrig          ###   ########.fr       */
+/*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
+/*   Updated: 2024/12/04 23:33:33 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-# include "dda_utils.h"
+#ifndef DDA_H
+# define DDA_H
 
-void	dda_init(t_dda *dda, t_vec2d *ray_vec, t_position *p, t_map *map)
-{
-	dda_set(&dda->x, ray_vec->x, p->x.box);
-	dda_set(&dda->y, ray_vec->y, p->y.box);
-	if (map_get_cell(map, p) == WALL)
-		dda->collide = AREA;
-	else
-		dda->collide = WALL;
-}
+# include "dda_utils.h"
+# include "player.h"
+# include "ray.h"
+# include "map.h"
+
+void	dda(t_ray *ray, t_map *map, t_position *start);
+
+#endif

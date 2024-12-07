@@ -6,13 +6,12 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 00:27:56 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/01 17:49:23 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/07 13:01:02 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "player_move_bonus.h"
-#include "dda.h"
-#include "window.h"
+#include "dda_bonus.h"
 
 double	sign_double(double value)
 {
@@ -21,33 +20,20 @@ double	sign_double(double value)
 	return (1.0);
 }
 
-void	player_move_dda(t_ray *ray, t_map *map, t_position *start, int len_max)
+void	player_move_dda(t_ray *ray, t_map *map, t_position *start, t_door *door_open_list)
 {
-	dda(ray, map, start, len_max);
+	dda(ray, map, start, door_open_list);
 	if (ray->hit_side == 'w' || ray->hit_side == 'e')
 		ray->len -= fabs(DIST_BEFORE_COLLIDE / ray->vdir.x);
 	else
 		ray->len -= fabs(DIST_BEFORE_COLLIDE / ray->vdir.y);
 	ray->hit_pos.x = start->x;
 	ray->hit_pos.y = start->y;
-	fixedpoint_add_double(&ray->hit_pos.x, ray->vdir.x * ray->len);
-	fixedpoint_add_double(&ray->hit_pos.y, ray->vdir.y * ray->len);
+	gridbox_add_double(&ray->hit_pos.x, ray->vdir.x * ray->len);
+	gridbox_add_double(&ray->hit_pos.y, ray->vdir.y * ray->len);
 }
 
-t_vec2d	player_move_vec(t_player *player, t_vec2i move)
-{
-	double	cos_d;
-	double	sin_d;
-	t_vec2d	vec;
-
-	cos_d = cos(player->dir);
-	sin_d = sin(player->dir);
-	vec.x = move.x * cos_d - move.y * sin_d;
-	vec.y = move.x * sin_d + move.y * cos_d;
-	return (vec);
-}
-
-void	collision_perform(t_map *map, t_player *player, t_ray *ray, double len_move)
+void	slide(t_map *map, t_player *player, t_ray *ray, double len_move, t_door *door_open_list)
 {
 	double	len_axis_remain;
 
@@ -58,38 +44,61 @@ void	collision_perform(t_map *map, t_player *player, t_ray *ray, double len_move
 		len_axis_remain = fabs(ray->vdir.y) * len_move;
 		ray->vdir.x = 0;
 		ray->vdir.y = sign_double(ray->vdir.y);
-		player_move_dda(ray, map, &player->position, WIN_H);
+		player_move_dda(ray, map, &player->position, door_open_list);
 		if (ray->len > len_axis_remain)
 			ray->len = len_axis_remain;
-		fixedpoint_add_double(&player->y, ray->vdir.y * ray->len);
+		gridbox_add_double(&player->y, ray->vdir.y * ray->len);
 	}
 	else
 	{
 		len_axis_remain = fabs(ray->vdir.x) * len_move;
 		ray->vdir.x = sign_double(ray->vdir.x);
 		ray->vdir.y = 0;
-		player_move_dda(ray, map, &player->position, WIN_H);
+		player_move_dda(ray, map, &player->position, door_open_list);
 		if (ray->len > len_axis_remain)
 			ray->len = len_axis_remain;
-		fixedpoint_add_double(&player->x, ray->vdir.x * ray->len);
+		gridbox_add_double(&player->x, ray->vdir.x * ray->len);
 	}
 }
 
-void	player_move(t_map *map, t_player *player, t_vec2i move, t_gtime delta_time)
+void	open_door_auto(t_map *map, int x, int y, t_door *door_open_list)
+{
+	char *cell;
+
+	cell = map_get_cell_ptr(map, &(t_position){{x, 0.0}, {y, 0.0}});
+	// if (cell && *cell == 'T')
+	if (cell && cell_is_door(*cell))
+		door_open(cell, door_open_list);
+}
+
+void open_door_auto_near_player(t_position position, t_map *map, t_door *door_open_list)
+{
+	open_door_auto(map, position.x.grid, position.y.grid, door_open_list);
+	if (position.x.box < 0.6)
+		open_door_auto(map, position.x.grid - 1, position.y.grid, door_open_list);
+	else
+		open_door_auto(map, position.x.grid + 1, position.y.grid, door_open_list);
+	if (position.y.box < 0.6)
+		open_door_auto(map, position.x.grid, position.y.grid - 1, door_open_list);
+	else
+		open_door_auto(map, position.x.grid, position.y.grid + 1, door_open_list);
+}
+
+void	player_move(t_map *map, t_player *player, t_vec2i move, t_time_us dt, t_door *door_open_list)
 {
 	t_ray	ray;
 	double	len_move;
 
-	len_move = (SPEED_MOVE * delta_time) / 10000; //delta_time en us, speed_move en case par 10ms
-	ray.vdir = player_move_vec(player, move);
-	player_move_dda(&ray, map, &player->position, WIN_H);
-
+	// open_door_auto_near_player(player->position, map, door_open_list);
+	len_move = (SPEED_MOVE * dt) / USECOND_PER_SECOND;
+	ray.vdir = player_dir_move_vec(player, move);
+	player_move_dda(&ray, map, &player->position, door_open_list);
 	if (ray.len <= len_move)
-		collision_perform(map, player, &ray, len_move);
+		slide(map, player, &ray, len_move, door_open_list);
 	else
 	{
-		fixedpoint_add_double(&player->x, ray.vdir.x * len_move);
-		fixedpoint_add_double(&player->y, ray.vdir.y * len_move);
+		gridbox_add_double(&player->x, ray.vdir.x * len_move);
+		gridbox_add_double(&player->y, ray.vdir.y * len_move);
 	}
-
+	open_door_auto_near_player(player->position, map, door_open_list);
 }

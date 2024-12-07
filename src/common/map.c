@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/12/01 19:13:38 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/05 11:53:02 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -80,4 +80,11 @@ inline char map_get_cell(t_map *map, t_position *p)
 	if (is_outside_map(map, p))
 			return (OUTSIDE);
 	return (map->grid[p->y.grid][p->x.grid]);
+}
+
+inline char *map_get_cell_ptr(t_map *map, t_position *p)
+{
+	if (is_outside_map(map, p))
+			return (NULL);
+	return (&(map->grid[p->y.grid][p->x.grid]));
 }

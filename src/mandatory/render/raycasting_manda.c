@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/30 16:35:33 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/04 23:16:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,7 +32,7 @@ void	raycasting(t_map *map, t_player *player, t_ray *rays)
 	{
 		rays->vdir.x = projection.x;
 		rays->vdir.y = projection.y;
-		dda(rays, map, &player->position, WIN_H);
+		dda(rays, map, &player->position);
 		projection.x += step_proj.x;
 		projection.y += step_proj.y;
 		rays++;

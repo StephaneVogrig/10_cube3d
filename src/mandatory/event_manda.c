@@ -6,20 +6,12 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/23 18:45:55 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/07 15:43:12 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "event_manda.h"
 #include "gametime.h"
-
-int	mouse_hook(int button, void *param)
-{
-	(void)button;
-	(void)param;
-	
-	return (SUCCESS);
-}
 
 int	on_win_event(int event, void *param)
 {
@@ -95,8 +87,8 @@ int	on_keyup(int key, void *param)
 
 int	on_loop(void *param)
 {
-	static	t_gtime	oldtime;
-	t_gtime	delta_time;
+	static	t_time_us	oldtime;
+	t_time_us	delta_time;
 	t_data *data;
 	t_vec2i move;
 	int x;
@@ -137,11 +129,7 @@ int	on_loop(void *param)
 		move.y = data->key.d - data->key.a;
 		if (move.x != 0 || move.y != 0)
 		{
-			double speed_move = (SPEED_MOVE * delta_time) / 10000;
-			t_vec2d	move_vec;
-			move_vec.x = move.x * speed_move;
-			move_vec.y = move.y * speed_move;
-			player_move(data->map , &data->player, move_vec);
+			player_move(&data->player, move, delta_time);
 			render_needed = TRUE;
 		}
 	}

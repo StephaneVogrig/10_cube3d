@@ -1,41 +1,32 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fixedpoint.c                                       :+:      :+:    :+:   */
+/*   gridbox.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:12:43 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 16:48:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/04 19:40:36 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "fixedpoint.h"
+#include "gridbox.h"
 
-inline void	fixedpoint_add_double(t_fixedpoint	*gb, double d)
+inline void	gridbox_add_double(t_gridbox	*fixpoint, double value)
 {
-	double value;
+	int		int_part;
 
-	value = gb->grid + gb->box;
-	value += d;
-	gb->grid = (int)value;
-	gb->box = value - gb->grid;
-	if (gb->box < 0)
-		gb->box += 1.0;
-}
-
-inline void	fixedpoint_add_fixedpoint(t_fixedpoint *a, t_fixedpoint *b)
-{
-	a->box += b->box;
-	if (a->box >= 1.0)
+	int_part = (int)value;
+	fixpoint->grid += int_part;
+	fixpoint->box += value - int_part;
+	if (fixpoint->box >= 1.0)
 	{
-		a->box -= 1.0;
-		a->grid += 1;
+		fixpoint->grid++;
+		fixpoint->box--;
 	}
-	else if (a->box < 0.0)
+	else if (fixpoint->box < 0.0)
 	{
-		a->box += 1.0;
-		a->grid -= 1;
+		fixpoint->grid--;
+		fixpoint->box++;
 	}
-	a->grid += b->grid;
 }

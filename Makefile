@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/02 17:04:34 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/05 22:16:03 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -49,8 +49,7 @@ SRC_DIR				:=	src
 SRC_COMMON_DIR		:=	common
 
 SRCS_COMMON			:= 	debug.c \
-						draw_wall.c \
-						fixedpoint.c \
+						gridbox.c \
 						map.c \
 						pixel.c \
 						player.c \
@@ -69,7 +68,8 @@ SRCS_COMMON			:= 	debug.c \
 						gametime.c \
 						texture.c \
 						parsing/flood_fill_common.c \
-						render/dda_utils.c
+						render/dda_utils.c \
+						render/draw_wall_utils.c
 
 SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
 
@@ -88,8 +88,6 @@ SRCS_MANDA			:=	main_manda.c \
 						parsing/flood_fill_manda.c \
 						parsing/bitfield_path_valid.c \
 						render/dda_manda.c \
-						render/dda_collide_manda.c \
-						render/dda_init_manda.c \
 						render/draw_walls_manda.c \
 						render/raycasting_manda.c \
 						render/render_manda.c
@@ -115,8 +113,6 @@ SRCS_BONUS 			:=	event_bonus.c \
 						parsing/lstmap_extraction_bonus.c \
 						parsing/mlx_setup.c \
 						render/dda_bonus.c \
-						render/dda_collide_bonus.c \
-						render/dda_init_bonus.c \
 						render/door_bonus.c \
 						render/draw_line_bonus.c \
 						render/draw_line_utils_bonus.c \

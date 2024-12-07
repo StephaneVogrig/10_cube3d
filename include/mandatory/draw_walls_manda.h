@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:29 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 03:27:16 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/05 22:14:31 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,7 +15,7 @@
 
 # include "window.h"
 # include "ray.h"
-# include "draw_wall.h"
+# include "draw_wall_utils.h"
 # include "textures_manda.h"
 
 void	draw_walls(t_window *win, t_ray *rays, t_textures *textures);

@@ -1,49 +1,28 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/22 06:49:43 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/03 15:30:25 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "player.h"
 
-void	player_adjust_position(float *new_box, int *new_grid)
-{
-	if (*new_box >= 1.0)
-	{
-		*new_box -= 1.0;
-		*new_grid += 1;
-	}
-	else if (*new_box < 0.0)
-	{
-		*new_box += 1.0;
-		*new_grid -= 1;
-	}
-}
-
-t_position	new_position(t_position start, double dir, t_vec2d move)
+t_vec2d	player_dir_move_vec(t_player *player, t_vec2i move_input)
 {
 	double	cos_d;
 	double	sin_d;
-	t_vec2d	v;
-	t_position new;
-	
-	cos_d = cos(dir);
-	sin_d = sin(dir);
-	v.x = move.x * cos_d - move.y * sin_d;
-	v.y = move.x * sin_d + move.y * cos_d;
-	new.x.box = start.x.box + v.x;
-	new.y.box = start.y.box + v.y;
-	new.x.grid = start.x.grid;
-	new.y.grid = start.y.grid;
-	player_adjust_position(&new.x.box, &new.x.grid);
-	player_adjust_position(&new.y.box, &new.y.grid);
-	return (new);
+	t_vec2d	compose_move;
+
+	cos_d = cos(player->dir);
+	sin_d = sin(player->dir);
+	compose_move.x = move_input.x * cos_d - move_input.y * sin_d;
+	compose_move.y = move_input.x * sin_d + move_input.y * cos_d;
+	return (compose_move);
 }
 
 void	player_rotation(t_player *player, double rotation)

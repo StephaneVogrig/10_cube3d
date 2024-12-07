@@ -6,20 +6,13 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/28 21:27:48 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/07 15:43:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "event_bonus.h"
 #include "gametime.h"
-
-int	mouse_hook(int button, void *param)
-{
-	(void)button;
-	(void)param;
-	
-	return (SUCCESS);
-}
+#include "door_bonus.h"
 
 int	on_win_event(int event, void *param)
 {
@@ -95,8 +88,8 @@ int	on_keyup(int key, void *param)
 
 int	on_loop(void *param)
 {
-	static	t_gtime	oldtime;
-	t_gtime	delta_time;
+	static	t_time_us	oldtime;
+	t_time_us	delta_time;
 	t_data *data;
 	t_vec2i move;
 	int x;
@@ -106,10 +99,13 @@ int	on_loop(void *param)
 	delta_time = gametime() - oldtime;
 	oldtime += delta_time;
 	chrono(START);
+
 	data = (t_data *)param;
 	if (data->key.esc == DOWN)
 		mlx_loop_end(data->mlx);
-	render_needed = FALSE;
+
+	render_needed = door_open_list_update(data->door_open_list, delta_time);
+
 	if (data->win.focused && data->mouse_mode)
 	{
 		mlx_mouse_get_pos(data->mlx, &x, &y);
@@ -137,7 +133,7 @@ int	on_loop(void *param)
 		move.y = data->key.d - data->key.a;
 		if (move.x != 0 || move.y != 0)
 		{
-			player_move(&data->map , &data->player, move, delta_time);
+			player_move(&data->map , &data->player, move, delta_time, data->door_open_list);
 			render_needed = TRUE;
 		}
 	}

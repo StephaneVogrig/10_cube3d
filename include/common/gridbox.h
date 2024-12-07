@@ -1,23 +1,24 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda.h                                              :+:      :+:    :+:   */
+/*   gridbox.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/30 16:32:27 by svogrig          ###   ########.fr       */
+/*   Created: 2024/11/24 14:55:27 by svogrig           #+#    #+#             */
+/*   Updated: 2024/12/04 19:40:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef DDA_H
-# define DDA_H
+#ifndef GRIDBOX_H
+# define GRIDBOX_H
 
-# include "dda_utils.h"
-# include "player.h"
-# include "ray.h"
-# include "map.h"
+typedef struct s_gridbox
+{
+	int		grid;
+	float	box;
+}	t_gridbox;
 
-void	dda(t_ray *ray, t_map *map, t_position *start, int len_max);
+void	gridbox_add_double(t_gridbox	*gb, double d);
 
 #endif
