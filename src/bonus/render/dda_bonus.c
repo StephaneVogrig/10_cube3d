@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:03:35 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 12:53:15 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/07 19:02:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -189,11 +189,13 @@ static char	*dda_loop(t_dda *dda, t_map *map, t_position *start, t_door *door_op
 void	dda(t_ray *ray, t_map *map, t_position *start, t_door *door_open_list)
 {
 	t_dda	dda;
+	char	*cell;
 
-	if (cell_is_door(map_get_cell(map, start))
+	cell = map_get_cell_ptr(map, start);
+	if (cell_is_door(*cell)
 		&& (is_collide_door(ray, map, start, door_open_list)))
 	{
-		ray->hit_cell = map_get_cell_ptr(map, start);
+		ray->hit_cell = cell;
 		ray->dark = 0;
 		return ;
 	}

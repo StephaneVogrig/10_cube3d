@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 00:27:56 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 13:01:02 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/07 20:45:39 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -66,8 +66,7 @@ void	open_door_auto(t_map *map, int x, int y, t_door *door_open_list)
 	char *cell;
 
 	cell = map_get_cell_ptr(map, &(t_position){{x, 0.0}, {y, 0.0}});
-	// if (cell && *cell == 'T')
-	if (cell && cell_is_door(*cell))
+	if (cell && *cell == 'T')
 		door_open(cell, door_open_list);
 }
 

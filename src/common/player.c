@@ -6,22 +6,34 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/03 15:30:25 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/07 20:43:19 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "player.h"
 
+t_vec2d	player_get_dir_vec(t_player *player)
+{
+	t_vec2d	vec;
+
+	vec.x = cos(player->dir);
+	vec.y = sin(player->dir);
+	return (vec);
+}
+
+/*
+	Compute the director vector of the player movement.
+	move_input.x : 1 = forward, -1 = backward, 0 = no move forward/backward
+	move_input.y : 1 = right, -1 = left, 0 = no move right/left
+*/
 t_vec2d	player_dir_move_vec(t_player *player, t_vec2i move_input)
 {
-	double	cos_d;
-	double	sin_d;
+	t_vec2d	dir_vec;
 	t_vec2d	compose_move;
 
-	cos_d = cos(player->dir);
-	sin_d = sin(player->dir);
-	compose_move.x = move_input.x * cos_d - move_input.y * sin_d;
-	compose_move.y = move_input.x * sin_d + move_input.y * cos_d;
+	dir_vec = player_get_dir_vec(player);
+	compose_move.x = dir_vec.x * move_input.x - dir_vec.y * move_input.y;
+	compose_move.y = dir_vec.y * move_input.x +  dir_vec.x * move_input.y;
 	return (compose_move);
 }
 

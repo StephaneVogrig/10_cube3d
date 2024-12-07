@@ -6,14 +6,14 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 19:20:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/04 23:27:23 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/07 20:47:13 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "dda_utils.h"
 #include "window.h"
 
-void	dda_set(t_dda_axis *dda_axis, double ray_axis, t_gridbox start_axis)
+void	dda_init_axis(t_dda_axis *dda_axis, double ray_axis, t_gridbox start_axis)
 {
 	dda_axis->unit = fabs(1 / ray_axis);
 	if (ray_axis < 0)
@@ -31,8 +31,8 @@ void	dda_set(t_dda_axis *dda_axis, double ray_axis, t_gridbox start_axis)
 
 void	dda_init(t_dda *dda, t_vec2d *ray_vec, t_position *start, t_map *map)
 {
-	dda_set(&dda->x, ray_vec->x, start->x);
-	dda_set(&dda->y, ray_vec->y, start->y);
+	dda_init_axis(&dda->x, ray_vec->x, start->x);
+	dda_init_axis(&dda->y, ray_vec->y, start->y);
 	if (map_get_cell(map, start) == WALL)
 		dda->collide = AREA;
 	else
