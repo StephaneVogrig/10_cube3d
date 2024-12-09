@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/22 17:47:35 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/09 17:05:38 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	minimap_setup(void *mlx, t_map *map, t_data *data)
 	minimap->mlx = mlx;
 	minimap_event_setup(minimap, data);
     mlx_on_event(mlx, minimap->win, MLX_WINDOW_EVENT, window_hook, mlx);
-	return (chk_box(SUCCESS, EQ, SUCCESS, "Minimap setup"));
+	return (SUCCESS);
 }
 
 void	minimap_destroy(void)

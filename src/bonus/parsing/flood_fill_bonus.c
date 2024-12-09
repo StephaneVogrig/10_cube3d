@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/26 15:02:10 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:36:57 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_map *copy_map(t_map *map)
 	if (map_copy == NULL)
 		return (NULL);
 	map_copy = ft_memcpy(map_copy, map, sizeof(t_map));
-	map_copy->grid = malloc(sizeof(char *) * map->height);
+	map_copy->grid = ft_calloc(sizeof(char *), map->height + 1);
 	if (map_copy->grid == NULL)
 	{
 		free(map_copy);
@@ -40,7 +40,6 @@ static t_map *copy_map(t_map *map)
 		}
 		i++;
 	}
-	map_copy->grid[i] = NULL;
 	return (map_copy);
 }
 
@@ -64,12 +63,8 @@ int	map_checker(t_map *map, t_player *player)
 	map_copy = copy_map(map);
 	if(map_copy == NULL)
 		return (FAIL);
-	// map_print(map_copy); //debug
-	// map_print(map); //debug
 	ff_ok = chk_flood_fill(map_copy, player->x.grid, player->y.grid);
 	map->grid[player->y.grid][player->x.grid] = '0';
-	// map_print(map_copy); //debug
-	// map_print(map); //debug
 	map_copy->grid = ft_tab_f(map_copy->grid);
 	if (ff_ok == FALSE)
 		return (ft_return(ERROR, 275, "Error on Map"));

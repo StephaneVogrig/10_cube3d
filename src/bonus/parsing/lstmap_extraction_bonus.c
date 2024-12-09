@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/24 05:16:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/09 17:04:49 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "lstmap_extraction_bonus.h"
 #include "file_load.h"
@@ -46,8 +46,6 @@ int	check_all_validity_line(t_map *map, t_lstmap **lst_map)
 		if (exit_code != SUCCESS)
 			break ;
 		exit_code = !is_map_valid_bonus(tmp->line);
-		printf("line: %s | ", tmp->line);
-		printf("exit_code: %d\n", exit_code);
 		if (exit_code != SUCCESS)
 			break ;
 		exit_code = set_map_info(map, tmp->line);

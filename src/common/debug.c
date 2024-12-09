@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:13:43 by aska              #+#    #+#             */
-/*   Updated: 2024/11/20 18:25:12 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:46:43 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ void    print_tab(char **tab)
         ft_printf("%s\n", tab[i]);
         i++;
     }
+}
+
+void	map_print_ptr(t_map *map)
+{
+	int i;
+
+	printf("tab_ptr = %p\n", map->grid);
+	printf("-------------------------------------------------------------\n");
+	i = 0;
+    while (map->grid[i] != NULL)
+    {
+        printf("ptr = %p\n", map->grid[i]);
+        i++;
+    }
+	printf("-------------------------------------------------------------\n");
 }
 
 void	map_print(t_map *map)

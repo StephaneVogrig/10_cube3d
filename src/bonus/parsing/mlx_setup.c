@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 06:18:51 by aska              #+#    #+#             */
-/*   Updated: 2024/11/22 14:25:19 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/09 16:37:45 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ int	mlx_setup(t_window *win, t_tex_path *tex_path, t_textures *textures)
 		return (ft_return(ERROR, 258, "Error on mlx_init"));
 	while (i++ < 13)
 	{
-		printf("path[%d]: ", i);
 		if (tex_path->path[i] == NULL)
 			continue ;
-		printf("%s\n", tex_path->path[i]);
 		exit_code = texture_load_to_buffer(mlx, &textures->tex[i],
 				tex_path->path[i]);
 		if (exit_code != SUCCESS)

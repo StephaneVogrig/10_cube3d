@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   event_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 21:18:59 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/09 16:44:26 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "event_bonus.h"
 #include "gametime.h"
@@ -155,7 +155,6 @@ int on_mousedown(int button, void *param)
 	if ((*ray.hit_cell == 'R' || *ray.hit_cell == 'L')
 		&& ray.len < DOOR_OPEN_DIST)
 		door_open(ray.hit_cell, data->door_open_list);
-	printf("cell_in_front_of_player %c\n", *ray.hit_cell);
 	return (SUCCESS);
 }
 
