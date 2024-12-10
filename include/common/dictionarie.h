@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 23:08:55 by aska              #+#    #+#             */
-/*   Updated: 2024/11/27 03:20:20 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/03 15:30:12 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 typedef struct s_dictionarie
 {
 	char					*key;
-	char					*path;
+	char					*value;
 	t_texture				*texture;
 	struct s_dictionarie	*next;
 }							t_dictionarie;

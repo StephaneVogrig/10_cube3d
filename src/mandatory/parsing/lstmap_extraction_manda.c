@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/27 02:58:00 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/03 16:08:27 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 	return (SUCCESS);
 }
 
-int	lstmap_to_path_and_color(t_assets *assets, t_lstmap **current,
+int	lstmap_to_path_and_color(t_dictionarie *tex, t_lstmap **current,
 		char *root_path)
 {
 	t_fs			fs;
@@ -85,7 +85,7 @@ int	lstmap_to_path_and_color(t_assets *assets, t_lstmap **current,
 	return (exit_code);
 }
 
-int	lstmap_extract_info(t_assets *assets, t_map *map, t_lstmap **head, char *map_path)
+int	lstmap_extract_info(t_dictionarie *tex, t_map *map, t_lstmap **head, char *map_path)
 {
 	
 	t_lstmap	*current;

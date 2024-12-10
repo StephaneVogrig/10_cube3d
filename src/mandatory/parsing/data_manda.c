@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_manda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/26 18:04:41 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:55:07 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ int	data_setup(t_data *data, char *map_path)
 {
 	int			exit_code;
 	t_lstmap	*lst_map;
+	t_dictionarie	*textures;
 
 	lst_map = NULL;
 	exit_code = file_load(map_path, &lst_map);
 	if (exit_code == SUCCESS)
-		exit_code = lstmap_extract_info(&data->assets, &data->map, &lst_map,
+		exit_code = lstmap_extract_info(&textures, &data->map, &lst_map,
 				map_path);
 	if (exit_code == SUCCESS)
 		exit_code = map_checker(&data->map, &data->player);

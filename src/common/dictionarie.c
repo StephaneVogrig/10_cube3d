@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 23:35:10 by aska              #+#    #+#             */
-/*   Updated: 2024/11/27 03:23:05 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/03 15:27:52 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,31 +97,3 @@ void dict_destroy(t_dictionarie **dict)
 	}
 	*dict = NULL;
 }
-
-static int ft_lstsize(t_list *lst)
-{
-	int i;
-
-	i = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
-}
-
-void set_array_from_list(t_dictionarie *dict, char **array_key, t_texture *array_texture)
-{
-	int i;
-	t_dictionarie *current;
-
-	i = 0;
-	current = dict;
-	while (current)
-	{
-		array_key[i] = current->key;
-		array_texture[i] = 
-		current = current->next;
-		i++;
-	}

@@ -18,7 +18,6 @@
 
 typedef struct s_assets
 {
-	t_dictionarie	*entry;
 	char **array_key;
 	t_texture *array_value;
 }				t_assets;
