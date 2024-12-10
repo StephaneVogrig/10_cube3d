@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_manda.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/26 15:16:25 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:30:12 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lstmap_extraction_manda.h"
 
-int	check_all_validity_line(t_map *map, t_lstmap **lst_map)
+int	check_line_remain(t_map *map, t_lstmap **lst_map)
 {
 	t_lstmap	*tmp;
 	int 		exit_code;
@@ -102,7 +102,7 @@ int	lstmap_extract_info(t_textures *textures, t_map *map,
 	root_path = ft_char_f(root_path);
 	if (exit_code != SUCCESS)
 		return (exit_code);
-	exit_code = check_all_validity_line(map, &lst_map);
+	exit_code = check_line_remain(map, &lst_map);
 	if (exit_code == SUCCESS)
 		exit_code = lstmap_to_grid(map, &lst_map);
 	delete_all_lstmap(&lst_map);

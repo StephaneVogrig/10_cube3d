@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/09 17:04:49 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:34:15 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	is_map_valid_bonus(char *line)
 	return (TRUE);
 }
 
-int	check_all_validity_line(t_map *map, t_lstmap **lst_map)
+int	check_line_remain(t_map *map, t_lstmap **lst_map)
 {
 	t_lstmap	*tmp;
 	int			exit_code;
@@ -78,7 +78,7 @@ int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 	return (SUCCESS);
 }
 
-int	lstmap_to_path_and_color(t_tex_path *tex_path, t_lstmap **lst_map,
+static int	lstmap_to_asset(t_tex_path *tex_path, t_lstmap **lst_map,
 		char *root_path)
 {
 	t_key_value	kv;
@@ -110,11 +110,11 @@ int	lstmap_extract_info(t_map *map, t_tex_path *tex_path, char *map_path)
 	if (exit_code != SUCCESS)
 		return (exit_code);
 	root_path = get_root_path(map_path);
-	exit_code = lstmap_to_path_and_color(tex_path, &lst_map, root_path);
+	exit_code = lstmap_to_asset(tex_path, &lst_map, root_path);
 	root_path = ft_char_f(root_path);
 	if (exit_code != SUCCESS)
 		return (exit_code);
-	exit_code = check_all_validity_line(map, &lst_map);
+	exit_code = check_line_remain(map, &lst_map);
 	if (exit_code == SUCCESS)
 		exit_code = lstmap_to_grid(map, &lst_map);
 	delete_all_lstmap(&lst_map);

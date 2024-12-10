@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures_bonus.h                                   :+:      :+:    :+:   */
+/*   asset_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEXTURES_BONUS_H
-# define TEXTURES_BONUS_H
+#ifndef ASSET_BONUS_H
+# define ASSET_BONUS_H
 
 # include "texture.h"
 # include "color.h"

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/09 22:28:05 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/10 15:30:23 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,7 +108,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						event_bonus.c \
 						id_tex_bonus.c \
 						player_move_bonus.c \
-						textures_bonus.c \
+						asset_bonus.c \
 						parsing/data_bonus.c \
 						parsing/flood_fill_bonus.c \
 						parsing/lstmap_extraction_utils_bonus.c \

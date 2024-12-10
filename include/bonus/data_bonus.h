@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 12:53:15 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/10 15:27:14 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef DATA_BONUS_H
 # define DATA_BONUS_H
@@ -21,7 +21,7 @@
 # include "mlx_setup.h"
 # include "flood_fill.h"
 # include "lstmap_extraction_bonus.h"
-# include "textures_bonus.h"
+# include "asset_bonus.h"
 # include "door_bonus.h"
 
 typedef unsigned int	t_ui32;
