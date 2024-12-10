@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dda_bonus.c                                        :+:      :+:    :+:   */
@@ -6,30 +6,12 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:03:35 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 19:02:11 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/10 10:52:43 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "dda_bonus.h"
 #include "door_bonus.h"
-
-static int is_hit_door(float pos_in_side, char *cell, t_door *door_open_list)
-{
-	float	closing_rate;
-
-	if (pos_in_side < 0.0 || pos_in_side > 1.0) //todo: check why these situations come
-		return (FALSE);
-	closing_rate = door_get_closing_rate(cell, door_open_list);
-	if (*cell == 'L' && pos_in_side > closing_rate)
-		return (FALSE);
-	if (*cell == 'R' && pos_in_side < 1 - closing_rate)
-		return (FALSE);
-	if (*cell == 'T'
-		&& pos_in_side > closing_rate / 2
-		&& pos_in_side < 1 - (closing_rate / 2))
-		return (FALSE);
-	return (TRUE);
-}
 
 static float	hit_position_on_door(t_gridbox start_axis, t_dda_axis *dda_axis, double len)
 {
@@ -60,7 +42,7 @@ static char	*check_collide_door(t_dda *dda, char *cell, t_position *start, t_doo
 	else
 	{
 		ray_len += dda->y.unit / 2;
-		if (ray_len > dda->x.len)
+		if (ray_hit_wall_before_door(ray_len, dda->x.len))
 			return (NULL);
 		hit_pos_on_door = hit_position_on_door(start->x, &dda->x, ray_len);
 		if (!is_hit_door(hit_pos_on_door, cell, door_open_list))

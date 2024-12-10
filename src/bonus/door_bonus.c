@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   door_bonus.c                                       :+:      :+:    :+:   */
@@ -6,11 +6,29 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 19:50:06 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 21:58:58 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/10 10:50:43 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "door_bonus.h"
+
+int is_hit_door(float pos_in_side, char *cell, t_door *door_open_list)
+{
+	float	closing_rate;
+
+	if (pos_in_side < 0.0 || pos_in_side > 1.0) //todo: check why these situations come
+		return (FALSE);
+	closing_rate = door_get_closing_rate(cell, door_open_list);
+	if (*cell == 'L' && pos_in_side > closing_rate)
+		return (FALSE);
+	if (*cell == 'R' && pos_in_side < 1 - closing_rate)
+		return (FALSE);
+	if (*cell == 'T'
+		&& pos_in_side > closing_rate / 2
+		&& pos_in_side < 1 - (closing_rate / 2))
+		return (FALSE);
+	return (TRUE);
+}
 
 int	cell_is_door(char cell)
 {
