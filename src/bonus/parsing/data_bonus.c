@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/14 19:15:26 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/16 03:34:21 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "data_bonus.h"
 
@@ -20,11 +20,15 @@ void	data_init(t_data *data)
 
 int	data_setup(t_data *data, char *map_path)
 {
-	t_tex_path	tex_path;
-	int			exit_code;
+	t_tex_path		tex_path;
+	t_asset_lst		*asset_lst;
+	t_sprite_lst	*sprite_lst;
+	int				exit_code;
 
+	asset_lst = NULL;
+	sprite_lst = NULL;
 	ft_bzero(&tex_path, sizeof(tex_path));
-	exit_code = lstmap_extract_info(&data->map, &tex_path, map_path);
+	exit_code = lstmap_extract_info(&data->map, &tex_path, map_path, asset_lst, sprite_lst);
 	if (exit_code == SUCCESS)
 		exit_code = map_checker(&data->map, &data->player);
 	if (exit_code == SUCCESS)

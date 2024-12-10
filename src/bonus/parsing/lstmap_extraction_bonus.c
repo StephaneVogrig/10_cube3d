@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/10 14:34:15 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/10 17:05:17 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,14 @@ static int	lstmap_to_asset(t_tex_path *tex_path, t_lstmap **lst_map,
 	return (SUCCESS);
 }
 
-int	lstmap_extract_info(t_map *map, t_tex_path *tex_path, char *map_path)
+int	lstmap_extract_info(t_map *map, t_tex_path *tex_path, char *map_path, t_asset_lst *asset_lst, t_sprite_lst *sprite_lst)
 {
 	t_lstmap	*lst_map;
 	char 		*root_path;
 	int 		exit_code;
 
+	(void)asset_lst;
+	(void)sprite_lst;
 	lst_map = NULL;
 	exit_code = file_load(map_path, &lst_map);
 	if (exit_code != SUCCESS)

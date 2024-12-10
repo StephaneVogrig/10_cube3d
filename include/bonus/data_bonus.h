@@ -1,22 +1,29 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/14 19:14:57 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/16 03:33:58 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef DATA_BONUS_H
 # define DATA_BONUS_H
 
+# include "asset_bonus.h"
+# include "asset_lst_bonus.h"
+# include "door_bonus.h"
+# include "flood_fill.h"
 # include "libft.h"
 # include "lst_map.h"
+# include "lstmap_extraction_bonus.h"
 # include "map.h"
+# include "mlx_setup_bonus.h"
 # include "player.h"
+# include "sprite_lst_bonus.h"
 # include "window.h"
 # include "mlx_setup_bonus.h"
 # include "flood_fill.h"
@@ -59,8 +66,8 @@ typedef struct s_data
 	t_sprite	sprite;
 }				t_data;
 
-void	data_init(t_data *data);
-int		data_setup(t_data *data, char *map_path);
-void	data_clean(t_data *data);
+void					data_init(t_data *data);
+int						data_setup(t_data *data, char *map_path);
+void					data_clean(t_data *data);
 
 #endif
