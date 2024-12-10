@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_walls_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 13:10:37 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/10 15:59:05 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "draw_walls_bonus.h"
 #include "id_tex_bonus.h"
@@ -51,7 +51,7 @@ int	x_hit_in_texture(t_texture *texture, t_ray *ray, t_door *door_open_list)
 	return (ray->hit_pos.y.box * (texture->width - 1));
 }
 
-void	draw_walls(t_window *win, t_ray *rays, t_textures *textures, t_door *door_open_list)
+void	draw_walls(t_window *win, t_ray *rays, t_asset *textures, t_door *door_open_list)
 {
 	t_wall	wall;
 	int		x;

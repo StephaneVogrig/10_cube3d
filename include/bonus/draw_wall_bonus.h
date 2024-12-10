@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:29 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/10 15:27:14 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/10 15:59:05 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ typedef	struct s_draw_texture
 	double		dy;
 }	t_draw_texture;
 
-void	draw_walls(t_window *win, t_ray *rays, t_textures *textures);
+void	draw_walls(t_window *win, t_ray *rays, t_asset *textures);
 
 #endif

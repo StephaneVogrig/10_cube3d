@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asset_bonus.c                                      :+:      :+:    :+:   */
+/*   sprite.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 18:31:39 by aska              #+#    #+#             */
-/*   Updated: 2024/12/10 15:59:05 by aska             ###   ########.fr       */
+/*   Created: 2024/12/10 16:02:35 by aska              #+#    #+#             */
+/*   Updated: 2024/12/10 16:29:44 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asset_bonus.h"
+#ifndef SPRITE_H
+# define SPRITE_H
 
-void textures_buffer_clean(t_asset *t)
+# include "texture.h"
+# include "position.h"
+
+typedef struct s_sprite
 {
-	int	i;
+    t_texture	*image;
+    t_position   position;
+}				t_sprite;
 
-	i = 0;
-	while(t->tex[i].buffer)
-	{
-		free(t->tex[i].buffer);
-		t->tex[i].buffer = NULL;
-	}
-}
+#endif

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 06:18:51 by aska              #+#    #+#             */
-/*   Updated: 2024/12/10 15:53:12 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/10 15:59:05 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	tex_path_clean(t_tex_path *tex_path)
 	}
 }
 
-int	mlx_setup(t_window *win, t_tex_path *tex_path, t_textures *textures)
+int	mlx_setup(t_window *win, t_tex_path *tex_path, t_asset *textures)
 {
 	int exit_code;
 	void *mlx;

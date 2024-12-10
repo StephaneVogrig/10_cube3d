@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/10 15:52:09 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/10 15:59:05 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_data
 	void		*mlx;
 	t_window	win;
 	t_map		map;
-	t_textures	textures;
+	t_asset	textures;
 	t_key		key;
 	t_player	player;
 	int			mouse_mode;

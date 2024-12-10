@@ -16,11 +16,11 @@
 # include "texture.h"
 # include "color.h"
 
-typedef struct s_textures
+typedef struct s_asset
 {
 	t_texture	tex[14];
-}				t_textures;
+}				t_asset;
 
-void	textures_buffer_clean(t_textures *t);
+void	textures_buffer_clean(t_asset *t);
 
 #endif
