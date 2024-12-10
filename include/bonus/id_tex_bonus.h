@@ -15,6 +15,6 @@
 
 #include "libft.h"
 
-int	get_index_by_key(char key);
+int	get_index_by_key(char *key);
 
 #endif

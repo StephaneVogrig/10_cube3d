@@ -21,6 +21,7 @@ typedef struct s_asset
 	t_texture	tex[14];
 }				t_asset;
 
+t_texture	*asset_get_texture(t_asset *t, char *cell);
 void	textures_buffer_clean(t_asset *t);
 
 #endif

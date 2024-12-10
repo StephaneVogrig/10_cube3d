@@ -6,12 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/10 15:59:05 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/10 19:03:06 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw_walls_bonus.h"
-#include "id_tex_bonus.h"
 #include "map.h"
 
 int	x_hit_on_texture_door(t_texture *texture, t_ray *ray, t_door *door_open_list)
@@ -62,7 +61,7 @@ void	draw_walls(t_window *win, t_ray *rays, t_asset *textures, t_door *door_open
 		wall.height = wall_height(rays->len);
 		if (wall.height > 0)
 		{
-			wall.texture = &textures->tex[get_index_by_key(*(rays->hit_cell))];
+			wall.texture = asset_get_texture(textures, rays->hit_cell);
 			wall.x_in_texture = x_hit_in_texture(wall.texture, rays, door_open_list);
 			wall.texture_dy = (double)wall.texture->height / wall.height;
 			draw_wall(win, x, &wall, rays->dark);

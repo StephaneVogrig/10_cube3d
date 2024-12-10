@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/11/22 18:06:31 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/10 18:43:37 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
 {
 	int	key;
 
-	key = get_index_by_key(kv->key[0]);
+	key = get_index_by_key(kv->key);
 	if (key != FAIL)
 	{
 		tex_path->path[key] = ft_strdup(kv->value);
@@ -71,7 +71,7 @@ int	set_key_value(t_key_value *kv, char *line)
 	int	exit_code;
 
 	// printf("line = %s\n", line);
-	exit_code = !ft_isthis(line[0], "123456789FCTLRH");
+	exit_code = !ft_isthis(line[0], "WFCTLRH");
 	if (exit_code != SUCCESS)
 		return (ft_return(ERROR, 263, "Invalid Key"));
 	exit_code = setup_key_value_separate_by_space(&(kv->key), &(kv->value),
