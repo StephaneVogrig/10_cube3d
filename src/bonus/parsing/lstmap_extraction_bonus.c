@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/10 18:17:31 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/10 18:34:52 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,7 @@ static int	lstmap_to_asset(t_tex_path *tex_path, t_lstmap **lst_map,
 		else
 			break ;
 		if (ft_strcmp(kv.key, "SP") == 0)
-		{
-			(void)sprite_lst;
-			// extract_coordinate_sprite(kv->value, sprite_lst);
-		}
+			extract_coordinate_sprite(kv.value, sprite_lst);
 		if (exit_code == SUCCESS)
 			delete_node_lstmap(lst_map, *lst_map);
 	}
