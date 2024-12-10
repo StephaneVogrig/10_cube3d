@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:58:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/25 19:27:12 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/10 18:01:20 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "parsing_utils.h"
 # include "id_tex_bonus.h"
 # include "color.h"
+# include "asset_lst_bonus.h"
+# include "sprite_lst_bonus.h"
 
 typedef struct s_key_value
 {
@@ -32,7 +34,7 @@ typedef struct s_tex_path
 int			set_key_value(t_key_value *kv, char *line);
 int			attrib_rgb(t_rgb *rgb, char *value);
 int			check_line(char *line);
-int			set_path_and_color(t_tex_path *tex_path, t_key_value *kv,
-				char *root_path);
+int			set_asset_lst(t_tex_path *tex_path, t_key_value *kv,
+				char *root_path, t_asset_lst *asset_lst);
 
 #endif

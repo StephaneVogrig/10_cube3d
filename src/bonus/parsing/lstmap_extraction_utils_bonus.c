@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/12/10 18:43:37 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/10 19:31:46 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,13 @@ int	attrib_rgb(t_rgb *rgb, char *value)
 	return (ok);
 }
 
-int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
+int	add_to_asset_lst(t_tex_path *tex_path, t_key_value *kv, t_asset_lst *asset_lst)
 {
 	int	key;
+
+	(void)asset_lst;
+
+	//traitements asset
 
 	key = get_index_by_key(kv->key);
 	if (key != FAIL)
@@ -50,7 +54,7 @@ int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
 	return (SUCCESS);
 }
 
-int	set_path_and_color(t_tex_path *tex_path, t_key_value *kv, char *root_path)
+int	set_asset_lst(t_tex_path *tex_path, t_key_value *kv, char *root_path, t_asset_lst *asset_lst)
 {
 	int	exit_code;
 	int	fd;
@@ -59,9 +63,12 @@ int	set_path_and_color(t_tex_path *tex_path, t_key_value *kv, char *root_path)
 		kv->value = ft_strjoin(root_path, kv->value);
 	fd = ft_open(kv->value, O_RDONLY);
 	if (fd == FAIL)
+	{
+		kv->value = ft_char_f(kv->value);
 		return (ft_return(ERROR, 268, "Texture File Invalid"));
+	}
 	ft_close(fd);
-	exit_code = set_path_by_key(tex_path, kv);
+	exit_code = add_to_asset_lst(tex_path, kv, asset_lst);
 	kv->value = ft_char_f(kv->value);
 	return (exit_code);
 }

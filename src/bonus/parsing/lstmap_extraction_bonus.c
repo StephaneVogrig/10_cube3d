@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/10 17:05:17 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/10 18:17:31 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,15 @@ int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 	return (SUCCESS);
 }
 
+int extract_coordinate_sprite(char *value, t_sprite_lst *sprite_lst)
+{
+	(void)value;
+	(void)sprite_lst;
+	return (SUCCESS);
+}
+
 static int	lstmap_to_asset(t_tex_path *tex_path, t_lstmap **lst_map,
-		char *root_path)
+		char *root_path, t_asset_lst *asset_lst, t_sprite_lst *sprite_lst)
 {
 	t_key_value	kv;
 	int			exit_code;
@@ -90,9 +97,14 @@ static int	lstmap_to_asset(t_tex_path *tex_path, t_lstmap **lst_map,
 			delete_node_lstmap(lst_map, *lst_map);
 		exit_code = set_key_value(&kv, (*lst_map)->line);
 		if (exit_code == SUCCESS)
-			exit_code = set_path_and_color(tex_path, &kv, root_path);
+			exit_code = set_asset_lst(tex_path, &kv, root_path, asset_lst);
 		else
 			break ;
+		if (ft_strcmp(kv.key, "SP") == 0)
+		{
+			(void)sprite_lst;
+			// extract_coordinate_sprite(kv->value, sprite_lst);
+		}
 		if (exit_code == SUCCESS)
 			delete_node_lstmap(lst_map, *lst_map);
 	}
@@ -105,14 +117,12 @@ int	lstmap_extract_info(t_map *map, t_tex_path *tex_path, char *map_path, t_asse
 	char 		*root_path;
 	int 		exit_code;
 
-	(void)asset_lst;
-	(void)sprite_lst;
 	lst_map = NULL;
 	exit_code = file_load(map_path, &lst_map);
 	if (exit_code != SUCCESS)
 		return (exit_code);
 	root_path = get_root_path(map_path);
-	exit_code = lstmap_to_asset(tex_path, &lst_map, root_path);
+	exit_code = lstmap_to_asset(tex_path, &lst_map, root_path, asset_lst, sprite_lst);
 	root_path = ft_char_f(root_path);
 	if (exit_code != SUCCESS)
 		return (exit_code);

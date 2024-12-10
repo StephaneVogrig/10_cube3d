@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/16 03:34:21 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/16 03:34:50 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@ void	data_init(t_data *data)
 {
 	ft_bzero(data, sizeof(*data));
 	data->key.down = 0;
+}
+
+void asset_lst_destroy(t_asset_lst *asset_lst)
+{
+	(void)asset_lst;
+	printf("asset_lst_destroy\n");
+}
+
+void sprite_lst_destroy(t_sprite_lst *sprite_lst)
+{
+	(void)sprite_lst;
+	printf("sprite_lst_destroy\n");
 }
 
 int	data_setup(t_data *data, char *map_path)
@@ -36,9 +48,13 @@ int	data_setup(t_data *data, char *map_path)
 	if (exit_code == SUCCESS)
 		exit_code =	sprite_setup(&data->sprite);
 	data->mlx = data->win.mlx;
+	asset_lst_destroy(asset_lst);
+	sprite_lst_destroy(sprite_lst);
 	tex_path_clean(&tex_path);
 	return (exit_code);
 }
+
+
 
 void	data_clean(t_data *data)
 {
