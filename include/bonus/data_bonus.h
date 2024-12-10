@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/10 15:27:14 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/10 15:52:09 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "map.h"
 # include "player.h"
 # include "window.h"
-# include "mlx_setup.h"
+# include "mlx_setup_bonus.h"
 # include "flood_fill.h"
 # include "lstmap_extraction_bonus.h"
 # include "asset_bonus.h"

@@ -6,7 +6,7 @@
 #    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/10 15:30:23 by aska             ###   ########.fr        #
+#    Updated: 2024/12/10 15:52:22 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,7 +113,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						parsing/flood_fill_bonus.c \
 						parsing/lstmap_extraction_utils_bonus.c \
 						parsing/lstmap_extraction_bonus.c \
-						parsing/mlx_setup.c \
+						parsing/mlx_setup_bonus.c \
 						render/draw_line_bonus.c \
 						render/draw_line_utils_bonus.c \
 						render/draw_utils_bonus.c \

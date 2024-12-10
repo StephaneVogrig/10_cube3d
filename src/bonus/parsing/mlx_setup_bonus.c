@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_setup.c                                        :+:      :+:    :+:   */
+/*   mlx_setup_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 06:18:51 by aska              #+#    #+#             */
-/*   Updated: 2024/12/09 16:37:45 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:53:12 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_setup.h"
+#include "mlx_setup_bonus.h"
 
 void	tex_path_clean(t_tex_path *tex_path)
 {
