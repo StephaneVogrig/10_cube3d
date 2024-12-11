@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/12/10 19:31:46 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/11 02:05:11 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,13 @@ int	attrib_rgb(t_rgb *rgb, char *value)
 	return (ok);
 }
 
-int	add_to_asset_lst(t_tex_path *tex_path, t_key_value *kv, t_asset_lst *asset_lst)
+int	add_to_asset_lst(t_tex_path *tex_path, t_key_value *kv,
+		t_asset_lst *asset_lst)
 {
 	int	key;
 
 	(void)asset_lst;
-
-	//traitements asset
-
+	// traitements asset
 	key = get_index_by_key(kv->key);
 	if (key != FAIL)
 	{
@@ -54,7 +53,8 @@ int	add_to_asset_lst(t_tex_path *tex_path, t_key_value *kv, t_asset_lst *asset_l
 	return (SUCCESS);
 }
 
-int	set_asset_lst(t_tex_path *tex_path, t_key_value *kv, char *root_path, t_asset_lst *asset_lst)
+int	set_asset_lst(t_tex_path *tex_path, t_key_value *kv, char *root_path,
+		t_asset_lst *asset_lst)
 {
 	int	exit_code;
 	int	fd;
@@ -75,16 +75,9 @@ int	set_asset_lst(t_tex_path *tex_path, t_key_value *kv, char *root_path, t_asse
 
 int	set_key_value(t_key_value *kv, char *line)
 {
-	int	exit_code;
-
-	// printf("line = %s\n", line);
-	exit_code = !ft_isthis(line[0], "WFCTLRH");
-	if (exit_code != SUCCESS)
-		return (ft_return(ERROR, 263, "Invalid Key"));
-	exit_code = setup_key_value_separate_by_space(&(kv->key), &(kv->value),
-			line);
-	if (exit_code != SUCCESS)
-		return (exit_code);
+	if (setup_key_value_separate_by_space(&(kv->key), &(kv->value),
+			line) != SUCCESS)
+		return (FAIL);
 	remove_root_value(kv->value);
-	return (exit_code);
+	return (SUCCESS);
 }
