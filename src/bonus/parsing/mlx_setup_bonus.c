@@ -6,23 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 06:18:51 by aska              #+#    #+#             */
-/*   Updated: 2024/12/10 15:59:05 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/12 21:37:27 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_setup_bonus.h"
-
-void	tex_path_clean(t_tex_path *tex_path)
-{
-	int	i;
-
-	i = 0;
-	while (tex_path->path[i] != NULL)
-	{
-		free(tex_path->path[i]);
-		i++;
-	}
-}
 
 int	mlx_setup(t_window *win, t_tex_path *tex_path, t_asset *textures)
 {

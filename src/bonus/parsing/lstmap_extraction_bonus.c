@@ -6,12 +6,13 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/11 01:53:24 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/12 22:19:00 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lstmap_extraction_bonus.h"
+#include "coordinate.h"
 #include "file_load.h"
+#include "lstmap_extraction_bonus.h"
 
 int	is_map_valid_bonus(char *line)
 {
@@ -22,7 +23,7 @@ int	is_map_valid_bonus(char *line)
 	i = 0;
 	while (line[i] != '\0')
 	{
-		if (ft_isthis(line[i], " 0123456789NSEWTRL\n") == FALSE)
+		if (ft_isthis(line[i], " WNSEWTRL\n") == FALSE)
 			return (FALSE);
 		i++;
 	}
@@ -78,14 +79,18 @@ int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 	return (SUCCESS);
 }
 
-int extract_coordinate_sprite(char *value, t_sprite_lst *sprite_lst)
+int	extract_coordinate_sprite(t_sprite_lst *sprite_lst, t_lstmap **tmp)
 {
-	(void)value;
 	(void)sprite_lst;
+	*tmp = (*tmp)->next;
+	while (tmp != NULL && (*tmp)->line[0] == '[')
+	{
+		set_sprite_coordinate((*tmp)->line);
+	}
 	return (SUCCESS);
 }
 
-static int is_newline_valid(t_lstmap **tmp)
+static int	is_newline_valid(t_lstmap **tmp)
 {
 	while (*tmp != NULL && is_empty((*tmp)->line) == TRUE)
 		*tmp = (*tmp)->next;
@@ -96,39 +101,43 @@ static int is_newline_valid(t_lstmap **tmp)
 	return (SUCCESS);
 }
 
-static int lstmap_to_asset(t_tex_path *tex_path, t_lstmap **tmp,
-		char *root_path, t_asset_lst *asset_lst, t_sprite_lst *sprite_lst)
+static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
+		t_asset_lst *asset_lst, t_sprite_lst *sprite_lst)
 {
 	t_key_value	kv;
 	int			exit_code;
+	int			id;
 
+	id = 0;
 	exit_code = SUCCESS;
 	while (tmp != NULL)
 	{
 		if (is_newline_valid(tmp) == FAIL)
-			break;
+			break ;
 		exit_code = set_key_value(&kv, (*tmp)->line);
 		if (exit_code == SUCCESS)
-			exit_code = set_asset_lst(tex_path, &kv, root_path, asset_lst);
+			exit_code = set_asset_lst(&kv, root_path, asset_lst, id);
 		else
-			break;
+			break ;
 		if (ft_strcmp(kv.key, "SP") == 0)
-			extract_coordinate_sprite(kv.value, sprite_lst);
+			exit_code = extract_coordinate_sprite(sprite_lst, tmp, id);
 		if (exit_code == SUCCESS)
 		{
 			(*tmp)->line = NULL;
 			*tmp = (*tmp)->next;
 		}
+		id++;
 	}
 	return (exit_code);
 }
 
-int	lstmap_extract_info(t_map *map, t_tex_path *tex_path, char *map_path, t_asset_lst *asset_lst, t_sprite_lst *sprite_lst)
+int	lstmap_extract_info(t_map *map, t_tex_path *tex_path, char *map_path,
+		t_asset_lst *asset_lst, t_sprite_lst *sprite_lst)
 {
 	t_lstmap	*tmp;
 	t_lstmap	*lst_map;
-	char 		*root_path;
-	int 		exit_code;
+	char		*root_path;
+	int			exit_code;
 
 	lst_map = NULL;
 	exit_code = file_load(map_path, &lst_map);
@@ -136,7 +145,7 @@ int	lstmap_extract_info(t_map *map, t_tex_path *tex_path, char *map_path, t_asse
 		return (exit_code);
 	tmp = lst_map;
 	root_path = get_root_path(map_path);
-	exit_code = lstmap_to_asset(tex_path, &tmp, root_path, asset_lst, sprite_lst);
+	exit_code = lstmap_to_asset(&tmp, root_path, asset_lst, sprite_lst);
 	root_path = ft_char_f(root_path);
 	if (exit_code == SUCCESS)
 		exit_code = check_line_remain(map, &tmp);

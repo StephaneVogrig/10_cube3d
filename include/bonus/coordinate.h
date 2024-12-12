@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asset_lst_bonus.h                                  :+:      :+:    :+:   */
+/*   coordinate.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 17:07:53 by aska              #+#    #+#             */
-/*   Updated: 2024/12/12 23:25:17 by aska             ###   ########.fr       */
+/*   Created: 2024/12/11 22:48:01 by aska              #+#    #+#             */
+/*   Updated: 2024/12/12 16:51:49 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASSET_LST_BONUS_H
-# define ASSET_LST_BONUS_H
+#ifndef COORDINATE_H
+# define COORDINATE_H
 
-# include "libft.h"
+#include "lst_map.h"
+#include "sprite_bonus.h"
 
-typedef struct s_asset_lst
-{
-	int					id;
-	char				*key;
-	t_bool				is_path;
-	char				*value;
-	struct s_asset_lst	*next;
-	struct s_asset_lst	*prev;
-}						t_asset_lst;
+int set_sprite_coordinate(char *line);
 
 #endif

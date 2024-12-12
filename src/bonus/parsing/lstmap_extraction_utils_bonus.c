@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/12/11 02:05:11 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/12 22:39:21 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,24 @@ int	attrib_rgb(t_rgb *rgb, char *value)
 	return (ok);
 }
 
-int	add_to_asset_lst(t_tex_path *tex_path, t_key_value *kv,
-		t_asset_lst *asset_lst)
+int	add_to_asset_lst(t_key_value *kv, t_asset_lst *asset_lst, int id)
 {
-	int	key;
-
 	(void)asset_lst;
 	// traitements asset
-	key = get_index_by_key(kv->key);
+	
 	if (key != FAIL)
 	{
 		tex_path->path[key] = ft_strdup(kv->value);
 		if (tex_path->path[key] == NULL)
-			return (ft_return(ERROR, 266, "Malloc Error"));
+			return (ft_return(ERROR, 9, "L.46:add_to_asset_lst: Malloc Error"));
 	}
 	else
-		return (ft_return(ERROR, 267, "Invalid Key"));
+		return (ft_return(ERROR, 10, "L.49:add_to_asset_lst: Invalid Key"));
 	return (SUCCESS);
 }
 
-int	set_asset_lst(t_tex_path *tex_path, t_key_value *kv, char *root_path,
-		t_asset_lst *asset_lst)
+int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst *asset_lst,
+		int id)
 {
 	int	exit_code;
 	int	fd;
@@ -65,10 +62,10 @@ int	set_asset_lst(t_tex_path *tex_path, t_key_value *kv, char *root_path,
 	if (fd == FAIL)
 	{
 		kv->value = ft_char_f(kv->value);
-		return (ft_return(ERROR, 268, "Texture File Invalid"));
+		return (ft_return(ERROR, 8, "L.67:set_asset_lst: open failed"));
 	}
 	ft_close(fd);
-	exit_code = add_to_asset_lst(tex_path, kv, asset_lst);
+	exit_code = add_to_asset_lst(kv, asset_lst, id);
 	kv->value = ft_char_f(kv->value);
 	return (exit_code);
 }

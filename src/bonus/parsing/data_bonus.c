@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/16 03:34:50 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/16 03:37:22 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,22 @@ void sprite_lst_destroy(t_sprite_lst *sprite_lst)
 
 int	data_setup(t_data *data, char *map_path)
 {
-	t_tex_path		tex_path;
 	t_asset_lst		*asset_lst;
 	t_sprite_lst	*sprite_lst;
 	int				exit_code;
 
 	asset_lst = NULL;
 	sprite_lst = NULL;
-	ft_bzero(&tex_path, sizeof(tex_path));
-	exit_code = lstmap_extract_info(&data->map, &tex_path, map_path, asset_lst, sprite_lst);
+	exit_code = lstmap_extract_info(&data->map, map_path, asset_lst, sprite_lst);
 	if (exit_code == SUCCESS)
 		exit_code = map_checker(&data->map, &data->player);
-	if (exit_code == SUCCESS)
-		exit_code = mlx_setup(&data->win, &tex_path, &data->textures);
-	if (exit_code == SUCCESS)
-		exit_code =	sprite_setup(&data->sprite);
-	data->mlx = data->win.mlx;
+	// if (exit_code == SUCCESS)
+	// 	exit_code = mlx_setup(&data->win, &data->textures);
+	// if (exit_code == SUCCESS)
+	// 	exit_code =	sprite_setup(&data->sprite);
+	// data->mlx = data->win.mlx;
 	asset_lst_destroy(asset_lst);
 	sprite_lst_destroy(sprite_lst);
-	tex_path_clean(&tex_path);
 	return (exit_code);
 }
 

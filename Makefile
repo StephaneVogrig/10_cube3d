@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/14 17:09:55 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/16 03:35:06 by aska             ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 SHELL				:=	/bin/bash
 
@@ -111,6 +111,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						sprite_bonus.c \
 						asset_bonus.c \
 						parsing/data_bonus.c \
+						parsing/coordinate.c \
 						parsing/flood_fill_bonus.c \
 						parsing/lstmap_extraction_utils_bonus.c \
 						parsing/lstmap_extraction_bonus.c \
