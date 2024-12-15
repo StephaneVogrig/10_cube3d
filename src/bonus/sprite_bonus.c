@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/15 15:24:18 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/15 18:00:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -95,7 +95,7 @@ t_vec2d	coord_transform_rotate(t_vec2d point, double dir)
 	t_vec2d	dir_vec;
 
 	dir_vec = dir_to_dirvec(dir);
-	new_coord.x = point.x * dir_vec.x + point.y * dir_vec.y;
+	new_coord.x = -(point.x * dir_vec.x + point.y * dir_vec.y);
 	new_coord.y = -point.x * dir_vec.y + point.y * dir_vec.x;
 	return (new_coord);
 }
@@ -145,10 +145,48 @@ void	sprite_sort(t_sprite *sprite)
 	}
 }
 
-void	sprite_render(t_sprite *sprite, t_player *player, t_ray *ray_tab)
+void	sprite_draw(t_texture *texture, t_vec2d pos, t_ray *ray_tab, t_window *win)
+{
+	t_vec2i	screen;
+	(void)texture;
+	(void)ray_tab;
+	(void)win;
+	(void)screen;
+
+	if (pos.y < 0)
+		return;
+
+	// printf("sprite_draw transform x: %f, transform y: %f\n", pos.x, pos.y); //debug
+
+	screen.x = (WIN_W / 2) * (1 + (pos.x / pos.y));
+	if (screen.x >=0 && screen.x < WIN_W && ray_tab[screen.x].len < pos.y)
+		return ;
+	int wall_h = WIN_H / pos.y;
+	screen.y = (WIN_H - wall_h) / 2;
+
+	// printf("sprite_draw screen x: %i y: %i wall_h: %i\n", screen.x, screen.y, wall_h); //debug
+	int i = screen.y;
+	while (i < screen.y + wall_h)
+	{
+		window_put_pixel(win, screen.x, i, 0xffff0000);
+		i++;
+	}
+}
+
+void	sprite_render(t_sprite *sprite, t_player *player, t_ray *ray_tab, t_window *win)
 {
 	(void)ray_tab;
+	int	i;
+	int	j;
 
 	sprite_transform_coordonate(sprite, player);
 	sprite_sort(sprite);
+	i = 0;
+	while (i < sprite->nbr)
+	{
+		j = sprite->order[i];
+		// printf("draw sprite %i | pos x: %f y:%f\n", j, sprite->pos[j].x, sprite->pos[j].y); //debug
+		sprite_draw(sprite->image[j], sprite->transform[j], ray_tab, win);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:02:35 by aska              #+#    #+#             */
-/*   Updated: 2024/12/15 13:24:16 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/15 17:55:48 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,6 +17,7 @@
 # include "position.h"
 # include "player.h"
 # include "ray.h"
+# include "window.h"
 
 typedef struct s_sprite
 {
@@ -27,9 +28,8 @@ typedef struct s_sprite
 	int			nbr;
 }				t_sprite;
 
-
-int		sprite_setup(t_sprite *sprite_tab);
-void	sprite_destroy(t_sprite *sprite_tab);
-void	sprite_render(t_sprite *sprite_tab, t_player *player, t_ray *ray_tab);
+int		sprite_setup(t_sprite *sprite);
+void	sprite_destroy(t_sprite *sprite);
+void	sprite_render(t_sprite *sprite, t_player *player, t_ray *ray_tab, t_window *win);
 
 #endif

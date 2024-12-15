@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/14 19:16:40 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/15 16:49:32 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -176,7 +176,7 @@ void	render(t_data *data)
 	dark = map_get_cell(&data->map, &data->player.position) == WALL;
 	draw_floor_ceil(data, ray_tab, dark);
 	draw_walls(&data->win, ray_tab, &data->textures, data->door_open_list);
-	sprite_render(&data->sprite, &data->player, ray_tab);
+	sprite_render(&data->sprite, &data->player, ray_tab, &data->win);
 	render_minimap(&data->map, &data->player, ray_tab);
 	fps_print(chrono(STOP));
 }
