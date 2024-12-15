@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 05:47:19 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/14 19:15:26 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,6 +29,8 @@ int	data_setup(t_data *data, char *map_path)
 		exit_code = map_checker(&data->map, &data->player);
 	if (exit_code == SUCCESS)
 		exit_code = mlx_setup(&data->win, &tex_path, &data->textures);
+	if (exit_code == SUCCESS)
+		exit_code =	sprite_setup(&data->sprite);
 	data->mlx = data->win.mlx;
 	tex_path_clean(&tex_path);
 	return (exit_code);
@@ -42,4 +44,5 @@ void	data_clean(t_data *data)
 	window_destroy(&data->win);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
+	sprite_destroy(&data->sprite);
 }

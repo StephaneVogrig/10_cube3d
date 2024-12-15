@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 13:03:12 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/14 19:16:40 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,6 +14,7 @@
 #include "draw_utils_bonus.h"
 #include "draw_line_bonus.h"
 #include "draw_walls_bonus.h"
+#include "sprite_bonus.h"
 
 void	draw_player(t_player *player)
 {
@@ -167,14 +168,15 @@ void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 
 void	render(t_data *data)
 {
-	t_ray	rays[WIN_W];
+	t_ray	ray_tab[WIN_W];
 	int		dark;
 
 	window_clear(&data->win);
-	raycasting(&data->map, &data->player, rays, data->door_open_list);
+	raycasting(&data->map, &data->player, ray_tab, data->door_open_list);
 	dark = map_get_cell(&data->map, &data->player.position) == WALL;
-	draw_floor_ceil(data, rays, dark);
-	draw_walls(&data->win, rays, &data->textures, data->door_open_list);
-	render_minimap(&data->map, &data->player, rays);
+	draw_floor_ceil(data, ray_tab, dark);
+	draw_walls(&data->win, ray_tab, &data->textures, data->door_open_list);
+	sprite_render(&data->sprite, &data->player, ray_tab);
+	render_minimap(&data->map, &data->player, ray_tab);
 	fps_print(chrono(STOP));
 }

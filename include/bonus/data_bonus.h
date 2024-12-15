@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/10 15:59:05 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/14 19:14:57 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef DATA_BONUS_H
 # define DATA_BONUS_H
@@ -23,6 +23,7 @@
 # include "lstmap_extraction_bonus.h"
 # include "asset_bonus.h"
 # include "door_bonus.h"
+# include "sprite_bonus.h"
 
 typedef unsigned int	t_ui32;
 typedef unsigned char	t_ui8;
@@ -55,6 +56,7 @@ typedef struct s_data
 	t_player	player;
 	int			mouse_mode;
 	t_door		door_open_list[DOORS_SIZE];
+	t_sprite	sprite;
 }				t_data;
 
 void	data_init(t_data *data);

@@ -6,18 +6,18 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 20:43:19 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/15 11:19:23 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "player.h"
 
-t_vec2d	player_get_dir_vec(t_player *player)
+t_vec2d	dir_to_dirvec(double dir)
 {
 	t_vec2d	vec;
 
-	vec.x = cos(player->dir);
-	vec.y = sin(player->dir);
+	vec.x = cos(dir);
+	vec.y = sin(dir);
 	return (vec);
 }
 
@@ -31,7 +31,7 @@ t_vec2d	player_dir_move_vec(t_player *player, t_vec2i move_input)
 	t_vec2d	dir_vec;
 	t_vec2d	compose_move;
 
-	dir_vec = player_get_dir_vec(player);
+	dir_vec = dir_to_dirvec(player->dir);
 	compose_move.x = dir_vec.x * move_input.x - dir_vec.y * move_input.y;
 	compose_move.y = dir_vec.y * move_input.x +  dir_vec.x * move_input.y;
 	return (compose_move);

@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   event_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/09 16:44:26 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/12/15 11:21:27 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "event_bonus.h"
 #include "gametime.h"
@@ -150,7 +150,7 @@ int on_mousedown(int button, void *param)
 	(void)button;
 	data = (t_data *)param;
 
-	ray.vdir = player_get_dir_vec(&data->player);
+	ray.vdir = dir_to_dirvec(data->player.dir);
 	dda(&ray, &data->map, &data->player.position, data->door_open_list);
 	if ((*ray.hit_cell == 'R' || *ray.hit_cell == 'L')
 		&& ray.len < DOOR_OPEN_DIST)
