@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/15 13:21:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/15 15:24:18 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,6 +29,12 @@ void	sprite_print(t_sprite *sprite)
 		printf("transform x: %f y:%f\n", (*transform).x, (*transform).y);
 		pos++;
 		transform++;
+		i++;
+	}
+	i = 0;
+	while (i < sprite->nbr)
+	{
+		printf("order[%i] = %i\n", i, sprite->order[i]);
 		i++;
 	}
 	printf("-------------------------------\n");
@@ -54,6 +60,9 @@ int	sprite_setup(t_sprite *sprite)
 	sprite->pos[0] = (t_vec2d){2.0, 2.0};
 	sprite->pos[1] = (t_vec2d){6.5, 2.5};
 	sprite->pos[2] = (t_vec2d){3.5, 4.5};
+	sprite->order[0] = 0;
+	sprite->order[1] = 1;
+	sprite->order[2] = 2;
 	return (SUCCESS);
 }
 
@@ -115,13 +124,31 @@ void	sprite_transform_coordonate(t_sprite *sprite, t_player *player)
 	}
 }
 
+void	sprite_sort(t_sprite *sprite)
+{
+	int	i;
+	int	j;
+	int	sorting;
+
+	i = 1;
+	while (i < sprite->nbr)
+	{
+		sorting = sprite->order[i];
+		j = i;
+		while (j > 0 && sprite->transform[sorting].y > sprite->transform[sprite->order[j - 1]].y)
+		{
+			sprite->order[j] = sprite->order[j - 1];
+			j--;
+		}
+		sprite->order[j] = sorting;
+		i++;
+	}
+}
+
 void	sprite_render(t_sprite *sprite, t_player *player, t_ray *ray_tab)
 {
 	(void)ray_tab;
 
 	sprite_transform_coordonate(sprite, player);
-
-	//sort by length
-	//compute camera projection position
-	//display one by one
+	sprite_sort(sprite);
 }
