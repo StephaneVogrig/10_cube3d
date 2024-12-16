@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_manda.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/10 14:30:12 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/16 19:31:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "lstmap_extraction_manda.h"
 
@@ -52,7 +52,6 @@ int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 		if (map->grid[y] == NULL)
 			return (ft_return(ERROR, 274, "Error on Map Creation"));
 		ft_strcpy(map->grid[y], tmp->line);
-		tmp->line = NULL;
 		tmp = tmp->next;
 		y++;
 	}

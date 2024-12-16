@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/10 14:34:15 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/16 19:36:27 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "lstmap_extraction_bonus.h"
 #include "file_load.h"
@@ -96,7 +96,7 @@ static int	lstmap_to_asset(t_tex_path *tex_path, t_lstmap **lst_map,
 		if (exit_code == SUCCESS)
 			delete_node_lstmap(lst_map, *lst_map);
 	}
-	return (SUCCESS);
+	return (SUCCESS); // return always SUCCESS !!!!
 }
 
 int	lstmap_extract_info(t_map *map, t_tex_path *tex_path, char *map_path)
