@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/16 03:37:22 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/16 04:00:17 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,13 @@ int	data_setup(t_data *data, char *map_path)
 		exit_code = map_checker(&data->map, &data->player);
 	// if (exit_code == SUCCESS)
 	// 	exit_code = mlx_setup(&data->win, &data->textures);
+	print_asset_lst(asset_lst);
+	delete_all_asset(&asset_lst);
 	// if (exit_code == SUCCESS)
 	// 	exit_code =	sprite_setup(&data->sprite);
 	// data->mlx = data->win.mlx;
-	print_asset_lst(asset_lst);
 	print_sprite_lst(sprite_lst);
-	asset_lst_destroy(asset_lst);
-	sprite_lst_destroy(sprite_lst);
-	ft_exit(INFO, 0, "END OF DEBUG");
+	delete_all_sprite(&sprite_lst);
 	return (exit_code);
 }
 
