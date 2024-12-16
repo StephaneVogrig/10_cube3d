@@ -34,26 +34,8 @@ int	attrib_rgb(t_rgb *rgb, char *value)
 	return (ok);
 }
 
-int	add_to_asset_lst(t_key_value *kv, t_asset_lst *asset_lst, int id)
+int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst, int id)
 {
-	(void)asset_lst;
-	// traitements asset
-	
-	if (key != FAIL)
-	{
-		tex_path->path[key] = ft_strdup(kv->value);
-		if (tex_path->path[key] == NULL)
-			return (ft_return(ERROR, 9, "L.46:add_to_asset_lst: Malloc Error"));
-	}
-	else
-		return (ft_return(ERROR, 10, "L.49:add_to_asset_lst: Invalid Key"));
-	return (SUCCESS);
-}
-
-int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst *asset_lst,
-		int id)
-{
-	int	exit_code;
 	int	fd;
 
 	if (root_path != NULL)
@@ -65,9 +47,8 @@ int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst *asset_lst,
 		return (ft_return(ERROR, 8, "L.67:set_asset_lst: open failed"));
 	}
 	ft_close(fd);
-	exit_code = add_to_asset_lst(kv, asset_lst, id);
-	kv->value = ft_char_f(kv->value);
-	return (exit_code);
+	insert_asset_lst(asset_lst, kv->key, kv->value, id);
+	return (SUCCESS);
 }
 
 int	set_key_value(t_key_value *kv, char *line)

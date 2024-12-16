@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "coordinate.h"
-#include "file_load.h"
 #include "lstmap_extraction_bonus.h"
 
 int	is_map_valid_bonus(char *line)
@@ -79,13 +77,13 @@ int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 	return (SUCCESS);
 }
 
-int	extract_coordinate_sprite(t_sprite_lst *sprite_lst, t_lstmap **tmp)
+int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
 {
-	(void)sprite_lst;
 	*tmp = (*tmp)->next;
 	while (tmp != NULL && (*tmp)->line[0] == '[')
 	{
-		set_sprite_coordinate((*tmp)->line);
+		if (set_sprite_coordinate((*tmp)->line, sprite_lst, id) == SUCCESS)
+			*tmp = (*tmp)->next;
 	}
 	return (SUCCESS);
 }
@@ -102,7 +100,7 @@ static int	is_newline_valid(t_lstmap **tmp)
 }
 
 static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
-		t_asset_lst *asset_lst, t_sprite_lst *sprite_lst)
+		t_asset_lst **asset_lst, t_sprite_lst **sprite_lst)
 {
 	t_key_value	kv;
 	int			exit_code;
@@ -131,8 +129,7 @@ static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
 	return (exit_code);
 }
 
-int	lstmap_extract_info(t_map *map, t_tex_path *tex_path, char *map_path,
-		t_asset_lst *asset_lst, t_sprite_lst *sprite_lst)
+int	lstmap_extract_info(t_map *map, char *map_path, t_asset_lst **asset_lst, t_sprite_lst **sprite_lst)
 {
 	t_lstmap	*tmp;
 	t_lstmap	*lst_map;

@@ -31,10 +31,9 @@ typedef struct s_tex_path
 	char	*path[14];
 }			t_tex_path;
 
-int			set_key_value(t_key_value *kv, char *line);
-int			attrib_rgb(t_rgb *rgb, char *value);
-int			check_line(char *line);
-int			set_asset_lst(t_key_value *kv, char *root_path,
-				t_asset_lst *asset_lst);
+int		set_key_value(t_key_value *kv, char *line);
+int		attrib_rgb(t_rgb *rgb, char *value);
+int		check_line(char *line);
+int		set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst, int id);
 
 #endif

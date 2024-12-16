@@ -14,8 +14,10 @@
 # define COORDINATE_H
 
 #include "lst_map.h"
+#include "libft.h"
 #include "sprite_bonus.h"
+#include "sprite_lst_bonus.h"
 
-int set_sprite_coordinate(char *line);
+int set_sprite_coordinate(char *line, t_sprite_lst **head, int id);
 
 #endif

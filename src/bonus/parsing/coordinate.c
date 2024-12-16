@@ -6,15 +6,16 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2024/12/12 16:54:10 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/15 20:25:24 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "coordinate.h"
-
+#include "math.h"
 
 static float custom_atof(char *str)
 {
+	char *tmp;
 	float	integer;
 	float	decimal;
 	int		sign;
@@ -25,18 +26,21 @@ static float custom_atof(char *str)
 		sign = -1;
 		str++;
 	}
+	tmp = str;
 	while (*str != '.' && *str != ',' && *str != '\0')
 		str++;
 	if (*str == '\0')
-		return ((float)ft_atoi(str));
+		return ((float)ft_atoi(tmp));
 	*str = '\0';
-	integer = ft_atoi(str);
+	integer = ft_atoi(tmp);
+	tmp = ++str;
 	while (*str != '.' && *str != ',' && *str != '\0')
 		str++;
 	*str = '\0';
-	decimal = ft_atoi(str);
-	return (sign * (integer + decimal / ft_intlen(decimal,0)));
+	decimal = ft_atoi(tmp);
+	return (sign * (integer + (decimal / powf(10, ft_intlen(decimal,0)))));
 }
+
 
 static int extract_raw_coordinate(char *line, char **x, char **y)
 {
@@ -60,16 +64,18 @@ static int extract_raw_coordinate(char *line, char **x, char **y)
 	return (SUCCESS);
 }
 
-int set_sprite_coordinate(char *line)
+int set_sprite_coordinate(char *line, t_sprite_lst **head, int id)
 {
 	char *x;
 	char *y;
 	float x_f;
 	float y_f;
 
+	(void)head;
 	extract_raw_coordinate(line, &x, &y);
 	x_f = custom_atof(x);
 	y_f = custom_atof(y);
 	printf("x: %f, y: %f\n", x_f, y_f);
+	insert_sprite_lst(head, x_f, y_f, id);
 	return (SUCCESS);
 }

@@ -116,6 +116,8 @@ SRCS_BONUS 			:=	main_bonus.c \
 						parsing/lstmap_extraction_utils_bonus.c \
 						parsing/lstmap_extraction_bonus.c \
 						parsing/mlx_setup_bonus.c \
+						parsing/asset_lst_bonus.c \
+						parsing/sprite_lst_bonus.c \
 						render/draw_line_bonus.c \
 						render/draw_line_utils_bonus.c \
 						render/draw_utils_bonus.c \

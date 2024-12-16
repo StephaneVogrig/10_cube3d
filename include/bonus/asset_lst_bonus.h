@@ -25,4 +25,10 @@ typedef struct s_asset_lst
 	struct s_asset_lst	*prev;
 }						t_asset_lst;
 
+t_asset_lst	*insert_asset_lst(t_asset_lst **head, char *key, char *value,
+		int id);
+void	delete_node_asset(t_asset_lst **head, t_asset_lst *del_node);
+void	delete_all_asset(t_asset_lst **head);
+void	print_asset_lst(t_asset_lst *head);
+
 #endif

@@ -38,7 +38,7 @@ int	data_setup(t_data *data, char *map_path)
 
 	asset_lst = NULL;
 	sprite_lst = NULL;
-	exit_code = lstmap_extract_info(&data->map, map_path, asset_lst, sprite_lst);
+	exit_code = lstmap_extract_info(&data->map, map_path, &asset_lst, &sprite_lst);
 	if (exit_code == SUCCESS)
 		exit_code = map_checker(&data->map, &data->player);
 	// if (exit_code == SUCCESS)
@@ -46,8 +46,11 @@ int	data_setup(t_data *data, char *map_path)
 	// if (exit_code == SUCCESS)
 	// 	exit_code =	sprite_setup(&data->sprite);
 	// data->mlx = data->win.mlx;
+	print_asset_lst(asset_lst);
+	print_sprite_lst(sprite_lst);
 	asset_lst_destroy(asset_lst);
 	sprite_lst_destroy(sprite_lst);
+	ft_exit(INFO, 0, "END OF DEBUG");
 	return (exit_code);
 }
 

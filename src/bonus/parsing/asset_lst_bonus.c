@@ -22,6 +22,8 @@ t_asset_lst	*insert_asset_lst(t_asset_lst **head, char *key, char *value,
 	new_node = (t_asset_lst *)malloc(sizeof(t_asset_lst));
 	if (new_node == NULL)
 		return (NULL);
+	new_node->key = key;
+	new_node->value = value;
 	new_node->id = id;
 	new_node->next = NULL;
 	if (*head == NULL)
@@ -37,7 +39,7 @@ t_asset_lst	*insert_asset_lst(t_asset_lst **head, char *key, char *value,
 	return (new_node);
 }
 
-void	delete_node_sprite(t_asset_lst **head, t_asset_lst *del_node)
+void	delete_node_asset(t_asset_lst **head, t_asset_lst *del_node)
 {
 	if (*head == NULL || del_node == NULL)
 		return ;
@@ -51,7 +53,7 @@ void	delete_node_sprite(t_asset_lst **head, t_asset_lst *del_node)
 	del_node = NULL;
 }
 
-void	delete_all_sprite(t_asset_lst **head)
+void	delete_all_asset(t_asset_lst **head)
 {
 	t_asset_lst	*tmp;
 
@@ -60,11 +62,11 @@ void	delete_all_sprite(t_asset_lst **head)
 	tmp = *head;
 	while (tmp != NULL)
 	{
-		delete_node_lstmap(head, tmp);
+		delete_node_asset(head, tmp);
 		tmp = (*head)->next;
 	}
 	tmp = (*head)->next;
-	delete_node_lstmap(head, *head);
+	delete_node_asset(head, *head);
 	*head = NULL;
 }
 

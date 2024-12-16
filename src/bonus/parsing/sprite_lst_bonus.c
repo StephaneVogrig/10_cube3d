@@ -62,11 +62,11 @@ void	delete_all_sprite(t_sprite_lst **head)
 	tmp = *head;
 	while (tmp != NULL)
 	{
-		delete_node_lstmap(head, tmp);
+		delete_node_sprite(head, tmp);
 		tmp = (*head)->next;
 	}
 	tmp = (*head)->next;
-	delete_node_lstmap(head, *head);
+	delete_node_sprite(head, *head);
 	*head = NULL;
 }
 
