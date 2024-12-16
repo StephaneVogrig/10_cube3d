@@ -1,17 +1,22 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/09 16:36:57 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:07:58 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "flood_fill.h"
-// #include "debug.h" // debug
+
+static void	map_copy_free(t_map *map_copy)
+{
+	map_copy->grid = ft_tab_f(map_copy->grid);
+	free(map_copy);
+}
 
 static t_map *copy_map(t_map *map)
 {
@@ -34,8 +39,7 @@ static t_map *copy_map(t_map *map)
 		map_copy->grid[i] = ft_strdup(map->grid[i]);
 		if (map_copy->grid[i] == NULL)
 		{
-			map_copy->grid = ft_tab_f(map_copy->grid);
-			free(map_copy);
+			map_copy_free(map_copy);
 			return (NULL);
 		}
 		i++;
@@ -65,7 +69,7 @@ int	map_checker(t_map *map, t_player *player)
 		return (FAIL);
 	ff_ok = chk_flood_fill(map_copy, player->x.grid, player->y.grid);
 	map->grid[player->y.grid][player->x.grid] = '0';
-	map_copy->grid = ft_tab_f(map_copy->grid);
+	map_copy_free(map_copy);
 	if (ff_ok == FALSE)
 		return (ft_return(ERROR, 275, "Error on Map"));
 	return (SUCCESS);
