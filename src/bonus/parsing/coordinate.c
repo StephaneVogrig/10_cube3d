@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2024/12/15 20:25:24 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/16 15:04:50 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 static float custom_atof(char *str)
 {
 	char *tmp;
-	float	integer;
-	float	decimal;
+	double	integer;
+	double	decimal;
 	int		sign;
 
 	sign = 1;
@@ -38,7 +38,7 @@ static float custom_atof(char *str)
 		str++;
 	*str = '\0';
 	decimal = ft_atoi(tmp);
-	return (sign * (integer + (decimal / powf(10, ft_intlen(decimal,0)))));
+	return (sign * (integer + (decimal / pow(10, ft_intlen(decimal,0)))));
 }
 
 

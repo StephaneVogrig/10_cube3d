@@ -3,18 +3,21 @@ W2 wall2.png
 W3 wall3.png
 W4 wall4.png
 W5 wall5.png
+SP ceil.png
+[0;0]
+[22;78.7]
 W6 wall6.png
 W7 wall7.png
 W8 wall8.png
 W9 wall9.png
 R doorR.png
 L doorL.png
+SP doorL.png
+[12.53;0]
+[22;89,3]
 T doorT.png
 F floor.png
 C ceil.png
-SP ceil.png
-[0;0]
-[22;78.7]
 
 121111111111111111131
 30000000S000000000002
