@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:31:39 by aska              #+#    #+#             */
-/*   Updated: 2024/12/17 16:51:33 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/17 18:18:01 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ static int get_lst_size(t_asset_lst *head)
 	return (size);
 }
 
+static void asset_buffer_destroy(t_texture *t)
+{
+	free(t->buffer);
+}
+
 int asset_destroy(t_asset *t)
 {
 	int i;
@@ -39,8 +44,13 @@ int asset_destroy(t_asset *t)
 	i = 0;
 	while (t->value[i] != NULL)
 	{
+
 		if (t->is_color[i] == FALSE)
-			free(((t_texture *)t->value[i])->buffer);
+		{
+			printf("ptr: %p\n", t->value[i]);
+			asset_buffer_destroy(t->value[i]);
+		}
+		i++;
 	}
 	ft_free(t->value);
 	ft_free(t->is_color);
@@ -74,7 +84,7 @@ int asset_lst_to_array(void *mlx, t_asset *textures, t_asset_lst **head)
 		}
 		texture_load_to_buffer(mlx, textures->value[i], (*head)->value);
 		textures->key[i] = (*head)->key;
-		textures->is_color[i] = (*head)->is_color;
+		// textures->is_color[i] = (*head)->is_color;
 		*head = (*head)->next;
 		i++;
 	}

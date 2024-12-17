@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img.c                                              :+:      :+:    :+:   */
+/*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:46:11 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/23 16:25:10 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/17 19:14:50 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "texture.h"
 
@@ -22,6 +22,7 @@ int	texture_load_to_buffer(void *mlx, t_texture *t, char *path)
 	t_img_mlx	img_mlx;
 	int			exit_code;
 
+	img_mlx.img = NULL;
 	exit_code = img_mlx_load_file(mlx, &img_mlx, path);
 	if (exit_code == SUCCESS)
 	{
@@ -30,7 +31,7 @@ int	texture_load_to_buffer(void *mlx, t_texture *t, char *path)
 			exit_code = ft_return(ERROR, 273, "Texture Buffer allocation failure");
 		t->height = img_mlx.height;
 		t->width = img_mlx.width;
-		mlx_destroy_image(mlx, img_mlx.img);
+		mlx_destroy_image(img_mlx.mlx, img_mlx.img);
 	}
 	return (exit_code);
 }
