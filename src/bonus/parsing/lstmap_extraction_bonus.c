@@ -6,11 +6,12 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/12 22:19:00 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/17 16:15:13 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lstmap_extraction_bonus.h"
+#include "debug.h"
 
 int	is_map_valid_bonus(char *line)
 {
@@ -21,7 +22,7 @@ int	is_map_valid_bonus(char *line)
 	i = 0;
 	while (line[i] != '\0')
 	{
-		if (ft_isthis(line[i], " WNSEWTRL\n") == FALSE)
+		if (ft_isthis(line[i], "0123456789 NSEWTRL\n") == FALSE)
 			return (FALSE);
 		i++;
 	}
@@ -117,13 +118,11 @@ static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
 			exit_code = set_asset_lst(&kv, root_path, asset_lst, id);
 		else
 			break ;
+		(*tmp)->line = NULL;
 		if (ft_strcmp(kv.key, "SP") == 0)
 			exit_code = extract_coordinate_sprite(sprite_lst, tmp, id);
 		if (exit_code == SUCCESS)
-		{
-			(*tmp)->line = NULL;
 			*tmp = (*tmp)->next;
-		}
 		id++;
 	}
 	return (exit_code);
@@ -148,6 +147,6 @@ int	lstmap_extract_info(t_map *map, char *map_path, t_asset_lst **asset_lst, t_s
 		exit_code = check_line_remain(map, &tmp);
 	if (exit_code == SUCCESS)
 		exit_code = lstmap_to_grid(map, &tmp);
-	delete_all_lstmap(&tmp);
+	delete_all_lstmap(&lst_map);
 	return (exit_code);
 }

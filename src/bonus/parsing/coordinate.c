@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2024/12/16 15:04:50 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/16 17:55:17 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int set_sprite_coordinate(char *line, t_sprite_lst **head, int id)
 	extract_raw_coordinate(line, &x, &y);
 	x_f = custom_atof(x);
 	y_f = custom_atof(y);
-	printf("x: %f, y: %f\n", x_f, y_f);
 	insert_sprite_lst(head, x_f, y_f, id);
 	return (SUCCESS);
 }

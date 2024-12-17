@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2024/12/16 03:57:59 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/16 18:00:04 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	delete_node_asset(t_asset_lst **head, t_asset_lst *del_node)
 	del_node = NULL;
 }
 
-void	delete_all_asset(t_asset_lst **head)
+void	delete_all_asset_lst(t_asset_lst **head)
 {
 	t_asset_lst	*tmp;
 
@@ -78,7 +78,7 @@ void	print_asset_lst(t_asset_lst *head)
 	tmp = head;
 	while (tmp != NULL)
 	{
-		printf(RED "id: %d, key: %s, value: %s\n" CRESET, tmp->id, tmp->key,
+		printf("id: %d, key: %s, value: %s\n", tmp->id, tmp->key,
 			tmp->value);
 		tmp = tmp->next;
 	}

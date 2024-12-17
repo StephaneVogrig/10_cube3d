@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:07:53 by aska              #+#    #+#             */
-/*   Updated: 2024/12/12 23:25:17 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/16 18:27:53 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_asset_lst
 {
 	int					id;
 	char				*key;
-	t_bool				is_path;
+	t_bool				is_color;
 	char				*value;
 	struct s_asset_lst	*next;
 	struct s_asset_lst	*prev;
@@ -28,7 +28,7 @@ typedef struct s_asset_lst
 t_asset_lst	*insert_asset_lst(t_asset_lst **head, char *key, char *value,
 		int id);
 void	delete_node_asset(t_asset_lst **head, t_asset_lst *del_node);
-void	delete_all_asset(t_asset_lst **head);
+void	delete_all_asset_lst(t_asset_lst **head);
 void	print_asset_lst(t_asset_lst *head);
 
 #endif

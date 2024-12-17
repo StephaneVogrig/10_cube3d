@@ -6,28 +6,17 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/16 04:00:17 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/17 16:18:17 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_bonus.h"
+#include "debug.h"
 
 void	data_init(t_data *data)
 {
 	ft_bzero(data, sizeof(*data));
 	data->key.down = 0;
-}
-
-void asset_lst_destroy(t_asset_lst *asset_lst)
-{
-	(void)asset_lst;
-	printf("asset_lst_destroy\n");
-}
-
-void sprite_lst_destroy(t_sprite_lst *sprite_lst)
-{
-	(void)sprite_lst;
-	printf("sprite_lst_destroy\n");
 }
 
 int	data_setup(t_data *data, char *map_path)
@@ -41,25 +30,24 @@ int	data_setup(t_data *data, char *map_path)
 	exit_code = lstmap_extract_info(&data->map, map_path, &asset_lst, &sprite_lst);
 	if (exit_code == SUCCESS)
 		exit_code = map_checker(&data->map, &data->player);
-	// if (exit_code == SUCCESS)
-	// 	exit_code = mlx_setup(&data->win, &data->textures);
-	print_asset_lst(asset_lst);
-	delete_all_asset(&asset_lst);
+	if (exit_code == SUCCESS)
+		exit_code = mlx_setup(&data->win, &data->textures, &asset_lst);
+	data->mlx = data->win.mlx;
+	// print_asset_lst(asset_lst);
+	delete_all_asset_lst(&asset_lst);
 	// if (exit_code == SUCCESS)
 	// 	exit_code =	sprite_setup(&data->sprite);
-	// data->mlx = data->win.mlx;
-	print_sprite_lst(sprite_lst);
+	// print_sprite_lst(sprite_lst);
 	delete_all_sprite(&sprite_lst);
+	// ft_exit(INFO,0,"END OF PROG");
 	return (exit_code);
 }
-
-
 
 void	data_clean(t_data *data)
 {
 	printf("data_clean\n");
 	data->map.grid = ft_tab_f(data->map.grid);
-	textures_buffer_clean(&data->textures);
+	asset_destroy(&data->textures);
 	window_destroy(&data->win);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);

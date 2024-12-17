@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:42:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/09 17:00:37 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:23:40 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 
 # include "lst_map.h"
 # include "map.h"
+#include "libft.h"
+#include "asset_bonus.h"
+#include "texture.h"
 
 void	map_print(t_map *map);
 void	lstmap_print(t_lstmap *lstmap);
 void	map_print_ptr(t_map *map);
+void print_exit_code(int exit_code);
+void print_asset(t_asset *t);
+void print_texture(t_texture *t);
 
 #endif
