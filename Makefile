@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/14 17:09:55 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/17 14:54:31 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -57,7 +57,6 @@ SRCS_COMMON			:= 	dda_utils.c \
 						vector.c \
 						window.c \
 						check_arg.c \
-						render/chrono.c \
 						lstmap.c \
 						lstmap_utils.c \
 						stack.c \
@@ -143,7 +142,7 @@ DEPS				:=	$(OBJS_MANDA:.o=.d) $(OBJS_BONUS:.o=.d)
 # compilation -----------------------------------------------------------------#
 
 CC 					:= 	cc
-CFLAGS 				:= 	-Wall -Werror -Wextra -g
+CFLAGS 				:= 	-Wall -Werror -Wextra
 
 #------------------------------------------------------------------------------#
 # rules                                                                        #

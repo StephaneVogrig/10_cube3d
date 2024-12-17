@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/16 18:38:03 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/17 14:04:48 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -74,7 +74,6 @@ int	on_loop(void *param)
 
 	delta_time = gametime() - oldtime;
 	oldtime += delta_time;
-	chrono(START);
 	data = (t_data *)param;
 	if (data->key.esc == DOWN)
 		mlx_loop_end(data->mlx);
@@ -99,7 +98,10 @@ int	on_loop(void *param)
 		}
 	}
 	if (render_needed)
+	{
 		render(data);
+		fps_print(gametime() - oldtime);
+	}
 	return (SUCCESS);
 }
 

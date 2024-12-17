@@ -6,13 +6,11 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/15 11:21:27 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/17 14:32:20 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "event_bonus.h"
-#include "gametime.h"
-#include "door_bonus.h"
 
 int	on_win_event(int event, void *param)
 {
@@ -98,7 +96,6 @@ int	on_loop(void *param)
 
 	delta_time = gametime() - oldtime;
 	oldtime += delta_time;
-	chrono(START);
 
 	data = (t_data *)param;
 	if (data->key.esc == DOWN)
@@ -138,7 +135,10 @@ int	on_loop(void *param)
 		}
 	}
 	if (render_needed)
+	{
 		render(data);
+		fps_print(gametime() - oldtime);
+	}
 	return (SUCCESS);
 }
 

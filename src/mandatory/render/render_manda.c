@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:16:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/01 19:13:38 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/17 14:04:57 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -30,5 +30,4 @@ void	render(t_data *data)
 	raycasting(&data->map, &data->player, rays);
 	draw_floor_ceil(&data->win, &data->map, &data->player);
 	draw_walls(&data->win, rays, &data->textures);
-	fps_print(chrono(STOP));
 }

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/11/24 06:12:53 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/17 14:25:19 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -31,7 +31,6 @@ int	main(int argc, char **argv)
 	if (exit_code == SUCCESS)
 	{
 		event_setup(&data);
-		chrono(START);
 		render(&data);
 		mlx_loop(data.mlx);
 	}

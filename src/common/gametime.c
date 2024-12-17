@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:41:03 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/03 13:50:19 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/17 14:18:59 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,4 +24,12 @@ t_time_us	gametime(void)
 	gtime = (current.tv_sec - start.tv_sec) * USECOND_PER_SECOND;
 	gtime += current.tv_usec - start.tv_usec;
 	return (gtime);
+}
+
+void	fps_print(t_time_us delay)
+{
+	if (delay == 0)
+		printf("fps: infini\n");
+	else
+		printf("time: %ld\tfps: %ld\n", delay, USECOND_PER_SECOND / delay);
 }
