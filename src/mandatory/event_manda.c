@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/17 14:04:48 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/17 17:54:47 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -67,41 +67,31 @@ int	on_keyup(int key, void *param)
 int	on_loop(void *param)
 {
 	static	t_time_us	oldtime;
-	t_time_us	delta_time;
-	t_data *data;
-	t_vec2i move;
-	int render_needed;
+	t_time_us			delta_time;
+	t_data				*data;
+	t_vec2i				move;
+	int					render_needed;
 
 	delta_time = gametime() - oldtime;
 	oldtime += delta_time;
 	data = (t_data *)param;
 	if (data->key.esc == DOWN)
 		mlx_loop_end(data->mlx);
-	render_needed = FALSE;
-	if (data->key.down)
+	if (data->key.down == 0)
+		return (SUCCESS);
+	int	sign_rot = data->key.right - data->key.left;
+	render_needed = player_rotate(&data->player, sign_rot, delta_time);
+	move.x = data->key.w - data->key.s;
+	move.y = data->key.d - data->key.a;
+	if (move.x != 0 || move.y != 0)
 	{
-		int	sign_rot = data->key.right - data->key.left;
-		if (sign_rot != 0)
-		{
-			double rotation = (SPEED_ROT * delta_time) / 10000;
-			if (sign_rot < 0)
-				rotation = -rotation;
-			player_rotation(&data->player, rotation);
-			render_needed = TRUE;
-		}
-		move.x = data->key.w - data->key.s;
-		move.y = data->key.d - data->key.a;
-		if (move.x != 0 || move.y != 0)
-		{
-			player_move(&data->player, move, delta_time);
-			render_needed = TRUE;
-		}
+		player_move(&data->player, move, delta_time);
+		render_needed = TRUE;
 	}
-	if (render_needed)
-	{
-		render(data);
-		fps_print(gametime() - oldtime);
-	}
+	if (!render_needed)
+		return (SUCCESS);
+	render(data);
+	fps_print(gametime() - oldtime);
 	return (SUCCESS);
 }
 

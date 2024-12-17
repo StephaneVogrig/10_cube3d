@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/17 14:32:20 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/17 17:55:19 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -118,14 +118,7 @@ int	on_loop(void *param)
 	if (data->key.down)
 	{
 		int	sign_rot = data->key.right - data->key.left;
-		if (sign_rot != 0)
-		{
-			double rotation = (SPEED_ROT * delta_time) / 10000;
-			if (sign_rot < 0)
-				rotation = -rotation;
-			player_rotation(&data->player, rotation);
-			render_needed = TRUE;
-		}
+		render_needed |= player_rotate(&data->player, sign_rot, delta_time);
 		move.x = data->key.w - data->key.s;
 		move.y = data->key.d - data->key.a;
 		if (move.x != 0 || move.y != 0)
@@ -134,11 +127,10 @@ int	on_loop(void *param)
 			render_needed = TRUE;
 		}
 	}
-	if (render_needed)
-	{
-		render(data);
-		fps_print(gametime() - oldtime);
-	}
+	if (!render_needed)
+		return (SUCCESS);
+	render(data);
+	fps_print(gametime() - oldtime);
 	return (SUCCESS);
 }
 
