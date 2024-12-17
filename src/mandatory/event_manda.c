@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/17 17:54:47 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/17 18:06:34 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -28,7 +28,7 @@ int	on_keydown(int key, void *param)
 	
 	data = (t_data *)param;
 	if (key == KEY_ESC)
-		data->key.esc = DOWN;
+		mlx_loop_end(data->mlx);
 	else if (key == KEY_W)
 		data->key.w = DOWN;
 	else if (key == KEY_A)
@@ -75,8 +75,6 @@ int	on_loop(void *param)
 	delta_time = gametime() - oldtime;
 	oldtime += delta_time;
 	data = (t_data *)param;
-	if (data->key.esc == DOWN)
-		mlx_loop_end(data->mlx);
 	if (data->key.down == 0)
 		return (SUCCESS);
 	int	sign_rot = data->key.right - data->key.left;

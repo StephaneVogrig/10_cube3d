@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/14 19:14:57 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/17 18:16:57 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -41,7 +41,6 @@ typedef union
 		t_ui8 d : 1;
 		t_ui8 left : 1;
 		t_ui8 right : 1;
-		t_ui8 esc : 1;
 	};
 	t_ui8				down;
 }						t_key;
@@ -51,7 +50,7 @@ typedef struct s_data
 	void		*mlx;
 	t_window	win;
 	t_map		map;
-	t_asset	textures;
+	t_asset		textures;
 	t_key		key;
 	t_player	player;
 	int			mouse_mode;
