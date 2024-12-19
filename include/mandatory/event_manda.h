@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/17 14:52:23 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 19:45:12 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,14 +17,7 @@
 # include "player_move_manda.h"
 # include "render_manda.h"
 # include "gametime.h"
-
-# define KEY_ESC	41
-# define KEY_W		26
-# define KEY_A		4
-# define KEY_S		22
-# define KEY_D		7
-# define KEY_LEFT	80
-# define KEY_RIGHT	79
+# include "key_move.h"
 
 # define ON_DEMAND_CLOSE 0
 

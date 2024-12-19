@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 16:30:47 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/19 20:38:52 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef DATA_BONUS_H
 # define DATA_BONUS_H
@@ -31,26 +31,7 @@
 # include "asset_bonus.h"
 # include "door_bonus.h"
 # include "sprite_bonus.h"
-
-typedef unsigned int	t_ui32;
-typedef unsigned char	t_ui8;
-
-# define UP 0
-# define DOWN 1
-
-typedef union
-{
-	struct
-	{
-		t_ui8 w : 1;
-		t_ui8 a : 1;
-		t_ui8 s : 1;
-		t_ui8 d : 1;
-		t_ui8 left : 1;
-		t_ui8 right : 1;
-	};
-	t_ui8				down;
-}						t_key;
+# include "key_move.h"
 
 typedef struct s_data
 {

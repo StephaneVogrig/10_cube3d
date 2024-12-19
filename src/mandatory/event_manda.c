@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/17 18:06:34 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 20:17:32 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,18 +29,8 @@ int	on_keydown(int key, void *param)
 	data = (t_data *)param;
 	if (key == KEY_ESC)
 		mlx_loop_end(data->mlx);
-	else if (key == KEY_W)
-		data->key.w = DOWN;
-	else if (key == KEY_A)
-		data->key.a = DOWN;
-	else if (key == KEY_S)
-		data->key.s = DOWN;
-	else if (key == KEY_D)
-		data->key.d = DOWN;
-	else if (key == KEY_LEFT)
-		data->key.left = DOWN;
-	else if (key == KEY_RIGHT)
-		data->key.right = DOWN;
+	else
+		set_key_down(&data->key, key);
 	return (SUCCESS);
 }
 
@@ -49,19 +39,19 @@ int	on_keyup(int key, void *param)
 	t_data *data;
 	
 	data = (t_data *)param;
-	if (key == KEY_W)
-		data->key.w = UP;
-	else if (key == KEY_A)
-		data->key.a = UP;
-	else if (key == KEY_S)
-		data->key.s = UP;
-	else if (key == KEY_D)
-		data->key.d = UP;
-	else if (key == KEY_LEFT)
-		data->key.left = UP;
-	else if (key == KEY_RIGHT)
-		data->key.right = UP;
+	set_key_up(&data->key, key);
 	return (SUCCESS);
+}
+
+int	event_check_move(t_player *player, t_key key, t_time_us delta_time)
+{
+	t_vec2i	move;
+
+	move = key_to_move(key);
+	if (!is_moving(move))
+		return (FALSE);
+	player_move(player, move, delta_time);
+	return (TRUE);
 }
 
 int	on_loop(void *param)
@@ -69,7 +59,6 @@ int	on_loop(void *param)
 	static	t_time_us	oldtime;
 	t_time_us			delta_time;
 	t_data				*data;
-	t_vec2i				move;
 	int					render_needed;
 
 	delta_time = gametime() - oldtime;
@@ -77,15 +66,8 @@ int	on_loop(void *param)
 	data = (t_data *)param;
 	if (data->key.down == 0)
 		return (SUCCESS);
-	int	sign_rot = data->key.right - data->key.left;
-	render_needed = player_rotate(&data->player, sign_rot, delta_time);
-	move.x = data->key.w - data->key.s;
-	move.y = data->key.d - data->key.a;
-	if (move.x != 0 || move.y != 0)
-	{
-		player_move(&data->player, move, delta_time);
-		render_needed = TRUE;
-	}
+	render_needed = player_rotate(&data->player, data->key, delta_time);
+	render_needed |= event_check_move(&data->player, data->key, delta_time);
 	if (!render_needed)
 		return (SUCCESS);
 	render(data);

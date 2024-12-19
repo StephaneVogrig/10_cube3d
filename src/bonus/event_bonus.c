@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/17 18:06:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 20:27:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -35,18 +35,8 @@ int	on_keydown(int key, void *param)
 
 	if (key == KEY_ESC)
 		mlx_loop_end(data->mlx);
-	else if (key == KEY_W)
-		data->key.w = DOWN;
-	else if (key == KEY_A)
-		data->key.a = DOWN;
-	else if (key == KEY_S)
-		data->key.s = DOWN;
-	else if (key == KEY_D)
-		data->key.d = DOWN;
-	else if (key == KEY_LEFT)
-		data->key.left = DOWN;
-	else if (key == KEY_RIGHT)
-		data->key.right = DOWN;
+	else
+		set_key_down(&data->key, key);
 	return (SUCCESS);
 }
 
@@ -67,21 +57,22 @@ int	on_keyup(int key, void *param)
 	t_data *data;
 	
 	data = (t_data *)param;
-	if (key == KEY_W)
-		data->key.w = UP;
-	else if (key == KEY_A)
-		data->key.a = UP;
-	else if (key == KEY_S)
-		data->key.s = UP;
-	else if (key == KEY_D)
-		data->key.d = UP;
-	else if (key == KEY_LEFT)
-		data->key.left = UP;
-	else if (key == KEY_RIGHT)
-		data->key.right = UP;
-	else if (key == KEY_T && data->win.focused)
+	if (key == KEY_T && data->win.focused)
 		mouse_mode_switch(data->mlx, &data->win, &data->mouse_mode);
+	else
+		set_key_up(&data->key, key);
 	return (SUCCESS);
+}
+
+int	event_check_move(t_player *player, t_key key, t_time_us dt, t_data *data)
+{
+	t_vec2i	move;
+
+	move = key_to_move(key);
+	if (!is_moving(move))
+		return (FALSE);
+	player_move(&data->map , player, move, dt, data->door_open_list);
+	return (TRUE);
 }
 
 int	on_loop(void *param)
@@ -89,7 +80,6 @@ int	on_loop(void *param)
 	static	t_time_us	oldtime;
 	t_time_us	delta_time;
 	t_data *data;
-	t_vec2i move;
 	int x;
 	int y;
 	int render_needed;
@@ -115,15 +105,8 @@ int	on_loop(void *param)
 	}
 	if (data->key.down)
 	{
-		int	sign_rot = data->key.right - data->key.left;
-		render_needed |= player_rotate(&data->player, sign_rot, delta_time);
-		move.x = data->key.w - data->key.s;
-		move.y = data->key.d - data->key.a;
-		if (move.x != 0 || move.y != 0)
-		{
-			player_move(&data->map , &data->player, move, delta_time, data->door_open_list);
-			render_needed = TRUE;
-		}
+		render_needed |= player_rotate(&data->player, data->key, delta_time);
+		render_needed |= event_check_move(&data->player, data->key, delta_time, data);
 	}
 	if (!render_needed)
 		return (SUCCESS);
@@ -148,23 +131,11 @@ int on_mousedown(int button, void *param)
 	return (SUCCESS);
 }
 
-int on_mouseup(int button, void *param)
-{
-	(void)button;
-	(void)param;
-	t_data *data;
-
-	data = (t_data *)param;
-	(void)data;
-	return (SUCCESS);
-}
-
 void	event_setup(t_data *data)
 {
 	mlx_on_event(data->mlx, data->win.win, MLX_WINDOW_EVENT, on_win_event, &data->win);
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYDOWN, on_keydown, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYUP, on_keyup, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_MOUSEDOWN, on_mousedown, data);
-	mlx_on_event(data->mlx, data->win.win, MLX_MOUSEUP, on_mouseup, data);
 	mlx_loop_hook(data->mlx, on_loop, data);
 }
