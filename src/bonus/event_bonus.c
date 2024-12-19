@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 17:02:36 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 17:11:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -154,23 +154,11 @@ int on_mousedown(int button, void *param)
 	return (SUCCESS);
 }
 
-int on_mouseup(int button, void *param)
-{
-	(void)button;
-	(void)param;
-	t_data *data;
-
-	data = (t_data *)param;
-	(void)data;
-	return (SUCCESS);
-}
-
 void	event_setup(t_data *data)
 {
 	mlx_on_event(data->mlx, data->win.win, MLX_WINDOW_EVENT, on_win_event, &data->win);
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYDOWN, on_keydown, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYUP, on_keyup, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_MOUSEDOWN, on_mousedown, data);
-	mlx_on_event(data->mlx, data->win.win, MLX_MOUSEUP, on_mouseup, data);
 	mlx_loop_hook(data->mlx, on_loop, data);
 }

@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/09 17:05:38 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:11:31 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "minimap_bonus.h"
 #include "window.h"
@@ -34,7 +34,6 @@ int window_hook(int event, void* mlx)
 void minimap_event_setup(t_minimap *minimap, t_data *data)
 {
 	mlx_on_event(minimap->mlx, minimap->win, MLX_MOUSEDOWN, on_mousedown, data);
-	mlx_on_event(minimap->mlx, minimap->win, MLX_MOUSEUP, on_mouseup, data);
 	mlx_on_event(minimap->mlx, minimap->win, MLX_KEYDOWN, on_keydown, data);
 	mlx_on_event(minimap->mlx, minimap->win, MLX_KEYUP, on_keyup, data);
 }
