@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 18:49:37 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 20:27:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -35,18 +35,8 @@ int	on_keydown(int key, void *param)
 
 	if (key == KEY_ESC)
 		mlx_loop_end(data->mlx);
-	else if (key == KEY_W)
-		data->key.w = DOWN;
-	else if (key == KEY_A)
-		data->key.a = DOWN;
-	else if (key == KEY_S)
-		data->key.s = DOWN;
-	else if (key == KEY_D)
-		data->key.d = DOWN;
-	else if (key == KEY_LEFT)
-		data->key.left = DOWN;
-	else if (key == KEY_RIGHT)
-		data->key.right = DOWN;
+	else
+		set_key_down(&data->key, key);
 	return (SUCCESS);
 }
 
@@ -67,20 +57,10 @@ int	on_keyup(int key, void *param)
 	t_data *data;
 	
 	data = (t_data *)param;
-	if (key == KEY_W)
-		data->key.w = UP;
-	else if (key == KEY_A)
-		data->key.a = UP;
-	else if (key == KEY_S)
-		data->key.s = UP;
-	else if (key == KEY_D)
-		data->key.d = UP;
-	else if (key == KEY_LEFT)
-		data->key.left = UP;
-	else if (key == KEY_RIGHT)
-		data->key.right = UP;
-	else if (key == KEY_T && data->win.focused)
+	if (key == KEY_T && data->win.focused)
 		mouse_mode_switch(data->mlx, &data->win, &data->mouse_mode);
+	else
+		set_key_up(&data->key, key);
 	return (SUCCESS);
 }
 
@@ -89,12 +69,10 @@ int	event_check_move(t_player *player, t_key key, t_time_us dt, t_data *data)
 	t_vec2i	move;
 
 	move = key_to_move(key);
-	if (is_moving(move))
-	{
-		player_move(&data->map , player, move, dt, data->door_open_list);
-		return (TRUE);
-	}
-	return (FALSE);
+	if (!is_moving(move))
+		return (FALSE);
+	player_move(&data->map , player, move, dt, data->door_open_list);
+	return (TRUE);
 }
 
 int	on_loop(void *param)

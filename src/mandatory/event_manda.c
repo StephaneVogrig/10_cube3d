@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 18:40:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 20:17:32 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,18 +29,8 @@ int	on_keydown(int key, void *param)
 	data = (t_data *)param;
 	if (key == KEY_ESC)
 		mlx_loop_end(data->mlx);
-	else if (key == KEY_W)
-		data->key.w = DOWN;
-	else if (key == KEY_A)
-		data->key.a = DOWN;
-	else if (key == KEY_S)
-		data->key.s = DOWN;
-	else if (key == KEY_D)
-		data->key.d = DOWN;
-	else if (key == KEY_LEFT)
-		data->key.left = DOWN;
-	else if (key == KEY_RIGHT)
-		data->key.right = DOWN;
+	else
+		set_key_down(&data->key, key);
 	return (SUCCESS);
 }
 
@@ -49,18 +39,7 @@ int	on_keyup(int key, void *param)
 	t_data *data;
 	
 	data = (t_data *)param;
-	if (key == KEY_W)
-		data->key.w = UP;
-	else if (key == KEY_A)
-		data->key.a = UP;
-	else if (key == KEY_S)
-		data->key.s = UP;
-	else if (key == KEY_D)
-		data->key.d = UP;
-	else if (key == KEY_LEFT)
-		data->key.left = UP;
-	else if (key == KEY_RIGHT)
-		data->key.right = UP;
+	set_key_up(&data->key, key);
 	return (SUCCESS);
 }
 
@@ -69,12 +48,10 @@ int	event_check_move(t_player *player, t_key key, t_time_us delta_time)
 	t_vec2i	move;
 
 	move = key_to_move(key);
-	if (is_moving(move))
-	{
-		player_move(player, move, delta_time);
-		return (TRUE);
-	}
-	return (FALSE);
+	if (!is_moving(move))
+		return (FALSE);
+	player_move(player, move, delta_time);
+	return (TRUE);
 }
 
 int	on_loop(void *param)

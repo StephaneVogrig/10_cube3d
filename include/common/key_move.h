@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:57:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 18:37:36 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 20:16:25 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,6 +16,15 @@
 # include "vector.h"
 
 typedef unsigned char	t_ui8;
+
+# define KEY_ESC	41
+
+# define KEY_W		26
+# define KEY_A		4
+# define KEY_S		22
+# define KEY_D		7
+# define KEY_LEFT	80
+# define KEY_RIGHT	79
 
 # define UP 0
 # define DOWN 1
@@ -36,5 +45,7 @@ typedef union
 
 t_vec2i	key_to_move(t_key key);
 int		is_moving(t_vec2i move);
+void	set_key_up(t_key *key, int key_pressed);
+void	set_key_down(t_key *key, int key_pressed);
 
 #endif
