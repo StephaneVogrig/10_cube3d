@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/17 14:54:31 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/19 18:38:39 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -57,6 +57,7 @@ SRCS_COMMON			:= 	dda_utils.c \
 						vector.c \
 						window.c \
 						check_arg.c \
+						key.c \
 						lstmap.c \
 						lstmap_utils.c \
 						stack.c \

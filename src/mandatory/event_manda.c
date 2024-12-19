@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 16:44:19 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 18:40:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -68,9 +68,8 @@ int	event_check_move(t_player *player, t_key key, t_time_us delta_time)
 {
 	t_vec2i	move;
 
-	move.x = key.w - key.s;
-	move.y = key.d - key.a;
-	if (move.x != 0 || move.y != 0)
+	move = key_to_move(key);
+	if (is_moving(move))
 	{
 		player_move(player, move, delta_time);
 		return (TRUE);

@@ -1,40 +1,27 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_move.h                                         :+:      :+:    :+:   */
+/*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 14:57:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 18:37:36 by svogrig          ###   ########.fr       */
+/*   Created: 2024/12/19 18:33:26 by svogrig           #+#    #+#             */
+/*   Updated: 2024/12/19 18:37:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef KEY_MOVE_H
-# define KEY_MOVE_H
+#include "key_move.h"
 
-# include "vector.h"
-
-typedef unsigned char	t_ui8;
-
-# define UP 0
-# define DOWN 1
-
-typedef union
+t_vec2i	key_to_move(t_key key)
 {
-	struct
-	{
-		t_ui8 w		: 1;
-		t_ui8 a		: 1;
-		t_ui8 s		: 1;
-		t_ui8 d		: 1;
-		t_ui8 left	: 1;
-		t_ui8 right	: 1;
-	};
-	t_ui8				down;
-}						t_key;
+	t_vec2i	move;
 
-t_vec2i	key_to_move(t_key key);
-int		is_moving(t_vec2i move);
+	move.x = key.w - key.s;
+	move.y = key.d - key.a;
+	return (move);
+}
 
-#endif
+int	is_moving(t_vec2i move)
+{
+	return (move.x != 0 || move.y != 0);
+}
