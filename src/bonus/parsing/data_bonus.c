@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/17 17:11:09 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/19 18:32:46 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ int	data_setup(t_data *data, char *map_path)
 		exit_code = mlx_setup(&data->win, &data->textures, &asset_lst);
 	data->mlx = data->win.mlx;
 	delete_all_asset_lst(&asset_lst);
-	// if (exit_code == SUCCESS)
-	// 	exit_code =	sprite_setup(&data->sprite);
-	// print_sprite_lst(sprite_lst);
+	if (exit_code == SUCCESS)
+		exit_code =	sprite_setup(&data->sprite, sprite_lst, &data->textures);
 	delete_all_sprite(&sprite_lst);
 	return (exit_code);
 }

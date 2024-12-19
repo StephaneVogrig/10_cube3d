@@ -1,16 +1,32 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/15 18:00:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 19:36:12 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "sprite_bonus.h"
+#include "sprite_lst_bonus.h"
+
+static int get_lst_size(t_sprite_lst *head)
+{
+	int		size;
+	t_sprite_lst	*tmp;
+
+	size = 0;
+	tmp = head;
+	while (tmp != NULL)
+	{
+		size++;
+		tmp = tmp->next;
+	}
+	return (size);
+}
 
 void	sprite_print(t_sprite *sprite)
 {
@@ -40,15 +56,15 @@ void	sprite_print(t_sprite *sprite)
 	printf("-------------------------------\n");
 }
 
-int	sprite_setup(t_sprite *sprite)
+int	sprite_setup(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *textures)
 {
-	printf("sprite_setup\n");
+	int i;
 
-	sprite->nbr = 3;
+	sprite->nbr = get_lst_size(sprite_lst);
 	sprite->image = ft_calloc(sprite->nbr, sizeof(*sprite->image));
 	if (sprite->image == NULL)
 		return (FAIL);
-	sprite->pos = calloc(sprite->nbr, sizeof(*sprite->pos));
+	sprite->pos = ft_calloc(sprite->nbr, sizeof(*sprite->pos));
 	if (sprite->pos == NULL)
 		return (FAIL);
 	sprite->transform = ft_calloc(sprite->nbr, sizeof(*sprite->transform));
@@ -57,12 +73,15 @@ int	sprite_setup(t_sprite *sprite)
 	sprite->order = ft_calloc(sprite->nbr, sizeof(*sprite->order));
 	if (sprite->order == NULL)
 		return (FAIL);
-	sprite->pos[0] = (t_vec2d){2.0, 2.0};
-	sprite->pos[1] = (t_vec2d){6.5, 2.5};
-	sprite->pos[2] = (t_vec2d){3.5, 4.5};
-	sprite->order[0] = 0;
-	sprite->order[1] = 1;
-	sprite->order[2] = 2;
+	i = 0;
+	while (sprite_lst != NULL)
+	{
+		sprite->pos[i] = (t_vec2d){sprite_lst->x, sprite_lst->y};
+		sprite->image[i] = (t_texture *)&textures->value[sprite_lst->id];
+		sprite->order[i] = i;
+		sprite_lst = sprite_lst->next;
+		i++;
+	}
 	return (SUCCESS);
 }
 
