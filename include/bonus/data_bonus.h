@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/17 18:16:57 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 15:00:26 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,26 +24,7 @@
 # include "asset_bonus.h"
 # include "door_bonus.h"
 # include "sprite_bonus.h"
-
-typedef unsigned int	t_ui32;
-typedef unsigned char	t_ui8;
-
-# define UP 0
-# define DOWN 1
-
-typedef union
-{
-	struct
-	{
-		t_ui8 w : 1;
-		t_ui8 a : 1;
-		t_ui8 s : 1;
-		t_ui8 d : 1;
-		t_ui8 left : 1;
-		t_ui8 right : 1;
-	};
-	t_ui8				down;
-}						t_key;
+# include "key_move.h"
 
 typedef struct s_data
 {

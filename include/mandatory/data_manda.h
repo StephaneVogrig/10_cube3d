@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/17 18:14:55 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 14:59:27 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,26 +22,7 @@
 # include "lstmap_extraction_manda.h"
 # include "lstmap_extraction_utils_manda.h"
 # include "textures_manda.h"
-
-typedef unsigned int	t_ui32;
-typedef unsigned char	t_ui8;
-
-# define UP 0
-# define DOWN 1
-
-typedef union
-{
-	struct
-	{
-		t_ui8 w : 1;
-		t_ui8 a : 1;
-		t_ui8 s : 1;
-		t_ui8 d : 1;
-		t_ui8 left : 1;
-		t_ui8 right : 1;
-	};
-	t_ui8				down;
-}						t_key;
+# include "key_move.h"
 
 typedef struct s_data
 {
