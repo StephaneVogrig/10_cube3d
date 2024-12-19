@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite_lst_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:44:20 by aska              #+#    #+#             */
-/*   Updated: 2024/12/19 18:58:26 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/19 22:25:42 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "sprite_lst_bonus.h"
 
@@ -70,14 +70,17 @@ void	delete_all_sprite(t_sprite_lst **head)
 	*head = NULL;
 }
 
-void	print_sprite_lst(t_sprite_lst *head)
+int get_lst_size(t_sprite_lst *head)
 {
+	int		size;
 	t_sprite_lst	*tmp;
 
+	size = 0;
 	tmp = head;
 	while (tmp != NULL)
 	{
-		printf("id: %d, x: %f, y: %f\n", tmp->id, tmp->x, tmp->y);
+		size++;
 		tmp = tmp->next;
 	}
+	return (size);
 }

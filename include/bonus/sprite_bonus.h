@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:02:35 by aska              #+#    #+#             */
-/*   Updated: 2024/12/19 18:34:07 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/19 22:41:02 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef SPRITE_BONUS_H
 # define SPRITE_BONUS_H
@@ -30,8 +30,18 @@ typedef struct s_sprite
 	int			nbr;
 }				t_sprite;
 
+/* sprite_bonus.c */
+
 int		sprite_setup(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *textures);
 void	sprite_destroy(t_sprite *sprite);
 void	sprite_render(t_sprite *sprite, t_player *player, t_ray *ray_tab, t_window *win);
+
+/* sprite_transform_bonus.c */
+
+void	sprite_transform_coordonate(t_sprite *sprite, t_player *player);
+
+/* sprite_draw_bonus.c */
+
+void	sprite_draw(t_texture *texture, t_vec2d pos, t_ray *ray_tab, t_window *win);
 
 #endif

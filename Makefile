@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/19 20:36:37 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/19 22:41:31 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -109,6 +109,8 @@ SRCS_BONUS 			:=	main_bonus.c \
 						id_tex_bonus.c \
 						player_move_bonus.c \
 						sprite_bonus.c \
+						sprite_draw_bonus.c \
+						sprite_transform_bonus.c \
 						asset_bonus.c \
 						parsing/data_bonus.c \
 						parsing/coordinate.c \

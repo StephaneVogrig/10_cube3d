@@ -6,54 +6,11 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 22:03:46 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 22:38:45 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "sprite_bonus.h"
-
-static int get_lst_size(t_sprite_lst *head)
-{
-	int		size;
-	t_sprite_lst	*tmp;
-
-	size = 0;
-	tmp = head;
-	while (tmp != NULL)
-	{
-		size++;
-		tmp = tmp->next;
-	}
-	return (size);
-}
-
-void	sprite_print(t_sprite *sprite)
-{
-	int	i;
-	t_vec2d	*pos;
-	t_vec2d *transform;
-
-	printf("-----------sprites-------------\nnbr: %i\n", sprite->nbr);
-	pos = sprite->pos;
-	transform = sprite->transform;
-	i = 0;
-	while (i < sprite->nbr)
-	{
-		printf("sprite %i | ", i);
-		printf("pos x: %f y:%f | ", (*pos).x, (*pos).y);
-		printf("transform x: %f y:%f\n", (*transform).x, (*transform).y);
-		pos++;
-		transform++;
-		i++;
-	}
-	i = 0;
-	while (i < sprite->nbr)
-	{
-		printf("order[%i] = %i\n", i, sprite->order[i]);
-		i++;
-	}
-	printf("-------------------------------\n");
-}
 
 int	sprite_setup(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *textures)
 {
@@ -98,50 +55,6 @@ void	sprite_destroy(t_sprite *sprite)
 		free(sprite->order);
 }
 
-t_vec2d	coord_transform_translate(t_vec2d point, t_vec2d new_origin)
-{
-	t_vec2d	new_coord;
-
-	new_coord.x = point.x - new_origin.x;
-	new_coord.y = point.y - new_origin.y;
-	return (new_coord);
-}
-
-t_vec2d	coord_transform_rotate(t_vec2d point, double dir)
-{
-	t_vec2d	new_coord;
-	t_vec2d	dir_vec;
-
-	dir_vec = dir_to_dirvec(dir);
-	new_coord.x = -(point.x * dir_vec.x + point.y * dir_vec.y);
-	new_coord.y = -point.x * dir_vec.y + point.y * dir_vec.x;
-	return (new_coord);
-}
-
-void	sprite_transform_coordonate(t_sprite *sprite, t_player *player)
-{
-	t_vec2d	player_pos;
-	t_vec2d	*sprite_pos;
-	t_vec2d	*transform;
-	double	dir_rot;
-	int		i;
-
-	player_pos.x = player->x.grid + player->x.box;
-	player_pos.y = player->y.grid + player->y.box;
-	sprite_pos = sprite->pos;
-	transform = sprite->transform;
-	dir_rot = player->dir - M_PI_2;
-	i = 0;
-	while (i < sprite->nbr)
-	{
-		*transform = coord_transform_translate(*sprite_pos, player_pos);
-		*transform = coord_transform_rotate(*transform, dir_rot);
-		sprite_pos++;
-		transform++;
-		i++;
-	}
-}
-
 void	sprite_sort(t_sprite *sprite)
 {
 	int	i;
@@ -161,40 +74,6 @@ void	sprite_sort(t_sprite *sprite)
 		sprite->order[j] = sorting;
 		i++;
 	}
-}
-
-void	sprite_draw_stripe(t_window *win, t_vec2i screen, int wall_h)
-{
-	int i;
-
-	i = screen.y;
-	while (i < screen.y + wall_h)
-	{
-		window_put_pixel(win, screen.x, i, 0xffff0000);
-		i++;
-	}
-}
-
-void	sprite_draw(t_texture *texture, t_vec2d pos, t_ray *ray_tab, t_window *win)
-{
-	t_vec2i	screen;
-	(void)texture;
-	(void)ray_tab;
-	int wall_h;
-
-	if (pos.y < 0)
-		return;
-
-	// printf("sprite_draw transform x: %f, transform y: %f\n", pos.x, pos.y); //debug
-
-	screen.x = (WIN_W / 2) * (1 + (pos.x / pos.y));
-	if (screen.x >=0 && screen.x < WIN_W && ray_tab[screen.x].len < pos.y)
-		return ;
-	wall_h = WIN_H / pos.y;
-	screen.y = (WIN_H - wall_h) / 2;
-
-	// printf("sprite_draw screen x: %i y: %i wall_h: %i\n", screen.x, screen.y, wall_h); //debug
-	sprite_draw_stripe(win, screen, wall_h);
 }
 
 void	sprite_render(t_sprite *sprite, t_player *player, t_ray *ray_tab, t_window *win)
