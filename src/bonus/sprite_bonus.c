@@ -1,17 +1,16 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 19:36:12 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/19 22:03:46 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "sprite_bonus.h"
-#include "sprite_lst_bonus.h"
 
 static int get_lst_size(t_sprite_lst *head)
 {
@@ -164,13 +163,24 @@ void	sprite_sort(t_sprite *sprite)
 	}
 }
 
+void	sprite_draw_stripe(t_window *win, t_vec2i screen, int wall_h)
+{
+	int i;
+
+	i = screen.y;
+	while (i < screen.y + wall_h)
+	{
+		window_put_pixel(win, screen.x, i, 0xffff0000);
+		i++;
+	}
+}
+
 void	sprite_draw(t_texture *texture, t_vec2d pos, t_ray *ray_tab, t_window *win)
 {
 	t_vec2i	screen;
 	(void)texture;
 	(void)ray_tab;
-	(void)win;
-	(void)screen;
+	int wall_h;
 
 	if (pos.y < 0)
 		return;
@@ -180,16 +190,11 @@ void	sprite_draw(t_texture *texture, t_vec2d pos, t_ray *ray_tab, t_window *win)
 	screen.x = (WIN_W / 2) * (1 + (pos.x / pos.y));
 	if (screen.x >=0 && screen.x < WIN_W && ray_tab[screen.x].len < pos.y)
 		return ;
-	int wall_h = WIN_H / pos.y;
+	wall_h = WIN_H / pos.y;
 	screen.y = (WIN_H - wall_h) / 2;
 
 	// printf("sprite_draw screen x: %i y: %i wall_h: %i\n", screen.x, screen.y, wall_h); //debug
-	int i = screen.y;
-	while (i < screen.y + wall_h)
-	{
-		window_put_pixel(win, screen.x, i, 0xffff0000);
-		i++;
-	}
+	sprite_draw_stripe(win, screen, wall_h);
 }
 
 void	sprite_render(t_sprite *sprite, t_player *player, t_ray *ray_tab, t_window *win)
@@ -204,6 +209,8 @@ void	sprite_render(t_sprite *sprite, t_player *player, t_ray *ray_tab, t_window 
 	while (i < sprite->nbr)
 	{
 		j = sprite->order[i];
+		if (sprite->transform[j].y < 0)
+			break ;
 		// printf("draw sprite %i | pos x: %f y:%f\n", j, sprite->pos[j].x, sprite->pos[j].y); //debug
 		sprite_draw(sprite->image[j], sprite->transform[j], ray_tab, win);
 		i++;
