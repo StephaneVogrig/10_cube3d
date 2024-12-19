@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/17 17:48:04 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 15:59:47 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -46,10 +46,12 @@ void	player_rotation(t_player *player, double rotation)
 		player->dir = player->dir + 2 * M_PI;
 }
 
-int	player_rotate(t_player *player, int sign_rot, t_time_us delta_time)
+int	player_rotate(t_player *player, t_key key, t_time_us delta_time)
 {
-	double rotation;
+	double	rotation;
+	int		sign_rot;
 
+	sign_rot = key.right - key.left;
 	if (sign_rot == 0)
 		return (FALSE);
 	rotation = (SPEED_ROT * delta_time) / 10000;
