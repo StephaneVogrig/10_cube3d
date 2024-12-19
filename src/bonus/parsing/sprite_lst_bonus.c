@@ -6,13 +6,13 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:44:20 by aska              #+#    #+#             */
-/*   Updated: 2024/12/12 23:23:43 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/19 18:58:26 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sprite_lst_bonus.h"
 
-t_sprite_lst	*insert_sprite_lst(t_sprite_lst **head, float x, float y,
+t_sprite_lst	*insert_sprite_lst(t_sprite_lst **head, double x, double y,
 		int id)
 {
 	t_sprite_lst	*new_node;

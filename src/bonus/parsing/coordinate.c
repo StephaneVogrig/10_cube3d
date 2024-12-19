@@ -6,14 +6,14 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2024/12/16 17:55:17 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/19 19:01:19 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "coordinate.h"
 #include "math.h"
 
-static float custom_atof(char *str)
+static double custom_atof(char *str)
 {
 	char *tmp;
 	double	integer;
@@ -30,7 +30,7 @@ static float custom_atof(char *str)
 	while (*str != '.' && *str != ',' && *str != '\0')
 		str++;
 	if (*str == '\0')
-		return ((float)ft_atoi(tmp));
+		return ((double)ft_atoi(tmp));
 	*str = '\0';
 	integer = ft_atoi(tmp);
 	tmp = ++str;
@@ -68,8 +68,8 @@ int set_sprite_coordinate(char *line, t_sprite_lst **head, int id)
 {
 	char *x;
 	char *y;
-	float x_f;
-	float y_f;
+	double x_f;
+	double y_f;
 
 	(void)head;
 	extract_raw_coordinate(line, &x, &y);
