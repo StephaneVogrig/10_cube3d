@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/19 16:31:39 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/19 17:06:34 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
 		(*tmp)->line = NULL;
 		if (ft_strcmp(kv.key, "SP") == 0)
 			exit_code = extract_coordinate_sprite(sprite_lst, tmp, id);
-		if (exit_code == SUCCESS)
+		else if (exit_code == SUCCESS)
 			*tmp = (*tmp)->next;
 		id++;
 	}
