@@ -3,14 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:13:43 by aska              #+#    #+#             */
-/*   Updated: 2024/12/09 15:46:43 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:31:58 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "debug.h"
+
+void print_exit_code(int exit_code)
+{
+	if (exit_code == SUCCESS)
+		ft_printf("%i\t: "HGRN"SUCCESS\n"CRESET, exit_code);
+	else if (exit_code == FAIL)
+		ft_printf("%i\t: "HRED"FAIL\n"CRESET, exit_code);
+	else
+		ft_printf("%i\t: "HYEL"OTHER\n"CRESET, exit_code);
+}
+
+void print_buffer(t_texture *t)
+{
+	int i;
+
+	i = 0;
+	while (i < t->height * t->width)
+	{
+		ft_printf("%i\t", i);
+		ft_printf("%i\n", t->buffer[i]);
+		i++;
+	}
+}
+
+void print_texture(t_texture *t)
+{
+	if (t == NULL)
+	{
+		printf("texture is NULL\n");
+		return ;
+	}
+	printf(HYEL"texture = %p\t| ", t);
+	printf("width: %i,\theight: %i\n", t->width, t->height);
+	printf("buffer = %p\n" CRESET, t->buffer);
+	// print_buffer(t);
+}
+
+void print_asset(t_asset *t)
+{
+	int i;
+
+	i = 0;
+	while (t->key[i] != NULL)
+	{
+		ft_printf("key: %s\t|\t", t->key[i]);
+		ft_printf("value: %p\n", t->value[i]);
+		// if (t->is_color[i] == FALSE)
+		// 	print_buffer(t->value[i]);
+		i++;
+	}
+}
 
 void    print_tab(char **tab)
 {

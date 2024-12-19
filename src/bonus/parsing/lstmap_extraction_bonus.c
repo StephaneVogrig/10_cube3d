@@ -1,17 +1,17 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/16 19:36:27 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 16:31:39 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "lstmap_extraction_bonus.h"
-#include "file_load.h"
+#include "debug.h"
 
 int	is_map_valid_bonus(char *line)
 {
@@ -22,7 +22,7 @@ int	is_map_valid_bonus(char *line)
 	i = 0;
 	while (line[i] != '\0')
 	{
-		if (ft_isthis(line[i], " 0123456789NSEWTRL\n") == FALSE)
+		if (ft_isthis(line[i], "0123456789 NSEWTRL\n") == FALSE)
 			return (FALSE);
 		i++;
 	}
@@ -78,45 +78,75 @@ int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 	return (SUCCESS);
 }
 
-static int	lstmap_to_asset(t_tex_path *tex_path, t_lstmap **lst_map,
-		char *root_path)
+int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
+{
+	*tmp = (*tmp)->next;
+	while (tmp != NULL && (*tmp)->line[0] == '[')
+	{
+		if (set_sprite_coordinate((*tmp)->line, sprite_lst, id) == SUCCESS)
+			*tmp = (*tmp)->next;
+	}
+	return (SUCCESS);
+}
+
+static int	is_newline_valid(t_lstmap **tmp)
+{
+	while (*tmp != NULL && is_empty((*tmp)->line) == TRUE)
+		*tmp = (*tmp)->next;
+	if (*tmp == NULL)
+		return (FAIL);
+	if (!ft_isthis((*tmp)->line[0], "NWESFCTLRH"))
+		return (FAIL);
+	return (SUCCESS);
+}
+
+static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
+		t_asset_lst **asset_lst, t_sprite_lst **sprite_lst)
 {
 	t_key_value	kv;
 	int			exit_code;
+	int			id;
 
-	while (*lst_map != NULL)
+	id = 0;
+	exit_code = SUCCESS;
+	while (tmp != NULL)
 	{
-		while (is_empty((*lst_map)->line) == TRUE)
-			delete_node_lstmap(lst_map, *lst_map);
-		exit_code = set_key_value(&kv, (*lst_map)->line);
+		if (is_newline_valid(tmp) == FAIL)
+			break ;
+		exit_code = set_key_value(&kv, (*tmp)->line);
 		if (exit_code == SUCCESS)
-			exit_code = set_path_and_color(tex_path, &kv, root_path);
+			exit_code = set_asset_lst(&kv, root_path, asset_lst, id);
 		else
 			break ;
+		(*tmp)->line = NULL;
+		if (ft_strcmp(kv.key, "SP") == 0)
+			exit_code = extract_coordinate_sprite(sprite_lst, tmp, id);
 		if (exit_code == SUCCESS)
-			delete_node_lstmap(lst_map, *lst_map);
+			*tmp = (*tmp)->next;
+		id++;
 	}
-	return (SUCCESS); // return always SUCCESS !!!!
+	return (exit_code);
 }
 
-int	lstmap_extract_info(t_map *map, t_tex_path *tex_path, char *map_path)
+int	lstmap_extract_info(t_map *map, char *map_path, t_asset_lst **asset_lst, t_sprite_lst **sprite_lst)
 {
+	t_lstmap	*tmp;
 	t_lstmap	*lst_map;
-	char 		*root_path;
-	int 		exit_code;
+	char		*root_path;
+	int			exit_code;
 
 	lst_map = NULL;
 	exit_code = file_load(map_path, &lst_map);
 	if (exit_code != SUCCESS)
 		return (exit_code);
+	tmp = lst_map;
 	root_path = get_root_path(map_path);
-	exit_code = lstmap_to_asset(tex_path, &lst_map, root_path);
+	exit_code = lstmap_to_asset(&tmp, root_path, asset_lst, sprite_lst);
 	root_path = ft_char_f(root_path);
-	if (exit_code != SUCCESS)
-		return (exit_code);
-	exit_code = check_line_remain(map, &lst_map);
 	if (exit_code == SUCCESS)
-		exit_code = lstmap_to_grid(map, &lst_map);
+		exit_code = check_line_remain(map, &tmp);
+	if (exit_code == SUCCESS)
+		exit_code = lstmap_to_grid(map, &tmp);
 	delete_all_lstmap(&lst_map);
 	return (exit_code);
 }

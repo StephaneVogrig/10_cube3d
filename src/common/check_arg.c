@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2024/11/21 23:09:31 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/11 02:37:59 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	check_entry_arg(int ac, char **av)
 	char *ext;
 	
 	if (ac != 2)
-		return (ft_return(ERROR, 256, INVALID_NUM_OF_ARG));
+		return (ft_return(ERROR, 3, INVALID_NUM_OF_ARG));
 	ext = ft_strrchr(av[1], '.');
 	if (ext == NULL || ft_strcmp(ext, ".cub") != 0)
-		return (ft_return(ERROR, 257, NO_CUB_EXT));
+		return (ft_return(ERROR, 4, NO_CUB_EXT));
 	return (SUCCESS);
 }
 

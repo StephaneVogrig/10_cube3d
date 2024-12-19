@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/12/10 18:43:37 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/19 16:21:52 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,50 +34,28 @@ int	attrib_rgb(t_rgb *rgb, char *value)
 	return (ok);
 }
 
-int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
+int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst, int id)
 {
-	int	key;
-
-	key = get_index_by_key(kv->key);
-	if (key != FAIL)
-	{
-		tex_path->path[key] = ft_strdup(kv->value);
-		if (tex_path->path[key] == NULL)
-			return (ft_return(ERROR, 266, "Malloc Error"));
-	}
-	else
-		return (ft_return(ERROR, 267, "Invalid Key"));
-	return (SUCCESS);
-}
-
-int	set_path_and_color(t_tex_path *tex_path, t_key_value *kv, char *root_path)
-{
-	int	exit_code;
 	int	fd;
 
 	if (root_path != NULL)
 		kv->value = ft_strjoin(root_path, kv->value);
 	fd = ft_open(kv->value, O_RDONLY);
 	if (fd == FAIL)
-		return (ft_return(ERROR, 268, "Texture File Invalid"));
+	{
+		kv->value = ft_char_f(kv->value);
+		return (ft_return(ERROR, 8, "L.67:set_asset_lst: open failed"));
+	}
 	ft_close(fd);
-	exit_code = set_path_by_key(tex_path, kv);
-	kv->value = ft_char_f(kv->value);
-	return (exit_code);
+	insert_asset_lst(asset_lst, kv->key, kv->value, id);
+	return (SUCCESS);
 }
 
 int	set_key_value(t_key_value *kv, char *line)
 {
-	int	exit_code;
-
-	// printf("line = %s\n", line);
-	exit_code = !ft_isthis(line[0], "WFCTLRH");
-	if (exit_code != SUCCESS)
-		return (ft_return(ERROR, 263, "Invalid Key"));
-	exit_code = setup_key_value_separate_by_space(&(kv->key), &(kv->value),
-			line);
-	if (exit_code != SUCCESS)
-		return (exit_code);
+	if (setup_key_value_separate_by_space(&(kv->key), &(kv->value),
+			line) != SUCCESS)
+		return (FAIL);
 	remove_root_value(kv->value);
-	return (exit_code);
+	return (SUCCESS);
 }

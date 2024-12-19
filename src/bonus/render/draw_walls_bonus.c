@@ -6,12 +6,13 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/10 19:03:06 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/17 16:51:47 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw_walls_bonus.h"
 #include "map.h"
+#include "debug.h"
 
 int	x_hit_on_texture_door(t_texture *texture, t_ray *ray, t_door *door_open_list)
 {

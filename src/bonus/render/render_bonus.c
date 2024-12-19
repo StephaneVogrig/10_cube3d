@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/17 14:25:05 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 16:32:53 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "render_bonus.h"
 #include "draw_utils_bonus.h"
@@ -145,18 +145,20 @@ void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 				t_vec2i	t;
 
 				int color;
+				t_texture	*tex_ceil = asset_get_texture(&data->textures, "C");
+				t_texture	*tex_floor = asset_get_texture(&data->textures, "F");
 				(void)dark;
 				// ceil
-				t.x = data->textures.tex[10].width * box.x;
-				t.y = data->textures.tex[10].height * box.y;
-				color = texture_get_color(&data->textures.tex[10], t.x, t.y);
+				t.x = tex_ceil->width * box.x;
+				t.y = tex_ceil->height * box.y;
+				color = texture_get_color(tex_ceil, t.x, t.y);
 				color = color_darkened(color, dark);
 				window_put_pixel(&data->win, x, y_ceil, color);
 
 				// floor
-				t.x = data->textures.tex[0].width * box.x;
-				t.y = data->textures.tex[0].height * box.y;
-				color = texture_get_color(&data->textures.tex[0], t.x, t.y);
+				t.x = tex_floor->width * box.x;
+				t.y = tex_floor->height * box.y;
+				color = texture_get_color(tex_floor, t.x, t.y);
 				color = color_darkened(color, dark);
 				window_put_pixel(&data->win, x, y_floor, color);
 			}
