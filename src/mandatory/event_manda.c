@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 15:59:30 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 16:44:19 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -64,12 +64,25 @@ int	on_keyup(int key, void *param)
 	return (SUCCESS);
 }
 
+int	event_check_move(t_player *player, t_key key, t_time_us delta_time)
+{
+	t_vec2i	move;
+
+	move.x = key.w - key.s;
+	move.y = key.d - key.a;
+	if (move.x != 0 || move.y != 0)
+	{
+		player_move(player, move, delta_time);
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
 int	on_loop(void *param)
 {
 	static	t_time_us	oldtime;
 	t_time_us			delta_time;
 	t_data				*data;
-	t_vec2i				move;
 	int					render_needed;
 
 	delta_time = gametime() - oldtime;
@@ -78,13 +91,7 @@ int	on_loop(void *param)
 	if (data->key.down == 0)
 		return (SUCCESS);
 	render_needed = player_rotate(&data->player, data->key, delta_time);
-	move.x = data->key.w - data->key.s;
-	move.y = data->key.d - data->key.a;
-	if (move.x != 0 || move.y != 0)
-	{
-		player_move(&data->player, move, delta_time);
-		render_needed = TRUE;
-	}
+	render_needed |= event_check_move(&data->player, data->key, delta_time);
 	if (!render_needed)
 		return (SUCCESS);
 	render(data);

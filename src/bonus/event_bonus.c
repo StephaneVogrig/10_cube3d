@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 15:59:32 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/19 17:02:36 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -84,12 +84,25 @@ int	on_keyup(int key, void *param)
 	return (SUCCESS);
 }
 
+int	event_check_move(t_player *player, t_key key, t_time_us dt, t_data *data)
+{
+	t_vec2i	move;
+
+	move.x = key.w - key.s;
+	move.y = key.d - key.a;
+	if (move.x != 0 || move.y != 0)
+	{
+		player_move(&data->map , player, move, dt, data->door_open_list);
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
 int	on_loop(void *param)
 {
 	static	t_time_us	oldtime;
 	t_time_us	delta_time;
 	t_data *data;
-	t_vec2i move;
 	int x;
 	int y;
 	int render_needed;
@@ -116,13 +129,7 @@ int	on_loop(void *param)
 	if (data->key.down)
 	{
 		render_needed |= player_rotate(&data->player, data->key, delta_time);
-		move.x = data->key.w - data->key.s;
-		move.y = data->key.d - data->key.a;
-		if (move.x != 0 || move.y != 0)
-		{
-			player_move(&data->map , &data->player, move, delta_time, data->door_open_list);
-			render_needed = TRUE;
-		}
+		render_needed |= event_check_move(&data->player, data->key, delta_time, data);
 	}
 	if (!render_needed)
 		return (SUCCESS);
