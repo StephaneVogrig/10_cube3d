@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:31:39 by aska              #+#    #+#             */
-/*   Updated: 2024/12/17 18:18:01 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/19 16:21:22 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int asset_destroy(t_asset *t)
 
 		if (t->is_color[i] == FALSE)
 		{
-			printf("ptr: %p\n", t->value[i]);
 			asset_buffer_destroy(t->value[i]);
+			free(t->value[i]);
 		}
 		i++;
 	}
@@ -57,35 +57,37 @@ int asset_destroy(t_asset *t)
 	return (SUCCESS);
 }
 
-int asset_lst_to_array(void *mlx, t_asset *textures, t_asset_lst **head)
+int asset_lst_to_array(void *mlx, t_asset *asset, t_asset_lst **head)
 {
 	int size;
 	int i;
+	t_asset_lst *tmp;
 
+	tmp = *head;
 	size = get_lst_size(*head);
-	textures->key = ft_calloc(sizeof(char *), (size + 1));
-	textures->value = ft_calloc(sizeof(void *), (size + 1));
-	textures->is_color = ft_calloc(sizeof(t_bool), (size + 1));
-	if (textures->key == NULL || textures->value == NULL || textures->is_color == NULL)
+	asset->key = ft_calloc(sizeof(char *), (size + 1));
+	asset->value = ft_calloc(sizeof(void *), (size + 1));
+	asset->is_color = ft_calloc(sizeof(t_bool), (size + 1));
+	if (asset->key == NULL || asset->value == NULL || asset->is_color == NULL)
 	{
-		free(textures->key);
-		free(textures->value);
-		free(textures->is_color);
+		free(asset->key);
+		free(asset->value);
+		free(asset->is_color);
 		return (FAIL);
 	}
 	i = 0;
 	while(i < size)
 	{
-		textures->value[i] = ft_calloc(sizeof(t_texture *), (size + 1));
-		if (textures->value[i] == NULL)
+		asset->value[i] = ft_calloc(sizeof(t_texture *), (size + 1));
+		if (asset->value[i] == NULL)
 		{
-			asset_destroy(textures);
+			asset_destroy(asset);
 			return (FAIL);
 		}
-		texture_load_to_buffer(mlx, textures->value[i], (*head)->value);
-		textures->key[i] = (*head)->key;
-		// textures->is_color[i] = (*head)->is_color;
-		*head = (*head)->next;
+		texture_load_to_buffer(mlx, asset->value[i], tmp->value);
+		asset->key[i] = tmp->key;
+		// asset->is_color[i] = tmp->is_color;
+		tmp = tmp->next;
 		i++;
 	}
 	return (SUCCESS);

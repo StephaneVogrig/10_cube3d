@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2024/12/16 18:00:04 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/19 15:50:45 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,10 @@ void	delete_node_asset(t_asset_lst **head, t_asset_lst *del_node)
 
 void	delete_all_asset_lst(t_asset_lst **head)
 {
-	t_asset_lst	*tmp;
-
 	if (*head == NULL)
 		return ;
-	tmp = *head;
-	while (tmp != NULL)
-	{
-		delete_node_asset(head, tmp);
-		tmp = (*head)->next;
-	}
-	tmp = (*head)->next;
+	while (*head != NULL)
+		delete_node_asset(head, *head);
 	delete_node_asset(head, *head);
 	*head = NULL;
 }
