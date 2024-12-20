@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2024/12/11 02:37:59 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 00:08:42 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,23 @@ int	check_line(char *line)
 	return (SUCCESS);
 }
 
-int	check_arg_color(char **rgb)
+int	is_valid_color(char *rgb)
 {
 	int	i;
-	int	j;
 	int	rgb_len;
-	int	rgb_i;
+	int	atoi_rgb;
 
+	rgb_len = ft_strlen(rgb);
+	if (rgb_len > 10)
+		return (FALSE);
 	i = 0;
 	while (rgb[i])
-	{
-		rgb_len = ft_strlen(rgb[i]);
-		if (rgb_len > 10)
-			return (FAIL);
-		j = 0;
-		while (rgb[i][j])
-			if (ft_isdigit(rgb[i][j++] == 0))
-				return (FAIL);
-		rgb_i = ft_atoi(rgb[i]);
-		if (rgb_len != ft_intlen(rgb_i, 0))
-			return (FAIL);
-		if (rgb_i < 0 || rgb_i > 255)
-			return (FAIL);
-		i++;
-	}
-	return (SUCCESS);
+		if (ft_isdigit(rgb[i++] == 0))
+			return (FALSE);
+	atoi_rgb = ft_atoi(rgb);
+	if (rgb_len != ft_intlen(atoi_rgb, 0))
+		return (FALSE);
+	if (atoi_rgb < 0 || atoi_rgb > 255)
+		return (FALSE);
+	return (TRUE);
 }

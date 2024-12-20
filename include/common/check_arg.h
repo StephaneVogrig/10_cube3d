@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 09:37:11 by aska              #+#    #+#             */
-/*   Updated: 2024/11/22 01:19:38 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 00:13:50 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
 
 int	check_entry_arg(int ac, char **av);
 int	check_line(char *line);
-int	check_arg_color(char **rgb);
+int	is_valid_color(char *rgb);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 06:18:51 by aska              #+#    #+#             */
-/*   Updated: 2024/12/16 17:37:04 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 01:56:15 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	mlx_setup(t_window *win, t_asset *textures, t_asset_lst **head)
 	mlx = mlx_init();
 	if (mlx == NULL)
 		return (ft_return(ERROR, 258, "Error on mlx_init"));
-	exit_code = asset_lst_to_array(mlx, textures, head);
+	exit_code = asset_lst_to_array(mlx, textures, *head);
 	if (exit_code == SUCCESS)
 		exit_code = window_setup(win, mlx);
 	return (exit_code);

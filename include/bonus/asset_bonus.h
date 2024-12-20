@@ -16,16 +16,18 @@
 # include "color.h"
 # include "texture.h"
 # include "asset_lst_bonus.h"
+# include "pointer_table.h"
 
 typedef struct s_asset
 {
 	char		**key;
-	void		**value;
-	t_bool		*is_color;
-	t_texture	tex[14];
+	t_texture	**value;
+	t_ptr_tbl	*floor_ceil;
+	t_ptr_tbl	*wall;
+	t_ptr_tbl	*wall_nsew;
 }				t_asset;
 
-int asset_lst_to_array(void *mlx, t_asset *textures, t_asset_lst **head);
+int asset_lst_to_array(void *mlx, t_asset *textures, t_asset_lst *head);
 int asset_destroy(t_asset *t);
 t_texture	*asset_get_texture(t_asset *t, char *cell);
 void print_asset_array(t_asset *t);

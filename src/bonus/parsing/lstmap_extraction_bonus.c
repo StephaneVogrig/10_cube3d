@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/19 17:06:34 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 00:18:21 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
 
 	id = 0;
 	exit_code = SUCCESS;
-	while (tmp != NULL)
+	while (tmp != NULL && exit_code == SUCCESS)
 	{
 		if (is_newline_valid(tmp) == FAIL)
 			break ;

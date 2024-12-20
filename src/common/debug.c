@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:13:43 by aska              #+#    #+#             */
-/*   Updated: 2024/12/17 16:31:58 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 03:00:30 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void print_texture(t_texture *t)
 	printf(HYEL"texture = %p\t| ", t);
 	printf("width: %i,\theight: %i\n", t->width, t->height);
 	printf("buffer = %p\n" CRESET, t->buffer);
-	// print_buffer(t);
+	print_buffer(t);
 }
 
 void print_asset(t_asset *t)

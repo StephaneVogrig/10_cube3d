@@ -1,38 +1,40 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils_manda.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/11/23 19:13:05 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/20 00:16:59 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 
 #include "lstmap_extraction_utils_manda.h"
 
-int	attrib_rgb(t_rgb *rgb, char *value)
+int	set_rgb(t_rgb *rgb, char *value)
 {
 	char	**arg;
-	int		ok;
 
-	ok = SUCCESS;
 	arg = ft_split(value, ',');
 	if (arg == NULL || ft_tablen(arg) != 3)
-		ok = FAIL;
-	if (ok != FAIL && check_arg_color(arg) == FAIL)
-		ok = FAIL;
-	if (ok != FAIL)
 	{
-		rgb->a = (unsigned char)255;
-		rgb->r = (unsigned char)ft_atoi(arg[0]);
-		rgb->g = (unsigned char)ft_atoi(arg[1]);
-		rgb->b = (unsigned char)ft_atoi(arg[2]);
+		ft_tab_f(arg);
+		return (FAIL);
 	}
+	if (is_valid_color(arg[0]) == FALSE || is_valid_color(arg[1]) == FALSE
+		|| is_valid_color(arg[2]) == FALSE)
+	{
+		ft_tab_f(arg);
+		return (FAIL);
+	}
+	rgb->r = (unsigned char)ft_atoi(arg[0]);
+	rgb->g = (unsigned char)ft_atoi(arg[1]);
+	rgb->b = (unsigned char)ft_atoi(arg[2]);
+	rgb->a = (unsigned char)255;
 	ft_tab_f(arg);
-	return (ok);
+	return (SUCCESS);
 }
 
 int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
@@ -58,9 +60,9 @@ int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
 	int	fd;
 
 	if (kv->key[0] == 'C')
-		exit_code = attrib_rgb(&tex->ceil_rgb, kv->value);
+		exit_code = set_rgb(&tex->ceil_rgb, kv->value);
 	else if (kv->key[0] == 'F')
-		exit_code = attrib_rgb(&tex->floor_rgb, kv->value);
+		exit_code = set_rgb(&tex->floor_rgb, kv->value);
 	else
 	{
 		if (root_path != NULL)

@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   pointer_table.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 02:53:00 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 03:29:47 by aska             ###   ########.fr       */
+/*   Created: 2024/12/20 04:15:42 by aska              #+#    #+#             */
+/*   Updated: 2024/12/20 04:38:41 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#ifndef POINTER_TABLE_H
+# define POINTER_TABLE_H
 
-#include "check_arg.h"
-#include "libft.h"
+# include "libft.h"
 
-typedef union u_color
+typedef struct s_pointer_table
 {
-	struct
-	{
-		int	b : 8;
-		int	g : 8;
-		int	r : 8;
-		int	a : 8;
-	};
-	int	integer;
-}	t_rgb;
+    char    **table;
+}	t_ptr_tbl;
 
-int color_darkened(int color, int dark);
-int	color_set_rgb(t_rgb *rgb, char *value);
 
 #endif

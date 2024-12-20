@@ -17,7 +17,7 @@ SP doorL.png
 [8;4]
 [9;4.5]
 T doorT.png
-F floor.png
+F 0,0,128
 C ceil.png
 
 121111111111111111131
