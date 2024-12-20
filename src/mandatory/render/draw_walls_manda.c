@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/05 23:10:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/20 17:39:56 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,22 +14,22 @@
 
 int	x_hit_in_texture(t_texture *texture, t_ray *ray)
 {
-	if (ray->hit_side == 'n')
+	if (ray->hit_side == 'N')
 		return ((1 - ray->hit_pos.x.box) * (texture->width - 1));
-	if (ray->hit_side == 's')
+	if (ray->hit_side == 'S')
 		return (ray->hit_pos.x.box * (texture->width - 1));
-	if (ray->hit_side == 'e')
+	if (ray->hit_side == 'E')
 		return ((1 - ray->hit_pos.y.box) * (texture->width - 1));
 	return (ray->hit_pos.y.box * (texture->width - 1));
 }
 
 t_texture	*texture_hit(t_textures *textures, t_ray *ray)
 {
-	if (ray->hit_side == 'n')
+	if (ray->hit_side == 'N')
 		return (&textures->north);
-	if (ray->hit_side == 's')
+	if (ray->hit_side == 'S')
 		return (&textures->south);
-	if (ray->hit_side == 'e')
+	if (ray->hit_side == 'E')
 		return (&textures->east);
 	return (&textures->west);
 }

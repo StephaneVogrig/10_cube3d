@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_walls_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/17 16:51:47 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 17:39:56 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "draw_walls_bonus.h"
 #include "map.h"
@@ -19,7 +19,7 @@ int	x_hit_on_texture_door(t_texture *texture, t_ray *ray, t_door *door_open_list
 	float	hit_on_texture;
 	float	opening_rate;
 
-	if (ray->hit_side == 'n' || ray->hit_side == 's')
+	if (ray->hit_side == 'N' || ray->hit_side == 'S')
 		hit_on_texture = ray->hit_pos.x.box;
 	else
 		hit_on_texture = ray->hit_pos.y.box;
@@ -42,11 +42,11 @@ int	x_hit_in_texture(t_texture *texture, t_ray *ray, t_door *door_open_list)
 {
 	if (cell_is_door(*(ray->hit_cell)))
 		return (x_hit_on_texture_door (texture, ray, door_open_list));
-	if (ray->hit_side == 'n')
+	if (ray->hit_side == 'N')
 		return ((1 - ray->hit_pos.x.box) * (texture->width - 1));
-	if (ray->hit_side == 's')
+	if (ray->hit_side == 'S')
 		return (ray->hit_pos.x.box * (texture->width - 1));
-	if (ray->hit_side == 'e')
+	if (ray->hit_side == 'E')
 		return ((1 - ray->hit_pos.y.box) * (texture->width - 1));
 	return (ray->hit_pos.y.box * (texture->width - 1));
 }

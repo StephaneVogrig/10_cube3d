@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 00:27:56 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 21:24:03 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/20 17:40:39 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,7 +23,7 @@ double	sign_double(double value)
 void	player_move_dda(t_ray *ray, t_map *map, t_position *start, t_door *door_open_list)
 {
 	dda(ray, map, start, door_open_list);
-	if (ray->hit_side == 'w' || ray->hit_side == 'e')
+	if (ray->hit_side == 'W' || ray->hit_side == 'E')
 		ray->len -= fabs(DIST_BEFORE_COLLIDE / ray->vdir.x);
 	else
 		ray->len -= fabs(DIST_BEFORE_COLLIDE / ray->vdir.y);
@@ -39,7 +39,7 @@ void	slide(t_map *map, t_player *player, t_ray *ray, double len_move, t_door *do
 
 	player->position = ray->hit_pos;
 	len_move -= ray->len;
-	if (ray->hit_side == 'w' || ray->hit_side == 'e')
+	if (ray->hit_side == 'W' || ray->hit_side == 'E')
 	{
 		len_axis_remain = fabs(ray->vdir.y) * len_move;
 		ray->vdir.x = 0;

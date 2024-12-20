@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 19:20:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 20:47:13 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/20 17:40:39 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -64,16 +64,16 @@ void	dda_ray_set(t_ray *ray, t_dda *dda, t_position *start)
 	if (dda->hit_side == 'x')
 	{
 		if (dda->x.step == 1)
-			ray->hit_side = 'w';
+			ray->hit_side = 'W';
 		else
-			ray->hit_side = 'e';
+			ray->hit_side = 'E';
 	}
 	else
 	{
 		if (dda->y.step == 1)
-			ray->hit_side = 'n';
+			ray->hit_side = 'N';
 		else
-			ray->hit_side = 's';
+			ray->hit_side = 'S';
 	}
 	ray->dark = dda->collide == AREA;
 }

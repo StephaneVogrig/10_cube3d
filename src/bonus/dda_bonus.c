@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dda_bonus.c                                        :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:03:35 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/10 10:52:43 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/20 17:40:39 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "dda_bonus.h"
 #include "door_bonus.h"
@@ -91,9 +91,9 @@ static int is_collide_door(t_ray *ray, t_map *map, t_position *position, t_door 
 			return (FALSE);
 		ray->hit_pos.x.box = 0.5;
 		if (ray->vdir.x > 0)
-			ray->hit_side = 'w';
+			ray->hit_side = 'W';
 		else
-			ray->hit_side = 'e';
+			ray->hit_side = 'E';
 		ray->len = fabs(delta_axis / ray->vdir.x);
 	}
 	else
@@ -108,9 +108,9 @@ static int is_collide_door(t_ray *ray, t_map *map, t_position *position, t_door 
 			return (FALSE);
 		ray->hit_pos.y.box = 0.5;
 		if (ray->vdir.y > 0)
-			ray->hit_side = 'n';
+			ray->hit_side = 'N';
 		else
-			ray->hit_side = 's';
+			ray->hit_side = 'S';
 		ray->len = fabs(delta_axis / ray->vdir.y);
 	}
 	return (TRUE);
