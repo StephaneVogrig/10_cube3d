@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/20 15:48:48 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 20:47:14 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "lstmap_extraction_bonus.h"
 
@@ -67,10 +67,10 @@ int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
 		return (ft_return(ERROR, 273, "Error on Map Creation"));
 	while (y != map->height)
 	{
-		map->grid[y] = tmp->line;
+		map->grid[y] = ft_calloc(map->width + 1, sizeof(char));
 		if (map->grid[y] == NULL)
 			return (ft_return(ERROR, 274, "Error on Map Creation"));
-		tmp->line = NULL;
+		ft_strcpy(map->grid[y], tmp->line);
 		tmp = tmp->next;
 		y++;
 	}

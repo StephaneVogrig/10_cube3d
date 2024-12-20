@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   asset_lst_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2024/12/20 04:08:33 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 21:08:41 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "asset_lst_bonus.h"
 
@@ -62,17 +62,4 @@ void	delete_all_asset_lst(t_asset_lst **head)
 		delete_node_asset(head, *head);
 	delete_node_asset(head, *head);
 	*head = NULL;
-}
-
-void	print_asset_lst(t_asset_lst *head)
-{
-	t_asset_lst *tmp;
-
-	tmp = head;
-	while (tmp != NULL)
-	{
-		printf("id: %d, key: %s, value: %s\n", tmp->id, tmp->key,
-			tmp->value);
-		tmp = tmp->next;
-	}
 }

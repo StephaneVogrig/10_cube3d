@@ -1,20 +1,19 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   asset_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:31:39 by aska              #+#    #+#             */
-/*   Updated: 2024/12/20 15:48:06 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 20:57:06 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "asset_bonus.h"
 #include "asset_lst_bonus.h"
 #include "id_tex_bonus.h"
 #include "libft.h"
-#include "debug_bonus.h"
 #include "color.h"
 
 static int get_asset_lst_size(t_asset_lst *head)
@@ -100,6 +99,5 @@ int asset_lst_to_array(void *mlx, t_asset *asset, t_asset_lst *head)
 		head = head->next;
 		i++;
 	}
-	print_asset(asset);
 	return (SUCCESS);
 }

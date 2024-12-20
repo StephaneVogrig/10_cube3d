@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   debug_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:12:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 15:47:42 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 21:08:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "debug_bonus.h"
 
@@ -70,6 +70,7 @@ void print_asset(t_asset *t)
 	int i;
 
 	i = 0;
+	printf("asset_tab...............................\n");
 	while (t->key[i] != NULL)
 	{
 		ft_printf("key: %s\t|\t", t->key[i]);
@@ -77,4 +78,35 @@ void print_asset(t_asset *t)
 		// print_buffer(t->value[i]);
 		i++;
 	}
+	printf("asset_tab...............................end\n");
+	printf("floor: %p\n", t->floor_ceil.floor);
+	printf("ceil: %p\n", t->floor_ceil.ceil);
+	printf("door.right: %p\n", t->door.right);
+	printf("door.left: %p\n", t->door.left);
+	printf("door.twin: %p\n", t->door.twin);
+	printf("nswe.north: %p\n", t->nsew.north);
+	printf("nswe.south: %p\n", t->nsew.south);
+	printf("nswe.east: %p\n", t->nsew.east);
+	printf("nswe.west: %p\n", t->nsew.west);
+	i = 0;
+	while (i < 9)
+	{
+		printf("wall[%i]: %p\n", i, t->wall[i]);
+		i++;
+	}
+}
+
+void	print_asset_lst(t_asset_lst *head)
+{
+	t_asset_lst *tmp;
+
+	printf("asset_lst ++++++++++++++++++++++++\n");
+	tmp = head;
+	while (tmp != NULL)
+	{
+		printf("id: %d, key: %s, value: %s\n", tmp->id, tmp->key,
+			tmp->value);
+		tmp = tmp->next;
+	}
+	printf("asset_lst ++++++++++++++++++++++++ end\n");
 }

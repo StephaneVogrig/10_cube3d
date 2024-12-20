@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   pointer_table_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:11:25 by aska              #+#    #+#             */
-/*   Updated: 2024/12/20 18:12:58 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 20:56:53 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "pointer_table_bonus.h"
 
@@ -21,7 +21,12 @@ void pointer_table_init(t_asset *asset)
         while (ft_strcmp(asset->key[i], "SP") == 0)
             i++;
         if (asset->key[i][0] == 'W')
-            asset->wall[asset->key[i][1] - 49] = asset->value[i];
+        {
+            if (asset->key[i][1] == 'E')
+                asset->nsew.west = asset->value[i];
+            else
+                asset->wall[asset->key[i][1] - WALL_OFFSET] = asset->value[i];
+        }
         else if (asset->key[i][0] == 'F')
             asset->floor_ceil.floor = asset->value[i];
         else if (asset->key[i][0] == 'C')
@@ -38,8 +43,6 @@ void pointer_table_init(t_asset *asset)
             asset->nsew.south = asset->value[i];
         else if (asset->key[i][0] == 'E')
             asset->nsew.east = asset->value[i];
-        else if (asset->key[i][0] == 'W')
-            asset->nsew.west = asset->value[i];
         i++;
     }
 }
@@ -62,7 +65,7 @@ t_texture	*asset_get_texture_ptr(t_asset *t, char *cell, char orientation)
     if (*cell == '1')
         return (ptr_tbl_get_orientation_wall(t, orientation));
     else if (ft_isdigit(*cell) == TRUE)
-        return (t->wall[*cell - 50]);
+        return (t->wall[*cell - WALL_OFFSET]);
     else if (*cell == 'F')
         return (t->floor_ceil.floor);
     else if (*cell == 'C')

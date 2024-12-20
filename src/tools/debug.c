@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:13:43 by aska              #+#    #+#             */
-/*   Updated: 2024/12/20 03:00:30 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 21:06:52 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "debug.h"
 
@@ -48,21 +48,6 @@ void print_texture(t_texture *t)
 	print_buffer(t);
 }
 
-void print_asset(t_asset *t)
-{
-	int i;
-
-	i = 0;
-	while (t->key[i] != NULL)
-	{
-		ft_printf("key: %s\t|\t", t->key[i]);
-		ft_printf("value: %p\n", t->value[i]);
-		// if (t->is_color[i] == FALSE)
-		// 	print_buffer(t->value[i]);
-		i++;
-	}
-}
-
 void    print_tab(char **tab)
 {
     int i;
@@ -100,11 +85,13 @@ void	map_print(t_map *map)
 
 void	lstmap_print(t_lstmap *lstmap)
 {
+	printf("lst_map -----------------\n");
 	while (lstmap)
 	{
 		printf("%s\n", lstmap->line);
 		lstmap = lstmap->next;
 	}
+	printf("lst_map ----------------- end\n");
 }
 
 // void    print_t_rgb(t_rgb *rgb)

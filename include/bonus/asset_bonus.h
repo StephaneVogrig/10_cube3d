@@ -48,6 +48,12 @@ typedef struct s_asset
 	t_texture		*wall[9];
 }				t_asset;
 
+/*
+	the array wall is adressed by char from '1' to '9'
+	so we use '1' = 49 as offset
+ */
+# define WALL_OFFSET 49
+
 int asset_lst_to_array(void *mlx, t_asset *textures, t_asset_lst *head);
 int asset_destroy(t_asset *t);
 t_texture	*asset_get_texture(t_asset *t, char *cell);

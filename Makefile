@@ -1,14 +1,14 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/20 15:53:41 by aska             ###   ########.fr        #
+#    Updated: 2024/12/20 21:17:55 by svogrig          ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 SHELL				:=	/bin/bash
 
@@ -128,9 +128,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						render/minimap_bonus.c \
 						render/minimap_utils_bonus.c \
 						render/raycasting_bonus.c \
-						render/render_bonus.c \
-						debug_bonus.c \
-
+						render/render_bonus.c
 
 SRCS_BONUS			:=	$(SRCS_BONUS:%=$(SRC_BONUS_DIR)/%)
 # sources ---------------------------------------------------------------------#
@@ -151,7 +149,7 @@ DEPS				:=	$(OBJS_MANDA:.o=.d) $(OBJS_BONUS:.o=.d)
 # compilation -----------------------------------------------------------------#
 
 CC 					:= 	cc
-CFLAGS 				:= 	-Wall -Werror -Wextra -g
+CFLAGS 				:= 	-Wall -Werror -Wextra
 
 #------------------------------------------------------------------------------#
 # rules                                                                        #
