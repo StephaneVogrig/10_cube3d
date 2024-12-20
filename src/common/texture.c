@@ -6,12 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:46:11 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 03:00:32 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 15:48:26 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture.h"
-#include "debug.h"
 
 inline int	texture_get_color(t_texture *t, int x, int y)
 {

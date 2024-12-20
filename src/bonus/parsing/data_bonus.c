@@ -6,12 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 18:32:46 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 15:48:40 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_bonus.h"
-#include "debug.h"
 
 void	data_init(t_data *data)
 {

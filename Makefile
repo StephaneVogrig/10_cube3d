@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/19 22:41:31 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/20 15:53:41 by aska             ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 SHELL				:=	/bin/bash
 
@@ -34,6 +34,7 @@ DIR_INC				:=	include \
 						include/bonus \
 						include/common \
 						include/mandatory \
+						include/tools \
 						lib/libft-plus \
 						lib/MacroLibx/includes \
 						src
@@ -49,7 +50,6 @@ SRC_DIR				:=	src
 SRC_COMMON_DIR		:=	common
 
 SRCS_COMMON			:= 	dda_utils.c \
-						debug.c \
 						gridbox.c \
 						map.c \
 						player.c \
@@ -111,6 +111,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						sprite_bonus.c \
 						sprite_draw_bonus.c \
 						sprite_transform_bonus.c \
+						pointer_table_bonus.c \
 						asset_bonus.c \
 						parsing/data_bonus.c \
 						parsing/coordinate.c \
@@ -128,6 +129,8 @@ SRCS_BONUS 			:=	main_bonus.c \
 						render/minimap_utils_bonus.c \
 						render/raycasting_bonus.c \
 						render/render_bonus.c \
+						debug_bonus.c \
+
 
 SRCS_BONUS			:=	$(SRCS_BONUS:%=$(SRC_BONUS_DIR)/%)
 # sources ---------------------------------------------------------------------#
@@ -148,7 +151,7 @@ DEPS				:=	$(OBJS_MANDA:.o=.d) $(OBJS_BONUS:.o=.d)
 # compilation -----------------------------------------------------------------#
 
 CC 					:= 	cc
-CFLAGS 				:= 	-Wall -Werror -Wextra
+CFLAGS 				:= 	-Wall -Werror -Wextra -g
 
 #------------------------------------------------------------------------------#
 # rules                                                                        #

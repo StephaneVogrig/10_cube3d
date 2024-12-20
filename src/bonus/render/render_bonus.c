@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 03:46:27 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 15:29:49 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "draw_line_bonus.h"
 #include "draw_walls_bonus.h"
 #include "sprite_bonus.h"
+#include "pointer_table_bonus.h"
 
 void	draw_player(t_player *player)
 {
@@ -145,8 +146,8 @@ void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 				t_vec2i	t;
 
 				int color;
-				t_texture	*tex_ceil = asset_get_texture(&data->textures, "C");
-				t_texture	*tex_floor = asset_get_texture(&data->textures, "F");
+				t_texture	*tex_ceil = asset_get_texture_ptr(&data->textures, "C", rays->hit_side);
+				t_texture	*tex_floor = asset_get_texture_ptr(&data->textures, "F", rays->hit_side);
 				(void)dark;
 				// ceil
 				t.x = tex_ceil->width * box.x;

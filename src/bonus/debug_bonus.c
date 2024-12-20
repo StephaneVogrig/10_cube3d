@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   debug_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:12:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 22:18:30 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/20 15:47:42 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "debug_bonus.h"
 
@@ -49,5 +49,32 @@ void	print_sprite_lst(t_sprite_lst *head)
 	{
 		printf("id: %d, x: %f, y: %f\n", tmp->id, tmp->x, tmp->y);
 		tmp = tmp->next;
+	}
+}
+
+void print_buffer(t_texture *t)
+{
+	int i;
+
+	i = 0;
+	while (i < t->height * t->width)
+	{
+		ft_printf("%i\t", i);
+		ft_printf("%i\n", t->buffer[i]);
+		i++;
+	}
+}
+
+void print_asset(t_asset *t)
+{
+	int i;
+
+	i = 0;
+	while (t->key[i] != NULL)
+	{
+		ft_printf("key: %s\t|\t", t->key[i]);
+		ft_printf("value: %p\n", t->value[i]);
+		// print_buffer(t->value[i]);
+		i++;
 	}
 }

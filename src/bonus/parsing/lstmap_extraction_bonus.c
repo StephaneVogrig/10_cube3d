@@ -6,12 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/20 00:18:21 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 15:48:48 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lstmap_extraction_bonus.h"
-#include "debug.h"
 
 int	is_map_valid_bonus(char *line)
 {

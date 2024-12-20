@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:29 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/10 15:59:05 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 15:33:56 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "draw_wall_utils.h"
 # include "asset_bonus.h"
 # include "door_bonus.h"
+# include "pointer_table_bonus.h"
 
 void	draw_walls(t_window *win, t_ray *rays, t_asset *textures, t_door *door_open_list);
 
