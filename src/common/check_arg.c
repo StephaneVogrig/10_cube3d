@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2024/12/20 00:08:42 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 14:00:36 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,13 @@ int	is_valid_color(char *rgb)
 	int	atoi_rgb;
 
 	rgb_len = ft_strlen(rgb);
-	if (rgb_len > 10)
+	if (rgb_len > 3)
 		return (FALSE);
 	i = 0;
 	while (rgb[i])
-		if (ft_isdigit(rgb[i++] == 0))
+		if (ft_isdigit(rgb[i++]) == FALSE)
 			return (FALSE);
 	atoi_rgb = ft_atoi(rgb);
-	if (rgb_len != ft_intlen(atoi_rgb, 0))
-		return (FALSE);
 	if (atoi_rgb < 0 || atoi_rgb > 255)
 		return (FALSE);
 	return (TRUE);
