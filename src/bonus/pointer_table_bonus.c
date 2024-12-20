@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:11:25 by aska              #+#    #+#             */
-/*   Updated: 2024/12/20 17:27:21 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/20 18:12:58 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void pointer_table_init(t_asset *asset)
 
     while (asset->key[i] != NULL)
     {
+        while (ft_strcmp(asset->key[i], "SP") == 0)
+            i++;
         if (asset->key[i][0] == 'W')
             asset->wall[asset->key[i][1] - 49] = asset->value[i];
         else if (asset->key[i][0] == 'F')
