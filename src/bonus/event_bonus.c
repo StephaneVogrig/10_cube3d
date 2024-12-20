@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 20:27:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/20 14:31:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -75,13 +75,29 @@ int	event_check_move(t_player *player, t_key key, t_time_us dt, t_data *data)
 	return (TRUE);
 }
 
+int	event_check_mouse_move(t_data *data)
+{
+	int x;
+	int y;
+	int dx;
+
+	if (!data->win.focused || !data->mouse_mode)
+		return (FALSE);
+	mlx_mouse_get_pos(data->mlx, &x, &y);
+	dx = x - data->win.width / 2;
+	if (!dx)
+		return (FALSE);
+	data->player.dir += M_PI * dx / data->win.width;
+	// printf("mouse x:%i, y:%i\n", x, y);
+	mlx_mouse_move(data->mlx, data->win.win, data->win.width / 2, data->win.height / 2);
+	return (TRUE);
+}
+
 int	on_loop(void *param)
 {
 	static	t_time_us	oldtime;
 	t_time_us	delta_time;
 	t_data *data;
-	int x;
-	int y;
 	int render_needed;
 
 	delta_time = gametime() - oldtime;
@@ -90,19 +106,7 @@ int	on_loop(void *param)
 	data = (t_data *)param;
 
 	render_needed = door_open_list_update(data->door_open_list, delta_time);
-
-	if (data->win.focused && data->mouse_mode)
-	{
-		mlx_mouse_get_pos(data->mlx, &x, &y);
-		int dx = x - data->win.width / 2;
-		if (dx)
-		{
-			data->player.dir += M_PI * dx / data->win.width;
-			// printf("mouse x:%i, y:%i\n", x, y);
-			render_needed = TRUE;
-			mlx_mouse_move(data->mlx, data->win.win, data->win.width / 2, data->win.height / 2);
-		}
-	}
+	render_needed |= event_check_mouse_move(data);
 	if (data->key.down)
 	{
 		render_needed |= player_rotate(&data->player, data->key, delta_time);
