@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/16 19:31:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/20 21:47:39 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -34,28 +34,6 @@ int	check_line_remain(t_map *map, t_lstmap **lst_map)
 		tmp = tmp->next;
 	}
 	return (exit_code);
-}
-
-int	lstmap_to_grid(t_map *map, t_lstmap **lst_map)
-{
-	int			y;
-	t_lstmap	*tmp;
-
-	y = 0;
-	tmp = *lst_map;
-	map->grid = ft_calloc(map->height + 1, sizeof(char *));
-	if (map->grid == NULL)
-		return (ft_return(ERROR, 273, "Error on Map Creation"));
-	while (y != map->height)
-	{
-		map->grid[y] = ft_calloc(map->width + 1, sizeof(char));
-		if (map->grid[y] == NULL)
-			return (ft_return(ERROR, 274, "Error on Map Creation"));
-		ft_strcpy(map->grid[y], tmp->line);
-		tmp = tmp->next;
-		y++;
-	}
-	return (SUCCESS);
 }
 
 int	lstmap_to_path_and_color(t_tex_path *tex_path, t_textures *tex,

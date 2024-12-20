@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 14:59:27 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/20 21:43:03 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,7 +14,7 @@
 # define DATA_MANDA_H
 
 # include "libft.h"
-# include "lst_map.h"
+# include "lstmap.h"
 # include "map.h"
 # include "player.h"
 # include "window.h"
