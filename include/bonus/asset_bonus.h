@@ -42,10 +42,10 @@ typedef struct s_asset
 {
 	char			**key;
 	t_texture		**value;
-	t_floor_ceil	*floor_ceil;
-	t_door_tex			*door;
-	t_nsew			*nsew;
-	t_texture		*wall[8];
+	t_floor_ceil	floor_ceil;
+	t_door_tex		door;
+	t_nsew			nsew;
+	t_texture		*wall[9];
 }				t_asset;
 
 int asset_lst_to_array(void *mlx, t_asset *textures, t_asset_lst *head);
