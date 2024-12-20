@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:03:35 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 17:40:39 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/20 17:51:01 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -74,45 +74,41 @@ static char	door_get_direction(t_map *map, t_position position)
 	return ('x');
 }
 
+static int	is_looking_outside(double dir_axis, float box_axis)
+{
+	if (dir_axis == 0
+		|| (box_axis < 0.5 && dir_axis < 0)
+		|| (box_axis > 0.5 && dir_axis > 0))
+		return (TRUE);
+	return (FALSE);
+}
+
 static int is_collide_door(t_ray *ray, t_map *map, t_position *position, t_door *door_open_list)
 {
-	double	delta_axis;
-
 	ray->hit_pos = *position;
 	if (door_get_direction(map, *position) == 'x')
 	{
-		if (ray->vdir.x == 0.0
-			|| (position->x.box < 0.5 && ray->vdir.x < 0)
-			|| (position->x.box > 0.5 && ray->vdir.x > 0))
+		if (is_looking_outside(ray->vdir.x, position->x.box))
 			return (FALSE);
-		delta_axis = 0.5 - position->y.box;
-		ray->hit_pos.y.box += (ray->vdir.y / ray->vdir.x) * delta_axis;
+		ray->len = (0.5 - position->x.box) / ray->vdir.x;
+		ray->hit_pos.y.box += ray->vdir.y * ray->len;
 		if (!is_hit_door(ray->hit_pos.y.box, map_get_cell_ptr(map, position),door_open_list))
 			return (FALSE);
 		ray->hit_pos.x.box = 0.5;
-		if (ray->vdir.x > 0)
-			ray->hit_side = 'W';
-		else
-			ray->hit_side = 'E';
-		ray->len = fabs(delta_axis / ray->vdir.x);
+		ray->hit_side = choose_side(ray->vdir.x > 0, 'W', 'E');
 	}
 	else
 	{
-		if (ray->vdir.y == 0.0
-			|| (position->y.box < 0.5 && ray->vdir.y < 0)
-			|| (position->y.box > 0.5 && ray->vdir.y > 0))
+		if (is_looking_outside(ray->vdir.y, position->y.box))
 			return (FALSE);
-		delta_axis = 0.5 - position->y.box;
-		ray->hit_pos.x.box += (ray->vdir.x / ray->vdir.y) * delta_axis;
+		ray->len = (0.5 - position->y.box) / ray->vdir.y;
+		ray->hit_pos.x.box += ray->vdir.x * ray->len;
 		if (!is_hit_door(ray->hit_pos.x.box, map_get_cell_ptr(map, position),door_open_list))
 			return (FALSE);
 		ray->hit_pos.y.box = 0.5;
-		if (ray->vdir.y > 0)
-			ray->hit_side = 'N';
-		else
-			ray->hit_side = 'S';
-		ray->len = fabs(delta_axis / ray->vdir.y);
+		ray->hit_side = choose_side(ray->vdir.x > 0, 'N', 'S');
 	}
+	ray->len = fabs(ray->len);
 	return (TRUE);
 }
 

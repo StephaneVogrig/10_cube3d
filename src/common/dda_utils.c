@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 19:20:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 17:40:39 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/20 17:46:16 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -55,6 +55,13 @@ int	dda_no_need(t_map *map, t_position *start, t_dda *dda)
 	return (FALSE);
 }
 
+char	choose_side(t_bool test, char val_if_true, char val_if_false)
+{
+	if (test == TRUE)
+		return (val_if_true);
+	return (val_if_false);
+}
+
 void	dda_ray_set(t_ray *ray, t_dda *dda, t_position *start)
 {
 	ray->len = dda->len;
@@ -62,19 +69,9 @@ void	dda_ray_set(t_ray *ray, t_dda *dda, t_position *start)
 	gridbox_add_double(&ray->hit_pos.x, ray->vdir.x * ray->len);
 	gridbox_add_double(&ray->hit_pos.y, ray->vdir.y * ray->len);
 	if (dda->hit_side == 'x')
-	{
-		if (dda->x.step == 1)
-			ray->hit_side = 'W';
-		else
-			ray->hit_side = 'E';
-	}
+		ray->hit_side = choose_side(dda->x.step == 1, 'W', 'E');
 	else
-	{
-		if (dda->y.step == 1)
-			ray->hit_side = 'N';
-		else
-			ray->hit_side = 'S';
-	}
+		ray->hit_side = choose_side(dda->y.step == 1, 'N', 'S');
 	ray->dark = dda->collide == AREA;
 }
 
