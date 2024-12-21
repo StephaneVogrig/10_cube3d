@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 22:38:45 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/21 06:44:30 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "sprite_bonus.h"
 
@@ -33,7 +33,8 @@ int	sprite_setup(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *textures)
 	while (sprite_lst != NULL)
 	{
 		sprite->pos[i] = (t_vec2d){sprite_lst->x, sprite_lst->y};
-		sprite->image[i] = (t_texture *)&textures->value[sprite_lst->id];
+		sprite->image[i] = textures->value[sprite_lst->id];
+		sprite->anim_frame = sprite->image[i]->width / sprite->image[i]->height;
 		sprite->order[i] = i;
 		sprite_lst = sprite_lst->next;
 		i++;
