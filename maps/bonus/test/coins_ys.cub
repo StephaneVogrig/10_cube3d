@@ -1,0 +1,42 @@
+W1 wall1.png
+W2 wall2.png
+W3 wall3.png
+W4 wall4.png
+W5 wall5.png
+W6 wall6.png
+W7 wall7.png
+W8 wall8.png
+W9 wall9.png
+SP coin_ys_silver.png
+[2.5;2.5]
+[12.5;2.5]
+[2.5;12.5]
+[12.5;12.5]
+SP logo_42.png
+[7.5;7.5]
+SP coin_ys_gold.png
+[5.5;5.5]
+[5.5;9.5]
+[9.5;5.5]
+[9.5;9.5]
+R doorR.png
+L doorL.png
+T doorT.png
+F floor.png
+C ceil.png
+
+          1
+ 123456789012
+ 2000000000002
+ 3001R1T1L1003
+ 4010000000104
+ 50R0000000R05
+ 6010000000106
+ 70T000N000T07
+ 8010000000108
+ 90L0000000L09
+100100000001001
+ 1001R1T1L1001
+ 2000000000002
+ 123456789012
+          1
