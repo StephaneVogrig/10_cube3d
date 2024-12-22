@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 01:27:28 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 01:58:57 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 19:40:31 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,7 +19,7 @@ int	sprite_update_state(float *state, int nbr_state, t_time_us dt)
 	if (nbr_state == 1)
 		return (FALSE);
 	state_start = (int)*state;
-	*state += (float)nbr_state * (float)dt / USECOND_PER_SECOND;
+	*state += 25 * (float)dt / USECOND_PER_SECOND;
 	if (*state >= nbr_state)
 		*state -= (nbr_state);
 	if ((int)*state == state_start)

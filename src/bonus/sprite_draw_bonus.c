@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:37:46 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 03:32:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 16:21:43 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -72,7 +72,7 @@ void	sprite_draw(t_sprite *sprite, int i, t_window *win, t_ray *ray_tab)
 				if (y >= 0 && y < WIN_H)
 				{
 					color = (t_rgb)texture_get_color(sprite->image[i], pixel.x, pixel.y);
-					if (color.a)
+					if (color.a == (char)255)
 						window_put_pixel(win, x, y, color.integer);
 				}
 				pixel.y += delta_pixel.y;
