@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:07:24 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/05 22:58:52 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 23:45:58 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -78,11 +78,11 @@ void	draw_wall_small_pixel(t_window *win, int x, t_wall *wall, int dark)
 	}
 }
 
-int	wall_height(double ray_len)
+int	wall_height(t_window *win, double ray_len)
 {
 	double	wall_h;
 
-	wall_h = WIN_H / ray_len;
+	wall_h = win->height / ray_len;
 	if (wall_h > INT_MAX)
 		return (INT_MAX);
 	return ((int)wall_h);

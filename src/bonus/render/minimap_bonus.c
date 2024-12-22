@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 17:11:31 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 23:52:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -38,7 +38,7 @@ void minimap_event_setup(t_minimap *minimap, t_data *data)
 	mlx_on_event(minimap->mlx, minimap->win, MLX_KEYUP, on_keyup, data);
 }
 
-int	minimap_setup(void *mlx, t_map *map, t_data *data)
+int	minimap_setup(void *mlx, t_map *map, t_window *win, t_data *data)
 {
 	t_minimap	*minimap;
 	int			screen_w;
@@ -52,7 +52,7 @@ int	minimap_setup(void *mlx, t_map *map, t_data *data)
 	if (minimap->img == NULL)
 		return (ft_return(ERROR, FAIL, "Error: no new image in minimap setup"));
 	mlx_get_screens_size(mlx, minimap->win, &screen_w, &screen_h);
-	mlx_set_window_position(mlx, minimap->win, (screen_w + WIN_W) / 2, (screen_h - WIN_H) / 2);
+	mlx_set_window_position(mlx, minimap->win, (screen_w + win->width) / 2, (screen_h - win->height) / 2);
 	minimap->scale = minimap_scale(map);
 	minimap->mlx = mlx;
 	minimap_event_setup(minimap, data);

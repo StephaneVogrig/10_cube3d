@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 17:39:56 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 23:45:10 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -40,9 +40,9 @@ void	draw_walls(t_window *win, t_ray *rays, t_textures *textures)
 	int		x;
 
 	x = 0;
-	while (x < WIN_W)
+	while (x < win->width)
 	{
-		wall.height = wall_height(rays->len);
+		wall.height = wall_height(win, rays->len);
 		if (wall.height > 0)
 		{
 			wall.texture = texture_hit(textures, rays);

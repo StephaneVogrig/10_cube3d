@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 02:08:19 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/23 19:26:06 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "render_bonus.h"
 #include "draw_utils_bonus.h"
@@ -119,7 +119,7 @@ void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 
 	player_position.x = data->player.x.grid + data->player.x.box;
 	player_position.y = data->player.y.grid + data->player.y.box;
-	winh_2 = WIN_H / 2;
+	winh_2 = data->win.height / 2;
 	i = 0;
 	while (i < winh_2)
 	{
@@ -127,9 +127,9 @@ void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 		int y_ceil = winh_2 - 1 - i;
 		double winh_2i = (double)winh_2 / (i + 1);
 		x = 0;
-		while (x < WIN_W)
+		while (x < data->win.width)
 		{
-			wall_h = WIN_H / rays[x].len;
+			wall_h = data->win.height / rays[x].len;
 			wall_h /= 2;
 			if (i >= wall_h)
 			{
@@ -172,7 +172,7 @@ void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 
 void	render(t_data *data)
 {
-	t_ray	ray_tab[WIN_W];
+	t_ray	ray_tab[data->win.width];
 	int		dark;
 
 	window_clear(&data->win);

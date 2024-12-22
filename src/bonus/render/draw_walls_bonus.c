@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_walls_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 17:51:03 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/22 23:45:17 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "draw_walls_bonus.h"
 #include "map.h"
@@ -56,9 +56,9 @@ void	draw_walls(t_window *win, t_ray *rays, t_asset *textures, t_door *door_open
 	int		x;
 
 	x = 0;
-	while (x < WIN_W)
+	while (x < win->width)
 	{
-		wall.height = wall_height(rays->len);
+		wall.height = wall_height(win, rays->len);
 		if (wall.height > 0)
 		{
 			wall.texture = asset_get_texture_ptr(textures, rays->hit_cell, rays->hit_side);

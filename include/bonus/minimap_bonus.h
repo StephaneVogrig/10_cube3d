@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:14:09 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 06:32:38 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 23:51:47 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,7 @@
 # include "data_bonus.h"
 # include "event_bonus.h"
 
-int		minimap_setup(void *mlx, t_map *map, t_data *data);
+int		minimap_setup(void *mlx, t_map *map, t_window *win, t_data *data);
 void	minimap_destroy(void);
 
 #endif
