@@ -6,39 +6,50 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/21 20:46:58 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 02:06:21 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "sprite_bonus.h"
 
-int	sprite_setup(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *textures)
+static void	sprite_fill(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *textures)
 {
 	int i;
 
-	sprite->nbr = get_lst_size(sprite_lst);
-	sprite->image = ft_calloc(sprite->nbr, sizeof(*sprite->image));
-	if (sprite->image == NULL)
-		return (FAIL);
-	sprite->pos = ft_calloc(sprite->nbr, sizeof(*sprite->pos));
-	if (sprite->pos == NULL)
-		return (FAIL);
-	sprite->transform = ft_calloc(sprite->nbr, sizeof(*sprite->transform));
-	if (sprite->transform == NULL)
-		return (FAIL);
-	sprite->order = ft_calloc(sprite->nbr, sizeof(*sprite->order));
-	if (sprite->order == NULL)
-		return (FAIL);
 	i = 0;
 	while (sprite_lst != NULL)
 	{
-		sprite->pos[i] = (t_vec2d){sprite_lst->x, sprite_lst->y};
 		sprite->image[i] = textures->value[sprite_lst->id];
-		sprite->anim_frame = sprite->image[i]->width / sprite->image[i]->height;
+		sprite->pos[i] = (t_vec2d){sprite_lst->x, sprite_lst->y};
 		sprite->order[i] = i;
+		sprite->nbr_state[i] = sprite->image[i]->width / sprite->image[i]->height;
 		sprite_lst = sprite_lst->next;
 		i++;
 	}
+}
+
+int	sprite_setup(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *textures)
+{
+	sprite->nbr = get_lst_size(sprite_lst);
+	sprite->image = malloc(sprite->nbr * sizeof(*sprite->image));
+	if (sprite->image == NULL)
+		return (FAIL);
+	sprite->pos = malloc(sprite->nbr * sizeof(*sprite->pos));
+	if (sprite->pos == NULL)
+		return (FAIL);
+	sprite->transform = malloc(sprite->nbr * sizeof(*sprite->transform));
+	if (sprite->transform == NULL)
+		return (FAIL);
+	sprite->order = malloc(sprite->nbr * sizeof(*sprite->order));
+	if (sprite->order == NULL)
+		return (FAIL);
+	sprite->nbr_state = malloc(sprite->nbr * sizeof(*sprite->nbr_state));
+	if (sprite->order == NULL)
+		return (FAIL);
+	sprite->state = ft_calloc(sprite->nbr, sizeof(*sprite->nbr_state));
+	if (sprite->order == NULL)
+		return (FAIL);
+	sprite_fill(sprite, sprite_lst, textures);
 	return (SUCCESS);
 }
 
@@ -54,6 +65,10 @@ void	sprite_destroy(t_sprite *sprite)
 		free(sprite->transform);
 	if (sprite->order)
 		free(sprite->order);
+	if (sprite->nbr_state)
+		free(sprite->nbr_state);
+	if (sprite->state)
+		free(sprite->state);
 }
 
 void	sprite_sort(t_sprite *sprite)
@@ -91,7 +106,7 @@ void	sprite_render(t_sprite *sprite, t_player *player, t_ray *ray_tab, t_window 
 		if (sprite->transform[j].y < 0)
 			break ;
 		// printf("draw sprite %i | pos x: %f y:%f\n", j, sprite->pos[j].x, sprite->pos[j].y); //debug
-		sprite_draw(sprite->image[j], sprite->transform[j], ray_tab, win);
+		sprite_draw(sprite, j, win, ray_tab);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 14:31:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 01:36:15 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -106,6 +106,7 @@ int	on_loop(void *param)
 	data = (t_data *)param;
 
 	render_needed = door_open_list_update(data->door_open_list, delta_time);
+	render_needed |= sprite_update(&data->sprite, delta_time);
 	render_needed |= event_check_mouse_move(data);
 	if (data->key.down)
 	{

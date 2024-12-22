@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 19:45:16 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 01:33:03 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,6 +19,7 @@
 # include "gametime.h"
 # include "door_bonus.h"
 # include "key_move.h"
+# include "sprite_bonus.h"
 
 # define KEY_T		23
 
