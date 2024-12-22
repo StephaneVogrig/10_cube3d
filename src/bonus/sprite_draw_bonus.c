@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:37:46 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 21:02:55 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 23:20:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,63 +25,68 @@ void	sprite_draw(t_sprite *sprite, int i, t_window *win, t_ray *ray_tab)
 	sprite_screen_size.x = (WIN_W / 2) / sprite->transform[i].y;
 	sprite_screen_size.y = WIN_H / sprite->transform[i].y;
 
-	t_vec2i start;
-	start.x = (WIN_W / 2) + sprite->transform[i].x * sprite_screen_size.x - sprite_screen_size.x / 2;
-	if (start.x >= WIN_W)
+
+
+	t_vec2i screen_start;
+	screen_start.x = (WIN_W / 2) + sprite->transform[i].x * sprite_screen_size.x - sprite_screen_size.x / 2;
+	if (screen_start.x >= WIN_W)
 		return ;
-	start.y = (WIN_H - sprite_screen_size.y) / 2;
+	screen_start.y = (WIN_H - sprite_screen_size.y) / 2;
 
-	t_vec2i end;
-	end.x = start.x + sprite_screen_size.x;
-	end.y = start.y + sprite_screen_size.y;
-	if (end.x > WIN_W)
-		end.x = WIN_W;
-	if (end.y > WIN_H)
-		end.y = WIN_H;
+	t_vec2i screen_end;
+	screen_end.x = screen_start.x + sprite_screen_size.x;
+	screen_end.y = screen_start.y + sprite_screen_size.y;
+	if (screen_end.x > WIN_W)
+		screen_end.x = WIN_W;
+	if (screen_end.y > WIN_H)
+		screen_end.y = WIN_H;
 
-	t_vec2d	pixel;
-	t_vec2d	delta_pixel;
-	delta_pixel.x = (double)sprite_size.x / sprite_screen_size.x;
-	delta_pixel.y = (double)sprite_size.y / sprite_screen_size.y;
+
+	t_vec2d	img_delta;
+	img_delta.x = (double)sprite_size.x / sprite_screen_size.x;
+	img_delta.y = (double)sprite_size.y / sprite_screen_size.y;
+
+	t_vec2d img_start;
+	img_start.x = (int)sprite->state[i] * sprite_size.x;
+	img_start.y = 0;
+	if (screen_start.x < 0)
+	{
+		img_start.x += -screen_start.x * img_delta.x;
+		screen_start.x = 0;
+	}
+	if (screen_start.y < 0)
+	{
+		img_start.y += -screen_start.y * img_delta.y;
+		screen_start.y = 0;
+	}
+
+	t_vec2d	img;
+	img.x = img_start.x;
 
 	t_rgb color;
 	int x;
 	int y;
-	pixel.x = (int)sprite->state[i] * sprite_size.x;
-	x = start.x;
 
-	if (x < 0)
-	{
-		pixel.x += -x * delta_pixel.x;
-		x = 0;
-	}
-	double start_img_y;
-	start_img_y = 0;
-	if (start.y < 0)
-	{
-		start_img_y += -start.y * delta_pixel.y;
-		start.y = 0;
-	}
-
-	while (x < end.x)
+	x = screen_start.x;
+	while (x < screen_end.x)
 	{
 		if (ray_tab[x].len > sprite->transform[i].y)
 		{
-			y = start.y;
-			pixel.y = start_img_y;
-			while (y < end.y)
+			y = screen_start.y;
+			img.y = img_start.y;
+			while (y < screen_end.y)
 			{
 				if (y >= 0 && y < WIN_H)
 				{
-					color = (t_rgb)texture_get_color(sprite->image[i], pixel.x, pixel.y);
+					color = (t_rgb)texture_get_color(sprite->image[i], img.x, img.y);
 					if (color.a == (char)255)
 						window_put_pixel(win, x, y, color.integer);
 				}
-				pixel.y += delta_pixel.y;
+				img.y += img_delta.y;
 				y++;
 			}
 		}
-		pixel.x += delta_pixel.x;
+		img.x += img_delta.x;
 		x++;
 	}
 }
