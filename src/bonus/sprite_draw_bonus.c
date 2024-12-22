@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:37:46 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 16:21:43 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 21:02:55 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,6 +15,8 @@
 void	sprite_draw(t_sprite *sprite, int i, t_window *win, t_ray *ray_tab)
 {
 	// printf("sprite_draw\n");
+	if (sprite->collected[i])
+		return ;
 	t_vec2i sprite_size;
 	sprite_size.x = sprite->image[i]->width / sprite->nbr_state[i];
 	sprite_size.y = sprite->image[i]->height;

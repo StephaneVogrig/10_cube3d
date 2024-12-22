@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 02:06:21 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 20:17:18 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -49,6 +49,9 @@ int	sprite_setup(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *textures)
 	sprite->state = ft_calloc(sprite->nbr, sizeof(*sprite->nbr_state));
 	if (sprite->order == NULL)
 		return (FAIL);
+	sprite->collected = ft_calloc(sprite->nbr, sizeof(*sprite->collected));
+	if (sprite->order == NULL)
+		return (FAIL);
 	sprite_fill(sprite, sprite_lst, textures);
 	return (SUCCESS);
 }
@@ -69,6 +72,8 @@ void	sprite_destroy(t_sprite *sprite)
 		free(sprite->nbr_state);
 	if (sprite->state)
 		free(sprite->state);
+	if (sprite->collected)
+		free(sprite->collected);
 }
 
 void	sprite_sort(t_sprite *sprite)
@@ -99,6 +104,7 @@ void	sprite_render(t_sprite *sprite, t_player *player, t_ray *ray_tab, t_window 
 
 	sprite_transform_coordonate(sprite, player);
 	sprite_sort(sprite);
+	sprite_collect(sprite, player);
 	i = 0;
 	while (i < sprite->nbr)
 	{

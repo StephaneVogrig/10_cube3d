@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 01:27:28 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 19:40:31 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 21:02:21 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -36,7 +36,8 @@ int	sprite_update(t_sprite *sprite, t_time_us dt)
 	i = 0;
 	while (i < sprite->nbr)
 	{
-		render_needed |= sprite_update_state(&sprite->state[i], sprite->nbr_state[i], dt);
+		if (sprite->collected[i] == FALSE)
+			render_needed |= sprite_update_state(&sprite->state[i], sprite->nbr_state[i], dt);
 		i++;
 	}
 	return (render_needed);	

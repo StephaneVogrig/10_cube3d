@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:02:35 by aska              #+#    #+#             */
-/*   Updated: 2024/12/22 02:07:17 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 20:58:42 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,6 +23,13 @@
 # include "color.h"
 # include "gametime.h"
 
+/*
+	square of distance between player and sprite for collect sprite
+	for example 0.25 for a distance of 0.5
+	the square is used instead of distance for simplified calculations
+*/
+# define DISTANCE_COLLECT 0.1
+
 typedef struct s_sprite
 {
 	t_texture	**image;
@@ -31,6 +38,7 @@ typedef struct s_sprite
 	t_vec2d		*pos;
 	t_vec2d		*transform;
 	int			*order;
+	int			*collected;
 	int			nbr;
 }				t_sprite;
 
@@ -51,5 +59,9 @@ void	sprite_transform_coordonate(t_sprite *sprite, t_player *player);
 /* sprite_update_bonus.c*/
 
 int		sprite_update(t_sprite *sprite, t_time_us dt);
+
+/* sprite_collect_bonus.c*/
+
+void	sprite_collect(t_sprite *sprite, t_player *player);
 
 #endif
