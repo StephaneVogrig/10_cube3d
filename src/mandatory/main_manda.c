@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main_manda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/12/17 14:25:19 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 14:18:28 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "main_manda.h"
 #include "floor_ceil_mlx_img.h"
@@ -19,6 +19,8 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	title();
+	if (argc != 2)
+		return (ft_return(ERROR, 3, INVALID_NUM_OF_ARG));
 	exit_code = check_entry_arg(argc, argv);
 	if (exit_code != SUCCESS)
 		return (exit_code);

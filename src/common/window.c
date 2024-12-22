@@ -1,25 +1,23 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:30:55 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 02:48:40 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 14:08:41 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "window.h"
 
 int	window_setup(t_window *win, void *mlx)
 {
-	win->win = mlx_new_window(mlx, WIN_W, WIN_H, "cub3d");
+	win->win = mlx_new_window(mlx, win->width, win->height, "cub3d");
 	if (win->win == NULL)
 		return (ft_return(ERROR, 275, "Error window setup"));	
     win->mlx = mlx;
-    win->width = WIN_W;
-	win->height = WIN_H;
 	return (SUCCESS);	
 }
 

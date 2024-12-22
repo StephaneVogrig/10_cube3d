@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_manda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/24 05:41:48 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/22 14:36:20 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "data_manda.h"
 
@@ -30,6 +30,8 @@ int	mlx_setup(t_data *data, t_tex_path *tex_path, t_textures *textures)
 	exit_code |= texture_load_to_buffer(data->mlx, &textures->south, tex_path->so);
 	exit_code |= texture_load_to_buffer(data->mlx, &textures->east, tex_path->ea);
 	exit_code |= texture_load_to_buffer(data->mlx, &textures->west, tex_path->we);
+	data->win.height = WIN_H;
+	data->win.width = WIN_W;
 	if (exit_code == SUCCESS)
 	exit_code = window_setup(&data->win, data->mlx);
 	return (exit_code);
