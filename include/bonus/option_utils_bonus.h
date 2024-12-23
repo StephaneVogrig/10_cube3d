@@ -17,6 +17,20 @@
 # include "libft.h"
 # include "lstmap_extraction_utils_bonus.h"
 
-void option_tokenizer(char **key, char **value, char *line);
+typedef struct s_option
+{
+    int     win_width;
+    int     win_height;
+    float   fov;
+    t_bool  minimap;
+}				t_option;
+
+int     option_tokenizer(char **key, char **value, char *line);
+int     option_get_resolution(t_option *option, char *resolution);
+int     is_valid_resolution(char *resolution);
+void    print_option(t_option *option);
+int     print_help();
+
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2024/12/22 19:03:35 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/22 19:37:41 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_entry_arg(int ac, char **av)
 	(void)ac;
 	ext = ft_strrchr(av[1], '.');
 	if (ext == NULL || ft_strcmp(ext, ".cub") != 0)
-		return (ft_return(ERROR, 4, NO_CUB_EXT));
+		return (ft_return(ERROR, 3, "L.23:check_entry_arg: No \".cub\" extension map file"));
 	return (SUCCESS);
 }
 

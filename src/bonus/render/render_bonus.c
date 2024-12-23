@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 14:00:27 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/23 02:08:19 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,15 +174,12 @@ void	render(t_data *data)
 {
 	t_ray	ray_tab[WIN_W];
 	int		dark;
-	t_option *option;
 
-	option = option_get_ptr();
 	window_clear(&data->win);
 	raycasting(&data->map, &data->player, ray_tab, data->door_open_list);
 	dark = map_get_cell(&data->map, &data->player.position) == WALL;
 	draw_floor_ceil(data, ray_tab, dark);
 	draw_walls(&data->win, ray_tab, &data->textures, data->door_open_list);
 	sprite_render(&data->sprite, &data->player, ray_tab, &data->win);
-	if (option->minimap == TRUE)
-		render_minimap(&data->map, &data->player, ray_tab);
+	render_minimap(&data->map, &data->player, ray_tab);
 }

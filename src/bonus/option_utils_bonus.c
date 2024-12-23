@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 02:30:22 by aska              #+#    #+#             */
-/*   Updated: 2024/12/22 07:55:55 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/23 03:13:08 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,22 @@ int	is_valid_resolution(char *resolution)
 	return (TRUE);
 }
 
-void option_tokenizer(char **key, char **value, char *line)
+int option_tokenizer(char **key, char **value, char *line)
 {
    	*key = line;
 	while (*line != '\0' && *line != '=')
 		line++;
 	if (*line == '\0')
-		ft_display(ERROR, "Invalid option");
+		return(SUCCESS);
 	*line = '\0';
 	line++;
 	if (*line == '\0')
-		ft_display(ERROR, "No Value in option");
+	{
+		*value = NULL;
+		return(FAIL);
+	}
 	*value = line;
+	return(SUCCESS);
 }
 
 int	option_get_resolution(t_option *option, char *resolution)
@@ -50,7 +54,6 @@ int	option_get_resolution(t_option *option, char *resolution)
     char *width = NULL;
     char *height = NULL;
 
-	printf("resolution: %s\n", resolution);
     width = resolution;
 	while (*resolution != '\0' && *resolution != 'x')
 		resolution++;
@@ -61,10 +64,27 @@ int	option_get_resolution(t_option *option, char *resolution)
 	if (*resolution == '\0')
 		return (ft_return(ERROR, 265, "Invalid height in resolution"));
 	height = resolution;
-	printf("width: %s\n", width);
     if (is_valid_resolution(width) == FALSE || is_valid_resolution(height) == FALSE)
         return (ft_return(ERROR, 266, "Invalid resolution"));
     option->win_width = ft_atoi(width);
     option->win_height = ft_atoi(height);
     return (SUCCESS);
+}
+
+void print_option(t_option *option)
+{
+    printf("option->win_width: %d\n", option->win_width);
+    printf("option->win_height: %d\n", option->win_height);
+    printf("option->fov: %f\n", option->fov);
+    printf("option->minimap: %d\n", option->minimap);
+}
+
+int print_help()
+{
+	printf("Usage: ./cub3d_bonus [map_path] (options)\n");
+	printf("Options:\n");
+	printf("--resolution=[width]x[height]\n");
+	printf("--fov=[ratio]\t Value between 0 and 1\n");
+	printf("--minimap\n");
+	return (EXIT_FAILURE);
 }

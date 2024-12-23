@@ -16,17 +16,8 @@
 #include "libft.h"
 #include "option_utils_bonus.h"
 
-typedef struct s_option
-{
-    int     win_width;
-    int     win_height;
-    int     fov;
-    t_bool  minimap;
-}				t_option;
+typedef struct s_option t_option;
 
-t_option	*option_get_ptr(void);
-void    option_init(t_option *option, int ac, char **av);
-int	option_get_resolution(t_option *option, char *resolution);
-
+int         option_init(t_option *option, int ac, char **av);
 
 #endif
