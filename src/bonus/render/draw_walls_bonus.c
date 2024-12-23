@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_walls_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 17:51:03 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/23 17:03:36 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "draw_walls_bonus.h"
 #include "map.h"
@@ -52,26 +52,20 @@ int	x_hit_in_texture(t_texture *texture, t_ray *ray, t_door *door_open_list)
 
 void	draw_walls(t_window *win, t_ray *rays, t_asset *textures, t_door *door_open_list)
 {
-	t_wall	wall;
+	t_wall_draw draw;
+	(void)draw;
 	int		x;
 
 	x = 0;
-	while (x < WIN_W)
+	while (x < win->width)
 	{
-		wall.height = wall_height(rays->len);
-		if (wall.height > 0)
+		draw.img_screen_size.y = wall_height(win, rays->len);
+		if (draw.img_screen_size.y > 1)
 		{
-			wall.texture = asset_get_texture_ptr(textures, rays->hit_cell, rays->hit_side);
-			if (wall.texture == NULL)
-			{
-				printf(BRED"draw_walls\n"CRESET);
-				printf(BRED"rays->hit_cell: %c\n"CRESET, *rays->hit_cell);
-				printf(BRED"rays->hit_side: %c\n"CRESET, rays->hit_side);
-				printf(BRED"wall.texture: %p\n"CRESET, wall.texture);
-			}
-			wall.x_in_texture = x_hit_in_texture(wall.texture, rays, door_open_list);
-			wall.texture_dy = (double)wall.texture->height / wall.height;
-			draw_wall(win, x, &wall, rays->dark);
+			draw.img = asset_get_texture_ptr(textures, rays->hit_cell, rays->hit_side);
+			draw.img_start.x = x_hit_in_texture(draw.img, rays, door_open_list);
+			draw.dark = rays->dark;
+			draw_wall(win, x, &draw);
 		}
 		rays++;
 		x++;

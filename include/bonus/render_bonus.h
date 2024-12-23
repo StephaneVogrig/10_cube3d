@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:18 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/17 14:30:36 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 19:05:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,6 +16,12 @@
 # include <math.h>
 # include "data_bonus.h"
 # include "raycasting_bonus.h"
+# include "draw_floor_ceil_bonus.h"
+# include "draw_utils_bonus.h"
+# include "draw_line_bonus.h"
+# include "draw_walls_bonus.h"
+# include "sprite_bonus.h"
+# include "option_bonus.h"
 
 void	render(t_data *data);
 

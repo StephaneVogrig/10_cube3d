@@ -1,39 +1,22 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   draw_floor_ceil_bonus.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 03:13:08 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 14:12:03 by svogrig          ###   ########.fr       */
+/*   Created: 2024/12/23 18:56:00 by svogrig           #+#    #+#             */
+/*   Updated: 2024/12/23 19:05:10 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef RAY_H
-# define RAY_H
+#ifndef DRAW_FLOOR_CEIL_H
+# define DRAW_FLOOR_CEIL_H
 
-# include "libft.h"
-# include "vector.h"
-# include "position.h"
+# include "data_bonus.h"
+# include "pointer_table_bonus.h"
+# include "ray.h"
 
-typedef struct s_ray
-{
-	t_vec2d		vdir;
-	double		len;
-	t_position	hit_pos;
-	char		*hit_cell;
-	char		hit_side;
-	int			dark;
-} 	t_ray;
-
-typedef struct s_ray_tab
-{
-	t_ray	*tab;
-	int		nbr;
-}	t_ray_tab;
-
-int		ray_setup(t_ray_tab *rays, int nbr);
-void	ray_destroy(t_ray_tab *rays);
+void	draw_floor_ceil(t_data *data, t_ray *rays, int dark);
 
 #endif

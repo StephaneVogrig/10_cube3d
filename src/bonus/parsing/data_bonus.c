@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 19:02:08 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/23 18:16:51 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "data_bonus.h"
 
@@ -34,6 +34,8 @@ int	data_setup(t_data *data, char *map_path)
 	data->mlx = data->win.mlx;
 	delete_all_asset_lst(&asset_lst);
 	if (exit_code == SUCCESS)
+		exit_code = ray_setup(&data->rays, data->win.width);
+	if (exit_code == SUCCESS)
 		exit_code =	sprite_setup(&data->sprite, sprite_lst, &data->textures);
 	delete_all_sprite(&sprite_lst);
 	return (exit_code);
@@ -45,6 +47,7 @@ void	data_clean(t_data *data)
 	data->map.grid = ft_tab_f(data->map.grid);
 	asset_destroy(&data->textures);
 	window_destroy(&data->win);
+	ray_destroy(&data->rays);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
 	sprite_destroy(&data->sprite);

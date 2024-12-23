@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 21:43:03 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 00:11:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,6 +23,7 @@
 # include "lstmap_extraction_utils_manda.h"
 # include "textures_manda.h"
 # include "key_move.h"
+# include "ray.h"
 
 typedef struct s_data
 {
@@ -33,6 +34,7 @@ typedef struct s_data
 	t_key		key;
 	t_player	player;
 	int			mouse_mode;
+	t_ray_tab	rays;
 }				t_data;
 
 void	data_init(t_data *data);

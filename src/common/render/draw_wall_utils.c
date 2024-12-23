@@ -6,92 +6,86 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:07:24 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/05 22:58:52 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 16:32:03 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "draw_wall_utils.h"
 
-void	draw_wall_init_loop(int *y, int *y_max, double *texture_y, t_wall *wall)
+void	draw_wall_big_pixel(t_window *win, int x, t_wall_draw *draw)
 {
-	if (wall->height < WIN_H && wall->height > 0.0)
-	{
-		*y = (WIN_H - wall->height) / 2;
-		*y_max = *y + wall->height;
-		*texture_y = 0.0;
-	}
-	else
-	{
-		*y = 0;
-		*y_max = WIN_H;
-		*texture_y = (wall->texture->height - wall->texture_dy * WIN_H) / 2;
-	}
-}
-
-void	draw_wall_big_pixel(t_window *win, int x, t_wall *wall, int dark)
-{
-	int		color;
 	int		y;
-	int		y_max;
-	double	texture_y;
-	t_vec2i	texture_pixel;
+	int		color;
+	t_vec2i	img;
+	double	img_current_y;
 
-	draw_wall_init_loop(&y, &y_max, &texture_y, wall);
-	texture_pixel.x = wall->x_in_texture;
-	texture_pixel.y = (int)texture_y;
-	texture_y -= texture_pixel.y;
-	color = texture_get_color(wall->texture, texture_pixel.x, texture_pixel.y);
-	color = color_darkened(color, dark);
-	while (y < y_max)
+	img.x = (int)draw->img_start.x;
+	img.y = (int)draw->img_start.y;
+	img_current_y = draw->img_start.y - img.y;
+	color = texture_get_color(draw->img, img.x, img.y);
+	color = color_darkened(color, draw->dark);
+	y = draw->screen_start.y;
+	while (y < draw->screen_end.y)
 	{
-		if (texture_y >= 1.0)
+		if (img_current_y >= 1.0)
 		{
-			texture_pixel.y++;
-			texture_y -= 1.0;
-			color = texture_get_color(wall->texture, texture_pixel.x, texture_pixel.y);
-		color = color_darkened(color, dark);
+			img.y++;
+			img_current_y -= 1.0;
+			color = texture_get_color(draw->img, img.x, img.y);
+			color = color_darkened(color, draw->dark);
 		}
 		window_put_pixel(win, x, y, color);
-		texture_y += wall->texture_dy;
+		img_current_y += draw->img_delta.y;
 		y++;
 	}
 }
 
-void	draw_wall_small_pixel(t_window *win, int x, t_wall *wall, int dark)
+void	draw_wall_small_pixel(t_window *win, int x, t_wall_draw *draw)
 {
-	int		color;
 	int		y;
-	int		y_max;
-	double	texture_y;
-	t_vec2i	texture_pixel;
+	int		color;
+	t_vec2i	img;
+	double	img_current_y;
 
-	draw_wall_init_loop(&y, &y_max, &texture_y, wall);
-	texture_pixel.x = wall->x_in_texture;
-	while (y < y_max)
+	img.x = (int)draw->img_start.x;
+	img_current_y = draw->img_start.y;
+	y = draw->screen_start.y;
+	while (y < draw->screen_end.y)
 	{
-		texture_pixel.y = (int)texture_y;
-		color = texture_get_color(wall->texture, texture_pixel.x, texture_pixel.y);
-		color = color_darkened(color, dark);
+		img.y = (int)img_current_y;
+		color = texture_get_color(draw->img, img.x, img.y);
+		color = color_darkened(color, draw->dark);
 		window_put_pixel(win, x, y, color);
-		texture_y += wall->texture_dy;
+		img_current_y += draw->img_delta.y;
 		y++;
 	}
 }
 
-int	wall_height(double ray_len)
+int	wall_height(t_window *win, double ray_len)
 {
 	double	wall_h;
 
-	wall_h = WIN_H / ray_len;
+	wall_h = win->height / ray_len;
 	if (wall_h > INT_MAX)
 		return (INT_MAX);
 	return ((int)wall_h);
 }
 
-void	draw_wall(t_window *win, int x, t_wall *wall, int dark)
+void	draw_wall(t_window *win, int x, t_wall_draw *draw)
 {
-	if (wall->texture_dy < 1)
-		draw_wall_big_pixel(win, x, wall, dark);
+	draw->img_start.y = 0;
+	draw->screen_start.y = (win->height - draw->img_screen_size.y) / 2;
+	draw->screen_end.y = draw->screen_start.y + draw->img_screen_size.y;
+	draw->img_delta.y = (double)draw->img->height / draw->img_screen_size.y;
+	if (draw->screen_start.y < 0)
+	{
+		draw->img_start.y += -draw->screen_start.y * draw->img_delta.y;
+		draw->screen_start.y = 0;
+	}
+	if (draw->screen_end.y > win->height)
+		draw->screen_end.y = win->height;
+	if (draw->img_delta.y < 1)
+		draw_wall_big_pixel(win, x, draw);
 	else
-		draw_wall_small_pixel(win, x, wall, dark);
+		draw_wall_small_pixel(win, x, draw);
 }

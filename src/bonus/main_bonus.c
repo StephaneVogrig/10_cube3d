@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 02:37:33 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/23 19:54:31 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "main_bonus.h"
 #include "option_bonus.h"
@@ -36,7 +36,7 @@ int program_setup(t_data *data, t_option *option, char *map_path)
 	(void)option;
 	exit_code = data_setup(data, map_path);
 	if (exit_code == SUCCESS)
-		exit_code = minimap_setup(data->mlx, &data->map, data);
+		exit_code = minimap_setup(data->mlx, &data->map, &data->win, data);
 	return (exit_code);
 }
 

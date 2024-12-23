@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/18 23:49:45 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 18:40:40 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,7 @@
 # include "dda_bonus.h"
 # include "door_bonus.h"
 
-void	raycasting(t_map *map, t_player *player, t_ray *rays,
+void	raycasting(t_map *map, t_player *player, t_ray_tab *rays,
 					t_door *door_open_list);
 
 #endif

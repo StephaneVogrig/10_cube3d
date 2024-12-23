@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 20:17:18 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 17:42:30 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -111,8 +111,8 @@ void	sprite_render(t_sprite *sprite, t_player *player, t_ray *ray_tab, t_window 
 		j = sprite->order[i];
 		if (sprite->transform[j].y < 0)
 			break ;
-		// printf("draw sprite %i | pos x: %f y:%f\n", j, sprite->pos[j].x, sprite->pos[j].y); //debug
-		sprite_draw(sprite, j, win, ray_tab);
+		if (sprite->collected[j] == FALSE)
+			sprite_draw(sprite, j, win, ray_tab);
 		i++;
 	}
 }

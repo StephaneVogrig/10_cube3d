@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:02:35 by aska              #+#    #+#             */
-/*   Updated: 2024/12/22 20:58:42 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 18:04:46 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -42,6 +42,17 @@ typedef struct s_sprite
 	int			nbr;
 }				t_sprite;
 
+typedef struct s_sprite_draw
+{
+	t_texture	*img;
+	t_vec2i		screen_start;
+	t_vec2i		screen_end;
+	t_vec2d		img_start;
+	t_vec2d		img_delta;
+	t_vec2i		sprite_screen_size;
+	double		distance;
+}	t_sprite_draw;
+
 /* sprite_bonus.c */
 
 int		sprite_setup(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *textures);
@@ -63,5 +74,13 @@ int		sprite_update(t_sprite *sprite, t_time_us dt);
 /* sprite_collect_bonus.c*/
 
 void	sprite_collect(t_sprite *sprite, t_player *player);
+
+/* sprite_draw_compute_bonus.c*/
+
+void	screen_end_compute(t_sprite_draw *draw, t_window *win);
+void	img_start_compute(t_sprite_draw *strip, int sprite_state, int sprite_size);
+void	screen_start_compute(t_sprite_draw *draw, double screen_x, t_window *win);
+void	sprite_screen_size_compute(t_sprite_draw *draw, t_window *win);
+void	img_delta_compute(t_sprite_draw *draw, int sprite_size);
 
 #endif
