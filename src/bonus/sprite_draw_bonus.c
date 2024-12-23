@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:37:46 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 17:11:06 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 17:42:28 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -36,8 +36,6 @@ void	sprite_draw(t_sprite *sprite, int i, t_window *win, t_ray *ray_tab)
 	int				sprite_size;
 	int				x;
 
-	if (sprite->collected[i])
-		return ;
 	draw.img = sprite->image[i];
 	draw.distance = sprite->transform[i].y;
 	sprite_size = sprite->image[i]->height;
