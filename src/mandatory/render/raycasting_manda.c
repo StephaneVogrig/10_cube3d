@@ -6,33 +6,44 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/18 23:43:05 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:07:10 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "raycasting_manda.h"
 
-void	raycasting(t_map *map, t_player *player, t_ray *rays)
-{
-	t_vec2d	player_vdir;
-	double	camera_step;
-	t_vec2d	camera_step_vec;
-	t_vec2d ray_vec;
-	int		screen_x;
 
-	player_vdir = dir_to_dirvec(player->dir);
-	camera_step = 2.0 / WIN_W;
-	camera_step_vec.x = -player_vdir.y * camera_step;
-	camera_step_vec.y = player_vdir.x * camera_step;
-	ray_vec.x = player_vdir.x + player_vdir.y;
-	ray_vec.y = player_vdir.y - player_vdir.x;
-	screen_x = 0;
-	while (screen_x < WIN_W)
+t_vec2d	camera_step_vec(t_vec2d	player_dir_vec, t_ray_tab *rays)
+{
+	t_vec2d vec;
+	double	step;
+
+	step = 2.0 / rays->nbr;
+	vec.x = -player_dir_vec.y * step;
+	vec.y = player_dir_vec.x * step;
+	return (vec);
+}
+
+void	raycasting(t_map *map, t_player *player, t_ray_tab *rays)
+{
+	t_vec2d	player_dir_vec;
+	t_vec2d	camera_step;
+	t_vec2d ray_vec;
+	t_ray	*ray;
+	int		i;
+
+	player_dir_vec = dir_to_dirvec(player->dir);
+	camera_step = camera_step_vec(player_dir_vec, rays);
+	ray_vec.x = player_dir_vec.x + player_dir_vec.y;
+	ray_vec.y = player_dir_vec.y - player_dir_vec.x;
+	ray = rays->tab;
+	i = 0;
+	while (i < rays->nbr)
 	{
-		rays->vdir = ray_vec;
-		dda(rays, map, &player->position);
-		ray_vec = vec2d_plus_vec2d(ray_vec, camera_step_vec);
-		rays++;
-		screen_x++;
+		ray->vdir = ray_vec;
+		dda(ray, map, &player->position);
+		ray_vec = vec2d_plus_vec2d(ray_vec, camera_step);
+		ray++;
+		i++;
 	}
 }

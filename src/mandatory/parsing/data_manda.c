@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_manda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 14:36:20 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/23 00:44:43 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "data_manda.h"
 
@@ -57,6 +57,8 @@ int	data_setup(t_data *data, char *map_path)
 	if (exit_code == SUCCESS)
 		exit_code = mlx_setup(data, &tex_path, &data->textures);
 	tex_path_clean(&tex_path);
+	if (exit_code == SUCCESS)
+		exit_code = ray_setup(&data->rays, data->win.width);
 	return (exit_code);
 }
 
@@ -66,6 +68,7 @@ void	data_clean(t_data *data)
 	data->map.grid = ft_tab_f(data->map.grid);
 	textures_buffer_clean(&data->textures);
 	window_destroy(&data->win);
+	ray_destroy(&data->rays);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
 }

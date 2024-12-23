@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/22 20:53:39 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/23 04:42:44 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -67,6 +67,7 @@ SRCS_COMMON			:= 	dda_utils.c \
 						parsing_utils.c \
 						gametime.c \
 						position.c \
+						ray.c \
 						texture.c \
 						parsing/flood_fill_common.c \
 						render/draw_wall_utils.c
@@ -112,6 +113,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						sprite_bonus.c \
 						sprite_collect_bonus.c \
 						sprite_draw_bonus.c \
+						sprite_draw_compute_bonus.c \
 						sprite_transform_bonus.c \
 						sprite_update_bonus.c \
 						pointer_table_bonus.c \
