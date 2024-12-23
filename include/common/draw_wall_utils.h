@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:08:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 23:44:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 16:37:41 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,25 +19,18 @@
 # include "ray.h"
 # include "color.h"
 
-typedef	struct s_wall
-{
-	int			height;
-	t_texture	*texture;
-	float		x_in_texture;
-	double		texture_dy;
-}	t_wall;
-
-typedef	struct s_draw_texture
+typedef struct s_wall_draw
 {
 	t_texture	*img;
-	t_vec2i 	pixel;
-	double		y;
-	double		dy;
-}	t_draw_texture;
+	t_vec2i		screen_start;
+	t_vec2i		screen_end;
+	t_vec2d		img_start;
+	t_vec2d		img_delta;
+	t_vec2i		img_screen_size;
+	int			dark;
+}	t_wall_draw;
 
 int		wall_height(t_window *win, double ray_len);
-void	draw_wall(t_window *win, int x, t_wall *wall, int dark);
-void	draw_wall_big_pixel(t_window *win, int x, t_wall *wall, int dark);
-void	draw_wall_small_pixel(t_window *win, int x, t_wall *wall, int dark);
+void	draw_wall(t_window *win, int x, t_wall_draw *draw);
 
 #endif
