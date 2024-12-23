@@ -1,12 +1,12 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprite_draw_compute.c                              :+:      :+:    :+:   */
+/*   sprite_draw_compute_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 04:40:42 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 04:43:18 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 18:04:46 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,19 +22,19 @@ void	screen_end_compute(t_sprite_draw *draw, t_window *win)
 		draw->screen_end.y = win->height;
 }
 
-void	img_start_compute(t_sprite_draw *stripe, int sprite_state, int sprite_size)
+void	img_start_compute(t_sprite_draw *strip, int sprite_state, int sprite_size)
 {
-	stripe->img_start.x = sprite_state * sprite_size;
-	stripe->img_start.y = 0;
-	if (stripe->screen_start.x < 0)
+	strip->img_start.x = sprite_state * sprite_size;
+	strip->img_start.y = 0;
+	if (strip->screen_start.x < 0)
 	{
-		stripe->img_start.x += -stripe->screen_start.x * stripe->img_delta.x;
-		stripe->screen_start.x = 0;
+		strip->img_start.x += -strip->screen_start.x * strip->img_delta.x;
+		strip->screen_start.x = 0;
 	}
-	if (stripe->screen_start.y < 0)
+	if (strip->screen_start.y < 0)
 	{
-		stripe->img_start.y += -stripe->screen_start.y * stripe->img_delta.y;
-		stripe->screen_start.y = 0;
+		strip->img_start.y += -strip->screen_start.y * strip->img_delta.y;
+		strip->screen_start.y = 0;
 	}
 }
 

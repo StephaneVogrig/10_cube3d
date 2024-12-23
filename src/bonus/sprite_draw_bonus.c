@@ -6,25 +6,25 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:37:46 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 17:42:28 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 18:04:46 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "sprite_bonus.h"
 
-void	stripe_draw(t_window *win, t_sprite_draw *stripe, int x, t_vec2d img)
+void	strip_draw(t_window *win, t_sprite_draw *strip, int x, t_vec2d img)
 {
 	int y;
 	t_rgb color;
 
-	y = stripe->screen_start.y;
-	img.y = stripe->img_start.y;
-	while (y < stripe->screen_end.y)
+	y = strip->screen_start.y;
+	img.y = strip->img_start.y;
+	while (y < strip->screen_end.y)
 	{
-		color = (t_rgb)texture_get_color(stripe->img, img.x, img.y);
+		color = (t_rgb)texture_get_color(strip->img, img.x, img.y);
 		if (color.a == (char)255)
 			window_put_pixel(win, x, y, color.integer);
-		img.y += stripe->img_delta.y;
+		img.y += strip->img_delta.y;
 		y++;
 	}
 }
@@ -49,7 +49,7 @@ void	sprite_draw(t_sprite *sprite, int i, t_window *win, t_ray *ray_tab)
 	while (x < draw.screen_end.x)
 	{
 		if (draw.distance < ray_tab[x].len)
-			stripe_draw(win, &draw, x, img);
+			strip_draw(win, &draw, x, img);
 		img.x += draw.img_delta.x;
 		x++;
 	}

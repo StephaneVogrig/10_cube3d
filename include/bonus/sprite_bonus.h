@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:02:35 by aska              #+#    #+#             */
-/*   Updated: 2024/12/23 04:44:26 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 18:04:46 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -78,7 +78,7 @@ void	sprite_collect(t_sprite *sprite, t_player *player);
 /* sprite_draw_compute_bonus.c*/
 
 void	screen_end_compute(t_sprite_draw *draw, t_window *win);
-void	img_start_compute(t_sprite_draw *stripe, int sprite_state, int sprite_size);
+void	img_start_compute(t_sprite_draw *strip, int sprite_state, int sprite_size);
 void	screen_start_compute(t_sprite_draw *draw, double screen_x, t_window *win);
 void	sprite_screen_size_compute(t_sprite_draw *draw, t_window *win);
 void	img_delta_compute(t_sprite_draw *draw, int sprite_size);
