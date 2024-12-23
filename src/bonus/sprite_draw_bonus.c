@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:37:46 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 14:01:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 17:11:06 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,12 +21,9 @@ void	stripe_draw(t_window *win, t_sprite_draw *stripe, int x, t_vec2d img)
 	img.y = stripe->img_start.y;
 	while (y < stripe->screen_end.y)
 	{
-		if (y >= 0 && y < win->height)
-		{
-			color = (t_rgb)texture_get_color(stripe->img, img.x, img.y);
-			if (color.a == (char)255)
-				window_put_pixel(win, x, y, color.integer);
-		}
+		color = (t_rgb)texture_get_color(stripe->img, img.x, img.y);
+		if (color.a == (char)255)
+			window_put_pixel(win, x, y, color.integer);
 		img.y += stripe->img_delta.y;
 		y++;
 	}
