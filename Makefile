@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/23 04:42:44 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/23 19:01:28 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -128,6 +128,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						parsing/mlx_setup_bonus.c \
 						parsing/asset_lst_bonus.c \
 						parsing/sprite_lst_bonus.c \
+						render/draw_floor_ceil_bonus.c \
 						render/draw_line_bonus.c \
 						render/draw_line_utils_bonus.c \
 						render/draw_utils_bonus.c \
