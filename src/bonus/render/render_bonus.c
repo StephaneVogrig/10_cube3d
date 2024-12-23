@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 19:33:21 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/23 19:39:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -113,6 +113,5 @@ void	render(t_data *data)
 	draw_floor_ceil(data, data->rays.tab, dark);
 	draw_walls(&data->win, data->rays.tab, &data->textures, data->door_open_list);
 	sprite_render(&data->sprite, &data->player, data->rays.tab, &data->win);
-	if (option->minimap == TRUE)
-		render_minimap(&data->map, &data->player, data->rays.tab);
+	render_minimap(&data->map, &data->player, data->rays.tab);
 }
