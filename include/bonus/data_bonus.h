@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 02:16:24 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/23 19:27:47 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef DATA_BONUS_H
 # define DATA_BONUS_H
@@ -32,6 +32,7 @@
 # include "door_bonus.h"
 # include "sprite_bonus.h"
 # include "key_move.h"
+# include "ray.h"
 
 typedef struct s_data
 {
@@ -42,6 +43,7 @@ typedef struct s_data
 	t_key		key;
 	t_player	player;
 	int			mouse_mode;
+	t_ray_tab	rays;
 	t_door		door_open_list[DOORS_SIZE];
 	t_sprite	sprite;
 }				t_data;
