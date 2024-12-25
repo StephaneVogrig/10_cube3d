@@ -1,24 +1,23 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda_manda.h                                        :+:      :+:    :+:   */
+/*   game_loop_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/25 00:24:52 by svogrig          ###   ########.fr       */
+/*   Created: 2024/12/24 00:39:01 by svogrig           #+#    #+#             */
+/*   Updated: 2024/12/24 00:50:06 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef DDA_H
-# define DDA_H
+#ifndef GAME_LOOP_BONUS_H
+# define GAME_LOOP_BONUS_H
 
-# include "dda_utils.h"
-# include "player.h"
-# include "ray.h"
-# include "map.h"
-# include "data_manda.h"
+# include "gametime.h"
+# include "data_bonus.h"
+# include "player_move_bonus.h"
+# include "render_bonus.h"
 
-void	dda(t_ray *ray, t_position *start, t_data *data);
+int	game_loop(void *param);
 
 #endif

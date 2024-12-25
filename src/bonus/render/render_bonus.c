@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 19:39:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/24 20:16:57 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -69,7 +69,7 @@ void	draw_minimap(t_map *map)
 	}
 }
 
-void	draw_rays(t_player *player, t_ray *rays)
+void	draw_rays(t_player *player, t_ray_tab *rays)
 {
 	int	i;
 	t_vec2i	start;
@@ -77,6 +77,7 @@ void	draw_rays(t_player *player, t_ray *rays)
 	t_vec2d	play;
 	t_vec2d	hit;
 	t_minimap	*minimap;
+	t_ray	*ray;
 
 	minimap = minimap_get_ptr();
 	play.x = player->x.grid + player->x.box;
@@ -84,19 +85,20 @@ void	draw_rays(t_player *player, t_ray *rays)
 	start.x = minimap->scale * play.x;
 	start.y = minimap->scale * play.y;
 	i = 0;
-	while (i < WIN_W)
+	ray = rays->tab;
+	while (i < rays->nbr)
 	{
-		hit.x = rays->hit_pos.x.grid + rays->hit_pos.x.box;
-		hit.y = rays->hit_pos.y.grid + rays->hit_pos.y.box;
+		hit.x = ray->hit_pos.x.grid + ray->hit_pos.x.box;
+		hit.y = ray->hit_pos.y.grid + ray->hit_pos.y.box;
 		end.x = minimap->scale * hit.x;
 		end.y = minimap->scale * hit.y;
 		draw_line(minimap, start, end, 0xFFFF0000);
 		i++;
-		rays++;
+		ray++;
 	}
 }
 
-void	render_minimap(t_map *map, t_player *player, t_ray *rays)
+void	render_minimap(t_map *map, t_player *player, t_ray_tab *rays)
 {
 	draw_minimap(map);
 	draw_rays(player, rays);
@@ -108,10 +110,10 @@ void	render(t_data *data)
 	int		dark;
 
 	window_clear(&data->win);
-	raycasting(&data->map, &data->player, &data->rays, data->door_open_list);
+	raycasting(&data->rays, data);
 	dark = map_get_cell(&data->map, &data->player.position) == WALL;
 	draw_floor_ceil(data, data->rays.tab, dark);
 	draw_walls(&data->win, data->rays.tab, &data->textures, data->door_open_list);
 	sprite_render(&data->sprite, &data->player, data->rays.tab, &data->win);
-	render_minimap(&data->map, &data->player, data->rays.tab);
+	render_minimap(&data->map, &data->player, &data->rays);
 }

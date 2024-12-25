@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/23 20:24:07 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/24 00:47:37 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -109,6 +109,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						door_bonus.c \
 						door_open_list_bonus.c \
 						event_bonus.c \
+						game_loop_bonus.c \
 						id_tex_bonus.c \
 						player_move_bonus.c \
 						sprite_bonus.c \
@@ -219,7 +220,7 @@ test: all
 	./cub3d maps/test.cub
 
 testbonus: bonus
-	./cub3d_bonus maps/bonus/bonus.cub
+	./cub3d_bonus maps/bonus/test/sprite.cub
 
 makeall: $(NAME)
 makebonus : $(NAME_BONUS)

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 14:07:10 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/25 00:25:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,7 +24,7 @@ t_vec2d	camera_step_vec(t_vec2d	player_dir_vec, t_ray_tab *rays)
 	return (vec);
 }
 
-void	raycasting(t_map *map, t_player *player, t_ray_tab *rays)
+void	raycasting(t_ray_tab *rays, t_data *data)
 {
 	t_vec2d	player_dir_vec;
 	t_vec2d	camera_step;
@@ -32,7 +32,7 @@ void	raycasting(t_map *map, t_player *player, t_ray_tab *rays)
 	t_ray	*ray;
 	int		i;
 
-	player_dir_vec = dir_to_dirvec(player->dir);
+	player_dir_vec = dir_to_dirvec(data->player.dir);
 	camera_step = camera_step_vec(player_dir_vec, rays);
 	ray_vec.x = player_dir_vec.x + player_dir_vec.y;
 	ray_vec.y = player_dir_vec.y - player_dir_vec.x;
@@ -41,7 +41,7 @@ void	raycasting(t_map *map, t_player *player, t_ray_tab *rays)
 	while (i < rays->nbr)
 	{
 		ray->vdir = ray_vec;
-		dda(ray, map, &player->position);
+		dda(ray, &data->player.position, data);
 		ray_vec = vec2d_plus_vec2d(ray_vec, camera_step);
 		ray++;
 		i++;

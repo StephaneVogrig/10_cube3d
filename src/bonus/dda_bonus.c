@@ -6,12 +6,11 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:03:35 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 17:51:01 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/24 20:45:02 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "dda_bonus.h"
-#include "door_bonus.h"
 
 static float	hit_position_on_door(t_gridbox start_axis, t_dda_axis *dda_axis, double len)
 {
@@ -164,25 +163,26 @@ static char	*dda_loop(t_dda *dda, t_map *map, t_position *start, t_door *door_op
 	return (hit);
 }
 
-void	dda(t_ray *ray, t_map *map, t_position *start, t_door *door_open_list)
+void	dda(t_ray *ray, t_position *start, t_data *data)
 {
 	t_dda	dda;
 	char	*cell;
 
-	cell = map_get_cell_ptr(map, start);
+	cell = map_get_cell_ptr(&data->map, start);
 	if (cell_is_door(*cell)
-		&& (is_collide_door(ray, map, start, door_open_list)))
+		&& (is_collide_door(ray, &data->map, start, data->door_open_list)))
 	{
 		ray->hit_cell = cell;
 		ray->dark = 0;
 		return ;
 	}
-	dda_init(&dda, &ray->vdir, start, map);
-	if (dda_no_need(map, start, &dda) == TRUE)
+	dda_init(&dda, &ray->vdir, start, &data->map);
+	dda.len_max = data->win.height;
+	if (dda_no_need(&data->map, start, &dda) == TRUE)
 	{
 		ray->len = dda.len_max + 1;
 		return ;
 	}
-	ray->hit_cell = dda_loop(&dda, map, start, door_open_list);
+	ray->hit_cell = dda_loop(&dda, &data->map, start, data->door_open_list);
 	dda_ray_set(ray, &dda, start);
 }

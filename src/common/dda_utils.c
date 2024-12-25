@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dda_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 19:20:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 17:57:10 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/24 00:26:06 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "dda_utils.h"
 #include "window.h"
@@ -37,7 +37,6 @@ void	dda_init(t_dda *dda, t_vec2d *ray_vec, t_position *start, t_map *map)
 		dda->collide = AREA;
 	else
 		dda->collide = WALL;
-	dda->len_max = WIN_H;
 }
 
 int	dda_no_need(t_map *map, t_position *start, t_dda *dda)

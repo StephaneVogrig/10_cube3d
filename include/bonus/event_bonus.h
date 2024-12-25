@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 01:33:03 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/24 00:52:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,12 +14,8 @@
 # define EVENT_BONUS_H
 
 # include "data_bonus.h"
-# include "player_move_bonus.h"
-# include "render_bonus.h"
-# include "gametime.h"
-# include "door_bonus.h"
 # include "key_move.h"
-# include "sprite_bonus.h"
+# include "game_loop_bonus.h"
 
 # define KEY_T		23
 

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 01:36:15 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/24 20:43:35 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -64,62 +64,6 @@ int	on_keyup(int key, void *param)
 	return (SUCCESS);
 }
 
-int	event_check_move(t_player *player, t_key key, t_time_us dt, t_data *data)
-{
-	t_vec2i	move;
-
-	move = key_to_move(key);
-	if (!is_moving(move))
-		return (FALSE);
-	player_move(&data->map , player, move, dt, data->door_open_list);
-	return (TRUE);
-}
-
-int	event_check_mouse_move(t_data *data)
-{
-	int x;
-	int y;
-	int dx;
-
-	if (!data->win.focused || !data->mouse_mode)
-		return (FALSE);
-	mlx_mouse_get_pos(data->mlx, &x, &y);
-	dx = x - data->win.width / 2;
-	if (!dx)
-		return (FALSE);
-	data->player.dir += M_PI * dx / data->win.width;
-	// printf("mouse x:%i, y:%i\n", x, y);
-	mlx_mouse_move(data->mlx, data->win.win, data->win.width / 2, data->win.height / 2);
-	return (TRUE);
-}
-
-int	on_loop(void *param)
-{
-	static	t_time_us	oldtime;
-	t_time_us	delta_time;
-	t_data *data;
-	int render_needed;
-
-	delta_time = gametime() - oldtime;
-	oldtime += delta_time;
-
-	data = (t_data *)param;
-
-	render_needed = door_open_list_update(data->door_open_list, delta_time);
-	render_needed |= sprite_update(&data->sprite, delta_time);
-	render_needed |= event_check_mouse_move(data);
-	if (data->key.down)
-	{
-		render_needed |= player_rotate(&data->player, data->key, delta_time);
-		render_needed |= event_check_move(&data->player, data->key, delta_time, data);
-	}
-	if (!render_needed)
-		return (SUCCESS);
-	render(data);
-	fps_print(gametime() - oldtime);
-	return (SUCCESS);
-}
-
 int on_mousedown(int button, void *param)
 {
 	t_data *data;
@@ -129,7 +73,7 @@ int on_mousedown(int button, void *param)
 	data = (t_data *)param;
 
 	ray.vdir = dir_to_dirvec(data->player.dir);
-	dda(&ray, &data->map, &data->player.position, data->door_open_list);
+	dda(&ray, &data->player.position, data);
 	if ((*ray.hit_cell == 'R' || *ray.hit_cell == 'L')
 		&& ray.len < DOOR_OPEN_DIST)
 		door_open(ray.hit_cell, data->door_open_list);
@@ -142,5 +86,5 @@ void	event_setup(t_data *data)
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYDOWN, on_keydown, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYUP, on_keyup, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_MOUSEDOWN, on_mousedown, data);
-	mlx_loop_hook(data->mlx, on_loop, data);
+	mlx_loop_hook(data->mlx, game_loop, data);
 }

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:16:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 01:16:35 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/25 00:15:55 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,7 +25,7 @@ void	draw_floor_ceil(t_window *win, t_map *map, t_player *player)
 void	render(t_data *data)
 {
 	window_clear(&data->win);
-	raycasting(&data->map, &data->player, &data->rays);
+	raycasting(&data->rays, data);
 	draw_floor_ceil(&data->win, &data->map, &data->player);
 	draw_walls(&data->win, data->rays.tab, &data->textures);
 }
