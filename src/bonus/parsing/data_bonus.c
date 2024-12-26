@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 18:16:51 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/26 13:03:49 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,6 +16,7 @@ void	data_init(t_data *data)
 {
 	ft_bzero(data, sizeof(*data));
 	data->key.down = 0;
+	data->tg_fov_2 = tan((FOV / 2) * (PI / 180));
 }
 
 int	data_setup(t_data *data, char *map_path)

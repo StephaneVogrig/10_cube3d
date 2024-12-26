@@ -6,13 +6,14 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 19:27:47 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/26 13:09:43 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef DATA_BONUS_H
 # define DATA_BONUS_H
 
+# include <math.h>
 # include "asset_bonus.h"
 # include "asset_lst_bonus.h"
 # include "door_bonus.h"
@@ -34,6 +35,12 @@
 # include "key_move.h"
 # include "ray.h"
 
+# ifndef PI
+#  define PI 3.14159265358979323846
+#endif
+
+#define FOV 90
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -44,6 +51,7 @@ typedef struct s_data
 	t_player	player;
 	int			mouse_mode;
 	t_ray_tab	rays;
+	double		tg_fov_2;
 	t_door		door_open_list[DOORS_SIZE];
 	t_sprite	sprite;
 }				t_data;

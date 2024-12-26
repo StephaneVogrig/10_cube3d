@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 00:11:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/26 13:05:13 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,6 +25,12 @@
 # include "key_move.h"
 # include "ray.h"
 
+# ifndef PI
+#  define PI 3.14159265358979323846
+#endif
+
+#define FOV 90
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -35,6 +41,7 @@ typedef struct s_data
 	t_player	player;
 	int			mouse_mode;
 	t_ray_tab	rays;
+	double		tg_fov_2;
 }				t_data;
 
 void	data_init(t_data *data);

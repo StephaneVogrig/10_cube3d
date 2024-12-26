@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/25 00:19:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/26 13:46:33 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,6 +19,6 @@
 # include "data_manda.h"
 # include "dda_manda.h"
 
-void	raycasting(t_ray_tab *rays, t_data *data);
+void	raycasting(t_ray *rays, t_data *data);
 
 #endif
