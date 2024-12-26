@@ -1,25 +1,34 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_wall_utils.h                                  :+:      :+:    :+:   */
+/*   strip.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 03:08:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 22:54:06 by svogrig          ###   ########.fr       */
+/*   Created: 2024/12/26 17:47:51 by svogrig           #+#    #+#             */
+/*   Updated: 2024/12/26 23:29:46 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef DRAW_WALL_UTILS_H
-# define DRAW_WALL_UTILS_H
+#ifndef STRIP_H
+# define STRIP_H
 
+# include "limits.h"
 # include "texture.h"
-# include "vector.h"
-# include "window.h"
-# include "ray.h"
-# include "color.h"
-# include "strip.h"
 
-void	draw_wall(t_window *win, int x, double img_x, t_strip *draw);
+typedef struct s_strip
+{
+	t_texture	*img;
+	int			screen_size;
+	int			screen_start;
+	int			screen_end;
+	double		img_start;
+	double		img_delta;
+	int			dark;
+}	t_strip;
+
+int		strip_screen_size(int screen_scale, double distance);
+void	strip_add_limit(t_strip *strip, int size);
+void	strip_setup(t_strip *strip, int win_h);
 
 #endif

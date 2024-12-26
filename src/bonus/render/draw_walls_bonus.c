@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 10:55:41 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/26 22:50:28 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -52,19 +52,20 @@ int	x_hit_in_texture(t_texture *texture, t_ray *ray, t_door *door_open_list)
 
 void	draw_walls(t_window *win, t_ray *rays, t_asset *textures, t_door *door_open_list)
 {
-	t_wall_draw draw;
+	t_strip strip;
+	double	img_x;
 	int		x;
 
 	x = 0;
 	while (x < win->width)
 	{
-		draw.img_screen_size.y = wall_height(win, rays->len);
-		if (draw.img_screen_size.y > 1)
+		strip.screen_size = strip_screen_size(win->height, rays->len);
+		if (strip.screen_size > 1)
 		{
-			draw.img = asset_get_texture_ptr(textures, rays->hit_cell, rays->hit_side);
-			draw.img_start.x = x_hit_in_texture(draw.img, rays, door_open_list);
-			draw.dark = rays->dark;
-			draw_wall(win, x, &draw);
+			strip.img = asset_get_texture_ptr(textures, rays->hit_cell, rays->hit_side);
+			img_x = x_hit_in_texture(strip.img, rays, door_open_list);
+			strip.dark = rays->dark;
+			draw_wall(win, x, img_x, &strip);
 		}
 		rays++;
 		x++;

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 16:32:31 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/26 22:50:43 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -36,19 +36,20 @@ t_texture	*texture_hit(t_textures *textures, t_ray *ray)
 
 void	draw_walls(t_window *win, t_ray *rays, t_textures *textures)
 {
-	t_wall_draw draw;
+	t_strip strip;
+	double	img_x;
 	int		x;
 
 	x = 0;
 	while (x < win->width)
 	{
-		draw.img_screen_size.y = wall_height(win, rays->len);
-		if (draw.img_screen_size.y > 1)
+		strip.screen_size = strip_screen_size(win->height, rays->len);
+		if (strip.screen_size > 1)
 		{
-			draw.img = texture_hit(textures, rays);
-			draw.img_start.x = x_hit_in_texture(draw.img, rays);
-			draw.dark = rays->dark;
-			draw_wall(win, x, &draw);
+			strip.img = texture_hit(textures, rays);
+			img_x = x_hit_in_texture(strip.img, rays);
+			strip.dark = rays->dark;
+			draw_wall(win, x, img_x, &strip);
 		}
 		rays++;
 		x++;
