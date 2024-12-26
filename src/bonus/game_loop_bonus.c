@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 00:38:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/24 19:16:58 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/26 10:25:10 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,12 +25,11 @@ static int	check_mouse_move(t_data *data)
 	if (!dx)
 		return (FALSE);
 	data->player.dir += M_PI * dx / data->win.width;
-	// printf("mouse x:%i, y:%i\n", x, y);
 	mlx_mouse_move(data->mlx, data->win.win, data->win.width / 2, data->win.height / 2);
 	return (TRUE);
 }
 
-static int	check_move(t_key key, t_time_us dt, t_data *data)
+static int	check_move(t_key key, t_time_us delta_time, t_data *data)
 {
 	t_vec2i	move_dir_vec;
 	double	move_len;
@@ -38,7 +37,7 @@ static int	check_move(t_key key, t_time_us dt, t_data *data)
 	move_dir_vec = key_to_move(key);
 	if (!is_moving(move_dir_vec))
 		return (FALSE);
-	move_len = (SPEED_MOVE * dt) / USECOND_PER_SECOND;
+	move_len = (SPEED_MOVE * delta_time) / USECOND_PER_SECOND;
 	player_move(&data->player, move_dir_vec, move_len, data);
 	return (TRUE);
 }
@@ -46,15 +45,13 @@ static int	check_move(t_key key, t_time_us dt, t_data *data)
 int	game_loop(void *param)
 {
 	static	t_time_us	oldtime;
-	t_time_us	delta_time;
-	t_data *data;
-	int render_needed;
+	t_time_us			delta_time;
+	t_data				*data;
+	int					render_needed;
 
 	delta_time = gametime() - oldtime;
 	oldtime += delta_time;
-
 	data = (t_data *)param;
-
 	render_needed = door_open_list_update(data->door_open_list, delta_time);
 	render_needed |= sprite_update(&data->sprite, delta_time);
 	render_needed |= check_mouse_move(data);

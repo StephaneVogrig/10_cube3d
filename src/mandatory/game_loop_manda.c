@@ -6,20 +6,22 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 20:05:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 20:09:37 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/26 10:07:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "game_loop_manda.h"
 
-int	event_check_move(t_player *player, t_key key, t_time_us delta_time)
+static int	check_move(t_key key, t_time_us delta_time, t_player *player)
 {
-	t_vec2i	move;
+	t_vec2i	move_dir_vec;
+	double	move_len;
 
-	move = key_to_move(key);
-	if (!is_moving(move))
+	move_dir_vec = key_to_move(key);
+	if (!is_moving(move_dir_vec))
 		return (FALSE);
-	player_move(player, move, delta_time);
+	move_len = (SPEED_MOVE * delta_time) / USECOND_PER_SECOND;
+	player_move(player, move_dir_vec, move_len);
 	return (TRUE);
 }
 
@@ -36,7 +38,7 @@ int	game_loop(void *param)
 	if (data->key.down == 0)
 		return (SUCCESS);
 	render_needed = player_rotate(&data->player, data->key, delta_time);
-	render_needed |= event_check_move(&data->player, data->key, delta_time);
+	render_needed |= check_move(data->key, delta_time, &data->player);
 	if (!render_needed)
 		return (SUCCESS);
 	render(data);
