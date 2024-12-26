@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 00:27:56 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/24 20:43:19 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/26 10:54:20 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,7 +33,6 @@ void	dda_before_collide(t_ray *ray, t_position *start, t_data *data)
 
 void	slide(t_player *player, t_ray *ray, double len_move, t_data *data)
 {
-(void)data;
 	double	len_axis_remain;
 
 	player->position = ray->hit_pos;

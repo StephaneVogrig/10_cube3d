@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 00:44:43 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/26 10:55:06 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,7 +22,6 @@ int	mlx_setup(t_data *data, t_tex_path *tex_path, t_textures *textures)
 {
 	int	exit_code;
 
-	(void)data;
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
 		return (ft_return(ERROR, 258, "Error on mlx_init"));

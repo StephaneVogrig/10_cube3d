@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 17:03:36 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/26 10:55:41 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -53,7 +53,6 @@ int	x_hit_in_texture(t_texture *texture, t_ray *ray, t_door *door_open_list)
 void	draw_walls(t_window *win, t_ray *rays, t_asset *textures, t_door *door_open_list)
 {
 	t_wall_draw draw;
-	(void)draw;
 	int		x;
 
 	x = 0;

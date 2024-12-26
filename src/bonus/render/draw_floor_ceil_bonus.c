@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:54:46 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 19:05:17 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/26 10:56:13 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -52,7 +52,6 @@ void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 				int color;
 				t_texture	*tex_ceil = asset_get_texture_ptr(&data->textures, "C", rays->hit_side);
 				t_texture	*tex_floor = asset_get_texture_ptr(&data->textures, "F", rays->hit_side);
-				(void)dark;
 				// ceil
 				t.x = tex_ceil->width * box.x;
 				t.y = tex_ceil->height * box.y;
