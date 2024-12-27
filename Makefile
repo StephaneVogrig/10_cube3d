@@ -1,14 +1,18 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/27 03:13:50 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/27 16:09:11 by aska             ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
+
+ifndef VERBOSE
+MAKEFLAGS += --no-print-directory --silent
+endif
 
 SHELL				:=	/bin/bash
 
@@ -172,7 +176,6 @@ all: libft libmlx init
 bonus: libft libmlx init 
 	@$(MAKE) -j makebonus
 	@echo -e "\t$(BLINK_GREEN)$(NAME_BONUS) = COMPILATION FINISHED !$(NC)"
-	@echo -e "$(BOLD)$(NAME_BONUS)$(NC) is located in $(BOLD)$(shell find . -iname "$(NAME_BONUS)")$(NC) !\n"
 
 clean: libclean
 	@rm -fr $(OBJ_DIR) && printf "Cleaning : $(OBJ_DIR)\n"
