@@ -6,7 +6,7 @@
 #    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/27 16:09:11 by aska             ###   ########.fr        #
+#    Updated: 2024/12/27 16:16:52 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,6 @@ SRCS_BONUS 			:=	main_bonus.c \
 						door_open_list_bonus.c \
 						event_bonus.c \
 						game_loop_bonus.c \
-						id_tex_bonus.c \
 						player_move_bonus.c \
 						sprite_bonus.c \
 						sprite_collect_bonus.c \

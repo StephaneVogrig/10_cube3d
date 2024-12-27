@@ -58,8 +58,5 @@ int asset_lst_to_array(void *mlx, t_asset *textures, t_asset_lst *head);
 int asset_destroy(t_asset *t);
 t_texture	*asset_get_texture(t_asset *t, char *cell);
 void print_asset_array(t_asset *t);
-int	get_index_by_key_cell(t_asset *t, char *key);
-
-// void			textures_buffer_clean(t_asset *t);
 
 #endif
