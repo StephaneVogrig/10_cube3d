@@ -6,13 +6,12 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:31:39 by aska              #+#    #+#             */
-/*   Updated: 2024/12/20 20:57:06 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/27 18:46:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "asset_bonus.h"
 #include "asset_lst_bonus.h"
-#include "id_tex_bonus.h"
 #include "libft.h"
 #include "color.h"
 
