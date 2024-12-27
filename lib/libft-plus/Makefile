@@ -1,4 +1,4 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,9 +6,9 @@
 #    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 11:10:06 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/07/10 16:18:01 by aska             ###   ########.fr        #
+#    Updated: 2024/12/27 16:03:34 by aska             ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 ifndef VERBOSE
 MAKEFLAGS += --no-print-directory --silent
@@ -44,16 +44,12 @@ all: init $(NAME)
 	@echo -e "$(BOLD)$(NAME)$(NC) is located in $(BOLD)$(shell find . -iname "$(NAME)")$(NC) !\n"
 	
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
 
 
 $(NAME): $(OBJS)
-	@ar rcs -o $@ $^ && echo -e "$(BGREEN)[✔]$(NC)\tArchiving:\t$(BOLD)$@\n"
-
-dummy: $(MAIN_SRC)
-	@$(CC) $(CFLAGS) $< -o $@ $(NAME) && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@"
-	@echo -e "\t$(BLINK_BGREEN)$@ = COMPILATION FINISHED !$(NC)"
-	@echo -e "$(BOLD)$@$(NC) is located in $(BOLD)$(shell find . -iname "$@")$(NC) !"
+	@ar rcs $@ $^ && echo -e "$(BGREEN)[✔]$(NC)\tArchiving:\t$(BOLD)$@\n"
 
 clean:
 	@rm -fr $(OBJS) $(OBJ_DIR)
