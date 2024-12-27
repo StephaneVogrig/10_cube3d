@@ -15,6 +15,7 @@
 
 #include "libft.h"
 #include "option_utils_bonus.h"
+#include "window.h"
 
 typedef struct s_option t_option;
 
