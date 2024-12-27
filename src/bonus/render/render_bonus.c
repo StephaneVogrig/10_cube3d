@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 13:49:04 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/27 03:27:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -113,7 +113,7 @@ void	render(t_data *data)
 	raycasting(data->rays.tab, data);
 	dark = map_get_cell(&data->map, &data->player.position) == WALL;
 	draw_floor_ceil(data, data->rays.tab, dark);
-	draw_walls(&data->win, data->rays.tab, &data->textures, data->door_open_list);
-	sprite_render(&data->sprite, &data->player, data->rays.tab, &data->win);
+	draw_walls(&data->win, data->rays.tab, data);
+	sprite_render(&data->sprite, &data->player, &data->win, data);
 	render_minimap(&data->map, &data->player, &data->rays);
 }

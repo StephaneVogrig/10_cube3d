@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:54:46 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 10:56:13 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/27 03:40:12 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -28,13 +28,13 @@ void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 	{
 		int y_floor = winh_2 + i;
 		int y_ceil = winh_2 - 1 - i;
-		double winh_2i = (double)winh_2 / (i + 1);
+		double winh_2i = (double)(data->scale_screen / 2) / (i + 1);
+
 		x = 0;
 		while (x < data->win.width)
 		{
-			wall_h = data->win.height / rays[x].len;
-			wall_h /= 2;
-			if (i >= wall_h)
+			wall_h = data->scale_screen / rays[x].len;
+			if (i >= wall_h / 2)
 			{
 				t_vec2d	world;
 				t_vec2d len;

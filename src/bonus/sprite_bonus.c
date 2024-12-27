@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 17:42:30 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/27 03:33:48 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -76,43 +76,33 @@ void	sprite_destroy(t_sprite *sprite)
 		free(sprite->collected);
 }
 
-void	sprite_sort(t_sprite *sprite)
+int	sprite_update_state(float *state, int nbr_state, t_time_us dt)
 {
-	int	i;
-	int	j;
-	int	sorting;
+	int	state_start;
 
-	i = 1;
-	while (i < sprite->nbr)
-	{
-		sorting = sprite->order[i];
-		j = i;
-		while (j > 0 && sprite->transform[sorting].y > sprite->transform[sprite->order[j - 1]].y)
-		{
-			sprite->order[j] = sprite->order[j - 1];
-			j--;
-		}
-		sprite->order[j] = sorting;
-		i++;
-	}
+	if (nbr_state == 1)
+		return (FALSE);
+	state_start = (int)*state;
+	*state += 25 * (float)dt / USECOND_PER_SECOND;
+	if (*state >= nbr_state)
+		*state -= (nbr_state);
+	if ((int)*state == state_start)
+		return (FALSE);
+	return (TRUE);
 }
 
-void	sprite_render(t_sprite *sprite, t_player *player, t_ray *ray_tab, t_window *win)
+int	sprite_update(t_sprite *sprite, t_time_us dt)
 {
+	int render_needed;
 	int	i;
-	int	j;
 
-	sprite_transform_coordonate(sprite, player);
-	sprite_sort(sprite);
-	sprite_collect(sprite, player);
+	render_needed = FALSE;
 	i = 0;
 	while (i < sprite->nbr)
 	{
-		j = sprite->order[i];
-		if (sprite->transform[j].y < 0)
-			break ;
-		if (sprite->collected[j] == FALSE)
-			sprite_draw(sprite, j, win, ray_tab);
+		if (sprite->collected[i] == FALSE)
+			render_needed |= sprite_update_state(&sprite->state[i], sprite->nbr_state[i], dt);
 		i++;
 	}
+	return (render_needed);
 }

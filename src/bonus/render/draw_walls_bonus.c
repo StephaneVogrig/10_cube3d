@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 22:50:28 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/27 02:47:48 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -50,7 +50,7 @@ int	x_hit_in_texture(t_texture *texture, t_ray *ray, t_door *door_open_list)
 	return (ray->hit_pos.y.box * (texture->width - 1));
 }
 
-void	draw_walls(t_window *win, t_ray *rays, t_asset *textures, t_door *door_open_list)
+void	draw_walls(t_window *win, t_ray *ray, t_data *data)
 {
 	t_strip strip;
 	double	img_x;
@@ -59,15 +59,16 @@ void	draw_walls(t_window *win, t_ray *rays, t_asset *textures, t_door *door_open
 	x = 0;
 	while (x < win->width)
 	{
-		strip.screen_size = strip_screen_size(win->height, rays->len);
+		strip.screen_size = strip_screen_size(data->scale_screen, ray->len);
 		if (strip.screen_size > 1)
 		{
-			strip.img = asset_get_texture_ptr(textures, rays->hit_cell, rays->hit_side);
-			img_x = x_hit_in_texture(strip.img, rays, door_open_list);
-			strip.dark = rays->dark;
+			strip.img = asset_get_texture_ptr(&data->textures,\
+												ray->hit_cell, ray->hit_side);
+			img_x = x_hit_in_texture(strip.img, ray, data->door_open_list);
+			strip.dark = ray->dark;
 			draw_wall(win, x, img_x, &strip);
 		}
-		rays++;
+		ray++;
 		x++;
 	}
 }

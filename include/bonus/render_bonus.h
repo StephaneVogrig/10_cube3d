@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:18 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 19:05:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/27 03:16:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,6 +22,7 @@
 # include "draw_walls_bonus.h"
 # include "sprite_bonus.h"
 # include "option_bonus.h"
+# include "sprite_render_bonus.h"
 
 void	render(t_data *data);
 

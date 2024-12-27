@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 13:05:13 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/27 02:36:16 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -42,6 +42,7 @@ typedef struct s_data
 	int			mouse_mode;
 	t_ray_tab	rays;
 	double		tg_fov_2;
+	double		scale_screen;
 }				t_data;
 
 void	data_init(t_data *data);

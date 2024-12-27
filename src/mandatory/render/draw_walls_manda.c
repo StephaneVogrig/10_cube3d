@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 22:50:43 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/27 02:34:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -34,7 +34,7 @@ t_texture	*texture_hit(t_textures *textures, t_ray *ray)
 	return (&textures->west);
 }
 
-void	draw_walls(t_window *win, t_ray *rays, t_textures *textures)
+void	draw_walls(t_window *win, t_ray *rays, t_textures *textures, double scale)
 {
 	t_strip strip;
 	double	img_x;
@@ -43,7 +43,7 @@ void	draw_walls(t_window *win, t_ray *rays, t_textures *textures)
 	x = 0;
 	while (x < win->width)
 	{
-		strip.screen_size = strip_screen_size(win->height, rays->len);
+		strip.screen_size = strip_screen_size(scale, rays->len);
 		if (strip.screen_size > 1)
 		{
 			strip.img = texture_hit(textures, rays);

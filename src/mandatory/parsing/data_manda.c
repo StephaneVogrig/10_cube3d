@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 13:34:48 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/27 02:30:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -59,6 +59,7 @@ int	data_setup(t_data *data, char *map_path)
 	tex_path_clean(&tex_path);
 	if (exit_code == SUCCESS)
 		exit_code = ray_setup(&data->rays, data->win.width);
+	data->scale_screen = (data->win.width / 2) / data->tg_fov_2;
 	return (exit_code);
 }
 
