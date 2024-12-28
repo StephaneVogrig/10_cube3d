@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 02:30:22 by aska              #+#    #+#             */
-/*   Updated: 2024/12/27 19:31:21 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/28 22:28:09 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,11 @@ void print_option(t_option *option)
 
 int print_help()
 {
-	printf("Usage: ./cub3d_bonus [map_path] (options)\n");
-	printf("Options:\n");
-	printf("--resolution=[width]x[height]\n");
-	printf("--fov=[ratio]\t Value between 0 and 1\n");
-	printf("--minimap\n");
+	printf("Usage:\n  cub3d_bonus <map_path> [--resolution=<WxH>] [--fov=<ratio>] [--minimap]\n\n");
+	printf("  <map_path>             Path to the map file.\n");
+	printf("  --resolution=<WxH>     Set the resolution in the format widthxheight (e.g., 1920x1080).\n");
+	printf("  --fov=<ratio>          Set the field of view ratio (value between 0 and 1).\n");
+	printf("  --minimap              Enable the minimap.\n\n");
+	printf("Examples:\n  ./cub3d_bonus maps/level1.map --resolution=1920x1080 --fov=0.8 --minimap\n");
 	return (EXIT_FAILURE);
 }
