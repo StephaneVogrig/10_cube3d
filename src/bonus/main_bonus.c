@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/28 14:20:01 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/28 16:17:03 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -34,8 +34,6 @@ int program_setup(t_data *data, t_option *option, char *map_path)
 
 	(void)option;
 	exit_code = data_setup(data, map_path);
-	if (exit_code == SUCCESS)
-		exit_code = minimap_setup(&data->minimap, data->mlx, &data->win, &data->map);
 	return (exit_code);
 }
 
@@ -56,7 +54,6 @@ int	main(int argc, char **argv)
 		render(&data);
 		mlx_loop(data.mlx);
 	}
-	minimap_destroy(&data.minimap);
 	data_clean(&data);
 	return (exit_code);
 }

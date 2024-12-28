@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:14:09 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/28 14:14:45 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/28 14:32:44 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,10 +18,6 @@
 # include "player.h"
 # include "vector.h"
 # include "window.h"
-// # include "minimap_utils_bonus.h"
-// # include "data_bonus.h"
-// # include "event_bonus.h"
-
 
 # define MINIMAP_W 320
 # define MINIMAP_H 180

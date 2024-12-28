@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/28 14:17:00 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/28 15:12:56 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -138,6 +138,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						render/draw_utils_bonus.c \
 						render/draw_walls_bonus.c \
 						render/minimap_bonus.c \
+						render/minimap_render_bonus.c \
 						render/minimap_event_bonus.c \
 						render/raycasting_bonus.c \
 						render/render_bonus.c

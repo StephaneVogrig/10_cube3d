@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/27 02:10:55 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/28 16:14:02 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -39,6 +39,8 @@ int	data_setup(t_data *data, char *map_path)
 	if (exit_code == SUCCESS)
 		exit_code =	sprite_setup(&data->sprite, sprite_lst, &data->textures);
 	delete_all_sprite(&sprite_lst);
+	if (exit_code == SUCCESS)
+		exit_code = minimap_setup(&data->minimap, data->mlx, &data->win, &data->map);
 	data->scale_screen = (data->win.width / 2) / data->tg_fov_2;
 	return (exit_code);
 }
@@ -50,7 +52,8 @@ void	data_clean(t_data *data)
 	asset_destroy(&data->textures);
 	window_destroy(&data->win);
 	ray_destroy(&data->rays);
+	minimap_destroy(&data->minimap);
+	sprite_destroy(&data->sprite);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
-	sprite_destroy(&data->sprite);
 }
