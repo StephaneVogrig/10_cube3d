@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/28 18:02:41 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/28 23:27:17 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ int	data_setup(t_data *data, char *map_path)
 
 void	data_clean(t_data *data)
 {
-	printf("data_clean\n");
-	data->map.grid = ft_tab_f(data->map.grid);
+	ft_tab_f(data->map.grid);
 	asset_destroy(&data->textures);
 	window_destroy(&data->win);
 	ray_destroy(&data->rays);

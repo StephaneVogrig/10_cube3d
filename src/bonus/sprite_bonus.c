@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/27 03:33:48 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/28 23:27:26 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "sprite_bonus.h"
 
@@ -58,8 +58,6 @@ int	sprite_setup(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *textures)
 
 void	sprite_destroy(t_sprite *sprite)
 {
-	printf("sprite_destroy\n");
-	
 	if (sprite->image)
 		free(sprite->image);
 	if (sprite->pos)

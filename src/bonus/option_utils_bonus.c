@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 02:30:22 by aska              #+#    #+#             */
-/*   Updated: 2024/12/28 22:28:09 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/28 23:27:49 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ int print_help()
 	printf("  --resolution=<WxH>     Set the resolution in the format widthxheight (e.g., 1920x1080).\n");
 	printf("  --fov=<ratio>          Set the field of view ratio (value between 0 and 1).\n");
 	printf("  --minimap              Enable the minimap.\n\n");
-	printf("Examples:\n  ./cub3d_bonus maps/level1.map --resolution=1920x1080 --fov=0.8 --minimap\n");
+	printf("Examples:\n  ./cub3d_bonus maps/level1.map --resolution=1920x1080 --fov=0.8 --minimap\n\n");
 	return (EXIT_FAILURE);
 }
