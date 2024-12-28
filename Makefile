@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/28 15:12:56 by svogrig          ###   ########.fr        #
+#    Updated: 2024/12/28 18:01:59 by aska             ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 ifndef VERBOSE
 MAKEFLAGS += --no-print-directory --silent
@@ -110,6 +110,7 @@ SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_DIR)/%)
 SRC_BONUS_DIR		:=	bonus
 
 SRCS_BONUS 			:=	main_bonus.c \
+						debug_bonus.c \
 						dda_bonus.c \
 						door_bonus.c \
 						door_open_list_bonus.c \

@@ -1,16 +1,26 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   debug_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:12:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 21:08:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/27 23:11:45 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "debug_bonus.h"
+
+void print_exit_code(int exit_code)
+{
+	if (exit_code == SUCCESS)
+		ft_printf("%i\t: "HGRN"SUCCESS\n"CRESET, exit_code);
+	else if (exit_code == FAIL)
+		ft_printf("%i\t: "HRED"FAIL\n"CRESET, exit_code);
+	else
+		ft_printf("%i\t: "HYEL"OTHER\n"CRESET, exit_code);
+}
 
 void	sprite_print(t_sprite *sprite)
 {

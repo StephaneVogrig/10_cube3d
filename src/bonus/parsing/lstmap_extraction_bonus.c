@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/20 21:47:34 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/27 23:32:52 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "lstmap_extraction_bonus.h"
 
@@ -43,10 +43,10 @@ int	check_line_remain(t_map *map, t_lstmap **lst_map)
 	{
 		exit_code = is_empty(tmp->line);
 		if (exit_code != SUCCESS)
-			break ;
+			return (ft_return(ERROR, 6, "L.46:check_line_remain: Line is not empty"));
 		exit_code = !is_map_valid_bonus(tmp->line);
 		if (exit_code != SUCCESS)
-			break ;
+			return (ft_return(ERROR, 7, "L.49:check_line_remain: Character not valid"));
 		exit_code = set_map_info(map, tmp->line);
 		if (exit_code != SUCCESS)
 			break ;
@@ -104,6 +104,8 @@ static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
 	}
 	return (exit_code);
 }
+
+#include "debug_bonus.h"
 
 int	lstmap_extract_info(t_map *map, char *map_path, t_asset_lst **asset_lst, t_sprite_lst **sprite_lst)
 {
