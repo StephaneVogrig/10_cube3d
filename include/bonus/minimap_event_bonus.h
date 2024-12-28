@@ -1,20 +1,22 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_utils_bonus.c                              :+:      :+:    :+:   */
+/*   minimap_event_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 16:36:54 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/15 16:42:45 by svogrig          ###   ########.fr       */
+/*   Created: 2024/12/28 14:08:54 by svogrig           #+#    #+#             */
+/*   Updated: 2024/12/28 14:21:44 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "minimap_utils_bonus.h"
+#ifndef MINIMAP_EVENT_BONUS_H
+# define MINIMAP_EVENT_BONUS_H
 
-t_minimap	*minimap_get_ptr(void)
-{
-	static t_minimap minimap;
+# include "data_bonus.h"
+# include "event_bonus.h"
+# include "minimap_bonus.h"
 
-	return (&minimap);
-}
+void minimap_event_setup(t_minimap *minimap, t_data *data);
+
+#endif

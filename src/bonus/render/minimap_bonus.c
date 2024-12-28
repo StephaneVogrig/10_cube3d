@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 23:52:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/28 14:12:51 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -31,20 +31,11 @@ int window_hook(int event, void* mlx)
 	return (SUCCESS);
 }
 
-void minimap_event_setup(t_minimap *minimap, t_data *data)
+int	minimap_setup(t_minimap	*minimap, void *mlx, t_window *win, t_map *map)
 {
-	mlx_on_event(minimap->mlx, minimap->win, MLX_MOUSEDOWN, on_mousedown, data);
-	mlx_on_event(minimap->mlx, minimap->win, MLX_KEYDOWN, on_keydown, data);
-	mlx_on_event(minimap->mlx, minimap->win, MLX_KEYUP, on_keyup, data);
-}
-
-int	minimap_setup(void *mlx, t_map *map, t_window *win, t_data *data)
-{
-	t_minimap	*minimap;
 	int			screen_w;
 	int			screen_h;
 
-	minimap = minimap_get_ptr();
 	minimap->win = mlx_new_window(mlx, MINIMAP_W, MINIMAP_H, "minimap");
 	if (minimap->win == NULL)
 		return (ft_return(ERROR, FAIL, "Error: no new window in minimap setup"));
@@ -55,16 +46,12 @@ int	minimap_setup(void *mlx, t_map *map, t_window *win, t_data *data)
 	mlx_set_window_position(mlx, minimap->win, (screen_w + win->width) / 2, (screen_h - win->height) / 2);
 	minimap->scale = minimap_scale(map);
 	minimap->mlx = mlx;
-	minimap_event_setup(minimap, data);
     mlx_on_event(mlx, minimap->win, MLX_WINDOW_EVENT, window_hook, mlx);
 	return (SUCCESS);
 }
 
-void	minimap_destroy(void)
+void	minimap_destroy(t_minimap *minimap)
 {
-	t_minimap	*minimap;
-	
-	minimap = minimap_get_ptr();
 	if (minimap->img)
 		mlx_destroy_image(minimap->mlx, minimap->img);
 	if (minimap->win)
