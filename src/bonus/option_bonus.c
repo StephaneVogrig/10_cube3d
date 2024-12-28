@@ -1,30 +1,36 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   option_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 01:30:59 by aska              #+#    #+#             */
-/*   Updated: 2024/12/27 18:49:38 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/28 22:17:11 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "option_bonus.h"
 
-int    option_init(t_option *option, int ac, char **av)
+void    option_init_default(t_option *option)
 {
-    int i;
-    t_key_value argument;
-    int exit_code;
-
-    i = 2;
-    exit_code = 0;
     option->win_width = WIN_W;
     option->win_height = WIN_H;
     option->fov = 1;
     option->minimap = FALSE;
+}
 
+int    option_init(t_option *option, int ac, char **av)
+{
+    int i;
+    int exit_code;
+    t_key_value argument;
+
+    if (ac < 2)
+        return (print_help());
+    i = 2;
+    exit_code = 0;
+    option_init_default(option);
     while (i < ac)
     {
         exit_code = option_tokenizer(&argument.key, &argument.value, av[i++]);

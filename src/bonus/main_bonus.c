@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/28 18:02:52 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/28 22:11:44 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 int program_init(t_data *data, t_option *option, int argc, char **argv)
 {
 	int exit_code;
-
-	exit_code = check_entry_arg(argc, argv);
-	if (exit_code != SUCCESS)
-		return (exit_code);
+	char *ext;
+	
 	exit_code = option_init(option, argc, argv);
 	if (exit_code != SUCCESS)
 		return (exit_code);
+	ext = ft_strrchr(argv[1], '.');
+	if (ext == NULL || ft_strcmp(ext, ".cub") != 0)
+		return (ft_return(ERROR, 3, "L.23:check_entry_arg: No \".cub\" extension map file"));
 	data_init(data);
 	data->win.width = option->win_width;
 	data->win.height = option->win_height;
