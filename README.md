@@ -43,3 +43,40 @@ The goal of the project is to build small game engine to render a 2D map in an a
 #### Correction
 [Enzo Degraeve](https://enzodeg40.github.io/42-Evals/Cursus/Cub3d/)  
 [42evals](https://www.42evals.com/sheets/66ba244998d302d110c31b6a)
+
+## Utilisation du Tester Script
+
+Ce script permet de tester l’exécutable _cub3d_ (ou _cub3d_bonus_) avec différents fichiers de cartes et un temps limite défini.
+
+### Utilisation
+
+```bash
+./tester.sh <FOLDER_MAPS> <TIME_LIMIT> [bonus]
+```
+
+- **FOLDER_MAPS** : chemin du dossier contenant les cartes (.cub)
+- **TIME_LIMIT** : temps limite (en secondes) pour chaque carte
+- **bonus**       : optionnel, lance `cub3d_bonus` à la place de `cub3d`
+
+Exemple :
+```bash
+./tester.sh maps 5 bonus
+```
+
+### Fonctionnement
+
+1. Le script recherche tous les fichiers présents dans le dossier spécifié par `FOLDER_MAPS`.
+2. Il exécute chaque fichier de carte avec `cub3d` ou `cub3d_bonus`.
+3. Un timeout (défini par `TIME_LIMIT`) arrête l’exécution si elle dépasse la limite fixée.
+4. Le script affiche pour chaque test (numéroté sous la forme 001, 002, 003, ...) le fichier testé ainsi que le résultat (VALID, SEGFAULT, MLX_ERROR, NO_VALID).
+5. Les résultats plus détaillés sont inscrits dans le fichier `tester.log`.
+
+### Personnalisation
+
+- Vous pouvez personnaliser le nom de l’exécutable (par défaut `cub3d` ou `cub3d_bonus` s’il reçoit l’argument `bonus`) en modifiant la variable `CUB3D_EXEC`.
+- Le fichier de log par défaut est `tester.log`. Vous pouvez le redéfinir dans la variable `LOG_FILE`.
+
+### Pré-requis
+
+- Avoir un exécutable `cub3d` ou `cub3d_bonus` dans le même dossier.
+- Disposer du dossier contenant les cartes (.cub).

@@ -25,10 +25,11 @@ if [ ! -f "$CUB3D_EXEC" ]; then
 fi
 
 if [ -z "$FOLDER_MAPS" ] || [ -z "$TIME_LIMIT" ]; then
-    echo -e "${RED}Usage: $0 <FOLDER_MAPS> <TIME_LIMIT>${NC}"
+    echo -e "${RED}Usage: $0 <FOLDER_MAPS> <TIME_LIMIT> [bonus]${NC}"
     echo "Arguments:"
     echo "  FOLDER_MAPS  : chemin du dossier contenant les fichiers de carte"
     echo "  TIME_LIMIT   : limite de temps pour exécuter chaque carte (en secondes)"
+    echo "  VERSION      : bonus (optionnel)"
     exit 1
 fi
 >"$LOG_FILE"
