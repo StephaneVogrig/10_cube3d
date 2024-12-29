@@ -1,7 +1,7 @@
-SO colorstone.png
-NO greystone.png
-WE mossy.png
-EA wood.png
+SO textures/colorstone.png
+NO textures/greystone.png
+WE textures/mossy.png
+EA textures/wood.png
 F 12,161,95
 C 142,209,209
 

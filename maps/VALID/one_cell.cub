@@ -1,7 +1,7 @@
-SO ./huge/18.jpg
-NO ./huge/18.jpg
-WE ./huge/18.jpg
-EA ./huge/18.jpg
+SO textures/20.png
+NO textures/21.png
+WE textures/22.png
+EA textures/23.png
 
 C 30,25,25
 F 15,30,40

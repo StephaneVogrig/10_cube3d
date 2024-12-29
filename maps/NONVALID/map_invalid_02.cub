@@ -1,10 +1,10 @@
-SO ROCKSO.bmp
-SO ROCKSO.bmp
+SO textures/ROCKSO.bmp
+SO textures/ROCKSO.bmp
 
-WE ROCKWE.bmp
+WE textures/ROCKWE.bmp
 
 
-EA ROCKEA.bmp
+EA textures/ROCKEA.bmp
 
 F 35,100,40
 C 25,85,0

@@ -1,10 +1,10 @@
-SO texture_south.png
+SO textures/wall_S.png
 
-NO texture_north.png
-WE texture_west.png
+NO textures/wall_N.png
+WE textures/wall_W.png
 
 
-EA texture_east.png
+EA textures/wall_E.png
 
 F 0,255,0
 C 0,0,255
