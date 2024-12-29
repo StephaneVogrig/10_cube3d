@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2024/12/22 14:18:28 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/29 18:21:05 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int argc, char **argv)
 	int		exit_code;
 	t_data	data;
 
-	title();
 	if (argc != 2)
 		return (ft_return(ERROR, 3, INVALID_NUM_OF_ARG));
 	exit_code = check_entry_arg(argc, argv);
@@ -30,6 +29,8 @@ int	main(int argc, char **argv)
 		exit_code = floor_ceil_init(&data.win,
 									data.textures.ceil_rgb.integer,
 									data.textures.floor_rgb.integer);
+	if (exit_code == SUCCESS)
+		title();
 	if (exit_code == SUCCESS)
 	{
 		event_setup(&data);
