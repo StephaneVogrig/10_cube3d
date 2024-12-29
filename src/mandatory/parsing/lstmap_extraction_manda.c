@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_manda.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/20 21:47:39 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/29 20:38:35 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "lstmap_extraction_manda.h"
 
@@ -77,9 +77,8 @@ int	lstmap_extract_info(t_textures *textures, t_map *map,
 	exit_code = lstmap_to_path_and_color(tex_path, textures, &lst_map,
 			root_path);
 	root_path = ft_char_f(root_path);
-	if (exit_code != SUCCESS)
-		return (exit_code);
-	exit_code = check_line_remain(map, &lst_map);
+	if (exit_code == SUCCESS)
+		exit_code = check_line_remain(map, &lst_map);
 	if (exit_code == SUCCESS)
 		exit_code = lstmap_to_grid(map, &lst_map);
 	delete_all_lstmap(&lst_map);
