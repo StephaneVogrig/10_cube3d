@@ -44,7 +44,7 @@ The goal of the project is to build small game engine to render a 2D map in an a
 [Enzo Degraeve](https://enzodeg40.github.io/42-Evals/Cursus/Cub3d/)  
 [42evals](https://www.42evals.com/sheets/66ba244998d302d110c31b6a)
 
-## Utilisation du Tester Script
+## Utilisation du Tester
 
 Ce script permet de tester l’exécutable _cub3d_ (ou _cub3d_bonus_) avec différents fichiers de cartes et un temps limite défini.
 
