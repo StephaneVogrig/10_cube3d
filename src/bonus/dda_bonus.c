@@ -6,52 +6,42 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:03:35 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/30 15:42:20 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/30 21:22:04 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "dda_bonus.h"
 
-static float	hit_position_on_door(t_gridbox start_axis, t_dda_axis *dda_axis, double len)
+static int	dda_is_collide_door(t_dda *dda, t_map *map, t_position *start, t_door *door_open_list, t_ray *ray)
 {
-	gridbox_add_double(&start_axis, len / dda_axis->unit * dda_axis->step);
-	return (start_axis.box);
-}
+	t_ray		ray_temp;
+	t_position	pos_temp;
 
-static int	ray_hit_wall_before_door(double ray_len, double dda_axis_len)
-{
-	return (ray_len > dda_axis_len);
-}
-
-static char	*check_collide_door(t_dda *dda, char *cell, t_position *start, t_door *door_open_list)
-{
-	double	ray_len;
-	double	hit_pos_on_door;
-
-	ray_len = dda->len;
+	ray_temp.vdir = ray->vdir;
+	pos_temp = *start;
 	if (dda->hit_side == 'x')
 	{
-		ray_len += dda->x.unit / 2;
-		if (ray_hit_wall_before_door(ray_len, dda->y.len))
-			return (NULL);
-		hit_pos_on_door = hit_position_on_door(start->y, &dda->y, ray_len);
-		if (!is_hit_door(hit_pos_on_door, cell, door_open_list))
-			return (NULL);
+		pos_temp.x.grid = dda->x.current;
+		pos_temp.x.box = choose_float(dda->x.step == -1, 1.0, 0.0);
+		gridbox_add_double(&pos_temp.y, ray->vdir.y * dda->len);
 	}
 	else
 	{
-		ray_len += dda->y.unit / 2;
-		if (ray_hit_wall_before_door(ray_len, dda->x.len))
-			return (NULL);
-		hit_pos_on_door = hit_position_on_door(start->x, &dda->x, ray_len);
-		if (!is_hit_door(hit_pos_on_door, cell, door_open_list))
-			return (NULL);
+		gridbox_add_double(&pos_temp.x, ray->vdir.x * dda->len);
+		pos_temp.y.grid = dda->y.current;
+		pos_temp.y.box = choose_float(dda->y.step == -1, 1.0, 0.0);
 	}
-	dda->len = ray_len;
-	return (cell);
+	if (!is_collide_door(&ray_temp, map, &pos_temp, door_open_list))
+			return (FALSE);
+	dda->len += ray_temp.len;
+	if (ray_temp.hit_side == 'N' || ray_temp.hit_side == 'S')
+		dda->hit_side = 'y';
+	else
+		dda->hit_side = 'x';
+	return (TRUE);
 }
 
-char	*check_collision(t_map *map, t_dda *dda, t_position *start, t_door *door_open_list)
+char	*check_collision(t_dda *dda, t_map *map, t_position *start, t_door *door_open_list, t_ray *ray)
 {
 	t_position	cell_pos;
 	char		*cell;
@@ -71,11 +61,12 @@ char	*check_collision(t_map *map, t_dda *dda, t_position *start, t_door *door_op
 		return (cell);
 	}
 	if (cell_is_door(*cell))
-		return (check_collide_door(dda, cell, start, door_open_list));
+		if (dda_is_collide_door(dda, map, start, door_open_list, ray))
+			return (cell);
 	return (NULL);
 }
 
-static char	*dda_loop(t_dda *dda, t_map *map, t_position *start, t_door *door_open_list)
+static char	*dda_loop(t_dda *dda, t_map *map, t_position *start, t_door *door_open_list, t_ray *ray)
 {
 	char	*hit;
 
@@ -98,7 +89,7 @@ static char	*dda_loop(t_dda *dda, t_map *map, t_position *start, t_door *door_op
 		}
 		if (dda->len > dda->len_max)
 			break ;
-		hit = check_collision(map, dda, start, door_open_list);
+		hit = check_collision(dda, map, start, door_open_list, ray);
 	}
 	return (hit);
 }
@@ -123,6 +114,6 @@ void	dda(t_ray *ray, t_position *start, t_data *data)
 		ray->len = dda.len_max + 1;
 		return ;
 	}
-	ray->hit_cell = dda_loop(&dda, &data->map, start, data->door_open_list);
+	ray->hit_cell = dda_loop(&dda, &data->map, start, data->door_open_list, ray);
 	dda_ray_set(ray, &dda, start);
 }

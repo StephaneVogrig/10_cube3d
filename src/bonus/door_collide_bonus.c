@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 13:31:15 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/30 15:49:11 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/30 21:15:17 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,17 +14,23 @@
 
 static char	door_get_direction(t_map *map, t_position position)
 {
-	char	cell;
+	char	cell_1;
+	char	cell_2;
 
 	position.x.grid--;
-	cell = map_get_cell(map, &position);
-	if (cell_is_wall(cell) || cell_is_door(cell))
-		return ('y');
+	cell_1 = map_get_cell(map, &position);
 	position.x.grid += 2;
-	cell = map_get_cell(map, &position);
-	if (cell_is_wall(cell) || cell_is_door(cell))
+	cell_2 = map_get_cell(map, &position);
+	if (cell_is_wall_or_door(cell_1) && cell_is_wall_or_door(cell_2))
 		return ('y');
-	return ('x');
+	position.x.grid--;
+	position.y.grid--;
+	cell_1 = map_get_cell(map, &position);
+	position.y.grid += 2;
+	cell_2 = map_get_cell(map, &position);
+	if (cell_is_wall_or_door(cell_1) || cell_is_wall_or_door(cell_2))
+		return ('x');
+	return ('y');
 }
 
 static int	is_looking_outside(double dir_axis, float box_axis)
@@ -48,7 +54,7 @@ int	is_collide_door(t_ray *ray, t_map *map, t_position *position, t_door *door_o
 		if (!is_hit_door(ray->hit_pos.y.box, map_get_cell_ptr(map, position), door_open_list))
 			return (FALSE);
 		ray->hit_pos.x.box = 0.5;
-		ray->hit_side = choose_side(ray->vdir.x > 0, 'W', 'E');
+		ray->hit_side = choose_char(ray->vdir.x > 0, 'W', 'E');
 	}
 	else
 	{
@@ -59,7 +65,7 @@ int	is_collide_door(t_ray *ray, t_map *map, t_position *position, t_door *door_o
 		if (!is_hit_door(ray->hit_pos.x.box, map_get_cell_ptr(map, position), door_open_list))
 			return (FALSE);
 		ray->hit_pos.y.box = 0.5;
-		ray->hit_side = choose_side(ray->vdir.x > 0, 'N', 'S');
+		ray->hit_side = choose_char(ray->vdir.x > 0, 'N', 'S');
 	}
 	ray->len = fabs(ray->len);
 	return (TRUE);
