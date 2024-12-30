@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 19:20:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/24 00:26:06 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/30 15:41:54 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -54,13 +54,6 @@ int	dda_no_need(t_map *map, t_position *start, t_dda *dda)
 	return (FALSE);
 }
 
-char	choose_side(t_bool test, char val_if_true, char val_if_false)
-{
-	if (test == TRUE)
-		return (val_if_true);
-	return (val_if_false);
-}
-
 void	dda_ray_set(t_ray *ray, t_dda *dda, t_position *start)
 {
 	ray->len = dda->len;
@@ -73,4 +66,3 @@ void	dda_ray_set(t_ray *ray, t_dda *dda, t_position *start)
 		ray->hit_side = choose_side(dda->y.step == 1, 'N', 'S');
 	ray->dark = dda->collide == AREA;
 }
-

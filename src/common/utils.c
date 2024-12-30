@@ -1,26 +1,20 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda_bonus.h                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/30 15:34:01 by svogrig          ###   ########.fr       */
+/*   Created: 2024/12/30 15:30:48 by svogrig           #+#    #+#             */
+/*   Updated: 2024/12/30 15:31:02 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef DDA_BONUS_H
-# define DDA_BONUS_H
+#include "utils.h"
 
-# include "dda_utils.h"
-# include "player.h"
-# include "ray.h"
-# include "map.h"
-# include "data_bonus.h"
-# include "door_bonus.h"
-# include "cell_bonus.h"
-
-void	dda(t_ray *ray, t_position *start, t_data *data);
-
-#endif
+char	choose_side(t_bool test, char val_if_true, char val_if_false)
+{
+	if (test == TRUE)
+		return (val_if_true);
+	return (val_if_false);
+}

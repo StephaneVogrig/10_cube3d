@@ -1,14 +1,14 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/30 03:52:40 by aska             ###   ########.fr        #
+#    Updated: 2024/12/30 15:43:46 by svogrig          ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 ifndef VERBOSE
 MAKEFLAGS += --no-print-directory --silent
@@ -54,26 +54,27 @@ SRC_DIR				:=	src
 SRC_COMMON_DIR		:=	common
 
 SRCS_COMMON			:= 	dda_utils.c \
-						gridbox.c \
-						map.c \
-						player.c \
-						title.c \
-						vector.c \
-						window.c \
 						check_arg.c \
+						color.c \
+						file_load.c \
+						gametime.c \
+						gridbox.c \
+						img_mlx.c \
 						key.c \
 						lstmap.c \
 						lstmap_utils.c \
-						color.c \
-						file_load.c \
-						img_mlx.c \
+						map.c \
 						parsing_utils.c \
-						gametime.c \
+						player.c \
 						position.c \
 						ray.c \
 						stack.c \
 						strip.c \
 						texture.c \
+						title.c \
+						utils.c \
+						vector.c \
+						window.c \
 						parsing/flood_fill_common.c \
 						render/draw_wall_utils.c
 
@@ -110,9 +111,11 @@ SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_DIR)/%)
 SRC_BONUS_DIR		:=	bonus
 
 SRCS_BONUS 			:=	main_bonus.c \
+						cell_bonus.c \
 						debug_bonus.c \
 						dda_bonus.c \
 						door_bonus.c \
+						door_collide_bonus.c \
 						door_open_list_bonus.c \
 						event_bonus.c \
 						game_loop_bonus.c \
@@ -221,7 +224,7 @@ init:
 	@echo -e ""
 
 test: all
-	./cub3d maps/test.cub
+	./cub3d maps/VALID/test.cub
 
 testbonus: bonus
 	./cub3d_bonus maps/bonus/test/sprite.cub

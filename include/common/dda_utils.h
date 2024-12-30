@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:29:19 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 17:47:51 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/30 15:41:32 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,6 +15,7 @@
 
 # include "ray.h"
 # include "map.h"
+# include "utils.h"
 
 typedef struct s_dda_axis
 {
@@ -37,6 +38,5 @@ typedef struct s_dda
 void	dda_init(t_dda *dda, t_vec2d *ray_vec, t_position *start, t_map *map);
 int		dda_no_need(t_map *map, t_position *start, t_dda *dda);
 void	dda_ray_set(t_ray *ray, t_dda *dda, t_position *start);
-char	choose_side(t_bool test, char val_if_true, char val_if_false);
 
 #endif

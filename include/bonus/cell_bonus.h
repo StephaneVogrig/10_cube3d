@@ -1,26 +1,20 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda_bonus.h                                        :+:      :+:    :+:   */
+/*   cell_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/30 15:34:01 by svogrig          ###   ########.fr       */
+/*   Created: 2024/12/30 15:22:48 by svogrig           #+#    #+#             */
+/*   Updated: 2024/12/30 15:25:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef DDA_BONUS_H
-# define DDA_BONUS_H
+#ifndef CELL_BONUS_H
+# define CELL_BONUS_H
 
-# include "dda_utils.h"
-# include "player.h"
-# include "ray.h"
-# include "map.h"
-# include "data_bonus.h"
-# include "door_bonus.h"
-# include "cell_bonus.h"
+# include "libft.h"
 
-void	dda(t_ray *ray, t_position *start, t_data *data);
+int	cell_is_wall(char cell);
 
 #endif
