@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   pointer_table_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:11:25 by aska              #+#    #+#             */
-/*   Updated: 2024/12/20 20:56:53 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/30 04:36:54 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "pointer_table_bonus.h"
 
@@ -49,6 +49,8 @@ void pointer_table_init(t_asset *asset)
 
 t_texture *ptr_tbl_get_orientation_wall(t_asset *asset, char orientation)
 {
+    if (asset->wall[0] != NULL)
+        return (asset->wall[0]);
     if (orientation == 'N' && asset->nsew.north != NULL)
         return (asset->nsew.north);
     else if (orientation == 'S' && asset->nsew.south != NULL)
@@ -57,7 +59,7 @@ t_texture *ptr_tbl_get_orientation_wall(t_asset *asset, char orientation)
         return (asset->nsew.east);
     else if (orientation == 'W' && asset->nsew.west != NULL)
         return (asset->nsew.west);
-    return (asset->wall[0]);
+    return (NULL);
 }
 
 t_texture	*asset_get_texture_ptr(t_asset *t, char *cell, char orientation)

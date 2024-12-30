@@ -6,7 +6,7 @@
 #    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/28 22:48:52 by aska             ###   ########.fr        #
+#    Updated: 2024/12/30 03:52:40 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						option_bonus.c \
 						option_utils_bonus.c \
 						parsing/data_bonus.c \
+						parsing/check_asset_bonus.c \
 						parsing/coordinate.c \
 						parsing/flood_fill_bonus.c \
 						parsing/lstmap_extraction_utils_bonus.c \

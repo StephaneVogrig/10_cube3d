@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   asset_lst_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2024/12/20 21:08:41 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/30 04:50:11 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "asset_lst_bonus.h"
 
@@ -62,4 +62,44 @@ void	delete_all_asset_lst(t_asset_lst **head)
 		delete_node_asset(head, *head);
 	delete_node_asset(head, *head);
 	*head = NULL;
+}
+
+static t_bool chk_orientation_key(t_asset_lst *head)
+{
+	t_bool		orientation;
+
+	orientation = asset_lst_key_exist(head, 'W');
+	orientation &= asset_lst_key_exist(head, 'E');
+	orientation &= asset_lst_key_exist(head, 'S');
+	orientation &= asset_lst_key_exist(head, 'N');
+	return (orientation);
+}
+
+t_bool	asset_lst_key_exist(t_asset_lst *head, char key)
+{
+	t_asset_lst	*tmp;
+	char		key_tmp[2];
+	t_bool		f_c_chk;
+	
+	key_tmp[0] = 'W';
+	key_tmp[1] = key;
+	tmp = head;
+	if (key == '0')
+	{
+		f_c_chk = asset_lst_key_exist(head, 'F');
+		f_c_chk &= asset_lst_key_exist(head, 'C');
+			return (f_c_chk);
+	}
+	while (tmp != NULL)
+	{
+		if (ft_isdigit(key) == TRUE && ft_strcmp(tmp->key, key_tmp) == 0)
+			return (TRUE);
+		else if (tmp->key[0] == key)
+			return (TRUE);
+		tmp = tmp->next;
+	}
+	if (key == '1')
+		return (chk_orientation_key(head));
+	
+	return (FALSE);
 }

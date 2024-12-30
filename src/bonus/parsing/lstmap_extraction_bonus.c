@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/27 23:32:52 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/30 04:20:25 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	is_map_valid_bonus(char *line)
 	return (TRUE);
 }
 
-int	check_line_remain(t_map *map, t_lstmap **lst_map)
+int	check_line_remain(t_map *map, t_asset_lst **lst_asset, t_lstmap **lst_map)
 {
 	t_lstmap	*tmp;
 	int			exit_code;
@@ -46,7 +46,9 @@ int	check_line_remain(t_map *map, t_lstmap **lst_map)
 			return (ft_return(ERROR, 6, "L.46:check_line_remain: Line is not empty"));
 		exit_code = !is_map_valid_bonus(tmp->line);
 		if (exit_code != SUCCESS)
-			return (ft_return(ERROR, 7, "L.49:check_line_remain: Character not valid"));
+			return (ft_return(ERROR, 6, "L.49:check_line_remain: Character not valid"));
+		if (cmp_cell_line_to_asset_key(tmp->line, *lst_asset) == FAIL)
+			return (FAIL);
 		exit_code = set_map_info(map, tmp->line);
 		if (exit_code != SUCCESS)
 			break ;
@@ -123,7 +125,7 @@ int	lstmap_extract_info(t_map *map, char *map_path, t_asset_lst **asset_lst, t_s
 	exit_code = lstmap_to_asset(&tmp, root_path, asset_lst, sprite_lst);
 	root_path = ft_char_f(root_path);
 	if (exit_code == SUCCESS)
-		exit_code = check_line_remain(map, &tmp);
+		exit_code = check_line_remain(map, asset_lst, &tmp);
 	if (exit_code == SUCCESS)
 		exit_code = lstmap_to_grid(map, &tmp);
 	delete_all_lstmap(&lst_map);
