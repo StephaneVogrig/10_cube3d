@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 20:05:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 10:07:07 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/31 15:04:28 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,14 +14,14 @@
 
 static int	check_move(t_key key, t_time_us delta_time, t_player *player)
 {
-	t_vec2i	move_dir_vec;
+	t_vec2i	move_dirvec;
 	double	move_len;
 
-	move_dir_vec = key_to_move(key);
-	if (!is_moving(move_dir_vec))
+	move_dirvec = key_to_move(key);
+	if (!is_moving(move_dirvec))
 		return (FALSE);
 	move_len = (SPEED_MOVE * delta_time) / USECOND_PER_SECOND;
-	player_move(player, move_dir_vec, move_len);
+	player_move(player, move_dirvec, move_len);
 	return (TRUE);
 }
 

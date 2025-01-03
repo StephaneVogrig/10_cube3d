@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/24 20:43:35 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/02 21:45:03 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -72,8 +72,8 @@ int on_mousedown(int button, void *param)
 	(void)button;
 	data = (t_data *)param;
 
-	ray.vdir = dir_to_dirvec(data->player.dir);
-	dda(&ray, &data->player.position, data);
+	ray.dirvec = dir_to_dirvec(data->player.dir);
+	raycast(&ray, &data->player.position, data);
 	if ((*ray.hit_cell == 'R' || *ray.hit_cell == 'L')
 		&& ray.len < DOOR_OPEN_DIST)
 		door_open(ray.hit_cell, data->door_open_list);

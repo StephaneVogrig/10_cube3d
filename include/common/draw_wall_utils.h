@@ -6,20 +6,19 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:08:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 22:54:06 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/02 16:22:03 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef DRAW_WALL_UTILS_H
 # define DRAW_WALL_UTILS_H
 
-# include "texture.h"
 # include "vector.h"
 # include "window.h"
 # include "ray.h"
-# include "color.h"
 # include "strip.h"
 
 void	draw_wall(t_window *win, int x, double img_x, t_strip *draw);
+int		hitpos_wall_texture(int texture_width, t_ray *ray);
 
 #endif

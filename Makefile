@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/12/30 15:43:46 by svogrig          ###   ########.fr        #
+#    Updated: 2025/01/03 12:07:31 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -53,7 +53,8 @@ SRC_DIR				:=	src
 
 SRC_COMMON_DIR		:=	common
 
-SRCS_COMMON			:= 	dda_utils.c \
+SRCS_COMMON			:= 	axis.c \
+						dda_utils.c \
 						check_arg.c \
 						color.c \
 						file_load.c \
@@ -116,6 +117,8 @@ SRCS_BONUS 			:=	main_bonus.c \
 						dda_bonus.c \
 						door_bonus.c \
 						door_collide_bonus.c \
+						door_hit_bonus.c \
+						door_inside_bonus.c \
 						door_open_list_bonus.c \
 						event_bonus.c \
 						game_loop_bonus.c \
@@ -227,7 +230,7 @@ test: all
 	./cub3d maps/VALID/test.cub
 
 testbonus: bonus
-	./cub3d_bonus maps/bonus/test/sprite.cub
+	./cub3d_bonus maps/bonus/test/doors.cub
 
 makeall: $(NAME)
 makebonus : $(NAME_BONUS)

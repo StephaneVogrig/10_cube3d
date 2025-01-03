@@ -1,27 +1,22 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_bonus.h                                 :+:      :+:    :+:   */
+/*   door_collide_bonus.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/02 21:47:03 by svogrig          ###   ########.fr       */
+/*   Created: 2024/12/31 15:36:11 by svogrig           #+#    #+#             */
+/*   Updated: 2025/01/01 15:21:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef RAYCASTING_BONUS_H
-# define RAYCASTING_BONUS_H
+#ifndef DOOR_COLLIDE_BONNUS_H
+# define DOOR_COLLIDE_BONNUS_H
 
-# include "map.h"
-# include "player.h"
-# include "ray.h"
-# include "window.h"
-# include "data_bonus.h"
-# include "dda_bonus.h"
-# include "door_bonus.h"
+#include "door_bonus.h"
+#include "data_bonus.h"
+#include "cell_bonus.h"
 
-void	raycasting(t_ray *rays, t_data *data);
-void	raycast(t_ray *ray, t_position *start, t_data *data);
+int		is_collide_door(t_ray *ray, t_position *start, t_data *data);
 
 #endif

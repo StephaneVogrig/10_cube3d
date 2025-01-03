@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 00:27:56 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 10:54:20 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/02 21:45:14 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,14 +21,14 @@ double	sign_double(double value)
 
 void	dda_before_collide(t_ray *ray, t_position *start, t_data *data)
 {
-	dda(ray, start, data);
-	if (ray->hit_side == 'W' || ray->hit_side == 'E')
-		ray->len -= fabs(DIST_BEFORE_COLLIDE / ray->vdir.x);
+	raycast(ray, start, data);
+	if (ray->hit_axis == 'x')
+		ray->len -= fabs(DIST_BEFORE_COLLIDE / ray->dirvec.x);
 	else
-		ray->len -= fabs(DIST_BEFORE_COLLIDE / ray->vdir.y);
+		ray->len -= fabs(DIST_BEFORE_COLLIDE / ray->dirvec.y);
 	ray->hit_pos = *start;
-	gridbox_add_double(&ray->hit_pos.x, ray->vdir.x * ray->len);
-	gridbox_add_double(&ray->hit_pos.y, ray->vdir.y * ray->len);
+	gridbox_add_double(&ray->hit_pos.x, ray->dirvec.x * ray->len);
+	gridbox_add_double(&ray->hit_pos.y, ray->dirvec.y * ray->len);
 }
 
 void	slide(t_player *player, t_ray *ray, double len_move, t_data *data)
@@ -37,38 +37,40 @@ void	slide(t_player *player, t_ray *ray, double len_move, t_data *data)
 
 	player->position = ray->hit_pos;
 	len_move -= ray->len;
-	if (ray->hit_side == 'W' || ray->hit_side == 'E')
+	if (ray->hit_axis == 'x')
 	{
-		len_axis_remain = fabs(ray->vdir.y) * len_move;
-		ray->vdir.x = 0;
-		ray->vdir.y = sign_double(ray->vdir.y);
+		len_axis_remain = fabs(ray->dirvec.y) * len_move;
+		ray->dirvec.x = 0;
+		ray->dirvec.y = sign_double(ray->dirvec.y);
 		dda_before_collide(ray, &player->position, data);
 		if (ray->len > len_axis_remain)
 			ray->len = len_axis_remain;
-		gridbox_add_double(&player->y, ray->vdir.y * ray->len);
+		gridbox_add_double(&player->y, ray->dirvec.y * ray->len);
 	}
 	else
 	{
-		len_axis_remain = fabs(ray->vdir.x) * len_move;
-		ray->vdir.x = sign_double(ray->vdir.x);
-		ray->vdir.y = 0;
+		len_axis_remain = fabs(ray->dirvec.x) * len_move;
+		ray->dirvec.x = sign_double(ray->dirvec.x);
+		ray->dirvec.y = 0;
 		dda_before_collide(ray, &player->position, data);
 		if (ray->len > len_axis_remain)
 			ray->len = len_axis_remain;
-		gridbox_add_double(&player->x, ray->vdir.x * ray->len);
+		gridbox_add_double(&player->x, ray->dirvec.x * ray->len);
 	}
 }
 
-void	open_door_auto(t_map *map, int x, int y, t_door *door_open_list)
+void	open_door_auto(t_map *map, int x, int y, t_door_open *door_open_list)
 {
-	char *cell;
+	char 		*cell;
+	t_position	pos;
 
-	cell = map_get_cell_ptr(map, &(t_position){{x, 0.0}, {y, 0.0}});
+	pos = position(x, 0.0, y, 0.0);
+	cell = map_get_cell_ptr(map, &pos);
 	if (cell && *cell == 'T')
 		door_open(cell, door_open_list);
 }
 
-void open_door_auto_near_player(t_data *data, t_map *map, t_door *door_open_list)
+void open_door_auto_near_player(t_data *data, t_map *map, t_door_open *door_open_list)
 {
 	int	x;
 	int y;
@@ -86,14 +88,14 @@ void	player_move(t_player *player, t_vec2i move, double move_len, t_data *data)
 {
 	t_ray	ray;
 
-	ray.vdir = player_dir_move_vec(player, move);
+	ray.dirvec = player_dir_move_vec(player, move);
 	open_door_auto_near_player(data, &data->map, data->door_open_list);
 	dda_before_collide(&ray, &player->position, data);
 	if (ray.len <= move_len)
 		slide(player, &ray, move_len, data);
 	else
 	{
-		gridbox_add_double(&player->x, ray.vdir.x * move_len);
-		gridbox_add_double(&player->y, ray.vdir.y * move_len);
+		gridbox_add_double(&player->x, ray.dirvec.x * move_len);
+		gridbox_add_double(&player->y, ray.dirvec.y * move_len);
 	}
 }

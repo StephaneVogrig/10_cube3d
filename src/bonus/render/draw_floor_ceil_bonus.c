@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:54:46 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/28 00:03:38 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/31 15:04:28 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -41,8 +41,8 @@ static inline void	floorceil_draw(int y, t_data *data, t_floorceil_draw *draw,\
 	{
 		if (y >= (data->scale_screen / rays[x].len) / 2)
 		{
-			draw->context.box.x = player_position.x + rays[x].vdir.x * len;
-			draw->context.box.y = player_position.y + rays[x].vdir.y * len;
+			draw->context.box.x = player_position.x + rays[x].dirvec.x * len;
+			draw->context.box.y = player_position.y + rays[x].dirvec.y * len;
 			draw->context.box.x -= (long)draw->context.box.x;
 			draw->context.box.y -= (long)draw->context.box.y;
 			floorceil_draw_pixel(x, &draw->ceil, &draw->context);

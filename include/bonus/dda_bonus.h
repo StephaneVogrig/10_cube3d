@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:52:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/30 15:34:01 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/31 15:38:38 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,6 +19,7 @@
 # include "map.h"
 # include "data_bonus.h"
 # include "door_bonus.h"
+# include "door_collide_bonus.h"
 # include "cell_bonus.h"
 
 void	dda(t_ray *ray, t_position *start, t_data *data);

@@ -6,48 +6,57 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/27 02:47:48 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/02 16:21:30 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "draw_walls_bonus.h"
-#include "map.h"
+// #include "map.h"
 
-int	x_hit_on_texture_door(t_texture *texture, t_ray *ray, t_door *door_open_list)
+float	hitpos_edge_texture(float hitpos, t_door *door, int texture_width)
 {
-	float	hit_on_texture;
-	float	opening_rate;
+	float	hitpos_texture;
 
-	if (ray->hit_side == 'N' || ray->hit_side == 'S')
-		hit_on_texture = ray->hit_pos.x.box;
-	else
-		hit_on_texture = ray->hit_pos.y.box;
-	opening_rate = 1 - door_get_closing_rate(ray->hit_cell, door_open_list);
-	if (*(ray->hit_cell) == 'R')
-		hit_on_texture -= opening_rate;
-	else if (*(ray->hit_cell) == 'L')
-		hit_on_texture += opening_rate;
-	else
-	{
-		if (hit_on_texture < 0.5)
-			hit_on_texture += opening_rate / 2;
-		else
-			hit_on_texture -= opening_rate / 2;
-	}
-	return (hit_on_texture * (texture->width - 1));
+	hitpos_texture = hitpos - door->pos_side_down;
+	hitpos_texture /= door->pos_side_up - door->pos_side_down;
+	hitpos_texture *= (texture_width - 1);
+	return (hitpos_texture);
 }
 
-int	x_hit_in_texture(t_texture *texture, t_ray *ray, t_door *door_open_list)
+float	hitpos_side_texture(float hitpos, t_door *door, int texture_width)
 {
-	if (cell_is_door(*(ray->hit_cell)))
-		return (x_hit_on_texture_door (texture, ray, door_open_list));
-	if (ray->hit_side == 'N')
-		return ((1 - ray->hit_pos.x.box) * (texture->width - 1));
-	if (ray->hit_side == 'S')
-		return (ray->hit_pos.x.box * (texture->width - 1));
-	if (ray->hit_side == 'E')
-		return ((1 - ray->hit_pos.y.box) * (texture->width - 1));
-	return (ray->hit_pos.y.box * (texture->width - 1));
+	float	hitpos_texture;
+
+	if (door->open_type == DOOR_OPEN_TYPE_R)
+		hitpos_texture = hitpos - door->pos_edge;
+	if (door->open_type == DOOR_OPEN_TYPE_L)
+		hitpos_texture = hitpos + 1 - door->pos_edge;
+	if (door->open_type == DOOR_OPEN_TYPE_T)
+	{
+		if (hitpos < 0.5)
+			hitpos_texture = hitpos + 0.5 - door->pos_edge;
+		else
+			hitpos_texture = hitpos - (0.5 - door->pos_edge);
+	}
+	hitpos_texture *= (texture_width - 1);
+	return (hitpos_texture);
+}
+
+int	hitpos_door_texture(int texture_width, t_ray *ray, t_door_open *door_open_list)
+{
+	t_door	door;
+
+	door_init(&door, ray->hit_cell, door_open_list);
+
+	if (ray->hit_side == SIDE_EDGE_X)
+		return (hitpos_edge_texture(ray->hit_pos.x.box, &door, texture_width));
+	if (ray->hit_side == SIDE_EDGE_Y)
+		return (hitpos_edge_texture(ray->hit_pos.y.box, &door, texture_width));
+	if (ray->hit_side == SIDE_DOOR_X)
+		return (hitpos_side_texture(ray->hit_pos.y.box, &door, texture_width));
+	if (ray->hit_side == SIDE_DOOR_Y)
+		return (hitpos_side_texture(ray->hit_pos.x.box, &door, texture_width));
+	return (0.0);
 }
 
 void	draw_walls(t_window *win, t_ray *ray, t_data *data)
@@ -64,7 +73,10 @@ void	draw_walls(t_window *win, t_ray *ray, t_data *data)
 		{
 			strip.img = asset_get_texture_ptr(&data->textures,\
 												ray->hit_cell, ray->hit_side);
-			img_x = x_hit_in_texture(strip.img, ray, data->door_open_list);
+			if (cell_is_door(ray->hit_cell))
+				img_x = hitpos_door_texture (strip.img->width, ray, data->door_open_list);
+			else
+				img_x = hitpos_wall_texture(strip.img->width, ray);
 			strip.dark = ray->dark;
 			draw_wall(win, x, img_x, &strip);
 		}

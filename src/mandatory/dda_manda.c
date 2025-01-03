@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:18:48 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/25 00:26:11 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/01 02:02:49 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,7 +17,7 @@ char	check_collision(t_map *map, t_dda *dda)
 	int in_wall;
 	t_position	hit_pos;
 
-	hit_pos = (t_position){{dda->x.current, 0.0}, {dda->y.current, 0.0}};
+	hit_pos = position(dda->x.current, 0.0, dda->y.current, 0.0);
 	in_wall = dda->collide != WALL;
 	if (in_wall)
 		return (map_get_cell(map, &hit_pos) != WALL);
@@ -53,7 +53,7 @@ void	dda(t_ray *ray, t_position *start, t_data *data)
 {
 	t_dda	dda;
 
-	dda_init(&dda, &ray->vdir, start, &data->map);
+	dda_init(&dda, &ray->dirvec, start, &data->map);
 	dda.len_max = data->win.height;
 	if (dda_no_need(&data->map, start, &dda) == TRUE)
 	{

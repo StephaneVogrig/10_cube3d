@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2024/12/27 23:31:34 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/01 15:29:02 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "map.h"
 
@@ -80,11 +80,4 @@ inline char map_get_cell(t_map *map, t_position *p)
 	if (is_outside_map(map, p))
 			return (OUTSIDE);
 	return (map->grid[p->y.grid][p->x.grid]);
-}
-
-inline char *map_get_cell_ptr(t_map *map, t_position *p)
-{
-	if (is_outside_map(map, p))
-			return (NULL);
-	return (&(map->grid[p->y.grid][p->x.grid]));
 }

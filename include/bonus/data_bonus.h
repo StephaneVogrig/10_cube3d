@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/28 14:17:53 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/02 14:29:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,7 +33,6 @@
 # include "sprite_bonus.h"
 # include "sprite_lst_bonus.h"
 
-
 # ifndef PI
 #  define PI 3.14159265358979323846
 #endif
@@ -52,14 +51,13 @@ typedef struct s_data
 	t_ray_tab	rays;
 	double		tg_fov_2;
 	double		scale_screen;
-	t_door		door_open_list[DOORS_SIZE];
+	t_door_open	door_open_list[DOORS_SIZE];
 	t_sprite	sprite;
 	t_minimap	minimap;
 }				t_data;
 
-
-void					data_init(t_data *data);
-int						data_setup(t_data *data, char *map_path);
-void					data_clean(t_data *data);
+void	data_init(t_data *data);
+int		data_setup(t_data *data, char *map_path);
+void	data_clean(t_data *data);
 
 #endif

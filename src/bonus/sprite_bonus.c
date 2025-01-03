@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/28 23:27:26 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/31 14:49:54 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "sprite_bonus.h"
 
@@ -20,7 +20,7 @@ static void	sprite_fill(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *tex
 	while (sprite_lst != NULL)
 	{
 		sprite->image[i] = textures->value[sprite_lst->id];
-		sprite->pos[i] = (t_vec2d){sprite_lst->x, sprite_lst->y};
+		sprite->pos[i] = vector2d(sprite_lst->x, sprite_lst->y);
 		sprite->order[i] = i;
 		sprite->nbr_state[i] = sprite->image[i]->width / sprite->image[i]->height;
 		sprite_lst = sprite_lst->next;

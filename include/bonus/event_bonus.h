@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/24 00:52:11 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/02 21:46:00 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,6 +16,7 @@
 # include "data_bonus.h"
 # include "key_move.h"
 # include "game_loop_bonus.h"
+# include "raycasting_bonus.h"
 
 # define KEY_T		23
 

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:31:34 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/27 03:30:44 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/31 15:04:28 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,11 +24,11 @@ static t_vec2d	coord_transform_translate(t_vec2d point, t_vec2d new_origin)
 static t_vec2d	coord_transform_rotate(t_vec2d point, double dir)
 {
 	t_vec2d	new_coord;
-	t_vec2d	dir_vec;
+	t_vec2d	dirvec;
 
-	dir_vec = dir_to_dirvec(dir);
-	new_coord.x = -(point.x * dir_vec.x + point.y * dir_vec.y);
-	new_coord.y = -point.x * dir_vec.y + point.y * dir_vec.x;
+	dirvec = dir_to_dirvec(dir);
+	new_coord.x = -(point.x * dirvec.x + point.y * dirvec.y);
+	new_coord.y = -point.x * dirvec.y + point.y * dirvec.x;
 	return (new_coord);
 }
 

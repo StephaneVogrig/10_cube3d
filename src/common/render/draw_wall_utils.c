@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:07:24 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 22:53:59 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/02 16:19:39 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -68,4 +68,17 @@ void	draw_wall(t_window *win, int x, double img_x, t_strip *strip)
 		draw_wall_big_pixel(win, x, img_x, strip);
 	else
 		draw_wall_small_pixel(win, x, img_x, strip);
+}
+
+int	hitpos_wall_texture(int texture_width, t_ray *ray)
+{
+	if (ray->hit_axis == 'y')
+	{
+		if (ray->hit_side == 'N')
+			return ((1 - ray->hit_pos.x.box) * (texture_width - 1));
+		return (ray->hit_pos.x.box * (texture_width - 1));
+	}
+	if (ray->hit_side == 'E')
+		return ((1 - ray->hit_pos.y.box) * (texture_width - 1));
+	return (ray->hit_pos.y.box * (texture_width - 1));
 }

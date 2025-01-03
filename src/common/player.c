@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 15:59:47 by svogrig          ###   ########.fr       */
+/*   Updated: 2024/12/31 15:04:28 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -28,12 +28,12 @@ t_vec2d	dir_to_dirvec(double dir)
 */
 t_vec2d	player_dir_move_vec(t_player *player, t_vec2i move_input)
 {
-	t_vec2d	dir_vec;
+	t_vec2d	dirvec;
 	t_vec2d	compose_move;
 
-	dir_vec = dir_to_dirvec(player->dir);
-	compose_move.x = dir_vec.x * move_input.x - dir_vec.y * move_input.y;
-	compose_move.y = dir_vec.y * move_input.x +  dir_vec.x * move_input.y;
+	dirvec = dir_to_dirvec(player->dir);
+	compose_move.x = dirvec.x * move_input.x - dirvec.y * move_input.y;
+	compose_move.y = dirvec.y * move_input.x +  dirvec.x * move_input.y;
 	return (compose_move);
 }
 

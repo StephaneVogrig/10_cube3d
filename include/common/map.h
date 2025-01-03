@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:31:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/05 11:43:22 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/01 15:22:37 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -31,7 +31,6 @@ typedef struct s_map
 int		set_map_info(t_map *map, char *line);
 int		map_player_finder(t_map *map, t_player *player);
 char	map_get_cell(t_map *map, t_position *p);
-char	*map_get_cell_ptr(t_map *map, t_position *p);
 int		is_outside_map(t_map *map, t_position *p);
 
 #endif

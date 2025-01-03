@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 21:35:31 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/07 22:07:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/02 14:31:00 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,7 +23,7 @@ static inline float	door_time_stage(t_stage stage)
 	return (10.0);
 }
 
-static inline void	door_update_state(t_door *door, t_time_us dt_us)
+static inline void	door_update_state(t_door_open *door, t_time_us dt_us)
 {
 	double	dt_second;
 	double	time_stage;
@@ -37,7 +37,7 @@ static inline void	door_update_state(t_door *door, t_time_us dt_us)
 		{
 			if (door->stage == DOOR_CLOSING)
 			{
-				door->ptr_map = NULL;
+				door->cell = NULL;
 				break ;
 			}
 			dt_second = -door->stage_rate * time_stage;
@@ -49,7 +49,7 @@ static inline void	door_update_state(t_door *door, t_time_us dt_us)
 	}
 }
 
-int	door_open_list_update(t_door *door_open_list, t_time_us dt)
+int	door_open_list_update(t_door_open *door_open_list, t_time_us dt)
 {
 	int	i;
 	int render_needed;
@@ -58,7 +58,7 @@ int	door_open_list_update(t_door *door_open_list, t_time_us dt)
 	i = 0;
 	while (i++ < DOORS_SIZE)
 	{
-		if (door_open_list->ptr_map != NULL)
+		if (door_open_list->cell != NULL)
 		{
 			door_update_state(door_open_list, dt);
 			render_needed = TRUE;
@@ -68,19 +68,19 @@ int	door_open_list_update(t_door *door_open_list, t_time_us dt)
 	return (render_needed);
 }
 
-static inline void	door_open_list_init(t_door *door, char *cell)
+static inline void	door_open_list_init(t_door_open *door, char *cell)
 {
-	door->ptr_map = cell;
+	door->cell = cell;
 	door->stage_rate = 1.0;
 	door->stage = DOOR_OPENING;
 }
 
-t_door	*door_open_list_add(char *cell, t_door *door_open_list)
+t_door_open	*door_open_list_add(char *cell, t_door_open *door_open_list)
 {
 	int	i;
 
 	i = 0;
-	while (i++ < DOORS_SIZE && door_open_list->ptr_map != NULL)
+	while (i++ < DOORS_SIZE && door_open_list->cell != NULL)
 		door_open_list++;
 	if (i == DOORS_SIZE)
 	{

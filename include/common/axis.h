@@ -1,27 +1,24 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_bonus.h                                 :+:      :+:    :+:   */
+/*   axis.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/02 21:47:03 by svogrig          ###   ########.fr       */
+/*   Created: 2025/01/03 12:02:25 by svogrig           #+#    #+#             */
+/*   Updated: 2025/01/03 12:12:14 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef RAYCASTING_BONUS_H
-# define RAYCASTING_BONUS_H
 
-# include "map.h"
-# include "player.h"
-# include "ray.h"
-# include "window.h"
-# include "data_bonus.h"
-# include "dda_bonus.h"
-# include "door_bonus.h"
+#ifndef AXIS_H
+# define AXIS_H
 
-void	raycasting(t_ray *rays, t_data *data);
-void	raycast(t_ray *ray, t_position *start, t_data *data);
+# define AXIS_X 0
+# define AXIS_Y 1
+
+typedef int t_axis;
+
+t_axis	y_with_x(t_axis x);
 
 #endif

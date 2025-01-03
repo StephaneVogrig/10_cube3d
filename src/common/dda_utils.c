@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 19:20:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/30 21:15:17 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/01 17:53:30 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -58,8 +58,9 @@ void	dda_ray_set(t_ray *ray, t_dda *dda, t_position *start)
 {
 	ray->len = dda->len;
 	ray->hit_pos = *start;
-	gridbox_add_double(&ray->hit_pos.x, ray->vdir.x * ray->len);
-	gridbox_add_double(&ray->hit_pos.y, ray->vdir.y * ray->len);
+	gridbox_add_double(&ray->hit_pos.x, ray->dirvec.x * ray->len);
+	gridbox_add_double(&ray->hit_pos.y, ray->dirvec.y * ray->len);
+	ray->hit_axis = dda->hit_side;
 	if (dda->hit_side == 'x')
 		ray->hit_side = choose_char(dda->x.step == 1, 'W', 'E');
 	else
