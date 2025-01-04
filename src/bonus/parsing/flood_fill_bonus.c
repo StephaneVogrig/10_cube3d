@@ -1,16 +1,17 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/16 18:07:58 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/03 22:53:00 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "flood_fill.h"
+#include "debug_bonus.h"
 
 static void	map_copy_free(t_map *map_copy)
 {
@@ -71,6 +72,6 @@ int	map_checker(t_map *map, t_player *player)
 	map->grid[player->y.grid][player->x.grid] = '0';
 	map_copy_free(map_copy);
 	if (ff_ok == FALSE)
-		return (ft_return(ERROR, 275, "Error on Map"));
+		return (ft_return(ERROR, 10, "Error on Map"));
 	return (SUCCESS);
 }

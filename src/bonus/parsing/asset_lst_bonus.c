@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2024/12/30 04:50:11 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/03 18:20:59 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	delete_node_asset(t_asset_lst **head, t_asset_lst *del_node)
 		del_node->next->prev = del_node->prev;
 	if (del_node->prev != NULL)
 		del_node->prev->next = del_node->next;
+	ft_free(del_node->key);
 	ft_free(del_node->value);
 	ft_free(del_node);
 	del_node = NULL;

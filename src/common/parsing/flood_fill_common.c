@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill_common.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/26 14:48:55 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/03 22:48:26 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "flood_fill.h"
-
 
 static int	chk_border(int x, int y, t_map *map)
 {
@@ -31,14 +30,16 @@ t_bool	chk_flood_fill(t_map *map, int x, int y)
 	while (is_stack_empty(&stack) == FALSE)
 	{
 		cell = pop(&stack);
-		if (chk_border(cell.x, cell.y, map) == FAIL
-			|| map->grid[cell.y][cell.x] == ' ')
+		if (chk_border(cell.x, cell.y, map) == FAIL || map->grid[cell.y][cell.x] == ' ')
+		{
+			free(stack.data);
 			return (FALSE);
+		}
 		map->grid[cell.y][cell.x] = AREA;
-		check_cell(x, y + 1, map, &stack);
-		check_cell(x, y - 1, map, &stack);
-		check_cell(x + 1, y, map, &stack);
-		check_cell(x - 1, y, map, &stack);
+		check_cell(cell.x, cell.y + 1, map, &stack);
+		check_cell(cell.x, cell.y - 1, map, &stack);
+		check_cell(cell.x + 1, cell.y, map, &stack);
+		check_cell(cell.x - 1, cell.y, map, &stack);
 	}
 	free(stack.data);
 	return (TRUE);

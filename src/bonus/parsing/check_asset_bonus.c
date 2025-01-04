@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 02:52:34 by aska              #+#    #+#             */
-/*   Updated: 2024/12/30 04:50:10 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/04 00:08:38 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int cmp_cell_line_to_asset_key(char *line, t_asset_lst *asset_lst)
         if (ft_isthis(line[i], " NSEW") == TRUE || chk_save_cell(line[i]) == '\0')
             continue;
         if (asset_lst_key_exist(asset_lst, line[i]) == FALSE)
-            return (ft_return(ERROR, FAIL, "L.41:cmp_cell_line_to_asset_key: Key not found"));
+            return (ft_return(ERROR, FAIL, "Invalid Asset Key"));
     }
     return (SUCCESS);
 }

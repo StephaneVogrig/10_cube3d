@@ -1,0 +1,207 @@
+Test #001 : maps/NONVALID//2_spawn.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #002 : maps/NONVALID//border_fail.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #003 : maps/NONVALID//corridor.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #004 : maps/NONVALID//empty.cub
+data_clean
+Test #005 : maps/NONVALID//mapempty.cub
+data_clean
+Test #006 : maps/NONVALID//map_invalid_02.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #007 : maps/NONVALID//minus_zero.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #008 : maps/NONVALID//negative_colour.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #009 : maps/NONVALID//non_valid_hole.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #010 : maps/NONVALID//noplayer.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #011 : maps/NONVALID//notvalidcolor2.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #012 : maps/NONVALID//notvalidcolor.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #013 : maps/NONVALID//notvalidmap2.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #014 : maps/NONVALID//notvalidmap.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #015 : maps/NONVALID//notvalidtype.cud
+[1;31mERROR[0m	: L.23:check_entry_arg: No ".cub" extension map file
+Test #016 : maps/NONVALID//only_map.cub
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #017 : maps/NONVALID//path_name.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #018 : maps/NONVALID//png.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #019 : maps/NONVALID//remove_floor.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #020 : maps/NONVALID//space_between_digits.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Value
+data_clean
+Test #021 : maps/NONVALID//texture_path_fail.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #022 : maps/NONVALID//too_few_paths.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #023 : maps/NONVALID//too_many_paths.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #024 : maps/NONVALID//two_players.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #025 : maps/NONVALID//unknown_char.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #026 : maps/NONVALID//word_after_path.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Value
+data_clean
+Test #027 : maps/NONVALID//wrong_char_in_colour.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #028 : maps/NONVALID//wrong_extension2.cub.ber
+[1;31mERROR[0m	: L.23:check_entry_arg: No ".cub" extension map file
+Test #029 : maps/NONVALID//wrong_extension.ber
+[1;31mERROR[0m	: L.23:check_entry_arg: No ".cub" extension map file
+Test #030 : maps/NONVALID//wrong_input_colours2.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #031 : maps/NONVALID//wrong_input_colours.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #032 : maps/NONVALID//wrong_path_colours.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #033 : maps/NONVALID//wrong_path.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean
+Test #034 : maps/NONVALID//wrong_secchar.cub
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Texture File Invalid
+[1;31mERROR[0m	: Invalid Key
+data_clean

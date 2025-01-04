@@ -6,11 +6,12 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/28 23:27:17 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/04 00:17:20 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_bonus.h"
+#include "debug_bonus.h"
 
 void	data_init(t_data *data)
 {
@@ -30,6 +31,7 @@ int	data_setup(t_data *data, char *map_path)
 	exit_code = lstmap_extract_info(&data->map, map_path, &asset_lst, &sprite_lst);
 	if (exit_code == SUCCESS)
 		exit_code = map_checker(&data->map, &data->player);
+	print_exit_code(exit_code);
 	if (exit_code == SUCCESS)
 		exit_code = mlx_setup(&data->win, &data->textures, &asset_lst);
 	data->mlx = data->win.mlx;

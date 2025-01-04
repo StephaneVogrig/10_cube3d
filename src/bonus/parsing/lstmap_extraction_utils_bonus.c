@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2024/12/20 04:06:06 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/03 15:52:00 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst, int
 	{
 		tmp = ft_strdup(kv->value);
 		if (tmp == NULL)
-			return (ft_return(ERROR, 8, "L.67:set_asset_lst: ft_strdup failed"));
+			return (ft_return(ERROR, 8, "Malloc of path failed"));
 		insert_asset_lst(asset_lst, kv->key, tmp, id);
 		return (SUCCESS);
 	}
@@ -30,6 +30,7 @@ int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst, int
 	fd = ft_open(kv->value, O_RDONLY);
 	if (fd == FAIL)
 	{
+		kv->key = ft_char_f(kv->key);
 		kv->value = ft_char_f(kv->value);
 		return (ft_return(ERROR, 8, "L.67:set_asset_lst: open failed"));
 	}

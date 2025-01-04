@@ -1,7 +1,7 @@
-NO ./textures/wall_N.png
-SO ./textures/wall_N.png
-WE ./textures/wall_N.png
-EA ./textures/wall_N.png
+NO textures/ROCKWE.bmp
+SO textures/ROCKWE.bmp
+WE textures/ROCKWE.bmp
+EA textures/ROCKWE.bmp
 
 F 220,100,0
 C 225,-30,256

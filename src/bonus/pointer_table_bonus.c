@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:11:25 by aska              #+#    #+#             */
-/*   Updated: 2024/12/30 04:36:54 by aska             ###   ########.fr       */
+/*   Updated: 2024/12/31 03:44:21 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void pointer_table_init(t_asset *asset)
 {
-    int i = 0;
+    int i = -1;
 
-    while (asset->key[i] != NULL)
+    // mettre des ft_strcmp pour securiter des clef
+    while (asset->key[++i] != NULL)
     {
-        while (ft_strcmp(asset->key[i], "SP") == 0)
-            i++;
+        if (ft_strcmp(asset->key[i], "SP") == 0)
+            continue;
         if (asset->key[i][0] == 'W')
         {
             if (asset->key[i][1] == 'E')
@@ -43,7 +44,6 @@ void pointer_table_init(t_asset *asset)
             asset->nsew.south = asset->value[i];
         else if (asset->key[i][0] == 'E')
             asset->nsew.east = asset->value[i];
-        i++;
     }
 }
 

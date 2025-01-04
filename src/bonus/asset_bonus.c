@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:31:39 by aska              #+#    #+#             */
-/*   Updated: 2024/12/28 23:27:12 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/04 00:36:57 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,17 @@ static int color_to_buffer(t_rgb *rgb, t_texture *t)
 	return (SUCCESS);
 }
 
+int asset_set_key_value(t_asset *asset, char *key, int size, int i)
+{
+	asset->value[i] = ft_calloc(sizeof(t_texture *), (size + 1));
+	if (asset->value[i] == NULL)
+		return (FAIL);
+	asset->key[i] = ft_strdup(key);
+	if (asset->key[i] == NULL)
+		return (FAIL);
+	return (SUCCESS);
+}
+
 int asset_lst_to_array(void *mlx, t_asset *asset, t_asset_lst *head)
 {
 	int size;
@@ -83,12 +94,10 @@ int asset_lst_to_array(void *mlx, t_asset *asset, t_asset_lst *head)
 	if (asset_init(asset, size) == FAIL)
 		return (FAIL);
 	i = 0;
-	while(i < size)
+	while(i != size)
 	{
-		asset->value[i] = ft_calloc(sizeof(t_texture *), (size + 1));
-		if (asset->value[i] == NULL)
+		if (asset_set_key_value(asset, head->key, size, i) == FAIL)
 			return (FAIL);
-		asset->key[i] = head->key;
 		if (ft_strrchr(head->value, '.') == NULL)
 		{
 			color_set_rgb(&rgb, head->value);

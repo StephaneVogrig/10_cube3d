@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 20:57:27 by aska              #+#    #+#             */
-/*   Updated: 2024/11/26 14:29:08 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/03 20:41:06 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_stack
 	int	capacity;
 }					t_stack;
 
+void print_stack(t_stack *stack);
 t_status			create_stack(int capacity, t_stack *stack);
 t_status			push(t_stack *stack, t_cell cell);
 t_cell				pop(t_stack *stack);

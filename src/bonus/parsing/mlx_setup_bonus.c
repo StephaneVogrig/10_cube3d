@@ -6,13 +6,14 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 06:18:51 by aska              #+#    #+#             */
-/*   Updated: 2024/12/23 02:07:48 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/04 00:31:56 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_setup_bonus.h"
 #include "asset_bonus.h"
 #include "pointer_table_bonus.h"
+#include "debug_bonus.h"
 
 int	mlx_setup(t_window *win, t_asset *textures, t_asset_lst **head)
 {
