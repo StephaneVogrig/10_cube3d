@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2024/12/28 21:24:49 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/04 14:44:18 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,12 @@ int	is_valid_color(char *rgb)
 		return (FALSE);
 	i = 0;
 	while (rgb[i])
+	{
+		if (rgb[i] == '+' || rgb[i] == '-')
+			return (FALSE);
 		if (ft_isdigit(rgb[i++]) == FALSE)
 			return (FALSE);
+	}
 	atoi_rgb = ft_atoi(rgb);
 	if (atoi_rgb < 0 || atoi_rgb > 255)
 		return (FALSE);

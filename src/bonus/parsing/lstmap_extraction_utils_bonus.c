@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/03 15:52:00 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/04 15:21:16 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,30 @@ int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst, int
 	return (SUCCESS);
 }
 
+int chk_key(char *key)
+{
+	if (key[0] == 'N' && ft_strcmp(key, "NO") != 0)
+		return (ft_return(ERROR, FAIL, "chk_key: invalid key NO"));
+	else if (key[0] == 'S')
+	{
+		if (ft_strcmp(key, "SO") != 0 && ft_strcmp(key, "SP") != 0)
+			return (ft_return(ERROR, FAIL, "chk_key: invalid key SO or SP"));
+	}
+	else if (key[0] == 'E' && ft_strcmp(key, "EA") != 0)
+		return (ft_return(ERROR, FAIL, "chk_key: invalid key EA"));
+	else if (ft_isthis(key[0], "FCRLT") == TRUE && key[1] != '\0')
+		return (ft_return(ERROR, FAIL, "chk_key: invalid key FCRLT"));
+	else if (key[0] == 'W' && ft_isthis(key[1], "E123456789") != TRUE)
+		return (ft_return(ERROR, FAIL, "chk_key: invalid key W"));
+	return (SUCCESS);
+}
+
 int	set_key_value(t_key_value *kv, char *line)
 {
 	if (setup_key_value_separate_by_space(&(kv->key), &(kv->value),
 			line) != SUCCESS)
+		return (FAIL);
+	if (chk_key(kv->key) == FAIL)
 		return (FAIL);
 	remove_root_value(kv->value);
 	return (SUCCESS);

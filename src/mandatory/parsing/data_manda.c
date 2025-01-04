@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_manda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/27 02:30:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/04 19:16:04 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "data_manda.h"
 
@@ -65,7 +65,6 @@ int	data_setup(t_data *data, char *map_path)
 
 void	data_clean(t_data *data)
 {
-	printf("data_clean\n");
 	data->map.grid = ft_tab_f(data->map.grid);
 	textures_buffer_clean(&data->textures);
 	window_destroy(&data->win);

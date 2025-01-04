@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:46:11 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 15:48:26 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/04 14:38:54 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	texture_load_to_buffer(void *mlx, t_texture *t, char *path)
 	{
 		t->buffer = img_mlx_to_buffer(&img_mlx);
 		if (t->buffer == NULL)
-			exit_code = ft_return(ERROR, 273, "Texture Buffer allocation failure");
+			exit_code = ft_return(ERROR, 20, "Texture Buffer allocation failure");
 		t->height = img_mlx.height;
 		t->width = img_mlx.width;
 		mlx_destroy_image(img_mlx.mlx, img_mlx.img);

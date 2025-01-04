@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/20 03:29:09 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/04 14:38:31 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	color_set_rgb(t_rgb *rgb, char *value)
 	if (arg == NULL || ft_tablen(arg) != 3)
 	{
 		ft_tab_f(arg);
-		return (FAIL);
+		return (ft_return(ERROR, FAIL, "color_set_rgb: malloc split failed"));
 	}
 	if (is_valid_color(arg[0]) == FALSE || is_valid_color(arg[1]) == FALSE
 		|| is_valid_color(arg[2]) == FALSE)
 	{
 		ft_tab_f(arg);
-		return (FAIL);
+		return (ft_return(ERROR, FAIL, "color_set_rgb: invalid color"));
 	}
 	rgb->r = (unsigned char)ft_atoi(arg[0]);
 	rgb->g = (unsigned char)ft_atoi(arg[1]);

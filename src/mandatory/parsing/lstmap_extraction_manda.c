@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/29 20:38:35 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/04 19:37:11 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,23 @@ int	lstmap_extract_info(t_textures *textures, t_map *map,
 						t_tex_path *tex_path, char *map_path)
 {
 	t_lstmap	*lst_map;
-	char 		*root_path;
 	int 		exit_code;
+	char		*root_path;
 
 	lst_map = NULL;
+	root_path = ft_strrchr(map_path, '/');
+	if (root_path != NULL)
+	{
+		root_path = ft_substr(map_path, 0, root_path - map_path + 1);
+		if (root_path == NULL)
+			return (ft_return(ERROR, 3, "root_path: malloc error"));
+	}
 	exit_code = file_load(map_path, &lst_map);
 	if (exit_code != SUCCESS)
 		return (exit_code);
-	root_path = get_root_path(map_path);
 	exit_code = lstmap_to_path_and_color(tex_path, textures, &lst_map,
 			root_path);
-	root_path = ft_char_f(root_path);
+	free(root_path);
 	if (exit_code == SUCCESS)
 		exit_code = check_line_remain(map, &lst_map);
 	if (exit_code == SUCCESS)
