@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/04 19:41:11 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/04 19:53:02 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,17 @@ int	lstmap_extract_info(t_map *map, char *map_path, t_asset_lst **asset_lst, t_s
 	if (lst_map == NULL)
 		return (ft_return(ERROR, 6, "L.26:lstmap_extract_info: No data in map"));
 	tmp = lst_map;
-	root_path = get_root_path(map_path);
+	root_path = ft_strrchr(map_path, '/');
+	if (root_path != NULL)
+	{
+		root_path = ft_substr(map_path, 0, root_path - map_path + 1);
+		if (root_path == NULL)
+			return (ft_return(ERROR, 3, "root_path: malloc error"));
+	}
 	if (root_path == NULL)
 		return (ft_return(ERROR, 3, "L.30:lstmap_extract_info: root_path: malloc error"));
 	exit_code = lstmap_to_asset(&tmp, root_path, asset_lst, sprite_lst);
-	root_path = ft_char_f(root_path);
+	free(root_path);
 	if (exit_code == SUCCESS)
 		exit_code = check_line_remain(map, asset_lst, &tmp);
 	if (exit_code == SUCCESS)
