@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/04 19:37:11 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/06 16:28:39 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_line_remain(t_map *map, t_lstmap **lst_map)
 	return (exit_code);
 }
 
-int	lstmap_to_path_and_color(t_tex_path *tex_path, t_textures *tex,
+int	lstmap_to_textures(t_tex_path *tex_path, t_textures *tex,
 		t_lstmap **lst_map, char *root_path)
 {
 	t_fs		fs;
@@ -62,31 +62,47 @@ int	lstmap_to_path_and_color(t_tex_path *tex_path, t_textures *tex,
 	return (exit_code);
 }
 
+int get_root_path(char *map_path, char **root_path)
+{
+	*root_path = ft_strrchr(map_path, '/');
+	if (*root_path != NULL)
+	{
+		*root_path = ft_substr(map_path, 0, *root_path - map_path + 1);
+		if (*root_path == NULL)
+			return (ft_return(ERROR, 3, "get_root_path: malloc error"));
+	}
+	else
+	{
+		*root_path = ft_strdup("./");
+		if (*root_path == NULL)
+			return (ft_return(ERROR, 3, "get_root_path: malloc error"));
+	}
+	return (SUCCESS);
+}
+
 int	lstmap_extract_info(t_textures *textures, t_map *map,
 						t_tex_path *tex_path, char *map_path)
 {
 	t_lstmap	*lst_map;
-	int 		exit_code;
+	int 		ok;
 	char		*root_path;
 
 	lst_map = NULL;
-	root_path = ft_strrchr(map_path, '/');
-	if (root_path != NULL)
+	ok = file_load(map_path, &lst_map);
+	if (ok == SUCCESS)
 	{
-		root_path = ft_substr(map_path, 0, root_path - map_path + 1);
-		if (root_path == NULL)
-			return (ft_return(ERROR, 3, "root_path: malloc error"));
+		if (lst_map == NULL)
+			ok = ft_return(ERROR, 6, "lstmap_extract_info: No data in map");
+		if (ok == SUCCESS)
+			ok = get_root_path(map_path, &root_path);
+		if (ok == SUCCESS)
+			ok = lstmap_to_textures(tex_path, textures, &lst_map, root_path);
+		free(root_path);
+		if (ok == SUCCESS)
+			ok = check_line_remain(map, &lst_map);
+		if (ok == SUCCESS)
+			ok = lstmap_to_grid(map, &lst_map);
 	}
-	exit_code = file_load(map_path, &lst_map);
-	if (exit_code != SUCCESS)
-		return (exit_code);
-	exit_code = lstmap_to_path_and_color(tex_path, textures, &lst_map,
-			root_path);
-	free(root_path);
-	if (exit_code == SUCCESS)
-		exit_code = check_line_remain(map, &lst_map);
-	if (exit_code == SUCCESS)
-		exit_code = lstmap_to_grid(map, &lst_map);
 	delete_all_lstmap(&lst_map);
-	return (exit_code);
+	return (ok);
 }

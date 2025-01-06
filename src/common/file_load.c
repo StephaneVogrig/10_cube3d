@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:38:38 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/11 02:51:31 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/06 15:28:02 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 int	open_file(int *fd, char *file)
 {
-	*fd = ft_open(file, O_RDONLY);
+	*fd = open(file, O_RDONLY);
 	if (*fd == FAIL)
-		return (ft_return(ERROR, 5, MSG_OPEN_ERROR));
+		return (ft_return(ERROR, FAIL, "open_file: Error to open .cub file"));
 	return (SUCCESS);
 }
 
 int	close_file(int *fd)
 {
-	*fd = ft_close(*fd);
+	*fd = close(*fd);
 	if (*fd == FAIL)
-		return (ft_return(ERROR, 7, MSG_CLOSE_ERROR));
+		return (ft_return(ERROR, FAIL, "close_file: Error to close .cub file"));
 	return (SUCCESS);
 }
 
@@ -49,8 +49,10 @@ int	file_to_lst_map(int fd, t_lstmap **lst_map)
 		if (insert_end_lstmap(lst_map, line) == NULL)
 		{
 			delete_all_lstmap(lst_map);
-			line = ft_char_f(line);
-			return (ft_return(ERROR, 6, "L.53:file_to_lst_map: Error to insert in lst_map"));
+			ft_display(ERROR, "file_to_lst_map: Error to insert in lst_map");
+			ft_display(INFO, line);
+			free(line);
+			return (FAIL);
 		}
 		line = get_next_line(fd);
 	}
