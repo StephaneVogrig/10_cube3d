@@ -5,24 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 18:54:46 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/08 00:51:19 by svogrig          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/01/08 00:55:52 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
+
+
 
 #include "draw_floor_ceil_bonus.h"
 
 static inline void	floorceil_draw_pixel(int x, t_element *elem,\
 											t_context *context)
 {
-	int		color;
+	t_rgb	color;
 	t_vec2i	pixel;
 
+	if (context->fog == 0.0)
+		return ;
 	pixel.x = elem->tex->width * context->box.x;
 	pixel.y = elem->tex->height * context->box.y;
-	color = texture_get_color(elem->tex, pixel.x, pixel.y);
-	color = color_darkened(color, context->dark);
-	window_put_pixel(context->win, x, elem->y, color);
+	color.integer = texture_get_color(elem->tex, pixel.x, pixel.y);
+	color.integer = color_darkened(color.integer, context->dark);
+	color.integer = fog_color(color.integer, (context->fog));
+	window_put_pixel(context->win, x, elem->y, color.integer);
 }
 
 static inline void	floorceil_draw(int y, t_data *data, t_floorceil_draw *draw,\
@@ -31,17 +36,19 @@ static inline void	floorceil_draw(int y, t_data *data, t_floorceil_draw *draw,\
 	double	len;
 	int		x;
 
-	draw->ceil.y = draw->winh_2 - 1 - y;
-	draw->floor.y = draw->ceil.y + (y * 2);
-	len = draw->scalescreen_2 / (y + 1);
+	draw->ceil.y = draw->winh_2 - y;
+	draw->floor.y = draw->winh_2 + y;
+	y++;
+	len = draw->scalescreen_2 / y;
+	draw->context.fog = fog_exponential(len);
 	x = 0;
 	while (x < data->win.width)
 	{
 		if (y >= draw->scalescreen_2 / rays[x].len)
 		{
 			draw->context.box.x = draw->player_pos.x + rays[x].dirvec.x * len;
-			draw->context.box.y = draw->player_pos.y + rays[x].dirvec.y * len;
 			draw->context.box.x -= (long)draw->context.box.x;
+			draw->context.box.y = draw->player_pos.y + rays[x].dirvec.y * len;
 			draw->context.box.y -= (long)draw->context.box.y;
 			floorceil_draw_pixel(x, &draw->ceil, &draw->context);
 			floorceil_draw_pixel(x, &draw->floor, &draw->context);

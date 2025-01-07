@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 17:47:51 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 23:29:46 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/07 22:27:02 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,6 +25,7 @@ typedef struct s_strip
 	double		img_start;
 	double		img_delta;
 	int			dark;
+	float		fog;
 }	t_strip;
 
 int		strip_screen_size(int screen_scale, double distance);

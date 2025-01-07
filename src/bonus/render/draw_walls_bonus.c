@@ -1,17 +1,16 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_walls_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/07 00:57:53 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/08 00:02:20 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "draw_walls_bonus.h"
-// #include "map.h"
 
 float	hitpos_edge_texture(float hitpos, t_door *door, int texture_width)
 {
@@ -79,7 +78,9 @@ void	draw_walls(t_window *win, t_ray *ray, t_data *data)
 			else
 				img_x = hitpos_wall_texture(strip.img->width, ray);
 			strip.dark = ray->dark;
-			draw_wall(win, x, img_x, &strip);
+			strip.fog = fog_exponential(ray->len);
+			if (strip.fog > 0.0)
+				draw_wall(win, x, img_x, &strip);
 		}
 		ray++;
 		x++;

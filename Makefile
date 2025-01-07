@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/08 14:11:14 by svogrig          ###   ########.fr        #
+#    Updated: 2025/01/08 15:43:43 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -121,6 +121,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						door_inside_bonus.c \
 						door_open_list_bonus.c \
 						event_bonus.c \
+						fog_bonus.c \
 						game_loop_bonus.c \
 						player_move_bonus.c \
 						sprite_bonus.c \
