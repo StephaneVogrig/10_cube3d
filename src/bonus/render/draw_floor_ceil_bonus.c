@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:54:46 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/31 15:04:28 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/07 03:02:21 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -28,21 +28,20 @@ static inline void	floorceil_draw_pixel(int x, t_element *elem,\
 static inline void	floorceil_draw(int y, t_data *data, t_floorceil_draw *draw,\
 									t_ray *rays)
 {
-	t_vec2d	player_position;
 	double	len;
 	int		x;
+	float	fog;
 
-	player_position = position_to_vec2d(data->player.position);
-	draw->ceil.y = (data->win.height / 2) - 1 - y;
+	draw->ceil.y = draw->winh_2 - 1 - y;
 	draw->floor.y = draw->ceil.y + (y * 2);
-	len = (data->scale_screen / 2) / (y + 1);
+	len = draw->scalescreen_2 / (y + 1);
 	x = 0;
 	while (x < data->win.width)
 	{
-		if (y >= (data->scale_screen / rays[x].len) / 2)
+		if (y >= draw->scalescreen_2 / rays[x].len)
 		{
-			draw->context.box.x = player_position.x + rays[x].dirvec.x * len;
-			draw->context.box.y = player_position.y + rays[x].dirvec.y * len;
+			draw->context.box.x = draw->player_pos.x + rays[x].dirvec.x * len;
+			draw->context.box.y = draw->player_pos.y + rays[x].dirvec.y * len;
 			draw->context.box.x -= (long)draw->context.box.x;
 			draw->context.box.y -= (long)draw->context.box.y;
 			floorceil_draw_pixel(x, &draw->ceil, &draw->context);
@@ -55,16 +54,17 @@ static inline void	floorceil_draw(int y, t_data *data, t_floorceil_draw *draw,\
 void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 {
 	t_floorceil_draw	draw;
-	int					winh_2;
 	int					y;
 
-	winh_2 = data->win.height / 2;
+	draw.winh_2 = data->win.height / 2;
+	draw.scalescreen_2 = data->scale_screen / 2;
+	draw.player_pos = position_to_vec2d(data->player.position);
 	draw.context.dark = dark;
 	draw.context.win = &data->win;
 	draw.ceil.tex = asset_get_texture_ptr(&data->textures, "C", 'n');
 	draw.floor.tex = asset_get_texture_ptr(&data->textures, "F", 'n');
 	y = 0;
-	while (y < winh_2)
+	while (y < draw.winh_2)
 	{
 		floorceil_draw(y, data, &draw, rays);
 		y++;
