@@ -7,8 +7,11 @@ W3 tex/Wall_Variation.png
 W4 tex/eU_wallrib_BaseColor.png
 
 L tex/eU_wallpanel6_BaseColor-L.png
+LE tex/Door_Edge_big.png
 R tex/eU_wallpanel6_BaseColor-R.png
+RE tex/Door_Edge_big.png
 T tex/eU_trimpanel2_BaseColor-90.png
+TE tex/Door_Edge.png
 
 C tex/eU_floorclang2_BaseColor.png
 F tex/Floor.png
