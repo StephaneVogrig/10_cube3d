@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_floor_ceil_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:54:46 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/07 03:02:21 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/07 04:02:26 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "draw_floor_ceil_bonus.h"
 
@@ -61,8 +61,8 @@ void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 	draw.player_pos = position_to_vec2d(data->player.position);
 	draw.context.dark = dark;
 	draw.context.win = &data->win;
-	draw.ceil.tex = asset_get_texture_ptr(&data->textures, "C", 'n');
-	draw.floor.tex = asset_get_texture_ptr(&data->textures, "F", 'n');
+	draw.ceil.tex = data->textures.floor_ceil.ceil;
+	draw.floor.tex = data->textures.floor_ceil.floor;
 	y = 0;
 	while (y < draw.winh_2)
 	{
