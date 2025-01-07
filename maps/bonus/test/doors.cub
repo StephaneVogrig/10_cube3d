@@ -2,6 +2,9 @@ W1 wall1.png
 R doorR.png
 L doorL.png
 T doorT.png
+RE doorRedge.png
+LE doorLedge.png
+TE doorTedge.png
 F floor.png
 C ceil.png
 
