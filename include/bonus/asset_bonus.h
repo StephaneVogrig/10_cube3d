@@ -28,8 +28,11 @@ typedef struct s_nsew
 typedef struct s_door_tex
 {
 	t_texture	*right;
+	t_texture	*r_edge;
 	t_texture	*left;
+	t_texture	*l_edge;
 	t_texture	*twin;
+	t_texture	*t_edge;
 }			t_door_tex;
 
 typedef struct s_floor_ceil

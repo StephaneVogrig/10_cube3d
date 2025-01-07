@@ -6,36 +6,41 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/04 15:21:16 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/07 00:33:37 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lstmap_extraction_utils_bonus.h"
 
+static int open_failed_freed(char *key, char *value)
+{
+	key = ft_char_f(key);
+	value = ft_char_f(value);
+	return (ft_return(ERROR, 8, "set_asset_lst: open failed"));
+}
+
 int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst, int id)
 {
 	int	fd;
-	char *tmp;
 
 	if (ft_strrchr(kv->value, '.') == NULL)
 	{
-		tmp = ft_strdup(kv->value);
-		if (tmp == NULL)
-			return (ft_return(ERROR, 8, "Malloc of path failed"));
-		insert_asset_lst(asset_lst, kv->key, tmp, id);
+		if (insert_asset_lst(asset_lst, kv->key, ft_strdup(kv->value), id) == NULL)
+			return (ft_return(ERROR, 8, "set_asset_lst: Malloc asset failed"));
 		return (SUCCESS);
 	}
 	if (root_path != NULL)
-		kv->value = ft_strjoin(root_path, kv->value);
-	fd = ft_open(kv->value, O_RDONLY);
-	if (fd == FAIL)
 	{
-		kv->key = ft_char_f(kv->key);
-		kv->value = ft_char_f(kv->value);
-		return (ft_return(ERROR, 8, "L.67:set_asset_lst: open failed"));
+		kv->value = ft_strjoin(root_path, kv->value);
+		if (kv->value == NULL)
+			return (ft_return(ERROR, 8, "set_asset_lst: Malloc asset path failed"));
 	}
-	ft_close(fd);
-	insert_asset_lst(asset_lst, kv->key, kv->value, id);
+	fd = open(kv->value, O_RDONLY);
+	if (fd == FAIL)
+		return (open_failed_freed(kv->key, kv->value));
+	close(fd);
+	if (insert_asset_lst(asset_lst, kv->key, kv->value, id) == NULL)
+		return (ft_return(ERROR, 8, "set_asset_lst: Insert asset failed"));
 	return (SUCCESS);
 }
 
@@ -50,8 +55,14 @@ int chk_key(char *key)
 	}
 	else if (key[0] == 'E' && ft_strcmp(key, "EA") != 0)
 		return (ft_return(ERROR, FAIL, "chk_key: invalid key EA"));
-	else if (ft_isthis(key[0], "FCRLT") == TRUE && key[1] != '\0')
-		return (ft_return(ERROR, FAIL, "chk_key: invalid key FCRLT"));
+	else if (ft_isthis(key[0], "FC") == TRUE && key[1] != '\0')
+		return (ft_return(ERROR, FAIL, "chk_key: invalid key Floor or Ceil"));
+	else if (ft_isthis(key[0], "RLT") == TRUE)
+	{
+		if (key[1] == '\0' || key[1] == 'E')
+			return (SUCCESS);
+		return (ft_return(ERROR, FAIL, "chk_key: invalid key Door RLT"));
+	}
 	else if (key[0] == 'W' && ft_isthis(key[1], "E123456789") != TRUE)
 		return (ft_return(ERROR, FAIL, "chk_key: invalid key W"));
 	return (SUCCESS);

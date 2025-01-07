@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:31:39 by aska              #+#    #+#             */
-/*   Updated: 2025/01/04 14:37:50 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/07 01:02:20 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int asset_destroy(t_asset *t)
 	i = 0;
 	while (t->value[i] != NULL)
 		asset_buffer_destroy(t->value[i++]);
-	ft_free(t->value);
+	free(t->value);
 	return (SUCCESS);
 }
 

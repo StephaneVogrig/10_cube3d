@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_walls_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/02 16:21:30 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/07 00:57:53 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "draw_walls_bonus.h"
 // #include "map.h"
@@ -71,6 +71,7 @@ void	draw_walls(t_window *win, t_ray *ray, t_data *data)
 		strip.screen_size = strip_screen_size(data->scale_screen, ray->len);
 		if (strip.screen_size > 1)
 		{
+			// printf("ray->hit_cell: %c | ray->hit_side: %c\n", *ray->hit_cell, ray->hit_side);
 			strip.img = asset_get_texture_ptr(&data->textures,\
 												ray->hit_cell, ray->hit_side);
 			if (cell_is_door(ray->hit_cell))

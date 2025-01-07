@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils_bonus.h                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:58:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/27 18:46:04 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/06 22:33:32 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef LSTMAP_EXTRACTION_UTILS_BONUS_H
 # define LSTMAP_EXTRACTION_UTILS_BONUS_H
@@ -18,7 +18,7 @@
 # include "color.h"
 # include "parsing_utils.h"
 # include "sprite_lst_bonus.h"
-#include "libft.h"
+# include "libft.h"
 
 typedef struct s_key_value
 {

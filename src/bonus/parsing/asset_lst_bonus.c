@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2025/01/03 18:20:59 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/07 00:25:56 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_asset_lst	*insert_asset_lst(t_asset_lst **head, char *key, char *value,
 	t_asset_lst	*new_node;
 	t_asset_lst	*tmp_node;
 
+	if (key == NULL || value == NULL)
+		return (NULL);
 	tmp_node = *head;
 	new_node = (t_asset_lst *)malloc(sizeof(t_asset_lst));
 	if (new_node == NULL)
@@ -101,6 +103,5 @@ t_bool	asset_lst_key_exist(t_asset_lst *head, char key)
 	}
 	if (key == '1')
 		return (chk_orientation_key(head));
-	
 	return (FALSE);
 }
