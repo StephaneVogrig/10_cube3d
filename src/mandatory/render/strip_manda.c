@@ -6,11 +6,11 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 17:59:44 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/08 18:53:39 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/08 18:58:47 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "strip.h"
+#include "strip_manda.h"
 
 void	strip_add_limit(t_strip *strip, int size)
 {
