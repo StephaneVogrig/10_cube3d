@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/08 15:43:43 by svogrig          ###   ########.fr        #
+#    Updated: 2025/01/08 16:29:12 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -97,6 +97,7 @@ SRCS_MANDA			:=	main_manda.c \
 						parsing/lstmap_extraction_manda.c \
 						parsing/flood_fill_manda.c \
 						parsing/bitfield_path_valid.c \
+						render/draw_wall_manda.c \
 						render/draw_walls_manda.c \
 						render/raycasting_manda.c \
 						render/render_manda.c
@@ -145,6 +146,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						render/draw_line_bonus.c \
 						render/draw_line_utils_bonus.c \
 						render/draw_utils_bonus.c \
+						render/draw_wall_bonus.c \
 						render/draw_walls_bonus.c \
 						render/minimap_bonus.c \
 						render/minimap_render_bonus.c \
