@@ -1,17 +1,20 @@
-W1 wall1.png
-W2 wall2.png
-W3 wall3.png
-W4 wall4.png
-W5 wall5.png
-W6 wall6.png
-W7 wall7.png
-W8 wall8.png
-W9 wall9.png
-R doorR.png
-L doorL.png
-T doorT.png
-F floor.png
-C ceil.png
+W1 textures/wall1.png
+W2 textures/wall2.png
+W3 textures/wall3.png
+W4 textures/wall4.png
+W5 textures/wall5.png
+W6 textures/wall6.png
+W7 textures/wall7.png
+W8 textures/wall8.png
+W9 textures/wall9.png
+R textures/doorR.png
+L textures/doorL.png
+T textures/doorT.png
+RE textures/doorRedge.png
+LE textures/doorLedge.png
+TE textures/doorTedge.png
+F textures/floor.png
+C textures/ceil.png
 
 121111111111111111131
 30000000S000000000002

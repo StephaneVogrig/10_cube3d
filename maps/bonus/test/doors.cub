@@ -1,12 +1,12 @@
-W1 wall1.png
-R doorR.png
-L doorL.png
-T doorT.png
-RE doorRedge.png
-LE doorLedge.png
-TE doorTedge.png
-F floor.png
-C ceil.png
+W1 textures/wall1.png
+R textures/doorR.png
+L textures/doorL.png
+T textures/doorT.png
+RE textures/doorRedge.png
+LE textures/doorLedge.png
+TE textures/doorTedge.png
+F textures/floor.png
+C textures/ceil.png
 
 11111111111111111111111111111111111111
 10000000000000000000000000000000000001
