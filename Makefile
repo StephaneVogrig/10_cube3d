@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/03 12:07:31 by svogrig          ###   ########.fr        #
+#    Updated: 2025/01/08 14:11:14 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -227,7 +227,7 @@ init:
 	@echo -e ""
 
 test: all
-	./cub3d maps/VALID/test.cub
+	./cub3d maps/manda/test/test.cub
 
 testbonus: bonus
 	./cub3d_bonus maps/bonus/test/doors.cub
