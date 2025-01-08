@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/08 16:29:12 by svogrig          ###   ########.fr        #
+#    Updated: 2025/01/08 18:50:42 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -77,7 +77,8 @@ SRCS_COMMON			:= 	axis.c \
 						vector.c \
 						window.c \
 						parsing/flood_fill_common.c \
-						render/draw_wall_utils.c
+						render/draw_wall_utils.c \
+						render/strip_util.c
 
 SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
 
