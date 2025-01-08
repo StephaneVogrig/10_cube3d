@@ -1,22 +1,27 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils_bonus.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/07 00:33:37 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/08 18:11:26 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "lstmap_extraction_utils_bonus.h"
 
 static int open_failed_freed(char *key, char *value)
 {
+	ft_putstr_fd(BRED "ERROR" CRESET, 2);
+	ft_putstr_fd("\t: open failure: " YEL, 2);
+	ft_putstr_fd(value, 2);
+	ft_putstr_fd(CRESET "\n", 2);
 	key = ft_char_f(key);
 	value = ft_char_f(value);
-	return (ft_return(ERROR, 8, "set_asset_lst: open failed"));
+	return (8);
+	// return (ft_return(ERROR, 8, "set_asset_lst: open failed"));
 }
 
 int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst, int id)
