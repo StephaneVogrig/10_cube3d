@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:37:46 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/27 03:25:31 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/09 01:17:45 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,8 +22,8 @@ void	strip_draw(t_window *win, int x, double img_x, t_strip *strip)
 	img_y = strip->img_start;
 	while (y < strip->screen_end)
 	{
-		color = (t_rgb)texture_get_color(strip->img, img_x, img_y);
-		if (color.a == (char)255)
+		color.integer = texture_get_color(strip->img, img_x, img_y);
+		if (color.a == 255)
 			window_put_pixel(win, x, y, color.integer);
 		img_y += strip->img_delta;
 		y++;
@@ -41,7 +41,7 @@ void	sprite_draw(t_sprite *sprite, int i, t_window *win, t_data *data)
 	t_strip	sprite_x;
 	double	distance;
 	int		x;
-(void)data;
+
 	distance = sprite->transform[i].y;
 	sprite_x.img = sprite->image[i];
 	sprite_x.screen_size = strip_screen_size(data->scale_screen, distance);
