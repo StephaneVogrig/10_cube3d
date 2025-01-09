@@ -6,12 +6,11 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:35:05 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/09 01:14:18 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/09 18:58:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "fog_bonus.h"
-#include "math.h"
 
 float	fog_linear(double len)
 {
@@ -27,17 +26,32 @@ float	fog_exponential(double len)
 	return (exp(-DENSITY * len));
 }
 
-int	fog_color(int start, float fog)
+void	fog_color(t_rgb *start, float fog)
 {
-	t_rgb	color;
-	t_rgb	foged;
-
-	color = (t_rgb)start;
 	if (fog > 0.0)
 	{
-			foged.r = color.r * fog;
-			foged.g = color.g * fog;
-			foged.b = color.b * fog;
+			(*start).r *= fog;
+			(*start).g *= fog;
+			(*start).b *= fog;
 	}
-	return (foged.integer);
+}
+
+void	fog_tab_fill(char *tab, float fog)
+{
+	int i;
+
+	*tab = 0;
+	i = 1;
+	while (i < 256)
+	{
+		tab[i] = i * fog;
+		i++;
+	}
+}
+
+void	fog_color_with_tab(t_rgb *color, char *fog_tab)
+{
+	(*color).r = fog_tab[(*color).r];
+	(*color).g = fog_tab[(*color).g];
+	(*color).b = fog_tab[(*color).b];
 }

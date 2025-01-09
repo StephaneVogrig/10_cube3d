@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:56:00 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/08 00:01:51 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/09 17:51:33 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -30,7 +30,7 @@ typedef struct s_context
 	int			dark;
 	t_window	*win;
 	t_vec2d		box;
-	float		fog;
+	char		fog_tab[256];
 }	t_context;
 
 typedef struct s_floorceil_draw
