@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:56:00 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/09 17:51:33 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/10 17:08:19 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -41,8 +41,9 @@ typedef struct s_floorceil_draw
 	t_vec2d		player_pos;
 	int			winh_2;
 	double		scalescreen_2;
+	double		len;
 }	t_floorceil_draw;
 
-void	draw_floor_ceil(t_data *data, t_ray *rays, int dark);
+void	draw_floor_ceil(t_data *data, int dark);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/09 17:54:03 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/10 17:24:26 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,7 +14,7 @@
 
 #include "draw_floor_ceil_bonus.h"
 
-void	floorceil_draw_pixel(int x, t_element *elem, t_context *context)
+void	elem_draw_pixel(int x, t_element *elem, t_context *context)
 {
 	t_rgb	color;
 	t_vec2i	pixel;
@@ -27,34 +27,49 @@ void	floorceil_draw_pixel(int x, t_element *elem, t_context *context)
 	window_put_pixel(context->win, x, elem->y, color.integer);
 }
 
-void	floorceil_draw_line(int y, t_data *data, t_floorceil_draw *draw,\
-									t_ray *rays)
+void	floorceil_draw_line_init(t_vec2d *map_step, t_vec2d *map_pos, t_floorceil_draw *draw, t_data *data)
 {
-	double	len;
+	t_vec2d	player_dirvec;
+
+	player_dirvec = dir_to_dirvec(data->player.dir);
+	*map_step = ray_vec_step(player_dirvec, data->win.width, data->tg_fov_2);
+	(*map_step).x *= draw->len;
+	(*map_step).y *= draw->len;
+	(*map_pos) = ray_vec_start(player_dirvec, data->tg_fov_2);
+	(*map_pos).x *= draw->len;
+	(*map_pos).y *= draw->len;
+	(*map_pos).x += draw->player_pos.x;
+	(*map_pos).y += draw->player_pos.y;
+}
+
+void	floorceil_draw_line(int y, t_data *data, t_floorceil_draw *draw)
+{
+	t_vec2d	map_step;
+	t_vec2d	map_pos;
 	int		x;
 
-	draw->ceil.y = draw->winh_2 - y - 1;
-	draw->floor.y = draw->winh_2 + y;
-	y++;
-	len = draw->scalescreen_2 / y;
-	fog_tab_fill(draw->context.fog_tab, fog_exponential(len));
+	floorceil_draw_line_init(&map_step, &map_pos, draw, data);
 	x = 0;
 	while (x < data->win.width)
 	{
-		if (y >= draw->scalescreen_2 / rays[x].len)
+		if (y >= draw->scalescreen_2 / data->rays.tab[x].len)
 		{
-			draw->context.box.x = draw->player_pos.x + rays[x].dirvec.x * len;
-			draw->context.box.x -= (long)draw->context.box.x;
-			draw->context.box.y = draw->player_pos.y + rays[x].dirvec.y * len;
-			draw->context.box.y -= (long)draw->context.box.y;
-			floorceil_draw_pixel(x, &draw->ceil, &draw->context);
-			floorceil_draw_pixel(x, &draw->floor, &draw->context);
+			draw->context.box.x = map_pos.x - (int)map_pos.x;
+			if(draw->context.box.x < 0.0)
+				draw->context.box.x += 1.0;
+			draw->context.box.y = map_pos.y - (int)map_pos.y;
+			if(draw->context.box.y < 0.0)
+				draw->context.box.y += 1.0;
+			elem_draw_pixel(x, &draw->ceil, &draw->context);
+			elem_draw_pixel(x, &draw->floor, &draw->context);
 		}
+		map_pos.x += map_step.x;
+		map_pos.y += map_step.y;
 		x++;
 	}
 }
 
-void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
+void	draw_floor_ceil(t_data *data, int dark)
 {
 	t_floorceil_draw	draw;
 	int					y;
@@ -69,7 +84,11 @@ void	draw_floor_ceil(t_data *data, t_ray *rays, int dark)
 	y = 0;
 	while (y < draw.winh_2)
 	{
-		floorceil_draw_line(y, data, &draw, rays);
+		draw.ceil.y = draw.winh_2 - y - 1;
+		draw.floor.y = draw.winh_2 + y;
+		draw.len = draw.scalescreen_2 / (y + 1);
+		fog_tab_fill(draw.context.fog_tab, fog_exponential(draw.len));
+		floorceil_draw_line(y, data, &draw);
 		y++;
 	}
 }
