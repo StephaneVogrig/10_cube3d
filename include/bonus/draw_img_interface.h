@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_bonus.c                                     :+:      :+:    :+:   */
+/*   draw_img_interface.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/09 00:55:04 by aska             ###   ########.fr       */
+/*   Created: 2025/01/09 13:41:09 by aska              #+#    #+#             */
+/*   Updated: 2025/01/11 17:43:32 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render_bonus.h"
+#ifndef DRAW_IMG_INTERFACE_H
+# define DRAW_IMG_INTERFACE_H
 
-void	render(t_data *data)
-{
-	int		dark;
+# include "interface_utils_bonus.h"
+#include "draw_img_minimap.h"
 
-	window_clear(&data->win);
-	raycasting(data->rays.tab, data);
-	dark = map_get_cell(&data->map, &data->player.position) == WALL;
-	draw_floor_ceil(data, data->rays.tab, dark);
-	draw_walls(&data->win, data->rays.tab, data);
-	sprite_render(&data->sprite, &data->player, &data->win, data);
-	render_interface(&data->minimap, data);
-}
+int	draw_images(t_interface *interface, t_map *map);
+
+#endif

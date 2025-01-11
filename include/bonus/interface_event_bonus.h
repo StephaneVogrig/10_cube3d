@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_bonus.c                                     :+:      :+:    :+:   */
+/*   interface_event_bonus.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/09 00:55:04 by aska             ###   ########.fr       */
+/*   Created: 2024/12/28 14:08:54 by svogrig           #+#    #+#             */
+/*   Updated: 2025/01/09 00:46:51 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render_bonus.h"
+#ifndef INTERFACE_EVENT_BONUS_H
+# define INTERFACE_EVENT_BONUS_H
 
-void	render(t_data *data)
-{
-	int		dark;
+# include "data_bonus.h"
+# include "event_bonus.h"
+# include "interface_bonus.h"
 
-	window_clear(&data->win);
-	raycasting(data->rays.tab, data);
-	dark = map_get_cell(&data->map, &data->player.position) == WALL;
-	draw_floor_ceil(data, data->rays.tab, dark);
-	draw_walls(&data->win, data->rays.tab, data);
-	sprite_render(&data->sprite, &data->player, &data->win, data);
-	render_interface(&data->minimap, data);
-}
+void interface_event_setup(t_interface *minimap, t_data *data);
+
+#endif

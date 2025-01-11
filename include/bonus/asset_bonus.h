@@ -13,7 +13,7 @@
 #ifndef ASSET_BONUS_H
 # define ASSET_BONUS_H
 
-# include "color.h"
+// # include "color.h"
 # include "texture.h"
 # include "asset_lst_bonus.h"
 

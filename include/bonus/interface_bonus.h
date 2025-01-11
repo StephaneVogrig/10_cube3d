@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_bonus.c                                     :+:      :+:    :+:   */
+/*   interface_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/09 00:55:04 by aska             ###   ########.fr       */
+/*   Created: 2024/09/15 21:14:09 by svogrig           #+#    #+#             */
+/*   Updated: 2025/01/08 00:54:40 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render_bonus.h"
+#ifndef INTERFACE_BONUS_H
+# define INTERFACE_BONUS_H
 
-void	render(t_data *data)
-{
-	int		dark;
+# include "interface_utils_bonus.h"
+# include "draw_img_interface.h"
 
-	window_clear(&data->win);
-	raycasting(data->rays.tab, data);
-	dark = map_get_cell(&data->map, &data->player.position) == WALL;
-	draw_floor_ceil(data, data->rays.tab, dark);
-	draw_walls(&data->win, data->rays.tab, data);
-	sprite_render(&data->sprite, &data->player, &data->win, data);
-	render_interface(&data->minimap, data);
-}
+int		interface_setup(t_interface	*minimap, void *mlx, t_window *win, t_map *map);
+void	interface_destroy(t_interface *minimap);
+
+#endif

@@ -6,12 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/07 00:57:53 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/09 13:09:58 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw_walls_bonus.h"
-// #include "map.h"
 
 float	hitpos_edge_texture(float hitpos, t_door *door, int texture_width)
 {

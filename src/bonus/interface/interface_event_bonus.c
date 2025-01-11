@@ -1,16 +1,16 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_event_bonus.c                              :+:      :+:    :+:   */
+/*   interface_event_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 14:07:56 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/28 16:03:42 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/08 23:04:23 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
-#include "minimap_event_bonus.h"
+#include "interface_event_bonus.h"
 
 static int	minimap_hook(int event, void *mlx)
 {
@@ -19,7 +19,7 @@ static int	minimap_hook(int event, void *mlx)
 	return (SUCCESS);
 }
 
-void	minimap_event_setup(t_minimap *minimap, t_data *data)
+void	interface_event_setup(t_interface *minimap, t_data *data)
 {
 	void	*mlx;
 

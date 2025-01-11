@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:54:46 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/07 04:02:26 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/07 04:07:16 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static inline void	floorceil_draw(int y, t_data *data, t_floorceil_draw *draw,\
 	int		x;
 	float	fog;
 
+	(void)fog;
 	draw->ceil.y = draw->winh_2 - 1 - y;
 	draw->floor.y = draw->ceil.y + (y * 2);
 	len = draw->scalescreen_2 / (y + 1);

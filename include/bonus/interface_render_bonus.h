@@ -1,24 +1,24 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_render_bonus.h                             :+:      :+:    :+:   */
+/*   interface_render_bonus.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 15:04:34 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/28 15:12:21 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/08 02:10:43 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
-#ifndef MINIMAP_RENDER_BONUS_H
-# define MINIMAP_RENDER_BONUS_H
+#ifndef INTERFACE_RENDER_BONUS_H
+# define INTERFACE_RENDER_BONUS_H
 
 # include "ray.h"
 # include "draw_utils_bonus.h"
 # include "draw_line_bonus.h"
 # include "data_bonus.h"
-# include "minimap_bonus.h"
+# include "interface_bonus.h"
 
-void	render_minimap(t_minimap *minimap, t_data *data);
+void	render_interface(t_interface *minimap, t_data *data);
 
 #endif
