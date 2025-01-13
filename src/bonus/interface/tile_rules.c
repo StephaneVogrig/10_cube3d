@@ -6,38 +6,21 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 19:25:48 by aska              #+#    #+#             */
-/*   Updated: 2025/01/13 19:07:37 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/13 23:42:24 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tile_rules.h"
 
-void print_cardinal_tiles(t_cardinal_tiles *card_tile)
-{
-
-	printf("      ");
-	printf("|------|\n");
-	printf("%d ", card_tile->north_west);
-	printf("%d ", card_tile->north);
-	printf("%d\n", card_tile->north_east);
-	printf("%d   ", card_tile->east);
-	printf("%d\n", card_tile->west);
-	printf("%d ", card_tile->south_east);
-	printf("%d ", card_tile->south);
-	printf("%d\n", card_tile->south_west);
-}
-
 static int chk_border(int x, int y, int width, int height)
 {
 	if (x < 0 || y < 0 || x >= width || y >= height)
-		return (1);
+		return (OOB);
 	return (0);
 }
 
-static t_tiles_raw chk_cell(char cell, t_vec2i *coord, t_map *map)
+static t_tiles_id chk_cell(char cell)
 {
-	if (chk_border(coord->x, coord->y, map->width, map->height))
-		return (OOB);
 	if (ft_isthis(cell, "123456789"))
 		return (TILE_WALL);
 	else if (ft_isthis(cell, " "))
@@ -48,18 +31,26 @@ static t_tiles_raw chk_cell(char cell, t_vec2i *coord, t_map *map)
 }
 
 
-static t_cardinal_tiles chk_cardinal_cell(char cell, t_vec2i *coord, t_map *map)
+static t_cardinal_tiles chk_cardinal_cell(char cell, t_vec2i coord, t_map *map)
 {
 	t_cardinal_tiles card_tile;
 
-	card_tile.north = chk_cell(map->grid[coord->y - 1][coord->x], coord, map);
-	card_tile.north_east = chk_cell(map->grid[coord->y - 1][coord->x + 1], coord, map);
-	card_tile.east = chk_cell(map->grid[coord->y][coord->x + 1], coord, map);
-	card_tile.south_east = chk_cell(map->grid[coord->y + 1][coord->x + 1], coord, map);
-	card_tile.south = chk_cell(map->grid[coord->y + 1][coord->x], coord, map);
-	card_tile.south_west = chk_cell(map->grid[coord->y + 1][coord->x - 1], coord, map);
-	card_tile.west = chk_cell(map->grid[coord->y][coord->x - 1], coord, map);
-	card_tile.north_west = chk_cell(map->grid[coord->y - 1][coord->x - 1], coord, map);
+	if (chk_border(coord.x, coord.y - 1, map->width, map->height) != OOB)
+		card_tile.north = chk_cell(map->grid[coord.y - 1][coord.x]);
+	if (chk_border(coord.x + 1, coord.y - 1, map->width, map->height) != OOB)
+		card_tile.north_east = chk_cell(map->grid[coord.y - 1][coord.x + 1]);
+	if (chk_border(coord.x + 1, coord.y, map->width, map->height) != OOB)
+		card_tile.east = chk_cell(map->grid[coord.y][coord.x + 1]);
+	if (chk_border(coord.x + 1, coord.y + 1, map->width, map->height) != OOB)
+		card_tile.south_east = chk_cell(map->grid[coord.y + 1][coord.x + 1]);
+	if (chk_border(coord.x, coord.y + 1, map->width, map->height) != OOB)
+		card_tile.south = chk_cell(map->grid[coord.y + 1][coord.x]);
+	if (chk_border(coord.x - 1, coord.y + 1, map->width, map->height) != OOB)
+		card_tile.south_west = chk_cell(map->grid[coord.y + 1][coord.x - 1]);
+	if (chk_border(coord.x - 1, coord.y, map->width, map->height) != OOB)
+		card_tile.west = chk_cell(map->grid[coord.y][coord.x - 1]);
+	if (chk_border(coord.x - 1, coord.y - 1, map->width, map->height) != OOB)
+		card_tile.north_west = chk_cell(map->grid[coord.y - 1][coord.x - 1]);
 	return (card_tile);
 }
 
@@ -69,7 +60,7 @@ static int	*get_tile_from_id(t_tiles_id id, t_interface *interface)
 		return (interface->tiles_index.floor);
 	else if (id == TILE_BLANK)
 		return (interface->tiles_index.blank);
-	else if (id == TILE_ONE_WALL)
+	else if (id == TILE_WALL)
 		return (interface->tiles_index.one_wall);
 	else if (id == TILE_TWO_WALL)
 		return (interface->tiles_index.two_wall);
@@ -104,12 +95,18 @@ static int	*get_tile_from_id(t_tiles_id id, t_interface *interface)
 	return (NULL);
 }
 
-int  *get_tile(char cell, t_vec2i *coord, t_map *map, t_interface *interface)
+t_tile  get_tile(char cell, t_vec2i coord, t_map *map, t_interface *interface)
 {
-	t_tiles_raw  tile;
-	t_cardinal_tiles cardinal_tile;
+	t_tiles_id			tile_id;
+	t_cardinal_tiles	cardinal_tile;
+	t_tile				tile;
 
-	tile = chk_cell(cell, coord, map);
+	tile_id = chk_cell(cell);
+	if (tile_id == TILE_WALL)
+	{
+		tile = (t_tile){.tile_ptr = interface->tiles_index.empty, .pos = coord, .increm = 0};
+		return (tile);
+	}
 	cardinal_tile = chk_cardinal_cell(cell, coord, map);
 
 	

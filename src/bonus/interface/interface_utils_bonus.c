@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:44:55 by aska              #+#    #+#             */
-/*   Updated: 2025/01/11 13:25:31 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/13 22:51:46 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int increment_position(t_bool reset)
 	return (position += TILES_W * TILES_H);
 }
 
-void interface_tiles_buffer_index(t_tiles *tiles, t_texture *tex)
+void interface_tiles_buffer_index(t_tiles_ptr *tiles, t_texture *tex)
 {
 	tiles->floor = &tex->buffer[increment_position(TRUE)];
 	tiles->blank = &tex->buffer[increment_position(FALSE)];
