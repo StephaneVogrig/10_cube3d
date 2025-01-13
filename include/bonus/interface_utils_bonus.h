@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:51:50 by aska              #+#    #+#             */
-/*   Updated: 2025/01/11 17:28:57 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/13 15:11:04 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,6 @@
 # include "mlx.h"
 # include "vector.h"
 # include "map.h"
-
-// typedef enum e_tiles_id
-// {
-// 	TILE_FLOOR,
-// 	TILE_BLANK,
-// 	TILE_ONE_WALL,
-// 	TILE_TWO_WALL,
-// 	TILE_CORNER_WALL,
-// 	TILE_THREE_WALL,
-// 	TILE_FOUR_WALL,
-// 	TILE_ONE_CORNER,
-// 	TILE_TWO_CORNER,
-// 	TILE_THREE_CORNER,
-// 	TILE_FOUR_CORNER,
-// 	TILE_ONE_WALL_CORNER,
-// 	TILE_ONE_WALL_TWO_CORNER,
-// 	TILE_TWO_WALL_CORNER,
-// 	TILE_DOOR,
-// 	TILE_DOOR_ONE_WALL,
-// 	TILE_DOOR_TWO_WALL,
-// 	TILE_EMPTY
-// }	t_tiles_id;
 
 typedef struct s_tiles
 {
