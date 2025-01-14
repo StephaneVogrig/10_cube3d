@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/10 17:24:26 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/12 00:26:47 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,7 +23,8 @@ void	elem_draw_pixel(int x, t_element *elem, t_context *context)
 	pixel.y = elem->tex->height * context->box.y;
 	color.integer = texture_get_color(elem->tex, pixel.x, pixel.y);
 	color.integer = color_darkened(color.integer, context->dark);
-	fog_color_with_tab(&color, context->fog_tab);
+	if (context->fog_enable)
+		fog_color_with_tab(&color, context->fog_tab);
 	window_put_pixel(context->win, x, elem->y, color.integer);
 }
 
@@ -81,13 +82,15 @@ void	draw_floor_ceil(t_data *data, int dark)
 	draw.context.win = &data->win;
 	draw.ceil.tex = data->textures.floor_ceil.ceil;
 	draw.floor.tex = data->textures.floor_ceil.floor;
+	draw.context.fog_enable = data->fog_enable;
 	y = 0;
 	while (y < draw.winh_2)
 	{
 		draw.ceil.y = draw.winh_2 - y - 1;
 		draw.floor.y = draw.winh_2 + y;
 		draw.len = draw.scalescreen_2 / (y + 1);
-		fog_tab_fill(draw.context.fog_tab, fog_exponential(draw.len));
+		if (data->fog_enable)
+			fog_tab_fill(draw.context.fog_tab, fog_exponential(draw.len));
 		floorceil_draw_line(y, data, &draw);
 		y++;
 	}

@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/08 00:02:20 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/12 01:31:17 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -70,7 +70,6 @@ void	draw_walls(t_window *win, t_ray *ray, t_data *data)
 		strip.screen_size = strip_screen_size(data->scale_screen, ray->len);
 		if (strip.screen_size > 1)
 		{
-			// printf("ray->hit_cell: %c | ray->hit_side: %c\n", *ray->hit_cell, ray->hit_side);
 			strip.img = asset_get_texture_ptr(&data->textures,\
 												ray->hit_cell, ray->hit_side);
 			if (cell_is_door(ray->hit_cell))
@@ -78,7 +77,10 @@ void	draw_walls(t_window *win, t_ray *ray, t_data *data)
 			else
 				img_x = hitpos_wall_texture(strip.img->width, ray);
 			strip.dark = ray->dark;
-			strip.fog = fog_exponential(ray->len);
+			if (data->fog_enable)
+				strip.fog = fog_exponential(ray->len);
+			else
+				strip.fog = 1.0;
 			if (strip.fog > 0.0)
 				draw_wall(win, x, img_x, &strip);
 		}

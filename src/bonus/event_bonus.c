@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/02 21:45:03 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/12 01:28:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,6 +26,8 @@ int	on_win_event(int event, void *param)
 	return (SUCCESS);
 }
 
+#define KEY_F 9
+
 int	on_keydown(int key, void *param)
 {
 	// printf("key pressed: %i\n", key);
@@ -35,6 +37,8 @@ int	on_keydown(int key, void *param)
 
 	if (key == KEY_ESC)
 		mlx_loop_end(data->mlx);
+	else if (key == KEY_F)
+		data->fog_enable = (data->fog_enable == FALSE);
 	else
 		set_key_down(&data->key, key);
 	return (SUCCESS);
@@ -71,7 +75,6 @@ int on_mousedown(int button, void *param)
 
 	(void)button;
 	data = (t_data *)param;
-
 	ray.dirvec = dir_to_dirvec(data->player.dir);
 	raycast(&ray, &data->player.position, data);
 	if ((*ray.hit_cell == 'R' || *ray.hit_cell == 'L')
