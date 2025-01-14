@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/12 00:26:47 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/14 11:29:26 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -70,7 +70,7 @@ void	floorceil_draw_line(int y, t_data *data, t_floorceil_draw *draw)
 	}
 }
 
-void	draw_floor_ceil(t_data *data, int dark)
+void	draw_floor_ceil(t_data *data)
 {
 	t_floorceil_draw	draw;
 	int					y;
@@ -78,7 +78,7 @@ void	draw_floor_ceil(t_data *data, int dark)
 	draw.winh_2 = data->win.height / 2;
 	draw.scalescreen_2 = data->scale_screen / 2;
 	draw.player_pos = position_to_vec2d(data->player.position);
-	draw.context.dark = dark;
+	draw.context.dark = data->dark;
 	draw.context.win = &data->win;
 	draw.ceil.tex = data->textures.floor_ceil.ceil;
 	draw.floor.tex = data->textures.floor_ceil.floor;

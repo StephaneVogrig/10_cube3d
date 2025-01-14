@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:37:46 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/09 01:17:45 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/14 11:28:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,6 +23,8 @@ void	strip_draw(t_window *win, int x, double img_x, t_strip *strip)
 	while (y < strip->screen_end)
 	{
 		color.integer = texture_get_color(strip->img, img_x, img_y);
+		color.integer = color_darkened(color.integer, strip->dark);
+		fog_color(&color, strip->fog);
 		if (color.a == 255)
 			window_put_pixel(win, x, y, color.integer);
 		img_y += strip->img_delta;
@@ -37,12 +39,19 @@ static inline int is_outside_screen(t_strip *strip, int max)
 
 void	sprite_draw(t_sprite *sprite, int i, t_window *win, t_data *data)
 {
-	t_strip	strip_y;
 	t_strip	sprite_x;
+	t_strip	strip_y;
 	double	distance;
 	int		x;
 
 	distance = sprite->transform[i].y;
+	if (data->fog_enable)
+		strip_y.fog = fog_exponential(distance);
+	else
+		strip_y.fog = 1.0;
+	if (strip_y.fog == 0.0)
+		return ;
+	strip_y.dark = data->dark;
 	sprite_x.img = sprite->image[i];
 	sprite_x.screen_size = strip_screen_size(data->scale_screen, distance);
 	sprite_x.screen_start = (win->width - sprite_x.screen_size) / 2;;

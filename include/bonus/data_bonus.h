@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/12 00:11:55 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/14 11:27:48 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -49,6 +49,7 @@ typedef struct s_data
 	t_player	player;
 	int			mouse_mode;
 	int			fog_enable;
+	int			dark;
 	t_ray_tab	rays;
 	double		tg_fov_2;
 	double		scale_screen;

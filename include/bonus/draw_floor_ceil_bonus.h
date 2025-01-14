@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:56:00 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/12 00:25:34 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/14 11:29:39 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -45,6 +45,6 @@ typedef struct s_floorceil_draw
 	double		len;
 }	t_floorceil_draw;
 
-void	draw_floor_ceil(t_data *data, int dark);
+void	draw_floor_ceil(t_data *data);
 
 #endif
