@@ -1,24 +1,25 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_bonus.c                                     :+:      :+:    :+:   */
+/*   strip_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/14 11:30:08 by svogrig          ###   ########.fr       */
+/*   Created: 2025/01/08 18:48:25 by svogrig           #+#    #+#             */
+/*   Updated: 2025/01/08 18:48:53 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "render_bonus.h"
+#include "limits.h"
 
-void	render(t_data *data)
+int	strip_screen_size(int screen_scale, double distance)
 {
-	window_clear(&data->win);
-	data->dark = map_get_cell(&data->map, &data->player.position) == WALL;
-	raycasting(data->rays.tab, data);
-	draw_floor_ceil(data);
-	draw_walls(&data->win, data->rays.tab, data);
-	sprite_render(&data->sprite, &data->player, &data->win, data);
-	render_minimap(&data->minimap, data);
+	float size;
+
+	if (distance == 0)
+		return (INT_MAX);
+	size = screen_scale / distance;
+	if (size > INT_MAX)
+		return (INT_MAX);
+	return ((int)size);
 }

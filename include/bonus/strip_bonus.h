@@ -1,17 +1,17 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strip.h                                            :+:      :+:    :+:   */
+/*   strip_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 17:47:51 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/26 23:29:46 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/08 18:59:13 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef STRIP_H
-# define STRIP_H
+#ifndef STRIP_BONUS_H
+# define STRIP_BONUS_H
 
 # include "limits.h"
 # include "texture.h"
@@ -25,6 +25,7 @@ typedef struct s_strip
 	double		img_start;
 	double		img_delta;
 	int			dark;
+	float		fog;
 }	t_strip;
 
 int		strip_screen_size(int screen_scale, double distance);

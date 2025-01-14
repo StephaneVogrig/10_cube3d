@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 00:38:20 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/31 15:04:28 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/12 00:19:38 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -60,8 +60,8 @@ int	game_loop(void *param)
 		render_needed |= player_rotate(&data->player, data->key, delta_time);
 		render_needed |= check_move(data->key, delta_time, data);
 	}
-	if (!render_needed)
-		return (SUCCESS);
+	// if (!render_needed)
+	// 	return (SUCCESS);
 	render(data);
 	fps_print(gametime() - oldtime);
 	return (SUCCESS);

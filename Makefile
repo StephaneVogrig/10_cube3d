@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/08 14:11:14 by svogrig          ###   ########.fr        #
+#    Updated: 2025/01/08 19:09:00 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -70,14 +70,14 @@ SRCS_COMMON			:= 	axis.c \
 						position.c \
 						ray.c \
 						stack.c \
-						strip.c \
 						texture.c \
 						title.c \
 						utils.c \
 						vector.c \
 						window.c \
 						parsing/flood_fill_common.c \
-						render/draw_wall_utils.c
+						render/draw_wall_utils.c \
+						render/strip_util.c
 
 SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
 
@@ -97,9 +97,11 @@ SRCS_MANDA			:=	main_manda.c \
 						parsing/lstmap_extraction_manda.c \
 						parsing/flood_fill_manda.c \
 						parsing/bitfield_path_valid.c \
+						render/draw_wall_manda.c \
 						render/draw_walls_manda.c \
 						render/raycasting_manda.c \
-						render/render_manda.c
+						render/render_manda.c \
+						render/strip_manda.c
 						
 SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_MAND_DIR)/%)
 
@@ -121,6 +123,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						door_inside_bonus.c \
 						door_open_list_bonus.c \
 						event_bonus.c \
+						fog_bonus.c \
 						game_loop_bonus.c \
 						player_move_bonus.c \
 						sprite_bonus.c \
@@ -144,12 +147,14 @@ SRCS_BONUS 			:=	main_bonus.c \
 						render/draw_line_bonus.c \
 						render/draw_line_utils_bonus.c \
 						render/draw_utils_bonus.c \
+						render/draw_wall_bonus.c \
 						render/draw_walls_bonus.c \
 						render/minimap_bonus.c \
 						render/minimap_render_bonus.c \
 						render/minimap_event_bonus.c \
 						render/raycasting_bonus.c \
-						render/render_bonus.c
+						render/render_bonus.c \
+						render/strip_bonus.c
 
 SRCS_BONUS			:=	$(SRCS_BONUS:%=$(SRC_BONUS_DIR)/%)
 # sources ---------------------------------------------------------------------#

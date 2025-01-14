@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:02:35 by aska              #+#    #+#             */
-/*   Updated: 2024/12/27 03:15:16 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/08 18:58:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,7 +22,7 @@
 # include "window.h"
 # include "color.h"
 # include "gametime.h"
-# include "strip.h"
+# include "strip_bonus.h"
 
 /*
 	square of distance between player and sprite for collect sprite

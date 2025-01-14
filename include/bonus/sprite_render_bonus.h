@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 03:03:53 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/27 03:31:38 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/14 11:12:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,6 +15,7 @@
 
 # include "sprite_bonus.h"
 # include "data_bonus.h"
+# include "fog_bonus.h"
 
 void	sprite_render(t_sprite *sprite, t_player *player, t_window *win,\
 						t_data *data);

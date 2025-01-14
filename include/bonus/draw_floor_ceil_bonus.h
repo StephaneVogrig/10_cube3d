@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:56:00 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/07 02:49:02 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/14 11:29:39 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,6 +16,8 @@
 # include "data_bonus.h"
 # include "pointer_table_bonus.h"
 # include "ray.h"
+# include "color.h"
+# include "fog_bonus.h"
 
 typedef struct s_element
 {
@@ -28,6 +30,8 @@ typedef struct s_context
 	int			dark;
 	t_window	*win;
 	t_vec2d		box;
+	int			fog_enable;
+	char		fog_tab[256];
 }	t_context;
 
 typedef struct s_floorceil_draw
@@ -38,8 +42,9 @@ typedef struct s_floorceil_draw
 	t_vec2d		player_pos;
 	int			winh_2;
 	double		scalescreen_2;
+	double		len;
 }	t_floorceil_draw;
 
-void	draw_floor_ceil(t_data *data, t_ray *rays, int dark);
+void	draw_floor_ceil(t_data *data);
 
 #endif

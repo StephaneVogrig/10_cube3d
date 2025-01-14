@@ -1,24 +1,29 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_bonus.c                                     :+:      :+:    :+:   */
+/*   fog_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/14 11:30:08 by svogrig          ###   ########.fr       */
+/*   Created: 2025/01/07 22:35:37 by svogrig           #+#    #+#             */
+/*   Updated: 2025/01/09 17:32:05 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "render_bonus.h"
+#ifndef FOG_BONUS_H
+# define FOG_BONUS_H
 
-void	render(t_data *data)
-{
-	window_clear(&data->win);
-	data->dark = map_get_cell(&data->map, &data->player.position) == WALL;
-	raycasting(data->rays.tab, data);
-	draw_floor_ceil(data);
-	draw_walls(&data->win, data->rays.tab, data);
-	sprite_render(&data->sprite, &data->player, &data->win, data);
-	render_minimap(&data->minimap, data);
-}
+# include "color.h"
+# include "math.h"
+
+# define FOG_DISTFRONT 1.0
+# define FOG_DISTBACK 8
+# define DENSITY 0.25
+
+float	fog_linear(double len);
+float	fog_exponential(double len);
+void	fog_color(t_rgb *start, float fog);
+void	fog_tab_fill(char *tab, float fog);
+void	fog_color_with_tab(t_rgb *color, char *fog_tab);
+
+#endif

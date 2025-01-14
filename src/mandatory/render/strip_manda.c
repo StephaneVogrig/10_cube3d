@@ -6,23 +6,11 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 17:59:44 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/07 21:10:32 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/08 18:58:47 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "strip.h"
-
-int	strip_screen_size(int screen_scale, double distance)
-{
-	float size;
-
-	if (distance == 0)
-		return (INT_MAX);
-	size = screen_scale / distance;
-	if (size > INT_MAX)
-		return (INT_MAX);
-	return ((int)size);
-}
+#include "strip_manda.h"
 
 void	strip_add_limit(t_strip *strip, int size)
 {
