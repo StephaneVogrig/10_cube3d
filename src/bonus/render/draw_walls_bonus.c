@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/12 01:31:17 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/16 13:57:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -58,12 +58,20 @@ int	hitpos_door_texture(int texture_width, t_ray *ray, t_door_open *door_open_li
 	return (0.0);
 }
 
+double	hitpos_texture(t_ray *ray, t_data *data, int width)
+{
+	if (cell_is_door(ray->hit_cell))
+		return (hitpos_door_texture (width, ray, data->door_open_list));
+	return (hitpos_wall_texture(width, ray));
+}
+
 void	draw_walls(t_window *win, t_ray *ray, t_data *data)
 {
 	t_strip strip;
 	double	img_x;
 	int		x;
 
+	strip.dark = data->dark;
 	x = 0;
 	while (x < win->width)
 	{
@@ -72,17 +80,9 @@ void	draw_walls(t_window *win, t_ray *ray, t_data *data)
 		{
 			strip.img = asset_get_texture_ptr(&data->textures,\
 												ray->hit_cell, ray->hit_side);
-			if (cell_is_door(ray->hit_cell))
-				img_x = hitpos_door_texture (strip.img->width, ray, data->door_open_list);
-			else
-				img_x = hitpos_wall_texture(strip.img->width, ray);
-			strip.dark = ray->dark;
-			if (data->fog_enable)
-				strip.fog = fog_exponential(ray->len);
-			else
-				strip.fog = 1.0;
-			if (strip.fog > 0.0)
-				draw_wall(win, x, img_x, &strip);
+			img_x = hitpos_texture(ray, data, strip.img->width);
+			strip.fog = fog_compute(ray->len, data->fog_enable);
+			draw_wall(win, x, img_x, &strip);
 		}
 		ray++;
 		x++;

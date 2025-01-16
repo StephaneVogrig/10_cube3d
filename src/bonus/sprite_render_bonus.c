@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:31:34 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/31 15:04:28 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/16 15:22:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -78,8 +78,7 @@ void	sprite_sort(t_sprite *sprite)
 	}
 }
 
-void	sprite_render(t_sprite *sprite, t_player *player, t_window *win,\
-						t_data *data)
+void	sprite_render(t_sprite *sprite, t_player *player, t_data *data)
 {
 	int	i;
 	int	j;
@@ -94,7 +93,7 @@ void	sprite_render(t_sprite *sprite, t_player *player, t_window *win,\
 		if (sprite->transform[j].y < 0)
 			break ;
 		if (sprite->collected[j] == FALSE)
-			sprite_draw(sprite, j, win, data);
+			sprite_draw(sprite, j, data);
 		i++;
 	}
 }

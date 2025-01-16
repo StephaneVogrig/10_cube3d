@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/14 11:29:26 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/16 15:33:36 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -34,13 +34,13 @@ void	floorceil_draw_line_init(t_vec2d *map_step, t_vec2d *map_pos, t_floorceil_d
 
 	player_dirvec = dir_to_dirvec(data->player.dir);
 	*map_step = ray_vec_step(player_dirvec, data->win.width, data->tg_fov_2);
-	(*map_step).x *= draw->len;
-	(*map_step).y *= draw->len;
-	(*map_pos) = ray_vec_start(player_dirvec, data->tg_fov_2);
-	(*map_pos).x *= draw->len;
-	(*map_pos).y *= draw->len;
-	(*map_pos).x += draw->player_pos.x;
-	(*map_pos).y += draw->player_pos.y;
+	map_step->x *= draw->len;
+	map_step->y *= draw->len;
+	*map_pos = ray_vec_start(player_dirvec, data->tg_fov_2);
+	map_pos->x *= draw->len;
+	map_pos->y *= draw->len;
+	map_pos->x += draw->player_pos.x;
+	map_pos->y += draw->player_pos.y;
 }
 
 void	floorceil_draw_line(int y, t_data *data, t_floorceil_draw *draw)
@@ -55,10 +55,10 @@ void	floorceil_draw_line(int y, t_data *data, t_floorceil_draw *draw)
 	{
 		if (y >= draw->scalescreen_2 / data->rays.tab[x].len)
 		{
-			draw->context.box.x = map_pos.x - (int)map_pos.x;
+			draw->context.box.x = map_pos.x - (long)map_pos.x;
 			if(draw->context.box.x < 0.0)
 				draw->context.box.x += 1.0;
-			draw->context.box.y = map_pos.y - (int)map_pos.y;
+			draw->context.box.y = map_pos.y - (long)map_pos.y;
 			if(draw->context.box.y < 0.0)
 				draw->context.box.y += 1.0;
 			elem_draw_pixel(x, &draw->ceil, &draw->context);
@@ -78,10 +78,10 @@ void	draw_floor_ceil(t_data *data)
 	draw.winh_2 = data->win.height / 2;
 	draw.scalescreen_2 = data->scale_screen / 2;
 	draw.player_pos = position_to_vec2d(data->player.position);
-	draw.context.dark = data->dark;
-	draw.context.win = &data->win;
 	draw.ceil.tex = data->textures.floor_ceil.ceil;
 	draw.floor.tex = data->textures.floor_ceil.floor;
+	draw.context.win = &data->win;
+	draw.context.dark = data->dark;
 	draw.context.fog_enable = data->fog_enable;
 	y = 0;
 	while (y < draw.winh_2)

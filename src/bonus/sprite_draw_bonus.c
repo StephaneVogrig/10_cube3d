@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:37:46 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/14 11:28:07 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/16 15:25:08 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,37 +37,45 @@ static inline int is_outside_screen(t_strip *strip, int max)
 	return (strip->screen_start >= max || strip->screen_end < 0);
 }
 
-void	sprite_draw(t_sprite *sprite, int i, t_window *win, t_data *data)
+void	sprite_x_init(t_strip *sprite_x, t_sprite *sprite, int i, t_data *data)
+{
+	sprite_x->img = sprite->image[i];
+	sprite_x->screen_size = strip_screen_size(data->scale_screen, sprite->transform[i].y);
+	sprite_x->screen_start = (data->win.width - sprite_x->screen_size) / 2;
+	sprite_x->screen_start += sprite->transform[i].x * sprite_x->screen_size;
+	sprite_x->img_start = (int)sprite->state[i] * sprite_x->img->height;
+	strip_add_limit(sprite_x, data->win.width);
+}
+
+void	strip_y_init(t_strip *strip_y, t_sprite *sprite, int i, t_data *data)
+{
+	strip_y->img = sprite->image[i];
+	strip_y->screen_size = strip_screen_size(data->scale_screen, sprite->transform[i].y);
+	strip_y->fog = fog_compute(sprite->transform[i].y, data->fog_enable);
+	strip_y->dark = data->dark;
+	strip_setup(strip_y, data->win.height);
+}
+
+void	sprite_draw(t_sprite *sprite, int i, t_data *data)
 {
 	t_strip	sprite_x;
 	t_strip	strip_y;
 	double	distance;
 	int		x;
 
-	distance = sprite->transform[i].y;
-	if (data->fog_enable)
-		strip_y.fog = fog_exponential(distance);
-	else
-		strip_y.fog = 1.0;
+	sprite_x_init(&sprite_x, sprite, i, data);
+	if (sprite_x.screen_size < 1
+	|| is_outside_screen(&sprite_x, data->win.width))
+		return ;
+	strip_y_init(&strip_y, sprite, i, data);
 	if (strip_y.fog == 0.0)
 		return ;
-	strip_y.dark = data->dark;
-	sprite_x.img = sprite->image[i];
-	sprite_x.screen_size = strip_screen_size(data->scale_screen, distance);
-	sprite_x.screen_start = (win->width - sprite_x.screen_size) / 2;;
-	sprite_x.screen_start += sprite->transform[i].x * sprite_x.screen_size;
-	sprite_x.img_start = (int)sprite->state[i] * sprite_x.img->height;
-	strip_add_limit(&sprite_x, win->width);
-	if (sprite_x.screen_size < 1 || is_outside_screen(&sprite_x, win->width))
-		return ;
-	strip_y.img = sprite_x.img;
-	strip_y.screen_size = strip_screen_size(data->scale_screen, distance);
-	strip_setup(&strip_y, win->height);
+	distance = sprite->transform[i].y;
 	x = sprite_x.screen_start;
 	while (x < sprite_x.screen_end)
 	{
 		if (distance < data->rays.tab[x].len)
-			strip_draw(win, x, sprite_x.img_start, &strip_y);
+			strip_draw(&data->win, x, sprite_x.img_start, &strip_y);
 		sprite_x.img_start += sprite_x.img_delta;
 		x++;
 	}
