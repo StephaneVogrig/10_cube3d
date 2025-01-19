@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 15:03:52 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/11 21:52:59 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/19 18:41:20 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	draw_player(t_interface *interface, t_player *player)
 	t_vec2i	start;
 	t_vec2i	end;
 
+	printf("interface->scale: %d\n", interface->scale);
 	start.x = interface->scale * gridbox_to_double(player->x);
 	start.y = interface->scale * gridbox_to_double(player->y);
 	end.x = start.x + 2;
@@ -91,5 +92,8 @@ void	render_interface(t_interface *interface, t_data *data)
 	mlx_put_image_to_window(interface->mlx, interface->win, interface->img_fg, 0, 0);
 	// draw_interface(interface, &data->map);
 	// draw_rays(interface, &data->player, &data->rays);
-	// draw_player(interface, &data->player);
+	printf("player x: %d\n", data->player.x.grid);
+	printf("player y: %d\n", data->player.y.grid);
+	
+	draw_player(interface, &data->player);
 }

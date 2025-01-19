@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:44:55 by aska              #+#    #+#             */
-/*   Updated: 2025/01/13 22:51:46 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/19 20:30:53 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,18 @@ int increment_position(t_bool reset)
 
 void interface_tiles_buffer_index(t_tiles_ptr *tiles, t_texture *tex)
 {
-	tiles->floor = &tex->buffer[increment_position(TRUE)];
-	tiles->blank = &tex->buffer[increment_position(FALSE)];
-	tiles->one_wall = &tex->buffer[increment_position(FALSE)];
-	tiles->two_wall = &tex->buffer[increment_position(FALSE)];
-	tiles->corner_wall = &tex->buffer[increment_position(FALSE)];
-	tiles->three_wall = &tex->buffer[increment_position(FALSE)];
-	tiles->four_wall = &tex->buffer[increment_position(FALSE)];
-	tiles->one_corner = &tex->buffer[increment_position(FALSE)];
-	tiles->two_corner = &tex->buffer[increment_position(FALSE)];
-	tiles->three_corner = &tex->buffer[increment_position(FALSE)];
-	tiles->four_corner = &tex->buffer[increment_position(FALSE)];
-	tiles->one_wall_corner = &tex->buffer[increment_position(FALSE)];
-	tiles->one_wall_two_corner = &tex->buffer[increment_position(FALSE)];
-	tiles->two_wall_corner = &tex->buffer[increment_position(FALSE)];
-	tiles->door = &tex->buffer[increment_position(FALSE)];
-	tiles->door_one_wall = &tex->buffer[increment_position(FALSE)];
-	tiles->door_two_wall = &tex->buffer[increment_position(FALSE)];
-	tiles->empty = &tex->buffer[increment_position(FALSE)];
+	tiles->empty = &tex->buffer[increment_position(TRUE)];
+	tiles->floor = &tex->buffer[increment_position(FALSE)];
+	tiles->one = &tex->buffer[increment_position(FALSE)];
+	tiles->two = &tex->buffer[increment_position(FALSE)];
+	tiles->three = &tex->buffer[increment_position(FALSE)];
+	tiles->four = &tex->buffer[increment_position(FALSE)];
+	tiles->five = &tex->buffer[increment_position(FALSE)];
+	tiles->six = &tex->buffer[increment_position(FALSE)];
+	tiles->seven = &tex->buffer[increment_position(FALSE)];
+	tiles->height = &tex->buffer[increment_position(FALSE)];
+	tiles->nine = &tex->buffer[increment_position(FALSE)];
+	tiles->left_door = &tex->buffer[increment_position(FALSE)];
+	tiles->right_door = &tex->buffer[increment_position(FALSE)];
+	tiles->twin = &tex->buffer[increment_position(FALSE)];
 }

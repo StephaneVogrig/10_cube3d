@@ -6,7 +6,7 @@
 #    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/11 17:38:41 by aska             ###   ########.fr        #
+#    Updated: 2025/01/14 22:00:57 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,6 +149,8 @@ SRCS_BONUS 			:=	main_bonus.c \
 						interface/interface_utils_bonus.c \
 						interface/interface_render_bonus.c \
 						interface/interface_event_bonus.c \
+						interface/tile_rules.c \
+						interface/tile_rules_floor.c \
 						render/draw_floor_ceil_bonus.c \
 						render/draw_walls_bonus.c \
 						render/raycasting_bonus.c \

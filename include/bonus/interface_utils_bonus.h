@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:51:50 by aska              #+#    #+#             */
-/*   Updated: 2025/01/13 22:51:46 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/19 20:30:04 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define TILES_H 24
 # define PATH_ASSET_BG "assets/BG.png"
 # define PATH_ASSET_FG "assets/FG.png"
-# define PATH_ASSET_TILES "assets/tiles_minimap.png"
+# define PATH_ASSET_TILES "assets/tiles_minimapV2.png"
 
 # include "window.h"
 # include "texture.h"
@@ -27,26 +27,22 @@
 # include "vector.h"
 # include "map.h"
 
-typedef struct s_tiles
+typedef struct s_tiles_ptr
 {
-	int 	*floor;
-	int		*blank;
-	int		*one_wall;
-	int		*two_wall;
-	int		*corner_wall;
-	int		*three_wall;
-	int		*four_wall;
-	int		*one_corner;
-	int		*two_corner;
-	int		*three_corner;
-	int		*four_corner;
-	int		*one_wall_corner;
-	int		*one_wall_two_corner;
-	int		*two_wall_corner;
-	int		*door;
-	int		*door_one_wall;
-	int		*door_two_wall;
 	int		*empty;
+	int 	*floor;
+	int		*one;
+	int		*two;
+	int		*three;
+	int		*four;
+	int		*five;
+	int		*six;
+	int		*seven;
+	int		*height;
+	int		*nine;
+	int		*twin;
+	int		*left_door;
+	int		*right_door;
 }	t_tiles_ptr;
 
 typedef struct s_interface{
