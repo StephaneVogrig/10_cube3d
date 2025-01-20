@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_manda.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/06 16:28:39 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/20 15:19:10 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	lstmap_extract_info(t_textures *textures, t_map *map,
 	int 		ok;
 	char		*root_path;
 
+	root_path = NULL;
 	lst_map = NULL;
 	ok = file_load(map_path, &lst_map);
 	if (ok == SUCCESS)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/06 16:28:38 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/20 15:20:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ int	lstmap_extract_info(t_map *map, char *map_path, t_asset_lst **asset_lst, t_s
 	char		*root_path;
 	int			exit_code;
 
+	root_path = NULL;
 	lst_map = NULL;
 	exit_code = file_load(map_path, &lst_map);
 	if (exit_code == SUCCESS)
