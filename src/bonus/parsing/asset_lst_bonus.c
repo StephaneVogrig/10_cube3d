@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_lst_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2025/01/07 00:25:56 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/20 17:53:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,41 +67,47 @@ void	delete_all_asset_lst(t_asset_lst **head)
 	*head = NULL;
 }
 
+t_bool	assetlst_key_found(t_asset_lst *assetlst, char *key)
+{
+	while(assetlst)
+	{
+		if (ft_strcmp(assetlst->key, key) == 0)
+			return (TRUE);
+		assetlst = assetlst->next;
+	}
+	return (FALSE);
+}
+
 static t_bool chk_orientation_key(t_asset_lst *head)
 {
 	t_bool		orientation;
 
-	orientation = asset_lst_key_exist(head, 'W');
-	orientation &= asset_lst_key_exist(head, 'E');
-	orientation &= asset_lst_key_exist(head, 'S');
-	orientation &= asset_lst_key_exist(head, 'N');
+	orientation = assetlst_key_found(head, "WE");
+	orientation |= assetlst_key_found(head, "EA");
+	orientation |= assetlst_key_found(head, "SO");
+	orientation |= assetlst_key_found(head, "NO");
 	return (orientation);
 }
 
 t_bool	asset_lst_key_exist(t_asset_lst *head, char key)
 {
-	t_asset_lst	*tmp;
-	char		key_tmp[2];
-	t_bool		f_c_chk;
-	
-	key_tmp[0] = 'W';
-	key_tmp[1] = key;
-	tmp = head;
+	char		key_tmp[3];
+
 	if (key == '0')
-	{
-		f_c_chk = asset_lst_key_exist(head, 'F');
-		f_c_chk &= asset_lst_key_exist(head, 'C');
-			return (f_c_chk);
-	}
-	while (tmp != NULL)
-	{
-		if (ft_isdigit(key) == TRUE && ft_strcmp(tmp->key, key_tmp) == 0)
-			return (TRUE);
-		else if (tmp->key[0] == key)
-			return (TRUE);
-		tmp = tmp->next;
-	}
+		return (assetlst_key_found(head, "F") && assetlst_key_found(head, "C"));
 	if (key == '1')
-		return (chk_orientation_key(head));
-	return (FALSE);
+	{
+		if (chk_orientation_key(head))
+			return (TRUE);
+	}
+	if (ft_isdigit(key) == TRUE)
+	{
+		key_tmp[0] = 'W';
+		key_tmp[1] = key;
+		key_tmp[2] = '\0';
+		return (assetlst_key_found(head, key_tmp));
+	}
+	key_tmp[0] = key;
+	key_tmp[1] = '\0';
+	return (assetlst_key_found(head, key_tmp));
 }
