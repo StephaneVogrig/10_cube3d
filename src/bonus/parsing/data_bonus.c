@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/21 19:04:55 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:09:39 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ void	data_init(t_data *data)
 
 int	data_setup(t_data *data, char *map_path)
 {
-	t_data_extract	extract;
+	t_asset_lst		*asset_lst;
+	t_sprite_lst	*sprite_lst;
 	int				nbr_doors;
 	int				exit_code;
 	
-	ft_bzero(&extract, sizeof(extract));
-	exit_code = lstmap_extract_info(&data->map, map_path, extract, &nbr_doors);
+	asset_lst = NULL;
+	sprite_lst = NULL;
+	exit_code = lstmap_extract_info(&data->map, map_path, &asset_lst, &sprite_lst, &nbr_doors);
 	if (exit_code == SUCCESS)
 		exit_code = map_checker(&data->map, &data->player);
 	if (exit_code == SUCCESS)
