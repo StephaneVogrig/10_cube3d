@@ -6,7 +6,7 @@
 #    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/21 11:55:30 by ygaiffie         ###   ########.fr        #
+#    Updated: 2025/01/21 12:06:33 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -156,6 +156,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						interface/tile_rules_floor.c \
 						render/draw_floor_ceil_bonus.c \
 						render/draw_walls_bonus.c \
+						render/draw_wall_bonus.c \
 						render/raycasting_bonus.c \
 						render/render_bonus.c \
 						render/strip_bonus.c
