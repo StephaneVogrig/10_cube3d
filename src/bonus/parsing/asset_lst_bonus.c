@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2025/01/21 13:21:14 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:40:35 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,20 @@ static t_bool chk_orientation_key(t_asset_lst *head)
 	return (orientation);
 }
 
-// static t_bool chk_door_key(t_asset_lst *head, char)
-// {
+static t_bool chk_door_key(t_asset_lst *head, char key)
+{
+	char		key_tmp[3];
+	t_bool		door;
 
-// }
+	key_tmp[0] = key;
+	key_tmp[1] = '\0';
+	door = assetlst_key_found(head, key_tmp);
+	key_tmp[1] = 'E';
+	key_tmp[2] = '\0';
+	door &= assetlst_key_found(head, key_tmp);
+	return(door);
+}
+
 t_bool	asset_lst_key_exist(t_asset_lst *head, char key)
 {
 	char		key_tmp[3];
@@ -111,8 +121,5 @@ t_bool	asset_lst_key_exist(t_asset_lst *head, char key)
 		key_tmp[2] = '\0';
 		return (assetlst_key_found(head, key_tmp));
 	}
-	// if (ft_strchr("RLT", key))
-	key_tmp[0] = key;
-	key_tmp[1] = '\0';
-	return (assetlst_key_found(head, key_tmp));
+	return (chk_door_key(head, key));
 }
