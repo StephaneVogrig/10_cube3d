@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img_mlx.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:41:39 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/12/20 13:46:28 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/21 16:23:36 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	img_mlx_load_file(void *mlx, t_img_mlx *img, char *path)
 	char	*extension;
 
 	img->img = NULL;
+	img->mlx = mlx;
 	extension = ft_strrchr(path, '.');
 	if (extension == NULL)
 		return (ft_return(ERROR, 269, "Texture extension not found"));
@@ -30,7 +31,6 @@ int	img_mlx_load_file(void *mlx, t_img_mlx *img, char *path)
 		(ft_display(ERROR, "Texture extension not supported"));
 	if (img->img == NULL)
 		return (ft_return(ERROR, 270, "Texture attribution failed"));
-	img->mlx = mlx;
 	return (SUCCESS);
 }
 

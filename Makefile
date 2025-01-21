@@ -6,7 +6,7 @@
 #    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/21 12:06:33 by ygaiffie         ###   ########.fr        #
+#    Updated: 2025/01/21 15:47:08 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -180,7 +180,7 @@ DEPS				:=	$(OBJS_MANDA:.o=.d) $(OBJS_BONUS:.o=.d)
 # compilation -----------------------------------------------------------------#
 
 CC 					:= 	cc
-CFLAGS 				:= 	-Wall -Werror -Wextra -g
+CFLAGS 				:= 	-Wall -Werror -Wextra -g  # -fsanitize=address
 
 #------------------------------------------------------------------------------#
 # rules                                                                        #
@@ -240,7 +240,7 @@ test: all
 	./cub3d maps/manda/test/test.cub
 
 testbonus: bonus
-	./cub3d_bonus maps/bonus/test/doors.cub
+	./cub3d_bonus maps/bonus/test/coins_ys.cub
 
 makeall: $(NAME)
 makebonus : $(NAME_BONUS)

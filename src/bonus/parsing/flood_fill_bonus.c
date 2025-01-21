@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/03 22:53:00 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/21 18:47:11 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	check_cell(int x, int y, t_map *map, t_stack *stack)
 	push(stack, (t_cell){x, y});
 }
 
-int	map_checker(t_map *map, t_player *player)
+int	map_checker(t_map *map, t_player *player, int *nbr_doors)
 {
 	t_bool	ff_ok;
 	t_map	*map_copy;

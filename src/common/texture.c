@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:46:11 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/04 14:38:54 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/21 16:10:52 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ int	texture_load_to_buffer(void *mlx, t_texture *t, char *path)
 	t_img_mlx	img_mlx;
 	int			exit_code;
 
+	ft_printf("texture_load_to_buffer = %s\n",path);
+	ft_bzero(&img_mlx,sizeof(img_mlx));
+	exit_code = 0;
 	exit_code = img_mlx_load_file(mlx, &img_mlx, path);
 	if (exit_code == SUCCESS)
 	{

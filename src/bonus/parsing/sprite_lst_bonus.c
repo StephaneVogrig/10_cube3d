@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite_lst_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:44:20 by aska              #+#    #+#             */
-/*   Updated: 2024/12/19 22:25:42 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/21 15:22:31 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "sprite_lst_bonus.h"
 
@@ -55,17 +55,10 @@ void	delete_node_sprite(t_sprite_lst **head, t_sprite_lst *del_node)
 
 void	delete_all_sprite(t_sprite_lst **head)
 {
-	t_sprite_lst	*tmp;
-
 	if (*head == NULL)
 		return ;
-	tmp = *head;
-	while (tmp != NULL)
-	{
-		delete_node_sprite(head, tmp);
-		tmp = (*head)->next;
-	}
-	tmp = (*head)->next;
+	while (*head != NULL)
+		delete_node_sprite(head, *head);
 	delete_node_sprite(head, *head);
 	*head = NULL;
 }

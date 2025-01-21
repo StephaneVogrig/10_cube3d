@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/20 15:20:09 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/21 16:52:56 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,15 @@ int	check_line_remain(t_map *map, t_asset_lst **lst_asset, t_lstmap **lst_map)
 
 	tmp = *lst_map;
 	while (tmp != NULL && is_empty(tmp->line) == TRUE)
-	{
-		delete_node_lstmap(lst_map, tmp);
 		tmp = *lst_map;
-	}
 	while (tmp != NULL)
 	{
 		exit_code = is_empty(tmp->line);
 		if (exit_code != SUCCESS)
-			return (ft_return(ERROR, 6, "L.46:check_line_remain: Line is not empty"));
+			return (ft_return(ERROR, 6, "check_line_remain: Line is empty"));
 		exit_code = !is_map_valid_bonus(tmp->line);
 		if (exit_code != SUCCESS)
-			return (ft_return(ERROR, 6, "L.49:check_line_remain: Line is not valid"));
+			return (ft_return(ERROR, 6, "check_line_remain: Line is not valid"));
 		if (cmp_cell_line_to_asset_key(tmp->line, *lst_asset) == FAIL)
 			return (FAIL);
 		exit_code = set_map_info(map, tmp->line);

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   data_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/08 00:54:38 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/21 19:04:55 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_bonus.h"
-#include "debug_bonus.h"
 
 void	data_init(t_data *data)
 {
@@ -22,13 +21,12 @@ void	data_init(t_data *data)
 
 int	data_setup(t_data *data, char *map_path)
 {
-	t_asset_lst		*asset_lst;
-	t_sprite_lst	*sprite_lst;
+	t_data_extract	extract;
+	int				nbr_doors;
 	int				exit_code;
 	
-	asset_lst = NULL;
-	sprite_lst = NULL;
-	exit_code = lstmap_extract_info(&data->map, map_path, &asset_lst, &sprite_lst);
+	ft_bzero(&extract, sizeof(extract));
+	exit_code = lstmap_extract_info(&data->map, map_path, extract, &nbr_doors);
 	if (exit_code == SUCCESS)
 		exit_code = map_checker(&data->map, &data->player);
 	if (exit_code == SUCCESS)

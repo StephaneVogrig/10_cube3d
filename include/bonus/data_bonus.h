@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/21 11:56:01 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:03:35 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@
 #endif
 
 #define FOV 90
+
+typedef struct		s_data_extract
+{
+	t_asset_lst		**asset_lst;
+	t_sprite_lst	**sprite_lst;
+}					t_data_extract;
 
 typedef struct s_data
 {
