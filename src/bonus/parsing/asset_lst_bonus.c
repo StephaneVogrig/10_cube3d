@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_lst_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2025/01/20 17:53:11 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/21 13:21:14 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,16 @@ static t_bool chk_orientation_key(t_asset_lst *head)
 	t_bool		orientation;
 
 	orientation = assetlst_key_found(head, "WE");
-	orientation |= assetlst_key_found(head, "EA");
-	orientation |= assetlst_key_found(head, "SO");
-	orientation |= assetlst_key_found(head, "NO");
+	orientation &= assetlst_key_found(head, "EA");
+	orientation &= assetlst_key_found(head, "SO");
+	orientation &= assetlst_key_found(head, "NO");
 	return (orientation);
 }
 
+// static t_bool chk_door_key(t_asset_lst *head, char)
+// {
+
+// }
 t_bool	asset_lst_key_exist(t_asset_lst *head, char key)
 {
 	char		key_tmp[3];
@@ -107,6 +111,7 @@ t_bool	asset_lst_key_exist(t_asset_lst *head, char key)
 		key_tmp[2] = '\0';
 		return (assetlst_key_found(head, key_tmp));
 	}
+	// if (ft_strchr("RLT", key))
 	key_tmp[0] = key;
 	key_tmp[1] = '\0';
 	return (assetlst_key_found(head, key_tmp));
