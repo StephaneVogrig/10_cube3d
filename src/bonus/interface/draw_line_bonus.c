@@ -1,18 +1,18 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_line_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:29:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/16 17:51:05 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/20 15:54:30 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "draw_line_bonus.h"
 
-void	bresenham(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
+void	bresenham(t_interface *minimap, t_vec2i a, t_vec2i b, int color)
 {
 	int		err;
 	int		e2;
@@ -40,7 +40,7 @@ void	bresenham(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
 	}
 }
 
-void	draw_line_hor(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
+void	draw_line_hor(t_interface *minimap, t_vec2i a, t_vec2i b, int color)
 {
 	int		dx;
 
@@ -55,7 +55,7 @@ void	draw_line_hor(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
 	}
 }
 
-void	draw_line_diag(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
+void	draw_line_diag(t_interface *minimap, t_vec2i a, t_vec2i b, int color)
 {
 	t_vec2i	d;
 
@@ -68,7 +68,7 @@ void	draw_line_diag(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
 	}
 }
 
-void	draw_line_vert(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
+void	draw_line_vert(t_interface *minimap, t_vec2i a, t_vec2i b, int color)
 {
 	int		dy;
 
@@ -85,7 +85,7 @@ void	draw_line_vert(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
 	}
 }
 
-void	draw_line(t_minimap *minimap, t_vec2i a, t_vec2i b, int color)
+void	draw_line(t_interface *minimap, t_vec2i a, t_vec2i b, int color)
 {
 	if ((a.x >= MINIMAP_W && b.x >= MINIMAP_W) || (a.x < 0 && b.x < 0))
 		return ;

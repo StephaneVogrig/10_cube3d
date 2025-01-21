@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/08 19:09:00 by svogrig          ###   ########.fr        #
+#    Updated: 2025/01/21 11:55:30 by ygaiffie         ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 ifndef VERBOSE
 MAKEFLAGS += --no-print-directory --silent
@@ -143,15 +143,19 @@ SRCS_BONUS 			:=	main_bonus.c \
 						parsing/mlx_setup_bonus.c \
 						parsing/asset_lst_bonus.c \
 						parsing/sprite_lst_bonus.c \
+						interface/draw_line_bonus.c \
+						interface/draw_line_utils_bonus.c \
+						interface/draw_utils_bonus.c \
+						interface/draw_img_interface.c \
+						interface/draw_img_minimap.c \
+						interface/interface_bonus.c \
+						interface/interface_utils_bonus.c \
+						interface/interface_render_bonus.c \
+						interface/interface_event_bonus.c \
+						interface/tile_rules.c \
+						interface/tile_rules_floor.c \
 						render/draw_floor_ceil_bonus.c \
-						render/draw_line_bonus.c \
-						render/draw_line_utils_bonus.c \
-						render/draw_utils_bonus.c \
-						render/draw_wall_bonus.c \
 						render/draw_walls_bonus.c \
-						render/minimap_bonus.c \
-						render/minimap_render_bonus.c \
-						render/minimap_event_bonus.c \
 						render/raycasting_bonus.c \
 						render/render_bonus.c \
 						render/strip_bonus.c

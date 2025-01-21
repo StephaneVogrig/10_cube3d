@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line_bonus.h                                  :+:      :+:    :+:   */
+/*   draw_img_minimap.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/12 20:11:05 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/08 02:10:43 by aska             ###   ########.fr       */
+/*   Created: 2025/01/11 02:47:14 by aska              #+#    #+#             */
+/*   Updated: 2025/01/11 17:42:51 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_LINE_BONUS_H
-# define DRAW_LINE_BONUS_H
+#ifndef DRAW_IMG_MINIMAP_H
+# define DRAW_IMG_MINIMAP_H
 
-# include "draw_line_utils_bonus.h"
-# include "interface_bonus.h"
-# include "mlx.h"
+#include "interface_utils_bonus.h"
 
-void	draw_line(t_interface *minimap, t_vec2i a, t_vec2i b, int color);
+void    draw_image_minimap(t_interface *interface, t_vec2i start, t_vec2i end, t_map *map);
 
 #endif

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   data_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/14 11:27:48 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/21 11:56:01 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef DATA_BONUS_H
 # define DATA_BONUS_H
@@ -28,7 +28,7 @@
 # include "asset_lst_bonus.h"
 # include "door_bonus.h"
 # include "lstmap_extraction_bonus.h"
-# include "minimap_bonus.h"
+# include "interface_bonus.h"
 # include "mlx_setup_bonus.h"
 # include "sprite_bonus.h"
 # include "sprite_lst_bonus.h"
@@ -55,7 +55,7 @@ typedef struct s_data
 	double		scale_screen;
 	t_door_open	door_open_list[DOORS_SIZE];
 	t_sprite	sprite;
-	t_minimap	minimap;
+	t_interface	minimap;
 }				t_data;
 
 void	data_init(t_data *data);

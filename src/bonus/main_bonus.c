@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:20 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/06 15:16:26 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/08 19:02:14 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 	if (exit_code == SUCCESS)
 	{
 		event_setup(&data);
-		minimap_event_setup(&data.minimap, &data);
+		interface_event_setup(&data.minimap, &data);
 		render(&data);
 		mlx_loop(data.mlx);
 	}

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:04 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/16 15:21:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/21 11:58:09 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "render_bonus.h"
 
@@ -19,6 +19,6 @@ void	render(t_data *data)
 	raycasting(data->rays.tab, data);
 	draw_floor_ceil(data);
 	draw_walls(&data->win, data->rays.tab, data);
-	sprite_render(&data->sprite, &data->player, data);
-	render_minimap(&data->minimap, data);
+	sprite_render(&data->sprite, &data->player, &data->win, data);
+	render_interface(&data->minimap, data);
 }
