@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:09:49 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/25 18:29:26 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/21 23:10:00 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 # define DEBUG_MODE 2
 
 // -- choix fonts pour titre
-# include "ascii_Bloody.h"
+// # include "ascii_Bloody.h"
 // # include "ascii_two_block.h"
 // # include "ascii_Alligator.h"
-// # include "ascii_ANSI_Shadow.h"
+# include "ascii_ANSI_Shadow.h"
 
 // Lib include
 # include <errno.h>
