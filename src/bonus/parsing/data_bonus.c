@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/21 19:09:39 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/21 22:26:57 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ int	data_setup(t_data *data, char *map_path)
 {
 	t_asset_lst		*asset_lst;
 	t_sprite_lst	*sprite_lst;
-	int				nbr_doors;
 	int				exit_code;
 	
 	asset_lst = NULL;
 	sprite_lst = NULL;
-	exit_code = lstmap_extract_info(&data->map, map_path, &asset_lst, &sprite_lst, &nbr_doors);
+	exit_code = lstmap_extract_info(&data->map, map_path, &asset_lst, &sprite_lst);
 	if (exit_code == SUCCESS)
 		exit_code = map_checker(&data->map, &data->player);
 	if (exit_code == SUCCESS)
