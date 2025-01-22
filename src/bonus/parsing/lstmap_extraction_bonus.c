@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/22 23:07:41 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/22 23:58:34 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
 		exit_code = set_key_value(&kv, (*tmp)->line, asset_lst);
 		if (exit_code == SUCCESS)
 			exit_code = set_asset_lst(&kv, root_path, asset_lst, id);
-		else
+		if (exit_code != SUCCESS)
 			break ;
 		(*tmp)->line = NULL;
 		if (kv.key != NULL && ft_strcmp(kv.key, "SP") == 0)
