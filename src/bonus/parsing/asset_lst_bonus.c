@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_lst_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2025/01/21 18:57:35 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/22 21:19:42 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,15 @@ t_bool	asset_lst_key_exist(t_asset_lst *head, char key)
 		return (assetlst_key_found(head, key_tmp));
 	}
 	return (chk_door_key(head, key));
+}
+
+t_bool asset_lst_key_in_list(t_asset_lst *head, char *key)
+{
+	while (head)
+	{
+		if (ft_strcmp(head->key, key) == 0)
+			return (TRUE);
+		head = head->next;
+	}
+	return (FALSE);
 }

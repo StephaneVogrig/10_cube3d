@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/21 16:52:56 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/22 23:07:41 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
 	exit_code = SUCCESS;
 	while (tmp != NULL && exit_code == SUCCESS && is_newline_valid(tmp) != FAIL)
 	{
-		exit_code = set_key_value(&kv, (*tmp)->line);
+		exit_code = set_key_value(&kv, (*tmp)->line, asset_lst);
 		if (exit_code == SUCCESS)
 			exit_code = set_asset_lst(&kv, root_path, asset_lst, id);
 		else

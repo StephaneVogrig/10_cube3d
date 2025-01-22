@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:07:53 by aska              #+#    #+#             */
-/*   Updated: 2024/12/30 02:30:36 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/22 22:38:31 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ t_asset_lst	*insert_asset_lst(t_asset_lst **head, char *key, char *value,
 void	delete_node_asset(t_asset_lst **head, t_asset_lst *del_node);
 void	delete_all_asset_lst(t_asset_lst **head);
 t_bool	asset_lst_key_exist(t_asset_lst *head, char key);
+t_bool asset_lst_key_in_list(t_asset_lst *head, char *key);
 
 #endif

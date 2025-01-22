@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:58:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/06 22:33:32 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/22 21:14:47 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_tex_path
 	char	*path[14];
 }			t_tex_path;
 
-int		set_key_value(t_key_value *kv, char *line);
+int		set_key_value(t_key_value *kv, char *line, t_asset_lst **asset_lst);
 int		set_rgb(t_rgb *rgb, char *value);
 int		check_line(char *line);
 int		set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst, int id);
