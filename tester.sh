@@ -9,7 +9,7 @@ GRN="\033[0;32m"
 BYEL="\033[1;33m"
 BBLU="\033[1;34m"
 NC="\033[0m"
-MAP_ARRAY=($(ls $FOLDER_MAPS/*.*))
+MAP_ARRAY=($(ls $FOLDER_MAPS*.*))
 
 VERSION=$3
 LOG_FILE="tester.log"
@@ -42,7 +42,7 @@ for i in "${MAP_ARRAY[@]}"; do
     (timeout -s KILL "$TIME_LIMIT" "$CUB3D_EXEC" "$i") &>/tmp/_tmp_output
     EXIT_STATUS=$?
 
-    printf "Test #%03d : %s\n" $TEST_NUM "$i" >>"$LOG_FILE"
+    printf "\nTest #%03d : %s\n" $TEST_NUM "$i" >>"$LOG_FILE"
     cat /tmp/_tmp_output >>"$LOG_FILE"
     rm -f /tmp/_tmp_output
 
@@ -58,7 +58,8 @@ for i in "${MAP_ARRAY[@]}"; do
         RESULT="${BYEL}NO_VALID${NC}"
     fi
 
-    SPACES=$((COLS - ${#i} - ${#RESULT} - 12))
+    printf " : %d" $EXIT_STATUS
+    SPACES=$((COLS - ${#i} - ${#RESULT} - ${#EXIT_STATUS}- 15))
     [ $SPACES -lt 1 ] && SPACES=1
     printf "%${SPACES}s" ""
     echo -e "$RESULT"
