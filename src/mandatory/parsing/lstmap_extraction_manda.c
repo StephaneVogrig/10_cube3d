@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/22 23:31:58 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/22 23:59:50 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,9 @@ int	lstmap_to_textures(t_tex_path *tex_path, t_textures *tex,
 		exit_code = set_key_value(&kv, (*lst_map)->line, &fs);
 		if (exit_code == SUCCESS)
 			exit_code = set_path_and_color(tex_path, tex, &kv, root_path);
-		else
+		if (exit_code != SUCCESS)
 			break ;
-		if (exit_code == SUCCESS)
-			file_switch_key(&fs, &kv.key);
-		else
-			break ;
+		file_switch_key(&fs, &kv.key);
 		delete_node_lstmap(lst_map, *lst_map);
 		if (fs.file_ok == 0)
 			return (exit_code);

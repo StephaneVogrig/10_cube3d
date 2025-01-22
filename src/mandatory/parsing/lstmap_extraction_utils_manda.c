@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/22 23:40:52 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/23 00:13:55 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
 	{
 		if (root_path != NULL)
 			kv->value = ft_strjoin(root_path, kv->value);
+		if (kv->value == NULL)
+			return (ft_return(ERROR, 268, "Texture path malloc failed"));
 		fd = ft_open(kv->value, O_RDONLY);
 		if (fd == FAIL)
 		{
