@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/04 19:12:21 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/22 23:15:42 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,10 @@ int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
 			kv->value = ft_strjoin(root_path, kv->value);
 		fd = ft_open(kv->value, O_RDONLY);
 		if (fd == FAIL)
-			return (ft_return(ERROR, 268, "Texture File Invalid"));
+			exit_code = ft_return(ERROR, 268, "Texture File Invalid");
 		ft_close(fd);
-		exit_code = set_path_by_key(tex_path, kv);
+		if (exit_code == SUCCESS)
+			exit_code = set_path_by_key(tex_path, kv);
 		kv->value = ft_char_f(kv->value);
 	}
 	return (exit_code);
