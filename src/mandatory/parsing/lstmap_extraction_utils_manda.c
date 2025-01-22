@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/22 23:15:42 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/22 23:40:52 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	set_rgb(t_rgb *rgb, char *value)
 	if (arg == NULL || ft_tablen(arg) != 3)
 	{
 		ft_tab_f(arg);
-		return (FAIL);
+		return (ft_return(ERROR, 266, "Invalid Color"));
 	}
 	if (is_valid_color(arg[0]) == FALSE || is_valid_color(arg[1]) == FALSE
 		|| is_valid_color(arg[2]) == FALSE)
 	{
 		ft_tab_f(arg);
-		return (FAIL);
+		return (ft_return(ERROR, 266, "Invalid Color"));
 	}
 	rgb->r = (unsigned char)ft_atoi(arg[0]);
 	rgb->g = (unsigned char)ft_atoi(arg[1]);
@@ -69,10 +69,12 @@ int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
 			kv->value = ft_strjoin(root_path, kv->value);
 		fd = ft_open(kv->value, O_RDONLY);
 		if (fd == FAIL)
-			exit_code = ft_return(ERROR, 268, "Texture File Invalid");
+		{
+			kv->value = ft_char_f(kv->value);
+			return (ft_return(ERROR, 268, "Texture File Invalid"));
+		}
 		ft_close(fd);
-		if (exit_code == SUCCESS)
-			exit_code = set_path_by_key(tex_path, kv);
+		exit_code = set_path_by_key(tex_path, kv);
 		kv->value = ft_char_f(kv->value);
 	}
 	return (exit_code);

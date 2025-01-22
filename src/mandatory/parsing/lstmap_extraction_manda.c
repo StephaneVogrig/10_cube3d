@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_manda.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/20 15:19:10 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/22 23:31:58 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	lstmap_to_textures(t_tex_path *tex_path, t_textures *tex,
 			break ;
 		if (exit_code == SUCCESS)
 			file_switch_key(&fs, &kv.key);
+		else
+			break ;
 		delete_node_lstmap(lst_map, *lst_map);
 		if (fs.file_ok == 0)
 			return (exit_code);
