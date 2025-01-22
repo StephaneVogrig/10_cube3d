@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/21 19:03:35 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/22 01:29:36 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_data
 	t_ray_tab	rays;
 	double		tg_fov_2;
 	double		scale_screen;
-	t_door_open	door_open_list[DOORS_SIZE];
+	t_door_open	*door_open_list;
 	t_sprite	sprite;
 	t_interface	minimap;
 }				t_data;

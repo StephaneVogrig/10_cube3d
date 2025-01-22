@@ -1,16 +1,44 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   door_open_list_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 21:35:31 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/02 14:31:00 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/22 01:54:06 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "door_bonus.h"
+
+// int	door_open_list_init(t_data *data, t_map *map)
+// {
+// 	int nbr_doors;
+// 	t_vec2i pos;
+// 	t_door_open *current_node;
+// 	int node_passed;
+
+// 	nbr_doors = 0;
+// 	ft_bzero(&pos, sizeof(t_vec2i));
+// 	while (pos.y < map->height)
+// 	{
+// 		pos.x = 0;
+// 		while (pos.x < map->width)
+// 		{
+// 			if (ft_strchr( "RLT", map->grid[pos.y][pos.x]))
+// 				nbr_doors++;
+// 			pos.x++;
+// 		}
+// 		pos.y++;
+// 	}
+// 	data->door_open_list = ft_calloc(nbr_doors, sizeof(t_door_open));
+// 	if (data->door_open_list == NULL)
+// 		return (FAIL);
+
+// 	return (SUCCESS);
+// }
+
 
 static inline float	door_time_stage(t_stage stage)
 {
@@ -68,7 +96,7 @@ int	door_open_list_update(t_door_open *door_open_list, t_time_us dt)
 	return (render_needed);
 }
 
-static inline void	door_open_list_init(t_door_open *door, char *cell)
+static inline void	door_open_list_default(t_door_open *door, char *cell)
 {
 	door->cell = cell;
 	door->stage_rate = 1.0;
@@ -87,6 +115,6 @@ t_door_open	*door_open_list_add(char *cell, t_door_open *door_open_list)
 		printf("not enough place in door_open_list to open to add door!\n");
 		return (NULL);
 	}
-	door_open_list_init(door_open_list, cell);
+	door_open_list_default(door_open_list, cell);
 	return (door_open_list);
 }

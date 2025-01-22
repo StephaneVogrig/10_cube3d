@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   title.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 09:12:45 by aska              #+#    #+#             */
-/*   Updated: 2025/01/21 16:23:29 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/22 02:31:10 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "title.h"
+
+void	print_loading_state(char *step, char *name_function, char *element)
+{
+	int name_function_lenght;
+
+	name_function_lenght = ft_strlen(name_function)
+	ft_printf("\r")
+	ft_printf("\t LOADING ... ")
+}
 
 void    title(void)
 {

@@ -6,12 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:20 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/21 23:13:30 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/22 02:03:37 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main_bonus.h"
-#include "debug_bonus.h"
 
 int program_init(t_data *data, t_option *option, int argc, char **argv)
 {
@@ -49,11 +48,11 @@ int	main(int argc, char **argv)
 	t_data	data;
 	t_option option;
 
+	title();
 	exit_code = program_init(&data, &option, argc, argv);
 	if (exit_code == SUCCESS)
 		exit_code = program_setup(&data, &option, argv[1]);
-	// if (exit_code == SUCCESS)
-	// 	title();
+	
 	if (exit_code == SUCCESS)
 	{
 		event_setup(&data);
