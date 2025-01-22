@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/23 00:12:51 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/23 00:57:58 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst, int
 	}
 	fd = open(kv->value, O_RDONLY);
 	if (fd == FAIL)
-		return (open_failed_freed(kv->key, kv->value));
+		return (open_failed_freed(kv->key));
 	close(fd);
 	if (insert_asset_lst(asset_lst, kv->key, kv->value, id) == NULL)
 		return (ft_return(ERROR, 8, "set_asset_lst: Insert asset failed"));
