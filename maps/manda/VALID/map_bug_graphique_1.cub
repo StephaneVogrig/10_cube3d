@@ -1,10 +1,10 @@
-SO textures/ROCKSO.bmp
+SO textures/wall_texture.jpg
 
-NO textures/ROCKNO.bmp
-WE textures/ROCKWE.bmp
+NO textures/wall_texture.jpg
+WE textures/wall_texture.jpg
 
 
-EA textures/ROCKEA.bmp
+EA textures/wall_texture.jpg
 
 F 0,255,0
 C 0,0,255
