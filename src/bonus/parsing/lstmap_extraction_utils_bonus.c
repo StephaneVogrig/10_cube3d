@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils_bonus.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/23 16:38:27 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/23 20:44:46 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ static int open_failed_freed(char *value)
 	ft_putstr_fd("\t: open failure: " YEL, 2);
 	ft_putstr_fd(value, 2);
 	ft_putstr_fd(CRESET "\n", 2);
-	if (value != NULL)
-		value = ft_char_f(value);
 	return (8);
 }
 
@@ -34,14 +32,15 @@ int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst, int
 		return (SUCCESS);
 	}
 	if (root_path != NULL)
-	{
 		kv->value = ft_strjoin(root_path, kv->value);
-		if (kv->value == NULL)
-			return (ft_return(ERROR, 8, "set_asset_lst: Malloc asset path failed"));
-	}
+	if (kv->value == NULL)
+		return (ft_return(ERROR, 8, "set_asset_lst: Malloc asset path failed"));
 	fd = open(kv->value, O_RDONLY);
 	if (fd == FAIL)
+	{
+		kv->value = ft_char_f(kv->value);
 		return (open_failed_freed(kv->key));
+	}
 	close(fd);
 	if (insert_asset_lst(asset_lst, kv->key, kv->value, id) == NULL)
 		return (ft_return(ERROR, 8, "set_asset_lst: Insert asset failed"));
