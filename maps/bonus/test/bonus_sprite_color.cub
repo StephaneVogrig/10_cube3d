@@ -3,7 +3,7 @@ W2 textures/wall2.png
 W3 textures/wall3.png
 W4 textures/wall4.png
 W5 textures/wall5.png
-SP textures/ceil.png
+SP textures/ceil_128.png
 [1,2;1.4]
 [-1;-1]
 [10.9;5,3468]
@@ -21,7 +21,7 @@ SP textures/doorL.png
 [8;4]
 [9;4.5]
 F 0,0,128
-C textures/ceil.png
+C textures/ceil_128.png
 
 121111111111111111131
 300000000000000000002

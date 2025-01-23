@@ -13,8 +13,8 @@ T textures/doorT.png
 RE textures/doorRedge.png
 LE textures/doorLedge.png
 TE textures/doorTedge.png
-F textures/floor.png
-C textures/ceil.png
+F textures/floor_128.png
+C textures/ceil_128.png
 
 121111111111111111131
 30000000S000000000002
