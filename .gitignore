@@ -1,8 +1,8 @@
 .vscode
 *libft.a
 lib/libft-plus/obj/*
-cub3d
-cub3d_bonus
+cub3D
+cub3D_bonus
 .build/*
 *.tgz
 wolf3d*
