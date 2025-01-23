@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   fog_bonus.c                                        :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:35:05 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/16 13:56:49 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:11:12 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "fog_bonus.h"
 
@@ -21,17 +21,16 @@ float	fog_compute(double distance, int fog_enable)
 
 float	fog_exponential(double len)
 {
-	return (exp(-DENSITY * len));
+	if (len < 1.0)
+		return (1.0);
+	return (exp(-DENSITY * (len - 1.0)));
 }
 
 void	fog_color(t_rgb *start, float fog)
 {
-	if (fog > 0.0)
-	{
-		start->r *= fog;
-		start->g *= fog;
-		start->b *= fog;
-	}
+	start->r *= fog;
+	start->g *= fog;
+	start->b *= fog;
 }
 
 void	fog_tab_fill(char *tab, float fog)
