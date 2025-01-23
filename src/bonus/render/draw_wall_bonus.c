@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_wall_bonus.c                                  :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:07:24 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/09 17:32:10 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/23 02:12:40 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "draw_walls_bonus.h"
 
@@ -36,14 +36,14 @@ void	draw_wall_big_pixel(t_window *win, int x, double img_x, t_strip *strip)
 	y = strip->screen_start;
 	while (y < strip->screen_end)
 	{
-		window_put_pixel(win, x, y, color);
-		img_pos_y += strip->img_delta;
 		if (img_pos_y >= 1.0)
 		{
 			img_pxel.y++;
 			img_pos_y -= 1.0;
 			color = draw_wall_color(strip, img_pxel);
 		}
+		window_put_pixel(win, x, y, color);
+		img_pos_y += strip->img_delta;
 		y++;
 	}
 }
