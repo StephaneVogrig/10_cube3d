@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils_bonus.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/23 00:57:58 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/23 16:38:27 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ int chk_key(char *key)
 	return (SUCCESS);
 }
 
-
-
 int	set_key_value(t_key_value *kv, char *line, t_asset_lst **asset_lst)
 {
 	if (setup_key_value_separate_by_space(&(kv->key), &(kv->value),
@@ -81,7 +79,8 @@ int	set_key_value(t_key_value *kv, char *line, t_asset_lst **asset_lst)
 		return (FAIL);
 	if (chk_key(kv->key) == FAIL)
 		return (FAIL);
-	if (asset_lst_key_in_list(*asset_lst, kv->key) == TRUE)
+	if (ft_strcmp(kv->key, "SP") != 0
+		&& asset_lst_key_in_list(*asset_lst, kv->key) == TRUE)
 		return (ft_return(ERROR, FAIL, "set_key_value: key already exist"));
 	remove_root_value(kv->value);
 	return (SUCCESS);
