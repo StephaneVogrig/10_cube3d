@@ -6,3 +6,4 @@ cub3D_bonus
 .build/*
 *.tgz
 wolf3d*
+tester.log
