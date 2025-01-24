@@ -14,9 +14,9 @@ MAP_ARRAY=($(ls $FOLDER_MAPS*.*))
 VERSION=$3
 LOG_FILE="tester.log"
 if [ "$VERSION" = "bonus" ]; then
-    CUB3D_EXEC="./cub3d_bonus"
+    CUB3D_EXEC="./cub3D_bonus"
 else
-    CUB3D_EXEC="./cub3d"
+    CUB3D_EXEC="./cub3D"
 fi
 
 if [ ! -f "$CUB3D_EXEC" ]; then
