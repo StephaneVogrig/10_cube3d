@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/24 00:27:40 by svogrig          ###   ########.fr        #
+#    Updated: 2025/01/24 11:50:52 by svogrig          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -237,10 +237,10 @@ init:
 	@echo -e ""
 
 test: all
-	./cub3d maps/manda/test/test.cub
+	./$(NAME) maps/manda/test/test.cub
 
 testbonus: bonus
-	./cub3d_bonus maps/bonus/test/coins_ys.cub
+	./$(NAME)_bonus maps/bonus/test/coins_ys.cub
 
 makeall: $(NAME)
 makebonus : $(NAME_BONUS)
