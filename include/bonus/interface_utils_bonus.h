@@ -6,17 +6,17 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:51:50 by aska              #+#    #+#             */
-/*   Updated: 2025/01/19 20:30:04 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/24 02:53:42 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INTERFACE_UTILS_BONUS_H
 # define INTERFACE_UTILS_BONUS_H
 
-# define MINIMAP_W 720
-# define MINIMAP_H 480
-# define TILES_W 24
-# define TILES_H 24
+# define MINIMAP_W 540
+# define MINIMAP_H 360
+# define TILES_W 18
+# define TILES_H 18
 # define PATH_ASSET_BG "assets/BG.png"
 # define PATH_ASSET_FG "assets/FG.png"
 # define PATH_ASSET_TILES "assets/tiles_minimapV2.png"

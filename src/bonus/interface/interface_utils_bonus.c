@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:44:55 by aska              #+#    #+#             */
-/*   Updated: 2025/01/19 20:30:53 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/24 03:05:50 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ int increment_position(t_bool reset)
 
 void interface_tiles_buffer_index(t_tiles_ptr *tiles, t_texture *tex)
 {
-	tiles->empty = &tex->buffer[increment_position(TRUE)];
-	tiles->floor = &tex->buffer[increment_position(FALSE)];
-	tiles->one = &tex->buffer[increment_position(FALSE)];
+	tiles->floor = &tex->buffer[increment_position(TRUE)];
+	tiles->twin = &tex->buffer[increment_position(FALSE)];
+	tiles->right_door = &tex->buffer[increment_position(FALSE)];
+	tiles->left_door = &tex->buffer[increment_position(FALSE)];
 	tiles->two = &tex->buffer[increment_position(FALSE)];
 	tiles->three = &tex->buffer[increment_position(FALSE)];
 	tiles->four = &tex->buffer[increment_position(FALSE)];
@@ -50,7 +51,6 @@ void interface_tiles_buffer_index(t_tiles_ptr *tiles, t_texture *tex)
 	tiles->seven = &tex->buffer[increment_position(FALSE)];
 	tiles->height = &tex->buffer[increment_position(FALSE)];
 	tiles->nine = &tex->buffer[increment_position(FALSE)];
-	tiles->left_door = &tex->buffer[increment_position(FALSE)];
-	tiles->right_door = &tex->buffer[increment_position(FALSE)];
-	tiles->twin = &tex->buffer[increment_position(FALSE)];
+	tiles->one = &tex->buffer[increment_position(FALSE)];
+	tiles->empty = &tex->buffer[increment_position(FALSE)];
 }

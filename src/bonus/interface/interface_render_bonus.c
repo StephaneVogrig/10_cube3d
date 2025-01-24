@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 15:03:52 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/20 17:16:07 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/24 02:58:28 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	draw_player(t_interface *interface)
 	t_vec2i	start;
 	t_vec2i	end;
 
-	start.x = MINIMAP_W / 2;
-	start.y = MINIMAP_H / 2;
-	end.x = start.x + 23;
-	end.y = start.y + 23;
+	start.x = MINIMAP_W >> 1;
+	start.y = MINIMAP_H >> 1;
+	end.x = start.x + TILES_H -1;
+	end.y = start.y + TILES_W -1;
 	draw_rectangle(interface, start, end, 0xAAFFFF00);
 }
 
