@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/11 02:40:41 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/24 12:49:42 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,11 @@ int	interface_setup(t_interface *interface, void *mlx, t_window *win, t_map *map
 
 	interface->mlx = mlx; 
 	exit = interface_asset_setup(interface);
+	if (exit != SUCCESS)
+		return (ft_return(ERROR, 24, "interface_setup: asset setup"));
 	interface->win = mlx_new_window(mlx, MINIMAP_W, MINIMAP_H, "interface");
 	if (interface->win == NULL)
-		return (ft_return(ERROR, FAIL, "interface_setup: window in interface setup"));
+		return (ft_return(ERROR, 25, "interface_setup: window in interface setup"));
 	mlx_get_screens_size(mlx, interface->win, &width, &height);
 	width = (width + win->width) / 2;
 	height = (height - win->height) / 2;
