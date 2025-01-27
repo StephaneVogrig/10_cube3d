@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_loop_bonus.h                                  :+:      :+:    :+:   */
+/*   mouse_utils_bonus.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 00:39:01 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 19:19:26 by svogrig          ###   ########.fr       */
+/*   Created: 2025/01/27 19:13:07 by svogrig           #+#    #+#             */
+/*   Updated: 2025/01/27 23:34:21 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_LOOP_BONUS_H
-# define GAME_LOOP_BONUS_H
+#ifndef MOUSE_UTILS_BONUS_H
+# define MOUSE_UTILS_BONUS_H
 
-# include <math.h>
-# include "data_bonus.h"
-# include "gametime.h"
-# include "mouse_utils_bonus.h"
-# include "player_move_bonus.h"
-# include "render_bonus.h"
+# include "window.h"
 
-int	game_loop(void *param);
+void	mouse_set_on_center(t_window *win);
+void	mouse_mode_switch(t_window *win, int *mouse_mode);
 
 #endif

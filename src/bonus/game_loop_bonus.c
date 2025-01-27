@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 00:38:20 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:02:41 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 19:20:40 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static int	check_mouse_move(t_data *data)
 	if (!dx)
 		return (FALSE);
 	data->player.dir += M_PI * dx / data->win.width;
-	mlx_mouse_move(data->mlx, data->win.win, data->win.width / 2,
-		data->win.height / 2);
+	mouse_set_on_center(&data->win);
 	return (TRUE);
 }
 
@@ -62,5 +61,6 @@ int	game_loop(void *param)
 		render_needed |= check_move(data->key, delta_time, data);
 	}
 	render(data);
+	fps_print(gametime() - oldtime);
 	return (SUCCESS);
 }

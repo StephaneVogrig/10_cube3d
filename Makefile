@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/27 17:38:47 by svogrig          ###   ########.fr        #
+#    Updated: 2025/01/27 19:16:34 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,17 +114,18 @@ SRCS_MANDA			:=	$(SRCS_MANDA:%=$(SRC_DIR)/%)
 SRC_BONUS_DIR		:=	bonus
 
 SRCS_BONUS 			:=	main_bonus.c \
+						asset_bonus.c \
+						asset_utils_bonus.c \
 						cell_bonus.c \
 						dda_bonus.c \
 						event_bonus.c \
 						fog_bonus.c \
 						game_loop_bonus.c \
-						player_move_bonus.c \
-						pointer_table_bonus.c \
-						asset_bonus.c \
-						asset_utils_bonus.c \
+						mouse_utils_bonus.c \
 						option_bonus.c \
 						option_utils_bonus.c \
+						player_move_bonus.c \
+						pointer_table_bonus.c \
 						door/door_bonus.c \
 						door/door_collide_bonus.c \
 						door/door_hit_bonus.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:02:17 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 23:34:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	on_win_event(int event, void *param)
 	return (SUCCESS);
 }
 
-#define KEY_F 9
-
 int	on_keydown(int key, void *param)
 {
 	t_data	*data;
@@ -42,25 +40,13 @@ int	on_keydown(int key, void *param)
 	return (SUCCESS);
 }
 
-void	mouse_mode_switch(void *mlx, t_window *win, int *mouse_mode)
-{
-	*mouse_mode = *mouse_mode == 0;
-	if (*mouse_mode == 1)
-	{
-		mlx_mouse_move(mlx, win->win, win->width / 2, win->height / 2);
-		mlx_mouse_hide();
-	}
-	else
-		mlx_mouse_show();
-}
-
 int	on_keyup(int key, void *param)
 {
 	t_data	*data;
 
 	data = (t_data *)param;
 	if (key == KEY_T && data->win.focused)
-		mouse_mode_switch(data->mlx, &data->win, &data->mouse_mode);
+		mouse_mode_switch(&data->win, &data->mouse_mode);
 	else
 		set_key_up(&data->key, key);
 	return (SUCCESS);
