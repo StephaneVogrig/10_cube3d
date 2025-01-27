@@ -6,28 +6,30 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:44:55 by aska              #+#    #+#             */
-/*   Updated: 2025/01/24 12:50:18 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 15:48:04 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface_utils_bonus.h"
 
-int interface_setup_texture(void *mlx, t_texture *tex, char *path)
+int	interface_setup_texture(void *mlx, t_texture *tex, char *path)
 {
-	int fd;
+	int	fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == FAIL)
-		return (ft_return(ERROR, FAIL, "interface_setup_texture: no open asset"));
+		return (ft_return(ERROR, FAIL,
+				"interface_setup_texture: no open asset"));
 	close(fd);
 	if (texture_load_to_buffer(mlx, tex, path) == FAIL)
-		return (ft_return(ERROR, FAIL, "interface_setup_texture: load texture error"));
+		return (ft_return(ERROR, FAIL,
+				"interface_setup_texture: load texture error"));
 	return (SUCCESS);
 }
 
-int increment_position(t_bool reset)
+int	increment_position(t_bool reset)
 {
-	static int position = 0;
+	static int	position = 0;
 
 	if (reset)
 	{
@@ -37,7 +39,7 @@ int increment_position(t_bool reset)
 	return (position += TILES_W * TILES_H);
 }
 
-void interface_tiles_buffer_index(t_tiles_ptr *tiles, t_texture *tex)
+void	interface_tiles_buffer_index(t_tiles_ptr *tiles, t_texture *tex)
 {
 	tiles->floor = &tex->buffer[increment_position(TRUE)];
 	tiles->twin = &tex->buffer[increment_position(FALSE)];

@@ -22,7 +22,7 @@ t_sprite_lst	*insert_sprite_lst(t_sprite_lst **head, double x, double y,
 	new_node = (t_sprite_lst *)malloc(sizeof(t_sprite_lst));
 	if (new_node == NULL)
 		return (NULL);
-    new_node->id = id;
+	new_node->id = id;
 	new_node->x = x;
 	new_node->y = y;
 	new_node->next = NULL;
@@ -63,9 +63,9 @@ void	delete_all_sprite(t_sprite_lst **head)
 	*head = NULL;
 }
 
-int get_lst_size(t_sprite_lst *head)
+int	get_lst_size(t_sprite_lst *head)
 {
-	int		size;
+	int				size;
 	t_sprite_lst	*tmp;
 
 	size = 0;

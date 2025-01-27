@@ -12,9 +12,10 @@
 
 #include "draw_utils_bonus.h"
 
-void	draw_rectangle(t_interface *minimap, t_vec2i begin, t_vec2i end, int color)
+void	draw_rectangle(t_interface *minimap, t_vec2i begin, t_vec2i end,
+		int color)
 {
-	int x;
+	int	x;
 	int	y;
 
 	y = begin.y;

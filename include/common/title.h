@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   title.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:54:57 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/11/01 18:55:14 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:04:43 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TITLE_H
 # define TITLE_H
 
-#include "libft.h"
+# include "libft.h"
 
-void    title(void);
+void	title(void);
 
 #endif

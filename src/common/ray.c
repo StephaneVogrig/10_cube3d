@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 00:32:37 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/31 15:04:28 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:49:37 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "ray.h"
 
@@ -32,7 +32,7 @@ void	ray_destroy(t_ray_tab *rays)
 
 t_vec2d	ray_vec_start(t_vec2d player_dirvec, double tg_fov_2)
 {
-	t_vec2d vec;
+	t_vec2d	vec;
 
 	vec.x = player_dirvec.x + (player_dirvec.y * tg_fov_2);
 	vec.y = player_dirvec.y - (player_dirvec.x * tg_fov_2);
@@ -41,7 +41,7 @@ t_vec2d	ray_vec_start(t_vec2d player_dirvec, double tg_fov_2)
 
 t_vec2d	ray_vec_step(t_vec2d player_dirvec, int win_w, double tg_fov_2)
 {
-	t_vec2d vec;
+	t_vec2d	vec;
 	double	step;
 
 	step = 2.0 / win_w;

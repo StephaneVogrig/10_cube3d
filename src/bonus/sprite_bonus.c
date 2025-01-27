@@ -1,20 +1,21 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/31 14:49:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:03:11 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "sprite_bonus.h"
 
-static void	sprite_fill(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *textures)
+static void	sprite_fill(t_sprite *sprite, t_sprite_lst *sprite_lst,
+		t_asset *textures)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (sprite_lst != NULL)
@@ -22,7 +23,8 @@ static void	sprite_fill(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *tex
 		sprite->image[i] = textures->value[sprite_lst->id];
 		sprite->pos[i] = vector2d(sprite_lst->x, sprite_lst->y);
 		sprite->order[i] = i;
-		sprite->nbr_state[i] = sprite->image[i]->width / sprite->image[i]->height;
+		sprite->nbr_state[i] = sprite->image[i]->width
+			/ sprite->image[i]->height;
 		sprite_lst = sprite_lst->next;
 		i++;
 	}
@@ -91,7 +93,7 @@ int	sprite_update_state(float *state, int nbr_state, t_time_us dt)
 
 int	sprite_update(t_sprite *sprite, t_time_us dt)
 {
-	int render_needed;
+	int	render_needed;
 	int	i;
 
 	render_needed = FALSE;
@@ -99,7 +101,8 @@ int	sprite_update(t_sprite *sprite, t_time_us dt)
 	while (i < sprite->nbr)
 	{
 		if (sprite->collected[i] == FALSE)
-			render_needed |= sprite_update_state(&sprite->state[i], sprite->nbr_state[i], dt);
+			render_needed |= sprite_update_state(&sprite->state[i],
+					sprite->nbr_state[i], dt);
 		i++;
 	}
 	return (render_needed);

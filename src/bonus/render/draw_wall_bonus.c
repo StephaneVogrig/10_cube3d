@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:07:24 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/23 02:12:40 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:11:09 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	draw_wall_big_pixel(t_window *win, int x, double img_x, t_strip *strip)
 	}
 }
 
-void	draw_wall_small_pixel(t_window *win, int x, double img_x, t_strip *strip)
+void	draw_wall_small_pixel(t_window *win, int x, double img_x,
+		t_strip *strip)
 {
 	int		y;
 	int		color;

@@ -1,24 +1,23 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/02 22:07:37 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:11:12 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "raycasting_bonus.h"
 
 void	raycast(t_ray *ray, t_position *start, t_data *data)
 {
 	char	*cell;
-	
+
 	cell = map_get_cell_ptr(&data->map, start);
-	if (cell_is_door(cell)
-	&& (is_collide_door(ray, start, data)))
+	if (cell_is_door(cell) && (is_collide_door(ray, start, data)))
 	{
 		if (ray->hit_side == SIDE_DOOR_X || ray->hit_side == SIDE_EDGE_Y)
 			ray->hit_axis = 'x';
@@ -35,7 +34,7 @@ void	raycasting(t_ray *ray, t_data *data)
 {
 	t_vec2d	player_dirvec;
 	t_vec2d	camera_step;
-	t_vec2d ray_vec;
+	t_vec2d	ray_vec;
 	int		i;
 
 	player_dirvec = dir_to_dirvec(data->player.dir);

@@ -12,7 +12,7 @@
 
 #include "pointer_table_bonus.h"
 
-void pointer_table_init_door(t_asset *asset , int i)
+void	pointer_table_init_door(t_asset *asset, int i)
 {
 	if (asset->key[i][0] == 'R')
 	{
@@ -37,14 +37,15 @@ void pointer_table_init_door(t_asset *asset , int i)
 	}
 }
 
-void pointer_table_init(t_asset *asset)
+void	pointer_table_init(t_asset *asset)
 {
-	int i = -1;
+	int	i;
 
+	i = -1;
 	while (asset->key[++i] != NULL)
 	{
 		if (ft_strcmp(asset->key[i], "SP") == 0)
-			continue;
+			continue ;
 		if (asset->key[i][0] == 'W')
 		{
 			if (asset->key[i][1] == 'E')
@@ -66,7 +67,7 @@ void pointer_table_init(t_asset *asset)
 	}
 }
 
-t_texture *ptr_tbl_get_orientation_wall(t_asset *asset, char orientation)
+t_texture	*ptr_tbl_get_orientation_wall(t_asset *asset, char orientation)
 {
 	if (asset->wall[0] != NULL)
 		return (asset->wall[0]);
@@ -82,7 +83,8 @@ t_texture *ptr_tbl_get_orientation_wall(t_asset *asset, char orientation)
 	return (NULL);
 }
 
-t_texture *ptr_tbl_get_orientation_door(t_asset *asset, char cell, char orientation)
+t_texture	*ptr_tbl_get_orientation_door(t_asset *asset, char cell,
+		char orientation)
 {
 	if (orientation == 2 || orientation == 3)
 	{

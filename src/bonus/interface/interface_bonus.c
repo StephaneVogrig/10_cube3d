@@ -6,12 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/24 12:49:42 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 16:28:03 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface_bonus.h"
-#include "debug_bonus.h"
 
 int	interface_scale(t_map *map)
 {
@@ -44,38 +43,40 @@ void	interface_destroy(t_interface *interface)
 		mlx_destroy_window(interface->mlx, interface->win);
 }
 
-int interface_asset_setup(t_interface *interface)
+int	interface_asset_setup(t_interface *interface)
 {
-	int exit;
-	void *mlx;
-    
+	int		exit;
+	void	*mlx;
+
 	mlx = interface->mlx;
-    exit = interface_setup_texture(mlx, &interface->fg, PATH_ASSET_FG);
+	exit = interface_setup_texture(mlx, &interface->fg, PATH_ASSET_FG);
 	if (exit == FAIL)
 		return (FAIL);
-    exit = interface_setup_texture(mlx,&interface->bg, PATH_ASSET_BG);
+	exit = interface_setup_texture(mlx, &interface->bg, PATH_ASSET_BG);
 	if (exit == FAIL)
 		return (FAIL);
-    exit = interface_setup_texture(mlx, &interface->tiles, PATH_ASSET_TILES);
+	exit = interface_setup_texture(mlx, &interface->tiles, PATH_ASSET_TILES);
 	if (exit == FAIL)
 		return (FAIL);
 	interface_tiles_buffer_index(&interface->tiles_index, &interface->tiles);
 	return (exit);
 }
 
-int	interface_setup(t_interface *interface, void *mlx, t_window *win, t_map *map)
+int	interface_setup(t_interface *interface, void *mlx, t_window *win,
+		t_map *map)
 {
-	int			width;
-	int			height;
-	int			exit;
+	int	width;
+	int	height;
+	int	exit;
 
-	interface->mlx = mlx; 
+	interface->mlx = mlx;
 	exit = interface_asset_setup(interface);
 	if (exit != SUCCESS)
 		return (ft_return(ERROR, 24, "interface_setup: asset setup"));
 	interface->win = mlx_new_window(mlx, MINIMAP_W, MINIMAP_H, "interface");
 	if (interface->win == NULL)
-		return (ft_return(ERROR, 25, "interface_setup: window in interface setup"));
+		return (ft_return(ERROR, 25,
+				"interface_setup: window in interface setup"));
 	mlx_get_screens_size(mlx, interface->win, &width, &height);
 	width = (width + win->width) / 2;
 	height = (height - win->height) / 2;

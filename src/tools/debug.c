@@ -6,25 +6,25 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:13:43 by aska              #+#    #+#             */
-/*   Updated: 2024/12/27 23:10:38 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 16:36:20 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "debug.h"
 
-void print_exit_code(int exit_code)
+void	print_exit_code(int exit_code)
 {
 	if (exit_code == SUCCESS)
-		ft_printf("%i\t: "HGRN"SUCCESS\n"CRESET, exit_code);
+		ft_printf("%i\t: " HGRN "SUCCESS\n" CRESET, exit_code);
 	else if (exit_code == FAIL)
-		ft_printf("%i\t: "HRED"FAIL\n"CRESET, exit_code);
+		ft_printf("%i\t: " HRED "FAIL\n" CRESET, exit_code);
 	else
-		ft_printf("%i\t: "HYEL"OTHER\n"CRESET, exit_code);
+		ft_printf("%i\t: " HYEL "OTHER\n" CRESET, exit_code);
 }
 
-void print_buffer(t_texture *t)
+void	print_buffer(t_texture *t)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < t->height * t->width)
@@ -35,43 +35,43 @@ void print_buffer(t_texture *t)
 	}
 }
 
-void print_texture(t_texture *t)
+void	print_texture(t_texture *t)
 {
 	if (t == NULL)
 	{
 		printf("texture is NULL\n");
 		return ;
 	}
-	printf(HYEL"texture = %p\t| ", t);
+	printf(HYEL "texture = %p\t| ", t);
 	printf("width: %i,\theight: %i\n", t->width, t->height);
 	printf("buffer = %p\n" CRESET, t->buffer);
 	print_buffer(t);
 }
 
-void    print_tab(char **tab)
+void	print_tab(char **tab)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (tab[i] != NULL)
-    {
-        ft_printf("%s\n", tab[i]);
-        i++;
-    }
+	i = 0;
+	while (tab[i] != NULL)
+	{
+		ft_printf("%s\n", tab[i]);
+		i++;
+	}
 }
 
 void	map_print_ptr(t_map *map)
 {
-	int i;
+	int	i;
 
 	printf("tab_ptr = %p\n", map->grid);
 	printf("-------------------------------------------------------------\n");
 	i = 0;
-    while (map->grid[i] != NULL)
-    {
-        printf("ptr = %p\n", map->grid[i]);
-        i++;
-    }
+	while (map->grid[i] != NULL)
+	{
+		printf("ptr = %p\n", map->grid[i]);
+		i++;
+	}
 	printf("-------------------------------------------------------------\n");
 }
 

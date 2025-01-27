@@ -1,28 +1,28 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:02:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/08 18:58:11 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:04:24 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef SPRITE_BONUS_H
 # define SPRITE_BONUS_H
 
-# include "texture.h"
-# include "sprite_lst_bonus.h"
 # include "asset_bonus.h"
-# include "position.h"
-# include "player.h"
-# include "ray.h"
-# include "window.h"
 # include "color.h"
 # include "gametime.h"
+# include "player.h"
+# include "position.h"
+# include "ray.h"
+# include "sprite_lst_bonus.h"
 # include "strip_bonus.h"
+# include "texture.h"
+# include "window.h"
 
 /*
 	square of distance between player and sprite for collect sprite
@@ -45,12 +45,13 @@ typedef struct s_sprite
 
 /* sprite_bonus.c */
 
-int		sprite_setup(t_sprite *sprite, t_sprite_lst *sprite_lst, t_asset *textures);
-void	sprite_destroy(t_sprite *sprite);
-int		sprite_update(t_sprite *sprite, t_time_us dt);
+int				sprite_setup(t_sprite *sprite, t_sprite_lst *sprite_lst,
+					t_asset *textures);
+void			sprite_destroy(t_sprite *sprite);
+int				sprite_update(t_sprite *sprite, t_time_us dt);
 
 /* sprite_collect_bonus.c*/
 
-void	sprite_collect(t_sprite *sprite, t_player *player);
+void			sprite_collect(t_sprite *sprite, t_player *player);
 
 #endif

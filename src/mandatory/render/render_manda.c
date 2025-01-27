@@ -1,22 +1,22 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   render_manda.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:16:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/27 02:33:26 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:02:45 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
+#include "draw_walls_manda.h"
 #include "floor_ceil_mlx_img.h"
 #include "render_manda.h"
-#include "draw_walls_manda.h"
 
 void	draw_floor_ceil(t_window *win, t_map *map, t_player *player)
 {
-	int		dark;
+	int	dark;
 
 	dark = map_get_cell(map, &player->position) == WALL;
 	floor_ceil_put_to_window(win, dark);

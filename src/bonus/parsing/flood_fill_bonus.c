@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/21 22:27:18 by aska             ###   ########.fr       */
+/*   Created: 2025/01/27 15:08:25 by aska              #+#    #+#             */
+/*   Updated: 2025/01/27 16:28:08 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "flood_fill.h"
-#include "debug_bonus.h"
 
 static void	map_copy_free(t_map *map_copy)
 {
@@ -19,10 +18,10 @@ static void	map_copy_free(t_map *map_copy)
 	free(map_copy);
 }
 
-static t_map *copy_map(t_map *map)
+static t_map	*copy_map(t_map *map)
 {
-	t_map *map_copy;
-	int i;
+	t_map	*map_copy;
+	int		i;
 
 	map_copy = malloc(sizeof(t_map));
 	if (map_copy == NULL)
@@ -60,13 +59,13 @@ int	map_checker(t_map *map, t_player *player)
 {
 	t_bool	ff_ok;
 	t_map	*map_copy;
-	int exit_code;
+	int		exit_code;
 
 	exit_code = map_player_finder(map, player);
 	if (exit_code != SUCCESS)
 		return (exit_code);
 	map_copy = copy_map(map);
-	if(map_copy == NULL)
+	if (map_copy == NULL)
 		return (FAIL);
 	ff_ok = chk_flood_fill(map_copy, player->x.grid, player->y.grid);
 	map->grid[player->y.grid][player->x.grid] = '0';

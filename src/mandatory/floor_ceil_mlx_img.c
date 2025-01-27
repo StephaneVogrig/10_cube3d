@@ -1,22 +1,23 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   floor_ceil_mlx_img.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 01:36:01 by stephane          #+#    #+#             */
-/*   Updated: 2024/12/22 23:35:49 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:58:47 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "floor_ceil_mlx_img.h"
 
-static void	draw_ceil_floor(t_window *win, void *img, int color_ceil, int color_floor)
+static void	draw_ceil_floor(t_window *win, void *img, int color_ceil,
+		int color_floor)
 {
-	int x;
+	int	x;
 	int	y;
-	int win_h_2;
+	int	win_h_2;
 
 	win_h_2 = win->height / 2;
 	y = 0;
@@ -42,7 +43,7 @@ static void	*floor_ceil_get_ptr(void)
 
 int	floor_ceil_init(t_window *win, int color_ceil, int color_floor)
 {
-	t_floor_ceil *mlx_img;
+	t_floor_ceil	*mlx_img;
 
 	mlx_img = floor_ceil_get_ptr();
 	mlx_img->normal = mlx_new_image(win->mlx, win->width, win->height);
@@ -71,7 +72,7 @@ void	floor_ceil_put_to_window(t_window *win, int dark)
 
 void	floor_ceil_destroy(void *mlx)
 {
-	t_floor_ceil *mlx_img;
+	t_floor_ceil	*mlx_img;
 
 	mlx_img = floor_ceil_get_ptr();
 	if (mlx_img->normal)

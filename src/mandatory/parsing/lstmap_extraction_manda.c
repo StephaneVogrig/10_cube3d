@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/22 23:59:50 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 15:58:45 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_line_remain(t_map *map, t_lstmap **lst_map)
 {
 	t_lstmap	*tmp;
-	int 		exit_code;
+	int			exit_code;
 
 	tmp = *lst_map;
 	while (tmp != NULL && is_empty(tmp->line) == TRUE)
@@ -27,10 +27,10 @@ int	check_line_remain(t_map *map, t_lstmap **lst_map)
 	{
 		exit_code = check_line(tmp->line);
 		if (exit_code != SUCCESS)
-			break;
+			break ;
 		exit_code = set_map_info(map, tmp->line);
 		if (exit_code != SUCCESS)
-			break;
+			break ;
 		tmp = tmp->next;
 	}
 	return (exit_code);
@@ -61,7 +61,7 @@ int	lstmap_to_textures(t_tex_path *tex_path, t_textures *tex,
 	return (exit_code);
 }
 
-int get_root_path(char *map_path, char **root_path)
+int	get_root_path(char *map_path, char **root_path)
 {
 	*root_path = ft_strrchr(map_path, '/');
 	if (*root_path != NULL)
@@ -79,11 +79,11 @@ int get_root_path(char *map_path, char **root_path)
 	return (SUCCESS);
 }
 
-int	lstmap_extract_info(t_textures *textures, t_map *map,
-						t_tex_path *tex_path, char *map_path)
+int	lstmap_extract_info(t_textures *textures, t_map *map, t_tex_path *tex_path,
+		char *map_path)
 {
 	t_lstmap	*lst_map;
-	int 		ok;
+	int			ok;
 	char		*root_path;
 
 	root_path = NULL;

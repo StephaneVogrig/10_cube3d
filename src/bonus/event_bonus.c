@@ -1,20 +1,20 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   event_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/12 01:28:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:02:17 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "event_bonus.h"
 
 int	on_win_event(int event, void *param)
 {
-	t_window *window;
+	t_window	*window;
 
 	window = (t_window *)param;
 	if (event == ON_DEMAND_CLOSE)
@@ -30,11 +30,9 @@ int	on_win_event(int event, void *param)
 
 int	on_keydown(int key, void *param)
 {
-	// printf("key pressed: %i\n", key);
-	t_data *data;
-	
-	data = (t_data *)param;
+	t_data	*data;
 
+	data = (t_data *)param;
 	if (key == KEY_ESC)
 		mlx_loop_end(data->mlx);
 	else if (key == KEY_F)
@@ -58,8 +56,8 @@ void	mouse_mode_switch(void *mlx, t_window *win, int *mouse_mode)
 
 int	on_keyup(int key, void *param)
 {
-	t_data *data;
-	
+	t_data	*data;
+
 	data = (t_data *)param;
 	if (key == KEY_T && data->win.focused)
 		mouse_mode_switch(data->mlx, &data->win, &data->mouse_mode);
@@ -68,9 +66,9 @@ int	on_keyup(int key, void *param)
 	return (SUCCESS);
 }
 
-int on_mousedown(int button, void *param)
+int	on_mousedown(int button, void *param)
 {
-	t_data *data;
+	t_data	*data;
 	t_ray	ray;
 
 	(void)button;
@@ -85,7 +83,8 @@ int on_mousedown(int button, void *param)
 
 void	event_setup(t_data *data)
 {
-	mlx_on_event(data->mlx, data->win.win, MLX_WINDOW_EVENT, on_win_event, &data->win);
+	mlx_on_event(data->mlx, data->win.win, MLX_WINDOW_EVENT, on_win_event,
+		&data->win);
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYDOWN, on_keydown, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYUP, on_keyup, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_MOUSEDOWN, on_mousedown, data);

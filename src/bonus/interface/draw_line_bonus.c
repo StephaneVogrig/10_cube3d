@@ -36,13 +36,13 @@ void	bresenham(t_interface *minimap, t_vec2i a, t_vec2i b, int color)
 			err += d.x;
 			a.y += s.y;
 		}
-		mlx_pixel_put(minimap->mlx, minimap->win,a.x, a.y, color);
+		mlx_pixel_put(minimap->mlx, minimap->win, a.x, a.y, color);
 	}
 }
 
 void	draw_line_hor(t_interface *minimap, t_vec2i a, t_vec2i b, int color)
 {
-	int		dx;
+	int	dx;
 
 	if (a.x < b.x)
 		dx = 1;
@@ -50,7 +50,7 @@ void	draw_line_hor(t_interface *minimap, t_vec2i a, t_vec2i b, int color)
 		dx = -1;
 	while (a.x != b.x)
 	{
-		mlx_pixel_put(minimap->mlx, minimap->win,a.x, a.y, color);
+		mlx_pixel_put(minimap->mlx, minimap->win, a.x, a.y, color);
 		a.x += dx;
 	}
 }
@@ -62,7 +62,7 @@ void	draw_line_diag(t_interface *minimap, t_vec2i a, t_vec2i b, int color)
 	d = increase(a, b);
 	while (a.x != b.x)
 	{
-		mlx_pixel_put(minimap->mlx, minimap->win,a.x, a.y, color);
+		mlx_pixel_put(minimap->mlx, minimap->win, a.x, a.y, color);
 		a.x += d.x;
 		a.y += d.y;
 	}
@@ -70,7 +70,7 @@ void	draw_line_diag(t_interface *minimap, t_vec2i a, t_vec2i b, int color)
 
 void	draw_line_vert(t_interface *minimap, t_vec2i a, t_vec2i b, int color)
 {
-	int		dy;
+	int	dy;
 
 	if (a.y == b.y)
 		return ;
@@ -80,7 +80,7 @@ void	draw_line_vert(t_interface *minimap, t_vec2i a, t_vec2i b, int color)
 		dy = -1;
 	while (a.y != b.y)
 	{
-		mlx_pixel_put(minimap->mlx, minimap->win,a.x, a.y, color);
+		mlx_pixel_put(minimap->mlx, minimap->win, a.x, a.y, color);
 		a.y += dy;
 	}
 }

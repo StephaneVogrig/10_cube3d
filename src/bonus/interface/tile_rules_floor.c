@@ -12,7 +12,7 @@
 
 #include "tile_rules.h"
 
-void tile_rule(t_interface *interface ,t_tile *tile)
+void	tile_rule(t_interface *interface, t_tile *tile)
 {
 	if (tile->cell == '0')
 		tile->tile_ptr = interface->tiles_index.floor;

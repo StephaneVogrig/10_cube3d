@@ -1,21 +1,21 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   coordinate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2024/12/26 10:56:43 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:06:37 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "coordinate.h"
 #include "math.h"
 
-static double custom_atof(char *str)
+static double	custom_atof(char *str)
 {
-	char *tmp;
+	char	*tmp;
 	double	integer;
 	double	decimal;
 	int		sign;
@@ -38,11 +38,10 @@ static double custom_atof(char *str)
 		str++;
 	*str = '\0';
 	decimal = ft_atoi(tmp);
-	return (sign * (integer + (decimal / pow(10, ft_intlen(decimal,0)))));
+	return (sign * (integer + (decimal / pow(10, ft_intlen(decimal, 0)))));
 }
 
-
-static int extract_raw_coordinate(char *line, char **x, char **y)
+static int	extract_raw_coordinate(char *line, char **x, char **y)
 {
 	line++;
 	*x = line;
@@ -64,12 +63,12 @@ static int extract_raw_coordinate(char *line, char **x, char **y)
 	return (SUCCESS);
 }
 
-int set_sprite_coordinate(char *line, t_sprite_lst **head, int id)
+int	set_sprite_coordinate(char *line, t_sprite_lst **head, int id)
 {
-	char *x;
-	char *y;
-	double x_f;
-	double y_f;
+	char	*x;
+	char	*y;
+	double	x_f;
+	double	y_f;
 
 	extract_raw_coordinate(line, &x, &y);
 	x_f = custom_atof(x);

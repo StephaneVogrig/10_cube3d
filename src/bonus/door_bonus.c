@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   door_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 19:50:06 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/02 16:57:04 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:01:33 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "door_bonus.h"
 
@@ -48,9 +48,9 @@ void	door_open(char *cell, t_door_open *door_open_list)
 		door = door_open_list_add(cell, door_open_list);
 	else if (door->stage == DOOR_OPEN)
 		door->stage_rate = 1.0;
-	else if  (door->stage == DOOR_CLOSING)
+	else if (door->stage == DOOR_CLOSING)
 	{
-		door->stage_rate = 1.0 - door->stage_rate ;
+		door->stage_rate = 1.0 - door->stage_rate;
 		door->stage = DOOR_OPENING;
 	}
 }

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   door_collide_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 13:31:15 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/03 11:38:46 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:01:34 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "door_collide_bonus.h"
 
@@ -44,7 +44,7 @@ static int	is_looking_outside(t_door *door, double dir, float pos)
 
 int	is_hit_walledge(t_axis x, t_ray *ray, t_position *start, t_door *door)
 {
-	t_axis		y;
+	t_axis	y;
 
 	y = (x == AXIS_X);
 	if (start->axis[y].box != 0.0 && start->axis[y].box != 1.0)
@@ -52,7 +52,7 @@ int	is_hit_walledge(t_axis x, t_ray *ray, t_position *start, t_door *door)
 	if (start->axis[y].box == door->pos_edge_closed)
 		return (FALSE);
 	if (start->axis[x].box < door->pos_side_down
-	|| start->axis[x].box > door->pos_side_up)
+		|| start->axis[x].box > door->pos_side_up)
 		return (FALSE);
 	ray->hit_pos = *start;
 	ray->hit_side = x + 2;
@@ -62,25 +62,21 @@ int	is_hit_walledge(t_axis x, t_ray *ray, t_position *start, t_door *door)
 
 int	is_outside_door(float start_x, float start_y, t_door *door)
 {
-	if (start_x <= door->pos_side_down
-	|| start_x >= door->pos_side_up)
+	if (start_x <= door->pos_side_down || start_x >= door->pos_side_up)
 		return (TRUE);
-	if 	(start_y == 0.0 || start_y == 1.0)
+	if (start_y == 0.0 || start_y == 1.0)
 		return (TRUE);
-	if (door->open_type == DOOR_OPEN_TYPE_L
-	&& (start_y >= door->pos_edge))
+	if (door->open_type == DOOR_OPEN_TYPE_L && (start_y >= door->pos_edge))
 		return (TRUE);
-	if (door->open_type == DOOR_OPEN_TYPE_R
-	&& (start_y <= door->pos_edge))
+	if (door->open_type == DOOR_OPEN_TYPE_R && (start_y <= door->pos_edge))
 		return (TRUE);
-	if (door->open_type == DOOR_OPEN_TYPE_T
-	&& (start_y >= door->pos_edge)
-	&& (start_y <= (1.0 - door->pos_edge)))
+	if (door->open_type == DOOR_OPEN_TYPE_T && (start_y >= door->pos_edge)
+		&& (start_y <= (1.0 - door->pos_edge)))
 		return (TRUE);
 	return (FALSE);
 }
 
-int is_collide_door_axis(t_axis x, t_ray *ray, t_position *start, t_door *door)
+int	is_collide_door_axis(t_axis x, t_ray *ray, t_position *start, t_door *door)
 {
 	if (is_looking_outside(door, ray->dirvec.axis[x], start->axis[x].box))
 		return (FALSE);

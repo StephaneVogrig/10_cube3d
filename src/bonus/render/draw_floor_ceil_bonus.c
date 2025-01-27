@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   draw_floor_ceil_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/21 11:57:26 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:11:31 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "draw_floor_ceil_bonus.h"
 
@@ -28,7 +26,8 @@ void	elem_draw_pixel(int x, t_element *elem, t_context *context)
 	window_put_pixel(context->win, x, elem->y, color.integer);
 }
 
-void	floorceil_draw_line_init(t_vec2d *map_step, t_vec2d *map_pos, t_floorceil_draw *draw, t_data *data)
+void	floorceil_draw_line_init(t_vec2d *map_step, t_vec2d *map_pos,
+		t_floorceil_draw *draw, t_data *data)
 {
 	t_vec2d	player_dirvec;
 
@@ -56,10 +55,10 @@ void	floorceil_draw_line(int y, t_data *data, t_floorceil_draw *draw)
 		if (y >= draw->scalescreen_2 / data->rays.tab[x].len)
 		{
 			draw->context.box.x = map_pos.x - (long)map_pos.x;
-			if(draw->context.box.x < 0.0)
+			if (draw->context.box.x < 0.0)
 				draw->context.box.x += 1.0;
 			draw->context.box.y = map_pos.y - (long)map_pos.y;
-			if(draw->context.box.y < 0.0)
+			if (draw->context.box.y < 0.0)
 				draw->context.box.y += 1.0;
 			elem_draw_pixel(x, &draw->ceil, &draw->context);
 			elem_draw_pixel(x, &draw->floor, &draw->context);

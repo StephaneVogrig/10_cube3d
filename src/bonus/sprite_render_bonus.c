@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite_render_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:31:34 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/16 15:22:07 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:03:16 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "sprite_render_bonus.h"
 
@@ -67,8 +67,9 @@ void	sprite_sort(t_sprite *sprite)
 	{
 		sorting = sprite->order[i];
 		j = i;
-		while (j > 0 && sprite->transform[sorting].y\
-						> sprite->transform[sprite->order[j - 1]].y)
+		while (j > 0
+			&& sprite->transform[sorting].y > sprite->transform[sprite->order[j
+			- 1]].y)
 		{
 			sprite->order[j] = sprite->order[j - 1];
 			j--;

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite_update_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 01:27:28 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 21:02:21 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:03:18 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "sprite_bonus.h"
 
@@ -29,7 +29,7 @@ int	sprite_update_state(float *state, int nbr_state, t_time_us dt)
 
 int	sprite_update(t_sprite *sprite, t_time_us dt)
 {
-	int render_needed;
+	int	render_needed;
 	int	i;
 
 	render_needed = FALSE;
@@ -37,8 +37,9 @@ int	sprite_update(t_sprite *sprite, t_time_us dt)
 	while (i < sprite->nbr)
 	{
 		if (sprite->collected[i] == FALSE)
-			render_needed |= sprite_update_state(&sprite->state[i], sprite->nbr_state[i], dt);
+			render_needed |= sprite_update_state(&sprite->state[i],
+					sprite->nbr_state[i], dt);
 		i++;
 	}
-	return (render_needed);	
+	return (render_needed);
 }

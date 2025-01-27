@@ -6,13 +6,13 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:38 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/04 14:38:31 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 15:50:42 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 
-int color_darkened(int color, int dark)
+int	color_darkened(int color, int dark)
 {
 	if (dark)
 		return ((color >> 2) & 0xFF3F3F3F);

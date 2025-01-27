@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/22 23:58:34 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 15:10:30 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	check_line_remain(t_map *map, t_asset_lst **lst_asset, t_lstmap **lst_map)
 			return (ft_return(ERROR, 6, "check_line_remain: Line is empty"));
 		exit_code = !is_map_valid_bonus(tmp->line);
 		if (exit_code != SUCCESS)
-			return (ft_return(ERROR, 6, "check_line_remain: Line is not valid"));
+			return (ft_return(ERROR, 6,
+					"check_line_remain: Line is not valid"));
 		if (cmp_cell_line_to_asset_key(tmp->line, *lst_asset) == FAIL)
 			return (FAIL);
 		exit_code = set_map_info(map, tmp->line);
@@ -71,7 +72,8 @@ static int	is_newline_valid(t_lstmap **tmp)
 		*tmp = (*tmp)->next;
 	if (*tmp == NULL)
 		return (FAIL);
-	if (ft_strlen_endc((*tmp)->line, ' ') == 0 || ft_strlen_endc((*tmp)->line, ' ') > 2)
+	if (ft_strlen_endc((*tmp)->line, ' ') == 0 || ft_strlen_endc((*tmp)->line,
+			' ') > 2)
 		return (FAIL);
 	if (!ft_isthis((*tmp)->line[0], "NWESFCTLR"))
 		return (FAIL);
@@ -106,9 +108,7 @@ static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
 	return (exit_code);
 }
 
-#include "debug_bonus.h"
-
-int get_root_path(char *map_path, char **root_path)
+int	get_root_path(char *map_path, char **root_path)
 {
 	*root_path = ft_strrchr(map_path, '/');
 	if (*root_path != NULL)
@@ -126,7 +126,8 @@ int get_root_path(char *map_path, char **root_path)
 	return (SUCCESS);
 }
 
-int	lstmap_extract_info(t_map *map, char *map_path, t_asset_lst **asset_lst, t_sprite_lst **sprite_lst)
+int	lstmap_extract_info(t_map *map, char *map_path, t_asset_lst **asset_lst,
+		t_sprite_lst **sprite_lst)
 {
 	t_lstmap	*tmp;
 	t_lstmap	*lst_map;
@@ -139,7 +140,7 @@ int	lstmap_extract_info(t_map *map, char *map_path, t_asset_lst **asset_lst, t_s
 	if (exit_code == SUCCESS)
 	{
 		if (lst_map == NULL)
-			exit_code = ft_return(ERROR, 6, "lstmap_extract_info: No data in map");
+			exit_code = ft_return(ERROR, 6, "No data in map");
 		tmp = lst_map;
 		if (exit_code == SUCCESS)
 			exit_code = get_root_path(map_path, &root_path);

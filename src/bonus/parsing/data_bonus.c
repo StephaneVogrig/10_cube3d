@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/24 12:51:47 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 15:05:29 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ int	data_setup(t_data *data, char *map_path)
 	t_asset_lst		*asset_lst;
 	t_sprite_lst	*sprite_lst;
 	int				exit_code;
-	
+
 	asset_lst = NULL;
 	sprite_lst = NULL;
-	exit_code = lstmap_extract_info(&data->map, map_path, &asset_lst, &sprite_lst);
+	exit_code = lstmap_extract_info(&data->map, map_path, &asset_lst,
+			&sprite_lst);
 	if (exit_code == SUCCESS)
 		exit_code = map_checker(&data->map, &data->player);
 	if (exit_code == SUCCESS)
@@ -37,10 +38,11 @@ int	data_setup(t_data *data, char *map_path)
 	if (exit_code == SUCCESS)
 		exit_code = ray_setup(&data->rays, data->win.width);
 	if (exit_code == SUCCESS)
-		exit_code =	sprite_setup(&data->sprite, sprite_lst, &data->textures);
+		exit_code = sprite_setup(&data->sprite, sprite_lst, &data->textures);
 	delete_all_sprite(&sprite_lst);
 	if (exit_code == SUCCESS)
-		exit_code = interface_setup(&data->minimap, data->mlx, &data->win, &data->map);
+		exit_code = interface_setup(&data->minimap, data->mlx, &data->win,
+				&data->map);
 	if (exit_code == SUCCESS)
 		data->scale_screen = (data->win.width / 2) / data->tg_fov_2;
 	return (exit_code);

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   strip_manda.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 17:47:51 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/08 18:59:27 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:04:54 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef STRIP_MANDA_H
 # define STRIP_MANDA_H
@@ -25,10 +25,10 @@ typedef struct s_strip
 	double		img_start;
 	double		img_delta;
 	int			dark;
-}	t_strip;
+}				t_strip;
 
-int		strip_screen_size(int screen_scale, double distance);
-void	strip_add_limit(t_strip *strip, int size);
-void	strip_setup(t_strip *strip, int win_h);
+int				strip_screen_size(int screen_scale, double distance);
+void			strip_add_limit(t_strip *strip, int size);
+void			strip_setup(t_strip *strip, int win_h);
 
 #endif

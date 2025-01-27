@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:38:38 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/06 15:28:02 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 15:51:09 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ int	file_to_lst_map(int fd, t_lstmap **lst_map)
 
 int	file_load(char *path, t_lstmap **lst_map)
 {
-	int fd;
-	int exit_code;
+	int	fd;
+	int	exit_code;
+
 	exit_code = open_file(&fd, path);
 	if (exit_code != SUCCESS)
 		return (exit_code);

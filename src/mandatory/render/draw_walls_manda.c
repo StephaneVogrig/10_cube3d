@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_walls_manda.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/02 16:20:13 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:02:42 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "draw_walls_manda.h"
 
@@ -25,9 +25,10 @@ t_texture	*texture_hit(t_textures *textures, t_ray *ray)
 	return (&textures->west);
 }
 
-void	draw_walls(t_window *win, t_ray *rays, t_textures *textures, double scale)
+void	draw_walls(t_window *win, t_ray *rays, t_textures *textures,
+		double scale)
 {
-	t_strip strip;
+	t_strip	strip;
 	double	img_x;
 	int		x;
 

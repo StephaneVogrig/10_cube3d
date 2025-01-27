@@ -12,7 +12,7 @@
 
 #include "lstmap_extraction_utils_bonus.h"
 
-static int open_failed_freed(char *value)
+static int	open_failed_freed(char *value)
 {
 	ft_putstr_fd(BRED "ERROR" CRESET, 2);
 	ft_putstr_fd("\t: open failure: " YEL, 2);
@@ -21,13 +21,15 @@ static int open_failed_freed(char *value)
 	return (8);
 }
 
-int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst, int id)
+int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst,
+		int id)
 {
 	int	fd;
 
 	if (ft_strrchr(kv->value, '.') == NULL)
 	{
-		if (insert_asset_lst(asset_lst, kv->key, ft_strdup(kv->value), id) == NULL)
+		if (insert_asset_lst(asset_lst, kv->key, ft_strdup(kv->value),
+				id) == NULL)
 			return (ft_return(ERROR, 8, "set_asset_lst: Malloc asset failed"));
 		return (SUCCESS);
 	}
@@ -47,7 +49,7 @@ int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst, int
 	return (SUCCESS);
 }
 
-int chk_key(char *key)
+int	chk_key(char *key)
 {
 	if (key[0] == 'N' && ft_strcmp(key, "NO") != 0)
 		return (ft_return(ERROR, FAIL, "chk_key: invalid key NO"));
@@ -78,8 +80,8 @@ int	set_key_value(t_key_value *kv, char *line, t_asset_lst **asset_lst)
 		return (FAIL);
 	if (chk_key(kv->key) == FAIL)
 		return (FAIL);
-	if (ft_strcmp(kv->key, "SP") != 0
-		&& asset_lst_key_in_list(*asset_lst, kv->key) == TRUE)
+	if (ft_strcmp(kv->key, "SP") != 0 && asset_lst_key_in_list(*asset_lst,
+			kv->key) == TRUE)
 		return (ft_return(ERROR, FAIL, "set_key_value: key already exist"));
 	remove_root_value(kv->value);
 	return (SUCCESS);

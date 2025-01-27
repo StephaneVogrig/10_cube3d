@@ -6,20 +6,21 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 21:01:49 by aska              #+#    #+#             */
-/*   Updated: 2025/01/03 20:39:54 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 15:52:49 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-void print_stack(t_stack *stack)
+void	print_stack(t_stack *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i <= stack->top)
 	{
-		printf("stack[%d]: x: %d, y: %d\n", i, stack->data[i].x, stack->data[i].y);
+		printf("stack[%d]: x: %d, y: %d\n", i, stack->data[i].x,
+			stack->data[i].y);
 		i++;
 	}
 }

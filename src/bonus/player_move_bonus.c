@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   player_move_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 00:27:56 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/02 21:45:14 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:03:06 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "player_move_bonus.h"
 
@@ -61,7 +61,7 @@ void	slide(t_player *player, t_ray *ray, double len_move, t_data *data)
 
 void	open_door_auto(t_map *map, int x, int y, t_door_open *door_open_list)
 {
-	char 		*cell;
+	char		*cell;
 	t_position	pos;
 
 	pos = position(x, 0.0, y, 0.0);
@@ -70,10 +70,11 @@ void	open_door_auto(t_map *map, int x, int y, t_door_open *door_open_list)
 		door_open(cell, door_open_list);
 }
 
-void open_door_auto_near_player(t_data *data, t_map *map, t_door_open *door_open_list)
+void	open_door_auto_near_player(t_data *data, t_map *map,
+		t_door_open *door_open_list)
 {
 	int	x;
-	int y;
+	int	y;
 
 	x = data->player.x.grid;
 	y = data->player.y.grid;
@@ -84,7 +85,8 @@ void open_door_auto_near_player(t_data *data, t_map *map, t_door_open *door_open
 	open_door_auto(map, x, y + 1, door_open_list);
 }
 
-void	player_move(t_player *player, t_vec2i move, double move_len, t_data *data)
+void	player_move(t_player *player, t_vec2i move, double move_len,
+		t_data *data)
 {
 	t_ray	ray;
 

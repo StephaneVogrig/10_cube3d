@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2025/01/22 21:19:42 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 15:05:28 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	delete_all_asset_lst(t_asset_lst **head)
 
 t_bool	assetlst_key_found(t_asset_lst *assetlst, char *key)
 {
-	while(assetlst)
+	while (assetlst)
 	{
 		if (ft_strcmp(assetlst->key, key) == 0)
 			return (TRUE);
@@ -78,9 +78,9 @@ t_bool	assetlst_key_found(t_asset_lst *assetlst, char *key)
 	return (FALSE);
 }
 
-static t_bool chk_orientation_key(t_asset_lst *head)
+static t_bool	chk_orientation_key(t_asset_lst *head)
 {
-	t_bool		orientation;
+	t_bool	orientation;
 
 	orientation = assetlst_key_found(head, "WE");
 	orientation &= assetlst_key_found(head, "EA");
@@ -89,10 +89,10 @@ static t_bool chk_orientation_key(t_asset_lst *head)
 	return (orientation);
 }
 
-static t_bool chk_door_key(t_asset_lst *head, char key)
+static t_bool	chk_door_key(t_asset_lst *head, char key)
 {
-	char		key_tmp[3];
-	t_bool		door;
+	char	key_tmp[3];
+	t_bool	door;
 
 	key_tmp[0] = key;
 	key_tmp[1] = '\0';
@@ -100,12 +100,12 @@ static t_bool chk_door_key(t_asset_lst *head, char key)
 	key_tmp[1] = 'E';
 	key_tmp[2] = '\0';
 	door &= assetlst_key_found(head, key_tmp);
-	return(door);
+	return (door);
 }
 
 t_bool	asset_lst_key_exist(t_asset_lst *head, char key)
 {
-	char		key_tmp[3];
+	char	key_tmp[3];
 
 	if (key == '0')
 		return (assetlst_key_found(head, "F") && assetlst_key_found(head, "C"));
@@ -124,7 +124,7 @@ t_bool	asset_lst_key_exist(t_asset_lst *head, char key)
 	return (chk_door_key(head, key));
 }
 
-t_bool asset_lst_key_in_list(t_asset_lst *head, char *key)
+t_bool	asset_lst_key_in_list(t_asset_lst *head, char *key)
 {
 	while (head)
 	{

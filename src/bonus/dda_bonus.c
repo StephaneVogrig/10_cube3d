@@ -1,18 +1,19 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dda_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:03:35 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/02 21:54:10 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:00:14 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "dda_bonus.h"
 
-static int	dda_is_collide_door(t_dda *dda, t_position *start, t_ray *ray, t_data *data)
+static int	dda_is_collide_door(t_dda *dda, t_position *start, t_ray *ray,
+		t_data *data)
 {
 	t_ray		ray_temp;
 	t_position	pos_temp;
@@ -32,13 +33,14 @@ static int	dda_is_collide_door(t_dda *dda, t_position *start, t_ray *ray, t_data
 		pos_temp.y.box = choose_float(dda->y.step == -1, 1.0, 0.0);
 	}
 	if (!is_collide_door(&ray_temp, &pos_temp, data))
-			return (FALSE);
+		return (FALSE);
 	dda->hit_side = ray_temp.hit_side;
 	dda->len += ray_temp.len;
 	return (TRUE);
 }
 
-char	*check_collision(t_dda *dda, t_position *start, t_ray *ray, t_data *data)
+char	*check_collision(t_dda *dda, t_position *start, t_ray *ray,
+		t_data *data)
 {
 	t_position	cell_pos;
 	char		*cell;

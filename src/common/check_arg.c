@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2025/01/22 23:43:27 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 15:49:22 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_entry_arg(int ac, char **av)
 {
-	char *ext;
-	
+	char	*ext;
+
 	if (ac < 2)
 		return (ft_return(ERROR, 3, "No arguments"));
 	ext = ft_strrchr(av[1], '.');

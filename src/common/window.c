@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:30:55 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/22 14:08:41 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 15:49:45 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ int	window_setup(t_window *win, void *mlx)
 {
 	win->win = mlx_new_window(mlx, win->width, win->height, "cub3d");
 	if (win->win == NULL)
-		return (ft_return(ERROR, 275, "Error window setup"));	
-    win->mlx = mlx;
-	return (SUCCESS);	
+		return (ft_return(ERROR, 275, "Error window setup"));
+	win->mlx = mlx;
+	return (SUCCESS);
 }
 
 void	window_destroy(t_window *win)
 {
-    if (win->win)
-	    mlx_destroy_window(win->mlx, win->win);
+	if (win->win)
+		mlx_destroy_window(win->mlx, win->win);
 }
 
 inline void	window_clear(t_window *win)

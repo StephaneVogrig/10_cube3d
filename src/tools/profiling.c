@@ -1,21 +1,21 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   profiling.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 01:28:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/11/28 13:50:09 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:36:41 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "profiling.h"
-#include <time.h>
 #include <stdio.h>
-#include <stdlib.h> 
+#include <stdlib.h>
+#include <time.h>
 
-static long gettime_ns(clockid_t clockid)
+static long	gettime_ns(clockid_t clockid)
 {
 	static struct timespec	timespec_start;
 	struct timespec			timespec_current;
@@ -41,10 +41,10 @@ static long gettime_ns(clockid_t clockid)
 	return (time_ns);
 }
 
-void profile(int n, t_profile action)
+void	profile(int n, t_profile action)
 {
-	static long count[1001];
-	static long time_cumul[1001];
+	static long	count[1001];
+	static long	time_cumul[1001];
 
 	if (action == P_START)
 	{

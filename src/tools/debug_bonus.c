@@ -6,27 +6,27 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:12:27 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/27 23:11:45 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 16:36:22 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "debug_bonus.h"
 
-void print_exit_code(int exit_code)
+void	print_exit_code(int exit_code)
 {
 	if (exit_code == SUCCESS)
-		ft_printf("%i\t: "HGRN"SUCCESS\n"CRESET, exit_code);
+		ft_printf("%i\t: " HGRN "SUCCESS\n" CRESET, exit_code);
 	else if (exit_code == FAIL)
-		ft_printf("%i\t: "HRED"FAIL\n"CRESET, exit_code);
+		ft_printf("%i\t: " HRED "FAIL\n" CRESET, exit_code);
 	else
-		ft_printf("%i\t: "HYEL"OTHER\n"CRESET, exit_code);
+		ft_printf("%i\t: " HYEL "OTHER\n" CRESET, exit_code);
 }
 
 void	sprite_print(t_sprite *sprite)
 {
-	int	i;
+	int		i;
 	t_vec2d	*pos;
-	t_vec2d *transform;
+	t_vec2d	*transform;
 
 	printf("-----------sprites-------------\nnbr: %i\n", sprite->nbr);
 	pos = sprite->pos;
@@ -62,9 +62,9 @@ void	print_sprite_lst(t_sprite_lst *head)
 	}
 }
 
-void print_buffer(t_texture *t)
+void	print_buffer(t_texture *t)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < t->height * t->width)
@@ -75,9 +75,9 @@ void print_buffer(t_texture *t)
 	}
 }
 
-void print_asset(t_asset *t)
+void	print_asset(t_asset *t)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	printf("asset_tab...............................\n");
@@ -114,8 +114,7 @@ void	print_asset_lst(t_asset_lst *head)
 	tmp = head;
 	while (tmp != NULL)
 	{
-		printf("id: %d, key: %s, value: %s\n", tmp->id, tmp->key,
-			tmp->value);
+		printf("id: %d, key: %s, value: %s\n", tmp->id, tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
 	printf("asset_lst ++++++++++++++++++++++++ end\n");

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   door_open_list_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 21:35:31 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/02 14:31:00 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:01:40 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "door_bonus.h"
 
@@ -41,7 +41,7 @@ static inline void	door_update_state(t_door_open *door, t_time_us dt_us)
 				break ;
 			}
 			dt_second = -door->stage_rate * time_stage;
-			door->stage_rate = 1.0 ;
+			door->stage_rate = 1.0;
 			door->stage++;
 		}
 		else
@@ -52,7 +52,7 @@ static inline void	door_update_state(t_door_open *door, t_time_us dt_us)
 int	door_open_list_update(t_door_open *door_open_list, t_time_us dt)
 {
 	int	i;
-	int render_needed;
+	int	render_needed;
 
 	render_needed = FALSE;
 	i = 0;

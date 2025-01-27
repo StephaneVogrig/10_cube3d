@@ -1,24 +1,23 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:13:08 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/01 17:38:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:04:41 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef RAY_H
 # define RAY_H
 
-# include <stdlib.h>
-# include <stdio.h>
 # include "libft.h"
-# include "vector.h"
 # include "position.h"
 # include "vector.h"
+# include <stdio.h>
+# include <stdlib.h>
 
 typedef struct s_ray
 {
@@ -29,17 +28,17 @@ typedef struct s_ray
 	char		hit_axis;
 	char		hit_side;
 	int			dark;
-} 	t_ray;
+}				t_ray;
 
 typedef struct s_ray_tab
 {
-	t_ray	*tab;
-	int		nbr;
-}	t_ray_tab;
+	t_ray		*tab;
+	int			nbr;
+}				t_ray_tab;
 
-int		ray_setup(t_ray_tab *rays, int nbr);
-void	ray_destroy(t_ray_tab *rays);
-t_vec2d	ray_vec_start(t_vec2d	player_dirvec, double tg_fov_2);
-t_vec2d	ray_vec_step(t_vec2d	player_dirvec, int win_w, double tg_fov_2);
+int				ray_setup(t_ray_tab *rays, int nbr);
+void			ray_destroy(t_ray_tab *rays);
+t_vec2d			ray_vec_start(t_vec2d player_dirvec, double tg_fov_2);
+t_vec2d			ray_vec_step(t_vec2d player_dirvec, int win_w, double tg_fov_2);
 
 #endif

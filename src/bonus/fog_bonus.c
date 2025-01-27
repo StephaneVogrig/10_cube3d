@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fog_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:35:05 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/23 17:11:12 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:01:44 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	fog_color(t_rgb *start, float fog)
 
 void	fog_tab_fill(char *tab, float fog)
 {
-	int i;
+	int	i;
 
 	*tab = 0;
 	i = 1;

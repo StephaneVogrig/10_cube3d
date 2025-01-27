@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 00:38:20 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/21 15:47:46 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:02:41 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "game_loop_bonus.h"
+#include "game_loop_bonus.h"
 
 static int	check_mouse_move(t_data *data)
 {
-	int x;
-	int y;
-	int dx;
+	int	x;
+	int	y;
+	int	dx;
 
 	if (!data->win.focused || !data->mouse_mode)
 		return (FALSE);
@@ -25,7 +25,8 @@ static int	check_mouse_move(t_data *data)
 	if (!dx)
 		return (FALSE);
 	data->player.dir += M_PI * dx / data->win.width;
-	mlx_mouse_move(data->mlx, data->win.win, data->win.width / 2, data->win.height / 2);
+	mlx_mouse_move(data->mlx, data->win.win, data->win.width / 2,
+		data->win.height / 2);
 	return (TRUE);
 }
 
@@ -44,7 +45,7 @@ static int	check_move(t_key key, t_time_us delta_time, t_data *data)
 
 int	game_loop(void *param)
 {
-	static	t_time_us	oldtime;
+	static t_time_us	oldtime;
 	t_time_us			delta_time;
 	t_data				*data;
 	int					render_needed;
@@ -60,9 +61,6 @@ int	game_loop(void *param)
 		render_needed |= player_rotate(&data->player, data->key, delta_time);
 		render_needed |= check_move(data->key, delta_time, data);
 	}
-	// if (!render_needed)
-	// 	return (SUCCESS);
 	render(data);
-	// fps_print(gametime() - oldtime); // debug
 	return (SUCCESS);
 }

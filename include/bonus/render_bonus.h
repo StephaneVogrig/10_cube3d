@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 01:30:18 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/09 00:47:45 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 16:04:23 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "interface_render_bonus.h"
 # include "raycasting_bonus.h"
 # include "sprite_render_bonus.h"
-
 # include "window.h"
 
 void	render(t_data *data);

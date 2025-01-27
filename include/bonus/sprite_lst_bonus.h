@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sprite_lst_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:08:16 by aska              #+#    #+#             */
-/*   Updated: 2024/12/19 22:25:59 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:04:24 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef SPRITE_LST_BONUS_H
 # define SPRITE_LST_BONUS_H
@@ -24,9 +24,11 @@ typedef struct s_sprite_lst
 	struct s_sprite_lst	*prev;
 }						t_sprite_lst;
 
-t_sprite_lst	*insert_sprite_lst(t_sprite_lst **head, double x,double y, int id);
-void			delete_node_sprite(t_sprite_lst **head, t_sprite_lst *del_node);
-void			delete_all_sprite(t_sprite_lst **head);
-int				get_lst_size(t_sprite_lst *head);
+t_sprite_lst			*insert_sprite_lst(t_sprite_lst **head, double x,
+							double y, int id);
+void					delete_node_sprite(t_sprite_lst **head,
+							t_sprite_lst *del_node);
+void					delete_all_sprite(t_sprite_lst **head);
+int						get_lst_size(t_sprite_lst *head);
 
 #endif

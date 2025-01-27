@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   game_loop_manda.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 20:05:30 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/31 15:04:28 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:58:48 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "game_loop_manda.h"
 
@@ -27,7 +27,7 @@ static int	check_move(t_key key, t_time_us delta_time, t_player *player)
 
 int	game_loop(void *param)
 {
-	static	t_time_us	oldtime;
+	static t_time_us	oldtime;
 	t_time_us			delta_time;
 	t_data				*data;
 	int					render_needed;

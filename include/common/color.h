@@ -1,20 +1,20 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:00 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/09 01:14:09 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:04:30 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef COLOR_H
 # define COLOR_H
 
-#include "check_arg.h"
-#include "libft.h"
+# include "check_arg.h"
+# include "libft.h"
 
 typedef union u_color
 {
@@ -25,10 +25,10 @@ typedef union u_color
 		unsigned char	r;
 		unsigned char	a;
 	};
-	int	integer;
-}	t_rgb;
+	int					integer;
+}						t_rgb;
 
-int color_darkened(int color, int dark);
-int	color_set_rgb(t_rgb *rgb, char *value);
+int						color_darkened(int color, int dark);
+int						color_set_rgb(t_rgb *rgb, char *value);
 
 #endif

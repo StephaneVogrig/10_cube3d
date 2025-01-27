@@ -1,19 +1,20 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dda_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 19:20:10 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/01 17:53:30 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:49:23 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "dda_utils.h"
 #include "window.h"
 
-void	dda_init_axis(t_dda_axis *dda_axis, double ray_axis, t_gridbox start_axis)
+void	dda_init_axis(t_dda_axis *dda_axis, double ray_axis,
+		t_gridbox start_axis)
 {
 	dda_axis->unit = fabs(1 / ray_axis);
 	if (ray_axis < 0)
@@ -41,14 +42,12 @@ void	dda_init(t_dda *dda, t_vec2d *ray_vec, t_position *start, t_map *map)
 
 int	dda_no_need(t_map *map, t_position *start, t_dda *dda)
 {
-	if ((start->x.grid < 0 && dda->x.step == -1)
-		|| (start->x.grid > map->width && dda->x.step == 1)
-		|| (start->y.grid < 0 && dda->y.step == -1)
+	if ((start->x.grid < 0 && dda->x.step == -1) || (start->x.grid > map->width
+			&& dda->x.step == 1) || (start->y.grid < 0 && dda->y.step == -1)
 		|| (start->y.grid > map->height && dda->y.step == 1))
 		return (TRUE);
-	if (start->x.grid < -dda->len_max
-		|| start->x.grid > map->width + dda->len_max
-		|| start->y.grid < -dda->len_max
+	if (start->x.grid < -dda->len_max || start->x.grid > map->width
+		+ dda->len_max || start->y.grid < -dda->len_max
 		|| start->y.grid > map->height + dda->len_max)
 		return (TRUE);
 	return (FALSE);

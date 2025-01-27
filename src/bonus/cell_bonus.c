@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cell_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:23:40 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/01 15:25:55 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:00:05 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "cell_bonus.h"
 
@@ -39,9 +39,9 @@ int	cell_is_door(char *cell)
 	return (FALSE);
 }
 
-inline char *map_get_cell_ptr(t_map *map, t_position *p)
+inline char	*map_get_cell_ptr(t_map *map, t_position *p)
 {
 	if (is_outside_map(map, p))
-			return (NULL);
+		return (NULL);
 	return (&(map->grid[p->y.grid][p->x.grid]));
 }

@@ -1,21 +1,21 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   game_loop_manda.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 20:05:43 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/23 20:16:20 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:04:49 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef GAME_LOOP_MANDA_H
 # define GAME_LOOP_MANDA_H
 
+# include "data_manda.h"
 # include "gametime.h"
 # include "player.h"
-# include "data_manda.h"
 # include "player_move_manda.h"
 # include "render_manda.h"
 

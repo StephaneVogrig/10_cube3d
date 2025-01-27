@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/31 15:04:28 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:49:36 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "player.h"
 
@@ -33,7 +33,7 @@ t_vec2d	player_dir_move_vec(t_player *player, t_vec2i move_input)
 
 	dirvec = dir_to_dirvec(player->dir);
 	compose_move.x = dirvec.x * move_input.x - dirvec.y * move_input.y;
-	compose_move.y = dirvec.y * move_input.x +  dirvec.x * move_input.y;
+	compose_move.y = dirvec.y * move_input.x + dirvec.x * move_input.y;
 	return (compose_move);
 }
 

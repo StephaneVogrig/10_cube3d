@@ -1,18 +1,18 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 18:33:26 by svogrig           #+#    #+#             */
-/*   Updated: 2024/12/19 20:23:01 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:49:30 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "key_move.h"
 
-void set_key_down(t_key *key, int key_pressed)
+void	set_key_down(t_key *key, int key_pressed)
 {
 	if (key_pressed == KEY_W)
 		key->w = DOWN;
@@ -28,7 +28,7 @@ void set_key_down(t_key *key, int key_pressed)
 		key->right = DOWN;
 }
 
-void set_key_up(t_key *key, int key_pressed)
+void	set_key_up(t_key *key, int key_pressed)
 {
 	if (key_pressed == KEY_W)
 		key->w = UP;

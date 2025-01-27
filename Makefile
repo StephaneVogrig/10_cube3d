@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/24 11:50:52 by svogrig          ###   ########.fr        #
+#    Updated: 2025/01/27 16:30:39 by aska             ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 ifndef VERBOSE
 MAKEFLAGS += --no-print-directory --silent
@@ -115,7 +115,6 @@ SRC_BONUS_DIR		:=	bonus
 
 SRCS_BONUS 			:=	main_bonus.c \
 						cell_bonus.c \
-						debug_bonus.c \
 						dda_bonus.c \
 						door_bonus.c \
 						door_collide_bonus.c \
@@ -132,6 +131,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						sprite_render_bonus.c \
 						pointer_table_bonus.c \
 						asset_bonus.c \
+						asset_utils_bonus.c \
 						option_bonus.c \
 						option_utils_bonus.c \
 						parsing/data_bonus.c \
