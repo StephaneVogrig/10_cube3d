@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 15:58:46 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 17:57:28 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,38 +52,43 @@ int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
 	return (SUCCESS);
 }
 
+static int set_path(char *root_path, t_key_value *kv, t_tex_path *tex_path)
+{
+	int	exit_code;
+	int	fd;
+	
+	kv->value = ft_strtrim(kv->value, " ");
+	if (kv->value != NULL && root_path != NULL)
+		kv->value = ft_strjoin_f2(root_path, kv->value);
+	if (kv->value == NULL)
+		return (ft_return(ERROR, 268, "Texture path malloc failed"));
+	fd = ft_open(kv->value, O_RDONLY);
+	if (fd != FAIL)
+		exit_code = set_path_by_key(tex_path, kv);
+	else
+		exit_code = ft_return(ERROR, 268, "Texture File Invalid");
+	ft_close(fd);
+	kv->value = ft_char_f(kv->value);
+	return (exit_code);
+}
+
 int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
 		char *root_path)
 {
 	int	exit_code;
-	int	fd;
 
 	if (kv->key[0] == 'C')
 		exit_code = set_rgb(&tex->ceil_rgb, kv->value);
 	else if (kv->key[0] == 'F')
 		exit_code = set_rgb(&tex->floor_rgb, kv->value);
 	else
-	{
-		if (root_path != NULL)
-			kv->value = ft_strjoin(root_path, kv->value);
-		if (kv->value == NULL)
-			return (ft_return(ERROR, 268, "Texture path malloc failed"));
-		fd = ft_open(kv->value, O_RDONLY);
-		if (fd == FAIL)
-		{
-			kv->value = ft_char_f(kv->value);
-			return (ft_return(ERROR, 268, "Texture File Invalid"));
-		}
-		ft_close(fd);
-		exit_code = set_path_by_key(tex_path, kv);
-		kv->value = ft_char_f(kv->value);
-	}
+		exit_code = set_path(root_path, kv, tex_path);
 	return (exit_code);
 }
 
 int	set_key_value(t_key_value *kv, char *line, t_fs *fs)
 {
-	int	exit_code;
+	int		exit_code;
 
 	exit_code = !ft_isthis(line[0], "NSEWFC");
 	if (exit_code != SUCCESS)

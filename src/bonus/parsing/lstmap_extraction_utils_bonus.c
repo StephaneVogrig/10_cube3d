@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/23 20:44:46 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 18:03:02 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@ int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst,
 {
 	int	fd;
 
-	if (ft_strrchr(kv->value, '.') == NULL)
+	kv->value = ft_strtrim(kv->value, " ");
+	if (kv->value != NULL && ft_strrchr(kv->value, '.') == NULL)
 	{
 		if (insert_asset_lst(asset_lst, kv->key, ft_strdup(kv->value),
 				id) == NULL)
 			return (ft_return(ERROR, 8, "set_asset_lst: Malloc asset failed"));
 		return (SUCCESS);
 	}
-	if (root_path != NULL)
-		kv->value = ft_strjoin(root_path, kv->value);
+	if (kv->value != NULL && root_path != NULL)
+		kv->value = ft_strjoin_f2(root_path, kv->value);
 	if (kv->value == NULL)
 		return (ft_return(ERROR, 8, "set_asset_lst: Malloc asset path failed"));
 	fd = open(kv->value, O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:52:01 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 15:52:08 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 17:14:45 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,18 @@ int	setup_key_value_separate_by_space(char **key, char **value, char *line)
 	if (*line == '\0')
 		return (ft_return(ERROR, 265, "Invalid Value"));
 	*value = line;
-	while (*line != '\0' && ft_isspace(*line) == FALSE)
-		line++;
-	if (*line == '\0')
-		return (SUCCESS);
-	*line = '\0';
-	line++;
-	while (ft_isspace(*line) == TRUE)
-		line++;
-	if (*line == '\0')
-		return (SUCCESS);
-	return (ft_return(ERROR, 266, "Invalid Value"));
+	// while (*line != '\0' && ft_isspace(*line) == FALSE)
+	// 	line++;
+	// if (*line == '\0')
+	// 	return (SUCCESS);
+	// *line = '\0';
+	// line++;
+	// while (ft_isspace(*line) == TRUE)
+	// 	line++;
+	// if (*line == '\0')
+	// 	return (SUCCESS);
+	// return (ft_return(ERROR, 266, "Invalid Value"));
+	return (SUCCESS);
 }
 
 int	is_empty(char *str)
