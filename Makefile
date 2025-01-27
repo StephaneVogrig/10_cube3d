@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/27 16:30:39 by aska             ###   ########.fr        #
+#    Updated: 2025/01/27 17:38:47 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,33 +116,20 @@ SRC_BONUS_DIR		:=	bonus
 SRCS_BONUS 			:=	main_bonus.c \
 						cell_bonus.c \
 						dda_bonus.c \
-						door_bonus.c \
-						door_collide_bonus.c \
-						door_hit_bonus.c \
-						door_inside_bonus.c \
-						door_open_list_bonus.c \
 						event_bonus.c \
 						fog_bonus.c \
 						game_loop_bonus.c \
 						player_move_bonus.c \
-						sprite_bonus.c \
-						sprite_collect_bonus.c \
-						sprite_draw_bonus.c \
-						sprite_render_bonus.c \
 						pointer_table_bonus.c \
 						asset_bonus.c \
 						asset_utils_bonus.c \
 						option_bonus.c \
 						option_utils_bonus.c \
-						parsing/data_bonus.c \
-						parsing/check_asset_bonus.c \
-						parsing/coordinate.c \
-						parsing/flood_fill_bonus.c \
-						parsing/lstmap_extraction_utils_bonus.c \
-						parsing/lstmap_extraction_bonus.c \
-						parsing/mlx_setup_bonus.c \
-						parsing/asset_lst_bonus.c \
-						parsing/sprite_lst_bonus.c \
+						door/door_bonus.c \
+						door/door_collide_bonus.c \
+						door/door_hit_bonus.c \
+						door/door_inside_bonus.c \
+						door/door_open_list_bonus.c \
 						interface/draw_line_bonus.c \
 						interface/draw_line_utils_bonus.c \
 						interface/draw_utils_bonus.c \
@@ -154,12 +141,25 @@ SRCS_BONUS 			:=	main_bonus.c \
 						interface/interface_event_bonus.c \
 						interface/tile_rules.c \
 						interface/tile_rules_floor.c \
+						parsing/data_bonus.c \
+						parsing/check_asset_bonus.c \
+						parsing/coordinate.c \
+						parsing/flood_fill_bonus.c \
+						parsing/lstmap_extraction_utils_bonus.c \
+						parsing/lstmap_extraction_bonus.c \
+						parsing/mlx_setup_bonus.c \
+						parsing/asset_lst_bonus.c \
+						parsing/sprite_lst_bonus.c \
 						render/draw_floor_ceil_bonus.c \
 						render/draw_walls_bonus.c \
 						render/draw_wall_bonus.c \
 						render/raycasting_bonus.c \
 						render/render_bonus.c \
-						render/strip_bonus.c
+						render/strip_bonus.c \
+						sprite/sprite_bonus.c \
+						sprite/sprite_collect_bonus.c \
+						sprite/sprite_draw_bonus.c \
+						sprite/sprite_render_bonus.c
 
 SRCS_BONUS			:=	$(SRCS_BONUS:%=$(SRC_BONUS_DIR)/%)
 # sources ---------------------------------------------------------------------#
