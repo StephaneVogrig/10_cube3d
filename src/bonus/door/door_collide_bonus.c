@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 13:31:15 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 18:24:02 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 18:28:45 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	is_looking_outside(t_door *door, double dir, float pos)
 	return (FALSE);
 }
 
-static int	is_hit_walledge(t_axis x, t_ray *ray, t_position *start, t_door *door)
+int	is_hit_walledge(t_axis x, t_ray *ray, t_position *start, t_door *door)
 {
 	t_axis	y;
 
