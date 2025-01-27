@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_render_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:31:34 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:03:16 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 18:10:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,19 @@ void	sprite_transform_coordonate(t_sprite *sprite, t_player *player)
 
 void	sprite_sort(t_sprite *sprite)
 {
-	int	i;
-	int	j;
-	int	sorting;
+	int		i;
+	int		j;
+	int		sorting;
+	t_vec2d	*transform;
 
+	transform = sprite->transform;
 	i = 1;
 	while (i < sprite->nbr)
 	{
 		sorting = sprite->order[i];
 		j = i;
 		while (j > 0
-			&& sprite->transform[sorting].y > sprite->transform[sprite->order[j
-			- 1]].y)
+			&& transform[sorting].y > transform[sprite->order[j - 1]].y)
 		{
 			sprite->order[j] = sprite->order[j - 1];
 			j--;
