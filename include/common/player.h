@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:05:50 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:17:33 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 17:33:21 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include "vector.h"
 # include <math.h>
 
-# define SPEED_ROT (M_PI / 70)
+# define SPEED_ROT 0.044
 
-# define SPEED_MOVE 3.0
+# define SPEED_MOVE 4.0
 
 typedef struct s_player
 {
