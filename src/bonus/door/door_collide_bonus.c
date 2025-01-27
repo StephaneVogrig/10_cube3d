@@ -6,13 +6,13 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 13:31:15 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 18:15:32 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/27 18:24:02 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "door_collide_bonus.h"
 
-t_axis	door_get_direction(t_map *map, t_position position)
+static t_axis	door_get_direction(t_map *map, t_position position)
 {
 	char	*cell_1;
 	char	*cell_2;
@@ -42,7 +42,7 @@ static int	is_looking_outside(t_door *door, double dir, float pos)
 	return (FALSE);
 }
 
-int	is_hit_walledge(t_axis x, t_ray *ray, t_position *start, t_door *door)
+static int	is_hit_walledge(t_axis x, t_ray *ray, t_position *start, t_door *door)
 {
 	t_axis	y;
 
@@ -76,9 +76,11 @@ int	is_outside_door(float start_x, float start_y, t_door *door)
 	return (FALSE);
 }
 
-// start is the position of entrance of the ray on the border of the cell
-// or the position of the player in the cell.
-// So all is compute with value beetwen 0.0 and 1.0
+/*
+start is the position of entrance of the ray on the border of the cell
+or the position of the player in the cell.
+So all is compute with value beetwen 0.0 and 1.0
+*/
 int	is_collide_door(t_ray *ray, t_position *start, t_data *data)
 {
 	t_door	door;
