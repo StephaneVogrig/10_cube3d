@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_collide_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 13:31:15 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:01:34 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/27 18:15:32 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,6 @@ int	is_outside_door(float start_x, float start_y, t_door *door)
 		return (TRUE);
 	if (door->open_type == DOOR_OPEN_TYPE_T && (start_y >= door->pos_edge)
 		&& (start_y <= (1.0 - door->pos_edge)))
-		return (TRUE);
-	return (FALSE);
-}
-
-int	is_collide_door_axis(t_axis x, t_ray *ray, t_position *start, t_door *door)
-{
-	if (is_looking_outside(door, ray->dirvec.axis[x], start->axis[x].box))
-		return (FALSE);
-	if (is_hit_walledge(x, ray, start, door))
-		return (TRUE);
-	if (is_hit_doorside(x, ray, start, door))
-		return (TRUE);
-	if (is_hit_dooredge(x, ray, start, door))
 		return (TRUE);
 	return (FALSE);
 }
