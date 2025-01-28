@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pointer_table_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:11:25 by aska              #+#    #+#             */
-/*   Updated: 2025/01/07 03:46:48 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/28 15:26:05 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,10 @@ void	pointer_table_init(t_asset *asset)
 	{
 		if (ft_strcmp(asset->key[i], "SP") == 0)
 			continue ;
-		if (asset->key[i][0] == 'W')
-		{
-			if (asset->key[i][1] == 'E')
-				asset->nsew.west = asset->value[i];
-			else
-				asset->wall[asset->key[i][1] - WALL_OFFSET] = asset->value[i];
-		}
+		if (ft_strcmp(asset->key[i], "WE") == 0)
+			asset->nsew.west = asset->value[i];
+		else if (asset->key[i][0] == 'W')
+			asset->wall[asset->key[i][1] - WALL_OFFSET] = asset->value[i];
 		else if (asset->key[i][0] == 'F')
 			asset->floor_ceil.floor = asset->value[i];
 		else if (asset->key[i][0] == 'C')
@@ -63,7 +60,8 @@ void	pointer_table_init(t_asset *asset)
 			asset->nsew.south = asset->value[i];
 		else if (asset->key[i][0] == 'E')
 			asset->nsew.east = asset->value[i];
-		pointer_table_init_door(asset, i);
+		else
+			pointer_table_init_door(asset, i);
 	}
 }
 

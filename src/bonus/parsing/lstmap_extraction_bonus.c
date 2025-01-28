@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/27 15:10:30 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/28 14:54:27 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,6 @@ int	check_line_remain(t_map *map, t_asset_lst **lst_asset, t_lstmap **lst_map)
 	return (exit_code);
 }
 
-int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
-{
-	*tmp = (*tmp)->next;
-	while (tmp != NULL && (*tmp)->line[0] == '[')
-	{
-		if (set_sprite_coordinate((*tmp)->line, sprite_lst, id) == SUCCESS)
-			*tmp = (*tmp)->next;
-	}
-	return (SUCCESS);
-}
-
 static int	is_newline_valid(t_lstmap **tmp)
 {
 	while (*tmp != NULL && is_empty((*tmp)->line) == TRUE)
@@ -106,24 +95,6 @@ static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
 		id++;
 	}
 	return (exit_code);
-}
-
-int	get_root_path(char *map_path, char **root_path)
-{
-	*root_path = ft_strrchr(map_path, '/');
-	if (*root_path != NULL)
-	{
-		*root_path = ft_substr(map_path, 0, *root_path - map_path + 1);
-		if (*root_path == NULL)
-			return (ft_return(ERROR, 3, "get_root_path: malloc error"));
-	}
-	else
-	{
-		*root_path = ft_strdup("./");
-		if (*root_path == NULL)
-			return (ft_return(ERROR, 3, "get_root_path: malloc error"));
-	}
-	return (SUCCESS);
 }
 
 int	lstmap_extract_info(t_map *map, char *map_path, t_asset_lst **asset_lst,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils_manda.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 17:57:28 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/28 14:25:48 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,17 @@ int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
 		tex_path->ea = ft_strdup(kv->value);
 	else
 		return (ft_return(ERROR, 267, "Invalid Key"));
-	// pensez a mettre des securites pour les mallocs
+	if (tex_path->no == NULL || tex_path->so == NULL || tex_path->we == NULL
+		|| tex_path->ea == NULL)
+		return (ft_return(ERROR, 268, "Texture path malloc failed"));
 	return (SUCCESS);
 }
 
-static int set_path(char *root_path, t_key_value *kv, t_tex_path *tex_path)
+static int	set_path(char *root_path, t_key_value *kv, t_tex_path *tex_path)
 {
 	int	exit_code;
 	int	fd;
-	
+
 	kv->value = ft_strtrim(kv->value, " ");
 	if (kv->value != NULL && root_path != NULL)
 		kv->value = ft_strjoin_f2(root_path, kv->value);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/28 01:27:18 by svogrig          ###   ########.fr        #
+#    Updated: 2025/01/28 15:11:34 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -151,6 +151,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						parsing/lstmap_extraction_bonus.c \
 						parsing/mlx_setup_bonus.c \
 						parsing/asset_lst_bonus.c \
+						parsing/asset_lst_utils_bonus.c \
 						parsing/sprite_lst_bonus.c \
 						render/draw_floor_ceil_bonus.c \
 						render/draw_walls_bonus.c \
@@ -182,7 +183,7 @@ DEPS				:=	$(OBJS_MANDA:.o=.d) $(OBJS_BONUS:.o=.d)
 # compilation -----------------------------------------------------------------#
 
 CC 					:= 	cc
-CFLAGS 				:= 	-Wall -Werror -Wextra
+CFLAGS 				:= 	-Wall -Werror -Wextra -O3
 
 #------------------------------------------------------------------------------#
 # rules                                                                        #

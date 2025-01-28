@@ -3,15 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   coordinate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 15:06:37 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/28 14:52:49 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "coordinate.h"
 #include "math.h"
+
+int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
+{
+	*tmp = (*tmp)->next;
+	while (tmp != NULL && (*tmp)->line[0] == '[')
+	{
+		if (set_sprite_coordinate((*tmp)->line, sprite_lst, id) == SUCCESS)
+			*tmp = (*tmp)->next;
+	}
+	return (SUCCESS);
+}
 
 static double	custom_atof(char *str)
 {

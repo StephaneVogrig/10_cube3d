@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils_bonus.h                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:58:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:18 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/28 14:55:49 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LSTMAP_EXTRACTION_UTILS_BONUS_H
 
 # include "asset_lst_bonus.h"
+# include "asset_lst_utils_bonus.h"
 # include "check_arg.h"
 # include "color.h"
 # include "libft.h"
@@ -36,5 +37,6 @@ int			set_rgb(t_rgb *rgb, char *value);
 int			check_line(char *line);
 int			set_asset_lst(t_key_value *kv, char *root_path,
 				t_asset_lst **asset_lst, int id);
+int			get_root_path(char *map_path, char **root_path);
 
 #endif

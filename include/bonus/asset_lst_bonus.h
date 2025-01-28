@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_lst_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:07:53 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 16:03:56 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/28 15:29:04 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ t_asset_lst				*insert_asset_lst(t_asset_lst **head, char *key,
 void					delete_node_asset(t_asset_lst **head,
 							t_asset_lst *del_node);
 void					delete_all_asset_lst(t_asset_lst **head);
-t_bool					asset_lst_key_exist(t_asset_lst *head, char key);
-t_bool					asset_lst_key_in_list(t_asset_lst *head, char *key);
 
 #endif

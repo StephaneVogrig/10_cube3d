@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_asset_bonus.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 02:54:44 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:03 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/28 14:43:50 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CHECK_ASSET_BONUS_H
 
 # include "asset_lst_bonus.h"
+# include "asset_lst_utils_bonus.h"
 # include "libft.h"
 
 char	chk_save_cell(char cell);

@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils_bonus.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 18:03:02 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/28 14:53:36 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lstmap_extraction_utils_bonus.h"
+
+int	get_root_path(char *map_path, char **root_path)
+{
+	*root_path = ft_strrchr(map_path, '/');
+	if (*root_path != NULL)
+	{
+		*root_path = ft_substr(map_path, 0, *root_path - map_path + 1);
+		if (*root_path == NULL)
+			return (ft_return(ERROR, 3, "get_root_path: malloc error"));
+	}
+	else
+	{
+		*root_path = ft_strdup("./");
+		if (*root_path == NULL)
+			return (ft_return(ERROR, 3, "get_root_path: malloc error"));
+	}
+	return (SUCCESS);
+}
 
 static int	open_failed_freed(char *value)
 {
