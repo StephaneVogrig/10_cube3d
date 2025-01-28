@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils_manda.h                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:58:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:50 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/28 15:57:40 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "check_arg.h"
 # include "map.h"
 # include "textures_manda.h"
+# include "color.h"
 
 typedef struct s_key_value
 {

@@ -6,52 +6,31 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/28 14:25:48 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:12:01 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lstmap_extraction_utils_manda.h"
 
-int	set_rgb(t_rgb *rgb, char *value)
+static int	set_path_to_tex(char **tex_path_dest, char *value)
 {
-	char	**arg;
-
-	arg = ft_split(value, ',');
-	if (arg == NULL || ft_tablen(arg) != 3)
-	{
-		ft_tab_f(arg);
-		return (ft_return(ERROR, 266, "Invalid Color"));
-	}
-	if (is_valid_color(arg[0]) == FALSE || is_valid_color(arg[1]) == FALSE
-		|| is_valid_color(arg[2]) == FALSE)
-	{
-		ft_tab_f(arg);
-		return (ft_return(ERROR, 266, "Invalid Color"));
-	}
-	rgb->r = (unsigned char)ft_atoi(arg[0]);
-	rgb->g = (unsigned char)ft_atoi(arg[1]);
-	rgb->b = (unsigned char)ft_atoi(arg[2]);
-	rgb->a = (unsigned char)255;
-	ft_tab_f(arg);
+	*tex_path_dest = ft_strdup(value);
+	if (*tex_path_dest == NULL)
+		return (ft_return(ERROR, 268, "Texture path malloc failed"));
 	return (SUCCESS);
 }
 
 int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
 {
 	if (ft_strcmp(kv->key, "NO") == 0)
-		tex_path->no = ft_strdup(kv->value);
-	else if (ft_strcmp(kv->key, "SO") == 0)
-		tex_path->so = ft_strdup(kv->value);
-	else if (ft_strcmp(kv->key, "WE") == 0)
-		tex_path->we = ft_strdup(kv->value);
-	else if (ft_strcmp(kv->key, "EA") == 0)
-		tex_path->ea = ft_strdup(kv->value);
-	else
-		return (ft_return(ERROR, 267, "Invalid Key"));
-	if (tex_path->no == NULL || tex_path->so == NULL || tex_path->we == NULL
-		|| tex_path->ea == NULL)
-		return (ft_return(ERROR, 268, "Texture path malloc failed"));
-	return (SUCCESS);
+		return (set_path_to_tex(&tex_path->no, kv->value));
+	if (ft_strcmp(kv->key, "SO") == 0)
+		return (set_path_to_tex(&tex_path->so, kv->value));
+	if (ft_strcmp(kv->key, "WE") == 0)
+		return (set_path_to_tex(&tex_path->we, kv->value));
+	if (ft_strcmp(kv->key, "EA") == 0)
+		return (set_path_to_tex(&tex_path->ea, kv->value));
+	return (ft_return(ERROR, 267, "Invalid Key"));
 }
 
 static int	set_path(char *root_path, t_key_value *kv, t_tex_path *tex_path)
@@ -80,9 +59,9 @@ int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
 	int	exit_code;
 
 	if (kv->key[0] == 'C')
-		exit_code = set_rgb(&tex->ceil_rgb, kv->value);
+		exit_code = color_set_rgb(&tex->ceil_rgb, kv->value);
 	else if (kv->key[0] == 'F')
-		exit_code = set_rgb(&tex->floor_rgb, kv->value);
+		exit_code = color_set_rgb(&tex->floor_rgb, kv->value);
 	else
 		exit_code = set_path(root_path, kv, tex_path);
 	return (exit_code);
