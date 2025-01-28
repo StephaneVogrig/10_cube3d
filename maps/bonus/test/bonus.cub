@@ -1,20 +1,20 @@
-W1 textures/wall1.png
-W2 textures/wall2.png
-W3 textures/wall3.png
-W4 textures/wall4.png
-W5 textures/wall5.png
-W6 textures/wall6.png
-W7 textures/wall7.png
-W8 textures/wall8.png
-W9 textures/wall9.png
-R textures/doorR.png
-L textures/doorL.png
-T textures/doorT.png
-RE textures/doorRedge.png
-LE textures/doorLedge.png
-TE textures/doorTedge.png
-F textures/floor_128.png
-C textures/ceil_128.png
+W1 ../../textures/wall1.png
+W2 ../../textures/wall2.png
+W3 ../../textures/wall3.png
+W4 ../../textures/wall4.png
+W5 ../../textures/wall5.png
+W6 ../../textures/wall6.png
+W7 ../../textures/wall7.png
+W8 ../../textures/wall8.png
+W9 ../../textures/wall9.png
+R ../../textures/doorR.png
+L ../../textures/doorL.png
+T ../../textures/doorT.png
+RE ../../textures/doorRedge.png
+LE ../../textures/doorLedge.png
+TE ../../textures/doorTedge.png
+F ../../textures/floor_128.png
+C ../../textures/ceil_128.png
 
 121111111111111111131
 30000000S000000000002

@@ -1,12 +1,12 @@
-W1 textures/wall1.png
-R textures/doorR.png
-L textures/doorL.png
-T textures/doorT.png
-RE textures/doorRedge.png
-LE textures/doorLedge.png
-TE textures/doorTedge.png
-F textures/floor_128.png
-C textures/ceil_128.png
+W1 ../../textures/wall1.png
+R ../../textures/doorR.png
+L ../../textures/doorL.png
+T ../../textures/doorT.png
+RE ../../textures/doorRedge.png
+LE ../../textures/doorLedge.png
+TE ../../textures/doorTedge.png
+F ../../textures/floor_128.png
+C ../../textures/ceil_128.png
 
 11111111111111111111111111111111111111
 10000000000000000000000000000000000001

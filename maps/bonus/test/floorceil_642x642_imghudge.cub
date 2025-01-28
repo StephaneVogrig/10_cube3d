@@ -1,4 +1,4 @@
-W1 textures/wall1.png
+W1 ../../textures/wall1.png
 C ../level_designer/tex/eU_floorclang2_BaseColor.png
 F ../level_designer/tex/Floor.png
 
