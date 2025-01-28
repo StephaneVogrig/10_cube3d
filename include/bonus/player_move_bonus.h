@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move_bonus.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 00:31:31 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:21 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/28 01:19:28 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PLAYER_MOVE_BONUS_H
 
 # include "data_bonus.h"
+# include "door_open_bonus.h"
 # include "gridbox.h"
 # include "player.h"
 # include "raycasting_bonus.h"

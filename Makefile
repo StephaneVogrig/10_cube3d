@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/27 19:16:34 by svogrig          ###   ########.fr        #
+#    Updated: 2025/01/28 01:27:18 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,6 +130,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						door/door_collide_bonus.c \
 						door/door_hit_bonus.c \
 						door/door_inside_bonus.c \
+						door/door_open_bonus.c \
 						door/door_open_list_bonus.c \
 						interface/draw_line_bonus.c \
 						interface/draw_line_utils_bonus.c \
@@ -181,7 +182,7 @@ DEPS				:=	$(OBJS_MANDA:.o=.d) $(OBJS_BONUS:.o=.d)
 # compilation -----------------------------------------------------------------#
 
 CC 					:= 	cc
-CFLAGS 				:= 	-Wall -Werror -Wextra -g  # -fsanitize=address
+CFLAGS 				:= 	-Wall -Werror -Wextra
 
 #------------------------------------------------------------------------------#
 # rules                                                                        #
