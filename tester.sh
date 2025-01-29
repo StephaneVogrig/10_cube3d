@@ -13,7 +13,18 @@ MAP_ARRAY=($(ls $FOLDER_MAPS*.cub))
 
 VERSION=$3
 LOG_FILE="tester.log"
+make
+if [ $? -ne 0 ]; then
+	echo -e "${RED}Erreur: La compilation a échoué.${NC}"
+	exit 1
+fi
+
 if [ "$VERSION" = "bonus" ]; then
+	make bonus
+	if [ $? -ne 0 ]; then
+		echo -e "${RED}Erreur: La compilation a échoué.${NC}"
+		exit 1
+	fi
     CUB3D_EXEC="./cub3D_bonus"
 else
     CUB3D_EXEC="./cub3D"
