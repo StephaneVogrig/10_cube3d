@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:52:01 by aska              #+#    #+#             */
-/*   Updated: 2025/01/28 14:47:43 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:44:25 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_empty(char *str)
 {
 	while (*str)
 	{
-		if (*str != ' ')
+		if (ft_isspace(*str) == FALSE)
 			return (FALSE);
 		str++;
 	}
