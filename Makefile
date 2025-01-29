@@ -6,7 +6,7 @@
 #    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/28 15:11:34 by ygaiffie         ###   ########.fr        #
+#    Updated: 2025/01/29 13:22:24 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -183,7 +183,7 @@ DEPS				:=	$(OBJS_MANDA:.o=.d) $(OBJS_BONUS:.o=.d)
 # compilation -----------------------------------------------------------------#
 
 CC 					:= 	cc
-CFLAGS 				:= 	-Wall -Werror -Wextra -O3
+CFLAGS 				:= 	-Wall -Werror -Wextra -g # -fsanitize=address
 
 #------------------------------------------------------------------------------#
 # rules                                                                        #

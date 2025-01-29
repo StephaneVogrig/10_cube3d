@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:20 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:28:02 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/29 13:15:02 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 	t_data		data;
 	t_option	option;
 
-	title();
+	// title();
 	exit_code = program_init(&data, &option, argc, argv);
 	if (exit_code == SUCCESS)
 		exit_code = program_setup(&data, &option, argv[1]);
