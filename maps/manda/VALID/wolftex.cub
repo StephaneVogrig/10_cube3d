@@ -1,10 +1,10 @@
-SO ./textures/greystone.png
+SO ../../textures/wall_south.png
 
-NO ./textures/colorstone.png
-WE ./textures/bluestone.png
+NO ../../textures/wall_north.png
+WE ../../textures/wall_east.png
 
 
-EA ./textures/redbrick.png
+EA ../../textures/wall_west.png
 
 F 0,255,0
 C 0,0,255

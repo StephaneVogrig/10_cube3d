@@ -1,8 +1,8 @@
-NO ./textures/wall1.png
-SO ./textures/wall2.png
+NO ../../textures/wall_north.png
+SO ../../textures/wall_south.png
 
-WE ./textures/wall3.png
-EA ./textures/wall0.png
+WE ../../textures/wall_east.png
+EA ../../textures/wall_west.png
 
 
 

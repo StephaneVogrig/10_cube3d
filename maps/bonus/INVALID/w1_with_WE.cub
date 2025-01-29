@@ -1,0 +1,10 @@
+W1 ../../textures/wall1.png
+F ../../textures/floor_128.png
+C ../../textures/ceil_128.png
+WE ../../textures/wall_west.png
+
+11111
+10001
+10E01
+10001
+11111

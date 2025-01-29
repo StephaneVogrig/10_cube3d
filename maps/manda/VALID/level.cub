@@ -1,7 +1,7 @@
-SO textures/20.png
-NO textures/21.png
-WE textures/22.png
-EA textures/23.png
+NO ../../textures/wall_north.png
+SO ../../textures/wall_south.png
+WE ../../textures/wall_east.png
+EA ../../textures/wall_west.png
 
 C 30,25,25
 F 15,30,40

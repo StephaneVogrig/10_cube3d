@@ -1,11 +1,11 @@
-EA ./textures/wall0.png
+EA ../../textures/wall_west.png
 
-SO ./textures/wall2.png
+SO ../../textures/wall_south.png
 
-WE ./textures/wall3.png
+WE ../../textures/wall_east.png
 F 220,100,0
 C 225,30,0
-NO ./textures/wall1.png
+NO ../../textures/wall_north.png
 
 
 11111

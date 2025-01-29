@@ -1,0 +1,15 @@
+W1 ../../textures/wall1.png
+F ../../textures/floor_128.png
+C ../../textures/ceil_128.png
+
+SP ../sprites/coin_ys_gold.png
+[3.1.2.3.4.5.6.7.8.9;1.5]
+[3.5;2.1.2.3.4.5.6.7.8.9]
+SP ../sprites/coin_ys_silver.png
+[3.,.,.,.,.,.,;2.0]
+[4.0;2.,.,.,.,.,.,,.,]
+
+111111
+1E0001
+100001
+111111
