@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:30:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:17 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/29 15:33:41 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@
 int	lstmap_extract_info(t_map *map, char *map_path, t_asset_lst **asset_lst,
 		t_sprite_lst **sprite_lst);
 int	lstmap_to_grid(t_map *map, t_lstmap **lst_map);
-int	check_line_remain(t_map *map, t_asset_lst **lst_asset, t_lstmap **lst_map);
 
 #endif
