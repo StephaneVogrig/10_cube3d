@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:11:25 by aska              #+#    #+#             */
-/*   Updated: 2025/01/28 15:26:05 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:53:41 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ void	pointer_table_init(t_asset *asset)
 
 t_texture	*ptr_tbl_get_orientation_wall(t_asset *asset, char orientation)
 {
-	if (asset->wall[0] != NULL)
-		return (asset->wall[0]);
 	if (orientation == 'N' && asset->nsew.north != NULL)
 		return (asset->nsew.north);
 	else if (orientation == 'S' && asset->nsew.south != NULL)
@@ -77,6 +75,8 @@ t_texture	*ptr_tbl_get_orientation_wall(t_asset *asset, char orientation)
 		return (asset->nsew.east);
 	else if (orientation == 'W' && asset->nsew.west != NULL)
 		return (asset->nsew.west);
+	else if (asset->wall[0] != NULL)
+		return (asset->wall[0]);
 	ft_display(ERROR, "ptr_tbl_get_orientation_wall: No texture found");
 	return (NULL);
 }

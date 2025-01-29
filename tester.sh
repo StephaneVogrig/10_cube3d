@@ -9,7 +9,7 @@ GRN="\033[0;32m"
 BYEL="\033[1;33m"
 BBLU="\033[1;34m"
 NC="\033[0m"
-MAP_ARRAY=($(ls $FOLDER_MAPS*.cub))
+mapfile -t MAP_ARRAY < <(ls "$FOLDER_MAPS"*.cub)
 
 VERSION=$3
 LOG_FILE="tester.log"
