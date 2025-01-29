@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/29 15:33:51 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:05:05 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,19 @@ static int	check_line_remain(t_map *map, t_asset_lst **lst_asset,
 	return (exit_code);
 }
 
-static int	is_line_valid(t_lstmap **tmp)
+static t_bool	is_asset_valid(t_lstmap **tmp)
 {
 	while (*tmp != NULL && is_empty((*tmp)->line) == TRUE)
 		*tmp = (*tmp)->next;
 	if (*tmp == NULL)
-		return (FAIL);
+		return (FALSE);
 	if (!ft_isthis((*tmp)->line[0], "NWESFCTLR"))
-		return (FAIL);
+		return (FALSE);
 	if (!ft_isthis((*tmp)->line[1], "EAOP 123456789"))
-		return (FAIL);
+		return (FALSE);
 	if (ft_strlen_endc((*tmp)->line, ' ') > 2)
-		return (FAIL);
-	return (SUCCESS);
+		return (FALSE);
+	return (TRUE);
 }
 
 static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
@@ -75,7 +75,7 @@ static int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
 
 	id = 0;
 	exit_code = SUCCESS;
-	while (tmp != NULL && exit_code == SUCCESS && is_line_valid(tmp) != FAIL)
+	while (tmp != NULL && exit_code == SUCCESS && is_asset_valid(tmp) != FALSE)
 	{
 		exit_code = set_key_value(&kv, (*tmp)->line, asset_lst);
 		if (exit_code == SUCCESS)
