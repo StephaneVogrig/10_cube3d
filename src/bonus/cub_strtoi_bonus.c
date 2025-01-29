@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_strtoi.c                                       :+:      :+:    :+:   */
+/*   cub_strtoi_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:58:09 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/29 23:21:22 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/30 00:05:12 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub_strtoi.h"
+#include "cub_strtoi_bonus.h"
 
 static inline int	isdigit(const char c)
 {
@@ -19,20 +19,19 @@ static inline int	isdigit(const char c)
 	return (FALSE);
 }
 
-static inline int	is_blank(const char c)
-{
-	if (c == ' ' || c == '\t' || c == '\n')
-		return (TRUE);
-	return (FALSE);
-}
-
 static inline char	*skip_blank(const char *str)
 {
 	if (!str)
 		return (NULL);
-	while (is_blank(*str))
+	while (*str == ' ' || *str == '\t' || *str == '\n')
 		str++;
 	return ((char *)str);
+}
+
+static inline void	set_endptr(const char *str, char **endptr)
+{
+	if (endptr)
+		*endptr = (char *)str;
 }
 
 static inline int	check_overflow(const char **str, int *value, char sign)
@@ -45,7 +44,7 @@ static inline int	check_overflow(const char **str, int *value, char sign)
 			*value = INT_MAX;
 		else
 			*value = INT_MIN;
-		return (TRUE) ;
+		return (TRUE);
 	}
 	if (**str <= INT_MAX_LAST_DIGIT)
 		return (FALSE);
@@ -59,8 +58,6 @@ static inline int	check_overflow(const char **str, int *value, char sign)
 	*value = INT_MIN;
 	return (TRUE);
 }
-
-
 
 /*
 	The cub_strtoi() function converts the initial part of the string in str
@@ -87,8 +84,7 @@ int	cub_strtoi(const char *str, char **endptr)
 	char	sign;
 	int		overflow;
 
-	if (endptr)
-		*endptr = (char *)str;
+	set_endptr(str, endptr);
 	str = skip_blank(str);
 	sign = '+';
 	if (*str == '-' || *str == '+')
@@ -100,13 +96,12 @@ int	cub_strtoi(const char *str, char **endptr)
 	{
 		overflow = check_overflow(&str, &value, sign);
 		if (overflow)
-			break;
+			break ;
 		value = value * 10 + (*str - '0');
 		str++;
 	}
 	if (sign == '-' && !overflow)
 		value *= -1;
-	if (endptr)
-		*endptr = (char *)str;
+	set_endptr(str, endptr);
 	return (value);
 }
