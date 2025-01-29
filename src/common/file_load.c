@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_load.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:38:38 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/27 15:51:09 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/29 15:23:13 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,15 @@ int	file_to_lst_map(int fd, t_lstmap **lst_map)
 	char	*line;
 
 	line = get_next_line(fd);
+	if (line == NULL)
+		return(ft_return(ERROR, FAIL, "File empty or error to read it"));
 	while (line != NULL)
 	{
 		replace_eol_to_nul(line);
 		if (insert_end_lstmap(lst_map, line) == NULL)
 		{
 			delete_all_lstmap(lst_map);
-			ft_display(ERROR, "file_to_lst_map: Error to insert in lst_map");
+			ft_display(ERROR, "Error to insert in lst_map");
 			ft_display(INFO, line);
 			free(line);
 			return (FAIL);
