@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_utils_bonus.h                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:58:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/28 14:55:49 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/30 01:49:18 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ int			set_rgb(t_rgb *rgb, char *value);
 int			check_line(char *line);
 int			set_asset_lst(t_key_value *kv, char *root_path,
 				t_asset_lst **asset_lst, int id);
-int			get_root_path(char *map_path, char **root_path);
 
 #endif

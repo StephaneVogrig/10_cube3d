@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/27 15:58:45 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 01:47:48 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,24 +61,6 @@ int	lstmap_to_textures(t_tex_path *tex_path, t_textures *tex,
 	return (exit_code);
 }
 
-int	get_root_path(char *map_path, char **root_path)
-{
-	*root_path = ft_strrchr(map_path, '/');
-	if (*root_path != NULL)
-	{
-		*root_path = ft_substr(map_path, 0, *root_path - map_path + 1);
-		if (*root_path == NULL)
-			return (ft_return(ERROR, 3, "get_root_path: malloc error"));
-	}
-	else
-	{
-		*root_path = ft_strdup("./");
-		if (*root_path == NULL)
-			return (ft_return(ERROR, 3, "get_root_path: malloc error"));
-	}
-	return (SUCCESS);
-}
-
 int	lstmap_extract_info(t_textures *textures, t_map *map, t_tex_path *tex_path,
 		char *map_path)
 {
@@ -92,7 +74,7 @@ int	lstmap_extract_info(t_textures *textures, t_map *map, t_tex_path *tex_path,
 	if (ok == SUCCESS)
 	{
 		if (lst_map == NULL)
-			ok = ft_return(ERROR, 6, "lstmap_extract_info: No data in map");
+			ok = ft_return(ERROR, 6, "lstmap_extract_info: No data in map", NULL);
 		if (ok == SUCCESS)
 			ok = get_root_path(map_path, &root_path);
 		if (ok == SUCCESS)

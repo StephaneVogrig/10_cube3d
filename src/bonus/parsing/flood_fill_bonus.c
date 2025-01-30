@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:08:25 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 16:28:08 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 00:51:33 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ int	map_checker(t_map *map, t_player *player)
 	map->grid[player->y.grid][player->x.grid] = '0';
 	map_copy_free(map_copy);
 	if (ff_ok == FALSE)
-		return (ft_return(ERROR, 10, "Error on Map"));
+		return (FAIL);
 	return (SUCCESS);
 }

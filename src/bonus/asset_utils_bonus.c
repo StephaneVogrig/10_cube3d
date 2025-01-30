@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:45:48 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 15:05:04 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 00:24:16 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	color_to_buffer(t_rgb *rgb, t_texture *t)
 {
 	t->buffer = malloc(sizeof(int));
 	if (t->buffer == NULL)
-		return (ft_return(ERROR, FAIL, "color_to_buffer: malloc failed"));
+		return (ft_return(ERROR, FAIL, "Malloc failed", "color_to_buffer"));
 	t->buffer[0] = rgb->integer;
 	t->width = 1;
 	t->height = 1;

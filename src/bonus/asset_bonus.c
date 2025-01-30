@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:31:39 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 14:56:51 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 00:23:41 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ static int	asset_init(t_asset *asset, int size, t_asset_lst *head)
 	{
 		free(asset->key);
 		free(asset->value);
-		return (ft_return(ERROR, FAIL, "asset_init: malloc failed"));
+		return (ft_return(ERROR, FAIL, "Malloc failed", "asset_init"));
 	}
 	i = 0;
 	while (head != NULL)
 	{
 		if (asset_set_key_value(asset, head->key, size, i++) == FAIL)
-			return (ft_return(ERROR, FAIL, "asset_init: malloc failed"));
+			return (ft_return(ERROR, FAIL, "Malloc failed", "asset_init"));
 		head = head->next;
 	}
 	return (SUCCESS);

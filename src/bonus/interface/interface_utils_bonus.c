@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:44:55 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 15:48:04 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 00:36:51 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@ int	interface_setup_texture(void *mlx, t_texture *tex, char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == FAIL)
-		return (ft_return(ERROR, FAIL,
-				"interface_setup_texture: no open asset"));
+		return (ft_return(ERROR, FAIL, "open asset", path));
 	close(fd);
 	if (texture_load_to_buffer(mlx, tex, path) == FAIL)
-		return (ft_return(ERROR, FAIL,
-				"interface_setup_texture: load texture error"));
+		return (FAIL);
 	return (SUCCESS);
 }
 

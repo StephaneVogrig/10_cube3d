@@ -19,6 +19,6 @@ int	ft_close(int fd)
 	if (DEBUG_MODE >= 3 && fd == 0)
 		ft_printf(BYEL"CLOSE\t:" HYEL " fd = %i\n" CRESET, fd);
 	else if (DEBUG_MODE >= 3)
-		return (ft_return(ERROR, fd, "CLOSE"));
+		return (ft_return(ERROR, fd, "CLOSE", NULL));
 	return (fd);
 }

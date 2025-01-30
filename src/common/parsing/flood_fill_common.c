@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill_common.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:47:13 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/28 14:47:15 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/30 01:21:01 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_bool	chk_flood_fill(t_map *map, int x, int y)
 			|| map->grid[cell.y][cell.x] == ' ')
 		{
 			free(stack.data);
-			return (FALSE);
+			return (ft_return(ERROR, FALSE, "Map Invalid", map->grid[cell.y]));
 		}
 		map->grid[cell.y][cell.x] = AREA;
 		check_cell(cell.x, cell.y + 1, map, &stack);

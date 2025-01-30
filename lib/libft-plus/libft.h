@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:09:49 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/21 23:10:00 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 00:20:07 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 //
 
 # define TITLE_MODE 1
-# define DEBUG_MODE 2
+# define DEBUG_MODE 1
 
 // -- choix fonts pour titre
 // # include "ascii_Bloody.h"
@@ -464,8 +464,11 @@ int						exit_info(int return_code, char *add_msg);
 
 void					ft_display(t_state state, char *add_msg);
 int						ft_exit(t_state state, int return_code, char *add_msg);
-int						ft_return(t_state state, int return_code,
-							char *add_msg);
+int						ft_return(t_state state,
+									int return_code,
+									char *add_msg,
+									char *add_msg_supp);
+									
 char					*ft_strtrim_f(char *s1, char *set);
 
 /**

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 15:49:33 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 01:04:12 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ int	set_map_info(t_map *map, char *line)
 		if (ft_isthis(line[i++], "NSWE"))
 		{
 			if (player_valid == TRUE)
-				return (ft_return(ERROR, 7, "Player on map Invalid"));
+				return (ft_return(ERROR, 7, "Two Player on map", line));
 			player_valid = TRUE;
 		}
 	}
 	x = 0;
 	while (line[x])
 		if (x++ == INT_MAX)
-			return (ft_return(ERROR, 7, "Map width too large"));
+			return (ft_return(ERROR, 7, "Map width too large", NULL));
 	if (x > map->width)
 		map->width = x;
 	if (map->height == INT_MAX)
-		return (ft_return(ERROR, 7, "Map height too large"));
+		return (ft_return(ERROR, 7, "Map height too large", NULL));
 	map->height++;
 	return (SUCCESS);
 }
@@ -63,7 +63,7 @@ int	map_player_finder(t_map *map, t_player *player)
 		}
 	}
 	if (player->x.grid == 0 && player->y.grid == 0)
-		return (ft_return(ERROR, FAIL, "No player on map"));
+		return (ft_return(ERROR, FAIL, "No player on map", NULL));
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2025/01/29 23:48:31 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 01:55:49 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
 {
 	*tmp = (*tmp)->next;
 	if (tmp == NULL || (*tmp)->line[0] != '[')
-		return (ft_return(ERROR, FAIL, "No coordinate for sprite"));
+		return (ft_return(ERROR, FAIL, "No coordinate for sprite", 
+					(*tmp)->prev->line));
 	while (tmp != NULL && (*tmp)->line[0] == '[')
 	{
 		if (set_sprite_coordinate((*tmp)->line, sprite_lst, id) == SUCCESS)
@@ -95,7 +96,7 @@ int	set_sprite_coordinate(char *line, t_sprite_lst **head, int id)
 
 	exit_code = extract_raw_coordinate(line, &x, &y);
 	if (exit_code != SUCCESS)
-		return (ft_return(ERROR, FAIL, "Invalid coordinate"));
+		return (ft_return(ERROR, FAIL, "Invalid coordinate", line));
 	result.x = custom_atof(x);
 	result.y = custom_atof(y);
 	insert_sprite_lst(head, result.x, result.y, id);

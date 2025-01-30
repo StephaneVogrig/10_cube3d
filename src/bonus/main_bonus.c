@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:20 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/29 13:15:02 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/30 00:29:59 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ int	program_init(t_data *data, t_option *option, int argc, char **argv)
 		return (exit_code);
 	ext = ft_strrchr(argv[1], '.');
 	if (ext == NULL || ft_strcmp(ext, ".cub") != 0)
-		return (ft_return(ERROR, 3,
-				"program_init: No \".cub\" extension map file"));
+		return (ft_return(ERROR, 3, "No \".cub\" extension map file", argv[1]));
 	root_path = ft_strrchr(argv[1], '/');
 	if (root_path != NULL && root_path[1] == '.')
-		return (ft_return(ERROR, 3, "program_init: Hidden cub file"));
+		return (ft_return(ERROR, 3, "No \".cub\" extension map file", argv[1]));
 	data->win.width = option->win_width;
 	data->win.height = option->win_height;
 	return (exit_code);

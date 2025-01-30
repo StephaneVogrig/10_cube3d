@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_box.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 02:56:33 by aska              #+#    #+#             */
-/*   Updated: 2024/09/11 17:21:43 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/30 00:17:02 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ int	chk_box(int test, t_condition selector, int if_valid,char *check_msg)
 	else if (selector == GE)
 		return(chk_box_le_ge(test, if_valid, check_msg, 1));
 	else
-		return(ft_return(WARNING, test, "Invalid selector"));
+		return(ft_return(WARNING, test, "Invalid selector", check_msg));
 }

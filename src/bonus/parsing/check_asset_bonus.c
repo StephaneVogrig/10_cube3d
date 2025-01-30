@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_asset_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 02:52:34 by aska              #+#    #+#             */
-/*   Updated: 2025/01/29 14:17:31 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/30 02:00:21 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	cmp_cell_line_to_asset_key(char *line, t_asset_lst *asset_lst)
 		if (ft_isthis(line[i], " 0") || chk_save_cell(line[i]) == '\0')
 			continue ;
 		if (asset_lst_key_exist(asset_lst, line[i]) == FALSE)
-			return (ft_return(ERROR, FAIL, "Invalid or missing Asset Key"));
+			return (ft_return(ERROR, FAIL, "Invalid or missing Asset Key", 
+						line));
 	}
 	return (SUCCESS);
 }

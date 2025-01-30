@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_load.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:38:38 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/29 15:23:13 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/30 00:59:47 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	open_file(int *fd, char *file)
 {
 	*fd = open(file, O_RDONLY);
 	if (*fd == FAIL)
-		return (ft_return(ERROR, FAIL, "open_file: Error to open .cub file"));
+		return (ft_return(ERROR, FAIL, "Error to open .cub file", file));
 	return (SUCCESS);
 }
 
@@ -24,7 +24,7 @@ int	close_file(int *fd)
 {
 	*fd = close(*fd);
 	if (*fd == FAIL)
-		return (ft_return(ERROR, FAIL, "close_file: Error to close .cub file"));
+		return (ft_return(ERROR, FAIL, "Error to close .cub file", NULL));
 	return (SUCCESS);
 }
 
@@ -44,7 +44,8 @@ int	file_to_lst_map(int fd, t_lstmap **lst_map)
 
 	line = get_next_line(fd);
 	if (line == NULL)
-		return(ft_return(ERROR, FAIL, "File empty or error to read it"));
+		return(ft_return(ERROR, FAIL, ".cub File empty or error to read it", 
+					NULL));
 	while (line != NULL)
 	{
 		replace_eol_to_nul(line);

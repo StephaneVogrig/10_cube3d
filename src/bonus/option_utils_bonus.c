@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 02:30:22 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 14:30:08 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 00:30:54 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ int	option_get_resolution(t_option *option, char *resolution)
 	while (*resolution != '\0' && *resolution != 'x')
 		resolution++;
 	if (*resolution == '\0')
-		return (ft_return(ERROR, 264, "Invalid width in resolution"));
+		return (ft_return(ERROR, 264, "Invalid width in resolution", resolution));
 	*resolution = '\0';
 	resolution++;
 	if (*resolution == '\0')
-		return (ft_return(ERROR, 265, "Invalid height in resolution"));
+		return (ft_return(ERROR, 265, "Invalid height in resolution", resolution));
 	height = resolution;
 	if (is_valid_resolution(width) == FALSE
 		|| is_valid_resolution(height) == FALSE)
-		return (ft_return(ERROR, 266, "Invalid resolution"));
+		return (ft_return(ERROR, 266, "Invalid resolution", resolution));	
 	option->win_width = ft_atoi(width);
 	option->win_height = ft_atoi(height);
 	return (SUCCESS);
