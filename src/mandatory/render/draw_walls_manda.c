@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_walls_manda.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:02:42 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 19:12:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,21 @@ t_texture	*texture_hit(t_textures *textures, t_ray *ray)
 	return (&textures->west);
 }
 
-void	draw_walls(t_window *win, t_ray *rays, t_textures *textures,
-		double scale)
+void	draw_walls(t_window *win, t_ray *rays, t_data *data)
 {
 	t_strip	strip;
 	double	img_x;
 	int		x;
 
+	strip.dark = data->dark;
 	x = 0;
 	while (x < win->width)
 	{
-		strip.screen_size = strip_screen_size(scale, rays->len);
+		strip.screen_size = strip_screen_size(data->scale_screen, rays->len);
 		if (strip.screen_size > 1)
 		{
-			strip.img = texture_hit(textures, rays);
+			strip.img = texture_hit(&data->textures, rays);
 			img_x = hitpos_wall_texture(strip.img->width, rays);
-			strip.dark = rays->dark;
 			draw_wall(win, x, img_x, &strip);
 		}
 		rays++;

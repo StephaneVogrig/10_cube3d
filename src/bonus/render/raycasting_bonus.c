@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:11:12 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 19:35:06 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	raycast(t_ray *ray, t_position *start, t_data *data)
 		else
 			ray->hit_axis = 'y';
 		ray->hit_cell = cell;
-		ray->dark = 0;
 	}
 	else
 		dda(ray, start, data);

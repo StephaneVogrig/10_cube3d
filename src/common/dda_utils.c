@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 19:20:10 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:49:23 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 19:34:47 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,4 @@ void	dda_ray_set(t_ray *ray, t_dda *dda, t_position *start)
 		ray->hit_side = choose_char(dda->x.step == 1, 'W', 'E');
 	else
 		ray->hit_side = choose_char(dda->y.step == 1, 'N', 'S');
-	ray->dark = dda->collide == AREA;
 }

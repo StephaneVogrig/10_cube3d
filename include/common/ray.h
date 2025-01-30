@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:13:08 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:41 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 19:35:56 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_ray
 	char		*hit_cell;
 	char		hit_axis;
 	char		hit_side;
-	int			dark;
 }				t_ray;
 
 typedef struct s_ray_tab

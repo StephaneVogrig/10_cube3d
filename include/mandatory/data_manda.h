@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_manda.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:47 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 18:50:00 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_data
 	t_key		key;
 	t_player	player;
 	int			mouse_mode;
+	int			dark;
 	t_ray_tab	rays;
 	double		tg_fov_2;
 	double		scale_screen;
