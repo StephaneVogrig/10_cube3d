@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:38 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 12:18:35 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 12:34:17 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ static void	skip_blank(char **str)
 		(*str)++;
 }
 
-static int	char_to_rgb(char **value, unsigned char *rgb)
+static int	char_to_rgb(char *value, char **endptr, unsigned char *rgb)
 {
 	int c;
 	
-	c = cub_strtoi(*value, value);
+	c = cub_strtoi(value, endptr);
 	if (c < 0 || c > 255)
 		return (FAIL);
 	*rgb = (unsigned char)c;
-	skip_blank(value);
-	if (**value == ',')
-		(*value)++;
-	else if (**value == '\0')
+	skip_blank(endptr);
+	if (**endptr == ',')
+		(*endptr)++;
+	else if (**endptr == '\0')
 		return (SUCCESS);
 	else
 		return (FAIL);
@@ -47,20 +47,23 @@ static int	char_to_rgb(char **value, unsigned char *rgb)
 
 int	color_set_rgb(t_rgb *rgb, char *value)
 {
-	int	exit_code;
-	char *tmp_value;
+	int		exit_code;
+	char	*tmp_value;
+	char	*endptr;
 
 	tmp_value = value;
-
-	exit_code = char_to_rgb(&value, &rgb->r);
-	if (exit_code == FAIL || *value == '\0')
-		return (ft_return(ERROR, FAIL, "Invalid color", tmp_value));
-	exit_code = char_to_rgb(&value, &rgb->g);
-	if (exit_code == FAIL || *value == '\0')
-		return (ft_return(ERROR, FAIL, "Invalid color", tmp_value));
-	exit_code = char_to_rgb(&value, &rgb->b);
+	endptr = NULL;
+	exit_code = char_to_rgb(value, &endptr, &rgb->r);
+	if (exit_code == FAIL || *endptr == '\0')
+		return (ft_return(ERROR, FAIL, "Invalid color", value));
+	tmp_value = endptr;
+	exit_code = char_to_rgb(tmp_value, &endptr, &rgb->g);
+	if (exit_code == FAIL || *endptr == '\0')
+		return (ft_return(ERROR, FAIL, "Invalid color", value));
+	tmp_value = endptr;
+	exit_code = char_to_rgb(tmp_value, &endptr, &rgb->b);
 	if (exit_code == FAIL)
-		return (ft_return(ERROR, FAIL, "Invalid color", tmp_value));
+		return (ft_return(ERROR, FAIL, "Invalid color", value));
 	rgb->a = 255;
 	return (SUCCESS);
 }
