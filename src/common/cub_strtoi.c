@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_strtoi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:58:09 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 02:14:33 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 12:59:48 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static inline char	*skip_blank(const char *str)
 {
 	if (!str)
 		return (NULL);
-	while (*str == ' ' || *str == '\t' || *str == '\n')
+	while (ft_isspace(*str))
 		str++;
 	return ((char *)str);
 }
@@ -63,14 +63,14 @@ static inline int	check_overflow(const char **str, int *value, char sign)
 	The cub_strtoi() function converts the initial part of the string in str
     to an integer value.
 
-    The string may begin with an arbitrary amount of white space
-	(space, /t or /n) followed by a single optional '+' or '-' sign.
+    The string may begin with an arbitrary amount of white space (as determined
+	by isspace(3)) followed by a single optional '+' or '-' sign.
 
     The remainder of the string is converted to a long value in the obvious
     manner,  stopping  at the first character which is not a valid digit.
 
     If endptr is not NULL, cub_strtoi() stores the address of the first invalid
-    character  in *endptr.  If there were no digits at all, strtol() stores
+    character  in *endptr.  If there were no digits at all, cub_strtoi() stores
     the original value of nptr in *endptr (and returns 0).  In  particular,
     if  *nptr is not '\0' but **endptr is '\0' on return, the entire string
     is valid.

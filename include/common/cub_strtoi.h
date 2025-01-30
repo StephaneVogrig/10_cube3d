@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_strtoi_bonus.h                                 :+:      :+:    :+:   */
+/*   cub_strtoi.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 22:02:18 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 00:06:03 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/30 12:56:36 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <limits.h>
 # include <stddef.h>
+# include "libft.h"
 
 # define INT_MAX_LAST_DIGIT '7'
 # define INT_MIN_LAST_DIGIT '8'
