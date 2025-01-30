@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_strtoi_bonus.c                                 :+:      :+:    :+:   */
+/*   cub_strtoi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:58:09 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 00:05:12 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/30 02:14:33 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub_strtoi_bonus.h"
+#include "cub_strtoi.h"
 
 static inline int	isdigit(const char c)
 {
