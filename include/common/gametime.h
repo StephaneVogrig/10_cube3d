@@ -21,10 +21,10 @@
 #  define USECOND_PER_SECOND 1000000
 # endif
 
-typedef unsigned long		t_time_us;
-typedef struct timeval		t_timeval;
+typedef unsigned long	t_time_us;
+typedef struct timeval	t_timeval;
 
-t_time_us					gametime(void);
-void						fps_print(t_time_us delay);
+t_time_us				gametime(void);
+void					fps_print(t_time_us delay);
 
 #endif

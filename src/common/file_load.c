@@ -44,8 +44,8 @@ int	file_to_lst_map(int fd, t_lstmap **lst_map)
 
 	line = get_next_line(fd);
 	if (line == NULL)
-		return(ft_return(ERROR, FAIL, ".cub File empty or error to read it", 
-					NULL));
+		return (ft_return(ERROR, FAIL, ".cub File empty or error to read it",
+				NULL));
 	while (line != NULL)
 	{
 		replace_eol_to_nul(line);

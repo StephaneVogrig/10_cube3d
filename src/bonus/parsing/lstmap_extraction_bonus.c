@@ -37,8 +37,8 @@ static int	check_line_remain(t_map *map, t_asset_lst **lst_asset,
 	{
 		exit_code = is_empty(lst_map->line);
 		if (exit_code != SUCCESS)
-			return (ft_return(ERROR, 6, "Line is empty after", 
-						lst_map->prev->line));
+			return (ft_return(ERROR, 6, "Line is empty after",
+					lst_map->prev->line));
 		exit_code = !is_map_valid_bonus(lst_map->line);
 		if (exit_code != SUCCESS)
 			return (ft_return(ERROR, 6, "Line is invalid", lst_map->line));

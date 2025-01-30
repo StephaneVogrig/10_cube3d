@@ -21,5 +21,4 @@ void	remove_root_value(char *value);
 int		is_map_valid(char *line);
 int		get_root_path(char *map_path, char **root_path);
 
-
 #endif

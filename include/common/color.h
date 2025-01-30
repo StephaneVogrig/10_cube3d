@@ -13,8 +13,8 @@
 #ifndef COLOR_H
 # define COLOR_H
 
-# include "libft.h"
 # include "cub_strtoi.h"
+# include "libft.h"
 
 typedef union u_color
 {

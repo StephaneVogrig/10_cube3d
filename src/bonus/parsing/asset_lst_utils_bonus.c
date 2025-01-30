@@ -52,8 +52,9 @@ t_bool	asset_lst_key_exist(t_asset_lst *head, char key)
 {
 	char	key_tmp[3];
 
-	if (ft_isthis(key, "NSEW") == TRUE)	
-		return (asset_lst_key_in_list(head, "F") && asset_lst_key_in_list(head, "C"));
+	if (ft_isthis(key, "NSEW") == TRUE)
+		return (asset_lst_key_in_list(head, "F") && asset_lst_key_in_list(head,
+				"C"));
 	if (key == '1')
 	{
 		if (chk_orientation_key(head))

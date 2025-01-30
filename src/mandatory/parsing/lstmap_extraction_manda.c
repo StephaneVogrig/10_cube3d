@@ -74,7 +74,8 @@ int	lstmap_extract_info(t_textures *textures, t_map *map, t_tex_path *tex_path,
 	if (ok == SUCCESS)
 	{
 		if (lst_map == NULL)
-			ok = ft_return(ERROR, 6, "lstmap_extract_info: No data in map", NULL);
+			ok = ft_return(ERROR, 6, "lstmap_extract_info: No data in map",
+					NULL);
 		if (ok == SUCCESS)
 			ok = get_root_path(map_path, &root_path);
 		if (ok == SUCCESS)

@@ -76,7 +76,7 @@ int	interface_setup(t_interface *interface, void *mlx, t_window *win,
 	interface->win = mlx_new_window(mlx, MINIMAP_W, MINIMAP_H, "interface");
 	if (interface->win == NULL)
 		return (ft_return(ERROR, 25, "mlx_new_window failed",
-					"interface_setup"));
+				"interface_setup"));
 	mlx_get_screens_size(mlx, interface->win, &width, &height);
 	width = (width + win->width) / 2;
 	height = (height - win->height) / 2;

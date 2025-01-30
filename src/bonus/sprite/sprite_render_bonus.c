@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_render_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:31:34 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 18:10:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/30 17:17:41 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	sprite_sort(t_sprite *sprite)
 	{
 		sorting = sprite->order[i];
 		j = i;
-		while (j > 0
-			&& transform[sorting].y > transform[sprite->order[j - 1]].y)
+		while (j > 0 && transform[sorting].y > transform[sprite->order[j
+					- 1]].y)
 		{
 			sprite->order[j] = sprite->order[j - 1];
 			j--;

@@ -38,8 +38,8 @@ int	cmp_cell_line_to_asset_key(char *line, t_asset_lst *asset_lst)
 		if (ft_isthis(line[i], " 0") || chk_save_cell(line[i]) == '\0')
 			continue ;
 		if (asset_lst_key_exist(asset_lst, line[i]) == FALSE)
-			return (ft_return(ERROR, FAIL, "Invalid or missing Asset Key", 
-						line));
+			return (ft_return(ERROR, FAIL, "Invalid or missing Asset Key",
+					line));
 	}
 	return (SUCCESS);
 }

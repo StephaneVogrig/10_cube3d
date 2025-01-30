@@ -6,7 +6,7 @@
 #    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/30 03:00:24 by aska             ###   ########.fr        #
+#    Updated: 2025/01/30 17:04:40 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,8 +123,6 @@ SRCS_BONUS 			:=	main_bonus.c \
 						fog_bonus.c \
 						game_loop_bonus.c \
 						mouse_utils_bonus.c \
-						option_bonus.c \
-						option_utils_bonus.c \
 						player_move_bonus.c \
 						pointer_table_bonus.c \
 						door/door_bonus.c \

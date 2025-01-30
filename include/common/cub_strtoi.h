@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cub_strtoi.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 22:02:18 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 15:28:19 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/30 17:22:15 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_STRTOI_BONUS_H
-# define CUB_STRTOI_BONUS_H
+#ifndef CUB_STRTOI_H
+# define CUB_STRTOI_H
 
+# include "libft.h"
 # include <limits.h>
 # include <stddef.h>
-# include "libft.h"
-
 
 # ifndef FALSE
 #  define FALSE 0

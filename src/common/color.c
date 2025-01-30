@@ -29,8 +29,8 @@ static void	skip_blank(char **str)
 
 static int	char_to_rgb(char *value, char **endptr, unsigned char *rgb)
 {
-	int c;
-	
+	int	c;
+
 	c = cub_strtoi(value, endptr);
 	if (value == *endptr || c < 0 || c > 255)
 		return (FAIL);
@@ -72,12 +72,12 @@ int	color_set_rgb(t_rgb *rgb, char *value)
 // 	char *endptr;
 
 // 	rgb->a = 255;
-	
+
 // 	current = str;
 // 	rgb->r = cub_strtoi(current, &endptr);
 // 	if (current == endptr || rgb->r < 0 || rgb->r >255)
 // 		return (ft_return(ERROR, FAIL, "Invalid color red", str));
-	
+
 // 	current = endptr;
 // 	skip_blank(&current);
 // 	if (*current != '.' && *current != ',')
@@ -98,9 +98,8 @@ int	color_set_rgb(t_rgb *rgb, char *value)
 // 	if (current == endptr || rgb->b < 0 || rgb->b >255)
 // 		return (ft_return(ERROR, FAIL, "Invalid color red", str));
 
-	
 // 	skip_blank(&endptr);
 // 	if (*endptr != '\0')
 // 		return (ft_return(ERROR, FAIL, "Invalid color red", str));
-// 	return (SUCCESS);	
+// 	return (SUCCESS);
 // }

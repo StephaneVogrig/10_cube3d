@@ -17,8 +17,8 @@ int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
 {
 	*tmp = (*tmp)->next;
 	if (tmp == NULL || (*tmp)->line[0] != '[')
-		return (ft_return(ERROR, FAIL, "No coordinate for sprite", 
-					(*tmp)->prev->line));
+		return (ft_return(ERROR, FAIL, "No coordinate for sprite",
+				(*tmp)->prev->line));
 	while (tmp != NULL && (*tmp)->line[0] == '[')
 	{
 		if (set_sprite_coordinate((*tmp)->line, sprite_lst, id) == SUCCESS)
@@ -31,7 +31,8 @@ int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
 
 static double	build(t_build_double *build)
 {
-	build->result = build->integer + (build->decimal / pow(10, ft_intlen(build->decimal, 0)));
+	build->result = build->integer + (build->decimal / pow(10,
+				ft_intlen(build->decimal, 0)));
 	return (build->result);
 }
 
@@ -86,7 +87,8 @@ int	set_sprite_coordinate(char *line, t_sprite_lst **head, int id)
 	if (extract_coordinate(current, &endptr, &y) != SUCCESS)
 		return (ft_return(ERROR, FAIL, "Invalid coordinate Y position", line));
 	if (*endptr != ']' || *(endptr + 1) != '\0')
-		return (ft_return(ERROR, FAIL, "Invalid coordinate end line symbol \"]\"", line));
+		return (ft_return(ERROR, FAIL,
+				"Invalid coordinate end line symbol \"]\"", line));
 	insert_sprite_lst(head, build(&x), build(&y), id);
 	return (SUCCESS);
 }

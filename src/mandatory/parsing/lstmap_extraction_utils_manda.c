@@ -69,7 +69,7 @@ int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
 
 int	set_key_value(t_key_value *kv, char *line, t_fs *fs)
 {
-	int		exit_code;
+	int	exit_code;
 
 	exit_code = !ft_isthis(line[0], "NSEWFC");
 	if (exit_code != SUCCESS)
