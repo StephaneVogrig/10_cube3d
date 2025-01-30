@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 01:30:59 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 15:01:46 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 12:46:21 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ static int	option_parser(char *key, char *value, t_option *option)
 {
 	if (ft_strcmp(key, "--resolution") == 0)
 		return (option_get_resolution(option, value));
-	else if (ft_strcmp(key, "--fov") == 0 && is_valid_color(value))
-		option->fov = ft_atoi(value);
 	else if (ft_strcmp(key, "--minimap") == 0)
 		option->minimap = TRUE;
 	else

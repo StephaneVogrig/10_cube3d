@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/29 18:12:25 by ygaiffie         ###   ########.fr        #
+#    Updated: 2025/01/30 03:00:24 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,7 @@ SRCS_COMMON			:= 	axis.c \
 						utils.c \
 						vector.c \
 						window.c \
+						cub_strtoi.c \
 						parsing/flood_fill_common.c \
 						render/draw_wall_utils.c \
 						render/strip_util.c

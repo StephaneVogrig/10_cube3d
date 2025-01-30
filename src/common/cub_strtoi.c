@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub_strtoi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:58:09 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 15:40:37 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/30 16:16:32 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_strtoi.h"
 
-static inline int	isdigit(const char c)
+static inline int	is_digit(const char c)
 {
 	if ('0' <= c && c <= '9')
 		return (TRUE);
@@ -89,10 +89,10 @@ int	cub_strtoi(const char *str, char **endptr)
 	sign = '+';
 	if (*str == '-' || *str == '+')
 		sign = *str++;
-	if (!isdigit (*str))
+	if (!is_digit (*str))
 		return (0);
 	value = 0;
-	while (isdigit(*str))
+	while (is_digit(*str))
 	{
 		overflow = check_overflow(&str, &value, sign);
 		if (overflow)
