@@ -6,13 +6,13 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:58:09 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 02:14:33 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 03:01:26 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_strtoi.h"
 
-static inline int	isdigit(const char c)
+static inline int	is_digit(const char c)
 {
 	if ('0' <= c && c <= '9')
 		return (TRUE);
@@ -59,25 +59,29 @@ static inline int	check_overflow(const char **str, int *value, char sign)
 	return (TRUE);
 }
 
-/*
-	The cub_strtoi() function converts the initial part of the string in str
-    to an integer value.
 
-    The string may begin with an arbitrary amount of white space
-	(space, /t or /n) followed by a single optional '+' or '-' sign.
-
-    The remainder of the string is converted to a long value in the obvious
-    manner,  stopping  at the first character which is not a valid digit.
-
-    If endptr is not NULL, cub_strtoi() stores the address of the first invalid
-    character  in *endptr.  If there were no digits at all, strtol() stores
-    the original value of nptr in *endptr (and returns 0).  In  particular,
-    if  *nptr is not '\0' but **endptr is '\0' on return, the entire string
-    is valid.
-
-	In case of over/underflow cub_strtoi() function return INT_MAX/MIN
-	and *endptr store the adress of the digit which cause the over/underflow.
-*/
+/**
+ * @brief 	The cub_strtoi() function converts the initial part of the string in str
+ *  to an integer value.
+ *
+ *  The string may begin with an arbitrary amount of white space
+ *	(space, /t or /n) followed by a single optional '+' or '-' sign.
+ *
+ *  The remainder of the string is converted to a long value in the obvious
+ *  manner,  stopping  at the first character which is not a valid digit.
+ *
+ *  If endptr is not NULL, cub_strtoi() stores the address of the first invalid
+ *  character  in *endptr.  If there were no digits at all, strtol() stores
+ *  the original value of nptr in *endptr (and returns 0).  In  particular,
+ *  if  *nptr is not '\0' but **endptr is '\0' on return, the entire string
+ *  is valid.
+ *
+ *	In case of over/underflow cub_strtoi() function return INT_MAX/MIN
+ *	and *endptr store the adress of the digit which cause the over/underflow.
+ *
+ *	@param str 		The string to convert to an integer.
+ *	@param endptr 	The address of the first invalid character.
+ */
 int	cub_strtoi(const char *str, char **endptr)
 {
 	int		value;
@@ -89,10 +93,10 @@ int	cub_strtoi(const char *str, char **endptr)
 	sign = '+';
 	if (*str == '-' || *str == '+')
 		sign = *str++;
-	if (!isdigit (*str))
+	if (!is_digit (*str))
 		return (0);
 	value = 0;
-	while (isdigit(*str))
+	while (is_digit(*str))
 	{
 		overflow = check_overflow(&str, &value, sign);
 		if (overflow)

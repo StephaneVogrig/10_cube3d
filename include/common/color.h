@@ -6,15 +6,15 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:00 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:30 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 02:56:53 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COLOR_H
 # define COLOR_H
 
-# include "check_arg.h"
 # include "libft.h"
+# include "cub_strtoi.h"
 
 typedef union u_color
 {
