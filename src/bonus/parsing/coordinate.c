@@ -6,12 +6,12 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2025/01/30 01:55:49 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 12:46:42 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "coordinate.h"
-#include "math.h"
+#include <math.h>
 
 int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
 {
