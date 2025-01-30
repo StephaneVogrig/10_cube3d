@@ -6,16 +6,16 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:15:57 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 00:03:12 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:39:05 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
-#include "cub_strtoi_bonus.h"
+#include "cub_strtoi.h"
 #include "unit_test.h"
 
-static int	ft_strcmp(const char *s1, const char *s2)
+static int	str_compare(const char *s1, const char *s2)
 {
 	while ((*s1 || *s2) && *s1 == *s2)
 	{
@@ -34,7 +34,7 @@ static void	test(char *str, long expected_nbr, char *expected_endptr)
 
 	nbr = cub_strtoi(str, &endptr);
 	printf("test %2i", unit_test(get_tests));
-	if ((expected_nbr == nbr) && (ft_strcmp(endptr, expected_endptr) == 0))
+	if ((expected_nbr == nbr) && (str_compare(endptr, expected_endptr) == 0))
 	{
 		printf(GREEN" [ok] "RESET);	
 		printf("input: %30s ", str);
@@ -49,7 +49,7 @@ static void	test(char *str, long expected_nbr, char *expected_endptr)
 			printf("result: "GREEN"%li"RESET"\n", nbr);
 		else
 			printf("result: "RED"%li"RESET"\n", nbr);
-		if (ft_strcmp(endptr, expected_endptr) != 0)
+		if (str_compare(endptr, expected_endptr) != 0)
 			printf("endptr : "GREEN"%s"RESET", "RED"%s\n"RESET, expected_endptr, endptr);
 	}
 	printf("\n");

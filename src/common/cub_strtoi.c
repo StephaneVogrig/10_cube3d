@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:58:09 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 12:59:48 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:40:37 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static inline void	set_endptr(const char *str, char **endptr)
 
 static inline int	check_overflow(const char **str, int *value, char sign)
 {
-	if (*value < INT_MAX / 10)
+	if (*value < INT_MAX_DIV_10)
 		return (FALSE);
-	if (*value > INT_MAX / 10)
+	if (*value > INT_MAX_DIV_10)
 	{
 		if (sign == '+')
 			*value = INT_MAX;

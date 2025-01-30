@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 22:26:20 by stephane          #+#    #+#             */
-/*   Updated: 2025/01/29 23:56:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:37:35 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,18 @@
 # include <stdio.h>
 # include <limits.h>
 
-# define RESET "\033[0m"
-# define RED "\033[31m"
-# define GREEN "\033[32m"
+# ifndef RESET
+#  define RESET "\033[0m"
+# endif
+
+# ifndef RED
+#  define RED "\033[31m"
+# endif
+
+# ifndef GREEN
+#  define GREEN "\033[32m"
+# endif
+
 # define FIRST_FIELD_WIDTH -30
 
 typedef struct s_unit_test{
