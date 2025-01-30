@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:09:49 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/30 00:20:07 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 17:48:52 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 // Regular text
 # define BLK "\e[0;30m"
@@ -116,7 +117,7 @@ typedef enum e_status
 {
 	FAIL = -1,
 	SUCCESS = 0,
-}			t_status;
+}						t_status;
 
 typedef enum t_condition
 {
@@ -464,11 +465,9 @@ int						exit_info(int return_code, char *add_msg);
 
 void					ft_display(t_state state, char *add_msg);
 int						ft_exit(t_state state, int return_code, char *add_msg);
-int						ft_return(t_state state,
-									int return_code,
-									char *add_msg,
-									char *add_msg_supp);
-									
+int						ft_return(t_state state, int return_code, char *add_msg,
+							char *add_msg_supp);
+
 char					*ft_strtrim_f(char *s1, char *set);
 
 /**
@@ -508,7 +507,6 @@ int						ft_isspace(int c);
  */
 int						count_words(const char *s, char c);
 
-# include <limits.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
 # endif
