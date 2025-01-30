@@ -43,7 +43,7 @@ char	*get_next_line(int fd)
 
 char	*ft_read(int fd, char *static_buffer)
 {
-	size_t		bytes_read;
+	size_t	bytes_read;
 	char	*buffer;
 
 	bytes_read = -1;

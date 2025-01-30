@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 17:22:33 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/09 14:46:45 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 17:38:27 by aska             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../libft.h"
 
@@ -26,6 +26,6 @@ void	*ft_calloc(size_t elementCount, size_t elementSize)
 	if (!(init))
 		return (NULL);
 	if (DEBUG_MODE >= 3)
-		ft_printf(BMAG"ALLOC\t:" HMAG " %p" CRESET ": %u bytes\n", init,size);
+		ft_printf(BMAG "ALLOC\t:" HMAG " %p" CRESET ": %u bytes\n", init, size);
 	return (ft_bzero(init, size));
 }

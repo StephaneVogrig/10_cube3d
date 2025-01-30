@@ -12,18 +12,18 @@
 
 #include "../libft.h"
 
-char   **ft_tab_f(char **tab)
+char	**ft_tab_f(char **tab)
 {
-    int i;
+	int	i;
 
-    if (tab == NULL)
-        return(NULL);
-    i = 0;
-    while (tab[i] != NULL)
-    {
-        ft_free(tab[i]);
-        i++;
-    }
-    ft_free(tab);
-    return (NULL);
+	if (tab == NULL)
+		return (NULL);
+	i = 0;
+	while (tab[i] != NULL)
+	{
+		ft_free(tab[i]);
+		i++;
+	}
+	ft_free(tab);
+	return (NULL);
 }

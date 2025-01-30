@@ -12,7 +12,7 @@
 
 #include "../libft.h"
 
-static void    print_state(t_state state)
+static void	print_state(t_state state)
 {
 	if (state == INFO)
 	{
@@ -64,5 +64,5 @@ int	ft_return(t_state state, int return_code, char *add_msg, char *add_msg_supp)
 		else
 			print_msg(state, add_msg, add_msg_supp);
 	}
-	return(return_code);
+	return (return_code);
 }
