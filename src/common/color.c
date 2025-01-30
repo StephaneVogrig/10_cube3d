@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:38 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 13:04:19 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 13:20:50 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,41 +68,41 @@ int	color_set_rgb(t_rgb *rgb, char *value)
 	return (SUCCESS);
 }
 
-int color_set_rgb_2(t_rgb *rgb, char *str)
-{
-	char *current;
-	char *endptr;
+// int color_set_rgb_2(t_rgb *rgb, char *str)
+// {
+// 	char *current;
+// 	char *endptr;
 
-	rgb->a = 255;
+// 	rgb->a = 255;
 	
-	current = str;
-	rgb->r = cub_strtoi(current, &endptr);
-	if (current == endptr || rgb->r < 0 || rgb->r >255)
-		return (ft_return(ERROR, FAIL, "Invalid color red", str));
+// 	current = str;
+// 	rgb->r = cub_strtoi(current, &endptr);
+// 	if (current == endptr || rgb->r < 0 || rgb->r >255)
+// 		return (ft_return(ERROR, FAIL, "Invalid color red", str));
 	
-	current = endptr;
-	skip_blank(&current);
-	if (*current != '.' && *current != ',')
-		return (ft_return(ERROR, FAIL, "Invalid color", str));
-	current++;
+// 	current = endptr;
+// 	skip_blank(&current);
+// 	if (*current != '.' && *current != ',')
+// 		return (ft_return(ERROR, FAIL, "Invalid color", str));
+// 	current++;
 
-	rgb->g = cub_strtoi(current, &endptr);
-	if (current == endptr || rgb->g < 0 || rgb->g >255)
-		return (ft_return(ERROR, FAIL, "Invalid color red", str));
+// 	rgb->g = cub_strtoi(current, &endptr);
+// 	if (current == endptr || rgb->g < 0 || rgb->g >255)
+// 		return (ft_return(ERROR, FAIL, "Invalid color red", str));
 
-	current = endptr;
-	skip_blank(&current);
-	if (*current != '.' && *current != ',')
-		return (ft_return(ERROR, FAIL, "Invalid color", str));
-	current++;
+// 	current = endptr;
+// 	skip_blank(&current);
+// 	if (*current != '.' && *current != ',')
+// 		return (ft_return(ERROR, FAIL, "Invalid color", str));
+// 	current++;
 
-	rgb->b = cub_strtoi(current, &endptr);
-	if (current == endptr || rgb->b < 0 || rgb->b >255)
-		return (ft_return(ERROR, FAIL, "Invalid color red", str));
+// 	rgb->b = cub_strtoi(current, &endptr);
+// 	if (current == endptr || rgb->b < 0 || rgb->b >255)
+// 		return (ft_return(ERROR, FAIL, "Invalid color red", str));
 
 	
-	skip_blank(&endptr);
-	if (*endptr != '\0')
-		return (ft_return(ERROR, FAIL, "Invalid color red", str));
-	return (SUCCESS);	
-}
+// 	skip_blank(&endptr);
+// 	if (*endptr != '\0')
+// 		return (ft_return(ERROR, FAIL, "Invalid color red", str));
+// 	return (SUCCESS);	
+// }
