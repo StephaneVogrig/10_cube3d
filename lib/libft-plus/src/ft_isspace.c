@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 20:33:58 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/10/31 20:40:04 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:51:30 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	ft_isspace(int c)
 {
-	if (c == ' ' || c == '\t' || c == '\v' || c == '\f' || c == '\r')
+	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
+		|| c == '\v')
 		return (TRUE);
 	return (FALSE);
 }
