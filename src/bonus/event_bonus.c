@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 23:34:11 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/30 22:11:22 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	on_keydown(int key, void *param)
 		mlx_loop_end(data->mlx);
 	else if (key == KEY_F)
 		data->fog_enable = (data->fog_enable == FALSE);
+	else if (key == KEY_C)
+		data->collision_enable = (data->collision_enable == FALSE);
 	else
 		set_key_down(&data->key, key);
 	return (SUCCESS);

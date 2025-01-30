@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:05 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 11:53:56 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ typedef struct s_data
 	t_player		player;
 	int				mouse_mode;
 	int				fog_enable;
+	int				collision_enable;
+	int				in_wall;
+	int				in_door;
 	int				dark;
 	t_ray_tab		rays;
 	double			tg_fov_2;

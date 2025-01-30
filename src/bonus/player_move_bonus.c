@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 00:27:56 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/28 01:19:50 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/30 21:33:41 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ void	player_move(t_player *player, t_vec2i move, double move_len,
 
 	ray.dirvec = player_dir_move_vec(player, move);
 	open_door_auto_near_player(data, &data->map, data->door_open_list);
-	dda_before_collide(&ray, &player->position, data);
-	if (ray.len <= move_len)
+	if (data->collision_enable)
+		dda_before_collide(&ray, &player->position, data);
+	if (data->collision_enable && ray.len <= move_len)
 		slide(player, &ray, move_len, data);
 	else
 	{

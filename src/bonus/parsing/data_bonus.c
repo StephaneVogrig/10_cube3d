@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:05:29 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 21:31:40 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	data_init(t_data *data)
 	ft_bzero(data, sizeof(*data));
 	data->key.down = 0;
 	data->tg_fov_2 = tan((FOV / 2) * (PI / 180));
+	data->collision_enable = 1;
 }
 
 int	data_setup(t_data *data, char *map_path)

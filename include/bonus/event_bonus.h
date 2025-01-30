@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:27 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 19:18:15 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/30 21:47:45 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "raycasting_bonus.h"
 # include "mouse_utils_bonus.h"
 
+# define KEY_C 6
 # define KEY_F 9
 # define KEY_T 23
 

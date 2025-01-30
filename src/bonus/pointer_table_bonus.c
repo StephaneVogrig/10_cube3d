@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   pointer_table_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 13:11:25 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 11:54:09 by aska             ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/01/31 12:25:05 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "pointer_table_bonus.h"
 
@@ -110,6 +111,8 @@ t_texture	*asset_get_texture_ptr(t_asset *t, char *cell, char orientation)
 {
 	if (*cell == '1')
 		return (ptr_tbl_get_orientation_wall(t, orientation));
+	else if (*cell == '0' || *cell == ' ' || *cell == '\0')
+		return (t->floor_ceil.floor);
 	else if (ft_isdigit(*cell) == TRUE)
 		return (t->wall[*cell - WALL_OFFSET]);
 	else if (*cell == 'R' || *cell == 'L' || *cell == 'T')

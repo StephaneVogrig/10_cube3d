@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:03:35 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 19:35:02 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/31 12:09:18 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,10 @@ char	*check_collision(t_dda *dda, t_position *start, t_ray *ray,
 {
 	t_position	cell_pos;
 	char		*cell;
-	int			in_wall;
 
 	cell_pos = position(dda->x.current, 0.0, dda->y.current, 0.0);
 	cell = map_get_cell_ptr(&data->map, &cell_pos);
-	in_wall = dda->collide != WALL;
-	if (in_wall)
+	if (data->in_wall)
 	{
 		if (cell_is_wall(cell))
 			return (NULL);
