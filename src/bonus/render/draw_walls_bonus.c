@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_walls_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:11:10 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 21:38:21 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ float	hitpos_side_texture(float hitpos, t_door *door, int texture_width)
 {
 	float	hitpos_texture;
 
+	hitpos_texture = 0.0;
 	if (door->open_type == DOOR_OPEN_TYPE_R)
 		hitpos_texture = hitpos - door->pos_edge;
 	if (door->open_type == DOOR_OPEN_TYPE_L)
