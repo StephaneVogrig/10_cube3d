@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:48:01 by aska              #+#    #+#             */
-/*   Updated: 2025/01/30 12:40:30 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 14:30:58 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 # include "sprite_bonus.h"
 # include "sprite_lst_bonus.h"
 # include "cub_strtoi.h"
+
+typedef struct s_build_double
+{
+	int		integer;
+	int		decimal;
+	double	result;
+}	t_build_double;
 
 int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp,
 		int id);

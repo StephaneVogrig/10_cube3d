@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2025/01/30 12:46:42 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/30 14:44:18 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,76 +29,64 @@ int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
 	return (SUCCESS);
 }
 
-static double	custom_atof(char *str)
+static double	build(t_build_double *build)
 {
-	char	*tmp;
-	double	integer;
-	double	decimal;
-	int		sign;
-
-	sign = 1;
-	if (*str == '-')
-	{
-		sign = -1;
-		str++;
-	}
-	tmp = str;
-	while (*str != '.' && *str != ',' && *str != '\0')
-		str++;
-	if (*str == '\0')
-		return ((double)ft_atoi(tmp));
-	*str = '\0';
-	integer = ft_atoi(tmp);
-	tmp = ++str;
-	while (*str != '.' && *str != ',' && *str != '\0')
-		str++;
-	*str = '\0';
-	decimal = ft_atoi(tmp);
-	return (sign * (integer + (decimal / pow(10, ft_intlen(decimal, 0)))));
+	build->result = build->integer + (build->decimal / pow(10, ft_intlen(build->decimal, 0)));
+	return (build->result);
 }
 
-static t_bool	is_valid_coordinate(char c)
+static void	skip_blank(char **str)
 {
-	if (c == ';' && c == ']' && c == '\0')
-		return (FALSE);
-	if (ft_isthis(c, "-0123456789.,") == FALSE)
-		return (FALSE);
-	return (TRUE);
-
+	if (!str)
+		return ;
+	while (ft_isspace(**str))
+		(*str)++;
 }
 
-static int	extract_raw_coordinate(char *line, char **x, char **y)
+static int	extract_coordinate(char *line, char **endptr, t_build_double *build)
 {
+	char	*current;
+
 	line++;
-	*x = line;
-	if (is_valid_coordinate(*line) == FALSE)
+	build->integer = cub_strtoi(line, endptr);
+	if (line == *endptr || build->integer == INT_MAX)
 		return (FAIL);
-	while (*line != ';' && *line != '\0')
-		if (is_valid_coordinate(*line++) == FALSE)
+	if (ft_isthis(**endptr, ".,"))
+	{
+		(*endptr)++;
+		current = *endptr;
+		build->decimal = cub_strtoi(current, endptr);
+		if (line == *endptr || build->decimal == INT_MAX || build->decimal < 0)
 			return (FAIL);
-	*line = '\0';
-	line++;
-	*y = line;
-	while (*line != ']' && *line != '\0')
-		if (is_valid_coordinate(*line++) == FALSE)
-			return (FAIL);
-	if (*++line != '\0')
+	}
+	else if (ft_isthis(**endptr, ";]"))
+	{
+		build->decimal = 0;
+		return (SUCCESS);
+	}
+	skip_blank(endptr);
+	if (**endptr != ';' && **endptr != ']')
 		return (FAIL);
 	return (SUCCESS);
 }
 
 int	set_sprite_coordinate(char *line, t_sprite_lst **head, int id)
 {
-	char	*x;
-	char	*y;
-	t_vec2d	result;
-	int		exit_code;
+	t_build_double	x;
+	t_build_double	y;
+	char			*current;
+	char			*endptr;
 
-	exit_code = extract_raw_coordinate(line, &x, &y);
-	if (exit_code != SUCCESS)
-		return (ft_return(ERROR, FAIL, "Invalid coordinate", line));
-	result.x = custom_atof(x);
-	result.y = custom_atof(y);
-	insert_sprite_lst(head, result.x, result.y, id);
+	current = line;
+	if (extract_coordinate(current, &endptr, &x) != SUCCESS)
+		return (ft_return(ERROR, FAIL, "Invalid coordinate X position", line));
+	if (*endptr != ';')
+		return (ft_return(ERROR, FAIL, "Invalid coordinate separator", line));
+	current = endptr;
+	if (extract_coordinate(current, &endptr, &y) != SUCCESS)
+		return (ft_return(ERROR, FAIL, "Invalid coordinate Y position", line));
+	if (*endptr != ']' || *(endptr + 1) != '\0')
+		return (ft_return(ERROR, FAIL, "Invalid coordinate end line symbol \"]\"", line));
+	insert_sprite_lst(head, build(&x), build(&y), id);
 	return (SUCCESS);
 }
