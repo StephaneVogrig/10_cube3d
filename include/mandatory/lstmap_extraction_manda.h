@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:30:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/31 13:44:49 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 16:26:33 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 
 # include "file_load.h"
 # include "lstmap.h"
-# include "lstmap_extraction_utils_manda.h"
 # include "map.h"
 # include "parsing_utils.h"
+# include "textures_manda.h"
+# include "tex_path_manda.h"
+# include "bitfield_path_valid.h"
+# include "check_arg.h"
 
 int	lstmap_extract_info(t_textures *textures, t_map *map, t_tex_path *tex_path,
 		char *map_path);

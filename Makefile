@@ -6,7 +6,7 @@
 #    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/31 14:15:33 by aska             ###   ########.fr        #
+#    Updated: 2025/01/31 16:22:08 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,10 +95,10 @@ SRCS_MANDA			:=	main_manda.c \
 						floor_ceil_mlx_img.c \
 						game_loop_manda.c \
 						parsing/data_manda.c \
-						parsing/lstmap_extraction_utils_manda.c \
 						parsing/lstmap_extraction_manda.c \
 						parsing/flood_fill_manda.c \
 						parsing/bitfield_path_valid.c \
+						parsing/tex_path_manda.c \
 						render/draw_wall_manda.c \
 						render/draw_walls_manda.c \
 						render/raycasting_manda.c \

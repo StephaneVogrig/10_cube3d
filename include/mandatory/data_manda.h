@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_manda.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 18:50:00 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/31 16:17:00 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "libft.h"
 # include "lstmap.h"
 # include "lstmap_extraction_manda.h"
-# include "lstmap_extraction_utils_manda.h"
 # include "map.h"
 # include "player.h"
 # include "ray.h"
@@ -51,6 +50,5 @@ int				mlx_setup(t_data *data, t_tex_path *tex_path,
 					t_textures *textures);
 int				data_setup(t_data *data, char *map_path);
 void			data_clean(t_data *data);
-void			tex_path_clean(t_tex_path *tex_path);
 
 #endif

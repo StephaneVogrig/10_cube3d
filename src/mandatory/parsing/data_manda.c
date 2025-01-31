@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 01:07:57 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 16:09:19 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,6 @@ int	mlx_setup(t_data *data, t_tex_path *tex_path, t_textures *textures)
 	if (exit_code == SUCCESS)
 		exit_code = window_setup(&data->win, data->mlx);
 	return (exit_code);
-}
-
-void	tex_path_clean(t_tex_path *tex_path)
-{
-	tex_path->no = ft_char_f(tex_path->no);
-	tex_path->so = ft_char_f(tex_path->so);
-	tex_path->we = ft_char_f(tex_path->we);
-	tex_path->ea = ft_char_f(tex_path->ea);
 }
 
 int	data_setup(t_data *data, char *map_path)

@@ -6,11 +6,10 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2025/01/30 01:13:29 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 16:23:33 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "floor_ceil_mlx_img.h"
 #include "main_manda.h"
 
 int	main(int argc, char **argv)

@@ -6,11 +6,35 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/31 13:45:38 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 16:19:29 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lstmap_extraction_manda.h"
+
+int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
+		char *root_path)
+{
+	int	exit_code;
+
+	if (kv->key[0] == 'C')
+		exit_code = color_set_rgb(&tex->ceil_rgb, kv->value);
+	else if (kv->key[0] == 'F')
+		exit_code = color_set_rgb(&tex->floor_rgb, kv->value);
+	else
+		exit_code = set_path(root_path, kv, tex_path);
+	return (exit_code);
+}
+
+t_status	chk_key_value(t_key_value *kv, char *line, t_fs *fs)
+{
+	if (!ft_isthis(line[0], "NSEWFC") != SUCCESS)
+		return (ft_return(ERROR, 263, "Invalid Key", line));
+	remove_root_value(kv->value);
+	if (file_switch_select(fs, kv->key) != SUCCESS)
+		return (FAIL);
+	return (SUCCESS);
+}
 
 int	check_line_remain(t_map *map, t_lstmap **lst_map)
 {

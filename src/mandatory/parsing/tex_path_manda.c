@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lstmap_extraction_utils_manda.c                    :+:      :+:    :+:   */
+/*   tex_path_manda.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 13:46:40 by aska             ###   ########.fr       */
+/*   Created: 2025/01/31 16:05:27 by aska              #+#    #+#             */
+/*   Updated: 2025/01/31 16:13:26 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lstmap_extraction_utils_manda.h"
+#include "tex_path_manda.h"
+
+void	tex_path_clean(t_tex_path *tex_path)
+{
+	tex_path->no = ft_char_f(tex_path->no);
+	tex_path->so = ft_char_f(tex_path->so);
+	tex_path->we = ft_char_f(tex_path->we);
+	tex_path->ea = ft_char_f(tex_path->ea);
+}
 
 static int	set_path_to_tex(char **tex_path_dest, char *value)
 {
@@ -20,7 +28,7 @@ static int	set_path_to_tex(char **tex_path_dest, char *value)
 	return (SUCCESS);
 }
 
-int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
+static int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
 {
 	if (ft_strcmp(kv->key, "NO") == 0)
 		return (set_path_to_tex(&tex_path->no, kv->value));
@@ -33,7 +41,7 @@ int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
 	return (ft_return(ERROR, FAIL, "Invalid Key", kv->key));
 }
 
-static int	set_path(char *root_path, t_key_value *kv, t_tex_path *tex_path)
+int	set_path(char *root_path, t_key_value *kv, t_tex_path *tex_path)
 {
 	int	exit_code;
 	int	fd;
@@ -51,28 +59,4 @@ static int	set_path(char *root_path, t_key_value *kv, t_tex_path *tex_path)
 	ft_close(fd);
 	kv->value = ft_char_f(kv->value);
 	return (exit_code);
-}
-
-int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
-		char *root_path)
-{
-	int	exit_code;
-
-	if (kv->key[0] == 'C')
-		exit_code = color_set_rgb(&tex->ceil_rgb, kv->value);
-	else if (kv->key[0] == 'F')
-		exit_code = color_set_rgb(&tex->floor_rgb, kv->value);
-	else
-		exit_code = set_path(root_path, kv, tex_path);
-	return (exit_code);
-}
-
-t_status	chk_key_value(t_key_value *kv, char *line, t_fs *fs)
-{
-	if (!ft_isthis(line[0], "NSEWFC") != SUCCESS)
-		return (ft_return(ERROR, 263, "Invalid Key", line));
-	remove_root_value(kv->value);
-	if (file_switch_select(fs, kv->key) != SUCCESS)
-		return (FAIL);
-	return (SUCCESS);
 }
