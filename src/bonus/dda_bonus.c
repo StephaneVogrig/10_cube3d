@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dda_bonus.c                                        :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:03:35 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/31 12:09:18 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/01/31 22:31:27 by svogrig          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "dda_bonus.h"
 
@@ -39,6 +39,18 @@ static int	dda_is_collide_door(t_dda *dda, t_position *start, t_ray *ray,
 	return (TRUE);
 }
 
+char *wall_against_cell(t_dda *dda, t_position *cell_pos, t_data *data)
+{
+	char		*cell;
+
+	if (dda->hit_side == 'x')
+		cell_pos->x.grid -= dda->x.step;
+	else
+		cell_pos->y.grid -= dda->y.step;
+	cell = map_get_cell_ptr(&data->map, cell_pos);
+	return (cell);
+}
+
 char	*check_collision(t_dda *dda, t_position *start, t_ray *ray,
 		t_data *data)
 {
@@ -51,7 +63,7 @@ char	*check_collision(t_dda *dda, t_position *start, t_ray *ray,
 	{
 		if (cell_is_wall(cell))
 			return (NULL);
-		return (cell);
+		return (wall_against_cell(dda, &cell_pos, data));
 	}
 	if (cell_is_wall(cell))
 	{
