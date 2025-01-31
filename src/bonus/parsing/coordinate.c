@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 17:23:11 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 21:16:52 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
 	while (tmp != NULL && (*tmp)->line[0] == '[')
 	{
 		if (set_sprite_coordinate((*tmp)->line, sprite_lst, id) == SUCCESS)
-			*tmp = (*tmp)->next;
+			next_line_not_empty(tmp);
 		else
 			return (FAIL);
 	}

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:20 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 17:07:24 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 21:42:56 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	program_init(t_data *data, int argc, char **argv)
 {
 	int		exit_code;
 
+	data_init(data);
 	exit_code = check_entry_arg(argc, argv);
 	if (exit_code != SUCCESS)
 		return (exit_code);
-	data_init(data);
 	data->win.width = WIN_W;
 	data->win.height = WIN_H;
 	return (exit_code);

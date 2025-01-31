@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coordinate.h                                       :+:      :+:    :+:   */
+/*   lstmap_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 22:48:01 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 21:14:18 by aska             ###   ########.fr       */
+/*   Created: 2025/01/31 21:06:08 by aska              #+#    #+#             */
+/*   Updated: 2025/01/31 21:09:39 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COORDINATE_H
-# define COORDINATE_H
+#ifndef LSTMAP_BONUS_H
+# define LSTMAP_BONUS_H
 
 # include "libft.h"
-# include "lstmap.h"
-# include "lstmap_bonus.h"
-# include "sprite_bonus.h"
-# include "sprite_lst_bonus.h"
-# include "cub_strtoi.h"
 # include "parsing_utils.h"
-# include <math.h>
+# include "lstmap.h"
 
-typedef struct s_build_double
-{
-	int		integer;
-	int		decimal;
-	double	result;
-}	t_build_double;
-
-int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp,
-		int id);
-int	set_sprite_coordinate(char *line, t_sprite_lst **head, int id);
+void	next_line_not_empty(t_lstmap **tmp);
 
 #endif

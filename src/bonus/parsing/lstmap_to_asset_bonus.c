@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:53:06 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 14:22:51 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 21:17:23 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,6 @@ static int	set_asset_lst(t_key_value *kv, char *root_path,
 	if (insert_asset_lst(asset_lst, kv->key, kv->value, id) == NULL)
 		return (ft_return(ERROR, FAIL, "malloc failed", "set_asset_lst"));
 	return (SUCCESS);
-}
-
-static t_bool	is_asset_valid(t_lstmap **tmp)
-{
-	while (*tmp != NULL && is_empty((*tmp)->line) == TRUE)
-		*tmp = (*tmp)->next;
-	if (*tmp == NULL)
-		return (FALSE);
-	if (!ft_isthis((*tmp)->line[0], "NWESFCTLR"))
-		return (FALSE);
-	if (!ft_isthis((*tmp)->line[1], "EAOP 123456789"))
-		return (FALSE);
-	if (ft_strlen_endc((*tmp)->line, ' ') > 2)
-		return (FALSE);
-	return (TRUE);
 }
 
 static t_status	chk_key(char *key)
@@ -88,6 +73,21 @@ static t_status	chk_key_value(t_key_value *kv, t_asset_lst **asset_lst)
 		return (ft_return(ERROR, FAIL, "Key already exist", kv->key));
 	remove_root_value(kv->value);
 	return (SUCCESS);
+}
+
+static t_bool	is_asset_valid(t_lstmap **tmp)
+{
+	while (*tmp != NULL && is_empty((*tmp)->line) == TRUE)
+		*tmp = (*tmp)->next;
+	if (*tmp == NULL)
+		return (FALSE);
+	if (!ft_isthis((*tmp)->line[0], "NWESFCTLR"))
+		return (FALSE);
+	if (!ft_isthis((*tmp)->line[1], "EAOP 123456789"))
+		return (FALSE);
+	if (ft_strlen_endc((*tmp)->line, ' ') > 2)
+		return (FALSE);
+	return (TRUE);
 }
 
 int	lstmap_to_asset(t_lstmap **tmp, char *root_path, t_asset_lst **asset_lst,
