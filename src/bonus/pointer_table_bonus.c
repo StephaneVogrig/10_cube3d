@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pointer_table_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:11:25 by aska              #+#    #+#             */
-/*   Updated: 2025/01/29 17:53:41 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:54:09 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_texture	*ptr_tbl_get_orientation_wall(t_asset *asset, char orientation)
 t_texture	*ptr_tbl_get_orientation_door(t_asset *asset, char cell,
 		char orientation)
 {
-	if (orientation == 2 || orientation == 3)
+	if (orientation == SIDE_EDGE_X || orientation == SIDE_EDGE_Y)
 	{
 		if (cell == 'R' && asset->door.r_edge != NULL)
 			return (asset->door.r_edge);

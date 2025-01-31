@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:09:49 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/31 11:50:49 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 11:57:19 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@
 
 // -- Change ".h" for choose the font
 // # include "ascii_Bloody.h"
-// # include "ascii_Alligator.h"
-# include "ascii_ANSI.h"
+# include "ascii_ANSI_Shadow.h"
 
 // Lib include
 # include <errno.h>
