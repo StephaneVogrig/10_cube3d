@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:09:49 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/30 17:48:52 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 11:50:49 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFT_H
 
 //
-// -- Activation du debug mode
+// -- Debug mode
 // -- 0 > Silent Mode
 // -- 1 > Display Error
 // -- 2 > Custom MSG
@@ -24,11 +24,10 @@
 # define TITLE_MODE 1
 # define DEBUG_MODE 1
 
-// -- choix fonts pour titre
+// -- Change ".h" for choose the font
 // # include "ascii_Bloody.h"
-// # include "ascii_two_block.h"
 // # include "ascii_Alligator.h"
-# include "ascii_ANSI_Shadow.h"
+# include "ascii_ANSI.h"
 
 // Lib include
 # include <errno.h>
