@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:01:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/30 01:07:43 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 13:39:32 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static inline void	file_switch_check(t_fs *fs, t_ui8 binarie)
 		fs->flag_double = 1;
 }
 
-int	file_switch_select(t_fs *fs, char *key)
+t_status	file_switch_select(t_fs *fs, char *key)
 {
 	if (ft_strcmp(key, "NO") == 0)
 		file_switch_check(fs, fs->no);
@@ -49,6 +49,6 @@ int	file_switch_select(t_fs *fs, char *key)
 	else if (ft_strcmp(key, "C") == 0)
 		file_switch_check(fs, fs->c);
 	if (fs->flag_double == 1)
-		return (ft_return(ERROR, 267, "Double Key", key));
+		return (ft_return(ERROR, FAIL, "Double Key", key));
 	return (SUCCESS);
 }

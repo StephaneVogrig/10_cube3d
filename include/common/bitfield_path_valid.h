@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:02:30 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/30 17:21:16 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 13:39:47 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef union u_fs
 	t_ui8				file_ok;
 }						t_fs;
 
-int						file_switch_select(t_fs *fs, char *key);
+t_status				file_switch_select(t_fs *fs, char *key);
 void					file_switch_key(t_fs *fs, char **key);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 06:19:04 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 16:07:03 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 14:12:21 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,5 @@
 # include "window.h"
 
 int		mlx_setup(t_window *win, t_asset *textures, t_asset_lst **head);
-void	tex_path_clean(t_tex_path *tex_path);
 
 #endif

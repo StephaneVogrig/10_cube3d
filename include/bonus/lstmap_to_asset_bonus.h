@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   option_utils_bonus.h                               :+:      :+:    :+:   */
+/*   lstmap_to_asset_bonus.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/27 16:11:00 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 14:10:41 by aska             ###   ########.fr       */
+/*   Created: 2025/01/31 12:54:37 by aska              #+#    #+#             */
+/*   Updated: 2025/01/31 14:18:34 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OPTION_UTILS_BONUS_H
-# define OPTION_UTILS_BONUS_H
+#ifndef LSTMAP_TO_ASSET_BONUS_H
+# define LSTMAP_TO_ASSET_BONUS_H
 
 # include "libft.h"
-# include "option_bonus.h"
+# include "lstmap.h"
+# include "asset_lst_bonus.h"
+# include "sprite_lst_bonus.h"
+# include "key_value.h"
+# include "parsing_utils.h"
+# include "asset_lst_utils_bonus.h"
+# include "coordinate.h"
 
-typedef struct s_option
-{
-	int		win_width;
-	int		win_height;
-	float	fov;
-	t_bool	minimap;
-}			t_option;
-
-int			option_tokenizer(char **key, char **value, char *line);
-int			option_get_resolution(t_option *option, char *resolution);
-int			is_valid_resolution(char *resolution);
-void		print_option(t_option *option);
-int			print_help(void);
+int		lstmap_to_asset(t_lstmap **tmp, char *root_path,
+            t_asset_lst **asset_lst, t_sprite_lst **sprite_lst);
 
 #endif

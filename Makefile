@@ -6,7 +6,7 @@
 #    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/01/30 17:04:40 by aska             ###   ########.fr        #
+#    Updated: 2025/01/31 14:15:33 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ SRCS_COMMON			:= 	axis.c \
 						map.c \
 						parsing_utils.c \
 						player.c \
+						key_value.c \
 						position.c \
 						ray.c \
 						stack.c \
@@ -146,8 +147,8 @@ SRCS_BONUS 			:=	main_bonus.c \
 						parsing/check_asset_bonus.c \
 						parsing/coordinate.c \
 						parsing/flood_fill_bonus.c \
-						parsing/lstmap_extraction_utils_bonus.c \
 						parsing/lstmap_extraction_bonus.c \
+						parsing/lstmap_to_asset_bonus.c \
 						parsing/mlx_setup_bonus.c \
 						parsing/asset_lst_bonus.c \
 						parsing/asset_lst_utils_bonus.c \

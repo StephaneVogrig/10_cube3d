@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:28:35 by aska              #+#    #+#             */
-/*   Updated: 2025/01/30 01:49:17 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 13:46:40 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,12 @@ int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
 	return (exit_code);
 }
 
-int	set_key_value(t_key_value *kv, char *line, t_fs *fs)
+t_status	chk_key_value(t_key_value *kv, char *line, t_fs *fs)
 {
-	int	exit_code;
-
-	exit_code = !ft_isthis(line[0], "NSEWFC");
-	if (exit_code != SUCCESS)
+	if (!ft_isthis(line[0], "NSEWFC") != SUCCESS)
 		return (ft_return(ERROR, 263, "Invalid Key", line));
-	exit_code = setup_key_value_separate_by_space(&(kv->key), &(kv->value),
-			line);
-	if (exit_code != SUCCESS)
-		return (exit_code);
 	remove_root_value(kv->value);
-	exit_code = file_switch_select(fs, kv->key);
-	return (exit_code);
+	if (file_switch_select(fs, kv->key) != SUCCESS)
+		return (FAIL);
+	return (SUCCESS);
 }

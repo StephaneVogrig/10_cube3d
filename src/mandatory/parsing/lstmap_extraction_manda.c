@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/30 01:47:48 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 13:45:38 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ int	lstmap_to_textures(t_tex_path *tex_path, t_textures *tex,
 	{
 		while (is_empty((*lst_map)->line) == TRUE)
 			delete_node_lstmap(lst_map, *lst_map);
-		exit_code = set_key_value(&kv, (*lst_map)->line, &fs);
+		exit_code = set_key_value(&kv, (*lst_map)->line);
+		if (exit_code == SUCCESS)
+			exit_code = chk_key_value(&kv, (*lst_map)->line, &fs);
 		if (exit_code == SUCCESS)
 			exit_code = set_path_and_color(tex_path, tex, &kv, root_path);
 		if (exit_code != SUCCESS)
@@ -74,8 +76,7 @@ int	lstmap_extract_info(t_textures *textures, t_map *map, t_tex_path *tex_path,
 	if (ok == SUCCESS)
 	{
 		if (lst_map == NULL)
-			ok = ft_return(ERROR, 6, "lstmap_extract_info: No data in map",
-					NULL);
+			ok = ft_return(ERROR, FAIL, "No data in map", NULL);
 		if (ok == SUCCESS)
 			ok = get_root_path(map_path, &root_path);
 		if (ok == SUCCESS)

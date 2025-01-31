@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   option_utils_bonus.h                               :+:      :+:    :+:   */
+/*   key_value.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/27 16:11:00 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 14:10:41 by aska             ###   ########.fr       */
+/*   Created: 2025/01/31 13:07:13 by aska              #+#    #+#             */
+/*   Updated: 2025/01/31 13:24:19 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OPTION_UTILS_BONUS_H
-# define OPTION_UTILS_BONUS_H
+#ifndef KEY_VALUE_H
+# define KEY_VALUE_H
 
 # include "libft.h"
-# include "option_bonus.h"
 
-typedef struct s_option
+typedef struct s_key_value
 {
-	int		win_width;
-	int		win_height;
-	float	fov;
-	t_bool	minimap;
-}			t_option;
+	char	*key;
+	char	*value;
+}			t_key_value;
 
-int			option_tokenizer(char **key, char **value, char *line);
-int			option_get_resolution(t_option *option, char *resolution);
-int			is_valid_resolution(char *resolution);
-void		print_option(t_option *option);
-int			print_help(void);
+t_status	set_key_value(t_key_value *kv, char *line);
 
 #endif

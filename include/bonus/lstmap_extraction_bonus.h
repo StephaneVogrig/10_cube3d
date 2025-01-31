@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:30:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/29 15:33:41 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:14:53 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 # include "coordinate.h"
 # include "file_load.h"
 # include "lstmap.h"
-# include "lstmap_extraction_utils_bonus.h"
 # include "map.h"
 # include "parsing_utils.h"
 # include "sprite_lst_bonus.h"
+# include "lstmap_to_asset_bonus.h"
 
 int	lstmap_extract_info(t_map *map, char *map_path, t_asset_lst **asset_lst,
 		t_sprite_lst **sprite_lst);
