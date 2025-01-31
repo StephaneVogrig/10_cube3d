@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:38 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 16:48:59 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 17:16:32 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,6 @@ int	color_darkened(int color, int dark)
 	if (dark)
 		return ((color >> 2) & 0xFF3F3F3F);
 	return (color);
-}
-
-static void	skip_blank(char **str)
-{
-	if (!str)
-		return ;
-	while (ft_isspace(**str))
-		(*str)++;
 }
 
 static int	char_to_rgb(char *value, char **endptr, unsigned char *rgb)

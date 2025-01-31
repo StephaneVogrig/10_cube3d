@@ -6,12 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2025/01/30 14:44:18 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 17:23:11 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "coordinate.h"
-#include <math.h>
 
 int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
 {
@@ -34,14 +33,6 @@ static double	build(t_build_double *build)
 	build->result = build->integer + (build->decimal / pow(10,
 				ft_intlen(build->decimal, 0)));
 	return (build->result);
-}
-
-static void	skip_blank(char **str)
-{
-	if (!str)
-		return ;
-	while (ft_isspace(**str))
-		(*str)++;
 }
 
 static int	extract_coordinate(char *line, char **endptr, t_build_double *build)

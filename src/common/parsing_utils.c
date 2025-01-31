@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:52:01 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 13:25:01 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 17:14:32 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,19 @@ int	get_root_path(char *map_path, char **root_path)
 	return (SUCCESS);
 }
 
+void	skip_blank(char **str)
+{
+	if (!str)
+		return ;
+	while (ft_isspace(**str))
+		(*str)++;
+}
+
 int	is_empty(char *str)
 {
 	while (*str)
-	{
-		if (ft_isspace(*str) == FALSE)
+		if (ft_isspace(*str++) == FALSE)
 			return (FALSE);
-		str++;
-	}
 	return (TRUE);
 }
 
