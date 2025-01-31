@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:54:37 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 14:18:34 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 16:52:07 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "asset_lst_utils_bonus.h"
 # include "coordinate.h"
 
-int		lstmap_to_asset(t_lstmap **tmp, char *root_path,
-            t_asset_lst **asset_lst, t_sprite_lst **sprite_lst);
+int	lstmap_to_asset(t_lstmap **tmp, char *root_path, t_asset_lst **asset_lst,
+		t_sprite_lst **sprite_lst);
 
 #endif

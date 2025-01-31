@@ -12,8 +12,8 @@
 
 #include "lstmap_extraction_manda.h"
 
-static int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
-		char *root_path)
+static int	set_path_and_color(t_tex_path *tex_path, t_textures *tex,
+		t_key_value *kv, char *root_path)
 {
 	int	exit_code;
 

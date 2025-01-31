@@ -12,10 +12,8 @@
 
 #include "lstmap_to_asset_bonus.h"
 
-static int	set_asset_lst(t_key_value *kv, 
-							char *root_path, 
-							t_asset_lst **asset_lst,
-							int id)
+static int	set_asset_lst(t_key_value *kv, char *root_path,
+		t_asset_lst **asset_lst, int id)
 {
 	int	fd;
 
@@ -81,9 +79,9 @@ static t_status	chk_key(char *key)
 	return (SUCCESS);
 }
 
-static t_status chk_key_value(t_key_value *kv, t_asset_lst **asset_lst)
+static t_status	chk_key_value(t_key_value *kv, t_asset_lst **asset_lst)
 {
-    if (chk_key(kv->key) == FAIL)
+	if (chk_key(kv->key) == FAIL)
 		return (FAIL);
 	if (ft_strcmp(kv->key, "SP") != 0 && asset_lst_key_in_list(*asset_lst,
 			kv->key) == TRUE)
@@ -92,8 +90,8 @@ static t_status chk_key_value(t_key_value *kv, t_asset_lst **asset_lst)
 	return (SUCCESS);
 }
 
-int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
-		t_asset_lst **asset_lst, t_sprite_lst **sprite_lst)
+int	lstmap_to_asset(t_lstmap **tmp, char *root_path, t_asset_lst **asset_lst,
+		t_sprite_lst **sprite_lst)
 {
 	t_key_value	kv;
 	int			exit_code;
@@ -104,8 +102,8 @@ int	lstmap_to_asset(t_lstmap **tmp, char *root_path,
 	while (tmp != NULL && exit_code == SUCCESS && is_asset_valid(tmp) != FALSE)
 	{
 		exit_code = set_key_value(&kv, (*tmp)->line);
-        if (exit_code == SUCCESS)
-            exit_code = chk_key_value(&kv, asset_lst);
+		if (exit_code == SUCCESS)
+			exit_code = chk_key_value(&kv, asset_lst);
 		if (exit_code == SUCCESS)
 			exit_code = set_asset_lst(&kv, root_path, asset_lst, id);
 		if (exit_code != SUCCESS)

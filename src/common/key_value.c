@@ -6,13 +6,14 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:06:21 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 13:52:00 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 16:49:10 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "key_value.h"
 
-static inline int	setup_key_value_separate_by_space(char **key, char **value, char *line)
+static inline int	setup_key_value_separate_by_space(char **key, char **value,
+		char *line)
 {
 	*key = line;
 	while (*line != '\0' && ft_isspace(*line) == FALSE)
@@ -31,7 +32,7 @@ static inline int	setup_key_value_separate_by_space(char **key, char **value, ch
 
 t_status	set_key_value(t_key_value *kv, char *line)
 {
-    if (line == NULL || kv == NULL)
+	if (line == NULL || kv == NULL)
 		return (FAIL);
 	if (setup_key_value_separate_by_space(&(kv->key), &(kv->value),
 			line) != SUCCESS)

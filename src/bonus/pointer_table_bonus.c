@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   pointer_table_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/01/31 12:25:05 by svogrig          ###   ########.fr       */
+/*   Created: 2025/01/31 16:42:01 by aska              #+#    #+#             */
+/*   Updated: 2025/01/31 16:42:05 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "pointer_table_bonus.h"
 
