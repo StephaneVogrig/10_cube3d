@@ -6,13 +6,13 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/31 16:19:29 by aska             ###   ########.fr       */
+/*   Updated: 2025/01/31 16:31:00 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lstmap_extraction_manda.h"
 
-int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
+static int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
 		char *root_path)
 {
 	int	exit_code;
@@ -26,7 +26,7 @@ int	set_path_and_color(t_tex_path *tex_path, t_textures *tex, t_key_value *kv,
 	return (exit_code);
 }
 
-t_status	chk_key_value(t_key_value *kv, char *line, t_fs *fs)
+static t_status	chk_key_value(t_key_value *kv, char *line, t_fs *fs)
 {
 	if (!ft_isthis(line[0], "NSEWFC") != SUCCESS)
 		return (ft_return(ERROR, 263, "Invalid Key", line));
@@ -36,7 +36,7 @@ t_status	chk_key_value(t_key_value *kv, char *line, t_fs *fs)
 	return (SUCCESS);
 }
 
-int	check_line_remain(t_map *map, t_lstmap **lst_map)
+static int	check_line_remain(t_map *map, t_lstmap **lst_map)
 {
 	t_lstmap	*tmp;
 	int			exit_code;
@@ -60,7 +60,7 @@ int	check_line_remain(t_map *map, t_lstmap **lst_map)
 	return (exit_code);
 }
 
-int	lstmap_to_textures(t_tex_path *tex_path, t_textures *tex,
+static int	lstmap_to_textures(t_tex_path *tex_path, t_textures *tex,
 		t_lstmap **lst_map, char *root_path)
 {
 	t_fs		fs;
