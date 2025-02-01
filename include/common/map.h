@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:31:37 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:38 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 12:17:51 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_map
 
 int			set_map_info(t_map *map, char *line);
 int			map_player_finder(t_map *map, t_player *player);
-char		map_get_cell(t_map *map, t_position *p);
-int			is_outside_map(t_map *map, t_position *p);
+char		map_get_cell(const t_map *map, t_position *p);
+int			is_outside_map(const t_map *map, t_position *p);
 
 #endif

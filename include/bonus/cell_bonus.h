@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cell_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:22:48 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:03 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 12:18:22 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@
 int		cell_is_wall(char *cell);
 int		cell_is_wall_or_door(char *cell);
 int		cell_is_door(char *cell);
-char	*map_get_cell_ptr(t_map *map, t_position *p);
+char	*map_get_cell_ptr(const t_map *map, t_position *p);
 
 #endif

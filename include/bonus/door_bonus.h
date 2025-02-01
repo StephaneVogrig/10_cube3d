@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 19:51:31 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:06 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 13:11:45 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,22 +93,32 @@ typedef struct s_lenpos
 }			t_lenpos;
 
 /* door_bonus.c */
+
 float		door_get_closing_rate(t_door_open *door);
 void		door_open(char *cell, t_door_open *door_open_list);
 t_door_open	*door_find(char *cell, t_door_open *door_open_list);
 void		door_init(t_door *door, char *cell, t_door_open *door_open_list);
 
 /* door_open_list_bonus.c */
+
 int			door_open_list_update(t_door_open *door_open_list, t_time_us dt);
 t_door_open	*door_open_list_add(char *cell, t_door_open *door_open_list);
 
-int			is_outside_door(float start_x, float start_y, t_door *door);
+/* door_inside_bonus.c */
+
 int			is_inside_door(t_axis x, t_ray *ray, t_position *start,
 				t_door *door);
+
+/* door_hit_bonus.c */
 
 int			is_hit_doorside(t_axis x, t_ray *ray, t_position *start,
 				t_door *door);
 int			is_hit_dooredge(t_axis x, t_ray *ray, t_position *start,
 				t_door *door);
+
+/* door_utils_bonus.c */
+
+t_axis		door_get_direction(const t_map *map, t_position position);
+int			is_outside_door(float start_x, float start_y, t_door *door);
 
 #endif

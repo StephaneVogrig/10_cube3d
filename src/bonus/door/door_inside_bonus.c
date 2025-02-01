@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   door_inside_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 10:40:41 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:01:38 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 12:27:10 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "door_bonus.h"
 
+static
 float	position_edge(int y, t_ray *ray, t_position *start, t_door *door)
 {
 	float	pos_edge;
@@ -26,6 +27,7 @@ float	position_edge(int y, t_ray *ray, t_position *start, t_door *door)
 	return (pos_edge);
 }
 
+static
 float	position_side(int x, t_ray *ray, t_position *start, t_door *door)
 {
 	float	pos_side;
@@ -47,6 +49,7 @@ float	position_side(int x, t_ray *ray, t_position *start, t_door *door)
 	return (pos_side);
 }
 
+static
 t_lenpos	collide_side(int x, t_ray *ray, t_position *start, t_door *door)
 {
 	t_lenpos	side;
@@ -61,6 +64,7 @@ t_lenpos	collide_side(int x, t_ray *ray, t_position *start, t_door *door)
 	return (side);
 }
 
+static
 t_lenpos	collide_edge(int y, t_ray *ray, t_position *start, t_door *door)
 {
 	t_lenpos	edge;

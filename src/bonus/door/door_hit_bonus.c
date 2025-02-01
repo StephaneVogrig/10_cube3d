@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   door_hit_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 10:50:59 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:01:36 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 13:15:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "door_collide_bonus.h"
 
+static
 int	is_hit_door(float hit_pos, t_door *door)
 {
 	if (hit_pos < 0.0 || hit_pos > 1.0)
@@ -32,7 +33,7 @@ int	is_hit_doorside(t_axis x, t_ray *ray, t_position *start, t_door *door)
 	float	hit_pos;
 	t_axis	y;
 
-	y = (x == AXIS_X);
+	y = y_with_x(x);
 	if (ray->dirvec.axis[x] == 0)
 		return (FALSE);
 	if (start->axis[x].box > door->pos_side_down
@@ -54,6 +55,7 @@ int	is_hit_doorside(t_axis x, t_ray *ray, t_position *start, t_door *door)
 	return (TRUE);
 }
 
+static
 int	is_looking_edge(float pos_start, float pos_edge, double dir, t_door *door)
 {
 	if (dir == 0)
@@ -67,6 +69,7 @@ int	is_looking_edge(float pos_start, float pos_edge, double dir, t_door *door)
 	return (TRUE);
 }
 
+static
 int	is_hit_edge(float hit_pos, t_door *door)
 {
 	if ((hit_pos < door->pos_side_down || hit_pos > door->pos_side_up))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2025/01/30 01:04:12 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 13:17:44 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,15 @@ int	map_player_finder(t_map *map, t_player *player)
 	return (SUCCESS);
 }
 
-inline int	is_outside_map(t_map *map, t_position *p)
+inline
+int	is_outside_map(const t_map *map, t_position *p)
 {
 	return (p->x.grid < 0 || p->y.grid < 0 || p->x.grid >= map->width
 		|| p->y.grid >= map->height);
 }
 
-inline char	map_get_cell(t_map *map, t_position *p)
+inline
+char	map_get_cell(const t_map *map, t_position *p)
 {
 	if (is_outside_map(map, p))
 		return (OUTSIDE);

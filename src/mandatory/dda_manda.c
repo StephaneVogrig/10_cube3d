@@ -3,29 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   dda_manda.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:18:48 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:59:39 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 12:57:18 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dda_manda.h"
-#include "window.h"
 
-char	check_collision(t_map *map, t_dda *dda)
+static
+char	check_collision(t_map *map, t_dda *dda, int dark)
 {
-	int			in_wall;
-	t_position	hit_pos;
+	t_position	cell_hit_pos;
 
-	hit_pos = position(dda->x.current, 0.0, dda->y.current, 0.0);
-	in_wall = dda->collide != WALL;
-	if (in_wall)
-		return (map_get_cell(map, &hit_pos) != WALL);
-	return (map_get_cell(map, &hit_pos) == WALL);
+	cell_hit_pos = position(dda->x.current, 0.0, dda->y.current, 0.0);
+	if (dark)
+		return (map_get_cell(map, &cell_hit_pos) != WALL);
+	return (map_get_cell(map, &cell_hit_pos) == WALL);
 }
 
-static void	dda_loop(t_dda *dda, t_map *map)
+static
+void	dda_loop(t_dda *dda, t_map *map, int dark)
 {
 	while (TRUE)
 	{
@@ -43,7 +42,7 @@ static void	dda_loop(t_dda *dda, t_map *map)
 			dda->y.current += dda->y.step;
 			dda->y.len += dda->y.unit;
 		}
-		if (dda->len > dda->len_max || check_collision(map, dda))
+		if (dda->len > dda->len_max || check_collision(map, dda, dark))
 			break ;
 	}
 }
@@ -59,6 +58,6 @@ void	dda(t_ray *ray, t_position *start, t_data *data)
 		ray->len = dda.len_max + 1;
 		return ;
 	}
-	dda_loop(&dda, &data->map);
+	dda_loop(&dda, &data->map, data->dark);
 	dda_ray_set(ray, &dda, start);
 }

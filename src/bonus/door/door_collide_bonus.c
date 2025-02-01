@@ -6,34 +6,14 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 13:31:15 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 18:28:45 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/01 12:28:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "door_collide_bonus.h"
 
-static t_axis	door_get_direction(t_map *map, t_position position)
-{
-	char	*cell_1;
-	char	*cell_2;
-
-	position.x.grid--;
-	cell_1 = map_get_cell_ptr(map, &position);
-	position.x.grid += 2;
-	cell_2 = map_get_cell_ptr(map, &position);
-	if (cell_is_wall_or_door(cell_1) && cell_is_wall_or_door(cell_2))
-		return (AXIS_Y);
-	position.x.grid--;
-	position.y.grid--;
-	cell_1 = map_get_cell_ptr(map, &position);
-	position.y.grid += 2;
-	cell_2 = map_get_cell_ptr(map, &position);
-	if (cell_is_wall_or_door(cell_1) || cell_is_wall_or_door(cell_2))
-		return (AXIS_X);
-	return (AXIS_Y);
-}
-
-static int	is_looking_outside(t_door *door, double dir, float pos)
+static inline
+int	is_looking_outside(t_door *door, double dir, float pos)
 {
 	if (dir <= 0 && pos < door->pos_side_down)
 		return (TRUE);
@@ -42,6 +22,7 @@ static int	is_looking_outside(t_door *door, double dir, float pos)
 	return (FALSE);
 }
 
+static inline
 int	is_hit_walledge(t_axis x, t_ray *ray, t_position *start, t_door *door)
 {
 	t_axis	y;
@@ -58,22 +39,6 @@ int	is_hit_walledge(t_axis x, t_ray *ray, t_position *start, t_door *door)
 	ray->hit_side = x + 2;
 	ray->len = 0;
 	return (TRUE);
-}
-
-int	is_outside_door(float start_x, float start_y, t_door *door)
-{
-	if (start_x <= door->pos_side_down || start_x >= door->pos_side_up)
-		return (TRUE);
-	if (start_y == 0.0 || start_y == 1.0)
-		return (TRUE);
-	if (door->open_type == DOOR_OPEN_TYPE_L && (start_y >= door->pos_edge))
-		return (TRUE);
-	if (door->open_type == DOOR_OPEN_TYPE_R && (start_y <= door->pos_edge))
-		return (TRUE);
-	if (door->open_type == DOOR_OPEN_TYPE_T && (start_y >= door->pos_edge)
-		&& (start_y <= (1.0 - door->pos_edge)))
-		return (TRUE);
-	return (FALSE);
 }
 
 /*

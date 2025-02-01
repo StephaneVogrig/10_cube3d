@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cell_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:23:40 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:00:05 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 12:03:36 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	cell_is_door(char *cell)
 	return (FALSE);
 }
 
-inline char	*map_get_cell_ptr(t_map *map, t_position *p)
+inline char	*map_get_cell_ptr(const t_map *map, t_position *p)
 {
 	if (is_outside_map(map, p))
 		return (NULL);

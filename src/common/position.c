@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   position.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 20:26:45 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:49:37 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 12:55:26 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "position.h"
 
+inline
 t_position	position(int grid_x, float box_x, int grid_y, float box_y)
 {
 	t_position	pos;
@@ -23,7 +24,8 @@ t_position	position(int grid_x, float box_x, int grid_y, float box_y)
 	return (pos);
 }
 
-inline t_vec2d	position_to_vec2d(t_position pos)
+inline
+t_vec2d	position_to_vec2d(t_position pos)
 {
 	t_vec2d	pos_vec;
 

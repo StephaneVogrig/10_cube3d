@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_open_list_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 21:35:31 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:01:40 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 12:23:48 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_door_open	*door_open_list_add(char *cell, t_door_open *door_open_list)
 		door_open_list++;
 	if (i == DOORS_SIZE)
 	{
-		printf("not enough place in door_open_list to open to add door!\n");
+		printf("not enough place in door_open_list to open this door!\n");
 		return (NULL);
 	}
 	door_open_list_init(door_open_list, cell);
