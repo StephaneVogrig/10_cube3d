@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   asset_lst_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2025/01/28 14:39:02 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/01 17:38:16 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asset_lst_bonus.h"
 
+static
 t_asset_lst	*insert_asset_lst(t_asset_lst **head, char *key, char *value,
 		int id)
 {
@@ -65,4 +66,30 @@ void	delete_all_asset_lst(t_asset_lst **head)
 		delete_node_asset(head, *head);
 	delete_node_asset(head, *head);
 	*head = NULL;
+}
+
+int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst,
+					int id)
+{
+	kv->value = ft_strtrim(kv->value, " ");
+	if (kv->value == NULL)
+		return (ft_return(ERROR, FAIL, "ft_strtrim failed", "set_asset_lst"));
+	if (root_path != NULL && ft_strrchr(kv->value, '.') != NULL)
+		kv->value = ft_strjoin_f2(root_path, kv->value);
+	if (kv->value == NULL)
+	{
+		free(kv->value);
+		return (ft_return(ERROR, FAIL, "ft_strjoin failed", "set_asset_lst"));
+	}
+	if (chk_open(kv->value) == FAIL && ft_strrchr(kv->value, '.') != NULL)
+	{
+		free(kv->value);
+		return (ft_return(ERROR, FAIL, "failed to open asset", kv->key));
+	}
+	if (insert_asset_lst(asset_lst, kv->key, kv->value, id) == NULL)
+	{
+		free(kv->value);
+		return (ft_return(ERROR, FAIL, "Insert failed", "set_asset_lst"));
+	}
+	return (SUCCESS);
 }

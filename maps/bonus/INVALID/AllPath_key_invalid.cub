@@ -1,0 +1,41 @@
+W1 ../../textures/wall1.png
+W2 ../../textures/wall2.png
+W3 ../../textures/wall3.png
+W4 ../../textures/wall4.png
+W5 ../../textures/wall5.png
+W6 ../../textures/wall6.png
+W7 ../../textures/wall7.png
+W8 ../../textures/wall8.png
+W 9 ../../textures/wall9.png
+SP ../sprites/Barrell_anim.png
+[2.5;2.5]
+[12.5;2.5]
+[7.5;6.5]
+[6.5;6.5]
+[5.5;6.5]
+[2.5;12.5]
+[12.5;12.5]
+R ../../textures/doorR.png
+L ../../textures/doorL.png
+T ../../textures/doorT.png
+RE ../../textures/doorRedge.png
+LE ../../textures/doorLedge.png
+TE ../../textures/doorTedge.png
+F 14, 34    ,   82
+C 14, 34    ,   82
+
+
+        2666666666221111111111111
+        2000000000223300300000331
+        2033000002220030003000001
+        503300000T000000000030031
+222222252000000002200000300000031
+20000000002200000022T228222222222
+277707787777LR777720000020000002
+2222520000000000002020000003022
+22000000040204000000000020002
+2000004000000E000000000020002
+20004000000000000002020020002
+22000002220202022222022220002
+22220222 2220202 202222020002
+22222222 2222222 222222228222

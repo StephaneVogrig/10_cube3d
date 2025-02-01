@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:18:49 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/30 01:08:32 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 17:06:24 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	check_cell(int x, int y, t_map *map, t_stack *stack)
 	push(stack, (t_cell){x, y});
 }
 
-int	map_checker(t_map *map, t_player *player)
+int	map_setup(t_map *map, t_player *player)
 {
 	t_bool	ff_ok;
 	int		exit_code;

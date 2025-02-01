@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/02/01 13:28:00 by svogrig          ###   ########.fr        #
+#    Updated: 2025/02/01 17:08:54 by aska             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,7 +147,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						parsing/data_bonus.c \
 						parsing/check_asset_bonus.c \
 						parsing/coordinate.c \
-						parsing/flood_fill_bonus.c \
+						parsing/map_bonus.c \
 						parsing/lstmap_extraction_bonus.c \
 						parsing/lstmap_to_asset_bonus.c \
 						parsing/mlx_setup_bonus.c \

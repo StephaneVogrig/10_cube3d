@@ -6,12 +6,13 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/31 13:33:50 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 17:37:26 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lstmap_extraction_bonus.h"
 
+static
 int	is_map_valid_bonus(char *line)
 {
 	int	i;
@@ -28,8 +29,8 @@ int	is_map_valid_bonus(char *line)
 	return (TRUE);
 }
 
-static int	check_line_remain(t_map *map, t_asset_lst **lst_asset,
-		t_lstmap *lst_map)
+static
+int	check_line_remain(t_map *map, t_asset_lst **lst_asset, t_lstmap *lst_map)
 {
 	int	exit_code;
 

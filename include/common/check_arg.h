@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 09:37:11 by aska              #+#    #+#             */
-/*   Updated: 2025/01/30 02:24:40 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 17:39:01 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@
 
 int	check_entry_arg(int ac, char **av);
 int	check_line(char *line);
+int	chk_open(char *path);
 
 #endif

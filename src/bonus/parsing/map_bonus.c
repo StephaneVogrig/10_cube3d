@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
+/*   map_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:08:25 by aska              #+#    #+#             */
-/*   Updated: 2025/01/30 00:51:33 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 17:12:07 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	check_cell(int x, int y, t_map *map, t_stack *stack)
 	push(stack, (t_cell){x, y});
 }
 
-int	map_checker(t_map *map, t_player *player)
+int	map_setup(t_map *map, t_player *player)
 {
 	t_bool	ff_ok;
 	t_map	*map_copy;

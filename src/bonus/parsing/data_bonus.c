@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/31 23:00:26 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/01 17:06:24 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	data_setup(t_data *data, char *map_path)
 	exit_code = lstmap_extract_info(&data->map, map_path, &asset_lst,
 			&sprite_lst);
 	if (exit_code == SUCCESS)
-		exit_code = map_checker(&data->map, &data->player);
+		exit_code = map_setup(&data->map, &data->player);
 	if (exit_code == SUCCESS)
 		exit_code = mlx_setup(&data->win, &data->textures, &asset_lst);
 	data->mlx = data->win.mlx;
