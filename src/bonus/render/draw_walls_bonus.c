@@ -6,12 +6,13 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:07 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 21:38:21 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 00:37:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw_walls_bonus.h"
 
+static
 float	hitpos_edge_texture(float hitpos, t_door *door, int texture_width)
 {
 	float	hitpos_texture;
@@ -22,6 +23,7 @@ float	hitpos_edge_texture(float hitpos, t_door *door, int texture_width)
 	return (hitpos_texture);
 }
 
+static
 float	hitpos_side_texture(float hitpos, t_door *door, int texture_width)
 {
 	float	hitpos_texture;
@@ -42,6 +44,7 @@ float	hitpos_side_texture(float hitpos, t_door *door, int texture_width)
 	return (hitpos_texture);
 }
 
+static
 int	hitpos_door_texture(int texture_width, t_ray *ray,
 		t_door_open *door_open_list)
 {
@@ -59,6 +62,7 @@ int	hitpos_door_texture(int texture_width, t_ray *ray,
 	return (0.0);
 }
 
+static
 double	hitpos_texture(t_ray *ray, t_data *data, int width)
 {
 	if (cell_is_door(ray->hit_cell))
@@ -76,9 +80,9 @@ void	draw_walls(t_window *win, t_ray *ray, t_data *data)
 	x = 0;
 	while (x < win->width)
 	{
-		strip.screen_size = strip_screen_size(data->scale_screen, ray->len);
-		if (strip.screen_size > 1)
+		if (ray->wall_screen_height > 0)
 		{
+			strip.screen_size = ray->wall_screen_height;
 			strip.img = asset_get_texture_ptr(&data->textures, ray->hit_cell,
 					ray->hit_side);
 			img_x = hitpos_texture(ray, data, strip.img->width);

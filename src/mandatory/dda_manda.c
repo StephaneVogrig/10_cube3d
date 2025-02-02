@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:18:48 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/01 12:57:18 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 00:28:41 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ void	dda(t_ray *ray, t_position *start, t_data *data)
 {
 	t_dda	dda;
 
-	dda_init(&dda, &ray->dirvec, start, &data->map);
-	dda.len_max = data->win.height;
-	if (dda_no_need(&data->map, start, &dda) == TRUE)
+	dda_init(&dda, &ray->dirvec, start, data->scale_screen);
+	if (dda_no_need(&data->map, start, &dda))
 	{
 		ray->len = dda.len_max + 1;
+		ray->wall_screen_height = 0;
 		return ;
 	}
 	dda_loop(&dda, &data->map, data->dark);
-	dda_ray_set(ray, &dda, start);
+	dda_ray_set(ray, &dda, start, data->scale_screen);
+	dda_ray_set_axis(ray, &dda);
 }

@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_bonus.h                                 :+:      :+:    :+:   */
+/*   wall_screen_height.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 13:13:53 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 00:18:55 by svogrig          ###   ########.fr       */
+/*   Created: 2025/02/02 23:16:29 by svogrig           #+#    #+#             */
+/*   Updated: 2025/02/02 23:16:59 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCASTING_BONUS_H
-# define RAYCASTING_BONUS_H
+#include "wall_screen_height.h"
 
-# include "cell_bonus.h"
-# include "data_bonus.h"
-# include "dda_bonus.h"
-# include "door_bonus.h"
-# include "player.h"
-# include "position.h"
-# include "ray.h"
-# include "wall_screen_height.h"
+int	wall_screen_height(int screen_scale, double distance)
+{
+	float	size_f;
+	int		size_i;
 
-void	raycasting(t_ray *rays, t_data *data);
-void	raycast(t_ray *ray, t_position *start, t_data *data);
-
-#endif
+	if (distance == 0)
+		return (INT_MAX);
+	size_f = screen_scale / distance;
+	if (size_f < 1.5)
+		return (0);
+	if (size_f > (float)INT_MAX)
+		return (INT_MAX);
+	size_i = (int)(size_f + 0.5);
+	if (size_i % 2 == 1)
+		size_i++;
+	return (size_i);
+}

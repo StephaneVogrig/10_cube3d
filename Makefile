@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aska <aska@student.42.fr>                  +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/02/01 17:08:54 by aska             ###   ########.fr        #
+#    Updated: 2025/02/02 23:22:50 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,20 +54,21 @@ SRC_DIR				:=	src
 SRC_COMMON_DIR		:=	common
 
 SRCS_COMMON			:= 	axis.c \
-						dda_utils.c \
 						check_arg.c \
 						color.c \
+						cub_strtoi.c \
+						dda_utils.c \
 						file_load.c \
 						gametime.c \
 						gridbox.c \
 						img_mlx.c \
 						key.c \
+						key_value.c \
 						lstmap.c \
 						lstmap_utils.c \
 						map.c \
 						parsing_utils.c \
 						player.c \
-						key_value.c \
 						position.c \
 						ray.c \
 						stack.c \
@@ -76,10 +77,10 @@ SRCS_COMMON			:= 	axis.c \
 						utils.c \
 						vector.c \
 						window.c \
-						cub_strtoi.c \
 						parsing/flood_fill_common.c \
 						render/draw_wall_utils.c \
-						render/strip_util.c
+						render/strip_util.c \
+						render/wall_screen_height.c
 
 SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
 

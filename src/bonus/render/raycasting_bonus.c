@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 19:35:06 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/02 23:35:22 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	raycast(t_ray *ray, t_position *start, t_data *data)
 		else
 			ray->hit_axis = 'y';
 		ray->hit_cell = cell;
+		ray->wall_screen_height = wall_screen_height(data->scale_screen,
+				ray->len);
 	}
 	else
 		dda(ray, start, data);

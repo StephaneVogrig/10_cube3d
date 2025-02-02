@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:03:35 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/01 13:09:56 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 00:27:58 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,22 +111,19 @@ void	dda(t_ray *ray, t_position *start, t_data *data)
 {
 	t_dda	dda;
 
-	dda_init(&dda, &ray->dirvec, start, &data->map);
-	dda.len_max = data->win.height;
-	if (dda_no_need(&data->map, start, &dda) == TRUE)
+	dda_init(&dda, &ray->dirvec, start, data->scale_screen);
+	if (dda_no_need(&data->map, start, &dda))
 	{
 		ray->len = dda.len_max + 1;
+		ray->wall_screen_height = 0;
 		return ;
 	}
 	ray->hit_cell = dda_loop(&dda, start, ray, data);
+	dda_ray_set(ray, &dda, start, data->scale_screen);
 	if (dda.hit_side == 'x' || dda.hit_side == 'y')
-		dda_ray_set(ray, &dda, start);
+		dda_ray_set_axis(ray, &dda);
 	else
 	{
-		ray->len = dda.len;
-		ray->hit_pos = *start;
-		gridbox_add_double(&ray->hit_pos.x, ray->dirvec.x * ray->len);
-		gridbox_add_double(&ray->hit_pos.y, ray->dirvec.y * ray->len);
 		ray->hit_side = dda.hit_side;
 		if (ray->hit_side == SIDE_DOOR_X || ray->hit_side == SIDE_EDGE_Y)
 			ray->hit_axis = 'x';
