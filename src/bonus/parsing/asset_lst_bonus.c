@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2025/02/01 17:38:16 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 13:42:05 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,9 @@ void	delete_all_asset_lst(t_asset_lst **head)
 int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst,
 					int id)
 {
-	kv->value = ft_strtrim(kv->value, " ");
-	if (kv->value == NULL)
-		return (ft_return(ERROR, FAIL, "ft_strtrim failed", "set_asset_lst"));
+	kv->value = spacetrim(kv->value);
 	if (root_path != NULL && ft_strrchr(kv->value, '.') != NULL)
-		kv->value = ft_strjoin_f2(root_path, kv->value);
+		kv->value = ft_strjoin(root_path, kv->value);
 	if (kv->value == NULL)
 	{
 		free(kv->value);

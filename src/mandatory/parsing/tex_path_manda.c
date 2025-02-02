@@ -6,11 +6,27 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:05:27 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 16:47:48 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 13:39:42 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tex_path_manda.h"
+
+inline
+char	*spacetrim(char *str)
+{
+	char	*trim_str;
+	int		end_str;
+
+	while (ft_isspace(*str))
+		str++;
+	trim_str = str;
+	end_str = ft_strlen_endc(trim_str, '\0');
+	while (end_str > 0 && ft_isspace(trim_str[end_str - 1]))
+		end_str--;
+	trim_str[end_str] = '\0';
+	return (trim_str);
+}
 
 void	tex_path_clean(t_tex_path *tex_path)
 {
@@ -46,9 +62,9 @@ int	set_path(char *root_path, t_key_value *kv, t_tex_path *tex_path)
 	int	exit_code;
 	int	fd;
 
-	kv->value = ft_strtrim(kv->value, " ");
+	kv->value = spacetrim(kv->value);
 	if (kv->value != NULL && root_path != NULL)
-		kv->value = ft_strjoin_f2(root_path, kv->value);
+		kv->value = ft_strjoin(root_path, kv->value);
 	if (kv->value == NULL)
 		return (ft_return(ERROR, FAIL, "malloc failed", "set_path"));
 	fd = ft_open(kv->value, O_RDONLY);
