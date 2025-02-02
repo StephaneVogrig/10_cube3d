@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/02 17:16:36 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 23:56:57 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,12 @@ static int	lstmap_to_textures(t_tex_path *tex_path, t_textures *tex,
 	fs.file_ok = 0x3F;
 	while (*lst_map != NULL)
 	{
-		while (is_empty((*lst_map)->line) == TRUE)
+		while (*lst_map != NULL && is_empty((*lst_map)->line) == TRUE)
 			delete_node_lstmap(lst_map, *lst_map);
-		exit_code = set_key_value(&kv, (*lst_map)->line);
+		if (*lst_map == NULL)
+			exit_code = ft_return(ERROR, FAIL, "End of file", "missing data");
+		if (exit_code == SUCCESS)
+			exit_code = set_key_value(&kv, (*lst_map)->line);
 		if (exit_code == SUCCESS)
 			exit_code = chk_key_value(&kv, (*lst_map)->line, &fs);
 		if (exit_code == SUCCESS)
