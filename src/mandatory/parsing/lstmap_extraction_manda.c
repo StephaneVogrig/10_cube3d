@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/31 16:31:00 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 17:16:36 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,19 +98,14 @@ int	lstmap_extract_info(t_textures *textures, t_map *map, t_tex_path *tex_path,
 	lst_map = NULL;
 	ok = file_load(map_path, &lst_map);
 	if (ok == SUCCESS)
-	{
-		if (lst_map == NULL)
-			ok = ft_return(ERROR, FAIL, "No data in map", NULL);
-		if (ok == SUCCESS)
-			ok = get_root_path(map_path, &root_path);
-		if (ok == SUCCESS)
-			ok = lstmap_to_textures(tex_path, textures, &lst_map, root_path);
-		free(root_path);
-		if (ok == SUCCESS)
-			ok = check_line_remain(map, &lst_map);
-		if (ok == SUCCESS)
-			ok = lstmap_to_grid(map, &lst_map);
-	}
+		ok = get_root_path(map_path, &root_path);
+	if (ok == SUCCESS)
+		ok = lstmap_to_textures(tex_path, textures, &lst_map, root_path);
+	free(root_path);
+	if (ok == SUCCESS)
+		ok = check_line_remain(map, &lst_map);
+	if (ok == SUCCESS)
+		ok = lstmap_to_grid(map, &lst_map);
 	delete_all_lstmap(&lst_map);
 	return (ok);
 }
