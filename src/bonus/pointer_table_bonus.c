@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:42:01 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 16:42:05 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 12:15:04 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	pointer_table_init(t_asset *asset)
 	}
 }
 
+static inline __attribute__((always_inline, hot))
 t_texture	*ptr_tbl_get_orientation_wall(t_asset *asset, char orientation)
 {
 	if (orientation == 'N' && asset->nsew.north != NULL)
@@ -81,6 +82,7 @@ t_texture	*ptr_tbl_get_orientation_wall(t_asset *asset, char orientation)
 	return (NULL);
 }
 
+static inline __attribute__((always_inline, hot))
 t_texture	*ptr_tbl_get_orientation_door(t_asset *asset, char cell,
 		char orientation)
 {
@@ -106,6 +108,7 @@ t_texture	*ptr_tbl_get_orientation_door(t_asset *asset, char cell,
 	return (NULL);
 }
 
+inline __attribute__((always_inline, hot))
 t_texture	*asset_get_texture_ptr(t_asset *t, char *cell, char orientation)
 {
 	if (*cell == '1')

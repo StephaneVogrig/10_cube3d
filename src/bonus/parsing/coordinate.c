@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 21:16:52 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 12:26:24 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int	set_sprite_coordinate(char *line, t_sprite_lst **head, int id)
 	char			*endptr;
 
 	current = line;
+	ft_bzero(&x, sizeof(x));
+	ft_bzero(&y, sizeof(y));
 	if (extract_coordinate(current, &endptr, &x) != SUCCESS)
 		return (ft_return(ERROR, FAIL, "Invalid coordinate X position", line));
 	if (*endptr != ';')
