@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2025/02/02 13:17:22 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 16:09:30 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_entry_arg(int ac, char **av)
 		map_path++;
 	else
 		map_path = av[1];
-	if (map_path[0] != '\0' && map_path[0] == '.')
+	if (map_path[0] == '.')
 		map_path++;
 	map_path = ft_strrchr(map_path, '.');
 	if (map_path == NULL || ft_strcmp(map_path, ".cub") != 0)
