@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2025/02/02 16:09:30 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 16:20:16 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int	check_entry_arg(int ac, char **av)
 	char	*map_path;
 
 	if (ac < 2)
-		return (ft_return(ERROR, FAIL, "Error arguments", "no .cub file"));
+		return (ft_return(ERROR, FAIL, "Cub3D", "too few arguments"));
+	if (ac > 2)
+		return (ft_return(ERROR, FAIL, "Cub3D", "too many arguments"));
 	map_path = ft_strrchr(av[1], '/');
 	if (map_path != NULL)
 		map_path++;
