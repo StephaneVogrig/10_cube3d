@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:38:38 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/30 00:59:47 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 16:34:47 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	open_file(int *fd, char *file)
 {
 	*fd = open(file, O_RDONLY);
-	if (*fd == FAIL)
+	if (*fd == -1)
 		return (ft_return(ERROR, FAIL, "Error to open .cub file", file));
 	return (SUCCESS);
 }
@@ -23,7 +23,7 @@ int	open_file(int *fd, char *file)
 int	close_file(int *fd)
 {
 	*fd = close(*fd);
-	if (*fd == FAIL)
+	if (*fd == -1)
 		return (ft_return(ERROR, FAIL, "Error to close .cub file", NULL));
 	return (SUCCESS);
 }
