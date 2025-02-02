@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 10:40:41 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/01 12:27:10 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/02 13:30:27 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_lenpos	collide_edge(int y, t_ray *ray, t_position *start, t_door *door)
 	return (edge);
 }
 
-int	is_inside_door(t_axis x, t_ray *ray, t_position *start, t_door *door)
+bool	is_inside_door(t_axis x, t_ray *ray, t_position *start, t_door *door)
 {
 	t_lenpos	side;
 	t_lenpos	edge;
@@ -87,7 +87,7 @@ int	is_inside_door(t_axis x, t_ray *ray, t_position *start, t_door *door)
 
 	y = y_with_x(x);
 	if (is_outside_door(start->axis[x].box, start->axis[y].box, door))
-		return (FALSE);
+		return (false);
 	side = collide_side(x, ray, start, door);
 	edge = collide_edge(y, ray, start, door);
 	ray->hit_pos = *start;
@@ -105,5 +105,5 @@ int	is_inside_door(t_axis x, t_ray *ray, t_position *start, t_door *door)
 		ray->hit_pos.axis[y].box = edge.pos;
 		ray->len = fabs(edge.len);
 	}
-	return (TRUE);
+	return (true);
 }

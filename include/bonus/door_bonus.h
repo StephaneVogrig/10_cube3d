@@ -6,13 +6,14 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 19:51:31 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/01 13:11:45 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/02 13:51:13 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOOR_BONUS_H
 # define DOOR_BONUS_H
 
+# include <stdbool.h>
 # include "cell_bonus.h"
 # include "gametime.h"
 # include "libft.h"
@@ -20,14 +21,6 @@
 # include "position.h"
 # include "ray.h"
 # include "utils.h"
-
-# ifndef TRUE
-#  define TRUE 1
-# endif
-
-# ifndef FALSE
-#  define FALSE 0
-# endif
 
 // size of the array to store the open door list
 # define DOORS_SIZE 10
@@ -101,24 +94,26 @@ void		door_init(t_door *door, char *cell, t_door_open *door_open_list);
 
 /* door_open_list_bonus.c */
 
-int			door_open_list_update(t_door_open *door_open_list, t_time_us dt);
+bool		door_open_list_update(t_door_open *door_open_list, t_time_us dt);
 t_door_open	*door_open_list_add(char *cell, t_door_open *door_open_list);
 
 /* door_inside_bonus.c */
 
-int			is_inside_door(t_axis x, t_ray *ray, t_position *start,
+bool		is_inside_door(t_axis x, t_ray *ray, t_position *start,
 				t_door *door);
 
 /* door_hit_bonus.c */
 
-int			is_hit_doorside(t_axis x, t_ray *ray, t_position *start,
+bool		is_hit_doorside(t_axis x, t_ray *ray, t_position *start,
 				t_door *door);
-int			is_hit_dooredge(t_axis x, t_ray *ray, t_position *start,
+bool		is_hit_dooredge(t_axis x, t_ray *ray, t_position *start,
 				t_door *door);
 
 /* door_utils_bonus.c */
 
 t_axis		door_get_direction(const t_map *map, t_position position);
-int			is_outside_door(float start_x, float start_y, t_door *door);
+bool		is_in_closepart(float start_y, t_door *door);
+bool		is_between_doorside(float start_x, t_door *door);
+bool		is_outside_door(float start_x, float start_y, t_door *door);
 
 #endif

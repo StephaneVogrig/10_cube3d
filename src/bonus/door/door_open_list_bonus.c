@@ -6,13 +6,14 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 21:35:31 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/01 12:23:48 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/02 13:53:04 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "door_bonus.h"
 
-static inline float	door_time_stage(t_stage stage)
+static inline
+float	door_time_stage(t_stage stage)
 {
 	if (stage == DOOR_OPENING)
 		return (TIME_OPENING);
@@ -23,7 +24,8 @@ static inline float	door_time_stage(t_stage stage)
 	return (10.0);
 }
 
-static inline void	door_update_state(t_door_open *door, t_time_us dt_us)
+static inline
+void	door_update_state(t_door_open *door, t_time_us dt_us)
 {
 	double	dt_second;
 	double	time_stage;
@@ -49,26 +51,27 @@ static inline void	door_update_state(t_door_open *door, t_time_us dt_us)
 	}
 }
 
-int	door_open_list_update(t_door_open *door_open_list, t_time_us dt)
+bool	door_open_list_update(t_door_open *door_open_list, t_time_us dt)
 {
-	int	i;
-	int	render_needed;
+	int		i;
+	bool	render_needed;
 
-	render_needed = FALSE;
+	render_needed = false;
 	i = 0;
 	while (i++ < DOORS_SIZE)
 	{
 		if (door_open_list->cell != NULL)
 		{
 			door_update_state(door_open_list, dt);
-			render_needed = TRUE;
+			render_needed = true;
 		}
 		door_open_list++;
 	}
 	return (render_needed);
 }
 
-static inline void	door_open_list_init(t_door_open *door, char *cell)
+static inline
+void	door_open_list_init(t_door_open *door, char *cell)
 {
 	door->cell = cell;
 	door->stage_rate = 1.0;

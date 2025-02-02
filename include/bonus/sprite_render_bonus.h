@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_render_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 03:03:53 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:25 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 14:05:42 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "data_bonus.h"
 # include "fog_bonus.h"
 # include "sprite_bonus.h"
+# include "strip_bonus.h"
 
 void	sprite_render(t_sprite *sprite, t_player *player, t_data *data);
 

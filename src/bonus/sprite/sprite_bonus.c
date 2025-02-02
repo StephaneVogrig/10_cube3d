@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:55:38 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:03:11 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 14:15:57 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sprite_bonus.h"
 
-static void	sprite_fill(t_sprite *sprite, t_sprite_lst *sprite_lst,
+static
+void	sprite_fill(t_sprite *sprite, t_sprite_lst *sprite_lst,
 		t_asset *textures)
 {
 	int	i;
@@ -76,31 +77,32 @@ void	sprite_destroy(t_sprite *sprite)
 		free(sprite->collected);
 }
 
-int	sprite_update_state(float *state, int nbr_state, t_time_us dt)
+static
+bool	sprite_update_state(float *state, int nbr_state, t_time_us dt)
 {
 	int	state_start;
 
 	if (nbr_state == 1)
-		return (FALSE);
+		return (false);
 	state_start = (int)*state;
-	*state += 25 * (float)dt / USECOND_PER_SECOND;
+	*state += SPRITE_CHANGE_PER_SECOND * (float)dt / USECOND_PER_SECOND;
 	if (*state >= nbr_state)
 		*state -= (nbr_state);
 	if ((int)*state == state_start)
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }
 
-int	sprite_update(t_sprite *sprite, t_time_us dt)
+bool	sprite_update(t_sprite *sprite, t_time_us dt)
 {
-	int	render_needed;
-	int	i;
+	bool	render_needed;
+	int		i;
 
-	render_needed = FALSE;
+	render_needed = false;
 	i = 0;
 	while (i < sprite->nbr)
 	{
-		if (sprite->collected[i] == FALSE)
+		if (sprite->collected[i] == false)
 			render_needed |= sprite_update_state(&sprite->state[i],
 					sprite->nbr_state[i], dt);
 		i++;
