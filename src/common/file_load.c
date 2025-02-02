@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:38:38 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/02 16:42:06 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 16:47:45 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	file_to_lst_map(int fd, t_lstmap **lst_map)
 		{
 			delete_all_lstmap(lst_map);
 			ft_display(ERROR, "Error to insert in lst_map");
-			ft_display(INFO, line);
+			printf("%s\n", line);
 			free(line);
 			return (FAIL);
 		}
