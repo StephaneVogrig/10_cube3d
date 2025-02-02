@@ -6,19 +6,21 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:08:25 by aska              #+#    #+#             */
-/*   Updated: 2025/02/01 17:12:07 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 12:05:44 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "flood_fill.h"
 
-static void	map_copy_free(t_map *map_copy)
+static
+void	map_copy_free(t_map *map_copy)
 {
 	map_copy->grid = ft_tab_f(map_copy->grid);
 	free(map_copy);
 }
 
-static t_map	*copy_map(t_map *map)
+static
+t_map	*copy_map(t_map *map)
 {
 	t_map	*map_copy;
 	int		i;
@@ -47,6 +49,7 @@ static t_map	*copy_map(t_map *map)
 	return (map_copy);
 }
 
+inline __attribute__((always_inline, hot))
 void	check_cell(int x, int y, t_map *map, t_stack *stack)
 {
 	if (ft_isthis(map->grid[y][x], "123456789") == TRUE

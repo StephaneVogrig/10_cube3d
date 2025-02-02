@@ -6,13 +6,14 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:47:13 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/30 01:21:01 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 12:05:21 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "flood_fill.h"
 
-static int	chk_border(int x, int y, t_map *map)
+static inline __attribute__((always_inline, hot))
+int	chk_border(int x, int y, t_map *map)
 {
 	if (x == 0 || y == 0 || x == map->width - 1 || y == map->height - 1)
 		return (FAIL);

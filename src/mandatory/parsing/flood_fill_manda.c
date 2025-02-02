@@ -6,12 +6,13 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:18:49 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/01 17:06:24 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 12:05:32 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "flood_fill.h"
 
+inline __attribute__((always_inline, hot))
 void	check_cell(int x, int y, t_map *map, t_stack *stack)
 {
 	if (map->grid[y][x] == WALL || map->grid[y][x] == AREA)
