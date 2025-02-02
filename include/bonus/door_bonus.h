@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 19:51:31 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/02 13:51:13 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 00:12:47 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 // DOOR_THICK is the door thickness in percent of the wall
 // It must be between 0.0 and 1.0
 # define DOOR_THICK_T 0.1
-# define DOOR_THICK_L 0.25
+# define DOOR_THICK_L 0.4
 # define DOOR_THICK_R 0.4
 
 // we have three opening door (only by sliding)

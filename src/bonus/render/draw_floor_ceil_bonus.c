@@ -6,12 +6,13 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 18:32:54 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 18:32:59 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 00:24:52 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw_floor_ceil_bonus.h"
 
+static
 void	elem_draw_pixel(int x, t_element *elem, t_context *context)
 {
 	t_rgb	color;
@@ -26,6 +27,7 @@ void	elem_draw_pixel(int x, t_element *elem, t_context *context)
 	window_put_pixel(context->win, x, elem->y, color.integer);
 }
 
+static
 void	floorceil_draw_line_init(t_vec2d *map_step, t_vec2d *map_pos,
 		t_floorceil_draw *draw, t_data *data)
 {
@@ -42,6 +44,7 @@ void	floorceil_draw_line_init(t_vec2d *map_step, t_vec2d *map_pos,
 	map_pos->y += draw->player_pos.y;
 }
 
+static
 void	floorceil_draw_line(int y, t_data *data, t_floorceil_draw *draw)
 {
 	t_vec2d	map_step;
@@ -52,7 +55,7 @@ void	floorceil_draw_line(int y, t_data *data, t_floorceil_draw *draw)
 	x = 0;
 	while (x < data->win.width)
 	{
-		if (y >= draw->scalescreen_2 / data->rays.tab[x].len)
+		if (y >= data->rays.tab[x].wall_screen_height / 2)
 		{
 			draw->context.box.x = map_pos.x - (long)map_pos.x;
 			if (draw->context.box.x < 0.0)
