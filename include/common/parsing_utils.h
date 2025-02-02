@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:17:12 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 17:15:33 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 14:34:16 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 
 # include "libft.h"
 
+char	*spacetrim(char *str);
 void	skip_blank(char **str);
 int		is_empty(char *str);
-void	remove_root_value(char *value);
 int		is_map_valid(char *line);
-int		get_root_path(char *map_path, char **root_path);
 
 #endif

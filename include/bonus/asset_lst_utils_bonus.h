@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:38:57 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/02 13:47:12 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 14:02:55 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_asset_lst
 	struct s_asset_lst	*prev;
 }						t_asset_lst;
 
-char	*spacetrim(char *str);
 t_bool	asset_lst_key_exist(t_asset_lst *head, char key);
 t_bool	key_is_in_asset_lst(t_asset_lst *head, char *key);
 

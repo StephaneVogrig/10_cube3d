@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:54:37 by aska              #+#    #+#             */
-/*   Updated: 2025/02/01 17:19:08 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 14:12:50 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "asset_lst_bonus.h"
 # include "sprite_lst_bonus.h"
 # include "key_value.h"
-# include "parsing_utils.h"
+# include "utils.h"
 # include "asset_lst_utils_bonus.h"
 # include "coordinate.h"
 

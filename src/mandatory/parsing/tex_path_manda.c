@@ -6,27 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:05:27 by aska              #+#    #+#             */
-/*   Updated: 2025/02/02 13:39:42 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 14:02:59 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tex_path_manda.h"
-
-inline
-char	*spacetrim(char *str)
-{
-	char	*trim_str;
-	int		end_str;
-
-	while (ft_isspace(*str))
-		str++;
-	trim_str = str;
-	end_str = ft_strlen_endc(trim_str, '\0');
-	while (end_str > 0 && ft_isspace(trim_str[end_str - 1]))
-		end_str--;
-	trim_str[end_str] = '\0';
-	return (trim_str);
-}
 
 void	tex_path_clean(t_tex_path *tex_path)
 {

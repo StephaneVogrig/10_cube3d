@@ -6,27 +6,11 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:38:06 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/02 13:40:07 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 14:02:50 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asset_lst_utils_bonus.h"
-
-inline
-char	*spacetrim(char *str)
-{
-	char	*trim_str;
-	int		end_str;
-
-	while (ft_isspace(*str))
-		str++;
-	trim_str = str;
-	end_str = ft_strlen_endc(trim_str, '\0');
-	while (end_str > 0 && ft_isspace(trim_str[end_str - 1]))
-		end_str--;
-	trim_str[end_str] = '\0';
-	return (trim_str);
-}
 
 t_bool	key_is_in_asset_lst(t_asset_lst *head, char *key)
 {
