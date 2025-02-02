@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:38:38 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/02 16:34:47 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/02 16:42:06 by aska             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	close_file(int *fd)
 
 void	replace_eol_to_nul(char *str)
 {
-	while (*str != 0)
+	while (*str != '\0')
 	{
 		if (*str == '\n')
-			*str = 0;
+			*str = '\0';
 		str++;
 	}
 }
