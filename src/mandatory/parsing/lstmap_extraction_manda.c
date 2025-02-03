@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/03 15:04:34 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 15:23:36 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ static int	check_line_remain(t_map *map, t_lstmap **lst_map)
 		delete_node_lstmap(lst_map, tmp);
 		tmp = *lst_map;
 	}
+	if (tmp == NULL)
+		return (ft_return(ERROR, FAIL, "End of file", "no map"));
+	exit_code = SUCCESS;
 	while (tmp != NULL)
 	{
 		exit_code = check_line(tmp->line);
