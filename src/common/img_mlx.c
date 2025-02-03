@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img_mlx.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:41:39 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/30 01:01:48 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 18:04:01 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	img_mlx_load_file(void *mlx, t_img_mlx *img, char *path)
 {
 	char	*extension;
 
-	img->img = NULL;
 	img->mlx = mlx;
 	extension = ft_strrchr(path, '.');
 	if (extension == NULL)
@@ -42,9 +41,9 @@ int	*img_mlx_to_buffer(t_img_mlx *img)
 	int	y;
 
 	buffer = malloc((img->height * img->width) * sizeof(*buffer));
-	head = buffer;
 	if (buffer == NULL)
 		return (NULL);
+	head = buffer;
 	x = 0;
 	while (x < img->width)
 	{
