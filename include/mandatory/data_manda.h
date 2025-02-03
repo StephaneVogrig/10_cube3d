@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_manda.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/31 16:17:00 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 18:33:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define DATA_MANDA_H
 
 # include "flood_fill.h"
+# include "floor_ceil_mlx_img_manda.h"
 # include "key_move.h"
 # include "libft.h"
 # include "lstmap.h"
@@ -32,17 +33,18 @@
 
 typedef struct s_data
 {
-	void		*mlx;
-	t_window	win;
-	t_map		map;
-	t_textures	textures;
-	t_key		key;
-	t_player	player;
-	int			mouse_mode;
-	int			dark;
-	t_ray_tab	rays;
-	double		tg_fov_2;
-	double		scale_screen;
+	void			*mlx;
+	t_window		win;
+	t_map			map;
+	t_textures		textures;
+	t_key			key;
+	t_player		player;
+	int				mouse_mode;
+	int				dark;
+	t_ray_tab		rays;
+	double			tg_fov_2;
+	double			scale_screen;
+	t_floor_ceil	floorceil_imgs;
 }				t_data;
 
 void			data_init(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 00:32:37 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:49:37 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 18:13:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ int	ray_setup(t_ray_tab *rays, int nbr)
 {
 	rays->tab = malloc(nbr * sizeof(*rays->tab));
 	if (rays->tab == NULL)
-	{
-		printf("ray_setup: malloc fail\n");
-		return (FAIL);
-	}
+		return (ft_return(ERROR, FAIL, "ray_setup", "malloc failed"));
 	rays->nbr = nbr;
 	return (SUCCESS);
 }

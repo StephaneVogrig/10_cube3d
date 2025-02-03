@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_manda.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:56:15 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/31 16:20:09 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 18:40:01 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include "event_manda.h"
 # include "render_manda.h"
 # include "title.h"
-# include "floor_ceil_mlx_img.h"
+# include "floor_ceil_mlx_img_manda.h"
 
 #endif

@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/02/02 23:22:50 by svogrig          ###   ########.fr        #
+#    Updated: 2025/02/03 18:37:59 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ SRCS_MANDA			:=	main_manda.c \
 						event_manda.c \
 						player_move_manda.c \
 						textures_manda.c \
-						floor_ceil_mlx_img.c \
+						floor_ceil_mlx_img_manda.c \
 						game_loop_manda.c \
 						parsing/data_manda.c \
 						parsing/lstmap_extraction_manda.c \
