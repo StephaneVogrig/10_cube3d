@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_manda.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/03 12:19:18 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/03 13:48:23 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static t_status	chk_key_value(t_key_value *kv, char *line, t_fs *fs)
 {
 	if (!(ft_isthis(line[0], "NSEWFC") != SUCCESS))
 		return (ft_return(ERROR, 263, "Invalid Key", line));
-	remove_root_value(kv->value);
 	if (file_switch_select(fs, kv->key) != SUCCESS)
 		return (FAIL);
 	return (SUCCESS);

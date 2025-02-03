@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:30:48 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/02 17:24:33 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 13:48:31 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,4 @@ int	get_root_path(char *map_path, char **root_path)
 	if (*root_path == NULL)
 		return (ft_return(ERROR, 3, "malloc error", "get_root_path"));
 	return (SUCCESS);
-}
-
-void	remove_root_value(char *value)
-{
-	char	*tmp_value;
-
-	tmp_value = ft_strchr(value, '/');
-	if (tmp_value != NULL)
-		value = tmp_value + 1;
 }

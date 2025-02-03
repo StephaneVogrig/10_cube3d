@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_to_asset_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:53:06 by aska              #+#    #+#             */
-/*   Updated: 2025/02/01 17:27:39 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 13:49:09 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_status	chk_key(t_key_value *kv, t_asset_lst **asset_lst)
 		return (ft_return(ERROR, FAIL, "Invalid key", kv->key));
 	if (ft_strcmp(kv->key, "SP") && key_is_in_asset_lst(*asset_lst, kv->key))
 		return (ft_return(ERROR, FAIL, "Key already exist", kv->key));
-	remove_root_value(kv->value);
 	return (SUCCESS);
 }
 
