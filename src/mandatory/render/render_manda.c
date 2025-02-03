@@ -6,12 +6,10 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:16:27 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 18:40:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 19:20:49 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw_walls_manda.h"
-#include "floor_ceil_mlx_img_manda.h"
 #include "render_manda.h"
 
 void	render(t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_manda.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:02:44 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 19:36:54 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	raycasting(t_ray *ray, t_data *data)
 	{
 		ray->dirvec = ray_vec;
 		dda(ray, &data->player.position, data);
-		ray_vec = vec2d_plus_vec2d(ray_vec, camera_step);
+		vec2d_plus_vec2d(&ray_vec, &camera_step);
 		ray++;
 		i++;
 	}

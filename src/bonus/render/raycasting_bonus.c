@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:15:48 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/02 23:35:22 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 19:40:03 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	raycasting(t_ray *ray, t_data *data)
 	{
 		ray->dirvec = ray_vec;
 		raycast(ray, &data->player.position, data);
-		ray_vec = vec2d_plus_vec2d(ray_vec, camera_step);
+		vec2d_plus_vec2d(&ray_vec, &camera_step);
 		ray++;
 		i++;
 	}

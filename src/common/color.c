@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:38 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 19:09:54 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 19:44:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	color_darkened(int *color, int dark)
 	if (dark)
 	{
 		*color >>= 2;
-		*color &=0xFF3F3F3F;
+		*color &= 0xFF3F3F3F;
 	}
 }
 
