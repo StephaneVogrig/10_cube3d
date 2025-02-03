@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 03:07:24 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:11:09 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 18:59:12 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static inline int	draw_wall_color(t_strip *strip, t_vec2i img_pxel)
 	t_rgb	color;
 
 	color.integer = texture_get_color(strip->img, img_pxel.x, img_pxel.y);
-	color.integer = color_darkened(color.integer, strip->dark);
+	color_darkened(&color.integer, strip->dark);
 	fog_color(&color, strip->fog);
 	return (color.integer);
 }

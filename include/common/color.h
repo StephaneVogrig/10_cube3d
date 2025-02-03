@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:00 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/31 17:16:35 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 18:58:11 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef union u_color
 	int					integer;
 }						t_rgb;
 
-int						color_darkened(int color, int dark);
-int						color_set_rgb(t_rgb *rgb, char *value);
+void	color_darkened(int *color, int dark);
+int		color_set_rgb(t_rgb *rgb, char *value);
 
 #endif

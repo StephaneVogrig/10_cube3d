@@ -6,17 +6,19 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:38 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 14:13:40 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 19:09:54 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 
-int	color_darkened(int color, int dark)
+void	color_darkened(int *color, int dark)
 {
 	if (dark)
-		return ((color >> 2) & 0xFF3F3F3F);
-	return (color);
+	{
+		*color >>= 2;
+		*color &=0xFF3F3F3F;
+	}
 }
 
 static int	char_to_rgb(char *value, char **endptr, unsigned char *rgb)

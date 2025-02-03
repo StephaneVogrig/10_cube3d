@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 01:36:01 by stephane          #+#    #+#             */
-/*   Updated: 2025/02/03 18:35:25 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 18:59:27 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	floor_ceil_init(t_window *win, int color_ceil, int color_floor,
 	if (mlx_imgs->dark == NULL)
 		return (ft_return(ERROR, FAIL, "Floor_ceil", "dark image fail"));
 	draw_ceil_floor(win, mlx_imgs->normal, color_ceil, color_floor);
-	color_ceil = color_darkened(color_ceil, TRUE);
-	color_floor = color_darkened(color_floor, TRUE);
+	color_darkened(&color_ceil, TRUE);
+	color_darkened(&color_floor, TRUE);
 	draw_ceil_floor(win, mlx_imgs->dark, color_ceil, color_floor);
 	return (SUCCESS);
 }

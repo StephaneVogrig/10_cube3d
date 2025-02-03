@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_draw_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:37:46 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:03:13 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 18:59:18 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	strip_draw(t_window *win, int x, double img_x, t_strip *strip)
 	while (y < strip->screen_end)
 	{
 		color.integer = texture_get_color(strip->img, img_x, img_y);
-		color.integer = color_darkened(color.integer, strip->dark);
+		color_darkened(&color.integer, strip->dark);
 		fog_color(&color, strip->fog);
 		if (color.a == 255)
 			window_put_pixel(win, x, y, color.integer);

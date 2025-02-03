@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall_manda.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 13:14:17 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:02:41 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 18:59:33 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static inline int	draw_wall_color(t_strip *strip, t_vec2i img_pxel)
 	int	color;
 
 	color = texture_get_color(strip->img, img_pxel.x, img_pxel.y);
-	color = color_darkened(color, strip->dark);
+	color_darkened(&color, strip->dark);
 	return (color);
 }
 
