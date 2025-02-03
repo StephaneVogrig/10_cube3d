@@ -6,15 +6,16 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:46:11 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 18:03:17 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 21:41:15 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture.h"
 
-inline int	texture_get_color(t_texture *t, int x, int y)
+inline
+void	texture_get_color(t_rgb *dest, t_texture *t, int x, int y)
 {
-	return (t->buffer[(x * t->height) + y]);
+	dest->integer = t->buffer[(x * t->height) + y];
 }
 
 int	texture_load_to_buffer(void *mlx, t_texture *t, char *path)

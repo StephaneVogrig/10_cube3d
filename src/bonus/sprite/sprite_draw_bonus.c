@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:37:46 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 18:59:18 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 21:28:07 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	strip_draw(t_window *win, int x, double img_x, t_strip *strip)
 	img_y = strip->img_start;
 	while (y < strip->screen_end)
 	{
-		color.integer = texture_get_color(strip->img, img_x, img_y);
-		color_darkened(&color.integer, strip->dark);
+		texture_get_color(&color, strip->img, img_x, img_y);
+		color_darkened(&color, strip->dark);
 		fog_color(&color, strip->fog);
 		if (color.a == 255)
 			window_put_pixel(win, x, y, color.integer);

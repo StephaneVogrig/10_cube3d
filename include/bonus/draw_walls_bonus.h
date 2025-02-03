@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_walls_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:06:29 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:12 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 21:39:54 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define DRAW_WALLS_BONUS_H
 
 # include "asset_bonus.h"
+# include "color.h"
 # include "data_bonus.h"
 # include "door_bonus.h"
 # include "draw_wall_utils.h"

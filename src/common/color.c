@@ -6,18 +6,18 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:38 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 19:44:24 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 21:27:33 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 
-void	color_darkened(int *color, int dark)
+void	color_darkened(t_rgb *color, int dark)
 {
 	if (dark)
 	{
-		*color >>= 2;
-		*color &= 0xFF3F3F3F;
+		color->integer >>= 2;
+		color->integer &= 0xFF3F3F3F;
 	}
 }
 

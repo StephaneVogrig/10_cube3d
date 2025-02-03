@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 18:32:54 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 18:59:04 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 21:38:01 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	elem_draw_pixel(int x, t_element *elem, t_context *context)
 
 	pixel.x = elem->tex->width * context->box.x;
 	pixel.y = elem->tex->height * context->box.y;
-	color.integer = texture_get_color(elem->tex, pixel.x, pixel.y);
-	color_darkened(&color.integer, context->dark);
+	texture_get_color(&color, elem->tex, pixel.x, pixel.y);
+	color_darkened(&color, context->dark);
 	if (context->fog_enable)
 		fog_color_with_tab(&color, context->fog_tab);
 	window_put_pixel(context->win, x, elem->y, color.integer);

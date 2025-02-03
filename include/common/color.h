@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:00 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 18:58:11 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 21:31:34 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ typedef union u_color
 		unsigned char	r;
 		unsigned char	a;
 	};
-	int					integer;
+	unsigned int		integer;
 }						t_rgb;
 
-void	color_darkened(int *color, int dark);
+void	color_darkened(t_rgb *color, int dark);
 int		color_set_rgb(t_rgb *rgb, char *value);
 
 #endif

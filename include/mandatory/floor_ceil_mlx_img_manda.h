@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 01:38:15 by stephane          #+#    #+#             */
-/*   Updated: 2025/02/03 18:45:55 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 21:34:42 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_floor_ceil
 	void	*dark;
 }			t_floor_ceil;
 
-int			floor_ceil_init(t_window *win, int color_ceil, int color_floor,
+int			floor_ceil_init(t_window *win, t_rgb color_ceil, t_rgb color_floor,
 				t_floor_ceil *mlx_imgs);
 void		floor_ceil_put_to_window(t_window *win, int dark,
 				t_floor_ceil *mlx_imgs);

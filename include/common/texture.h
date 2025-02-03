@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:38:29 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:43 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 21:05:12 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "img_mlx.h"
 # include "libft.h"
 # include "mlx.h"
-// #include "lstmap_extraction_utils_bonus.h"
 
 typedef struct s_img
 {
@@ -26,7 +25,7 @@ typedef struct s_img
 	int	height;
 }		t_texture;
 
-int		texture_get_color(t_texture *t, int x, int y);
+void	texture_get_color(t_rgb *dest, t_texture *t, int x, int y);
 int		texture_load_to_buffer(void *mlx, t_texture *t, char *path);
 
 #endif

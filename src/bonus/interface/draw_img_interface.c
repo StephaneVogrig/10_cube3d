@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_img_interface.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:40:43 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 13:24:58 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 21:37:34 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	draw_image_bg(t_interface *interface, t_vec2i start, t_vec2i end)
 {
-	int				x;
-	int				y;
-	unsigned int	color;
-	t_vec2i			pos;
+	int		x;
+	int		y;
+	t_rgb	color;
+	t_vec2i	pos;
 
 	y = start.y;
 	while (y < end.y)
@@ -27,10 +27,10 @@ void	draw_image_bg(t_interface *interface, t_vec2i start, t_vec2i end)
 		{
 			pos.x = x - start.x;
 			pos.y = y - start.y;
-			color = texture_get_color(&interface->bg, pos.x, pos.y);
-			if (color != 0xFF000000)
+			texture_get_color(&color, &interface->bg, pos.x, pos.y);
+			if (color.integer != 0xFF000000)
 				mlx_set_image_pixel(interface->mlx, interface->img_bg, x, y,
-					color);
+					color.integer);
 			x++;
 		}
 		y++;
@@ -39,10 +39,10 @@ void	draw_image_bg(t_interface *interface, t_vec2i start, t_vec2i end)
 
 void	draw_image_fg(t_interface *interface, t_vec2i start, t_vec2i end)
 {
-	int				x;
-	int				y;
-	unsigned int	color;
-	t_vec2i			pos;
+	int		x;
+	int		y;
+	t_rgb	color;
+	t_vec2i	pos;
 
 	y = start.y;
 	while (y < end.y)
@@ -52,10 +52,10 @@ void	draw_image_fg(t_interface *interface, t_vec2i start, t_vec2i end)
 		{
 			pos.x = x - start.x;
 			pos.y = y - start.y;
-			color = texture_get_color(&interface->fg, pos.x, pos.y);
-			if (color != 0xFF000000)
+			texture_get_color(&color, &interface->fg, pos.x, pos.y);
+			if (color.integer != 0xFF000000)
 				mlx_set_image_pixel(interface->mlx, interface->img_fg, x, y,
-					color);
+					color.integer);
 			x++;
 		}
 		y++;
