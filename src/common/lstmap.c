@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:37:02 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/27 15:49:32 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 16:54:05 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,8 @@ void	delete_node_lstmap(t_lstmap **head, t_lstmap *del_node)
 
 void	delete_all_lstmap(t_lstmap **head)
 {
-	t_lstmap	*tmp;
-
 	if (*head == NULL)
 		return ;
-	tmp = *head;
-	while (tmp != NULL)
-	{
-		delete_node_lstmap(head, tmp);
-		tmp = (*head)->next;
-	}
-	tmp = (*head)->next;
-	delete_node_lstmap(head, *head);
-	*head = NULL;
+	while (*head != NULL)
+		delete_node_lstmap(head, *head);
 }
