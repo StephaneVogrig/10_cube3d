@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/02/03 18:37:59 by svogrig          ###   ########.fr        #
+#    Updated: 2025/02/03 18:44:44 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,13 +89,13 @@ SRCS_COMMON			:=	$(SRCS_COMMON:%=$(SRC_COMMON_DIR)/%)
 SRC_MAND_DIR		:=	mandatory
 
 SRCS_MANDA			:=	main_manda.c \
+						data_manda.c \
 						dda_manda.c \
 						event_manda.c \
 						player_move_manda.c \
 						textures_manda.c \
 						floor_ceil_mlx_img_manda.c \
 						game_loop_manda.c \
-						parsing/data_manda.c \
 						parsing/lstmap_extraction_manda.c \
 						parsing/flood_fill_manda.c \
 						parsing/bitfield_path_valid.c \
@@ -120,6 +120,7 @@ SRCS_BONUS 			:=	main_bonus.c \
 						asset_bonus.c \
 						asset_utils_bonus.c \
 						cell_bonus.c \
+						data_bonus.c \
 						dda_bonus.c \
 						event_bonus.c \
 						fog_bonus.c \
@@ -145,7 +146,6 @@ SRCS_BONUS 			:=	main_bonus.c \
 						interface/interface_event_bonus.c \
 						interface/tile_rules.c \
 						interface/tile_rules_floor.c \
-						parsing/data_bonus.c \
 						parsing/check_asset_bonus.c \
 						parsing/coordinate.c \
 						parsing/map_bonus.c \
