@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:07:10 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:49:36 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 22:02:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	player_rotate(t_player *player, t_key key, t_time_us delta_time)
 	sign_rot = key.right - key.left;
 	if (sign_rot == 0)
 		return (FALSE);
-	rotation = (SPEED_ROT * delta_time) / 10000;
+	rotation = (SPEED_ROT * delta_time) / USECOND_PER_SECOND;
 	if (sign_rot < 0)
 		rotation = -rotation;
 	player_rotation(player, rotation);

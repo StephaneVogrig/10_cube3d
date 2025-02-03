@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:05:50 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 17:33:21 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 22:05:19 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 # include "vector.h"
 # include <math.h>
 
-# define SPEED_ROT 0.044
+// Radian per second
+# define SPEED_ROT 4.4
 
+// Cell per second
 # define SPEED_MOVE 4.0
 
 typedef struct s_player
