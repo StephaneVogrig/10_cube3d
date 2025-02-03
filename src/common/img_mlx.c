@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:41:39 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/03 18:04:01 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 00:08:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	img_mlx_load_file(void *mlx, t_img_mlx *img, char *path)
 	img->mlx = mlx;
 	extension = ft_strrchr(path, '.');
 	if (extension == NULL)
-		return (ft_return(ERROR, 269, "Texture extension not found", path));
+		return (ft_return(ERROR, FAIL, "Texture extension not found", path));
 	if (ft_strcmp(extension, ".jpg") == 0 || ft_strcmp(extension, ".jpeg") == 0)
 		img->img = mlx_jpg_file_to_image(mlx, path, &img->width, &img->height);
 	else if (ft_strcmp(extension, ".bmp") == 0)
@@ -29,7 +29,7 @@ int	img_mlx_load_file(void *mlx, t_img_mlx *img, char *path)
 	else
 		(ft_display(ERROR, "Texture extension not supported"));
 	if (img->img == NULL)
-		return (ft_return(ERROR, 270, "mlx_file_to_img function failed", NULL));
+		return (ft_return(ERROR, FAIL, "mlx_file_to_img function failed", NULL));
 	return (SUCCESS);
 }
 

@@ -1,7 +1,7 @@
 W1 ../../textures/wall1.png
 F ../../textures/floor_128.png
 C ../../textures/ceil_128.png
-WE 1,2,3
+WE 255,2,3
 
 11111
 10001

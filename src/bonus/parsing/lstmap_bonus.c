@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:05:01 by aska              #+#    #+#             */
-/*   Updated: 2025/02/02 23:57:10 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 23:08:15 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_bool	next_valid_asset(t_lstmap **tmp)
 		return (ft_return(ERROR, FALSE, "End of file", "missing data"));
 	if (!ft_isthis((*tmp)->line[0], "NWESFCTLR"))
 		return (FALSE);
-	if (!ft_isthis((*tmp)->line[1], "EAOP \t123456789"))
+	if (!ft_isthis((*tmp)->line[1], "EAOP \f\r\t\v123456789"))
 		return (FALSE);
 	if (ft_isspace((*tmp)->line[1]) == FALSE)
 		if (ft_isspace((*tmp)->line[2]) == FALSE)

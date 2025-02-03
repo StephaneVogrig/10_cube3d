@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:31:39 by aska              #+#    #+#             */
-/*   Updated: 2025/01/30 00:23:41 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 00:11:35 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	asset_lst_to_array(void *mlx, t_asset *asset, t_asset_lst *head)
 				return (FAIL);
 		}
 		else if (texture_load_to_buffer(mlx, asset->value[i],
-				head->value) == FAIL)
+				head->value) != SUCCESS)
 			return (FAIL);
 		head = head->next;
 		i++;

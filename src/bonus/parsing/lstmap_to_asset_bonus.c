@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:53:06 by aska              #+#    #+#             */
-/*   Updated: 2025/02/03 13:49:09 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 23:03:06 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_status	chk_key(t_key_value *kv, t_asset_lst **asset_lst)
 	return (SUCCESS);
 }
 
-int	lstmap_to_asset(t_lstmap **tmp, char *root_path, t_asset_lst **asset_lst,
+int	lstmap_to_asset(t_lstmap **lstmap, char *root_path, t_asset_lst **asset_lst,
 		t_sprite_lst **sprite_lst)
 {
 	t_key_value	kv;
@@ -49,20 +49,22 @@ int	lstmap_to_asset(t_lstmap **tmp, char *root_path, t_asset_lst **asset_lst,
 
 	id = 0;
 	exit_code = SUCCESS;
-	while (tmp && exit_code == SUCCESS && next_valid_asset(tmp) != FALSE)
+	while (next_valid_asset(lstmap) == TRUE)
 	{
-		exit_code = set_key_value(&kv, (*tmp)->line);
+		exit_code = set_key_value(&kv, (*lstmap)->line);
 		if (exit_code == SUCCESS)
 			exit_code = chk_key(&kv, asset_lst);
 		if (exit_code == SUCCESS)
 			exit_code = set_asset_lst(&kv, root_path, asset_lst, id);
 		if (exit_code != SUCCESS)
 			break ;
-		(*tmp)->line = NULL;
+		(*lstmap)->line = NULL;
 		if (kv.key != NULL && ft_strcmp(kv.key, "SP") == 0)
-			exit_code = extract_coordinate_sprite(sprite_lst, tmp, id);
-		else if (exit_code == SUCCESS)
-			*tmp = (*tmp)->next;
+			exit_code = extract_coordinate_sprite(sprite_lst, lstmap, id);
+		else
+			*lstmap = (*lstmap)->next;
+		if (exit_code != SUCCESS)
+			break ;
 		id++;
 	}
 	return (exit_code);

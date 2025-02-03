@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2025/02/03 15:26:45 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 00:14:24 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ int	chk_open(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == FAIL)
-	{
-		close(fd);
 		return (FAIL);
-	}
 	close(fd);
 	return (SUCCESS);
 }
