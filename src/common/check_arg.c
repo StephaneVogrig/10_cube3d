@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 04:12:46 by aska              #+#    #+#             */
-/*   Updated: 2025/02/02 16:20:16 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 15:26:45 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	check_entry_arg(int ac, char **av)
 
 int	check_line(char *line)
 {
-	if (line == NULL)
-		return (ERROR);
 	if (is_empty(line) == TRUE || is_map_valid(line) == FALSE)
 		return (ft_return(ERROR, FAIL, "Invalid character on map", line));
 	return (SUCCESS);
