@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:52:01 by aska              #+#    #+#             */
-/*   Updated: 2025/02/02 14:32:41 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 15:36:57 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	is_map_valid(char *line)
 {
 	int	i;
 
-	if (line == NULL)
-		return (FALSE);
 	i = 0;
 	while (line[i] != '\0')
 	{
