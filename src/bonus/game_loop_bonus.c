@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 00:38:20 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/02 13:53:36 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 22:27:31 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,10 @@ int	game_loop(void *param)
 	update_data(data);
 	render_needed |= door_open_list_update(data->door_open_list, delta_time);
 	render_needed |= sprite_update(&data->sprite, delta_time);
-	if (render_needed)
-	{
-		render(data);
+	if (!render_needed)
+		return (SUCCESS);
+	render(data);
+	if (data->fps_enable)
 		fps_print(gametime() - oldtime);
-	}
 	return (SUCCESS);
 }

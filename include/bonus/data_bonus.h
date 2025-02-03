@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/31 11:53:56 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 22:20:36 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_data
 	int				mouse_mode;
 	int				fog_enable;
 	int				collision_enable;
+	int				fps_enable;
 	int				in_wall;
 	int				in_door;
 	int				dark;

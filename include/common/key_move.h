@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_move.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:57:13 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 17:21:47 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 22:23:45 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 typedef unsigned char	t_ui8;
 
 # define KEY_ESC 41
+
+# define KEY_P 19
 
 # define KEY_W 26
 # define KEY_A 4

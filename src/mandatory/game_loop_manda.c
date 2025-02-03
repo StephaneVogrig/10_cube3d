@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop_manda.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 20:05:30 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:58:48 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 22:26:15 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	game_loop(void *param)
 	if (!render_needed)
 		return (SUCCESS);
 	render(data);
-	fps_print(gametime() - oldtime);
+	if (data->fps_enable)
+		fps_print(gametime() - oldtime);
 	return (SUCCESS);
 }
