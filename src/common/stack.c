@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 21:01:49 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 15:52:49 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/03 17:19:00 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,34 +31,26 @@ t_status	create_stack(int capacity, t_stack *stack)
 	stack->top = 0;
 	stack->data = malloc(stack->capacity * sizeof(*(stack->data)));
 	if (stack->data == NULL)
-		return (FAIL);
+		return (ft_return(ERROR, FAIL, "create_stack", "malloc fail"));
 	return (SUCCESS);
 }
 
 t_status	push(t_stack *stack, t_cell cell)
 {
 	if (stack->top == stack->capacity - 1)
-	{
-		printf("Stack Overflow\n");
-		return (FAIL);
-	}
+		return (ft_return(ERROR, FAIL, "push", "stack overflow"));
 	stack->data[++stack->top] = cell;
 	return (SUCCESS);
 }
 
 t_cell	pop(t_stack *stack)
 {
-	if (stack->top == 0)
-	{
-		printf("Stack Underflow\n");
-		return ((t_cell){0, 0});
-	}
 	return (stack->data[stack->top--]);
 }
 
 int	is_stack_empty(t_stack *stack)
 {
 	if (stack->top == 0)
-		return (1);
-	return (0);
+		return (TRUE);
+	return (FALSE);
 }
