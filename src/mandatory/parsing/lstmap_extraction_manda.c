@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/03 13:48:23 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/03 15:04:34 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ static int	lstmap_to_textures(t_tex_path *tex_path, t_textures *tex,
 	t_key_value	kv;
 	int			exit_code;
 
+	exit_code = SUCCESS;
 	fs.file_ok = 0x3F;
-	while (*lst_map != NULL)
+	while (*lst_map != NULL && fs.file_ok != 0)
 	{
 		while (*lst_map != NULL && is_empty((*lst_map)->line) == TRUE)
 			delete_node_lstmap(lst_map, *lst_map);
@@ -83,8 +84,6 @@ static int	lstmap_to_textures(t_tex_path *tex_path, t_textures *tex,
 			break ;
 		file_switch_key(&fs, &kv.key);
 		delete_node_lstmap(lst_map, *lst_map);
-		if (fs.file_ok == 0)
-			return (exit_code);
 	}
 	return (exit_code);
 }
