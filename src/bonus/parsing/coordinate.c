@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2025/02/04 21:11:21 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/04 21:35:31 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,23 @@ int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
 
 static double	build(t_build_double *build)
 {
-	build->result = build->integer + (build->decimal / pow(10,
-				ft_intlen(build->decimal, 0)));
+	int		power;
+	int		decimal;
+
+	power = 0;
+	decimal = build->decimal;
+	while (decimal != 0)
+	{
+		decimal /= 10;
+		power++;
+	}
+	build->result = build->integer + (build->decimal / pow(10, power));
 	return (build->result);
 }
 
 static int	extract_coordinate(char **pos, t_build_double *build)
 {
-	char *endptr;
+	char	*endptr;
 
 	endptr = NULL;
 	(*pos)++;
