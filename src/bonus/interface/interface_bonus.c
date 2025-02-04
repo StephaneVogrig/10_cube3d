@@ -6,22 +6,11 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/04 23:44:24 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/04 23:53:42 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface_bonus.h"
-
-int	interface_scale(t_map *map)
-{
-	t_vec2i	scale;
-
-	scale.x = MINIMAP_W / map->width;
-	scale.y = MINIMAP_H / map->height;
-	if (scale.y < scale.x)
-		return (scale.y);
-	return (scale.x);
-}
 
 void	interface_asset_destroy(t_texture *t)
 {
@@ -81,7 +70,6 @@ int	interface_setup(t_interface *interface, void *mlx, t_window *win,
 	width = (width + win->width) / 2;
 	height = (height - win->height) / 2;
 	mlx_set_window_position(mlx, interface->win, width, height);
-	interface->scale = interface_scale(map);
 	draw_images(interface, map);
 	return (exit);
 }

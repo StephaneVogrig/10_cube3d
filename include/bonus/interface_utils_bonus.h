@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:51:50 by aska              #+#    #+#             */
-/*   Updated: 2025/02/04 23:47:03 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/04 23:53:39 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_interface
 	void		*img_fg;
 	void		*img_map;
 	void		*img_bg;
-	int			scale;
 	t_map		*map;
 	t_player	*player;
 	t_bool		visible;
