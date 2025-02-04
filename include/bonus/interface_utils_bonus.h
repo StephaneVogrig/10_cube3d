@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface_utils_bonus.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:51:50 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:16 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 23:47:03 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,5 @@ typedef struct s_interface
 int				interface_setup_texture(void *mlx, t_texture *tex, char *path);
 void			interface_tiles_buffer_index(t_tiles_ptr *tiles,
 					t_texture *tex);
-int				increment_position(t_bool reset);
 
 #endif

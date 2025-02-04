@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:30:55 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 01:06:19 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 23:45:13 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	window_setup(t_window *win, void *mlx)
 {
 	win->win = mlx_new_window(mlx, win->width, win->height, "cub3d");
 	if (win->win == NULL)
-		return (ft_return(ERROR, 275, "mlx_new_window failed", NULL));
+		return (ft_return(ERROR, FAIL, "mlx_new_window failed", NULL));
 	win->mlx = mlx;
 	return (SUCCESS);
 }

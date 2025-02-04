@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:44:55 by aska              #+#    #+#             */
-/*   Updated: 2025/01/30 00:36:51 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 23:42:42 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	interface_setup_texture(void *mlx, t_texture *tex, char *path)
 	return (SUCCESS);
 }
 
+static
 int	increment_position(t_bool reset)
 {
 	static int	position = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/30 00:39:02 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 23:44:24 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	interface_setup(t_interface *interface, void *mlx, t_window *win,
 		return (exit);
 	interface->win = mlx_new_window(mlx, MINIMAP_W, MINIMAP_H, "interface");
 	if (interface->win == NULL)
-		return (ft_return(ERROR, 25, "mlx_new_window failed",
+		return (ft_return(ERROR, FAIL, "mlx_new_window failed",
 				"interface_setup"));
 	mlx_get_screens_size(mlx, interface->win, &width, &height);
 	width = (width + win->width) / 2;
