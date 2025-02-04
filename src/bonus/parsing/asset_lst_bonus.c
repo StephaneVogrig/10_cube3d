@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2025/02/04 15:42:00 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/04 19:42:54 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ void	delete_all_asset_lst(t_asset_lst **head)
 		return ;
 	while (*head != NULL)
 		delete_node_asset(head, *head);
-	delete_node_asset(head, *head);
-	*head = NULL;
 }
 
 int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst,

@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:53:06 by aska              #+#    #+#             */
-/*   Updated: 2025/02/04 16:47:07 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/04 19:48:45 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	lstmap_to_asset(t_lstmap **lstmap, char *root_path, t_asset_lst **asset_lst,
 		if (exit_code != SUCCESS)
 			break ;
 		(*lstmap)->line = NULL;
-		if (kv.key != NULL && ft_strcmp(kv.key, "SP") == 0)
+		if (ft_strcmp(kv.key, "SP") == 0)
 			exit_code = extract_coordinate_sprite(sprite_lst, lstmap, id);
 		else
 			*lstmap = (*lstmap)->next;

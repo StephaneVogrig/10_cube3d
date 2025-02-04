@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:06:21 by aska              #+#    #+#             */
-/*   Updated: 2025/02/04 16:44:45 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/04 19:47:02 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static inline int	setup_key_value_separate_by_space(char **key, char **value,
 	while (*line != '\0' && ft_isspace(*line) == FALSE)
 		line++;
 	if (*line == '\0')
-		return (ft_return(ERROR, FAIL, "Asset line", "empty"));
+		return (ft_return(ERROR, FAIL, "Invalid Key", line));
 	*line = '\0';
 	line++;
 	while (ft_isspace(*line) == TRUE)
