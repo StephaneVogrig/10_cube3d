@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:52:46 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/30 17:38:47 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 21:21:56 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	ft_intlen(int nbr, int count)
 	}
 	while (nbr > 0)
 	{
-		nbr -= nbr % 10;
 		nbr /= 10;
 		count++;
 	}
