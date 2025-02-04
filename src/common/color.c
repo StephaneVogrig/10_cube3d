@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:38 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 21:27:33 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 16:14:21 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	color_darkened(t_rgb *color, int dark)
 	{
 		color->integer >>= 2;
 		color->integer &= 0xFF3F3F3F;
+		color->a = 255;
 	}
 }
 
