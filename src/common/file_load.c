@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_load.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:38:38 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/02 16:47:45 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 15:29:47 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	open_file(int *fd, char *file)
 {
+	if (is_folder(file) == TRUE)
+		return (ft_return(ERROR, FAIL, file, "Is a folder"));
 	*fd = open(file, O_RDONLY);
 	if (*fd == -1)
 		return (ft_return(ERROR, FAIL, "Error to open .cub file", file));

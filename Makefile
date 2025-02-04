@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/02/03 18:44:44 by svogrig          ###   ########.fr        #
+#    Updated: 2025/02/04 15:30:31 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRCS_COMMON			:= 	axis.c \
 						cub_strtoi.c \
 						dda_utils.c \
 						file_load.c \
+						file_utils.c \
 						gametime.c \
 						gridbox.c \
 						img_mlx.c \

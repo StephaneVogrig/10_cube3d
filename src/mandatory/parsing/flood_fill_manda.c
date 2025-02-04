@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill_manda.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:18:49 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/02 12:05:32 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 14:38:46 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	map_setup(t_map *map, t_player *player)
 	exit_code = map_player_finder(map, player);
 	if (exit_code != SUCCESS)
 		return (exit_code);
-	ff_ok = chk_flood_fill(map, player->x.grid, player->y.grid);
+	map->grid[player->y.grid][player->x.grid] = '0';
+	ff_ok = check_border_map(map);
 	if (ff_ok == FALSE)
 		return (FAIL);
 	return (SUCCESS);

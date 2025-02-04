@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_lst_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2025/02/03 23:37:25 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 15:42:00 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst,
 		kv->value = ft_strdup(kv->value);
 	if (kv->value == NULL)
 		return (ft_return(ERROR, FAIL, "malloc failed", "set_asset_lst"));
+	if (is_folder(kv->value) == TRUE)
+	{
+		free(kv->value);
+		return (ft_return(ERROR, FAIL, kv->key, " assset is a folder"));
+	}
 	if (chk_open(kv->value) == FAIL && ft_strrchr(kv->value, '.') != NULL)
 	{
 		free(kv->value);

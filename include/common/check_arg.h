@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_arg.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 09:37:11 by aska              #+#    #+#             */
-/*   Updated: 2025/02/01 17:39:01 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 15:35:20 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "parsing_utils.h"
+# include "file_utils.h"
 
 # define EXTENSION_FILE ".cub"
 # define NUM_OF_ARG "Number of entry arguments"

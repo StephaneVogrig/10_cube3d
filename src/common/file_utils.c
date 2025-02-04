@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill.h                                       :+:      :+:    :+:   */
+/*   file_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 19:21:52 by aska              #+#    #+#             */
-/*   Updated: 2025/02/04 14:39:14 by ygaiffie         ###   ########.fr       */
+/*   Created: 2025/02/04 15:26:02 by ygaiffie          #+#    #+#             */
+/*   Updated: 2025/02/04 15:28:02 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FLOOD_FILL_H
-# define FLOOD_FILL_H
+#include "file_utils.h"
 
-# include "map.h"
-# include "player.h"
-# include "stack.h"
-# include "stdbool.h"
+bool	is_folder(const char *path)
+{
+	int	fd;
 
-void	check_cell(int x, int y, t_map *map, t_stack *stack);
-int		map_setup(t_map *map, t_player *player);
-bool	check_border_map(t_map *map);
-
-#endif
+	fd = open(path, O_DIRECTORY);
+	if (fd == -1)
+		return (false);
+	close(fd);
+	return (true);
+}

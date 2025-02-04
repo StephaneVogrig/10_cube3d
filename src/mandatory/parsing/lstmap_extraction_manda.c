@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_manda.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/03 15:23:36 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 16:49:31 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	set_path_and_color(t_tex_path *tex_path, t_textures *tex,
 static t_status	chk_key_value(t_key_value *kv, char *line, t_fs *fs)
 {
 	if (!(ft_isthis(line[0], "NSEWFC") != SUCCESS))
-		return (ft_return(ERROR, 263, "Invalid Key", line));
+		return (ft_return(ERROR, FAIL, "Invalid or empty key", line));
 	if (file_switch_select(fs, kv->key) != SUCCESS)
 		return (FAIL);
 	return (SUCCESS);

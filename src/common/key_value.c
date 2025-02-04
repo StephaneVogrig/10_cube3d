@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_value.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:06:21 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 16:49:10 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 16:44:45 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static inline int	setup_key_value_separate_by_space(char **key, char **value,
 	while (*line != '\0' && ft_isspace(*line) == FALSE)
 		line++;
 	if (*line == '\0')
-		return (ft_return(ERROR, FAIL, "Invalid Key", line));
+		return (ft_return(ERROR, FAIL, "Asset line", "empty"));
 	*line = '\0';
 	line++;
 	while (ft_isspace(*line) == TRUE)

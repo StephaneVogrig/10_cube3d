@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tex_path_manda.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:05:27 by aska              #+#    #+#             */
-/*   Updated: 2025/02/03 14:39:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 16:55:59 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tex_path_manda.h"
-#include "stdbool.h"
 
 void	tex_path_clean(t_tex_path *tex_path)
 {
@@ -45,24 +44,24 @@ static int	set_path_by_key(t_tex_path *tex_path, t_key_value *kv)
 int	set_path(char *root_path, t_key_value *kv, t_tex_path *tex_path)
 {
 	int		exit_code;
-	int		fd;
 	bool	is_malloc;
 
+	exit_code = SUCCESS;
 	is_malloc = false;
 	kv->value = spacetrim(kv->value);
-	if (kv->value != NULL && root_path != NULL)
+	if (root_path != NULL)
 	{
 		kv->value = ft_strjoin(root_path, kv->value);
 		is_malloc = true;
 	}
 	if (kv->value == NULL)
 		return (ft_return(ERROR, FAIL, "malloc failed", "set_path"));
-	fd = ft_open(kv->value, O_RDONLY);
-	if (fd != FAIL)
+	if (is_folder(kv->value) == TRUE)
+		exit_code = ft_return(ERROR, FAIL, kv->value, "is a folder");
+	if (exit_code == SUCCESS && chk_open(kv->value) == FAIL)
+		exit_code = ft_return(ERROR, FAIL, "failed to open asset", kv->key);
+	if (exit_code != FAIL)
 		exit_code = set_path_by_key(tex_path, kv);
-	else
-		exit_code = ft_return(ERROR, 7, "Texture File Invalid", kv->value);
-	ft_close(fd);
 	if (is_malloc)
 		kv->value = ft_char_f(kv->value);
 	return (exit_code);
