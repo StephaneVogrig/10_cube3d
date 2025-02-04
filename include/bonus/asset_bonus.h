@@ -18,6 +18,9 @@
 # include "libft.h"
 # include "texture.h"
 
+# define NBR_KEY_IN_GRID 13
+# define NBR_WALLKEY_IN_GRID 9
+
 typedef struct s_nsew
 {
 	t_texture		*north;
@@ -49,7 +52,7 @@ typedef struct s_asset
 	t_floor_ceil	floor_ceil;
 	t_door_tex		door;
 	t_nsew			nsew;
-	t_texture		*wall[9];
+	t_texture		*wall[NBR_WALLKEY_IN_GRID];
 }					t_asset;
 
 /*

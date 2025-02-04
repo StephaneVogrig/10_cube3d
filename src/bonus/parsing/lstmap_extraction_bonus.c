@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:17:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/01 17:37:26 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 22:00:46 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lstmap_extraction_bonus.h"
 
 static
-int	is_map_valid_bonus(char *line)
+int	is_line_map_valid(char *line)
 {
 	int	i;
 
-	if (line == NULL)
-		return (FALSE);
 	i = 0;
 	while (line[i] != '\0')
 	{
@@ -38,11 +36,11 @@ int	check_line_remain(t_map *map, t_asset_lst **lst_asset, t_lstmap *lst_map)
 	{
 		exit_code = is_empty(lst_map->line);
 		if (exit_code != SUCCESS)
-			return (ft_return(ERROR, 6, "Line is empty after",
+			return (ft_return(ERROR, FAIL, "Line is empty after",
 					lst_map->prev->line));
-		exit_code = !is_map_valid_bonus(lst_map->line);
+		exit_code = !is_line_map_valid(lst_map->line);
 		if (exit_code != SUCCESS)
-			return (ft_return(ERROR, 6, "Line is invalid", lst_map->line));
+			return (ft_return(ERROR, FAIL, "Line is invalid", lst_map->line));
 		if (cmp_cell_line_to_asset_key(lst_map->line, *lst_asset) == FAIL)
 			return (FAIL);
 		exit_code = set_map_info(map, lst_map->line);

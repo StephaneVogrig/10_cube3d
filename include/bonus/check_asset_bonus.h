@@ -6,14 +6,16 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 02:54:44 by aska              #+#    #+#             */
-/*   Updated: 2025/01/28 14:43:50 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/04 22:15:11 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECK_ASSET_BONUS_H
 # define CHECK_ASSET_BONUS_H
 
+# include <stdbool.h>
 # include "asset_lst_bonus.h"
+# include "asset_bonus.h"
 # include "asset_lst_utils_bonus.h"
 # include "libft.h"
 

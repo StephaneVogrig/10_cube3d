@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_lst_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:38:06 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/02 14:02:50 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 22:23:26 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ t_bool	asset_lst_key_exist(t_asset_lst *head, char key)
 {
 	char	key_tmp[3];
 
-	if (ft_isthis(key, "NSEW") == TRUE)
-		return (key_is_in_asset_lst(head, "F") && key_is_in_asset_lst(head,
-				"C"));
 	if (key == '1')
 	{
 		if (chk_orientation_key(head))

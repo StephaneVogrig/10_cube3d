@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:54:45 by aska              #+#    #+#             */
-/*   Updated: 2025/02/01 13:17:44 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 22:36:43 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,25 @@
 
 int	set_map_info(t_map *map, char *line)
 {
-	int				x;
 	int				i;
 	static t_bool	player_valid = FALSE;
 
 	i = 0;
 	while (line[i] != '\0')
 	{
-		if (ft_isthis(line[i++], "NSWE"))
+		if (ft_isthis(line[i], "NSWE"))
 		{
 			if (player_valid == TRUE)
-				return (ft_return(ERROR, 7, "Two Player on map", line));
+				return (ft_return(ERROR, FAIL, "Two Player on map", line));
 			player_valid = TRUE;
 		}
+		if (i++ == INT_MAX)
+			return (ft_return(ERROR, FAIL, "Map width too large", NULL));
 	}
-	x = 0;
-	while (line[x])
-		if (x++ == INT_MAX)
-			return (ft_return(ERROR, 7, "Map width too large", NULL));
-	if (x > map->width)
-		map->width = x;
+	if (i > map->width)
+		map->width = i;
 	if (map->height == INT_MAX)
-		return (ft_return(ERROR, 7, "Map height too large", NULL));
+		return (ft_return(ERROR, FAIL, "Map height too large", NULL));
 	map->height++;
 	return (SUCCESS);
 }
