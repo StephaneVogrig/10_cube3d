@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_lst_utils_bonus.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:38:57 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/02 14:02:55 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 19:19:13 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ typedef struct s_asset_lst
 {
 	int					id;
 	char				*key;
-	t_bool				is_color;
 	char				*value;
 	struct s_asset_lst	*next;
 	struct s_asset_lst	*prev;
