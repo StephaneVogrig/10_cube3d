@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/04 16:53:32 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 21:37:59 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int	on_win_event(int event, void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	if (event == ON_FOCUS_GAIN)
+	if (event == ON_DEMAND_CLOSE)
+		mlx_loop_end(data->win.mlx);
+	else if (event == ON_FOCUS_GAIN)
 		data->win_focused = 1;
 	else if (event == ON_FOCUS_LOSS)
 		data->win_focused = 0;
