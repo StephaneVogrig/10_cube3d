@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:44:20 by aska              #+#    #+#             */
-/*   Updated: 2025/01/21 15:22:31 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/04 21:48:13 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	delete_all_sprite(t_sprite_lst **head)
 		return ;
 	while (*head != NULL)
 		delete_node_sprite(head, *head);
-	delete_node_sprite(head, *head);
-	*head = NULL;
 }
 
 int	get_lst_size(t_sprite_lst *head)
