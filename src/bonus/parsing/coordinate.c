@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coordinate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2025/02/02 12:26:24 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/04 21:11:21 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,20 @@
 
 int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
 {
-	*tmp = (*tmp)->next;
-	if (tmp == NULL || (*tmp)->line[0] != '[')
-		return (ft_return(ERROR, FAIL, "No coordinate for sprite",
-				(*tmp)->prev->line));
+	t_lstmap	*sp;
+
+	sp = *tmp;
+	next_line_not_empty(tmp);
+	if (tmp == NULL)
+		return (ft_return(ERROR, FAIL, "unexpected end of file after",
+				sp->line));
+	if ((*tmp)->line[0] != '[')
+		return (ft_return(ERROR, FAIL, "No coordinate for sprite", sp->line));
 	while (tmp != NULL && (*tmp)->line[0] == '[')
 	{
-		if (set_sprite_coordinate((*tmp)->line, sprite_lst, id) == SUCCESS)
-			next_line_not_empty(tmp);
-		else
+		if (set_sprite_coordinate((*tmp)->line, sprite_lst, id) != SUCCESS)
 			return (FAIL);
+		next_line_not_empty(tmp);
 	}
 	return (SUCCESS);
 }
@@ -35,30 +39,25 @@ static double	build(t_build_double *build)
 	return (build->result);
 }
 
-static int	extract_coordinate(char *line, char **endptr, t_build_double *build)
+static int	extract_coordinate(char **pos, t_build_double *build)
 {
-	char	*current;
+	char *endptr;
 
-	line++;
-	build->integer = cub_strtoi(line, endptr);
-	if (line == *endptr || build->integer == INT_MAX)
+	endptr = NULL;
+	(*pos)++;
+	build->integer = cub_strtoi(*pos, &endptr);
+	if (*pos == endptr || ft_isdigit(*endptr) == TRUE)
 		return (FAIL);
-	if (ft_isthis(**endptr, ".,"))
+	*pos = endptr;
+	if (ft_isthis(**pos, ".,"))
 	{
-		(*endptr)++;
-		current = *endptr;
-		build->decimal = cub_strtoi(current, endptr);
-		if (line == *endptr || build->decimal == INT_MAX || build->decimal < 0)
+		(*pos)++;
+		build->decimal = cub_strtoi(*pos, &endptr);
+		if (*pos == endptr || ft_isdigit(*endptr) == TRUE || build->decimal < 0)
 			return (FAIL);
+		*pos = endptr;
 	}
-	else if (ft_isthis(**endptr, ";]"))
-	{
-		build->decimal = 0;
-		return (SUCCESS);
-	}
-	skip_blank(endptr);
-	if (**endptr != ';' && **endptr != ']')
-		return (FAIL);
+	skip_blank(pos);
 	return (SUCCESS);
 }
 
@@ -66,22 +65,23 @@ int	set_sprite_coordinate(char *line, t_sprite_lst **head, int id)
 {
 	t_build_double	x;
 	t_build_double	y;
-	char			*current;
-	char			*endptr;
+	char			*pos;
 
-	current = line;
+	pos = line;
 	ft_bzero(&x, sizeof(x));
 	ft_bzero(&y, sizeof(y));
-	if (extract_coordinate(current, &endptr, &x) != SUCCESS)
+	if (extract_coordinate(&pos, &x) != SUCCESS)
 		return (ft_return(ERROR, FAIL, "Invalid coordinate X position", line));
-	if (*endptr != ';')
+	if (*pos != ';')
 		return (ft_return(ERROR, FAIL, "Invalid coordinate separator", line));
-	current = endptr;
-	if (extract_coordinate(current, &endptr, &y) != SUCCESS)
+	if (extract_coordinate(&pos, &y) != SUCCESS)
 		return (ft_return(ERROR, FAIL, "Invalid coordinate Y position", line));
-	if (*endptr != ']' || *(endptr + 1) != '\0')
-		return (ft_return(ERROR, FAIL,
-				"Invalid coordinate end line symbol \"]\"", line));
+	if (*pos != ']')
+		return (ft_return(ERROR, FAIL, "Invalid end coordinate \"]\"", line));
+	pos++;
+	skip_blank(&pos);
+	if (*pos != '\0')
+		return (ft_return(ERROR, FAIL, "Stuff after coordinate", line));
 	insert_sprite_lst(head, build(&x), build(&y), id);
 	return (SUCCESS);
 }
