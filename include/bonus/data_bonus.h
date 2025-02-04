@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:19:26 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 22:20:36 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 16:51:30 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,18 @@ typedef struct s_data
 {
 	void			*mlx;
 	t_window		win;
+	bool			win_focused;
 	t_map			map;
 	t_asset			textures;
 	t_key			key;
 	t_player		player;
 	int				mouse_mode;
-	int				fog_enable;
-	int				collision_enable;
-	int				fps_enable;
-	int				in_wall;
-	int				in_door;
-	int				dark;
+	bool			fog_enable;
+	bool			collision_enable;
+	bool			fps_enable;
+	bool			in_wall;
+	bool			in_door;
+	bool			dark;
 	t_ray_tab		rays;
 	double			tg_fov_2;
 	double			scale_screen;

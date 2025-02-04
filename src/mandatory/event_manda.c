@@ -6,21 +6,11 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 22:24:32 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 17:23:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "event_manda.h"
-
-int	on_win_event(int event, void *param)
-{
-	t_window	*window;
-
-	window = (t_window *)param;
-	if (event == ON_DEMAND_CLOSE)
-		mlx_loop_end(window->mlx);
-	return (SUCCESS);
-}
 
 int	on_keydown(int key, void *param)
 {
@@ -47,8 +37,6 @@ int	on_keyup(int key, void *param)
 
 void	event_setup(t_data *data)
 {
-	mlx_on_event(data->mlx, data->win.win, MLX_WINDOW_EVENT, on_win_event,
-		&data->win);
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYDOWN, on_keydown, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYUP, on_keyup, data);
 	mlx_loop_hook(data->mlx, game_loop, data);

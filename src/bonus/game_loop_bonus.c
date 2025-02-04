@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 00:38:20 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 22:27:31 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 16:42:02 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	check_mouse_move(t_data *data)
 	int	y;
 	int	dx;
 
-	if (!data->win.focused || !data->mouse_mode)
+	if (!data->win_focused || !data->mouse_mode)
 		return (false);
 	mlx_mouse_get_pos(data->mlx, &x, &y);
 	dx = x - data->win.width / 2;

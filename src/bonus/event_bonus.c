@@ -6,23 +6,22 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:47:13 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 22:24:13 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 16:53:32 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "event_bonus.h"
 
+static
 int	on_win_event(int event, void *param)
 {
-	t_window	*window;
+	t_data	*data;
 
-	window = (t_window *)param;
-	if (event == ON_DEMAND_CLOSE)
-		mlx_loop_end(window->mlx);
-	else if (event == ON_FOCUS_GAIN)
-		window->focused = 1;
+	data = (t_data *)param;
+	if (event == ON_FOCUS_GAIN)
+		data->win_focused = 1;
 	else if (event == ON_FOCUS_LOSS)
-		window->focused = 0;
+		data->win_focused = 0;
 	return (SUCCESS);
 }
 
@@ -49,7 +48,7 @@ int	on_keyup(int key, void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	if (key == KEY_T && data->win.focused)
+	if (key == KEY_T && data->win_focused)
 		mouse_mode_switch(&data->win, &data->mouse_mode);
 	else
 		set_key_up(&data->key, key);
@@ -74,7 +73,7 @@ int	on_mousedown(int button, void *param)
 void	event_setup(t_data *data)
 {
 	mlx_on_event(data->mlx, data->win.win, MLX_WINDOW_EVENT, on_win_event,
-		&data->win);
+		data);
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYDOWN, on_keydown, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_KEYUP, on_keyup, data);
 	mlx_on_event(data->mlx, data->win.win, MLX_MOUSEDOWN, on_mousedown, data);
