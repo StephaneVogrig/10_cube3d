@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:41:39 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/02/04 00:08:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 13:43:01 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	img_mlx_load_file(void *mlx, t_img_mlx *img, char *path)
 	else
 		(ft_display(ERROR, "Texture extension not supported"));
 	if (img->img == NULL)
-		return (ft_return(ERROR, FAIL, "mlx_file_to_img function failed", NULL));
+		return (ft_return(ERROR, FAIL, "mlx_file_to_img", "failed"));
 	return (SUCCESS);
 }
 

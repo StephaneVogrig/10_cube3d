@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:53:06 by aska              #+#    #+#             */
-/*   Updated: 2025/02/03 23:03:06 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/04 13:19:06 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	lstmap_to_asset(t_lstmap **lstmap, char *root_path, t_asset_lst **asset_lst,
 
 	id = 0;
 	exit_code = SUCCESS;
-	while (next_valid_asset(lstmap) == TRUE)
+	while (next_valid_asset(lstmap, &exit_code) == TRUE)
 	{
 		exit_code = set_key_value(&kv, (*lstmap)->line);
 		if (exit_code == SUCCESS)
