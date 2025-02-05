@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tile_rules.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 19:25:48 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 15:47:10 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/05 00:39:54 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tile_rules.h"
-
-void	print_tile(t_tile tile)
-{
-	printf("#---------------------#\n");
-	printf("tile_ptr: %d\n", *tile.tile_ptr);
-	printf("pos.x: %d\tpos.y: %d\n", tile.pos.x, tile.pos.y);
-	printf("#---------------------#\n\n");
-}
 
 void	tile_init(t_interface *interface, t_tile *tile, t_vec2i coord)
 {
