@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/02/04 15:30:31 by ygaiffie         ###   ########.fr        #
+#    Updated: 2025/02/05 13:05:43 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -136,8 +136,6 @@ SRCS_BONUS 			:=	main_bonus.c \
 						door/door_open_bonus.c \
 						door/door_open_list_bonus.c \
 						door/door_utils_bonus.c \
-						interface/draw_line_bonus.c \
-						interface/draw_line_utils_bonus.c \
 						interface/draw_utils_bonus.c \
 						interface/draw_img_interface.c \
 						interface/draw_img_minimap.c \
