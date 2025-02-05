@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_img_interface.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:40:43 by aska              #+#    #+#             */
-/*   Updated: 2025/02/03 21:37:34 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/05 18:58:55 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,8 @@ int	draw_images(t_interface *interface, t_map *map)
 	if (interface->img_fg == NULL)
 		return (FAIL);
 	draw_image_fg(interface, start, end);
-	interface->img_map = mlx_new_image(interface->mlx, map->width * TILES_W,
-			map->height * TILES_H);
+	interface->img_map = mlx_new_image(interface->mlx, MINIMAP_W, MINIMAP_H);
 	if (interface->img_map == NULL)
 		return (FAIL);
-	draw_image_minimap(interface, start, vector2i(map->width * TILES_W,
-			map->height * TILES_H), map);
 	return (SUCCESS);
 }

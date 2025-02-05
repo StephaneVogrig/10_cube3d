@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface_render_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 15:03:52 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/05 14:40:36 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/05 18:56:37 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@ void	render_interface(t_interface *interface, t_data *data)
 
 	x_minimap = (MINIMAP_W >> 1) - data->player.x.grid * TILES_W;
 	y_minimap = (MINIMAP_H >> 1) - data->player.y.grid * TILES_H;
+	mlx_clear_window(interface->mlx, interface->win);
 	mlx_put_image_to_window(interface->mlx, interface->win, interface->img_bg,
 		0, 0);
+	draw_image_minimap(interface, &data->player.position, &data->map);
 	mlx_put_image_to_window(interface->mlx, interface->win, interface->img_map,
-		x_minimap, y_minimap);
+		0, 0);
 	mlx_put_image_to_window(interface->mlx, interface->win, interface->img_fg,
 		0, 0);
 	draw_player(interface);

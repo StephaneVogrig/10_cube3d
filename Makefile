@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
+#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/02/05 13:05:43 by svogrig          ###   ########.fr        #
+#    Updated: 2025/02/05 18:58:10 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -144,7 +144,6 @@ SRCS_BONUS 			:=	main_bonus.c \
 						interface/interface_render_bonus.c \
 						interface/interface_event_bonus.c \
 						interface/tile_rules.c \
-						interface/tile_rules_floor.c \
 						parsing/check_asset_bonus.c \
 						parsing/coordinate.c \
 						parsing/map_bonus.c \
