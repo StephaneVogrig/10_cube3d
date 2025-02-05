@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:20 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/31 21:42:56 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/05 15:25:13 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 	int			exit_code;
 	t_data		data;
 
-	// title();
+	title();
 	exit_code = program_init(&data, argc, argv);
 	if (exit_code == SUCCESS)
 		exit_code = program_setup(&data, argv[1]);
