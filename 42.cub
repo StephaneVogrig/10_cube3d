@@ -1,10 +1,10 @@
-NO ./wall1.png
-SO ./wall2.png
-WE ./wall3.png
-EA ./wall0.png
+NO ./wall_NO.png
+SO ./wall_SO.png
+WE ./wall_WE.png
+EA ./wall_EA.png
 
-F 220,100,0
-C 225,30,0
+F 100,200,100
+C 100,100,200
 
 111111111111111111111111111
 100000000000000000000000001
