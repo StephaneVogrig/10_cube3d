@@ -1,0 +1,16 @@
+SO textures//ROCKSO.bmp
+
+NO textures/ROCKNO.bmp
+WE textures/ROCKWE.bmp
+
+
+EA textures//ROCKEA.bmp
+
+F 35,100,40
+C 25,85,0
+
+11111
+10001
+10N01
+10001
+11111
