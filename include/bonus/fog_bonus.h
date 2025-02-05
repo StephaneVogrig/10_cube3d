@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fog_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:35:37 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:13 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/05 15:21:15 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 # include "color.h"
 # include "math.h"
 
-# define FOG_DISTFRONT 1.0
-# define FOG_DISTBACK 8
-# define DENSITY 0.25
+# define FOG_DENSITY 0.25
+
+/*
+ *	distance at which start the fog, in cell (float)
+*/
+# define FOG_DISTANCE_START 1.0
 
 float	fog_compute(double distance, int fog_enable);
 float	fog_exponential(double len);

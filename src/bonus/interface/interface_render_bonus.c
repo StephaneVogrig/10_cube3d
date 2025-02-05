@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 15:03:52 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/05 13:03:15 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/05 14:40:36 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_player(t_interface *interface)
 	start.y = MINIMAP_H >> 1;
 	end.x = start.x + TILES_H - 1;
 	end.y = start.y + TILES_W - 1;
-	draw_rectangle(interface, start, end, 0xAAFFFF00);
+	draw_rectangle(interface, start, end, 0xBBFF4020);
 }
 
 void	render_interface(t_interface *interface, t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fog_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:35:05 by svogrig           #+#    #+#             */
-/*   Updated: 2025/01/27 15:01:44 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/05 14:10:42 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ float	fog_compute(double distance, int fog_enable)
 
 float	fog_exponential(double len)
 {
-	if (len < 1.0)
-		return (1.0);
-	return (exp(-DENSITY * (len - 1.0)));
+	if (len < FOG_DISTANCE_START)
+		return (FOG_DISTANCE_START);
+	return (exp(-FOG_DENSITY * (len - FOG_DISTANCE_START)));
 }
 
 void	fog_color(t_rgb *start, float fog)

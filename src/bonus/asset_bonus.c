@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:31:39 by aska              #+#    #+#             */
-/*   Updated: 2025/02/04 00:11:35 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/05 14:51:57 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	asset_destroy(t_asset *t)
 {
 	int	i;
 
-	if (t->key == NULL || t->value == NULL)
+	if (t->key == NULL)
 		return (FAIL);
 	t->key = ft_tab_f(t->key);
 	i = 0;
@@ -27,7 +27,8 @@ int	asset_destroy(t_asset *t)
 	return (SUCCESS);
 }
 
-static int	asset_init(t_asset *asset, int size, t_asset_lst *head)
+static
+int	asset_init(t_asset *asset, int size, t_asset_lst *head)
 {
 	int	i;
 
@@ -46,6 +47,18 @@ static int	asset_init(t_asset *asset, int size, t_asset_lst *head)
 			return (ft_return(ERROR, FAIL, "Malloc failed", "asset_init"));
 		head = head->next;
 	}
+	return (SUCCESS);
+}
+
+static
+int	color_to_buffer(t_rgb *rgb, t_texture *t)
+{
+	t->buffer = malloc(sizeof(int));
+	if (t->buffer == NULL)
+		return (ft_return(ERROR, FAIL, "Malloc failed", "color_to_buffer"));
+	t->buffer[0] = rgb->integer;
+	t->width = 1;
+	t->height = 1;
 	return (SUCCESS);
 }
 

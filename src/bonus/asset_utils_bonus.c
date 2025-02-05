@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:45:48 by aska              #+#    #+#             */
-/*   Updated: 2025/01/30 00:24:16 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/05 14:51:44 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,5 @@ int	asset_set_key_value(t_asset *asset, char *key, int size, int i)
 	asset->key[i] = ft_strdup(key);
 	if (asset->key[i] == NULL)
 		return (FAIL);
-	return (SUCCESS);
-}
-
-int	color_to_buffer(t_rgb *rgb, t_texture *t)
-{
-	t->buffer = malloc(sizeof(int));
-	if (t->buffer == NULL)
-		return (ft_return(ERROR, FAIL, "Malloc failed", "color_to_buffer"));
-	t->buffer[0] = rgb->integer;
-	t->width = 1;
-	t->height = 1;
 	return (SUCCESS);
 }

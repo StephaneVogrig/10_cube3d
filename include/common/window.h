@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 12:47:16 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/04 16:46:16 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/05 14:12:29 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include "libft.h"
 # include "mlx.h"
 
+
+/*
+ * assume WIN_H and WIN_H are even
+*/
 # define WIN_W 1280
 # define WIN_H 768
 
