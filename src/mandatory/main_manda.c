@@ -6,7 +6,7 @@
 /*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:16:47 by aska              #+#    #+#             */
-/*   Updated: 2025/02/03 22:31:06 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/05 15:37:50 by svogrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	int		exit_code;
 	t_data	data;
 
+	title();
 	exit_code = check_entry_arg(argc, argv);
 	if (exit_code != SUCCESS)
 		return (exit_code);
@@ -25,7 +26,6 @@ int	main(int argc, char **argv)
 	if (exit_code == SUCCESS)
 		exit_code = floor_ceil_init(&data.win, data.textures.ceil_rgb,
 				data.textures.floor_rgb, &data.floorceil_imgs);
-	title();
 	if (exit_code == SUCCESS)
 	{
 		event_setup(&data);
