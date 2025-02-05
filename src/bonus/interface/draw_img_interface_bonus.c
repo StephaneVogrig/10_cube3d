@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_img_interface.c                               :+:      :+:    :+:   */
+/*   draw_img_interface_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:40:43 by aska              #+#    #+#             */
-/*   Updated: 2025/02/05 20:32:02 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/05 22:21:44 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw_img_interface.h"
+#include "draw_img_interface_bonus.h"
 
 void	draw_image_bg(t_interface *interface, t_vec2i start, t_vec2i end)
 {

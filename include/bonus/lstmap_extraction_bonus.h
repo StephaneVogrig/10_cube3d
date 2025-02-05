@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstmap_extraction_bonus.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:30:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2025/01/31 14:14:53 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/05 22:22:10 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "asset_lst_bonus.h"
 # include "check_asset_bonus.h"
-# include "coordinate.h"
+# include "coordonate_bonus.h"
 # include "file_load.h"
 # include "lstmap.h"
 # include "map.h"

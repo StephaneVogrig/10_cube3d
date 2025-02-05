@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tile_rules.c                                       :+:      :+:    :+:   */
+/*   tile_rules_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 19:25:48 by aska              #+#    #+#             */
-/*   Updated: 2025/02/05 18:55:54 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/05 22:26:17 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tile_rules.h"
+#include "tile_rules_bonus.h"
 
 static
 void	tile_rule_numbers(t_interface *interface, t_tile *tile)

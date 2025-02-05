@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_img_minimap.c                                 :+:      :+:    :+:   */
+/*   draw_img_minimap_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 02:44:03 by aska              #+#    #+#             */
-/*   Updated: 2025/02/05 18:55:32 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/05 22:23:18 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw_img_minimap.h"
+#include "draw_img_minimap_bonus.h"
 
 static
 void	draw_empty(t_interface *interface, t_vec2i pos_in_map)

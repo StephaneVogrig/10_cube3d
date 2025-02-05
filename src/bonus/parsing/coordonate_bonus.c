@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coordinate.c                                       :+:      :+:    :+:   */
+/*   coordonate_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:47:44 by aska              #+#    #+#             */
-/*   Updated: 2025/02/04 21:35:31 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/05 22:18:20 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "coordinate.h"
+#include "coordonate_bonus.h"
 
-int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
+int	extract_coordonate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
 {
 	t_lstmap	*sp;
 
@@ -22,10 +22,10 @@ int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp, int id)
 		return (ft_return(ERROR, FAIL, "unexpected end of file after",
 				sp->line));
 	if ((*tmp)->line[0] != '[')
-		return (ft_return(ERROR, FAIL, "No coordinate for sprite", sp->line));
+		return (ft_return(ERROR, FAIL, "No coordonate for sprite", sp->line));
 	while (tmp != NULL && (*tmp)->line[0] == '[')
 	{
-		if (set_sprite_coordinate((*tmp)->line, sprite_lst, id) != SUCCESS)
+		if (set_sprite_coordonate((*tmp)->line, sprite_lst, id) != SUCCESS)
 			return (FAIL);
 		next_line_not_empty(tmp);
 	}
@@ -48,7 +48,7 @@ static double	build(t_build_double *build)
 	return (build->result);
 }
 
-static int	extract_coordinate(char **pos, t_build_double *build)
+static int	extract_coordonate(char **pos, t_build_double *build)
 {
 	char	*endptr;
 
@@ -70,7 +70,7 @@ static int	extract_coordinate(char **pos, t_build_double *build)
 	return (SUCCESS);
 }
 
-int	set_sprite_coordinate(char *line, t_sprite_lst **head, int id)
+int	set_sprite_coordonate(char *line, t_sprite_lst **head, int id)
 {
 	t_build_double	x;
 	t_build_double	y;
@@ -79,18 +79,18 @@ int	set_sprite_coordinate(char *line, t_sprite_lst **head, int id)
 	pos = line;
 	ft_bzero(&x, sizeof(x));
 	ft_bzero(&y, sizeof(y));
-	if (extract_coordinate(&pos, &x) != SUCCESS)
-		return (ft_return(ERROR, FAIL, "Invalid coordinate X position", line));
+	if (extract_coordonate(&pos, &x) != SUCCESS)
+		return (ft_return(ERROR, FAIL, "Invalid coordonate X position", line));
 	if (*pos != ';')
-		return (ft_return(ERROR, FAIL, "Invalid coordinate separator", line));
-	if (extract_coordinate(&pos, &y) != SUCCESS)
-		return (ft_return(ERROR, FAIL, "Invalid coordinate Y position", line));
+		return (ft_return(ERROR, FAIL, "Invalid coordonate separator", line));
+	if (extract_coordonate(&pos, &y) != SUCCESS)
+		return (ft_return(ERROR, FAIL, "Invalid coordonate Y position", line));
 	if (*pos != ']')
-		return (ft_return(ERROR, FAIL, "Invalid end coordinate \"]\"", line));
+		return (ft_return(ERROR, FAIL, "Invalid end coordonate \"]\"", line));
 	pos++;
 	skip_blank(&pos);
 	if (*pos != '\0')
-		return (ft_return(ERROR, FAIL, "Stuff after coordinate", line));
+		return (ft_return(ERROR, FAIL, "Stuff after coordonate", line));
 	insert_sprite_lst(head, build(&x), build(&y), id);
 	return (SUCCESS);
 }

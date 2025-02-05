@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coordinate.h                                       :+:      :+:    :+:   */
+/*   coordonate_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:48:01 by aska              #+#    #+#             */
-/*   Updated: 2025/01/31 21:14:18 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/05 22:18:47 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COORDINATE_H
-# define COORDINATE_H
+#ifndef COORDONATE_BONUS_H
+# define COORDONATE_BONUS_H
 
 # include "libft.h"
 # include "lstmap.h"
@@ -29,8 +29,8 @@ typedef struct s_build_double
 	double	result;
 }	t_build_double;
 
-int	extract_coordinate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp,
+int	extract_coordonate_sprite(t_sprite_lst **sprite_lst, t_lstmap **tmp,
 		int id);
-int	set_sprite_coordinate(char *line, t_sprite_lst **head, int id);
+int	set_sprite_coordonate(char *line, t_sprite_lst **head, int id);
 
 #endif
