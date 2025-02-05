@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 12:47:16 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/05 14:12:29 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/05 15:26:06 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 # include "libft.h"
 # include "mlx.h"
 
-
 /*
- * assume WIN_H and WIN_H are even
+	assuming that the window size is even
 */
 # define WIN_W 1280
 # define WIN_H 768
