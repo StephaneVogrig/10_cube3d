@@ -5,5 +5,7 @@ cub3D
 cub3D_bonus
 .build/*
 *.tgz
+*.o
+*.d
 wolf3d*
 tester.log

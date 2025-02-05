@@ -6,7 +6,7 @@
 #    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/02/05 22:17:47 by ygaiffie         ###   ########.fr        #
+#    Updated: 2025/02/05 23:14:02 by ygaiffie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,8 @@ NAME_BONUS			:=	cub3D_bonus
 				
 # library ---------------------------------------------------------------------#
 
-LIB_DIR				:=	lib/
-
-LDFLAGS				:=	-L ./lib/libft-plus -lft
-MLX					:=	lib/MacroLibx/libmlx.so -lSDL2
+LDFLAGS				:=	-Llibft -lft
+MLX					:=	MacroLibx/libmlx.so -lSDL2
 
 # includes --------------------------------------------------------------------#
 
@@ -39,8 +37,8 @@ DIR_INC				:=	include \
 						include/common \
 						include/mandatory \
 						include/tools \
-						lib/libft-plus \
-						lib/MacroLibx/includes \
+						libft \
+						MacroLibx/includes \
 						src
 
 I_FLAG				:=	$(addprefix -I,$(DIR_INC)) -MMD -MP
@@ -190,12 +188,12 @@ CFLAGS 				:= 	-Wall -Werror -Wextra
 # rules                                                                        #
 #------------------------------------------------------------------------------#
 
-all: libft libmlx init
+all: init
 	@$(MAKE) -j makeall
 	@echo -e "\t$(BLINK_GREEN)$(NAME) = COMPILATION FINISHED !$(NC)"
 	@echo -e "$(BOLD)$(NAME)$(NC) is located in $(BOLD)$(shell find . -iname "$(NAME)")$(NC) !\n"
 
-bonus: libft libmlx init 
+bonus: init 
 	@$(MAKE) -j makebonus
 	@echo -e "\t$(BLINK_GREEN)$(NAME_BONUS) = COMPILATION FINISHED !$(NC)"
 
@@ -206,32 +204,27 @@ fclean: clean libfclean
 	@rm -f $(NAME) && printf "Cleaning: $(NAME) \n"
 	@rm -f $(NAME_BONUS)  && printf "Cleaning: $(NAME_BONUS) \n"
 
-libmlx:
-	@$(MAKE) -j -C $(LIB_DIR)MacroLibx --no-print-directory
-
-libft:
-	@$(MAKE) -j -C $(LIB_DIR)libft-plus --no-print-directory
-
 re: fclean
 	@$(MAKE) all
 
 recub:
+	@rm -fr $(OBJ_DIR) && printf "Cleaning : $(OBJ_DIR)\n"
 	@rm -f $(NAME) && printf "Cleaning: $(NAME) \n"
-	@$(MAKE) -j -C all --no-print-directory
+	@$(MAKE) -j makeall --no-print-directory
 
 libclean:
-	@$(MAKE) -C $(LIB_DIR)libft-plus clean --no-print-directory
-	@$(MAKE) -C $(LIB_DIR)MacroLibx clean --no-print-directory
+	@$(MAKE) -C libft clean --no-print-directory
+	@$(MAKE) -C MacroLibx clean --no-print-directory
 
 relibft:
-	@$(MAKE) -C $(LIB_DIR)libft-plus re --no-print-directory
+	@$(MAKE) -j -C libft re --no-print-directory
 
 remacro:
-	@$(MAKE) -C $(LIB_DIR)MacroLibx re --no-print-directory
+	@$(MAKE) -j -C MacroLibx re --no-print-directory
 
-libfclean: libclean
-	@$(MAKE) -C $(LIB_DIR)libft-plus fclean --no-print-directory
-	@$(MAKE) -C $(LIB_DIR)MacroLibx fclean --no-print-directory
+libfclean:
+	@$(MAKE) -C libft fclean --no-print-directory
+	@$(MAKE) -C MacroLibx fclean --no-print-directory
 
 init:
 	@echo -e ""
@@ -264,9 +257,13 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 #------------------------------------------------------------------------------#
 
 $(NAME): $(OBJS_MANDA)
+	@$(MAKE) -j -C libft --no-print-directory
+	@$(MAKE) -j -C MacroLibx --no-print-directory
 	@$(CC) $(CFLAGS) $(OBJS_MANDA) -o $@ $(LDFLAGS) $(MLX) -lm && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@\n"
 	
 $(NAME_BONUS): $(OBJS_BONUS)
+	@$(MAKE) -j -C libft --no-print-directory
+	@$(MAKE) -j -C MacroLibx --no-print-directory
 	@$(CC) $(CFLAGS) $(OBJS_BONUS) -o $@ $(LDFLAGS) $(MLX) -lm && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@\n"
 
 #------------------------------------------------------------------------------#
@@ -281,4 +278,10 @@ $(NAME_BONUS): $(OBJS_BONUS)
 		libfclean \
 		bonus \
 		relibft \
-		remacro
+		remacro	\
+		recub \
+		test \
+		testbonus \
+		init \
+		makeall \
+		makebonus
