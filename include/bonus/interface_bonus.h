@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:05:53 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 16:06:09 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/05 20:36:32 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # include "draw_img_interface.h"
 # include "interface_utils_bonus.h"
 
-int		interface_setup(t_interface *minimap, void *mlx, t_window *win,
-			t_map *map);
+int		interface_setup(t_interface *minimap, void *mlx, t_window *win);
 void	interface_destroy(t_interface *minimap);
 
 #endif

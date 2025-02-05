@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:18:30 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/03 22:37:03 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/05 20:37:01 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ int	data_setup(t_data *data, char *map_path)
 		exit_code = sprite_setup(&data->sprite, sprite_lst, &data->textures);
 	delete_all_sprite(&sprite_lst);
 	if (exit_code == SUCCESS)
-		exit_code = interface_setup(&data->minimap, data->mlx, &data->win,
-				&data->map);
+		exit_code = interface_setup(&data->minimap, data->mlx, &data->win);
 	if (exit_code == SUCCESS)
 		data->scale_screen = (data->win.width / 2) / data->tg_fov_2;
 	return (exit_code);

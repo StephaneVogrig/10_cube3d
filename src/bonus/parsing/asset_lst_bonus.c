@@ -6,15 +6,14 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:18:07 by aska              #+#    #+#             */
-/*   Updated: 2025/02/04 19:42:54 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:51:10 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asset_lst_bonus.h"
 
-static
-t_asset_lst	*insert_asset_lst(t_asset_lst **head, char *key, char *value,
-		int id)
+static t_asset_lst	*insert_asset_lst(t_asset_lst **head, char *key,
+		char *value, int id)
 {
 	t_asset_lst	*new_node;
 	t_asset_lst	*tmp_node;
@@ -66,11 +65,9 @@ void	delete_all_asset_lst(t_asset_lst **head)
 		delete_node_asset(head, *head);
 }
 
-int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst,
-					int id)
+static int	check_path(char *root_path, t_key_value *kv)
 {
-	kv->value = spacetrim(kv->value);
-	if (root_path != NULL && ft_strrchr(kv->value, '.') != NULL)
+	if (root_path != NULL)
 		kv->value = ft_strjoin(root_path, kv->value);
 	else
 		kv->value = ft_strdup(kv->value);
@@ -86,6 +83,25 @@ int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst,
 		free(kv->value);
 		return (ft_return(ERROR, FAIL, "failed to open asset", kv->key));
 	}
+	return (SUCCESS);
+}
+
+int	set_asset_lst(t_key_value *kv, char *root_path, t_asset_lst **asset_lst,
+		int id)
+{
+	t_rgb	rgb;
+
+	kv->value = spacetrim(kv->value);
+	if (ft_strrchr(kv->value, '.') == NULL)
+	{
+		if (color_set_rgb(&rgb, kv->value) == FAIL)
+			return (FAIL);
+		kv->value = ft_strdup(kv->value);
+		if (kv->value == NULL)
+			return (ft_return(ERROR, FAIL, "malloc failed", "set_asset_lst"));
+	}
+	else if (check_path(root_path, kv) == FAIL)
+		return (FAIL);
 	if (insert_asset_lst(asset_lst, kv->key, kv->value, id) == NULL)
 	{
 		free(kv->value);

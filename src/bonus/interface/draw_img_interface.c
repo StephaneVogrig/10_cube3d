@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:40:43 by aska              #+#    #+#             */
-/*   Updated: 2025/02/05 18:58:55 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:32:02 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	draw_image_fg(t_interface *interface, t_vec2i start, t_vec2i end)
 	}
 }
 
-int	draw_images(t_interface *interface, t_map *map)
+int	draw_images(t_interface *interface)
 {
 	t_vec2i	start;
 	t_vec2i	end;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 02:53:38 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/04 16:14:21 by svogrig          ###   ########.fr       */
+/*   Updated: 2025/02/05 20:49:36 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ int	color_set_rgb(t_rgb *rgb, char *value)
 	endptr = NULL;
 	exit_code = char_to_rgb(current, &endptr, &rgb->r);
 	if (exit_code == FAIL || *endptr == '\0')
-		return (ft_return(ERROR, FAIL, "Invalid color", value));
+		return (ft_return(ERROR, FAIL, "Invalid red color", value));
 	current = endptr + 1;
 	exit_code = char_to_rgb(current, &endptr, &rgb->g);
 	if (exit_code == FAIL || *endptr == '\0')
-		return (ft_return(ERROR, FAIL, "Invalid color", value));
+		return (ft_return(ERROR, FAIL, "Invalid green color", value));
 	current = endptr + 1;
 	exit_code = char_to_rgb(current, &endptr, &rgb->b);
 	if (exit_code == FAIL || *endptr != '\0')
-		return (ft_return(ERROR, FAIL, "Invalid color", value));
+		return (ft_return(ERROR, FAIL, "Invalid blue color", value));
 	rgb->a = 255;
 	return (SUCCESS);
 }

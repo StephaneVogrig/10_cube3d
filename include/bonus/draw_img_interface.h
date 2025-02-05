@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_img_interface.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:41:09 by aska              #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:08 by aska             ###   ########.fr       */
+/*   Updated: 2025/02/05 20:32:33 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include "draw_img_minimap.h"
 # include "interface_utils_bonus.h"
 
-int	draw_images(t_interface *interface, t_map *map);
+int	draw_images(t_interface *interface);
 
 #endif

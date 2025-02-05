@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 21:15:02 by svogrig           #+#    #+#             */
-/*   Updated: 2025/02/04 23:53:42 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:35:59 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ int	interface_asset_setup(t_interface *interface)
 	return (exit);
 }
 
-int	interface_setup(t_interface *interface, void *mlx, t_window *win,
-		t_map *map)
+int	interface_setup(t_interface *interface, void *mlx, t_window *win)
 {
 	int	width;
 	int	height;
@@ -70,6 +69,6 @@ int	interface_setup(t_interface *interface, void *mlx, t_window *win,
 	width = (width + win->width) / 2;
 	height = (height - win->height) / 2;
 	mlx_set_window_position(mlx, interface->win, width, height);
-	draw_images(interface, map);
+	draw_images(interface);
 	return (exit);
 }
