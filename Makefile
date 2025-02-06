@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
+#    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/02/05 23:14:02 by ygaiffie         ###   ########.fr        #
+#    Updated: 2025/02/06 13:21:11 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -234,10 +234,10 @@ init:
 	@echo -e ""
 
 test: all
-	./$(NAME) maps/manda/test/test.cub
+	./$(NAME) 42.cub
 
 testbonus: bonus
-	./$(NAME)_bonus maps/bonus/test/coins_ys.cub
+	./$(NAME)_bonus maps_bonus/test/testbonus.cub
 
 makeall: $(NAME)
 makebonus : $(NAME_BONUS)

@@ -1,0 +1,50 @@
+W1	textures/wall1.png
+W2	textures/wall2.png
+W3	textures/wall3.png
+W4	textures/wall4.png
+W5	textures/wall5.png
+W6	textures/wall6.png
+W7	textures/wall7.png
+W8	textures/wall8.png
+W9	textures/wall9.png
+
+SP	sprites/coin_ys_silver.png
+[2.5;2.5]
+[12.5;2.5]
+[2.5;12.5]
+[12.5;12.5]
+
+SP	sprites/logo_42.png
+[7.5;7.5]
+
+SP	sprites/coin_ys_gold.png
+[5.5;5.5]
+[5.5;9.5]
+[9.5;5.5]
+[9.5;9.5]
+
+R	textures/doorR.png
+L	textures/doorL.png
+T	textures/doorT.png
+RE	textures/doorRedge.png
+LE	textures/doorLedge.png
+TE	textures/doorTedge.png
+
+F	textures/floor_128.png
+C	textures/ceil_128.png
+
+          1
+ 123456789012
+ 2000000000002
+ 3001R1T1L1003
+ 4010000000104
+ 50R0000000R05
+ 6010000000106
+ 70T0000000T07
+ 8010000000108
+ 90L000N000L09
+100100000001001
+ 1001R1T1L1001
+ 2000000000002
+ 123456789012
+          1
