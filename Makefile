@@ -6,7 +6,7 @@
 #    By: svogrig <svogrig@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/23 10:52:20 by ygaiffie          #+#    #+#              #
-#    Updated: 2025/02/06 13:21:11 by svogrig          ###   ########.fr        #
+#    Updated: 2025/02/06 15:46:22 by svogrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -237,7 +237,7 @@ test: all
 	./$(NAME) 42.cub
 
 testbonus: bonus
-	./$(NAME)_bonus maps_bonus/test/testbonus.cub
+	./$(NAME)_bonus maps_bonus/test/42bonus.cub
 
 makeall: $(NAME)
 makebonus : $(NAME_BONUS)
